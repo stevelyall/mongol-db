@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/sort_key_generator.h"
-#include "mongo/db/json.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/exec/sort_key_generator.h"
+#include "mongol/db/json.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -163,4 +163,4 @@ TEST(SortKeyGeneratorTest, SortKeyCoveredCompound3) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

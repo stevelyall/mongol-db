@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -83,4 +83,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

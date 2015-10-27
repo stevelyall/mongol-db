@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/elect_cmd_runner.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/elect_cmd_runner.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
 
 
 using std::unique_ptr;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -51,7 +51,7 @@ using executor::NetworkInterfaceMock;
 using executor::RemoteCommandRequest;
 using executor::RemoteCommandResponse;
 
-class ElectCmdRunnerTest : public mongo::unittest::Test {
+class ElectCmdRunnerTest : public mongol::unittest::Test {
 public:
     void startTest(ElectCmdRunner* electCmdRunner,
                    const ReplicaSetConfig& currentConfig,
@@ -240,7 +240,7 @@ TEST_F(ElectCmdRunnerTest, ShuttingDown) {
     ASSERT_EQUALS(electCmdRunner.getReceivedVotes(), 1);
 }
 
-class ElectScatterGatherTest : public mongo::unittest::Test {
+class ElectScatterGatherTest : public mongol::unittest::Test {
 public:
     virtual void start(const BSONObj& configObj) {
         int selfConfigIndex = 0;
@@ -418,4 +418,4 @@ TEST_F(ElectScatterGatherTest, FirstNodeRespondsWithNaySecondWithYeaArbiters) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

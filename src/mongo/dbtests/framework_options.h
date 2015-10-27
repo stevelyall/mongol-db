@@ -31,16 +31,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct FrameworkGlobalParams {
     unsigned perfHist;

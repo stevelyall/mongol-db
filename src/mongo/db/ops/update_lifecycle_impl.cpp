@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
+#include "mongol/db/client.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -82,4 +82,4 @@ const std::vector<FieldRef*>* UpdateLifecycleImpl::getImmutableFields() const {
     return NULL;
 }
 
-}  // namespace mongo
+}  // namespace mongol

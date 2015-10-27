@@ -1,5 +1,5 @@
 /build
-/src/mongo/db/modules
+/src/mongol/db/modules
 /.jsdbshell
 /.dbshell
 /perf.data
@@ -38,16 +38,16 @@
 *#
 .#*
 
-/src/mongo/*/*Debug*/
-/src/mongo/*/*/*Debug*/
-/src/mongo/*/*Release*/
-/src/mongo/*/*/*Release*/
+/src/mongol/*/*Debug*/
+/src/mongol/*/*/*Debug*/
+/src/mongol/*/*Release*/
+/src/mongol/*/*/*Release*/
 /src/ipch
-/src/mongo/*/ipch
-/src/mongo/*/*/ipch
-/src/mongo/db/.gdb*
-/src/mongo/db/makefile.local
-/src/mongo/db/_ReSharper.db
+/src/mongol/*/ipch
+/src/mongol/*/*/ipch
+/src/mongol/db/.gdb*
+/src/mongol/db/makefile.local
+/src/mongol/db/_ReSharper.db
 /src/third_party/*/*.cache
 /src/third_party/*/*.tlog
 /src/third_party/*/*.lastbuildstate
@@ -69,15 +69,15 @@ docs/doxygen
 scratch
 
 # binaries
-/mongo
-/mongod
-/mongogrid
-/mongos
+/mongol
+/mongold
+/mongolgrid
+/mongols
 
-/mongosniff
-/mongobridge
-/mongoperf
-/mongoshim
+/mongolsniff
+/mongolbridge
+/mongolperf
+/mongolshim
 /loadgen
 /docgen
 
@@ -86,9 +86,9 @@ scratch
 *.tar.gz
 
 #libs
-/libmongoclient.*
-/libmongotestfiles.*
-/libmongoshellfiles.*
+/libmongolclient.*
+/libmongoltestfiles.*
+/libmongolshellfiles.*
 /sharedclient
 
 /emr.jar
@@ -112,9 +112,9 @@ scratch
 #debian
 build-stamp
 configure-stamp
-debian/mongodb
+debian/mongoldb
 # This was inserted 2009-08-16, nobody knows why.
-#debian/mongodb.*
+#debian/mongoldb.*
 
 #osx
 .DS_Store
@@ -130,14 +130,14 @@ debian/mongodb
 *.orig
 
 #built by Visual Studio
-src/mongo/base/error_codes.cpp
-src/mongo/base/error_codes.h
-src/mongo/db/auth/action_type.cpp
-src/mongo/db/auth/action_type.h
-src/mongo/db/fts/stop_words_list.cpp
-src/mongo/db/fts/stop_words_list.h
-src/mongo/shell/mongo-server.cpp
-src/mongo/shell/mongo.cpp
+src/mongol/base/error_codes.cpp
+src/mongol/base/error_codes.h
+src/mongol/db/auth/action_type.cpp
+src/mongol/db/auth/action_type.h
+src/mongol/db/fts/stop_words_list.cpp
+src/mongol/db/fts/stop_words_list.h
+src/mongol/shell/mongol-server.cpp
+src/mongol/shell/mongol.cpp
 src/third_party/v8/src/experimental-libraries.cc
 src/third_party/v8/src/libraries.cc
 
@@ -152,7 +152,7 @@ CMakeLists.txt
 
 # old things that should be removed
 # maybe remove this mid 2012
-src/mongo/buildinfo.cpp
+src/mongol/buildinfo.cpp
 buildinfo.cpp
 /.settings/
 

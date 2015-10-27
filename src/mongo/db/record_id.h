@@ -34,11 +34,11 @@
 #include <cstdint>
 #include <ostream>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/logger/logstream_builder.h"
-#include "mongo/util/bufreader.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/logger/logstream_builder.h"
+#include "mongol/util/bufreader.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The key that uniquely identifies a Record in a Collection or RecordStore.
@@ -163,4 +163,4 @@ inline logger::LogstreamBuilder& operator<<(logger::LogstreamBuilder& stream, co
     stream.stream() << id;
     return stream;
 }
-}  // namespace mongo
+}  // namespace mongol

@@ -32,7 +32,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 
@@ -129,4 +129,4 @@ inline std::string MemberState::toString() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

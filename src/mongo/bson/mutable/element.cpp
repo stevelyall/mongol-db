@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/mutable/element.h"
+#include "mongol/bson/mutable/element.h"
 
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 // Many of the methods of Element are actually implemented in document.cpp, since they need
@@ -78,7 +78,7 @@ Status Element::appendArray(StringData fieldName, const BSONObj& value) {
 
 Status Element::appendBinary(StringData fieldName,
                              uint32_t len,
-                             mongo::BinDataType binType,
+                             mongol::BinDataType binType,
                              const void* data) {
     return pushBack(getDocument().makeElementBinary(fieldName, len, binType, data));
 }
@@ -165,9 +165,9 @@ std::string Element::toString() const {
     const BSONType type = getType();
 
     // The only types that sometimes don't have a value are Object and Array nodes.
-    dassert((type == mongo::Object) || (type == mongo::Array));
+    dassert((type == mongol::Object) || (type == mongol::Array));
 
-    if (type == mongo::Object) {
+    if (type == mongol::Object) {
         BSONObjBuilder builder;
         writeTo(&builder);
         BSONObj obj = builder.obj();
@@ -184,4 +184,4 @@ std::string Element::toString() const {
 }
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

@@ -25,8 +25,8 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/bson/bsontypes.h"
-#include "mongo/bson/timestamp.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/bson/timestamp.h"
 
 #include <cstdint>
 #include <ctime>
@@ -34,9 +34,9 @@
 #include <limits>
 #include <sstream>
 
-#include "mongo/util/time_support.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 Timestamp Timestamp::max() {
     unsigned int t = static_cast<unsigned int>(std::numeric_limits<int32_t>::max());

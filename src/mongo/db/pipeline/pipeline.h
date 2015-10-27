@@ -32,12 +32,12 @@
 
 #include <boost/intrusive_ptr.hpp>
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/util/intrusive_counter.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/util/intrusive_counter.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class ClientBasic;
@@ -47,7 +47,7 @@ class DocumentSource;
 struct ExpressionContext;
 class Privilege;
 
-/** mongodb "commands" (sent via db.$cmd.findOne(...))
+/** mongoldb "commands" (sent via db.$cmd.findOne(...))
     subclass to make a command.  define a singleton object for it.
     */
 class Pipeline : public IntrusiveCounterUnsigned {
@@ -75,7 +75,7 @@ public:
 
     /**
       Split the current Pipeline into a Pipeline for each shard, and
-      a Pipeline that combines the results within mongos.
+      a Pipeline that combines the results within mongols.
 
       This permanently alters this pipeline for the merging operation.
 
@@ -107,7 +107,7 @@ public:
       This is only intended to be used by the shard command obtained
       from splitForSharded().  Some pipeline operations in the merge
       process do not have equivalent command forms, and using this on
-      the mongos Pipeline will cause assertions.
+      the mongols Pipeline will cause assertions.
 
       @param the builder to write the command to
     */
@@ -129,7 +129,7 @@ public:
         return explain;
     }
 
-    /// The initial source is special since it varies between mongos and mongod.
+    /// The initial source is special since it varies between mongols and mongold.
     void addInitialSource(boost::intrusive_ptr<DocumentSource> source);
 
     /// The source that represents the output. Returns a non-owning pointer.
@@ -160,11 +160,11 @@ public:
     /*
       PipelineD is a "sister" class that has additional functionality
       for the Pipeline.  It exists because of linkage requirements.
-      Pipeline needs to function in mongod and mongos.  PipelineD
-      contains extra functionality required in mongod, and which can't
-      appear in mongos because the required symbols are unavailable
+      Pipeline needs to function in mongold and mongols.  PipelineD
+      contains extra functionality required in mongold, and which can't
+      appear in mongols because the required symbols are unavailable
       for linking there.  Consider PipelineD to be an extension of this
-      class for mongod only.
+      class for mongold only.
      */
     friend class PipelineD;
 
@@ -185,7 +185,7 @@ private:
     static const char explainName[];
     static const char fromRouterName[];
     static const char serverPipelineName[];
-    static const char mongosPipelineName[];
+    static const char mongolsPipelineName[];
 
     Pipeline(const boost::intrusive_ptr<ExpressionContext>& pCtx);
 
@@ -195,4 +195,4 @@ private:
 
     boost::intrusive_ptr<ExpressionContext> pCtx;
 };
-}  // namespace mongo
+}  // namespace mongol

@@ -29,12 +29,12 @@
 
 #include <cstdint>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/safe_num.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/safe_num.h"
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 /** For an overview of mutable BSON, please see the file document.h in this directory. */
@@ -379,7 +379,7 @@ public:
     void writeTo(BSONObjBuilder* builder) const;
 
     /** Write this Element to the provided array builder. This Element must be of type
-     *  mongo::Array.
+     *  mongol::Array.
      */
     void writeArrayTo(BSONArrayBuilder* builder) const;
 
@@ -406,7 +406,7 @@ public:
     Status setValueArray(const BSONObj& value);
 
     /** Set the value of this Element to the given binary data. */
-    Status setValueBinary(uint32_t len, mongo::BinDataType binType, const void* data);
+    Status setValueBinary(uint32_t len, mongol::BinDataType binType, const void* data);
 
     /** Set the value of this Element to Undefined. */
     Status setValueUndefined();
@@ -531,14 +531,14 @@ public:
     /** Append the provided binary data as a new field with the provided name. */
     Status appendBinary(StringData fieldName,
                         uint32_t len,
-                        mongo::BinDataType binType,
+                        mongol::BinDataType binType,
                         const void* data);
 
     /** Append an undefined value as a new field with the provided name. */
     Status appendUndefined(StringData fieldName);
 
     /** Append the provided OID as a new field with the provided name. */
-    Status appendOID(StringData fieldName, mongo::OID value);
+    Status appendOID(StringData fieldName, mongol::OID value);
 
     /** Append the provided bool as a new field with the provided name. */
     Status appendBool(StringData fieldName, bool value);
@@ -553,7 +553,7 @@ public:
     Status appendRegex(StringData fieldName, StringData re, StringData flags);
 
     /** Append the provided DBRef data as a new field with the provided name. */
-    Status appendDBRef(StringData fieldName, StringData ns, mongo::OID oid);
+    Status appendDBRef(StringData fieldName, StringData ns, mongol::OID oid);
 
     /** Append the provided code data as a new field with the iven name. */
     Status appendCode(StringData fieldName, StringData value);
@@ -625,6 +625,6 @@ inline bool operator==(const Element& l, const Element& r);
 inline bool operator!=(const Element& l, const Element& r);
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/bson/mutable/element-inl.h"
+#include "mongol/bson/mutable/element-inl.h"

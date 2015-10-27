@@ -31,17 +31,17 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/server_options.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/util/progress_meter.h"
-#include "mongo/util/thread_safe_string.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/server_options.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/util/progress_meter.h"
+#include "mongol/util/thread_safe_string.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 class Command;

@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/storage/mmap_v1/aligned_builder.h"
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/queue.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/storage/mmap_v1/aligned_builder.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/queue.h"
 
-namespace mongo {
+namespace mongol {
 namespace dur {
 
 /**
@@ -192,4 +192,4 @@ private:
 };
 
 }  // namespace dur
-}  // namespace mongo
+}  // namespace mongol

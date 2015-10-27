@@ -36,10 +36,10 @@
 #include <string>
 
 #define MONGO_INCLUDE_INVARIANT_H_WHITELISTED
-#include "mongo/util/invariant.h"
+#include "mongol/util/invariant.h"
 #undef MONGO_INCLUDE_INVARIANT_H_WHITELISTED
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A StringData object wraps a 'const std::string&' or a 'const char*' without copying its
@@ -212,6 +212,6 @@ inline bool operator>=(StringData lhs, StringData rhs) {
 
 std::ostream& operator<<(std::ostream& stream, StringData value);
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/base/string_data-inl.h"
+#include "mongol/base/string_data-inl.h"

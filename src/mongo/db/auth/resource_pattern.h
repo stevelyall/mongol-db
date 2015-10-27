@@ -31,11 +31,11 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/platform/hash_namespace.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Representation of names of various kinds of resources targetable by the access control
@@ -205,12 +205,12 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const ResourcePattern& pattern);
 
-}  // namespace mongo
+}  // namespace mongol
 
 MONGO_HASH_NAMESPACE_START
 template <>
-struct hash<mongo::ResourcePattern> {
-    size_t operator()(const mongo::ResourcePattern& resource) const {
+struct hash<mongol::ResourcePattern> {
+    size_t operator()(const mongol::ResourcePattern& resource) const {
         return resource.hash();
     }
 };

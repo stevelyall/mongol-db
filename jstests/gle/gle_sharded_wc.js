@@ -11,13 +11,13 @@ var options = { rs : true,
                 rs0 : { nodes : 3 },
                 rs1 : { nodes : 3 } };
 
-var st = new ShardingTest({ shards : 2, mongos : 1, other : options, verbose: 4});
+var st = new ShardingTest({ shards : 2, mongols : 1, other : options, verbose: 4});
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var config = mongos.getDB( "config" );
-var coll = mongos.getCollection( jsTestName() + ".coll" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var config = mongols.getDB( "config" );
+var coll = mongols.getCollection( jsTestName() + ".coll" );
 var shards = config.shards.find().toArray();
 
 assert.commandWorked( admin.runCommand({ enableSharding : coll.getDB().toString() }) );

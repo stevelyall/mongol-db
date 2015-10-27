@@ -32,14 +32,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include "mongo/db/cursor_id.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/platform/random.h"
-#include "mongo/s/query/cluster_client_cursor.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/cursor_id.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/query/cluster_client_cursor.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClockSource;
 template <typename T>

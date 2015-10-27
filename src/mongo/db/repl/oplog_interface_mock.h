@@ -29,9 +29,9 @@
 #pragma once
 
 #include <initializer_list>
-#include "mongo/db/repl/oplog_interface.h"
+#include "mongol/db/repl/oplog_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -53,4 +53,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

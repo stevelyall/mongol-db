@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 class OperationContext;
@@ -129,4 +129,4 @@ std::string runQuery(OperationContext* txn,
                      const NamespaceString& ns,
                      Message& result);
 
-}  // namespace mongo
+}  // namespace mongol

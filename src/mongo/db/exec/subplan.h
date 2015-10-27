@@ -30,18 +30,18 @@
 
 #include <string>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/plan_yield_policy.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/record_id.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/plan_yield_policy.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/record_id.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -199,4 +199,4 @@ private:
     std::map<BSONObj, size_t> _indexMap;
 };
 
-}  // namespace mongo
+}  // namespace mongol

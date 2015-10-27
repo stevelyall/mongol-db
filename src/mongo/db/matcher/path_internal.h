@@ -32,11 +32,11 @@
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 bool isAllDigits(StringData str);
 
@@ -44,4 +44,4 @@ bool isAllDigits(StringData str);
 // Replaces getFieldDottedOrArray without recursion nor std::string manipulation
 BSONElement getFieldDottedOrArray(const BSONObj& doc, const FieldRef& path, size_t* idxPath);
 
-}  // namespace mongo
+}  // namespace mongol

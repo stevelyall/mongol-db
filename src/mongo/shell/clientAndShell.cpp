@@ -27,17 +27,17 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/shell/shell_utils.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/shell/shell_utils.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -52,7 +52,7 @@ bool dbexitCalled = false;
 
 void dbexit(ExitCode returnCode, const char* whyMsg) {
     {
-        stdx::lock_guard<stdx::mutex> lk(shell_utils::mongoProgramOutputMutex);
+        stdx::lock_guard<stdx::mutex> lk(shell_utils::mongolProgramOutputMutex);
         dbexitCalled = true;
     }
 

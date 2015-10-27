@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;

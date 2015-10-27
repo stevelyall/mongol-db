@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/rotatable_file_manager.h"
+#include "mongol/logger/rotatable_file_manager.h"
 
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/util/map_util.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/util/map_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 RotatableFileManager::RotatableFileManager() {}
@@ -76,4 +76,4 @@ RotatableFileManager::FileNameStatusPairVector RotatableFileManager::rotateAll(
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

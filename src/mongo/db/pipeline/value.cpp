@@ -26,23 +26,23 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/value.h"
+#include "mongol/db/pipeline/value.h"
 
 #include <cmath>
 #include <limits>
 #include <boost/functional/hash.hpp>
 
-#include "mongo/base/compare_numbers.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/compare_numbers.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
-using namespace mongoutils;
+namespace mongol {
+using namespace mongolutils;
 using boost::intrusive_ptr;
 using std::min;
 using std::numeric_limits;
@@ -819,7 +819,7 @@ void Value::hash_combine(size_t& seed) const {
             boost::hash_combine(seed, _storage.dateValue);
             break;
 
-        case mongo::NumberDecimal: {
+        case mongol::NumberDecimal: {
             const Decimal128 dcml = getDecimal();
             if (dcml.toAbs().isGreater(Decimal128(std::numeric_limits<double>::max())) &&
                 !dcml.isInfinite() && !dcml.isNaN()) {

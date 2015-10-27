@@ -28,19 +28,19 @@
 
 #include <string>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -98,4 +98,4 @@ public:
 
 } appendOplogNoteCmd;
 
-}  // namespace mongo
+}  // namespace mongol

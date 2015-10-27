@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set_common.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/query/canonical_query.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/query/canonical_query.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 bool WorkingSetCommon::fetchAndInvalidateLoc(OperationContext* txn,
@@ -195,4 +195,4 @@ std::string WorkingSetCommon::toStatusString(const BSONObj& obj) {
     return status.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

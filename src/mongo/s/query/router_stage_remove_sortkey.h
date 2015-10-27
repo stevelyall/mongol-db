@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/s/query/router_exec_stage.h"
+#include "mongol/s/query/router_exec_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * Removes the sort key added to each document by mongod's sortKey meta-projection.
+ * Removes the sort key added to each document by mongold's sortKey meta-projection.
  *
  * Only needed if the query specifies a sort.
  */
@@ -48,4 +48,4 @@ public:
     bool remotesExhausted() final;
 };
 
-}  // namespace mongo
+}  // namespace mongol

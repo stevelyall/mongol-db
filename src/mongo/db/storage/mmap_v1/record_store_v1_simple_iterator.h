@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 
 class SimpleRecordStoreV1;
 
@@ -76,4 +76,4 @@ private:
     const bool _forward;
 };
 
-}  // namespace mongo
+}  // namespace mongol

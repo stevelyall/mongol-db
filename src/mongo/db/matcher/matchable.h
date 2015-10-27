@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/matcher/path.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/matcher/path.h"
 
-namespace mongo {
+namespace mongol {
 
 class MatchableDocument {
 public:

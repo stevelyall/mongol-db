@@ -31,10 +31,10 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Parses a number out of a StringData.
@@ -61,4 +61,4 @@ static Status parseNumberFromString(StringData stringValue, NumberType* result) 
     return parseNumberFromStringWithBase(stringValue, 0, result);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,19 +32,19 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/fetcher.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/collection_cloner.h"
-#include "mongo/db/repl/base_cloner.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/fetcher.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/collection_cloner.h"
+#include "mongol/db/repl/base_cloner.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class DatabaseCloner : public BaseCloner {
@@ -200,4 +200,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

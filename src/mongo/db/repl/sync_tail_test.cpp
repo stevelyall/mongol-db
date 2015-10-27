@@ -26,32 +26,32 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/operation_context_repl_mock.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_mock.h"
-#include "mongo/db/repl/sync_tail.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
+#include "mongol/db/repl/sync_tail.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/unittest/temp_dir.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 class BackgroundSyncMock : public BackgroundSyncInterface {
 public:
@@ -87,9 +87,9 @@ void SyncTailTest::setUp() {
         // When using the 'devnull' storage engine, it is fine for the temporary directory to
         // go away after the global storage engine is initialized.
         unittest::TempDir tempDir("sync_tail_test");
-        mongo::storageGlobalParams.dbpath = tempDir.path();
-        mongo::storageGlobalParams.engine = "devnull";
-        mongo::storageGlobalParams.engineSetByUser = true;
+        mongol::storageGlobalParams.dbpath = tempDir.path();
+        mongol::storageGlobalParams.engine = "devnull";
+        mongol::storageGlobalParams.engineSetByUser = true;
         serviceContext->initializeGlobalStorageEngine();
     }
     ReplSettings replSettings;
@@ -112,7 +112,7 @@ void SyncTailTest::tearDown() {
     {
         Lock::GlobalWrite globalLock(_txn->lockState());
         BSONObjBuilder unused;
-        invariant(mongo::dbHolder().closeAll(_txn.get(), unused, false));
+        invariant(mongol::dbHolder().closeAll(_txn.get(), unused, false));
     }
     _txn.reset();
     setGlobalReplicationCoordinator(nullptr);

@@ -28,25 +28,25 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/index_catalog_entry.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
 
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/head_manager.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/head_manager.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -284,4 +284,4 @@ IndexCatalogEntry* IndexCatalogEntryContainer::release(const IndexDescriptor* de
     return NULL;
 }
 
-}  // namespace mongo
+}  // namespace mongol

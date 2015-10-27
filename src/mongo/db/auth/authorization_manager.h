@@ -31,24 +31,24 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/bson/oid.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/role_graph.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/user_name_hash.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/role_graph.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/user_name_hash.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationSession;
 class AuthzManagerExternalState;
@@ -94,8 +94,8 @@ public:
     static const NamespaceString usersBackupCollectionNamespace;
     static const NamespaceString usersCollectionNamespace;
     static const NamespaceString versionCollectionNamespace;
-    static const NamespaceString defaultTempUsersCollectionNamespace;  // for mongorestore
-    static const NamespaceString defaultTempRolesCollectionNamespace;  // for mongorestore
+    static const NamespaceString defaultTempUsersCollectionNamespace;  // for mongolrestore
+    static const NamespaceString defaultTempRolesCollectionNamespace;  // for mongolrestore
 
     /**
      * Query to match the auth schema version document in the versionCollectionNamespace.
@@ -413,4 +413,4 @@ private:
     stdx::condition_variable _fetchPhaseIsReady;
 };
 
-}  // namespace mongo
+}  // namespace mongol

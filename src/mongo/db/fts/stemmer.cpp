@@ -31,10 +31,10 @@
 #include <cstdlib>
 #include <string>
 
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

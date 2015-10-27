@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 namespace logger {
 class Tee;
@@ -44,4 +44,4 @@ void fillRsLog(std::stringstream* s);
 extern logger::Tee* rsLog;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

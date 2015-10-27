@@ -30,7 +30,7 @@
 
 #include <cstdint>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Interface for objects generating ticks that roughly represents the passage of time.
@@ -51,4 +51,4 @@ public:
      */
     virtual Tick getTicksPerSecond() = 0;
 };
-}  // namespace mongo
+}  // namespace mongol

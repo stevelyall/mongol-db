@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class Command;
 
@@ -46,4 +46,4 @@ void addPrivilegesRequiredForFindAndModify(Command* commandTemplate,
                                            std::vector<Privilege>* out);
 
 }  // namespace find_and_modify
-}  // namespace mongo
+}  // namespace mongol

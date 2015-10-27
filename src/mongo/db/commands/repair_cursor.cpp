@@ -28,19 +28,19 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/multi_iterator.h"
-#include "mongo/db/query/cursor_response.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/multi_iterator.h"
+#include "mongol/db/query/cursor_response.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

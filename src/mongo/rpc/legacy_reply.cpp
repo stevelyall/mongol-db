@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/legacy_reply.h"
+#include "mongol/rpc/legacy_reply.h"
 
 #include <utility>
 #include <tuple>
 
-#include "mongo/rpc/legacy_reply_builder.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/rpc/legacy_reply_builder.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 LegacyReply::LegacyReply(const Message* message) : _message(std::move(message)) {
@@ -108,4 +108,4 @@ Protocol LegacyReply::getProtocol() const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

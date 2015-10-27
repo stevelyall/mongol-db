@@ -30,15 +30,15 @@
 #include <algorithm>
 #include <cstdlib>
 
-#include "mongo/base/status.h"
-#include "mongo/logger/message_log_domain.h"
+#include "mongol/base/status.h"
+#include "mongol/logger/message_log_domain.h"
 
 /*
  * Implementation of LogDomain<E>.  Include this in cpp files to instantiate new LogDomain types.
  * See message_log_domain.h, e.g.
  */
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 template <typename E>
@@ -104,4 +104,4 @@ void LogDomain<E>::clearAppenders() {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

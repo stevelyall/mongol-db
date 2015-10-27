@@ -25,30 +25,30 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/user_cache_invalidator_job.h"
+#include "mongol/db/auth/user_cache_invalidator_job.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/grid.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/background.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/grid.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/background.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // How often to check with the config servers whether authorization information has changed.
@@ -120,7 +120,7 @@ void UserCacheInvalidator::initialize(OperationContext* txn) {
     if (currentGeneration.getStatus().code() == ErrorCodes::CommandNotFound) {
         warning() << "_getUserCacheGeneration command not found while fetching initial user "
                      "cache generation from the config server(s).  This most likely means you are "
-                     "running an outdated version of mongod on the config servers";
+                     "running an outdated version of mongold on the config servers";
     } else {
         warning() << "An error occurred while fetching initial user cache generation from "
                      "config servers: " << currentGeneration.getStatus();
@@ -153,7 +153,7 @@ void UserCacheInvalidator::run() {
         if (!currentGeneration.isOK()) {
             if (currentGeneration.getStatus().code() == ErrorCodes::CommandNotFound) {
                 warning() << "_getUserCacheGeneration command not found on config server(s), "
-                             "this most likely means you are running an outdated version of mongod "
+                             "this most likely means you are running an outdated version of mongold "
                              "on the config servers" << std::endl;
             } else {
                 warning() << "An error occurred while fetching current user cache generation "
@@ -178,4 +178,4 @@ std::string UserCacheInvalidator::name() const {
     return "UserCacheInvalidatorThread";
 }
 
-}  // namespace mongo
+}  // namespace mongol

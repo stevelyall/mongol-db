@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/stats/top.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(TopTest, CollectionDropped) {
     Top().collectionDropped("coll");

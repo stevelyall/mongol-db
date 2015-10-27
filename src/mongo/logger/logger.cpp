@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/logger/logger.h"
+#include "mongol/logger/logger.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/platform/compiler.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/platform/compiler.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 static LogManager* theGlobalLogManager;  // NULL at program start, before even static
@@ -60,4 +60,4 @@ MONGO_INITIALIZER_GENERAL(GlobalLogManager, ("ValidateLocale"), ("default"))(Ini
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

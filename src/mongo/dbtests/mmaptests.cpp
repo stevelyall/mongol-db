@@ -28,22 +28,22 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/mmap_v1/data_file.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_extent_manager.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/mmap_v1/data_file.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/timer.h"
 
 namespace MMapTests {
 
@@ -127,7 +127,7 @@ public:
             }
         }
         if (t.millis() > 10000) {
-            mongo::unittest::log() << "warning: MMap LeakTest is unusually slow N:" << N << ' '
+            mongol::unittest::log() << "warning: MMap LeakTest is unusually slow N:" << N << ' '
                                    << t.millis() << "ms" << endl;
         }
     }

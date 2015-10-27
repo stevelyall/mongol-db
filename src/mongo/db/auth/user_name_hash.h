@@ -29,15 +29,15 @@
 
 #include <string>
 
-#include "mongo/db/auth/user_name.h"
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/platform/hash_namespace.h"
 
 
 // Define hash function for UserNames so they can be keys in std::unordered_map
 MONGO_HASH_NAMESPACE_START
 template <>
-struct hash<mongo::UserName> {
-    size_t operator()(const mongo::UserName& pname) const {
+struct hash<mongol::UserName> {
+    size_t operator()(const mongol::UserName& pname) const {
         return hash<std::string>()(pname.getFullName());
     }
 };

@@ -26,33 +26,33 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/index/haystack_access_method.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/index/haystack_access_method.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
 
 /**
  * Examines all documents in a given radius of a given point.
  * Returns all documents that match a given search restriction.
- * See http://dochub.mongodb.org/core/haystackindexes
+ * See http://dochub.mongoldb.org/core/haystackindexes
  *
  * Use when you want to look for restaurants within 25 miles with a certain name.
  * Don't use when you want to find the closest open restaurants.
  */
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -135,4 +135,4 @@ public:
     }
 } nameSearchCommand;
 
-}  // namespace mongo
+}  // namespace mongol

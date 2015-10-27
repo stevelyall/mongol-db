@@ -29,9 +29,9 @@
 #include <boost/filesystem.hpp>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Validate the documents in a file match the specified vector.
@@ -62,4 +62,4 @@ std::vector<boost::filesystem::path> scanDirectory(const boost::filesystem::path
  */
 void createDirectoryClean(const boost::filesystem::path& dir);
 
-}  // namespace mongo
+}  // namespace mongol

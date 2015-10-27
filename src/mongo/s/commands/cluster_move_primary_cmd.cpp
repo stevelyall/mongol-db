@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/client.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/client.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::set;
@@ -209,9 +209,9 @@ public:
             }
 
         } else if (cloneRes["clonedColls"].type() != Array) {
-            // Legacy behavior from old mongod with sharded collections, *do not* delete
+            // Legacy behavior from old mongold with sharded collections, *do not* delete
             // database, but inform user they can drop manually (or ignore).
-            warning() << "movePrimary legacy mongod behavior detected. "
+            warning() << "movePrimary legacy mongold behavior detected. "
                       << "User must manually remove unsharded collections in database " << dbname
                       << " on " << oldPrimary;
 
@@ -274,4 +274,4 @@ private:
 } movePrimary;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

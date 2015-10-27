@@ -32,10 +32,10 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 class StringData;
 class ServiceContext;
 
@@ -72,4 +72,4 @@ public:
 
     std::string getOpenConfig(StringData tableName) override;
 };
-}  // namespace mongo
+}  // namespace mongol

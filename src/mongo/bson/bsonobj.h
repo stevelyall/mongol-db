@@ -35,19 +35,19 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/bson/oid.h"
-#include "mongo/bson/bsonelement.h"
-#include "mongo/base/data_type.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/bufreader.h"
-#include "mongo/util/shared_buffer.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/bson/oid.h"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/base/data_type.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/bufreader.h"
+#include "mongol/util/shared_buffer.h"
 
-namespace mongo {
+namespace mongol {
 
 typedef std::set<BSONElement, BSONElementCmpWithoutField> BSONElementSet;
 typedef std::multiset<BSONElement, BSONElementCmpWithoutField> BSONElementMSet;

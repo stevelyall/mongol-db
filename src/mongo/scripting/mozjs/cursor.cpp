@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/cursor.h"
+#include "mongol/scripting/mozjs/cursor.h"
 
-#include "mongo/scripting/mozjs/bson.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/wrapconstrainedmethod.h"
+#include "mongol/scripting/mozjs/bson.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/wrapconstrainedmethod.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec CursorInfo::methods[6] = {
@@ -127,4 +127,4 @@ void CursorInfo::Functions::close::call(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

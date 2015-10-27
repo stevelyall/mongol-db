@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 // A damage event represents a change of size 'size' byte at starting at offset
@@ -53,4 +53,4 @@ struct DamageEvent {
 typedef std::vector<DamageEvent> DamageVector;
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

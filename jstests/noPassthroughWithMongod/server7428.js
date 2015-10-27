@@ -1,10 +1,10 @@
 // Regression test for SERVER-7428.
 
 // TODO(spencer): move this test out of slowNightly directory once there is a better place for tests
-// that start their own mongod's but aren't slow
+// that start their own mongold's but aren't slow
 
 // Verify that the copyDatabase command works appropriately when the
-// target mongo instance has authentication enabled.
+// target mongol instance has authentication enabled.
 
 (function() {
 

@@ -31,10 +31,10 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Status represents an error state or the absence thereof.
@@ -153,6 +153,6 @@ inline bool operator!=(const ErrorCodes::Error lhs, const Status& rhs);
 std::ostream& operator<<(std::ostream& os, const Status& status);
 std::ostream& operator<<(std::ostream& os, ErrorCodes::Error);
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/base/status-inl.h"
+#include "mongol/base/status-inl.h"

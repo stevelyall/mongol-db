@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/delete.h"
+#include "mongol/db/exec/delete.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -297,4 +297,4 @@ long long DeleteStage::getNumDeleted(const PlanExecutor& exec) {
     return deleteStats->docsDeleted;
 }
 
-}  // namespace mongo
+}  // namespace mongol

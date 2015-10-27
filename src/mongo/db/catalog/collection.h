@@ -34,24 +34,24 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/damage_vector.h"
-#include "mongo/db/catalog/collection_info_cache.h"
-#include "mongo/db/catalog/cursor_manager.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/exec/collection_scan_common.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/capped_callback.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/snapshot.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/damage_vector.h"
+#include "mongol/db/catalog/collection_info_cache.h"
+#include "mongol/db/catalog/cursor_manager.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/exec/collection_scan_common.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/capped_callback.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/snapshot.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class CollectionCatalogEntry;
 class DatabaseCatalogEntry;

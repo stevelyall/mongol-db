@@ -3,7 +3,7 @@ selector:
     roots:
     - jstests/multiVersion/*.js
 
-# Multiversion tests start their own mongod's.
+# Multiversion tests start their own mongold's.
 executor:
   js_test:
     config:

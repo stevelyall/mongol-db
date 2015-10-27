@@ -30,12 +30,12 @@
  * Unit tests of the ParsedPrivilege class.
  */
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/privilege_parser.h"
-#include "mongo/db/server_options.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/privilege_parser.h"
+#include "mongol/db/server_options.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(PrivilegeParserTest, IsValidTest) {
@@ -214,4 +214,4 @@ TEST(PrivilegeParserTest, ConvertBetweenPrivilegeTest) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

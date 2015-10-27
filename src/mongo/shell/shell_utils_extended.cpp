@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils_extended.cpp
+// mongol/shell/shell_utils_extended.cpp
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -27,25 +27,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem/convenience.hpp>
 #include <fstream>
 
-#include "mongo/scripting/engine.h"
-#include "mongo/shell/shell_utils.h"
-#include "mongo/shell/shell_utils_launcher.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/text.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/shell/shell_utils.h"
+#include "mongol/shell/shell_utils_launcher.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::ifstream;
 using std::string;
@@ -134,7 +134,7 @@ BSONObj cd(const BSONObj& args, void* data) {
         return BSONObj();
     }
 #endif
-    uasserted(16832, mongoutils::str::stream() << "cd command failed: " << errnoWithDescription());
+    uasserted(16832, mongolutils::str::stream() << "cd command failed: " << errnoWithDescription());
     return BSONObj();
 }
 

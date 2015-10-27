@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils.h
+// mongol/shell/shell_utils.h
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class Scope;
 class DBClientWithCommands;
@@ -83,7 +83,7 @@ extern ConnectionRegistry connectionRegistry;
 
 // This mutex helps the shell serialize output on exit, to avoid deadlocks at shutdown. So
 // it also protects the global dbexitCalled.
-extern stdx::mutex& mongoProgramOutputMutex;
+extern stdx::mutex& mongolProgramOutputMutex;
 
 // Helper to tell if a file exists cross platform
 // TODO: Remove this when we have a cross platform file utility library

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_executor_test_fixture.h"
+#include "mongol/db/repl/replication_executor_test_fixture.h"
 
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -58,4 +58,4 @@ std::unique_ptr<executor::TaskExecutor> ReplicationExecutorTest::makeTaskExecuto
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

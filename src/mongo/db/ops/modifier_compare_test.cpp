@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_compare.h"
+#include "mongol/db/ops/modifier_compare.h"
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::LogBuilder;
-using mongo::ModifierCompare;
-using mongo::ModifierInterface;
-using mongo::Status;
-using mongo::StringData;
-using mongo::fromjson;
-using mongo::mutablebson::ConstElement;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
+using mongol::BSONObj;
+using mongol::LogBuilder;
+using mongol::ModifierCompare;
+using mongol::ModifierInterface;
+using mongol::Status;
+using mongol::StringData;
+using mongol::fromjson;
+using mongol::mutablebson::ConstElement;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
 
 const char kModNameMin[] = "$min";
 const char kModNameMax[] = "$max";

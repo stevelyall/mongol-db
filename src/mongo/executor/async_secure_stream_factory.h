@@ -28,16 +28,16 @@
 
 #pragma once
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #ifdef MONGO_CONFIG_SSL
 
 #include <asio.hpp>
 #include <asio/ssl.hpp>
 
-#include "mongo/executor/async_stream_factory_interface.h"
+#include "mongol/executor/async_stream_factory_interface.h"
 
-namespace mongo {
+namespace mongol {
 class SSLManagerInterface;
 namespace executor {
 
@@ -55,6 +55,6 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol
 
 #endif

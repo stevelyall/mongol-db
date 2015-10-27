@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <list>
 #include <set>
 #include <vector>
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/hasher.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_write.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_write.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::list;
@@ -488,4 +488,4 @@ public:
 } shardCollectionCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -31,10 +31,10 @@
 
 #include <string>
 
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObjBuilder;
 
 static const char kUpsertedFieldName[] = "upserted";
@@ -119,4 +119,4 @@ private:
     bool _disabled = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/group.h"
+#include "mongol/db/exec/group.h"
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -298,4 +298,4 @@ const SpecificStats* GroupStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

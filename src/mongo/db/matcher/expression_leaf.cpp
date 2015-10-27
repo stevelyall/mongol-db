@@ -28,21 +28,21 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
 #include <cmath>
 #include <unordered_map>
 #include <pcrecpp.h>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/config.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/path.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/config.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/path.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 Status LeafMatchExpression::initPath(StringData path) {
     _path = path;
@@ -456,7 +456,7 @@ bool TypeMatchExpression::matches(const MatchableDocument* doc, MatchDetails* de
         //     [ 456 ], // inner array. should match
         //     ...
         // ]
-        if (_type == mongo::Array && e.outerArray()) {
+        if (_type == mongol::Array && e.outerArray()) {
             continue;
         }
 

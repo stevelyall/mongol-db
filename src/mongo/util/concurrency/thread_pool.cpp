@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/concurrency/thread_pool.h"
+#include "mongol/util/concurrency/thread_pool.h"
 
-#include "mongo/base/status.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -375,4 +375,4 @@ void ThreadPool::_setState_inlock(const LifecycleState newState) {
     _stateChange.notify_all();
 }
 
-}  // namespace mongo
+}  // namespace mongol

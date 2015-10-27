@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/write_op.h"
+#include "mongol/s/write_ops/write_op.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::stringstream;
 using std::vector;

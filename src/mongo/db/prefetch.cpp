@@ -26,27 +26,27 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/prefetch.h"
+#include "mongol/db/prefetch.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -269,4 +269,4 @@ public:
 } replIndexPrefetch;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

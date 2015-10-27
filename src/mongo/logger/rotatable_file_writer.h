@@ -31,11 +31,11 @@
 #include <ostream>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -131,4 +131,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

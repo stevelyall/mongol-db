@@ -26,18 +26,18 @@
 *    it in the license file.
 */
 
-#include "mongo/db/index_legacy.h"
+#include "mongol/db/index_legacy.h"
 
 #include <string>
 
-#include "mongo/db/client.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/s2_access_method.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/client.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/s2_access_method.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 BSONObj IndexLegacy::adjustIndexSpecObject(const BSONObj& obj) {
@@ -84,4 +84,4 @@ BSONObj IndexLegacy::getMissingField(OperationContext* txn,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/commands.h"
-#include "mongo/db/query/plan_cache.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/plan_cache.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DB commands for plan cache.
@@ -182,4 +182,4 @@ public:
                        BSONObjBuilder* bob);
 };
 
-}  // namespace mongo
+}  // namespace mongol

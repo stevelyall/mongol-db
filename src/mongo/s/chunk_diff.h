@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/s/client/shard.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/s/client/shard.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkType;
 struct ChunkVersion;
@@ -61,12 +61,12 @@ public:
  * ConfigDiffTracker is created, the current config data is *attached* to it, and it is then able
  * to modify the data.
  *
- * The current form is templated b/c the overall algorithm is identical between mongos and mongod,
+ * The current form is templated b/c the overall algorithm is identical between mongols and mongold,
  * but the actual chunk maps used differ in implementation. We don't want to copy the
  * implementation, because the logic is identical, or the chunk data, because that would be slow
  * for big clusters, so this is the alternative for now.
  *
- * TODO: Standardize between mongos and mongod and convert template parameters to types.
+ * TODO: Standardize between mongols and mongold and convert template parameters to types.
  */
 template <class ValType>
 class ConfigDiffTracker : public ConfigDiffTrackerBase {
@@ -90,7 +90,7 @@ public:
      * aren't owned by the tracker, they're just passed in and updated.  Therefore they must all
      * stay in scope while the tracker is working.
      *
-     * TODO: Make a standard VersionedRange to encapsulate this info in both mongod and mongos?
+     * TODO: Make a standard VersionedRange to encapsulate this info in both mongold and mongols?
      */
     void attach(const std::string& ns,
                 RangeMap& currMap,
@@ -151,4 +151,4 @@ private:
     int _validDiffs;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -9,14 +9,14 @@ env.Library(target="unittest",
                 'unittest.cpp',
                 'unittest_helpers.cpp',
             ],
-            LIBDEPS=['$BUILD_DIR/mongo/util/foundation',
-                     '$BUILD_DIR/mongo/util/options_parser/options_parser',
+            LIBDEPS=['$BUILD_DIR/mongol/util/foundation',
+                     '$BUILD_DIR/mongol/util/options_parser/options_parser',
             ])
 
 env.Library("unittest_main", ['unittest_main.cpp'],
             LIBDEPS=[
                 'unittest',
-                '$BUILD_DIR/mongo/base',
+                '$BUILD_DIR/mongol/base',
                  ])
 
 env.Library(target="integration_test_main",
@@ -25,13 +25,13 @@ env.Library(target="integration_test_main",
             ],
             LIBDEPS=[
                 'unittest',
-                '$BUILD_DIR/mongo/base',
-                '$BUILD_DIR/mongo/client/connection_string',
-                '$BUILD_DIR/mongo/util/options_parser/options_parser_init',
+                '$BUILD_DIR/mongol/base',
+                '$BUILD_DIR/mongol/client/connection_string',
+                '$BUILD_DIR/mongol/util/options_parser/options_parser_init',
             ],
 )
 
-env.Library("unittest_crutch", ['crutch.cpp'], LIBDEPS=['$BUILD_DIR/mongo/base'])
+env.Library("unittest_crutch", ['crutch.cpp'], LIBDEPS=['$BUILD_DIR/mongol/base'])
 
 
 env.CppUnitTest('unittest_test', 'unittest_test.cpp')
@@ -44,6 +44,6 @@ env.Library(
         'barrier.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )

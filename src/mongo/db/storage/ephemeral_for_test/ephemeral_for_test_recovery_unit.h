@@ -32,10 +32,10 @@
 
 #include <vector>
 
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/recovery_unit.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 class SortedDataInterface;
 
@@ -72,4 +72,4 @@ private:
     Changes _changes;
 };
 
-}  // namespace mongo
+}  // namespace mongol

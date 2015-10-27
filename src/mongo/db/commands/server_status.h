@@ -31,12 +31,12 @@
 #pragma once
 
 #include <string>
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServerStatusSection {
 public:

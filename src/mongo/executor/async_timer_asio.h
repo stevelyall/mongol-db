@@ -30,9 +30,9 @@
 
 #include <asio.hpp>
 
-#include "mongo/executor/async_timer_interface.h"
+#include "mongol/executor/async_timer_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class AsyncTimerASIO final : public AsyncTimerInterface {
@@ -56,4 +56,4 @@ public:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

@@ -31,10 +31,10 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and contents of documents contained in the
@@ -91,4 +91,4 @@ private:
     boost::optional<Date_t> _ping;
 };
 
-}  // namespace mongo
+}  // namespace mongol

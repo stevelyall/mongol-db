@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
 
 #include <memory>
 
-namespace mongo {
+namespace mongol {
 
 const stdx::chrono::milliseconds DistLockManager::kDefaultSingleLockAttemptTimeout(0);
 const stdx::chrono::milliseconds DistLockManager::kDefaultLockRetryInterval(1000);

@@ -30,11 +30,11 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/write_concern_options.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/write_concern_options.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 class StatusWith;

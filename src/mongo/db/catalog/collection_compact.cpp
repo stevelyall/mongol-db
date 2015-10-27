@@ -28,25 +28,25 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/catalog/collection.h"
+#include "mongol/db/catalog/collection.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/base/owned_pointer_map.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/catalog/index_key_validate.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/touch_pages.h"
+#include "mongol/base/counter.h"
+#include "mongol/base/owned_pointer_map.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/catalog/index_key_validate.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/touch_pages.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::vector;
@@ -139,7 +139,7 @@ StatusWith<CompactStats> Collection::compact(OperationContext* txn,
                     ErrorCodes::CannotCreateIndex,
                     str::stream() << "Cannot compact collection due to invalid index " << spec
                                   << ": " << keyStatus.reason() << " For more info see"
-                                  << " http://dochub.mongodb.org/core/index-validation");
+                                  << " http://dochub.mongoldb.org/core/index-validation");
             }
             indexSpecs.push_back(spec);
         }
@@ -190,4 +190,4 @@ StatusWith<CompactStats> Collection::compact(OperationContext* txn,
     return StatusWith<CompactStats>(stats);
 }
 
-}  // namespace mongo
+}  // namespace mongol

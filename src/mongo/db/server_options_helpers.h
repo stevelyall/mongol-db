@@ -28,18 +28,18 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_section.h"
+#include "mongol/base/status.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_section.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 Status addGeneralServerOptions(moe::OptionSection* options);
 
@@ -66,4 +66,4 @@ Status storeServerOptions(const moe::Environment& params, const std::vector<std:
 
 void printCommandLineOpts();
 
-}  // namespace mongo
+}  // namespace mongol

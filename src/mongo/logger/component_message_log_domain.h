@@ -27,10 +27,10 @@
 
 #pragma once
 
-#include "mongo/logger/log_component_settings.h"
-#include "mongo/logger/message_log_domain.h"
+#include "mongol/logger/log_component_settings.h"
+#include "mongol/logger/message_log_domain.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -84,4 +84,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

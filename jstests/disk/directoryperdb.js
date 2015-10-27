@@ -68,7 +68,7 @@ checkDBDirectoryNonexistent = function( db ) {
     }
 }
 
-// Start the directoryperdb instance of mongod.
+// Start the directoryperdb instance of mongold.
 var m = MongoRunner.runMongod( { storageEngine : storageEngine, dbpath : dbpath,
                                  directoryperdb : "" } );
 // Check that the 'local' db has allocated data.
@@ -115,7 +115,7 @@ checkDBFilesInDBDirectory( dbAnd );
 
 
 // Unicode directoryperdb databases do not work on Windows.
-// Disabled until https://jira.mongodb.org/browse/SERVER-16725
+// Disabled until https://jira.mongoldb.org/browse/SERVER-16725
 // is resolved.
 if ( !_isWindows() ) {
     // Create a database named '処'.

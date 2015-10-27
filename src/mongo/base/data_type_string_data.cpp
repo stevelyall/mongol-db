@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_type_string_data.h"
+#include "mongol/base/data_type_string_data.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status DataType::Handler<StringData>::makeStoreStatus(const StringData& sdata,
                                                       size_t length,
@@ -40,4 +40,4 @@ Status DataType::Handler<StringData>::makeStoreStatus(const StringData& sdata,
     return Status(ErrorCodes::Overflow, ss);
 }
 
-}  // namespace mongo
+}  // namespace mongol

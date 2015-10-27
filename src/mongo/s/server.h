@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 extern OID serverID;
 

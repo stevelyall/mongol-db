@@ -26,29 +26,29 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem.hpp>
 #include <algorithm>
 #include <iostream>
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/file_manager.h"
-#include "mongo/db/ftdc/file_writer.h"
-#include "mongo/db/ftdc/ftdc_test.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/file_manager.h"
+#include "mongol/db/ftdc/file_writer.h"
+#include "mongol/db/ftdc/ftdc_test.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Test a full buffer
 TEST(FTDCFileManagerTest, TestFull) {
@@ -345,4 +345,4 @@ TEST(FTDCFileManagerTest, TestNormalCrashInterim) {
     ValidateDocumentList(files[1], docs2);
 }
 
-}  // namespace mongo
+}  // namespace mongol

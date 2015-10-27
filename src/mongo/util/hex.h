@@ -31,10 +31,10 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/builder.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 // can't use hex namespace because it conflicts with hex iostream function
 inline int fromHex(char c) {
     if ('0' <= c && c <= '9')

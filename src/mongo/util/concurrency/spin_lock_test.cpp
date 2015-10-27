@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/util/timer.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/util/timer.h"
 
 namespace {
 
-using mongo::SpinLock;
-using mongo::Timer;
+using mongol::SpinLock;
+using mongol::Timer;
 
-namespace stdx = mongo::stdx;
+namespace stdx = mongol::stdx;
 
 class LockTester {
 public:
@@ -48,7 +48,7 @@ public:
     }
 
     void start(int increments) {
-        _t = new stdx::thread(mongo::stdx::bind(&LockTester::test, this, increments));
+        _t = new stdx::thread(mongol::stdx::bind(&LockTester::test, this, increments));
     }
 
     void join() {
@@ -103,7 +103,7 @@ TEST(Concurrency, ConcurrentIncs) {
     }
 
     int ms = timer.millis();
-    mongo::unittest::log() << "spinlock ConcurrentIncs time: " << ms << std::endl;
+    mongol::unittest::log() << "spinlock ConcurrentIncs time: " << ms << std::endl;
 
     ASSERT_EQUALS(counter, threads * incs);
 #if defined(__linux__)

@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/replset/dist_lock_catalog_impl.h"
+#include "mongol/s/catalog/replset/dist_lock_catalog_impl.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/query/find_and_modify_request.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/sharding_metadata.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/write_ops/wc_error_detail.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/query/find_and_modify_request.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/sharding_metadata.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/write_ops/wc_error_detail.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -145,7 +145,7 @@ DistLockCatalogImpl::DistLockCatalogImpl(ShardRegistry* shardRegistry,
       _writeConcern(WriteConcernOptions(WriteConcernOptions::kMajority,
                                         // Note: Even though we're setting NONE here,
                                         // kMajority implies JOURNAL, if journaling is supported
-                                        // by this mongod.
+                                        // by this mongold.
                                         WriteConcernOptions::NONE,
                                         durationCount<Milliseconds>(writeConcernTimeout))),
       _lockPingNS(LockpingsType::ConfigNS),
@@ -449,4 +449,4 @@ StatusWith<vector<BSONObj>> DistLockCatalogImpl::_findOnConfig(
     return result.getValue().docs;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,19 +28,19 @@
 
 #pragma once
 
-#include "mongo/db/exec/near.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/geo/geometry_container.h"
-#include "mongo/db/geo/r2_region_coverer.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/index_bounds.h"
+#include "mongol/db/exec/near.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/geo/geometry_container.h"
+#include "mongol/db/geo/r2_region_coverer.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/index_bounds.h"
 #include "third_party/s2/s2cellunion.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Generic parameters for a GeoNear search
@@ -156,4 +156,4 @@ private:
     std::unique_ptr<DensityEstimator> _densityEstimator;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -20,20 +20,20 @@ else {
 
     test.tempKill();
     assert.throws( function(){ t.save( { x : 3 } ); } , null , "B1" );
-    // It's ok even for some of the mongod to be unreachable for read-only cmd
+    // It's ok even for some of the mongold to be unreachable for read-only cmd
     assert.eq( 2, t.find({}).count() );
-    // It's NOT ok for some of the mongod to be unreachable for write cmd
+    // It's NOT ok for some of the mongold to be unreachable for write cmd
     assert.throws( function(){ t.getDB().runCommand({ profile: 1 }); }); 
     assert.eq( 2 , t.find().itcount() , "B2" );
     test.tempStart();
     test.checkHashes( "test" , "B3" );
 
-    // Trying killing the second mongod
+    // Trying killing the second mongold
     test.tempKill( 1 );
     assert.throws( function(){ t.save( { x : 3 } ); } );
-    // It's ok even for some of the mongod to be unreachable for read-only cmd
+    // It's ok even for some of the mongold to be unreachable for read-only cmd
     assert.eq( 2, t.find({}).count() );
-    // It's NOT ok for some of the mongod to be unreachable for write cmd
+    // It's NOT ok for some of the mongold to be unreachable for write cmd
     assert.throws( function(){ t.getDB().runCommand({ profile: 1 }); }); 
     assert.eq( 2 , t.find().itcount() );
     test.tempStart( 1 );

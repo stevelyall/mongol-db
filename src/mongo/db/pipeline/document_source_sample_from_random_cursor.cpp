@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
 #include <boost/math/distributions/beta.hpp>
 
-#include "mongo/db/client.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 using boost::intrusive_ptr;
 
 DocumentSourceSampleFromRandomCursor::DocumentSourceSampleFromRandomCursor(
@@ -139,4 +139,4 @@ intrusive_ptr<DocumentSourceSampleFromRandomCursor> DocumentSourceSampleFromRand
     long long nDocsInCollection) {
     return new DocumentSourceSampleFromRandomCursor(expCtx, size, idField, nDocsInCollection);
 }
-}  // mongo
+}  // mongol

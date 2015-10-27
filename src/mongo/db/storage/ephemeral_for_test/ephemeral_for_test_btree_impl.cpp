@@ -28,19 +28,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_btree_impl.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_btree_impl.h"
 
 #include <set>
 
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/storage/index_entry_comparison.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/storage/index_entry_comparison.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -154,7 +154,7 @@ public:
         invariant(!hasFieldNames(key));
 
         if (key.objsize() >= TempKeyMaxSize) {
-            string msg = mongoutils::str::stream()
+            string msg = mongolutils::str::stream()
                 << "EphemeralForTestBtree::insert: key too large to index, failing " << ' '
                 << key.objsize() << ' ' << key;
             return Status(ErrorCodes::KeyTooLong, msg);
@@ -493,4 +493,4 @@ SortedDataInterface* getEphemeralForTestBtreeImpl(const Ordering& ordering,
     return new EphemeralForTestBtreeImpl(static_cast<IndexSet*>(dataInOut->get()));
 }
 
-}  // namespace mongo
+}  // namespace mongol

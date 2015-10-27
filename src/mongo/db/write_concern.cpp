@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/write_concern.h"
+#include "mongol/db/write_concern.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/db/write_concern_options.h"
+#include "mongol/base/counter.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/db/write_concern_options.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using repl::OpTime;
@@ -285,4 +285,4 @@ Status waitForWriteConcern(OperationContext* txn,
     return replStatus.status;
 }
 
-}  // namespace mongo
+}  // namespace mongol

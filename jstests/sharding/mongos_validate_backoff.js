@@ -1,12 +1,12 @@
 //
-// Ensures that single mongos shard-key errors are fast, but slow down when many are triggered  
+// Ensures that single mongols shard-key errors are fast, but slow down when many are triggered  
 //
 
-var st = new ShardingTest({ shards : 1, mongos : 1 })
+var st = new ShardingTest({ shards : 1, mongols : 1 })
 
-var mongos = st.s0
-var admin = mongos.getDB( "admin" )
-var coll = mongos.getCollection( "foo.bar" )
+var mongols = st.s0
+var admin = mongols.getDB( "admin" )
+var coll = mongols.getCollection( "foo.bar" )
 
 printjson( admin.runCommand({ enableSharding : coll.getDB() + "" }) )
 

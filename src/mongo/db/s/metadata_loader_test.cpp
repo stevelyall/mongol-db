@@ -26,27 +26,27 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/metadata_loader.h"
-#include "mongo/dbtests/mock/mock_conn_registry.h"
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
-#include "mongo/s/catalog/legacy/catalog_manager_legacy.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/metadata_loader.h"
+#include "mongol/dbtests/mock/mock_conn_registry.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/s/catalog/legacy/catalog_manager_legacy.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
@@ -59,7 +59,7 @@ const std::string CONFIG_HOST_PORT = "$dummy_config:27017";
 // TODO: Test read of chunks with new epoch
 // TODO: Test that you can properly load config using format with deprecated fields?
 
-class MetadataLoaderFixture : public mongo::unittest::Test {
+class MetadataLoaderFixture : public mongol::unittest::Test {
 public:
     void setUp() {
         ConnectionString configLoc = ConnectionString(HostAndPort(CONFIG_HOST_PORT));
@@ -80,7 +80,7 @@ private:
 TEST_F(MetadataLoaderFixture, DroppedColl) {
     OperationContextNoop txn;
     MockRemoteDBServer dummyConfig(CONFIG_HOST_PORT);
-    mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+    mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
     MockConnRegistry::get()->addServer(&dummyConfig);
 
     CollectionType collInfo;
@@ -113,7 +113,7 @@ TEST_F(MetadataLoaderFixture, DroppedColl) {
 TEST_F(MetadataLoaderFixture, EmptyColl) {
     OperationContextNoop txn;
     MockRemoteDBServer dummyConfig(CONFIG_HOST_PORT);
-    mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+    mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
     MockConnRegistry::get()->addServer(&dummyConfig);
 
     MetadataLoader loader;
@@ -136,7 +136,7 @@ TEST_F(MetadataLoaderFixture, EmptyColl) {
 TEST_F(MetadataLoaderFixture, BadColl) {
     OperationContextNoop txn;
     MockRemoteDBServer dummyConfig(CONFIG_HOST_PORT);
-    mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+    mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
     MockConnRegistry::get()->addServer(&dummyConfig);
 
     dummyConfig.insert(CollectionType::ConfigNS, BSON(CollectionType::fullNs("test.foo")));
@@ -161,7 +161,7 @@ TEST_F(MetadataLoaderFixture, BadColl) {
 TEST_F(MetadataLoaderFixture, BadChunk) {
     OperationContextNoop txn;
     MockRemoteDBServer dummyConfig(CONFIG_HOST_PORT);
-    mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+    mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
     MockConnRegistry::get()->addServer(&dummyConfig);
 
     CollectionType collInfo;
@@ -203,7 +203,7 @@ protected:
         MetadataLoaderFixture::setUp();
 
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -248,7 +248,7 @@ protected:
         MetadataLoaderFixture::setUp();
 
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -316,7 +316,7 @@ protected:
         MetadataLoaderFixture::setUp();
 
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -452,7 +452,7 @@ protected:
         MetadataLoaderFixture::setUp();
 
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         ConnectionString confServerStr((HostAndPort(CONFIG_HOST_PORT)));
@@ -754,11 +754,11 @@ TEST_F(MultipleMetadataFixture, PromotePendingBadOverlap) {
 
 #if 0
     // TODO: d_chunk_manager_test has no tests for passing old ShardChunkManager
-    class TwoChunkFixture : public mongo::unittest::Test {
+    class TwoChunkFixture : public mongol::unittest::Test {
     protected:
         void setUp() {
             _dummyConfig.reset( new MockRemoteDBServer( CONFIG_HOST_PORT ) );
-            mongo::ConnectionString::setConnectionHook( MockConnRegistry::get()->getConnStrHook() );
+            mongol::ConnectionString::setConnectionHook( MockConnRegistry::get()->getConnStrHook() );
             MockConnRegistry::get()->addServer( _dummyConfig.get() );
 
             OID epoch = OID::gen();
@@ -848,11 +848,11 @@ TEST_F(MultipleMetadataFixture, PromotePendingBadOverlap) {
 #if 0
 
     // TODO: MockServer functionality does not support selective query
-    class ThreeChunkTwoShardFixture : public mongo::unittest::Test {
+    class ThreeChunkTwoShardFixture : public mongol::unittest::Test {
     protected:
         void setUp() {
             _dummyConfig.reset( new MockRemoteDBServer( CONFIG_HOST_PORT ) );
-            mongo::ConnectionString::setConnectionHook( MockConnRegistry::get()->getConnStrHook() );
+            mongol::ConnectionString::setConnectionHook( MockConnRegistry::get()->getConnStrHook() );
             MockConnRegistry::get()->addServer( _dummyConfig.get() );
 
             OID epoch = OID::gen();
@@ -952,4 +952,4 @@ TEST_F(MultipleMetadataFixture, PromotePendingBadOverlap) {
 #endif
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -29,9 +29,9 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClientBasic;
 
@@ -45,7 +45,7 @@ class AuthenticationSession {
 
 public:
     enum SessionType {
-        SESSION_TYPE_MONGO,  // The mongo-specific challenge-response authentication mechanism.
+        SESSION_TYPE_MONGO,  // The mongol-specific challenge-response authentication mechanism.
         SESSION_TYPE_SASL    // SASL authentication mechanism.
     };
 
@@ -76,4 +76,4 @@ private:
     const SessionType _sessionType;
 };
 
-}  // namespace mongo
+}  // namespace mongol

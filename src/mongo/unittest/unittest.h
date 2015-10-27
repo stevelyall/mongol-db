@@ -29,7 +29,7 @@
 /*
  * A C++ unit testing framework.
  *
- * For examples of basic usage, see mongo/unittest/unittest_test.cpp.
+ * For examples of basic usage, see mongol/unittest/unittest_test.cpp.
  */
 
 #pragma once
@@ -42,18 +42,18 @@
 
 #include <boost/config.hpp>
 
-#include "mongo/base/status_with.h"
-#include "mongo/logger/logstream_builder.h"
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/unittest/unittest_helpers.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/logger/logstream_builder.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/unittest/unittest_helpers.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
 /**
  * Fail unconditionally, reporting the given message.
  */
-#define FAIL(MESSAGE) ::mongo::unittest::TestAssertionFailure(__FILE__, __LINE__, MESSAGE).stream()
+#define FAIL(MESSAGE) ::mongol::unittest::TestAssertionFailure(__FILE__, __LINE__, MESSAGE).stream()
 
 /**
  * Fails unless "EXPRESSION" is true.
@@ -71,12 +71,12 @@
 /**
  * Asserts that a Status code is OK.
  */
-#define ASSERT_OK(EXPRESSION) ASSERT_EQUALS(::mongo::Status::OK(), (EXPRESSION))
+#define ASSERT_OK(EXPRESSION) ASSERT_EQUALS(::mongol::Status::OK(), (EXPRESSION))
 
 /**
  * Asserts that a status code is anything but OK.
  */
-#define ASSERT_NOT_OK(EXPRESSION) ASSERT_NOT_EQUALS(::mongo::Status::OK(), (EXPRESSION))
+#define ASSERT_NOT_OK(EXPRESSION) ASSERT_NOT_EQUALS(::mongol::Status::OK(), (EXPRESSION))
 
 /*
  * Binary comparison assertions.
@@ -101,8 +101,8 @@
  * Binary comparison utility macro.  Do not use directly.
  */
 #define _ASSERT_COMPARISON(COMPARISON, a, b)                                                       \
-    if (::mongo::unittest::ComparisonAssertion_##COMPARISON ca =                                   \
-            ::mongo::unittest::ComparisonAssertion_##COMPARISON(__FILE__, __LINE__, #a, #b, a, b)) \
+    if (::mongol::unittest::ComparisonAssertion_##COMPARISON ca =                                   \
+            ::mongol::unittest::ComparisonAssertion_##COMPARISON(__FILE__, __LINE__, #a, #b, a, b)) \
     ca.failure().stream()
 
 /**
@@ -120,7 +120,7 @@
  */
 #define ASSERT_THROWS(STATEMENT, EXCEPTION_TYPE) \
     ASSERT_THROWS_PRED(                          \
-        STATEMENT, EXCEPTION_TYPE, ::mongo::stdx::bind(::mongo::unittest::alwaysTrue))
+        STATEMENT, EXCEPTION_TYPE, ::mongol::stdx::bind(::mongol::unittest::alwaysTrue))
 
 /**
  * Behaves like ASSERT_THROWS, above, but also fails if calling what() on the thrown exception
@@ -130,7 +130,7 @@
     ASSERT_THROWS_PRED(STATEMENT,                                                    \
                        EXCEPTION_TYPE,                                               \
                        ([&](const EXCEPTION_TYPE& ex) {                              \
-        return ::mongo::StringData(ex.what()) == ::mongo::StringData(EXPECTED_WHAT); \
+        return ::mongol::StringData(ex.what()) == ::mongol::StringData(EXPECTED_WHAT); \
                        }))
 
 /**
@@ -168,7 +168,7 @@
             str::stream err;                                                                    \
             err << "Expected to find " #CONTAINS " (" << myContains << ") in " #BIG_STRING " (" \
                 << myString << ")";                                                             \
-            ::mongo::unittest::TestAssertionFailure(__FILE__, __LINE__, err).stream();          \
+            ::mongol::unittest::TestAssertionFailure(__FILE__, __LINE__, err).stream();          \
         }                                                                                       \
     } while (false)
 
@@ -182,13 +182,13 @@
  * }
  */
 #define TEST(CASE_NAME, TEST_NAME)                                                          \
-    class _TEST_TYPE_NAME(CASE_NAME, TEST_NAME) : public ::mongo::unittest::Test {          \
+    class _TEST_TYPE_NAME(CASE_NAME, TEST_NAME) : public ::mongol::unittest::Test {          \
     private:                                                                                \
         virtual void _doTest();                                                             \
                                                                                             \
         static const RegistrationAgent<_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)> _agent;       \
     };                                                                                      \
-    const ::mongo::unittest::Test::RegistrationAgent<_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)> \
+    const ::mongol::unittest::Test::RegistrationAgent<_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)> \
         _TEST_TYPE_NAME(CASE_NAME, TEST_NAME)::_agent(#CASE_NAME, #TEST_NAME);              \
     void _TEST_TYPE_NAME(CASE_NAME, TEST_NAME)::_doTest()
 
@@ -198,7 +198,7 @@
  *
  * Usage:
  *
- * class FixtureClass : public mongo::unittest::Test {
+ * class FixtureClass : public mongol::unittest::Test {
  * protected:
  *   int myVar;
  *   void setUp() { myVar = 10; }
@@ -215,7 +215,7 @@
                                                                                                \
         static const RegistrationAgent<_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)> _agent;       \
     };                                                                                         \
-    const ::mongo::unittest::Test::RegistrationAgent<_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)> \
+    const ::mongol::unittest::Test::RegistrationAgent<_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)> \
         _TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)::_agent(#FIXTURE_NAME, #TEST_NAME);           \
     void _TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)::_doTest()
 
@@ -225,7 +225,7 @@
  */
 #define _TEST_TYPE_NAME(CASE_NAME, TEST_NAME) UnitTest__##CASE_NAME##__##TEST_NAME
 
-namespace mongo {
+namespace mongol {
 
 namespace unittest {
 
@@ -235,7 +235,7 @@ class Result;
  * Gets a LogstreamBuilder for logging to the unittest log domain, which may have
  * different target from the global log domain.
  */
-mongo::logger::LogstreamBuilder log();
+mongol::logger::LogstreamBuilder log();
 
 /**
  * Type representing the function composing a test.
@@ -550,6 +550,6 @@ inline bool alwaysTrue() {
 }
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/unittest/unittest-inl.h"
+#include "mongol/unittest/unittest-inl.h"

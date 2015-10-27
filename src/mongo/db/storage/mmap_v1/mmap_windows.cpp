@@ -27,28 +27,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
 
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/text.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/text.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
 using std::vector;
 
 namespace {
-mongo::AtomicUInt64 mmfNextId(0);
+mongol::AtomicUInt64 mmfNextId(0);
 }
 
 static size_t fetchMinOSPageSizeBytes() {

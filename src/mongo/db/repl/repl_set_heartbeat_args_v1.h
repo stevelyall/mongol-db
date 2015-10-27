@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/util/net/hostandport.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -135,4 +135,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,36 +26,36 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/pipeline_d.h"
+#include "mongol/db/pipeline/pipeline_d.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/index_iterator.h"
-#include "mongo/db/exec/multi_iterator.h"
-#include "mongo/db/exec/shard_filter.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/db/s/sharded_connection_info.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/index_iterator.h"
+#include "mongol/db/exec/multi_iterator.h"
+#include "mongol/db/exec/shard_filter.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/db/s/sharded_connection_info.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::shared_ptr;
@@ -435,4 +435,4 @@ shared_ptr<PlanExecutor> PipelineD::addCursorSource(const intrusive_ptr<Pipeline
     return exec;
 }
 
-}  // namespace mongo
+}  // namespace mongol

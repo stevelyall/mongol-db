@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 struct UpdateResult {
     UpdateResult(bool existing_,
@@ -67,4 +67,4 @@ struct UpdateResult {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

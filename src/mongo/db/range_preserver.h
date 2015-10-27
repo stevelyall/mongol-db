@@ -27,10 +27,10 @@
  */
 
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/clientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/clientcursor.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A RangePreserver prevents the RangeDeleter from removing any new data ranges in a collection.
@@ -68,4 +68,4 @@ private:
     std::unique_ptr<ClientCursorPin> _pin;
 };
 
-}  // namespace mongo
+}  // namespace mongol

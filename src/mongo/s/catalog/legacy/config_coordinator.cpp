@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/config_coordinator.h"
+#include "mongol/s/catalog/legacy/config_coordinator.h"
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/client/multi_command_dispatch.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/log.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/client/multi_command_dispatch.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -427,4 +427,4 @@ void ConfigCoordinator::executeBatch(const BatchedCommandRequest& clientRequest,
     combineResponses(responses, clientResponse);
 }
 
-}  // namespace mongo
+}  // namespace mongol

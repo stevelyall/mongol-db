@@ -2,11 +2,11 @@
  * This file tests that "user:<username>@<db>" shows up in the logs.
  */
 
-// TODO(schwerin) Re-enable this test after resolving corresponding TODO in mongo/util/log.cpp.
+// TODO(schwerin) Re-enable this test after resolving corresponding TODO in mongol/util/log.cpp.
 if (0) {
 
 /**
- * Extracts information from a mongod/mongos log entry.
+ * Extracts information from a mongold/mongols log entry.
  *
  * @param line {string} a single line of log.
  *
@@ -57,12 +57,12 @@ var parseLog = function(line) {
 var doTest = function(conn1, conn2) {
     var connInfo1 = {
         id: null, // thread id of this connection
-        mongo: conn1, // connection object
+        mongol: conn1, // connection object
         users: {} // contains authenticated users represented as a map of db to user names.
     };
 
     var connInfo2 = {
-      id: null, mongo: conn2, users: {}
+      id: null, mongol: conn2, users: {}
     };
 
     var conn1Auth = [
@@ -76,14 +76,14 @@ var doTest = function(conn1, conn2) {
     ];
 
     var loginUser = function(connInfo, connAuth) {
-        var db = connInfo.mongo.getDB(connAuth.db);
+        var db = connInfo.mongol.getDB(connAuth.db);
         db.createUser({user: connAuth.user, pwd: connAuth.pwd, roles: jsTest.adminUserRoles});
         db.auth(connAuth.user, connAuth.pwd);
         connInfo.users[connAuth.db] = connAuth.user;
     };
 
     var logoutUser = function(connInfo, connAuth) {
-        var db = connInfo.mongo.getDB(connAuth.db);
+        var db = connInfo.mongol.getDB(connAuth.db);
         db.runCommand({ logout: 1 });
         delete connInfo.users[connAuth.db];
     };
@@ -156,8 +156,8 @@ var doTest = function(conn1, conn2) {
         assert(foundOne, 'User log not found in: ' + tojson(log));
     };
 
-    var testDB1 = connInfo1.mongo.getDB('test');
-    var testDB2 = connInfo2.mongo.getDB('test');
+    var testDB1 = connInfo1.mongol.getDB('test');
+    var testDB2 = connInfo2.mongol.getDB('test');
 
     // Note: The succeeding tests should not be re-ordered.
     (function() {
@@ -249,12 +249,12 @@ var doTest = function(conn1, conn2) {
     })();
 };
 
-var mongo = MongoRunner.runMongod({ verbose: 5, setParameter: 'logUserIds=1' });
-doTest(mongo, new Mongo(mongo.host));
-MongoRunner.stopMongod(mongo.port);
+var mongol = MongoRunner.runMongod({ verbose: 5, setParameter: 'logUserIds=1' });
+doTest(mongol, new Mongo(mongol.host));
+MongoRunner.stopMongod(mongol.port);
 
 var st = new ShardingTest({ shards: 1, verbose: 5,
-    other: { mongosOptions: { setParameter: 'logUserIds=1' }}});
+    other: { mongolsOptions: { setParameter: 'logUserIds=1' }}});
 doTest(st.s, new Mongo(st.s.host));
 st.stop();
 

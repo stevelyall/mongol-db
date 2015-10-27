@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/set_shard_version_request.h"
+#include "mongol/s/set_shard_version_request.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kCmdName[] = "setShardVersion";
@@ -234,4 +234,4 @@ const ChunkVersion SetShardVersionRequest::getNSVersion() const {
     return _version.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

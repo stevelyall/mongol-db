@@ -25,24 +25,24 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/distlock.h"
+#include "mongol/s/catalog/legacy/distlock.h"
 
-#include "mongo/db/server_options.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/connpool.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/server_options.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/connpool.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_FP_DECLARE(setSCCCDistLockTimeout);
 

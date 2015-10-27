@@ -29,17 +29,17 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <limits>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/log.h"
 
 
 namespace JsonTests {
@@ -206,7 +206,7 @@ class NumberDecimal {
 public:
     void run() {
         BSONObjBuilder b;
-        b.append("a", mongo::Decimal128("123456789.12345"));
+        b.append("a", mongol::Decimal128("123456789.12345"));
         ASSERT_EQUALS("{ \"a\" : NumberDecimal(\"123456789.12345\") }",
                       b.done().jsonString(TenGen));
     }
@@ -216,7 +216,7 @@ class NumberDecimalStrict {
 public:
     void run() {
         BSONObjBuilder b;
-        b.append("a", mongo::Decimal128("123456789.12345"));
+        b.append("a", mongol::Decimal128("123456789.12345"));
         ASSERT_EQUALS("{ \"a\" : { \"$numberDecimal\" : \"123456789.12345\" } }",
                       b.done().jsonString(Strict));
     }
@@ -640,14 +640,14 @@ private:
     void assertEquals(const BSONObj& expected, const BSONObj& actual, const char* msg) {
         const bool bad = expected.woCompare(actual);
         if (bad) {
-            ::mongo::log() << "want:" << expected.jsonString() << " size: " << expected.objsize()
+            ::mongol::log() << "want:" << expected.jsonString() << " size: " << expected.objsize()
                            << endl;
-            ::mongo::log() << "got :" << actual.jsonString() << " size: " << actual.objsize()
+            ::mongol::log() << "got :" << actual.jsonString() << " size: " << actual.objsize()
                            << endl;
-            ::mongo::log() << expected.hexDump() << endl;
-            ::mongo::log() << actual.hexDump() << endl;
-            ::mongo::log() << msg << endl;
-            ::mongo::log() << "orig json:" << this->json();
+            ::mongol::log() << expected.hexDump() << endl;
+            ::mongol::log() << actual.hexDump() << endl;
+            ::mongol::log() << msg << endl;
+            ::mongol::log() << "orig json:" << this->json();
         }
         ASSERT(!bad);
     }
@@ -1112,7 +1112,7 @@ class DBRefConstructor : public Base {
     }
 };
 
-// Added for consistency with the mongo shell
+// Added for consistency with the mongol shell
 class DBRefConstructorCapitals : public Base {
     virtual BSONObj bson() const {
         BSONObjBuilder b;

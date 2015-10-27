@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_range_cursor.h"
+#include "mongol/base/data_range_cursor.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status ConstDataRangeCursor::makeAdvanceStatus(size_t advance) const {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "Invalid advance (" << advance << ") past end of buffer[" << length()
        << "] at offset: " << _debug_offset;
 
@@ -40,11 +40,11 @@ Status ConstDataRangeCursor::makeAdvanceStatus(size_t advance) const {
 }
 
 Status DataRangeCursor::makeAdvanceStatus(size_t advance) const {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "Invalid advance (" << advance << ") past end of buffer[" << length()
        << "] at offset: " << _debug_offset;
 
     return Status(ErrorCodes::Overflow, ss);
 }
 
-}  // namespace mongo
+}  // namespace mongol

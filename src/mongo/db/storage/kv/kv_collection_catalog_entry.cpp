@@ -28,13 +28,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/kv/kv_collection_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_collection_catalog_entry.h"
 
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/storage/kv/kv_catalog.h"
-#include "mongo/db/storage/kv/kv_engine.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/storage/kv/kv_catalog.h"
+#include "mongol/db/storage/kv/kv_engine.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

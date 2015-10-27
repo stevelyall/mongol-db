@@ -350,12 +350,12 @@ MongoRunner.arrToOpts = function( arr ){
 
 MongoRunner.savedOptions = {}
 
-MongoRunner.mongoOptions = function(opts) {
+MongoRunner.mongolOptions = function(opts) {
     // Don't remember waitForConnect
     var waitForConnect = opts.waitForConnect;
     delete opts.waitForConnect;
     
-    // If we're a mongo object
+    // If we're a mongol object
     if( opts.getDB ){
         opts = { restart : opts.runId }
     }
@@ -436,17 +436,17 @@ MongoRunner.mongoOptions = function(opts) {
  *     oplogSize
  *   }
  */
-MongoRunner.mongodOptions = function( opts ){
+MongoRunner.mongoldOptions = function( opts ){
     
-    opts = MongoRunner.mongoOptions( opts )
+    opts = MongoRunner.mongolOptions( opts )
     
-    opts.dbpath = MongoRunner.toRealDir( opts.dbpath || "$dataDir/mongod-$port",
+    opts.dbpath = MongoRunner.toRealDir( opts.dbpath || "$dataDir/mongold-$port",
                                          opts.pathOpts )
                                          
     opts.pathOpts = Object.merge( opts.pathOpts, { dbpath : opts.dbpath } )
     
     if( ! opts.logFile && opts.useLogFiles ){
-        opts.logFile = opts.dbpath + "/mongod.log"
+        opts.logFile = opts.dbpath + "/mongold.log"
     }
     else if( opts.logFile ){
         opts.logFile = MongoRunner.toRealFile( opts.logFile, opts.pathOpts )
@@ -510,8 +510,8 @@ MongoRunner.mongodOptions = function( opts ){
     return opts
 }
 
-MongoRunner.mongosOptions = function( opts ) {
-    opts = MongoRunner.mongoOptions(opts);
+MongoRunner.mongolsOptions = function( opts ) {
+    opts = MongoRunner.mongolOptions(opts);
     
     // Normalize configdb option to be host string if currently a host
     if( opts.configdb && opts.configdb.getDB ){
@@ -522,7 +522,7 @@ MongoRunner.mongosOptions = function( opts ) {
                                 { configdb : opts.configdb.replace( /:|\/|,/g, "-" ) } )
     
     if( ! opts.logFile && opts.useLogFiles ){
-        opts.logFile = MongoRunner.toRealFile( "$dataDir/mongos-$configdb-$port.log",
+        opts.logFile = MongoRunner.toRealFile( "$dataDir/mongols-$configdb-$port.log",
                                                opts.pathOpts )
     }
     else if( opts.logFile ){
@@ -553,7 +553,7 @@ MongoRunner.mongosOptions = function( opts ) {
 }
 
 /**
- * Starts a mongod instance.
+ * Starts a mongold instance.
  *
  * @param {Object} opts
  *
@@ -566,10 +566,10 @@ MongoRunner.mongosOptions = function( opts ) {
  *     noCleanData {boolean}: Do not clean files (cleanData takes priority).
  *     binVersion {string}: version for binary (also see MongoRunner.binVersionSubs).
  *
- *     @see MongoRunner.mongodOptions for other options
+ *     @see MongoRunner.mongoldOptions for other options
  *   }
  *
- * @return {Mongo} connection object to the started mongod instance.
+ * @return {Mongo} connection object to the started mongold instance.
  *
  * @see MongoRunner.arrOptions
  */
@@ -583,7 +583,7 @@ MongoRunner.runMongod = function( opts ){
     
     if( isObject( opts ) ) {
         
-        opts = MongoRunner.mongodOptions( opts );
+        opts = MongoRunner.mongoldOptions( opts );
         fullOptions = opts;
 
         if (opts.useHostName != undefined) {
@@ -598,29 +598,29 @@ MongoRunner.runMongod = function( opts ){
         runId = opts.runId;
         waitForConnect = opts.waitForConnect;
         
-        if( opts.forceLock ) removeFile( opts.dbpath + "/mongod.lock" )
+        if( opts.forceLock ) removeFile( opts.dbpath + "/mongold.lock" )
         if( ( opts.cleanData || opts.startClean ) || ( ! opts.restart && ! opts.noCleanData ) ){
             print( "Resetting db path '" + opts.dbpath + "'" )
             resetDbpath( opts.dbpath )
         }
         
-        opts = MongoRunner.arrOptions( "mongod", opts )
+        opts = MongoRunner.arrOptions( "mongold", opts )
     }
 
-    var mongod = MongoRunner.startWithArgs(opts, waitForConnect);
-    if (!waitForConnect) mongos = {};
-    if (!mongod) return null;
+    var mongold = MongoRunner.startWithArgs(opts, waitForConnect);
+    if (!waitForConnect) mongols = {};
+    if (!mongold) return null;
     
-    mongod.commandLine = MongoRunner.arrToOpts( opts )
-    mongod.name = (useHostName ? getHostName() : "localhost") + ":" + mongod.commandLine.port
-    mongod.host = mongod.name
-    mongod.port = parseInt( mongod.commandLine.port )
-    mongod.runId = runId || ObjectId()
-    mongod.dbpath = fullOptions.dbpath;
-    mongod.savedOptions = MongoRunner.savedOptions[ mongod.runId ];
-    mongod.fullOptions = fullOptions;
+    mongold.commandLine = MongoRunner.arrToOpts( opts )
+    mongold.name = (useHostName ? getHostName() : "localhost") + ":" + mongold.commandLine.port
+    mongold.host = mongold.name
+    mongold.port = parseInt( mongold.commandLine.port )
+    mongold.runId = runId || ObjectId()
+    mongold.dbpath = fullOptions.dbpath;
+    mongold.savedOptions = MongoRunner.savedOptions[ mongold.runId ];
+    mongold.fullOptions = fullOptions;
     
-    return mongod
+    return mongold
 }
 
 MongoRunner.runMongos = function(opts) {
@@ -632,33 +632,33 @@ MongoRunner.runMongos = function(opts) {
     var fullOptions = opts;
     
     if (isObject(opts)) {
-        opts = MongoRunner.mongosOptions( opts );
+        opts = MongoRunner.mongolsOptions( opts );
         fullOptions = opts;
 
         useHostName = opts.useHostName || opts.useHostname;
         runId = opts.runId;
         waitForConnect = opts.waitForConnect;
 
-        opts = MongoRunner.arrOptions("mongos", opts);
+        opts = MongoRunner.arrOptions("mongols", opts);
     }
     
-    var mongos = MongoRunner.startWithArgs(opts, waitForConnect);
-    if (!waitForConnect) mongos = {};
-    if (!mongos) return null;
+    var mongols = MongoRunner.startWithArgs(opts, waitForConnect);
+    if (!waitForConnect) mongols = {};
+    if (!mongols) return null;
     
-    mongos.commandLine = MongoRunner.arrToOpts( opts )
-    mongos.name = (useHostName ? getHostName() : "localhost") + ":" + mongos.commandLine.port
-    mongos.host = mongos.name
-    mongos.port = parseInt( mongos.commandLine.port ) 
-    mongos.runId = runId || ObjectId()
-    mongos.savedOptions = MongoRunner.savedOptions[ mongos.runId ]
-    mongos.fullOptions = fullOptions;
+    mongols.commandLine = MongoRunner.arrToOpts( opts )
+    mongols.name = (useHostName ? getHostName() : "localhost") + ":" + mongols.commandLine.port
+    mongols.host = mongols.name
+    mongols.port = parseInt( mongols.commandLine.port ) 
+    mongols.runId = runId || ObjectId()
+    mongols.savedOptions = MongoRunner.savedOptions[ mongols.runId ]
+    mongols.fullOptions = fullOptions;
 
-    return mongos
+    return mongols
 }
 
 /**
- * Kills a mongod process.
+ * Kills a mongold process.
  *
  * @param {number} port the port of the process to kill
  * @param {number} signal The signal number to use for killing
@@ -670,13 +670,13 @@ MongoRunner.runMongos = function(opts) {
  *      }
  *    }
  *
- * Note: The auth option is required in a authenticated mongod running in Windows since
+ * Note: The auth option is required in a authenticated mongold running in Windows since
  *  it uses the shutdown command, which requires admin credentials.
  */
 MongoRunner.stopMongod = function( port, signal, opts ){
     
     if( ! port ) {
-        print( "Cannot stop mongo process " + port )
+        print( "Cannot stop mongol process " + port )
         return
     }
     
@@ -696,7 +696,7 @@ MongoRunner.stopMongod = function( port, signal, opts ){
 MongoRunner.stopMongos = MongoRunner.stopMongod;
 
 /**
- * Starts an instance of the specified mongo tool
+ * Starts an instance of the specified mongol tool
  *
  * @param {String} binaryName The name of the tool to run
  * @param {Object} opts options to pass to the tool
@@ -726,12 +726,12 @@ MongoRunner.getAndPrepareDumpDirectory = function(testName) {
     return dir;
 }
 
-// Start a mongod instance and return a 'Mongo' object connected to it.
-// This function's arguments are passed as command line arguments to mongod.
+// Start a mongold instance and return a 'Mongo' object connected to it.
+// This function's arguments are passed as command line arguments to mongold.
 // The specified 'dbpath' is cleared if it exists, created if not.
 // var conn = _startMongodEmpty("--port", 30000, "--dbpath", "asdf");
 _startMongodEmpty = function () {
-    var args = createMongoArgs("mongod", arguments);
+    var args = createMongoArgs("mongold", arguments);
 
     var dbpath = _parsePath.apply(null, args);
     resetDbpath(dbpath);
@@ -745,7 +745,7 @@ _startMongod = function () {
 }
 
 _startMongodNoReset = function(){
-    var args = createMongoArgs( "mongod" , arguments );
+    var args = createMongoArgs( "mongold" , arguments );
     return startMongoProgram.apply( null, args );
 }
 
@@ -754,7 +754,7 @@ _startMongodNoReset = function(){
  */
 function appendSetParameterArgs(argArray) {
     var programName = argArray[0];
-    if (programName.endsWith('mongod') || programName.endsWith('mongos')) {
+    if (programName.endsWith('mongold') || programName.endsWith('mongols')) {
         if (jsTest.options().enableTestCommands) {
             argArray.push.apply(argArray, ['--setParameter', "enableTestCommands=1"]);
         }
@@ -777,9 +777,9 @@ function appendSetParameterArgs(argArray) {
             argArray.push.apply(argArray, ['--setParameter', "enableLocalhostAuthBypass=false"]);
         }
 
-        // mongos only options
-        if (programName.endsWith('mongos')) {
-            // apply setParameters for mongos
+        // mongols only options
+        if (programName.endsWith('mongols')) {
+            // apply setParameters for mongols
             if (jsTest.options().setParametersMongos) {
                 var params = jsTest.options().setParametersMongos.split(",");
                 if (params && params.length > 0) {
@@ -789,9 +789,9 @@ function appendSetParameterArgs(argArray) {
                 }
             }
         }
-        // mongod only options
-        else if (programName.endsWith('mongod')) {
-            // set storageEngine for mongod
+        // mongold only options
+        else if (programName.endsWith('mongold')) {
+            // set storageEngine for mongold
             if (jsTest.options().storageEngine) {
                 if ( argArray.indexOf( "--storageEngine" ) < 0 ) {
                     argArray.push.apply(argArray, ['--storageEngine', jsTest.options().storageEngine]);
@@ -806,7 +806,7 @@ function appendSetParameterArgs(argArray) {
             if (jsTest.options().wiredTigerIndexConfigString) {
                 argArray.push.apply(argArray, ['--wiredTigerIndexConfigString', jsTest.options().wiredTigerIndexConfigString]);
             }
-            // apply setParameters for mongod
+            // apply setParameters for mongold
             if (jsTest.options().setParameters) {
                 var params = jsTest.options().setParameters.split(",");
                 if (params && params.length > 0) {
@@ -821,11 +821,11 @@ function appendSetParameterArgs(argArray) {
 };
 
 /**
- * Start a mongo process with a particular argument array.  If we aren't waiting for connect, 
+ * Start a mongol process with a particular argument array.  If we aren't waiting for connect, 
  * return null.
  */
 MongoRunner.startWithArgs = function(argArray, waitForConnect) {
-    // TODO: Make there only be one codepath for starting mongo processes
+    // TODO: Make there only be one codepath for starting mongol processes
 
     argArray = appendSetParameterArgs(argArray);
     var port = _parsePort.apply(null, argArray);
@@ -840,14 +840,14 @@ MongoRunner.startWithArgs = function(argArray, waitForConnect) {
             } catch( e ) {
                 if (!checkProgram(pid)) {
                     
-                    print("Could not start mongo program at " + port + ", process ended")
+                    print("Could not start mongol program at " + port + ", process ended")
                     
                     // Break out
                     return true;
                 }
             }
             return false;
-        }, "unable to connect to mongo program on port " + port, 600 * 1000);
+        }, "unable to connect to mongol program on port " + port, 600 * 1000);
     }
 
     return conn;   
@@ -856,8 +856,8 @@ MongoRunner.startWithArgs = function(argArray, waitForConnect) {
 /** 
  * DEPRECATED
  * 
- * Start mongod or mongos and return a Mongo() object connected to there.
- * This function's first argument is "mongod" or "mongos" program name, \
+ * Start mongold or mongols and return a Mongo() object connected to there.
+ * This function's first argument is "mongold" or "mongols" program name, \
  * and subsequent arguments to this function are passed as
  * command line arguments to the program.
  */
@@ -880,7 +880,7 @@ startMongoProgram = function(){
         } catch( e ) {
             if (!checkProgram(pid)) {
                 
-                print("Could not start mongo program at " + port + ", process ended")
+                print("Could not start mongol program at " + port + ", process ended")
                 
                 // Break out
                 m = null;
@@ -888,7 +888,7 @@ startMongoProgram = function(){
             }
         }
         return false;
-    }, "unable to connect to mongo program on port " + port, 600 * 1000 );
+    }, "unable to connect to mongol program on port " + port, 600 * 1000 );
 
     return m;
 }
@@ -907,7 +907,7 @@ runMongoProgram = function() {
                     );
     }
 
-    if (progName == 'mongo' && !_useWriteCommandsDefault()) {
+    if (progName == 'mongol' && !_useWriteCommandsDefault()) {
         progName = args[0];
         args = args.slice(1);
         args.unshift(progName, '--useLegacyWriteOps');
@@ -916,7 +916,7 @@ runMongoProgram = function() {
     return _runMongoProgram.apply( null, args );
 }
 
-// Start a mongo program instance.  This function's first argument is the
+// Start a mongol program instance.  This function's first argument is the
 // program name, and subsequent arguments to this function are passed as
 // command line arguments to the program.  Returns pid of the spawned program.
 startMongoProgramNoConnect = function() {
@@ -932,7 +932,7 @@ startMongoProgramNoConnect = function() {
                      '--authenticationDatabase=admin');
     }
 
-    if (progName == 'mongo' && !_useWriteCommandsDefault()) {
+    if (progName == 'mongol' && !_useWriteCommandsDefault()) {
         args = args.slice(1);
         args.unshift(progName, '--useLegacyWriteOps');
     }

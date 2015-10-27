@@ -33,9 +33,9 @@
 #include <map>
 #include <string>
 
-#include "mongo/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
 
-namespace mongo {
+namespace mongol {
 
 class KVCollectionCatalogEntry;
 class KVStorageEngine;

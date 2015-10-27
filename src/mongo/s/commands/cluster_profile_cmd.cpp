@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
+#include "mongol/db/commands.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ProfileCmd : public Command {
@@ -63,11 +63,11 @@ public:
                      int options,
                      std::string& errmsg,
                      BSONObjBuilder& result) {
-        errmsg = "profile currently not supported via mongos";
+        errmsg = "profile currently not supported via mongols";
         return false;
     }
 
 } profileCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

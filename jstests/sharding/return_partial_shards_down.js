@@ -3,23 +3,23 @@
 //
 
 var st = new ShardingTest({shards : 3,
-                           mongos : 1,
-                           other : {mongosOptions : {verbose : 2}}});
+                           mongols : 1,
+                           other : {mongolsOptions : {verbose : 2}}});
 
 // Stop balancer, we're doing our own manual chunk distribution
 st.stopBalancer();
 
-var mongos = st.s;
-var config = mongos.getDB("config");
-var admin = mongos.getDB("admin");
+var mongols = st.s;
+var config = mongols.getDB("config");
+var admin = mongols.getDB("admin");
 var shards = config.shards.find().toArray();
 
 for ( var i = 0; i < shards.length; i++) {
     shards[i].conn = new Mongo(shards[i].host);
 }
 
-var collOneShard = mongos.getCollection("foo.collOneShard");
-var collAllShards = mongos.getCollection("foo.collAllShards");
+var collOneShard = mongols.getCollection("foo.collOneShard");
+var collAllShards = mongols.getCollection("foo.collAllShards");
 
 printjson(admin.runCommand({enableSharding : collOneShard.getDB() + ""}))
 printjson(admin.runCommand({movePrimary : collOneShard.getDB() + "",

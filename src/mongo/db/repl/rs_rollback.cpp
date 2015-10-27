@@ -27,42 +27,42 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/rs_rollback.h"
+#include "mongol/db/repl/rs_rollback.h"
 
 #include <algorithm>
 #include <memory>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/ops/delete.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/oplog_interface.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/roll_back_local_operations.h"
-#include "mongo/db/repl/rollback_source.h"
-#include "mongo/db/repl/rslog.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/ops/delete.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/oplog_interface.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/roll_back_local_operations.h"
+#include "mongol/db/repl/rollback_source.h"
+#include "mongol/db/repl/rslog.h"
+#include "mongol/util/log.h"
 
 /* Scenarios
  *
@@ -102,7 +102,7 @@
  *
  */
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -213,14 +213,14 @@ Status refetch(FixUpInfo& fixUpInfo, const BSONObj& ourObj) {
             // TODO: this is bad.  we simply full resync the collection here,
             //       which could be very slow.
             warning() << "rollback of dropIndexes is slow in this version of "
-                      << "mongod";
+                      << "mongold";
             string ns = nss.db().toString() + '.' + first.valuestr();
             fixUpInfo.collectionsToResyncData.insert(ns);
             return Status::OK();
         } else if (cmdname == "renameCollection") {
             // TODO: slow.
             warning() << "rollback of renameCollection is slow in this version of "
-                      << "mongod";
+                      << "mongold";
             string from = first.valuestr();
             string to = obj["to"].String();
             fixUpInfo.collectionsToResyncData.insert(from);
@@ -924,4 +924,4 @@ Status syncRollback(OperationContext* txn,
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

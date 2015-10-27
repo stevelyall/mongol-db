@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/introspect.h"
+#include "mongol/db/introspect.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/user_set.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/user_set.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -186,4 +186,4 @@ Status createProfileCollection(OperationContext* txn, Database* db) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

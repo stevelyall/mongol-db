@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 #include <boost/intrusive_ptr.hpp>
@@ -39,23 +39,23 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/collection_index_usage_tracker.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/pipeline/accumulator.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/dependencies.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/db/sorter/sorter.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/intrusive_counter.h"
+#include "mongol/base/init.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/collection_index_usage_tracker.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/pipeline/accumulator.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/dependencies.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/db/sorter/sorter.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/intrusive_counter.h"
 
-namespace mongo {
+namespace mongol {
 
 class Document;
 class Expression;
@@ -262,13 +262,13 @@ protected:
 };
 
 
-/** This class marks DocumentSources which need mongod-specific functionality.
- *  It causes a MongodInterface to be injected when in a mongod and prevents mongos from
+/** This class marks DocumentSources which need mongold-specific functionality.
+ *  It causes a MongodInterface to be injected when in a mongold and prevents mongols from
  *  merging pipelines containing this stage.
  */
 class DocumentSourceNeedsMongod {
 public:
-    // Wraps mongod-specific functions to allow linking into mongos.
+    // Wraps mongold-specific functions to allow linking into mongols.
     class MongodInterface {
     public:
         virtual ~MongodInterface(){};
@@ -297,8 +297,8 @@ public:
         // Add new methods as needed.
     };
 
-    void injectMongodInterface(std::shared_ptr<MongodInterface> mongod) {
-        _mongod = mongod;
+    void injectMongodInterface(std::shared_ptr<MongodInterface> mongold) {
+        _mongold = mongold;
     }
 
 protected:
@@ -306,7 +306,7 @@ protected:
     virtual ~DocumentSourceNeedsMongod() {}
 
     // Gives subclasses access to a MongodInterface implementation
-    std::shared_ptr<MongodInterface> _mongod;
+    std::shared_ptr<MongodInterface> _mongold;
 };
 
 /**
@@ -533,7 +533,7 @@ private:
 
 /**
  * Provides a document source interface to retrieve index statistics for a given namespace.
- * Each document returned represents a single index and mongod instance.
+ * Each document returned represents a single index and mongold instance.
  */
 class DocumentSourceIndexStats final : public DocumentSource, public DocumentSourceNeedsMongod {
 public:

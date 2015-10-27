@@ -26,42 +26,42 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager.h"
 
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/crypto/mechanism_scram.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/authz_manager_external_state.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/role_graph.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_document_parser.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/user_name_hash.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/compiler.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/crypto/mechanism_scram.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/authz_manager_external_state.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/role_graph.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_document_parser.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/user_name_hash.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -341,10 +341,10 @@ Status AuthorizationManager::getBSONForRole(RoleGraph* graph,
                                             mutablebson::Element result) {
     if (!graph->roleExists(roleName)) {
         return Status(ErrorCodes::RoleNotFound,
-                      mongoutils::str::stream() << roleName.getFullName()
+                      mongolutils::str::stream() << roleName.getFullName()
                                                 << "does not name an existing role");
     }
-    std::string id = mongoutils::str::stream() << roleName.getDB() << "." << roleName.getRole();
+    std::string id = mongolutils::str::stream() << roleName.getDB() << "." << roleName.getRole();
     result.appendString("_id", id);
     result.appendString(ROLE_NAME_FIELD_NAME, roleName.getRole());
     result.appendString(ROLE_DB_FIELD_NAME, roleName.getDB());
@@ -380,7 +380,7 @@ Status AuthorizationManager::_initializeUserFromPrivilegeDocument(User* user,
     std::string userName = parser.extractUserNameFromUserDocument(privDoc);
     if (userName != user->getName().getUser()) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << "User name from privilege document \""
+                      mongolutils::str::stream() << "User name from privilege document \""
                                                 << userName
                                                 << "\" doesn't match name of provided User \""
                                                 << user->getName().getUser() << "\"",
@@ -474,7 +474,7 @@ Status AuthorizationManager::acquireUser(OperationContext* txn,
         switch (authzVersion) {
             default:
                 status = Status(ErrorCodes::BadValue,
-                                mongoutils::str::stream()
+                                mongolutils::str::stream()
                                     << "Illegal value for authorization data schema version, "
                                     << authzVersion);
                 break;
@@ -485,7 +485,7 @@ Status AuthorizationManager::acquireUser(OperationContext* txn,
                 break;
             case schemaVersion24:
                 status = Status(ErrorCodes::AuthSchemaIncompatible,
-                                mongoutils::str::stream()
+                                mongolutils::str::stream()
                                     << "Authorization data schema version " << schemaVersion24
                                     << " not supported after MongoDB version 2.6.");
                 break;
@@ -669,7 +669,7 @@ StatusWith<UserName> extractUserNameFromIdString(StringData idstr) {
     size_t splitPoint = idstr.find('.');
     if (splitPoint == string::npos) {
         return StatusWith<UserName>(ErrorCodes::FailedToParse,
-                                    mongoutils::str::stream()
+                                    mongolutils::str::stream()
                                         << "_id entries for user documents must be of "
                                            "the form <dbname>.<username>.  Found: " << idstr);
     }
@@ -722,4 +722,4 @@ void AuthorizationManager::logOp(
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

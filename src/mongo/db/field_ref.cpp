@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/field_ref.h"
+#include "mongol/db/field_ref.h"
 
 #include <algorithm>  // for min
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 FieldRef::FieldRef() : _size(0) {}
 
@@ -280,4 +280,4 @@ std::ostream& operator<<(std::ostream& stream, const FieldRef& field) {
     return stream << field.dottedField();
 }
 
-}  // namespace mongo
+}  // namespace mongol

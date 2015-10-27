@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batch_write_exec.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/owned_pointer_map.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/s/client/multi_command_dispatch.h"
-#include "mongo/s/write_ops/batch_write_op.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/util/log.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/owned_pointer_map.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/s/client/multi_command_dispatch.h"
+#include "mongol/s/write_ops/batch_write_op.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::make_pair;
 using std::stringstream;
@@ -114,7 +114,7 @@ void BatchWriteExec::executeBatch(OperationContext* txn,
         // Targeting errors can be caused by remote metadata changing (the collection could have
         // been dropped and recreated, for example with a new shard key).  If a remote metadata
         // change occurs *before* a client sends us a batch, we need to make sure that we don't
-        // error out just because we're staler than the client - otherwise mongos will be have
+        // error out just because we're staler than the client - otherwise mongols will be have
         // unpredictable behavior.
         //
         // (If a metadata change happens *during* or *after* a client sends us a batch, however,

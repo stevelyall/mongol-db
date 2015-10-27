@@ -28,42 +28,42 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/database.h"
+#include "mongol/db/catalog/database.h"
 
 #include <algorithm>
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/auth_index_d.h"
-#include "mongo/db/background.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/stats/top.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/db/storage/recovery_unit.h"
-#include "mongo/util/log.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/auth_index_d.h"
+#include "mongol/db/background.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/db/storage/recovery_unit.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -635,4 +635,4 @@ Status userCreateNS(OperationContext* txn,
 
     return Status::OK();
 }
-}  // namespace mongo
+}  // namespace mongol

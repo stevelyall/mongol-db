@@ -28,30 +28,30 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/logfile.h"
+#include "mongol/db/storage/mmap_v1/logfile.h"
 
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/platform/posix_fadvise.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/startup_test.h"
-#include "mongo/util/text.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/platform/posix_fadvise.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/startup_test.h"
+#include "mongol/util/text.h"
 
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 using std::endl;
 using std::string;
 
 #if defined(_WIN32)
 
-namespace mongo {
+namespace mongol {
 
 LogFile::LogFile(const std::string& name, bool readwrite) : _name(name) {
     _fd = CreateFile(toNativeString(name.c_str()).c_str(),
@@ -146,7 +146,7 @@ void LogFile::synchronousAppend(const void* _buf, size_t _len) {
 #include <linux/fs.h>
 #endif
 
-namespace mongo {
+namespace mongol {
 
 LogFile::LogFile(const std::string& name, bool readwrite) : _name(name) {
     int options = O_CREAT | (readwrite ? O_RDWR : O_WRONLY)

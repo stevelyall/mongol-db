@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "mongo/stdx/condition_variable.h"
+#include "mongol/stdx/condition_variable.h"
 
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Type of callback functions that can be invoked when markThreadIdle() runs.
@@ -122,4 +122,4 @@ private:
     unsigned _nWaiting;
 };
 
-}  // namespace mongo
+}  // namespace mongol

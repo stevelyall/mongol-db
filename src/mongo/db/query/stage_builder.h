@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -56,4 +56,4 @@ public:
                       PlanStage** rootOut);
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -10,8 +10,8 @@ env.Library(
         'get_status_from_command_result.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/util/foundation'
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/util/foundation'
     ],
 )
 
@@ -23,7 +23,7 @@ env.Library(
         'document_range.cpp'
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
     LIBDEPS_TAGS=[
         # Depends on validation in a strange way right now
@@ -39,8 +39,8 @@ env.Library(
         'protocol.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
     ],
 )
 
@@ -59,8 +59,8 @@ env.Library(
         'legacy_request',
         'metadata',
         'protocol',
-        '$BUILD_DIR/mongo/db/server_parameters',
-        '$BUILD_DIR/mongo/db/dbmessage',
+        '$BUILD_DIR/mongol/db/server_parameters',
+        '$BUILD_DIR/mongol/db/dbmessage',
     ],
 )
 
@@ -74,7 +74,7 @@ env.Library(
     ],
     LIBDEPS=[
         'document_range',
-        '$BUILD_DIR/mongo/util/net/network',
+        '$BUILD_DIR/mongol/util/net/network',
     ],
     LIBDEPS_TAGS=[
         # Circular with rpc because it needs object_check.cpp
@@ -93,8 +93,8 @@ env.Library(
     LIBDEPS=[
         'document_range',
         'metadata',
-        '$BUILD_DIR/mongo/db/dbmessage',
-        '$BUILD_DIR/mongo/util/net/network',
+        '$BUILD_DIR/mongol/db/dbmessage',
+        '$BUILD_DIR/mongol/util/net/network',
     ],
 )
 
@@ -109,7 +109,7 @@ env.Library(
     ],
     LIBDEPS=[
         'document_range',
-        '$BUILD_DIR/mongo/util/net/network',
+        '$BUILD_DIR/mongol/util/net/network',
     ],
     LIBDEPS_TAGS=[
         # Circular with rpc because it needs object_check.cpp
@@ -128,7 +128,7 @@ env.Library(
     LIBDEPS=[
         'document_range',
         'metadata',
-        '$BUILD_DIR/mongo/util/net/network',
+        '$BUILD_DIR/mongol/util/net/network',
     ],
 )
 
@@ -145,11 +145,11 @@ env.Library(
         'metadata/repl_set_metadata.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/client/read_preference',
-        '$BUILD_DIR/mongo/db/repl/optime',
-        '$BUILD_DIR/mongo/util/decorable',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/client/read_preference',
+        '$BUILD_DIR/mongol/db/repl/optime',
+        '$BUILD_DIR/mongol/util/decorable',
     ],
 )
 
@@ -181,7 +181,7 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         'rpc',
-        '$BUILD_DIR/mongo/client/clientdriver'
+        '$BUILD_DIR/mongol/client/clientdriver'
     ],
 )
 

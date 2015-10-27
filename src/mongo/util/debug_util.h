@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
-namespace mongo {
+namespace mongol {
 
 #if defined(MONGO_CONFIG_DEBUG_BUILD)
 const bool kDebugBuild = true;
@@ -57,4 +57,4 @@ const bool kDebugBuild = false;
 #define MONGO_ONCE for (static bool undone = true; undone; undone = false)
 #define ONCE MONGO_ONCE
 
-}  // namespace mongo
+}  // namespace mongol

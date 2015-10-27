@@ -28,14 +28,14 @@
 *    it in the license file.
 */
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
 
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_btree_impl.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_btree_impl.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 RecoveryUnit* EphemeralForTestEngine::newRecoveryUnit() {
     return new EphemeralForTestRecoveryUnit();

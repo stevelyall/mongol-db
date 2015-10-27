@@ -31,11 +31,11 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 
@@ -143,4 +143,4 @@ protected:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

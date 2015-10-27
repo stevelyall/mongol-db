@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "mongo/db/service_context.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 typedef unsigned long long ScriptingFunction;
 typedef BSONObj (*NativeFunction)(const BSONObj& args, void* data);
 typedef std::map<std::string, ScriptingFunction> FunctionCacheMap;

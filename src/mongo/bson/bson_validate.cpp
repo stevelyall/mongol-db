@@ -31,13 +31,13 @@
 #include <deque>
 #include <limits>
 
-#include "mongo/base/data_view.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/bson/oid.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/decimal128.h"
+#include "mongol/base/data_view.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/decimal128.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -389,4 +389,4 @@ Status validateBSON(const char* originalBuffer, uint64_t maxLength) {
     return validateBSONIterative(&buf);
 }
 
-}  // namespace mongo
+}  // namespace mongol

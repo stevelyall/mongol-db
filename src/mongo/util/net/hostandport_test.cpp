@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/server_options.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/db/server_options.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(HostAndPort, BasicLessThanComparison) {
@@ -110,4 +110,4 @@ TEST(HostAndPort, RoundTripAbility) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

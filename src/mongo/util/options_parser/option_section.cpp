@@ -25,17 +25,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/option_section.h"
 
 #include <algorithm>
 #include <iostream>
 #include <sstream>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/options_parser/value.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/options_parser/value.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 using std::shared_ptr;
@@ -612,4 +612,4 @@ void OptionSection::dump() const {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

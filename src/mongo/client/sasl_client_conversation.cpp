@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/client/sasl_client_conversation.h"
+#include "mongol/client/sasl_client_conversation.h"
 
-namespace mongo {
+namespace mongol {
 
 SaslClientConversation::~SaslClientConversation(){};
 
-}  // namespace mongo
+}  // namespace mongol

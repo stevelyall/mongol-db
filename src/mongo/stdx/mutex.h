@@ -30,7 +30,7 @@
 
 #include <mutex>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 using ::std::mutex;  // NOLINT
@@ -62,4 +62,4 @@ MONGO_STDX_CONSTEXPR try_to_lock_t try_to_lock{};
 #undef MONGO_STDX_CONSTEXPR
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

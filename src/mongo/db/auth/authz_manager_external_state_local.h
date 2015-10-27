@@ -30,15 +30,15 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authz_manager_external_state.h"
-#include "mongo/db/auth/role_graph.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authz_manager_external_state.h"
+#include "mongol/db/auth/role_graph.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mutablebson {
 class Document;
@@ -150,4 +150,4 @@ private:
     stdx::mutex _roleGraphMutex;
 };
 
-}  // namespace mongo
+}  // namespace mongol

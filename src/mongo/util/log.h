@@ -38,32 +38,32 @@
 
 #if defined(MONGO_UTIL_LOG_H_)
 #error \
-    "mongo/util/log.h cannot be included multiple times. " \
+    "mongol/util/log.h cannot be included multiple times. " \
        "This may occur when log.h is included in a header. " \
        "Please check your #include's."
 #else  // MONGO_UTIL_LOG_H_
 #define MONGO_UTIL_LOG_H_
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/logstream_builder.h"
-#include "mongo/logger/tee.h"
-#include "mongo/util/concurrency/thread_name.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/logstream_builder.h"
+#include "mongol/logger/tee.h"
+#include "mongol/util/concurrency/thread_name.h"
 
 // Provide log component in global scope so that MONGO_LOG will always have a valid component.
 // Global log component will be kDefault unless overridden by MONGO_LOG_DEFAULT_COMPONENT.
 #if defined(MONGO_LOG_DEFAULT_COMPONENT)
-const ::mongo::logger::LogComponent MongoLogDefaultComponent_component =
+const ::mongol::logger::LogComponent MongoLogDefaultComponent_component =
     MONGO_LOG_DEFAULT_COMPONENT;
 #else
 #error \
-    "mongo/util/log.h requires MONGO_LOG_DEFAULT_COMPONENT to be defined. " \
-       "Please see http://www.mongodb.org/about/contributors/reference/server-logging-rules/ "
+    "mongol/util/log.h requires MONGO_LOG_DEFAULT_COMPONENT to be defined. " \
+       "Please see http://www.mongoldb.org/about/contributors/reference/server-logging-rules/ "
 #endif  // MONGO_LOG_DEFAULT_COMPONENT
 
-namespace mongo {
+namespace mongol {
 
 namespace logger {
 typedef void (*ExtraLogContextFn)(BufBuilder& builder);
@@ -153,46 +153,46 @@ inline bool shouldLog(logger::LogSeverity severity) {
 
 // MONGO_LOG uses log component from MongoLogDefaultComponent from current or global namespace.
 #define MONGO_LOG(DLEVEL)                                                              \
-    if (!(::mongo::logger::globalLogDomain())                                          \
+    if (!(::mongol::logger::globalLogDomain())                                          \
              ->shouldLog(MongoLogDefaultComponent_component,                           \
-                         ::mongo::LogstreamBuilder::severityCast(DLEVEL))) {           \
+                         ::mongol::LogstreamBuilder::severityCast(DLEVEL))) {           \
     } else                                                                             \
-    ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),              \
-                                      ::mongo::getThreadName(),                        \
-                                      ::mongo::LogstreamBuilder::severityCast(DLEVEL), \
+    ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),              \
+                                      ::mongol::getThreadName(),                        \
+                                      ::mongol::LogstreamBuilder::severityCast(DLEVEL), \
                                       MongoLogDefaultComponent_component)
 
 #define LOG MONGO_LOG
 
 #define MONGO_LOG_COMPONENT(DLEVEL, COMPONENT1)                                            \
-    if (!(::mongo::logger::globalLogDomain())                                              \
-             ->shouldLog((COMPONENT1), ::mongo::LogstreamBuilder::severityCast(DLEVEL))) { \
+    if (!(::mongol::logger::globalLogDomain())                                              \
+             ->shouldLog((COMPONENT1), ::mongol::LogstreamBuilder::severityCast(DLEVEL))) { \
     } else                                                                                 \
-    ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),                  \
-                                      ::mongo::getThreadName(),                            \
-                                      ::mongo::LogstreamBuilder::severityCast(DLEVEL),     \
+    ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),                  \
+                                      ::mongol::getThreadName(),                            \
+                                      ::mongol::LogstreamBuilder::severityCast(DLEVEL),     \
                                       (COMPONENT1))
 
 #define MONGO_LOG_COMPONENT2(DLEVEL, COMPONENT1, COMPONENT2)                                     \
-    if (!(::mongo::logger::globalLogDomain())                                                    \
+    if (!(::mongol::logger::globalLogDomain())                                                    \
              ->shouldLog(                                                                        \
-                 (COMPONENT1), (COMPONENT2), ::mongo::LogstreamBuilder::severityCast(DLEVEL))) { \
+                 (COMPONENT1), (COMPONENT2), ::mongol::LogstreamBuilder::severityCast(DLEVEL))) { \
     } else                                                                                       \
-    ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),                        \
-                                      ::mongo::getThreadName(),                                  \
-                                      ::mongo::LogstreamBuilder::severityCast(DLEVEL),           \
+    ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),                        \
+                                      ::mongol::getThreadName(),                                  \
+                                      ::mongol::LogstreamBuilder::severityCast(DLEVEL),           \
                                       (COMPONENT1))
 
 #define MONGO_LOG_COMPONENT3(DLEVEL, COMPONENT1, COMPONENT2, COMPONENT3)               \
-    if (!(::mongo::logger::globalLogDomain())                                          \
+    if (!(::mongol::logger::globalLogDomain())                                          \
              ->shouldLog((COMPONENT1),                                                 \
                          (COMPONENT2),                                                 \
                          (COMPONENT3),                                                 \
-                         ::mongo::LogstreamBuilder::severityCast(DLEVEL))) {           \
+                         ::mongol::LogstreamBuilder::severityCast(DLEVEL))) {           \
     } else                                                                             \
-    ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),              \
-                                      ::mongo::getThreadName(),                        \
-                                      ::mongo::LogstreamBuilder::severityCast(DLEVEL), \
+    ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),              \
+                                      ::mongol::getThreadName(),                        \
+                                      ::mongol::LogstreamBuilder::severityCast(DLEVEL), \
                                       (COMPONENT1))
 
 /**
@@ -223,6 +223,6 @@ std::string errnoWithDescription(int errorcode = -1);
  */
 void logContext(const char* msg = NULL);
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // MONGO_UTIL_LOG_H_

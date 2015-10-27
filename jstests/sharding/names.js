@@ -1,6 +1,6 @@
 // Test that having replica set names the same as the names of other shards works fine
 
-var st = new ShardingTest( name = "test", shards = 0, verbose = 2, mongos = 2, other = { rs : true } )
+var st = new ShardingTest( name = "test", shards = 0, verbose = 2, mongols = 2, other = { rs : true } )
 
 var rsA = new ReplSetTest({ nodes : 2, name : "rsA" })
 var rsB = new ReplSetTest({ nodes : 2, name : "rsB" })
@@ -12,9 +12,9 @@ rsB.initiate()
 rsA.getPrimary()
 rsB.getPrimary()
 
-var mongos = st.s
-var config = mongos.getDB("config")
-var admin = mongos.getDB("admin")
+var mongols = st.s
+var config = mongols.getDB("config")
+var admin = mongols.getDB("admin")
 
 assert( admin.runCommand({ addShard : rsA.getURL(), name : rsB.name }).ok );
 printjson( config.shards.find().toArray() );

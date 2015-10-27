@@ -28,9 +28,9 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 /**
  * An RAII temporary directory that deletes itself and all contents files on scope exit.
@@ -67,4 +67,4 @@ private:
     std::string _path;
 };
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

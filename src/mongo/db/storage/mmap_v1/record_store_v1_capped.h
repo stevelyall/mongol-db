@@ -30,13 +30,13 @@
 
 #pragma once
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/storage/capped_callback.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/storage/capped_callback.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
 
-namespace mongo {
+namespace mongol {
 
 class CappedRecordStoreV1 final : public RecordStoreV1Base {
 public:

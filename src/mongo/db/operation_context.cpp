@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 OperationContext::OperationContext(Client* client, unsigned int opId, Locker* locker)
     : _client(client), _opId(opId), _locker(locker) {}
@@ -54,4 +54,4 @@ bool OperationContext::isKillPending() const {
     return _killPending.loadRelaxed();
 }
 
-}  // namespace mongo
+}  // namespace mongol

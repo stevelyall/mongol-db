@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/devnull/devnull_kv_engine.h"
+#include "mongol/db/storage/devnull/devnull_kv_engine.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class EmptyRecordCursor final : public SeekableRecordCursor {
 public:

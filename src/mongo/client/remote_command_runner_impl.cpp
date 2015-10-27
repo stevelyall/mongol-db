@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/remote_command_runner_impl.h"
+#include "mongol/client/remote_command_runner_impl.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/executor/downconvert_find_and_getmore_commands.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/executor/downconvert_find_and_getmore_commands.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using executor::RemoteCommandRequest;
@@ -215,4 +215,4 @@ StatusWith<RemoteCommandResponse> RemoteCommandRunnerImpl::runCommand(
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

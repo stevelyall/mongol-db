@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "MONGOD" "1" "January 30, 2015" "3.0" "mongodb-manual"
+.TH "MONGOD" "1" "January 30, 2015" "3.0" "mongoldb-manual"
 .SH NAME
-mongod \- MongoDB Server
+mongold \- MongoDB Server
 .
 .nr rst2man-indent-level 0
 .
@@ -32,12 +32,12 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .SH SYNOPSIS
 .sp
-\fBmongod\fP is the primary daemon process for the MongoDB
+\fBmongold\fP is the primary daemon process for the MongoDB
 system. It handles data requests, manages data access, and performs
 background management operations.
 .sp
 This document provides a complete overview of all command line options
-for \fBmongod\fP\&. These command line options are primarily useful
+for \fBmongold\fP\&. These command line options are primarily useful
 for testing: In common operation, use the \fBconfiguration file
 options\fP to control the behavior of
 your database.
@@ -45,28 +45,28 @@ your database.
 .SS Core Options
 .INDENT 0.0
 .TP
-.B mongod
+.B mongold
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-help, \-h
-Returns information on the options and use of \fBmongod\fP\&.
+Returns information on the options and use of \fBmongold\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-version
-Returns the \fBmongod\fP release number.
+Returns the \fBmongold\fP release number.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-config <filename>, \-f <filename>
 Specifies a configuration file for runtime configuration options. The
 configuration file is the preferred method for runtime configuration of
-\fBmongod\fP\&. The options are equivalent to the command\-line
-configuration options. See http://docs.mongodb.org/manual/reference/configuration\-options for
+\fBmongold\fP\&. The options are equivalent to the command\-line
+configuration options. See http://docs.mongoldb.org/manual/reference/configuration\-options for
 more information.
 .sp
-Ensure the configuration file uses ASCII encoding. The \fBmongod\fP
+Ensure the configuration file uses ASCII encoding. The \fBmongold\fP
 instance does not support configuration files with non\-ASCII encoding,
 including UTF\-8.
 .UNINDENT
@@ -80,7 +80,7 @@ including the option multiple times, (e.g. \fB\-vvvvv\fP\&.)
 .INDENT 0.0
 .TP
 .B \-\-quiet
-Runs the \fBmongod\fP in a quiet mode that attempts to limit the amount
+Runs the \fBmongold\fP in a quiet mode that attempts to limit the amount
 of output.
 .sp
 This option suppresses:
@@ -112,16 +112,16 @@ Changed in version 2.6.0: The \fBdeb\fP and \fBrpm\fP packages include a default
 configuration file that sets \fI\-\-bind_ip\fP to \fB127.0.0.1\fP\&.
 
 .sp
-Specifies the IP address that \fBmongod\fP binds to in order to listen
-for connections from applications. You may attach \fBmongod\fP to any
-interface. When attaching \fBmongod\fP to a publicly accessible
+Specifies the IP address that \fBmongold\fP binds to in order to listen
+for connections from applications. You may attach \fBmongold\fP to any
+interface. When attaching \fBmongold\fP to a publicly accessible
 interface, ensure that you have implemented proper authentication and
 firewall restrictions to protect the integrity of your database.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-maxConns <number>
-The maximum number of simultaneous connections that \fBmongod\fP will
+The maximum number of simultaneous connections that \fBmongold\fP will
 accept. This setting has no effect if it is higher than your operating
 system\(aqs configured maximum connection tracking threshold.
 .sp
@@ -160,7 +160,7 @@ To instead append to the log file, set the \fI\-\-logappend\fP option.
 .TP
 .B \-\-logappend
 Appends new entries to the end of the log file rather than overwriting
-the content of the log when the \fBmongod\fP instance restarts.
+the content of the log when the \fBmongold\fP instance restarts.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -184,7 +184,7 @@ If you specify \fBreopen\fP, you must also use \fI\-\-logappend\fP\&.
 \fBSEE ALSO:\fP
 .INDENT 7.0
 .INDENT 3.5
-http://docs.mongodb.org/manual/reference/command/logRotate\&.
+http://docs.mongoldb.org/manual/reference/command/logRotate\&.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -289,7 +289,7 @@ T}
 _
 .TE
 .sp
-You can use the \fBmongosniff\fP tool to replay this output for
+You can use the \fBmongolsniff\fP tool to replay this output for
 investigation. Given a typical diaglog file located at
 \fB/data/db/diaglog.4f76a58c\fP, you might use a command in the following
 form to read these files:
@@ -298,7 +298,7 @@ form to read these files:
 .sp
 .nf
 .ft C
-mongosniff \-\-source DIAGLOG /data/db/diaglog.4f76a58c
+mongolsniff \-\-source DIAGLOG /data/db/diaglog.4f76a58c
 .ft P
 .fi
 .UNINDENT
@@ -307,12 +307,12 @@ mongosniff \-\-source DIAGLOG /data/db/diaglog.4f76a58c
 \fBWARNING:\fP
 .INDENT 7.0
 .INDENT 3.5
-Setting the diagnostic level to \fB0\fP will cause \fBmongod\fP
+Setting the diagnostic level to \fB0\fP will cause \fBmongold\fP
 to stop writing data to the \fIdiagnostic log\fP file. However,
-the \fBmongod\fP instance will continue to keep the file open,
+the \fBmongold\fP instance will continue to keep the file open,
 even if it is no longer writing data to the file. If you want to
 rename, move, or delete the diagnostic log you must cleanly shut
-down the \fBmongod\fP instance before doing so.
+down the \fBmongold\fP instance before doing so.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -324,9 +324,9 @@ For internal diagnostic use only.
 .INDENT 0.0
 .TP
 .B \-\-pidfilepath <path>
-Specifies a file location to hold the process ID of the \fBmongod\fP
-process where \fBmongod\fP will write its PID. This is useful for
-tracking the \fBmongod\fP process in combination with the
+Specifies a file location to hold the process ID of the \fBmongold\fP
+process where \fBmongold\fP will write its PID. This is useful for
+tracking the \fBmongold\fP process in combination with the
 \fI\-\-fork\fP option. Without a specified \fI\-\-pidfilepath\fP option, the
 process creates no PID file.
 .UNINDENT
@@ -343,7 +343,7 @@ information.
 .TP
 .B \-\-setParameter <options>
 Specifies one of the MongoDB parameters described in
-http://docs.mongodb.org/manual/reference/parameters\&. You can specify multiple \fBsetParameter\fP
+http://docs.mongoldb.org/manual/reference/parameters\&. You can specify multiple \fBsetParameter\fP
 fields.
 .UNINDENT
 .INDENT 0.0
@@ -388,7 +388,7 @@ Authentication.
 .INDENT 0.0
 .TP
 .B \-\-nounixsocket
-Disables listening on the UNIX domain socket. The \fBmongod\fP process
+Disables listening on the UNIX domain socket. The \fBmongold\fP process
 always listens on the UNIX socket unless one of the following is true:
 .INDENT 7.0
 .IP \(bu 2
@@ -399,7 +399,7 @@ always listens on the UNIX socket unless one of the following is true:
 \fBbindIp\fP does not specify \fB127.0.0.1\fP
 .UNINDENT
 .sp
-New in version 2.6: \fBmongod\fP installed from official \fB\&.deb\fP and \fB\&.rpm\fP packages
+New in version 2.6: \fBmongold\fP installed from official \fB\&.deb\fP and \fB\&.rpm\fP packages
 have the \fBbind_ip\fP configuration set to \fB127.0.0.1\fP by
 default.
 
@@ -410,7 +410,7 @@ default.
 \fIDefault\fP: /tmp
 .sp
 The path for the UNIX socket. If this option has no value, the
-\fBmongod\fP process creates a socket with \fB/tmp\fP as a prefix. MongoDB
+\fBmongold\fP process creates a socket with \fB/tmp\fP as a prefix. MongoDB
 creates and listens on a UNIX socket unless one of the following is true:
 .INDENT 7.0
 .IP \(bu 2
@@ -424,9 +424,9 @@ creates and listens on a UNIX socket unless one of the following is true:
 .INDENT 0.0
 .TP
 .B \-\-fork
-Enables a \fIdaemon\fP mode that runs the \fBmongod\fP process in the
-background. By default \fBmongod\fP does not run as a daemon:
-typically you will run \fBmongod\fP as a daemon, either by using
+Enables a \fIdaemon\fP mode that runs the \fBmongold\fP process in the
+background. By default \fBmongold\fP does not run as a daemon:
+typically you will run \fBmongold\fP as a daemon, either by using
 \fI\-\-fork\fP or by using a controlling process that handles the
 daemonization process (e.g. as with \fBupstart\fP and \fBsystemd\fP).
 .UNINDENT
@@ -438,7 +438,7 @@ and operations. When authorization is enabled, MongoDB requires all
 clients to authenticate themselves first in order to determine the
 access for the client.
 .sp
-Configure users via the \fBmongo shell\fP\&. If no users exist, the localhost interface
+Configure users via the \fBmongol shell\fP\&. If no users exist, the localhost interface
 will continue to have access to the database until you create
 the first user.
 .sp
@@ -454,7 +454,7 @@ compatibility and clarity.
 .INDENT 0.0
 .TP
 .B \-\-ipv6
-Enables IPv6 support and allows the \fBmongod\fP to connect to the
+Enables IPv6 support and allows the \fBmongold\fP to connect to the
 MongoDB instance using an IPv6 network. All MongoDB programs and
 processes disable IPv6 support by default.
 .UNINDENT
@@ -528,7 +528,7 @@ performance. Enable this option only after careful consideration.
 .INDENT 0.0
 .TP
 .B \-\-cpu
-Forces the \fBmongod\fP process to report the percentage of CPU time in
+Forces the \fBmongold\fP process to report the percentage of CPU time in
 write lock, every four seconds.
 .UNINDENT
 .INDENT 0.0
@@ -541,7 +541,7 @@ and the number of available physical pages.
 .INDENT 0.0
 .TP
 .B \-\-objcheck
-Forces the \fBmongod\fP to validate all requests from clients upon
+Forces the \fBmongold\fP to validate all requests from clients upon
 receipt to ensure that clients never insert invalid documents into the
 database. For objects with a high degree of sub\-document nesting, the
 \fI\-\-objcheck\fP option can have a small impact on performance. You can set
@@ -574,8 +574,8 @@ Forbids operations that require a table scan. See \fBnotablescan\fP for addition
 .INDENT 0.0
 .TP
 .B \-\-shutdown
-The \fI\%\-\-shutdown\fP option cleanly and safely terminates the \fBmongod\fP
-process. When invoking \fBmongod\fP with this option you must set the
+The \fI\%\-\-shutdown\fP option cleanly and safely terminates the \fBmongold\fP
+process. When invoking \fBmongold\fP with this option you must set the
 \fI\%\-\-dbpath\fP option either directly or by way of the
 \fBconfiguration file\fP and the
 \fI\-\-config\fP option.
@@ -588,16 +588,16 @@ The \fI\%\-\-shutdown\fP option is available only on Linux systems.
 .B \-\-dbpath <path>
 \fIDefault\fP: \fB/data/db\fP on Linux and OS X, \fB\edata\edb\fP on Windows
 .sp
-The directory where the \fBmongod\fP instance stores its data.
+The directory where the \fBmongold\fP instance stores its data.
 .sp
 If you
 installed MongoDB using a package management system, check the
-\fB/etc/mongodb.conf\fP file provided by your packages to see the
+\fB/etc/mongoldb.conf\fP file provided by your packages to see the
 directory is specified.
 .sp
 Changed in version 3.0: The files in \fI\%\-\-dbpath\fP must correspond to the storage engine
 specified in \fI\%\-\-storageEngine\fP\&. If the data files do not
-correspond to \fI\%\-\-storageEngine\fP, \fBmongod\fP will refuse to
+correspond to \fI\%\-\-storageEngine\fP, \fBmongold\fP will refuse to
 start.
 
 .UNINDENT
@@ -609,12 +609,12 @@ start.
 New in version 3.0.0.
 
 .sp
-Specifies the storage engine for the \fBmongod\fP database. Valid
+Specifies the storage engine for the \fBmongold\fP database. Valid
 options include \fBmmapv1\fP and \fBwiredTiger\fP\&.
 .sp
-If you attempt to start a \fBmongod\fP with a
+If you attempt to start a \fBmongold\fP with a
 \fIstorage.dbPath\fP that contains data files produced by a
-storage engine other than the one specified by \fI\%\-\-storageEngine\fP, \fBmongod\fP
+storage engine other than the one specified by \fI\%\-\-storageEngine\fP, \fBmongold\fP
 will refuse to start.
 .UNINDENT
 .INDENT 0.0
@@ -627,7 +627,7 @@ will refuse to start.
 New in version 3.0.0.
 
 .sp
-When you start \fBmongod\fP with \fI\%\-\-wiredTigerDirectoryForIndexes\fP, \fBmongod\fP stores indexes
+When you start \fBmongold\fP with \fI\%\-\-wiredTigerDirectoryForIndexes\fP, \fBmongold\fP stores indexes
 and collections in separate directories.
 .UNINDENT
 .INDENT 0.0
@@ -640,7 +640,7 @@ New in version 3.0.0.
 .sp
 Defines the maximum size of the cache that WiredTiger will use for
 all data. Ensure that \fI\%\-\-wiredTigerCacheSizeGB\fP is sufficient to hold the entire
-working set for the \fBmongod\fP instance.
+working set for the \fBmongold\fP instance.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -652,10 +652,10 @@ New in version 3.0.0.
 .sp
 Defines the interval between checkpoints when WiredTiger writes all
 modified data to the data files in \fBdbPath\fP\&. If
-the \fBmongod\fP exits between checkpoints and you do not have
+the \fBmongold\fP exits between checkpoints and you do not have
 \fBstorage.journal.enabled\fP set to \fBtrue\fP, any data
 modified since the last checkpoint will not persist. The data files
-are \fIalways\fP valid even if \fBmongod\fP exits between or during a
+are \fIalways\fP valid even if \fBmongold\fP exits between or during a
 checkpoint.
 .UNINDENT
 .INDENT 0.0
@@ -751,7 +751,7 @@ includes files for the \fBlocal\fP and \fBtest\fP databases:
 .nf
 .ft C
 journal
-mongod.lock
+mongold.lock
 local.0
 local.1
 local.ns
@@ -770,7 +770,7 @@ After migration, the data directory would have the following structure:
 .nf
 .ft C
 journal
-mongod.lock
+mongold.lock
 local/local.0
 local/local.1
 local/local.ns
@@ -787,11 +787,11 @@ test/test.ns
 .INDENT 0.0
 .TP
 .B \-\-noIndexBuildRetry
-Stops the \fBmongod\fP from rebuilding incomplete indexes on the next
-start up. This applies in cases where the \fBmongod\fP restarts after it
+Stops the \fBmongold\fP from rebuilding incomplete indexes on the next
+start up. This applies in cases where the \fBmongold\fP restarts after it
 has shut down or stopped in the middle of an index build. In such cases,
-the \fBmongod\fP always removes any incomplete indexes, and then also, by
-default, attempts to rebuild them. To stop the \fBmongod\fP from
+the \fBmongold\fP always removes any incomplete indexes, and then also, by
+default, attempts to rebuild them. To stop the \fBmongold\fP from
 rebuilding incomplete indexes on start up, include this option on the
 command\-line.
 .UNINDENT
@@ -842,7 +842,7 @@ reduces the initial size for data files and limits the maximum size to
 file from 1 gigabyte to 128 megabytes. Use \fI\%\-\-smallfiles\fP if you have a large
 number of databases that each holds a small quantity of data.
 .sp
-The \fI\%\-\-smallfiles\fP option can lead the \fBmongod\fP instance to create a large
+The \fI\%\-\-smallfiles\fP option can lead the \fBmongold\fP instance to create a large
 number of files, which can affect performance for larger databases.
 .UNINDENT
 .INDENT 0.0
@@ -863,7 +863,7 @@ memory mapped files to disk.
 .UNINDENT
 .UNINDENT
 .sp
-The \fBmongod\fP process writes data very quickly to the journal and
+The \fBmongold\fP process writes data very quickly to the journal and
 lazily to the data files. \fBsyncPeriodSecs\fP has no effect on the
 \fBjournal\fP files or \fBjournaling\fP\&.
 .sp
@@ -876,7 +876,7 @@ thread\(aqs status via the \fBbackgroundFlushing\fP field.
 Upgrades the on\-disk data format of the files specified by the
 \fI\%\-\-dbpath\fP to the latest version, if needed.
 .sp
-This option only affects the operation of the \fBmongod\fP if the data
+This option only affects the operation of the \fBmongold\fP if the data
 files are in an old format.
 .sp
 In most cases you should not set this value, so you can exercise the
@@ -895,7 +895,7 @@ command on all databases.
 .INDENT 3.5
 During normal operations, only use the \fBrepairDatabase\fP
 command and wrappers including \fBdb.repairDatabase()\fP in the
-\fBmongo\fP shell and \fImongod \-\-repair\fP, to compact
+\fBmongol\fP shell and \fImongold \-\-repair\fP, to compact
 database files and/or reclaim disk space. Be aware that these
 operations remove and do not save any corrupt data during the
 repair process.
@@ -916,11 +916,11 @@ Changed in version 2.1.2.
 
 .sp
 If you run the repair option \fIand\fP have data in a journal file, the
-\fBmongod\fP instance refuses to start. In these cases you should start
-the \fBmongod\fP without the \fI\-\-repair\fP option, which allows the
-\fBmongod\fP to recover data from the journal. This completes more
+\fBmongold\fP instance refuses to start. In these cases you should start
+the \fBmongold\fP without the \fI\-\-repair\fP option, which allows the
+\fBmongold\fP to recover data from the journal. This completes more
 quickly and is more likely to produce valid data files. To continue the
-repair operation despite the journal files, shut down the \fBmongod\fP
+repair operation despite the journal files, shut down the \fBmongold\fP
 cleanly and restart with the \fI\-\-repair\fP option.
 .sp
 The \fI\-\-repair\fP option copies data from the source data files into new data
@@ -947,13 +947,13 @@ system.
 .B \-\-journal
 Enables the durability \fIjournal\fP to ensure data files remain valid
 and recoverable. This option applies only when you specify the
-\fI\%\-\-dbpath\fP option. The \fBmongod\fP enables journaling by default
+\fI\%\-\-dbpath\fP option. The \fBmongold\fP enables journaling by default
 on 64\-bit builds of versions after 2.0.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-nojournal
-Disables the durability journaling. The \fBmongod\fP instance
+Disables the durability journaling. The \fBmongold\fP instance
 enables journaling by default in 64\-bit versions after v2.0.
 .UNINDENT
 .INDENT 0.0
@@ -967,7 +967,7 @@ file integrity in the case of abnormal system shutdown.
 .B \-\-journalCommitInterval <value>
 \fIDefault\fP: 100 or 30
 .sp
-The maximum amount of time the \fBmongod\fP process allows between
+The maximum amount of time the \fBmongold\fP process allows between
 journal operations. Values can range from 2 to 300 milliseconds. Lower
 values increase the durability of the journal, at the expense of disk
 performance.
@@ -979,9 +979,9 @@ both the journal and the data files.
 If the journal is on a different block device than the data files the
 default journal commit interval is 30 milliseconds.
 .sp
-To force \fBmongod\fP to commit to the journal more frequently, you
+To force \fBmongold\fP to commit to the journal more frequently, you
 can specify \fBj:true\fP\&. When a write operation with \fBj:true\fP is
-pending, \fBmongod\fP will reduce \fBcommitIntervalMs\fP
+pending, \fBmongold\fP will reduce \fBcommitIntervalMs\fP
 to a third of the set value.
 .UNINDENT
 .SS Replication Options
@@ -999,10 +999,10 @@ connections by replica set name.
 .TP
 .B \-\-oplogSize <value>
 Specifies a maximum size in megabytes for the replication operation log
-(i.e., the \fIoplog\fP). The \fBmongod\fP process creates an
+(i.e., the \fIoplog\fP). The \fBmongold\fP process creates an
 \fIoplog\fP based on the maximum amount of space available. For 64\-bit
 systems, the oplog is typically 5% of available disk space. Once the
-\fBmongod\fP has created the oplog for the first time, changing the
+\fBmongold\fP has created the oplog for the first time, changing the
 \fI\%\-\-oplogSize\fP option will not affect the size of the oplog.
 .sp
 See \fIreplica\-set\-oplog\-sizing\fP for more information.
@@ -1067,12 +1067,12 @@ replica sets are the preferred configuration for database replication.
 .INDENT 0.0
 .TP
 .B \-\-master
-Configures the \fBmongod\fP to run as a replication \fImaster\fP\&.
+Configures the \fBmongold\fP to run as a replication \fImaster\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-slave
-Configures the \fBmongod\fP to run as a replication \fIslave\fP\&.
+Configures the \fBmongold\fP to run as a replication \fIslave\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1114,14 +1114,14 @@ than once in a ten minute period.
 In the context of \fIreplica set\fP replication, set this option
 if you have seeded this member with an up\-to\-date copy of the entire
 \fBdbPath\fP of another member of the set. Otherwise the
-\fBmongod\fP will attempt to perform an initial sync,
+\fBmongold\fP will attempt to perform an initial sync,
 as though the member were a new member.
 .sp
 \fBWARNING:\fP
 .INDENT 7.0
 .INDENT 3.5
 If the data is not perfectly synchronized \fIand\fP
-the \fBmongod\fP starts with \fIfastsync\fP, then the
+the \fBmongold\fP starts with \fIfastsync\fP, then the
 secondary or slave will be permanently out of sync with the
 primary, which may cause significant consistency problems.
 .UNINDENT
@@ -1131,11 +1131,11 @@ primary, which may cause significant consistency problems.
 .INDENT 0.0
 .TP
 .B \-\-configsvr
-Declares that this \fBmongod\fP instance serves as the
+Declares that this \fBmongold\fP instance serves as the
 \fIconfig database\fP of a sharded cluster. When running with
 this option, clients (i.e. other cluster components) will not be
 able to write data to any database other than \fBconfig\fP and
-\fBadmin\fP\&. The default port for a \fBmongod\fP with this option is
+\fBadmin\fP\&. The default port for a \fBmongold\fP with this option is
 \fB27019\fP and the default \fI\%\-\-dbpath\fP directory is
 \fB/data/configdb\fP, unless specified.
 .sp
@@ -1152,7 +1152,7 @@ server or part of a \fIreplica set\fP\&.
 .INDENT 0.0
 .TP
 .B \-\-shardsvr
-Configures this \fBmongod\fP instance as a shard in a
+Configures this \fBmongold\fP instance as a shard in a
 partitioned cluster. The default port for these instances is
 \fB27018\fP\&.  The only effect of \fI\%\-\-shardsvr\fP is to change
 the port number.
@@ -1162,7 +1162,7 @@ the port number.
 .INDENT 3.5
 .SS See
 .sp
-http://docs.mongodb.org/manual/tutorial/configure\-ssl for full
+http://docs.mongoldb.org/manual/tutorial/configure\-ssl for full
 documentation of MongoDB\(aqs support.
 .UNINDENT
 .UNINDENT
@@ -1172,15 +1172,15 @@ documentation of MongoDB\(aqs support.
 Deprecated since version 2.6.
 
 .sp
-Enables SSL for \fBmongod\fP\&.
+Enables SSL for \fBmongold\fP\&.
 .sp
-With \fI\-\-sslOnNormalPorts\fP, a \fBmongod\fP requires SSL encryption for all
+With \fI\-\-sslOnNormalPorts\fP, a \fBmongold\fP requires SSL encryption for all
 connections on the default MongoDB port, or the port specified by
 \fI\-\-port\fP\&. By default, \fI\-\-sslOnNormalPorts\fP is
 disabled.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1229,7 +1229,7 @@ _
 .TE
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1244,7 +1244,7 @@ or absolute paths.
 When SSL is enabled, you must specify \fI\-\-sslPEMKeyFile\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1254,16 +1254,16 @@ New in version 2.2.
 .sp
 Specifies the password to de\-crypt the certificate\-key file (i.e.
 \fB\-\-sslPEMKeyFile\fP). Use the \fI\-\-sslPEMKeyPassword\fP option only if the
-certificate\-key file is encrypted. In all cases, the \fBmongod\fP will
+certificate\-key file is encrypted. In all cases, the \fBmongold\fP will
 redact the password from all logging and reporting output.
 .sp
 Changed in version 2.6: If the private key in the PEM file is encrypted and you do not
-specify the \fI\-\-sslPEMKeyPassword\fP option, the \fBmongod\fP will prompt for a
+specify the \fI\-\-sslPEMKeyPassword\fP option, the \fBmongold\fP will prompt for a
 passphrase. See \fIssl\-certificate\-password\fP\&.
 
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1319,7 +1319,7 @@ _
 .TE
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1337,7 +1337,7 @@ authentication, the cluster uses the \fB\&.pem\fP file specified in the
 .sp
 The default distribution of MongoDB does not contain support for
 SSL.  For more information on MongoDB and SSL, see
-http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1347,15 +1347,15 @@ New in version 2.6.
 .sp
 Specifies the password to de\-crypt the x.509 certificate\-key file
 specified with \fB\-\-sslClusterFile\fP\&. Use the \fI\-\-sslClusterPassword\fP option only
-if the certificate\-key file is encrypted. In all cases, the \fBmongod\fP
+if the certificate\-key file is encrypted. In all cases, the \fBmongold\fP
 will redact the password from all logging and reporting output.
 .sp
 If the x.509 key file is encrypted and you do not specify the
-\fI\-\-sslClusterPassword\fP option, the \fBmongod\fP will prompt for a passphrase. See
+\fI\-\-sslClusterPassword\fP option, the \fBmongold\fP will prompt for a passphrase. See
 \fIssl\-certificate\-password\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1368,19 +1368,19 @@ from the Certificate Authority. Specify the file name of the
 \fB\&.pem\fP file using relative or absolute paths.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .sp
 \fBWARNING:\fP
 .INDENT 7.0
 .INDENT 3.5
 If the \fI\-\-sslCAFile\fP option and its target
 file are not specified, x.509 client and member authentication will not
-function. \fBmongod\fP, and \fBmongos\fP in sharded systems,
+function. \fBmongold\fP, and \fBmongols\fP in sharded systems,
 will not be able to verify the certificates of processes connecting to it
 against the trusted certificate authority (CA) that issued them, breaking
 the certificate chain.
 .sp
-As of version 2.6.4, \fBmongod\fP will not start with x.509
+As of version 2.6.4, \fBmongold\fP will not start with x.509
 authentication enabled if the CA file is not specified.
 .UNINDENT
 .UNINDENT
@@ -1396,7 +1396,7 @@ List. Specify the file name of the \fB\&.pem\fP file using relative or
 absolute paths.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1410,7 +1410,7 @@ the \fBallowInvalidCertificates\fP setting, MongoDB
 logs as a warning the use of the invalid certificate.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1419,13 +1419,13 @@ New in version 3.0.
 
 .sp
 Disables the validation of the hostnames in SSL certificates, when
-connecting to other \fBmongod\fP instances for inter\-process
-authentication. This allows \fBmongod\fP to connect to other
-\fBmongod\fP instances if the hostnames in their certificates do not
+connecting to other \fBmongold\fP instances for inter\-process
+authentication. This allows \fBmongold\fP to connect to other
+\fBmongold\fP instances if the hostnames in their certificates do not
 match their configured hostname.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1440,20 +1440,20 @@ update their configuration files.
 
 .sp
 Disables the requirement for SSL certificate validation that
-\fB\-\-sslCAFile\fP enables. With the \fI\%\-\-sslAllowConnectionsWithoutCertificates\fP option, the \fBmongod\fP
+\fB\-\-sslCAFile\fP enables. With the \fI\%\-\-sslAllowConnectionsWithoutCertificates\fP option, the \fBmongold\fP
 will accept connections when the client does not present a certificate
 when establishing the connection.
 .sp
-If the client presents a certificate and the \fBmongod\fP has \fI\%\-\-sslAllowConnectionsWithoutCertificates\fP
-enabled, the \fBmongod\fP will validate the certificate using the root
+If the client presents a certificate and the \fBmongold\fP has \fI\%\-\-sslAllowConnectionsWithoutCertificates\fP
+enabled, the \fBmongold\fP will validate the certificate using the root
 certificate chain specified by \fB\-\-sslCAFile\fP and reject clients
 with invalid certificates.
 .sp
 Use the \fI\%\-\-sslAllowConnectionsWithoutCertificates\fP option if you have a mixed deployment that includes
-clients that do not or cannot present certificates to the \fBmongod\fP\&.
+clients that do not or cannot present certificates to the \fBmongold\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -1461,7 +1461,7 @@ For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tuto
 New in version 2.4.
 
 .sp
-Directs the \fBmongod\fP to use the FIPS mode of the installed OpenSSL
+Directs the \fBmongold\fP to use the FIPS mode of the installed OpenSSL
 library. Your system must have a FIPS compliant OpenSSL library to use
 the \fI\-\-sslFIPSMode\fP option.
 .sp
@@ -1470,7 +1470,7 @@ the \fI\-\-sslFIPSMode\fP option.
 .INDENT 3.5
 FIPS Compatible SSL is
 available only in \fI\%MongoDB Enterprise\fP\&. See
-http://docs.mongodb.org/manual/tutorial/configure\-fips for more information.
+http://docs.mongoldb.org/manual/tutorial/configure\-fips for more information.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -1630,13 +1630,13 @@ Available only in \fI\%MongoDB Enterprise\fP\&.
 .TP
 .B \-\-snmp\-subagent
 Runs SNMP as a subagent. For more information, see
-http://docs.mongodb.org/manual/tutorial/monitor\-with\-snmp\&.
+http://docs.mongoldb.org/manual/tutorial/monitor\-with\-snmp\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-snmp\-master
 Runs SNMP as a master. For more information, see
-http://docs.mongodb.org/manual/tutorial/monitor\-with\-snmp\&.
+http://docs.mongoldb.org/manual/tutorial/monitor\-with\-snmp\&.
 .UNINDENT
 .SH AUTHOR
 MongoDB Documentation Project

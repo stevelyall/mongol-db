@@ -9,8 +9,8 @@ env.Library(
         'path_internal.cpp'
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/common',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/common',
     ],
 )
 
@@ -39,8 +39,8 @@ env.Library(
         "matcher.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/common',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/common',
         '$BUILD_DIR/third_party/shim_pcrecpp',
         'path',
     ],
@@ -99,8 +99,8 @@ env.Library(
         'expression_parser_geo.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/geo/geometry',
-        '$BUILD_DIR/mongo/db/geo/geoparser',
+        '$BUILD_DIR/mongol/db/geo/geometry',
+        '$BUILD_DIR/mongol/db/geo/geoparser',
         'expressions',
     ],
 )
@@ -123,7 +123,7 @@ env.Library(
         'expression_parser_text.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/fts/base',
+        '$BUILD_DIR/mongol/db/fts/base',
         'expressions',
     ],
 )

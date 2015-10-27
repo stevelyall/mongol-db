@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/constraints.h"
+#include "mongol/base/status.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/constraints.h"
 
-namespace mongo {
+namespace mongol {
 
 WiredTigerGlobalOptions wiredTigerGlobalOptions;
 
@@ -156,4 +156,4 @@ Status WiredTigerGlobalOptions::store(const moe::Environment& params,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

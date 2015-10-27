@@ -31,14 +31,14 @@
 #include <map>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_index.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_extent_manager.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_index.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_extent_manager.h"
 
-namespace mongo {
+namespace mongol {
 
 class CollectionCatalogEntry;
 struct CollectionOptions;

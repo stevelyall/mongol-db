@@ -29,9 +29,9 @@
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/base/init.h"
+#include "mongol/base/init.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_INITIALIZER_GENERAL(ValidateLocale, MONGO_NO_PREREQUISITES, MONGO_DEFAULT_PREREQUISITES)
 (InitializerContext*) {
@@ -49,4 +49,4 @@ MONGO_INITIALIZER_GENERAL(ValidateLocale, MONGO_NO_PREREQUISITES, MONGO_DEFAULT_
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

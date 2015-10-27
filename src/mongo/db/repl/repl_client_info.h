@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/bson/oid.h"
-#include "mongo/db/client.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/storage/snapshot_name.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/client.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/storage/snapshot_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class Client;
@@ -83,4 +83,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

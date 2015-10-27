@@ -29,34 +29,34 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
+#include "mongol/db/commands.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/write_ops/wc_error_detail.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/write_ops/wc_error_detail.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -82,10 +82,10 @@ Command::~Command() = default;
 string Command::parseNsFullyQualified(const string& dbname, const BSONObj& cmdObj) const {
     BSONElement first = cmdObj.firstElement();
     uassert(17005,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "Main argument to " << first.fieldNameStringData()
                 << " must be a fully qualified namespace string.  Found: " << first.toString(false),
-            first.type() == mongo::String &&
+            first.type() == mongol::String &&
                 NamespaceString::validCollectionComponent(first.valuestr()));
     return first.String();
 }
@@ -96,7 +96,7 @@ string Command::parseNsCollectionRequired(const string& dbname, const BSONObj& c
     BSONElement first = cmdObj.firstElement();
     uassert(17009,
             "no collection name specified",
-            first.canonicalType() == canonicalizeBSONType(mongo::String) &&
+            first.canonicalType() == canonicalizeBSONType(mongol::String) &&
                 first.valuestrsize() > 0);
     std::string coll = first.valuestr();
     return dbname + '.' + coll;
@@ -104,12 +104,12 @@ string Command::parseNsCollectionRequired(const string& dbname, const BSONObj& c
 
 /*virtual*/ string Command::parseNs(const string& dbname, const BSONObj& cmdObj) const {
     BSONElement first = cmdObj.firstElement();
-    if (first.type() != mongo::String)
+    if (first.type() != mongol::String)
         return dbname;
 
     string coll = cmdObj.firstElement().valuestr();
 #if defined(CLC)
-    DEV if (mongoutils::str::startsWith(coll, dbname + '.')) {
+    DEV if (mongolutils::str::startsWith(coll, dbname + '.')) {
         log() << "DEBUG parseNs Command's collection name looks like it includes the db name\n"
               << dbname << '\n' << coll << '\n' << cmdObj.toString() << endl;
         dassert(false);
@@ -175,7 +175,7 @@ void Command::htmlHelp(stringstream& ss) const {
                     ss << *q++;
                 ss << "\">";
                 q = p;
-                if (str::startsWith(q, "http://www.mongodb.org/display/"))
+                if (str::startsWith(q, "http://www.mongoldb.org/display/"))
                     q += 31;
                 while (*q && *q != ' ' && *q != '\n') {
                     ss << (*q == '+' ? ' ' : *q);
@@ -267,7 +267,7 @@ void Command::appendCommandWCStatus(BSONObjBuilder& result, const Status& status
 }
 
 Status Command::getStatusFromCommandResult(const BSONObj& result) {
-    return mongo::getStatusFromCommandResult(result);
+    return mongol::getStatusFromCommandResult(result);
 }
 
 Status Command::parseCommandCursorOptions(const BSONObj& cmdObj,
@@ -281,7 +281,7 @@ Status Command::parseCommandCursorOptions(const BSONObj& cmdObj,
         return Status::OK();
     }
 
-    if (cursorElem.type() != mongo::Object) {
+    if (cursorElem.type() != mongol::Object) {
         return Status(ErrorCodes::TypeMismatch, "cursor field must be missing or an object");
     }
 
@@ -501,4 +501,4 @@ void runCommands(OperationContext* txn,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

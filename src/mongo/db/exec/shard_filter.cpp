@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/shard_filter.h"
+#include "mongol/db/exec/shard_filter.h"
 
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -145,4 +145,4 @@ const SpecificStats* ShardFilterStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

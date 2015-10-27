@@ -27,9 +27,9 @@
 
 #pragma once
 
-#include "mongo/bson/mutable/element.h"
+#include "mongol/bson/mutable/element.h"
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 /** For an overview of mutable BSON, please see the file document.h in this directory. */
@@ -129,6 +129,6 @@ inline bool operator==(const ConstElement& l, const Element& r);
 inline bool operator!=(const ConstElement& l, const Element& r);
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/bson/mutable/const_element-inl.h"
+#include "mongol/bson/mutable/const_element-inl.h"

@@ -32,11 +32,11 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/util/fail_point.h"
+#include "mongol/base/status.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/util/fail_point.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * Class for storing FailPoint instances.
  */

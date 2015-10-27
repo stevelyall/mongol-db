@@ -31,10 +31,10 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 
 template <typename T>
@@ -109,4 +109,4 @@ private:
     boost::optional<BSONObj> _hint;
 };
 
-}  // namespace mongo
+}  // namespace mongol

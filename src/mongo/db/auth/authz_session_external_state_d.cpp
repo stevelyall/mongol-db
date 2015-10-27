@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#include "mongo/db/auth/authz_session_external_state_d.h"
+#include "mongol/db/auth/authz_session_external_state_d.h"
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/client.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/client.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/assert_util.h"
 
 
-namespace mongo {
+namespace mongol {
 
 AuthzSessionExternalStateMongod::AuthzSessionExternalStateMongod(AuthorizationManager* authzManager)
     : AuthzSessionExternalStateServerCommon(authzManager) {}
@@ -67,4 +67,4 @@ bool AuthzSessionExternalStateMongod::serverIsArbiter() const {
             repl::getGlobalReplicationCoordinator()->getMemberState().arbiter());
 }
 
-}  // namespace mongo
+}  // namespace mongol

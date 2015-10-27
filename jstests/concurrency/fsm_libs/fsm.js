@@ -22,11 +22,11 @@ var fsm = (function() {
         var connCache;
         if (args.passConnectionCache) {
             connCache = {
-                mongos: [],
+                mongols: [],
                 config: [],
                 shards: {}
             };
-            connCache.mongos = args.cluster.mongos.map(connStr => new Mongo(connStr));
+            connCache.mongols = args.cluster.mongols.map(connStr => new Mongo(connStr));
             connCache.config = args.cluster.config.map(connStr => new Mongo(connStr));
 
             var shardNames = Object.keys(args.cluster.shards);
@@ -46,7 +46,7 @@ var fsm = (function() {
         }
 
         if (args.passConnectionCache) {
-            connCache.mongos.forEach(conn => conn = null);
+            connCache.mongols.forEach(conn => conn = null);
             connCache.config.forEach(conn => conn = null);
 
             var shardNames = Object.keys(connCache.shards);

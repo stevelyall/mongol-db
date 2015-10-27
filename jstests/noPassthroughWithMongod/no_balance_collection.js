@@ -1,6 +1,6 @@
 // Tests whether the noBalance flag disables balancing for collections
 
-var st = new ShardingTest({ shards : 2, mongos : 1, verbose : 1 })
+var st = new ShardingTest({ shards : 2, mongols : 1, verbose : 1 })
 
 // First, test that shell helpers require an argument
 assert.throws(sh.disableBalancing, [], "sh.disableBalancing requires a collection");

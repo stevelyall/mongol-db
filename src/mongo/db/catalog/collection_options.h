@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 struct CollectionOptions {
     CollectionOptions() {

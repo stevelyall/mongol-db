@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/vote_requester.h"
+#include "mongol/db/repl/vote_requester.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_runner.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_runner.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -171,4 +171,4 @@ unordered_set<HostAndPort> VoteRequester::getResponders() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

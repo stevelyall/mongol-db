@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/curop.h"
+#include "mongol/db/curop.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/json.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/json.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -699,4 +699,4 @@ void OpDebug::append(const CurOp& curop,
     execStats.append(b, "execStats");
 }
 
-}  // namespace mongo
+}  // namespace mongol

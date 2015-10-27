@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/auth/sasl_plain_server_conversation.h"
+#include "mongol/db/auth/sasl_plain_server_conversation.h"
 
-#include "mongo/crypto/mechanism_scram.h"
-#include "mongo/db/auth/sasl_authentication_session.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/password_digest.h"
-#include "mongo/util/text.h"
+#include "mongol/crypto/mechanism_scram.h"
+#include "mongol/db/auth/sasl_authentication_session.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/password_digest.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 SaslPLAINServerConversation::SaslPLAINServerConversation(SaslAuthenticationSession* saslAuthSession)
     : SaslServerConversation(saslAuthSession) {}
@@ -51,7 +51,7 @@ StatusWith<bool> SaslPLAINServerConversation::step(StringData inputData, std::st
         pwd = input.substr(inputData.find('\0', _user.size() + 1) + 1);
     } catch (std::out_of_range& exception) {
         return StatusWith<bool>(ErrorCodes::AuthenticationFailed,
-                                mongoutils::str::stream()
+                                mongolutils::str::stream()
                                     << "Incorrectly formatted PLAIN client message");
     }
 
@@ -76,7 +76,7 @@ StatusWith<bool> SaslPLAINServerConversation::step(StringData inputData, std::st
         // Handle schemaVersion26Final (MONGODB-CR/SCRAM mixed mode)
         if (authDigest != creds.password) {
             return StatusWith<bool>(ErrorCodes::AuthenticationFailed,
-                                    mongoutils::str::stream() << "Incorrect user name or password");
+                                    mongolutils::str::stream() << "Incorrect user name or password");
         }
     } else {
         // Handle schemaVersion28SCRAM (SCRAM only mode)
@@ -93,7 +93,7 @@ StatusWith<bool> SaslPLAINServerConversation::step(StringData inputData, std::st
         if (creds.scram.storedKey !=
             base64::encode(reinterpret_cast<const char*>(storedKey), scram::hashSize)) {
             return StatusWith<bool>(ErrorCodes::AuthenticationFailed,
-                                    mongoutils::str::stream() << "Incorrect user name or password");
+                                    mongolutils::str::stream() << "Incorrect user name or password");
         }
     }
 
@@ -102,4 +102,4 @@ StatusWith<bool> SaslPLAINServerConversation::step(StringData inputData, std::st
     return StatusWith<bool>(true);
 }
 
-}  // namespace mongo
+}  // namespace mongol

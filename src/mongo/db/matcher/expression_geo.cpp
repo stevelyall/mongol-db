@@ -28,18 +28,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 
-using mongoutils::str::equals;
+using mongolutils::str::equals;
 
 //
 // GeoExpression
@@ -213,7 +213,7 @@ Status GeoNearExpression::parseNewQuery(const BSONObj& obj) {
     // Just one arg. to $geoNear.
     if (objIt.more()) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream()
+                      mongolutils::str::stream()
                           << "geo near accepts just one argument when querying for a GeoJSON "
                           << "point. Extra field found: " << objIt.next());
     }
@@ -227,7 +227,7 @@ Status GeoNearExpression::parseNewQuery(const BSONObj& obj) {
     BSONObj::MatchType matchType = static_cast<BSONObj::MatchType>(e.getGtLtOp());
     if (BSONObj::opNEAR != matchType) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream()
+                      mongolutils::str::stream()
                           << "invalid geo near query operator: " << e.fieldName());
     }
 

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/concurrency/locker.h"
+#include "mongol/db/concurrency/locker.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Locker, which cannot be used to lock/unlock resources and just returns true for checks for
@@ -169,4 +169,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

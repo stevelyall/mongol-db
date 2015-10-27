@@ -31,14 +31,14 @@
 #include <cstdint>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/auth/authentication_session.h"
-#include "mongo/db/auth/sasl_authentication_session.h"
-#include "mongo/db/auth/sasl_server_conversation.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/auth/authentication_session.h"
+#include "mongol/db/auth/sasl_authentication_session.h"
+#include "mongol/db/auth/sasl_server_conversation.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Authentication session data for the server side of SASL authentication.
@@ -67,4 +67,4 @@ private:
     std::string _mechanism;
     std::unique_ptr<SaslServerConversation> _saslConversation;
 };
-}  // namespace mongo
+}  // namespace mongol

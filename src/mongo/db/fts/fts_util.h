@@ -32,9 +32,9 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

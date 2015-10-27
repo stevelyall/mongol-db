@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * "Types" are the interface to a known data structure that will be deserialized from BSON.
@@ -100,4 +100,4 @@ private:
 };
 
 
-}  // namespace mongo
+}  // namespace mongol

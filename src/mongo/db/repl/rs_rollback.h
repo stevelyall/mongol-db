@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientConnection;
 class NamespaceString;
@@ -89,4 +89,4 @@ Status syncRollback(OperationContext* txn,
                     ReplicationCoordinator* replCoord);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

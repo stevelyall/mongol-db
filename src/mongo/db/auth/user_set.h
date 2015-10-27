@@ -30,14 +30,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_name.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_name.h"
 
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A collection of authenticated users.
@@ -125,4 +125,4 @@ private:
     std::vector<User*>::iterator _usersEnd;
 };
 
-}  // namespace mongo
+}  // namespace mongol

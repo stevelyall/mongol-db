@@ -32,7 +32,7 @@
 #include <sys/poll.h>
 #endif  // ndef _WIN32
 
-namespace mongo {
+namespace mongol {
 bool isPollSupported();
 int socketPoll(pollfd* fdarray, unsigned long nfds, int timeout);
 }

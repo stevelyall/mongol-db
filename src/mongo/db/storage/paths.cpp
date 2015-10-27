@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/paths.h"
+#include "mongol/db/storage/paths.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 /** from a full path */
 RelativePath RelativePath::fromFullPath(boost::filesystem::path dbp, boost::filesystem::path f) {
@@ -69,7 +69,7 @@ dev_t getPartition(const std::string& path) {
 void flushMyDirectory(const boost::filesystem::path& file) {
 #ifdef __linux__  // this isn't needed elsewhere
     static bool _warnedAboutFilesystem = false;
-    // if called without a fully qualified path it asserts; that makes mongoperf fail.
+    // if called without a fully qualified path it asserts; that makes mongolperf fail.
     // so make a warning. need a better solution longer term.
     // massert(13652, str::stream() << "Couldn't find parent dir for file: " << file.string(),);
     if (!file.has_branch_path()) {
@@ -93,7 +93,7 @@ void flushMyDirectory(const boost::filesystem::path& file) {
             if (!_warnedAboutFilesystem) {
                 log() << "\tWARNING: This file system is not supported. For further information"
                       << " see:" << startupWarningsLog;
-                log() << "\t\t\thttp://dochub.mongodb.org/core/unsupported-filesystems"
+                log() << "\t\t\thttp://dochub.mongoldb.org/core/unsupported-filesystems"
                       << startupWarningsLog;
                 log() << "\t\tPlease notify MongoDB, Inc. if an unlisted filesystem generated "
                       << "this warning." << startupWarningsLog;

@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/storage/recovery_unit.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/decorable.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/storage/recovery_unit.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/decorable.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 class CurOp;
@@ -296,4 +296,4 @@ private:
     OperationContext* _txn;
 };
 
-}  // namespace mongo
+}  // namespace mongol

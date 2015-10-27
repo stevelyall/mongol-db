@@ -32,7 +32,7 @@
 
 #include <exception>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
 #define MONGO_WRITE_CONFLICT_RETRY_LOOP_BEGIN \
     do {                                      \
@@ -40,7 +40,7 @@
         do {                                  \
             try
 #define MONGO_WRITE_CONFLICT_RETRY_LOOP_END(PTXN, OPSTR, NSSTR) \
-    catch (const ::mongo::WriteConflictException& wce) {        \
+    catch (const ::mongol::WriteConflictException& wce) {        \
         const OperationContext* ptxn = (PTXN);                  \
         ++CurOp::get(ptxn)->debug().writeConflicts;             \
         wce.logAndBackoff(wcr__Attempts, (OPSTR), (NSSTR));     \
@@ -56,7 +56,7 @@
     while (false)                                               \
         ;
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This is thrown if during a write, two or more operations conflict with each other.

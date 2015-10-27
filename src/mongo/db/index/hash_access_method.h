@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/hasher.h"  // For HashSeed.
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/hasher.h"  // For HashSeed.
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This is the access method for "hashed" indices.
@@ -60,4 +60,4 @@ private:
     BSONObj _missingKey;
 };
 
-}  // namespace mongo
+}  // namespace mongol

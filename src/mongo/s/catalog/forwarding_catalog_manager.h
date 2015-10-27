@@ -28,16 +28,16 @@
 
 #pragma once
 
-#include "mongo/client/connection_string.h"
-#include "mongo/db/server_options.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/rwlock.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/server_options.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/rwlock.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 class ServiceContext;
@@ -272,4 +272,4 @@ private:
     DistLockManager::ScopedDistLock _lock;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,11 +31,11 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 template <typename T>
@@ -143,4 +143,4 @@ private:
     boost::optional<bool> _allowBalance;
 };
 
-}  // namespace mongo
+}  // namespace mongol

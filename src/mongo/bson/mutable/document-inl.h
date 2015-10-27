@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 inline int Document::compareWith(const Document& other, bool considerFieldName) const {
@@ -76,4 +76,4 @@ inline bool Document::isInPlaceModeEnabled() const {
 }
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

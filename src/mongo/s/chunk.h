@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/client/shard.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/client/shard.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkManager;
 class OperationContext;
@@ -132,7 +132,7 @@ public:
 
     /**
      * Splits this chunk at a non-specificed split key to be chosen by the
-     * mongod holding this chunk.
+     * mongold holding this chunk.
      *
      * @param mode
      * @param res the object containing details about the split execution
@@ -158,14 +158,14 @@ public:
                       BSONObj* res) const;
 
     /**
-     * Asks the mongod holding this chunk to find a key that approximately divides this chunk in two
+     * Asks the mongold holding this chunk to find a key that approximately divides this chunk in two
      *
      * @param medianKey the key that divides this chunk, if there is one, or empty
      */
     void pickMedianKey(OperationContext* txn, BSONObj& medianKey) const;
 
     /**
-     * Ask the mongod holding this chunk to figure out the split points.
+     * Ask the mongold holding this chunk to figure out the split points.
      * @param splitPoints vector to be filled in
      * @param chunkSize chunk size to target in bytes
      * @param maxPoints limits the number of split points that are needed, zero is max (optional)
@@ -302,7 +302,7 @@ private:
                               std::vector<BSONObj>* splitPoints) const;
 
     /**
-     * initializes _dataWritten with a random value so that a mongos restart
+     * initializes _dataWritten with a random value so that a mongols restart
      * wouldn't cause delay in splitting
      */
     static int mkDataWritten();
@@ -310,4 +310,4 @@ private:
 
 typedef std::shared_ptr<const Chunk> ChunkPtr;
 
-}  // namespace mongo
+}  // namespace mongol

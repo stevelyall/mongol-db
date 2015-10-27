@@ -29,12 +29,12 @@
 #include <boost/lexical_cast.hpp>
 #include <string>
 
-#include "mongo/db/concurrency/fast_map_noalloc.h"
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/concurrency/fast_map_noalloc.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/unittest/unittest.h"
 
 
-namespace mongo {
+namespace mongol {
 
 struct TestStruct {
     void initNew(int newId, const std::string& newValue) {
@@ -157,4 +157,4 @@ TEST(FastMapNoAlloc, RemoveAll) {
     ASSERT(checkMap.empty());
 }
 
-}  // namespace mongo
+}  // namespace mongol

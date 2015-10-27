@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/ops/update_result.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/ops/update_result.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class Database;
@@ -60,4 +60,4 @@ UpdateResult update(OperationContext* txn,
  *   returns: { x : 2 }
  */
 BSONObj applyUpdateOperators(const BSONObj& from, const BSONObj& operators);
-}  // namespace mongo
+}  // namespace mongol

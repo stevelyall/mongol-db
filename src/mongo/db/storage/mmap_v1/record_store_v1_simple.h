@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
 
-namespace mongo {
+namespace mongol {
 
 class SimpleRecordStoreV1Cursor;
 

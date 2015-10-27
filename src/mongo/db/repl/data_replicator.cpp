@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include "data_replicator.h"
 
 #include <algorithm>
 
-#include "mongo/base/status.h"
-#include "mongo/client/query_fetcher.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/collection_cloner.h"
-#include "mongo/db/repl/database_cloner.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/sync_source_selector.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/queue.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/status.h"
+#include "mongol/client/query_fetcher.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/collection_cloner.h"
+#include "mongol/db/repl/database_cloner.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/sync_source_selector.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/queue.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 // Failpoint for initial sync
@@ -1392,4 +1392,4 @@ void DataReplicator::_rollbackOperations(const CallbackArgs& cbData) {
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

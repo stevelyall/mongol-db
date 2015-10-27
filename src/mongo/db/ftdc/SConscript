@@ -19,30 +19,30 @@ ftdcEnv.Library(
         'varint.cpp'
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/db/service_context',
         '$BUILD_DIR/third_party/s2/s2', # For VarInt
         '$BUILD_DIR/third_party/shim_zlib',
     ],
     LIBDEPS_TAGS=[
-        # Needs 'mongo::Validator<mongo::BSONObj>::validateLoad(char const*, unsigned long)'
+        # Needs 'mongol::Validator<mongol::BSONObj>::validateLoad(char const*, unsigned long)'
         'incomplete',
     ],
 )
 
 env.Library(
-    target='ftdc_mongod',
+    target='ftdc_mongold',
     source=[
-        'ftdc_mongod.cpp',
+        'ftdc_mongold.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/server_parameters',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/server_parameters',
         'ftdc'
     ],
     LIBDEPS_TAGS=[
-        # Needs 'mongo::storageGlobalParams' in storage_options.cpp which is in serveronly
+        # Needs 'mongol::storageGlobalParams' in storage_options.cpp which is in serveronly
         # And this library is already part of serveronly
         'incomplete',
     ],

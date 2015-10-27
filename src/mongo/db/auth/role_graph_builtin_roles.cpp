@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/role_graph.h"
+#include "mongol/db/auth/role_graph.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/role_name.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/role_name.h"
 
-namespace mongo {
+namespace mongol {
 
 const std::string RoleGraph::BUILTIN_ROLE_V0_READ = "read";
 const std::string RoleGraph::BUILTIN_ROLE_V0_READ_WRITE = "dbOwner";
@@ -690,4 +690,4 @@ void RoleGraph::_createBuiltinRoleIfNeeded(const RoleName& role) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

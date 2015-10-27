@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/distinct_scan.h"
+#include "mongol/db/exec/distinct_scan.h"
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -170,4 +170,4 @@ const SpecificStats* DistinctScan::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/user_set.h"
+#include "mongol/db/auth/user_set.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 class UserSetNameIteratorImpl : public UserNameIterator::Impl {
@@ -131,4 +131,4 @@ User* UserSet::lookupByDBName(StringData dbname) const {
 UserNameIterator UserSet::getNames() const {
     return UserNameIterator(new UserSetNameIteratorImpl(begin(), end()));
 }
-}  // namespace mongo
+}  // namespace mongol

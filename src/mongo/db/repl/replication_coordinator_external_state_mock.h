@@ -30,18 +30,18 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/oid.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/last_vote.h"
-#include "mongo/db/repl/replication_coordinator_external_state.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/oid.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/last_vote.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class ReplicationCoordinatorExternalStateMock : public ReplicationCoordinatorExternalState {
@@ -167,4 +167,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

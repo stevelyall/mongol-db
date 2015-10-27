@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/shard_connection.h"
+#include "mongol/s/client/shard_connection.h"
 
 #include <set>
 
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/version_manager.h"
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/version_manager.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::map;
@@ -85,7 +85,7 @@ private:
 } activeClientConnections;
 
 /**
- * Command to allow access to the sharded conn pool information in mongos.
+ * Command to allow access to the sharded conn pool information in mongols.
  */
 class ShardedPoolStats : public Command {
 public:
@@ -111,10 +111,10 @@ public:
 
     virtual bool run(OperationContext* txn,
                      const string& dbname,
-                     mongo::BSONObj& cmdObj,
+                     mongol::BSONObj& cmdObj,
                      int options,
                      std::string& errmsg,
-                     mongo::BSONObjBuilder& result) {
+                     mongol::BSONObjBuilder& result) {
         // Base pool info
         shardConnectionPool.appendInfo(result);
 
@@ -406,7 +406,7 @@ thread_specific_ptr<ClientConnections> ClientConnections::_perThread;
 // The global connection pool
 DBConnectionPool shardConnectionPool;
 
-// Different between mongos and mongod
+// Different between mongols and mongold
 void usingAShardConnection(const string& addr);
 
 ShardConnection::ShardConnection(const ConnectionString& connectionString,
@@ -508,4 +508,4 @@ void ShardConnection::forgetNS(const string& ns) {
     ClientConnections::threadInstance()->forgetNS(ns);
 }
 
-}  // namespace mongo
+}  // namespace mongol

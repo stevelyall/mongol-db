@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/dbtests/config_server_fixture.h"
+#include "mongol/dbtests/config_server_fixture.h"
 
 #include <list>
 
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/legacy/legacy_dist_lock_manager.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_manager.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::list;
@@ -123,4 +123,4 @@ void ConfigServerFixture::tearDown() {
     DBException::traceExceptions = false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

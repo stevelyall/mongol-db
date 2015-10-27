@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
 
 #include <cstdint>
 #include <vector>
 
-#include "mongo/client/connection_string.h"
-#include "mongo/db/client.h"
-#include "mongo/db/service_context.h"
-#include "mongo/platform/random.h"
-#include "mongo/s/catalog/legacy/catalog_manager_legacy.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
-#include "mongo/s/catalog/replset/dist_lock_catalog_impl.h"
-#include "mongo/s/catalog/replset/replset_dist_lock_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/clock_source.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/client.h"
+#include "mongol/db/service_context.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/catalog/legacy/catalog_manager_legacy.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/replset/dist_lock_catalog_impl.h"
+#include "mongol/s/catalog/replset/replset_dist_lock_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using executor::TaskExecutor;
 
@@ -575,4 +575,4 @@ Status ForwardingCatalogManager::initConfigVersion(OperationContext* txn) {
     return retry(txn, [&] { return _actual->initConfigVersion(txn); });
 }
 
-}  // namespace mongo
+}  // namespace mongol

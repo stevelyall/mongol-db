@@ -2,14 +2,14 @@
 
 jsTestLog( "Starting sharded cluster..." )
 
-var st = new ShardingTest( { shards : 1, mongos : 2 } )
+var st = new ShardingTest( { shards : 1, mongols : 2 } )
 
-var mongosA = st.s0
-var mongosB = st.s1
+var mongolsA = st.s0
+var mongolsB = st.s1
 
-var collA = mongosA.getCollection( jsTestName() + ".coll" )
+var collA = mongolsA.getCollection( jsTestName() + ".coll" )
 collA.drop()
-var collB = mongosB.getCollection( "" + collA )
+var collB = mongolsB.getCollection( "" + collA )
 
 st.shardColl( collA, { _id : 1 }, false )
 
@@ -20,7 +20,7 @@ for ( var i = 0; i < 100; i++ ) {
     collA.insert( { _id : i } )
 }
 
-jsTestLog( "Setting connection versions on both mongoses..." )
+jsTestLog( "Setting connection versions on both mongolses..." )
 
 assert.eq( collA.find().itcount(), 100 )
 assert.eq( collB.find().itcount(), 100 )

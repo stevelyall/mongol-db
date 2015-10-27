@@ -27,14 +27,14 @@
  */
 
 /**
- * This file contains tests for mongo/db/exec/plan_stats.h
+ * This file contains tests for mongol/db/exec/plan_stats.h
  */
 
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

@@ -38,15 +38,15 @@
 #include <cmath>
 #include <limits>
 
-#include "mongo/base/data_view.h"
-#include "mongo/base/parse_number.h"
-#include "mongo/bson/bson_field.h"
-#include "mongo/bson/bsonelement.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/platform/decimal128.h"
+#include "mongol/base/data_view.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/bson/bson_field.h"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/platform/decimal128.h"
 
-namespace mongo {
+namespace mongol {
 
 #if defined(_WIN32)
 // warning: 'this' : used in base member initializer list
@@ -1011,4 +1011,4 @@ inline BSONObjBuilder& BSONObjBuilder::appendTimestamp(StringData fieldName,
     return append(fieldName, Timestamp(val));
 }
 
-}  // namespace mongo
+}  // namespace mongol

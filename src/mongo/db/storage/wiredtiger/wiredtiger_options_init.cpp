@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_option_init.h"
 
 #include <iostream>
 
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_MODULE_STARTUP_OPTIONS_REGISTER(WiredTigerOptions)(InitializerContext* context) {
     return wiredTigerGlobalOptions.add(&moe::startupOptions);

@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/hasher.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/hasher.h"
 
-namespace mongo {
+namespace mongol {
 
 struct TwoDIndexingParams;
 struct S2IndexingParams;
@@ -57,4 +57,4 @@ void parse2dsphereParams(const BSONObj& infoObj, S2IndexingParams* out);
 
 }  // namespace ExpressionParams
 
-}  // namespace mongo
+}  // namespace mongol

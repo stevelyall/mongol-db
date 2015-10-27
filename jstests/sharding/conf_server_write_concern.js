@@ -24,22 +24,22 @@ function writeToConfigTest(){
 }
 
 /**
- * Test write concern with w parameter will not cause an error when writes to mongos
+ * Test write concern with w parameter will not cause an error when writes to mongols
  * would trigger writes to config servers (in this test, split chunks is used).
  */
 function configTest(){
     jsTestLog("Testing metadata writes to config server with write concern");
     var st = new ShardingTest({ shards: 1, rs: true, other: { chunkSize: 1 }});
      
-    var mongos = st.s;
-    var testDB = mongos.getDB( 'test' );
+    var mongols = st.s;
+    var testDB = mongols.getDB( 'test' );
     var coll = testDB.user;
      
     testDB.adminCommand({ enableSharding: testDB.getName() });
     testDB.adminCommand({ shardCollection: coll.getFullName(), key: { x: 1 }});
      
     var chunkCount = function() {
-        return mongos.getDB( 'config' ).chunks.find().count();
+        return mongols.getDB( 'config' ).chunks.find().count();
     };
      
     var initChunks = chunkCount();

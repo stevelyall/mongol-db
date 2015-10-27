@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/db/commands/server_status.h"
+#include "mongol/db/commands/server_status.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerKVEngine;
 
@@ -49,4 +49,4 @@ private:
     WiredTigerKVEngine* _engine;
 };
 
-}  // namespace mongo
+}  // namespace mongol

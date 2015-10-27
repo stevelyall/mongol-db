@@ -31,12 +31,12 @@
 #include <boost/intrusive_ptr.hpp>
 #include <stdlib.h>
 
-#include "mongo/platform/atomic_word.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/util/allocator.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/allocator.h"
 
-namespace mongo {
+namespace mongol {
 
 /*
   IntrusiveCounter is a sharable implementation of a reference counter that
@@ -145,7 +145,7 @@ private:
     // these can only be created by calling create()
     RCString(){};
     void* operator new(size_t objSize, size_t realSize) {
-        return mongoMalloc(realSize);
+        return mongolMalloc(realSize);
     }
 
     int _size;  // does NOT include trailing NUL byte.
@@ -155,7 +155,7 @@ private:
 
 /* ======================= INLINED IMPLEMENTATIONS ========================== */
 
-namespace mongo {
+namespace mongol {
 
 inline IntrusiveCounterUnsigned::IntrusiveCounterUnsigned() : counter(0) {}
 };

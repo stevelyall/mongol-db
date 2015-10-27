@@ -32,9 +32,9 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/pipeline/document.h"
+#include "mongol/db/pipeline/document.h"
 
-namespace mongo {
+namespace mongol {
 class ParsedDeps;
 
 /**

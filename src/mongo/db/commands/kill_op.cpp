@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <limits>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class KillOpCommand : public Command {
 public:
@@ -90,4 +90,4 @@ public:
     }
 } killOpCmd;
 
-}  // namespace mongo
+}  // namespace mongol

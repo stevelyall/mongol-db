@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/query/parsed_projection.h"
+#include "mongol/db/query/parsed_projection.h"
 
 #include <memory>
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
@@ -39,7 +39,7 @@ using std::unique_ptr;
 using std::string;
 using std::vector;
 
-using namespace mongo;
+using namespace mongol;
 
 //
 // creation function
@@ -52,7 +52,7 @@ unique_ptr<ParsedProjection> createParsedProjection(const BSONObj& query, const 
     ParsedProjection* out = NULL;
     Status status = ParsedProjection::make(projObj, queryMatchExpr.get(), &out);
     if (!status.isOK()) {
-        FAIL(mongoutils::str::stream() << "failed to parse projection " << projObj
+        FAIL(mongolutils::str::stream() << "failed to parse projection " << projObj
                                        << " (query: " << query << "): " << status.toString());
     }
     ASSERT(out);

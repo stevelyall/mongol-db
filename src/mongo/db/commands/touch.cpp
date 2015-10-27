@@ -30,27 +30,27 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/util/timer.h"
-#include "mongo/util/touch_pages.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/util/timer.h"
+#include "mongol/util/touch_pages.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;

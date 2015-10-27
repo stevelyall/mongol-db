@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/unicode/string.h"
-#include "mongo/shell/linenoise_utf8.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/text.h"
+#include "mongol/db/fts/unicode/string.h"
+#include "mongol/shell/linenoise_utf8.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/text.h"
 
 #ifdef MSC_VER
 // Microsoft VS 2013 does not handle UTF-8 strings in char literal strings, error C4566
@@ -42,7 +42,7 @@
 #define UTF8(x) x
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace unicode {
 
 using linenoise_utf8::copyString32to8;
@@ -184,4 +184,4 @@ TEST(UnicodeString, UTF32ToUTF8) {
 }
 
 }  // namespace unicode
-}  // namespace mongo
+}  // namespace mongol

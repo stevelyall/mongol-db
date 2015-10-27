@@ -34,10 +34,10 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/fts/fts_language.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/fts/fts_language.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

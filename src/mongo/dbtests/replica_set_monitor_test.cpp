@@ -26,21 +26,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/replica_set_monitor_internal.h"
-#include "mongo/dbtests/mock/mock_conn_registry.h"
-#include "mongo/dbtests/mock/mock_replica_set.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/replica_set_monitor_internal.h"
+#include "mongol/dbtests/mock/mock_conn_registry.h"
+#include "mongol/dbtests/mock/mock_replica_set.h"
+#include "mongol/unittest/unittest.h"
 
 #include <set>
 #include <vector>
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::map;
 using std::vector;
@@ -54,19 +54,19 @@ using std::unique_ptr;
  * Warning: Tests running this fixture cannot be run in parallel with other tests
  * that uses ConnectionString::setConnectionHook
  */
-class ReplicaSetMonitorTest : public mongo::unittest::Test {
+class ReplicaSetMonitorTest : public mongol::unittest::Test {
 protected:
     void setUp() {
         _replSet.reset(new MockReplicaSet("test", 3));
         _originalConnectionHook = ConnectionString::getConnectionHook();
-        ConnectionString::setConnectionHook(mongo::MockConnRegistry::get()->getConnStrHook());
+        ConnectionString::setConnectionHook(mongol::MockConnRegistry::get()->getConnStrHook());
     }
 
     void tearDown() {
         ConnectionString::setConnectionHook(_originalConnectionHook);
         ReplicaSetMonitor::cleanup();
         _replSet.reset();
-        mongo::ScopedDbConnection::clearPool();
+        mongol::ScopedDbConnection::clearPool();
     }
 
     MockReplicaSet* getReplSet() {
@@ -139,7 +139,7 @@ TEST(ReplicaSetMonitorTest, PrimaryRemovedFromSetStress) {
     const size_t NODE_COUNT = 5;
     MockReplicaSet replSet("test", NODE_COUNT);
     ConnectionString::ConnectionHook* originalConnHook = ConnectionString::getConnectionHook();
-    ConnectionString::setConnectionHook(mongo::MockConnRegistry::get()->getConnStrHook());
+    ConnectionString::setConnectionHook(mongol::MockConnRegistry::get()->getConnStrHook());
 
     const string replSetName(replSet.getSetName());
     set<HostAndPort> seedList;
@@ -147,7 +147,7 @@ TEST(ReplicaSetMonitorTest, PrimaryRemovedFromSetStress) {
     ReplicaSetMonitor::createIfNeeded(replSetName, seedList);
 
     const repl::ReplicaSetConfig& origConfig = replSet.getReplConfig();
-    mongo::ReplicaSetMonitorPtr replMonitor = ReplicaSetMonitor::get(replSetName);
+    mongol::ReplicaSetMonitorPtr replMonitor = ReplicaSetMonitor::get(replSetName);
 
     for (size_t idxToRemove = 0; idxToRemove < NODE_COUNT; idxToRemove++) {
         replSet.setConfig(origConfig);
@@ -161,7 +161,7 @@ TEST(ReplicaSetMonitorTest, PrimaryRemovedFromSetStress) {
             BSONObj monitorState = monitorStateBuilder.done();
 
             BSONElement hostsElem = monitorState["hosts"];
-            BSONElement addrElem = hostsElem[mongo::str::stream() << idxToRemove]["addr"];
+            BSONElement addrElem = hostsElem[mongol::str::stream() << idxToRemove]["addr"];
             hostToRemove = addrElem.String();
         }
 
@@ -179,31 +179,31 @@ TEST(ReplicaSetMonitorTest, PrimaryRemovedFromSetStress) {
 
     ReplicaSetMonitor::cleanup();
     ConnectionString::setConnectionHook(originalConnHook);
-    mongo::ScopedDbConnection::clearPool();
+    mongol::ScopedDbConnection::clearPool();
 }
 
 /**
  * Warning: Tests running this fixture cannot be run in parallel with other tests
  * that use ConnectionString::setConnectionHook.
  */
-class TwoNodeWithTags : public mongo::unittest::Test {
+class TwoNodeWithTags : public mongol::unittest::Test {
 protected:
     void setUp() {
         _replSet.reset(new MockReplicaSet("test", 2));
         _originalConnectionHook = ConnectionString::getConnectionHook();
-        ConnectionString::setConnectionHook(mongo::MockConnRegistry::get()->getConnStrHook());
+        ConnectionString::setConnectionHook(mongol::MockConnRegistry::get()->getConnStrHook());
 
         repl::ReplicaSetConfig oldConfig = _replSet->getReplConfig();
 
-        mongo::BSONObjBuilder newConfigBuilder;
+        mongol::BSONObjBuilder newConfigBuilder;
         newConfigBuilder.append("_id", oldConfig.getReplSetName());
         newConfigBuilder.append("version", oldConfig.getConfigVersion());
 
-        mongo::BSONArrayBuilder membersBuilder(newConfigBuilder.subarrayStart("members"));
+        mongol::BSONArrayBuilder membersBuilder(newConfigBuilder.subarrayStart("members"));
 
         {
             const string host(_replSet->getPrimary());
-            const mongo::repl::MemberConfig* member =
+            const mongol::repl::MemberConfig* member =
                 oldConfig.findMemberByHostAndPort(HostAndPort(host));
             membersBuilder.append(
                 BSON("_id" << member->getId() << "host" << host << "tags" << BSON("dc"
@@ -214,7 +214,7 @@ protected:
 
         {
             const string host(_replSet->getSecondaries().front());
-            const mongo::repl::MemberConfig* member =
+            const mongol::repl::MemberConfig* member =
                 oldConfig.findMemberByHostAndPort(HostAndPort(host));
             membersBuilder.append(
                 BSON("_id" << member->getId() << "host" << host << "tags" << BSON("dc"
@@ -266,7 +266,7 @@ TEST_F(TwoNodeWithTags, SecDownRetryNoTag) {
     replSet->restore(secHost);
 
     HostAndPort node = monitor->getHostOrRefresh(
-        ReadPreferenceSetting(mongo::ReadPreference::SecondaryOnly, TagSet()));
+        ReadPreferenceSetting(mongol::ReadPreference::SecondaryOnly, TagSet()));
 
     ASSERT_FALSE(monitor->isPrimary(node));
     ASSERT_EQUALS(secHost, node.toString());
@@ -294,10 +294,10 @@ TEST_F(TwoNodeWithTags, SecDownRetryWithTag) {
     TagSet tags(BSON_ARRAY(BSON("dc"
                                 << "ny")));
     HostAndPort node = monitor->getHostOrRefresh(
-        ReadPreferenceSetting(mongo::ReadPreference::SecondaryOnly, tags));
+        ReadPreferenceSetting(mongol::ReadPreference::SecondaryOnly, tags));
 
     ASSERT_FALSE(monitor->isPrimary(node));
     ASSERT_EQUALS(secHost, node.toString());
 }
 
-}  // namespace mongo
+}  // namespace mongol

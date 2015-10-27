@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/util/string_map.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class ProjectionExec {
 public:
@@ -170,7 +170,7 @@ private:
     MetaMap _meta;
 
     // Do we have a returnKey projection?  If so we *only* output the index key metadata, and
-    // possibly the sort key for mongos to use.  If it's not found we output nothing.
+    // possibly the sort key for mongols to use.  If it's not found we output nothing.
     bool _hasReturnKey;
 
     // The field names associated with any sortKey meta-projection(s). Empty if there is no sortKey
@@ -178,4 +178,4 @@ private:
     std::vector<StringData> _sortKeyMetaFields;
 };
 
-}  // namespace mongo
+}  // namespace mongol

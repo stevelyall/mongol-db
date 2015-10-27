@@ -30,15 +30,15 @@
 
 #pragma once
 
-#include "mongo/db/fts/fts_basic_phrase_matcher.h"
-#include "mongo/db/fts/fts_phrase_matcher.h"
-#include "mongo/db/fts/fts_unicode_phrase_matcher.h"
-#include "mongo/db/fts/fts_util.h"
-#include "mongo/base/status_with.h"
+#include "mongol/db/fts/fts_basic_phrase_matcher.h"
+#include "mongol/db/fts/fts_phrase_matcher.h"
+#include "mongol/db/fts/fts_unicode_phrase_matcher.h"
+#include "mongol/db/fts/fts_util.h"
+#include "mongol/base/status_with.h"
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -48,7 +48,7 @@ class FTSTokenizer;
 #define MONGO_FTS_LANGUAGE_DECLARE(language, name, version)                                    \
     BasicFTSLanguage language;                                                                 \
     MONGO_INITIALIZER_GENERAL(language, MONGO_NO_PREREQUISITES, ("FTSAllLanguagesRegistered")) \
-    (::mongo::InitializerContext * context) {                                                  \
+    (::mongol::InitializerContext * context) {                                                  \
         FTSLanguage::registerLanguage(name, version, &language);                               \
         return Status::OK();                                                                   \
     }

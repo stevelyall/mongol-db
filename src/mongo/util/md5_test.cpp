@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 extern int do_md5_test(void);
 
-namespace mongo {
+namespace mongol {
 TEST(MD5, BuiltIn1) {
     ASSERT_EQUALS(0, do_md5_test());
 }

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_timer_mock.h"
-#include "mongo/stdx/future.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/executor/async_timer_mock.h"
+#include "mongol/stdx/future.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 TEST(AsyncTimerMock, BasicTest) {
@@ -117,4 +117,4 @@ TEST(AsyncTimerMock, CancelExpired) {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

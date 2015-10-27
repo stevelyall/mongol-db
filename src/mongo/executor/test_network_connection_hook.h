@@ -29,11 +29,11 @@
 #include <boost/optional.hpp>
 #include <memory>
 
-#include "mongo/base/status_with.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/status_with.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 
@@ -84,4 +84,4 @@ std::unique_ptr<TestConnectionHook<Val, Req, Rep>> makeTestHook(Val&& validateFu
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

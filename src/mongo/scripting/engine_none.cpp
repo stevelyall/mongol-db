@@ -29,7 +29,7 @@
 
 #include "engine.h"
 
-namespace mongo {
+namespace mongol {
 void ScriptEngine::setup() {
     // noop
 }

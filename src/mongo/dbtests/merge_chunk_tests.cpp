@@ -26,21 +26,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/dbtests/config_server_fixture.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/d_merge.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/dbtests/config_server_fixture.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/d_merge.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -335,4 +335,4 @@ TEST_F(MergeChunkTests, CompoundMerge) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/service_context_noop.h"
+#include "mongol/db/service_context_noop.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 StorageEngine* ServiceContextNoop::getGlobalStorageEngine() {
     return NULL;
@@ -92,4 +92,4 @@ void ServiceContextNoop::setOpObserver(std::unique_ptr<OpObserver> opObserver) {
 OpObserver* ServiceContextNoop::getOpObserver() {
     return nullptr;
 }
-}  // namespace mongo
+}  // namespace mongol

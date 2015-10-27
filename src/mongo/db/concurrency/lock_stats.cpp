@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/concurrency/lock_stats.h"
+#include "mongol/db/concurrency/lock_stats.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
+#include "mongol/bson/bsonobjbuilder.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename CounterType>
 LockStats<CounterType>::LockStats() {
@@ -151,4 +151,4 @@ void LockStats<CounterType>::reset() {
 template class LockStats<int64_t>;
 template class LockStats<AtomicInt64>;
 
-}  // namespace mongo
+}  // namespace mongol

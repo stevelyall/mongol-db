@@ -30,6 +30,6 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 void startTTLBackgroundJob();
 }

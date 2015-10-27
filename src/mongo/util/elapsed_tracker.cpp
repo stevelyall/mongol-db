@@ -28,13 +28,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/elapsed_tracker.h"
+#include "mongol/util/elapsed_tracker.h"
 
-#include "mongo/util/net/listen.h"
+#include "mongol/util/net/listen.h"
 
-namespace mongo {
+namespace mongol {
 
 ElapsedTracker::ElapsedTracker(int32_t hitsBetweenMarks, int32_t msBetweenMarks)
     : _hitsBetweenMarks(hitsBetweenMarks),
@@ -64,4 +64,4 @@ void ElapsedTracker::resetLastTime() {
     _last = Listener::getElapsedTimeMillis();
 }
 
-}  // namespace mongo
+}  // namespace mongol

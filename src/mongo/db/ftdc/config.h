@@ -30,9 +30,9 @@
 
 #include <cstdint>
 
-#include "mongo/util/time_support.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Configuration settings for full-time diagnostic data capture (FTDC).
@@ -95,4 +95,4 @@ struct FTDCConfig {
     static const std::uint32_t kMaxSamplesPerInterimMetricChunkDefault = 10;
 };
 
-}  // namespace mongo
+}  // namespace mongol

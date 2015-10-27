@@ -27,21 +27,21 @@
  */
 
 /**
- * This file contains tests for mongo/db/commands/plan_cache_commands.h
+ * This file contains tests for mongol/db/commands/plan_cache_commands.h
  */
 
-#include "mongo/db/commands/plan_cache_commands.h"
+#include "mongol/db/commands/plan_cache_commands.h"
 
 #include <algorithm>
 
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -63,7 +63,7 @@ std::vector<BSONObj> getShapes(const PlanCache& planCache) {
     ASSERT_OK(PlanCacheListQueryShapes::list(planCache, &bob));
     BSONObj resultObj = bob.obj();
     BSONElement shapesElt = resultObj.getField("shapes");
-    ASSERT_EQUALS(shapesElt.type(), mongo::Array);
+    ASSERT_EQUALS(shapesElt.type(), mongol::Array);
     vector<BSONElement> shapesEltArray = shapesElt.Array();
     vector<BSONObj> shapes;
     for (vector<BSONElement>::const_iterator i = shapesEltArray.begin(); i != shapesEltArray.end();
@@ -354,7 +354,7 @@ vector<BSONObj> getPlans(const PlanCache& planCache,
     ASSERT_OK(PlanCacheListPlans::list(&txn, planCache, nss.ns(), cmdObj, &bob));
     BSONObj resultObj = bob.obj();
     BSONElement plansElt = resultObj.getField("plans");
-    ASSERT_EQUALS(plansElt.type(), mongo::Array);
+    ASSERT_EQUALS(plansElt.type(), mongol::Array);
     vector<BSONElement> planEltArray = plansElt.Array();
     ASSERT_FALSE(planEltArray.empty());
     vector<BSONObj> plans(planEltArray.size());

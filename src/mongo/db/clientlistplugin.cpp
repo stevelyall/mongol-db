@@ -26,23 +26,23 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/fill_locker_info.h"
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/fill_locker_info.h"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -60,13 +60,13 @@ public:
         ss << "\n<table border=1 cellpadding=2 cellspacing=0>";
         ss << "<tr align='left'>"
            << th(a("", "Connections to the database, both internal and external.", "Client"))
-           << th(a("http://dochub.mongodb.org/core/viewingandterminatingcurrentoperation",
+           << th(a("http://dochub.mongoldb.org/core/viewingandterminatingcurrentoperation",
                    "",
                    "OpId")) << "<th>Locking</th>"
            << "<th>Waiting</th>"
            << "<th>SecsRunning</th>"
            << "<th>Op</th>"
-           << th(a("http://dochub.mongodb.org/core/whatisanamespace", "", "Namespace"))
+           << th(a("http://dochub.mongoldb.org/core/whatisanamespace", "", "Namespace"))
            << "<th>Query</th>"
            << "<th>client</th>"
            << "<th>msg</th>"
@@ -239,4 +239,4 @@ private:
 } currentOpContexts;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

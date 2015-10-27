@@ -1,4 +1,4 @@
-//@file indexupdatetests.cpp : mongo/db/index_update.{h,cpp} tests
+//@file indexupdatetests.cpp : mongol/db/index_update.{h,cpp} tests
 
 /**
  *    Copyright (C) 2012 10gen Inc.
@@ -30,17 +30,17 @@
 
 #include <cstdint>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace IndexUpdateTests {
 

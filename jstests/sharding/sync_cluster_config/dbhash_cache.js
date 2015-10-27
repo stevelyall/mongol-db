@@ -2,19 +2,19 @@
 * Test that split/move chunk update the dbhash on the config server
 */
 
-st = new ShardingTest({ name: "dbhash", shards : 2, mongos : 2, verbose : 2, sync: true });
+st = new ShardingTest({ name: "dbhash", shards : 2, mongols : 2, verbose : 2, sync: true });
 st.stopBalancer();
 
-var mongos = st.s0;
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
-var admin = mongos.getDB( "admin" );
+var mongols = st.s0;
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
+var admin = mongols.getDB( "admin" );
 var configs = st._configServers
 
 assert(admin.runCommand({ enablesharding : "test" }).ok);
 printjson(admin.runCommand({ movePrimary : "test", to : shards[0]._id }));
 assert(admin.runCommand({ shardcollection : "test.foo" , key : { x : 1 } }).ok);
 
-mongos.getCollection("test.foo").insert({x:1});
+mongols.getCollection("test.foo").insert({x:1});
 assert.eq(1, st.config.chunks.count(), "there should only be 1 chunk")
 
 var dbhash1 = configs[0].getDB("config").runCommand( "dbhash");

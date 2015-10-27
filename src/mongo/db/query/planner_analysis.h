@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 
@@ -116,4 +116,4 @@ public:
                                QuerySolutionNode** solnRoot);
 };
 
-}  // namespace mongo
+}  // namespace mongol

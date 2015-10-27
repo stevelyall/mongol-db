@@ -26,14 +26,14 @@
 *    it in the license file.
 */
 
-#include "mongo/db/auth/authz_session_external_state.h"
+#include "mongol/db/auth/authz_session_external_state.h"
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 AuthzSessionExternalState::AuthzSessionExternalState(AuthorizationManager* authzManager)
     : _authzManager(authzManager) {}
@@ -43,4 +43,4 @@ AuthorizationManager& AuthzSessionExternalState::getAuthorizationManager() {
     return *_authzManager;
 }
 
-}  // namespace mongo
+}  // namespace mongol

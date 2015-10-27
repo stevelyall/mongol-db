@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_stream.h"
-#include "mongo/executor/async_stream_common.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/executor/async_stream.h"
+#include "mongol/executor/async_stream_common.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 using asio::ip::tcp;
@@ -75,4 +75,4 @@ void AsyncStream::cancel() {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

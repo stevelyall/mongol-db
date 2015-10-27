@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batch_downconvert.h"
+#include "mongol/s/write_ops/batch_downconvert.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/client/multi_command_dispatch.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/client/multi_command_dispatch.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -290,4 +290,4 @@ Status enforceLegacyWriteConcern(MultiCommandDispatch* dispatcher,
                   builder.str());
 }
 
-}  // namespace mongo
+}  // namespace mongol

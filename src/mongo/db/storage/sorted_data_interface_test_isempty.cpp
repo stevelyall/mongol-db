@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Verify that isEmpty() returns true when the index is empty,
 // returns false when a key is inserted, and returns true again
@@ -79,4 +79,4 @@ TEST(SortedDataInterface, IsEmpty) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,10 +29,10 @@
 #pragma once
 
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/scripting/engine.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/scripting/engine.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 
@@ -154,4 +154,4 @@ private:
     std::map<BSONObj, int, BSONObjCmp> _groupMap;
 };
 
-}  // namespace mongo
+}  // namespace mongol

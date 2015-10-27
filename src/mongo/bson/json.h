@@ -30,16 +30,16 @@
 
 #include <string>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Create a BSONObj from a JSON <http://www.json.org>,
  * <http://www.ietf.org/rfc/rfc4627.txt> string.  In addition to the JSON
  * extensions extensions described here
- * <http://dochub.mongodb.org/core/mongodbextendedjson>, this function
+ * <http://dochub.mongoldb.org/core/mongoldbextendedjson>, this function
  * accepts unquoted field names and allows single quotes to optionally be
  * used when specifying field names and std::string values instead of double
  * quotes.  JSON unicode escape sequences (of the form \uXXXX) are
@@ -494,4 +494,4 @@ private:
     const char* const _input_end;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,24 +28,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace_index.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_index.h"
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/catalog/hashtab.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/catalog/hashtab.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::list;

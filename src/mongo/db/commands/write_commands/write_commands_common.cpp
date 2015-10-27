@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/write_commands/write_commands_common.h"
+#include "mongol/db/commands/write_commands/write_commands_common.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 using std::string;

@@ -32,13 +32,13 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 struct CandidatePlan;
 struct PlanRankingDecision;
@@ -145,4 +145,4 @@ struct PlanRankingDecision {
     bool tieForBest = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

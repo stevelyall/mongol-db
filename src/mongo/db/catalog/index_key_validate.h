@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 
 /**
  * Checks if the key is valid for building an index.
  */
 Status validateKeyPattern(const BSONObj& key);
-}  // namespace mongo
+}  // namespace mongol

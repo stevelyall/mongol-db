@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/plan_cache.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/plan_cache.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 
@@ -165,4 +165,4 @@ void QuerySettings::_clear() {
     _allowedIndexEntryMap.clear();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,12 +32,12 @@
 #pragma once
 
 
-#include "mongo/client/constants.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/client/constants.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -161,4 +161,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/exec/working_set.h"
+#include "mongol/db/exec/working_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class TextScoreComputedData : public WorkingSetComputedData {
 public:
@@ -117,4 +117,4 @@ private:
     BSONObj _sortKey;
 };
 
-}  // namespace mongo
+}  // namespace mongol

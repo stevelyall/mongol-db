@@ -30,10 +30,10 @@ var shardedCursorWithTimeout = coll.find();
 var shardedCursorWithNoTimeout = coll.find();
 shardedCursorWithNoTimeout.addOption( DBQuery.Option.noTimeout );
 
-// Query directly to mongod
+// Query directly to mongold
 var shardHost = configDB.shards.findOne({ _id: chunkOwner }).host;
-var mongod = new Mongo( shardHost );
-var shardColl = mongod.getCollection( coll.getFullName() );
+var mongold = new Mongo( shardHost );
+var shardColl = mongold.getCollection( coll.getFullName() );
 
 var cursorWithTimeout = shardColl.find();
 var cursorWithNoTimeout = shardColl.find();
@@ -46,7 +46,7 @@ cursorWithTimeout.next();
 cursorWithNoTimeout.next();
 
 // Cursor cleanup is 10 minutes, but give a 8 min allowance --
-// NOTE: Due to inaccurate timing on non-Linux platforms, mongos tries
+// NOTE: Due to inaccurate timing on non-Linux platforms, mongols tries
 // to timeout after 10 minutes but in fact is 15+ minutes;
 // SERVER-8381
 sleep( 1000 * 60 * 17 );

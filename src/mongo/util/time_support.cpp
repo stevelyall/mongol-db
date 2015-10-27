@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/time_support.h"
+#include "mongol/util/time_support.h"
 
 #include <boost/thread/tss.hpp>
 #include <cstdint>
@@ -35,18 +35,18 @@
 #include <string>
 #include <iostream>
 
-#include "mongo/base/init.h"
-#include "mongo/base/parse_number.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
 #ifdef _WIN32
 #include <boost/date_time/filetime_functions.hpp>
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/system_tick_source.h"
-#include "mongo/util/timer.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/system_tick_source.h"
+#include "mongol/util/timer.h"
 
 // NOTE(schwerin): MSVC's _snprintf is not a drop-in replacement for C99's snprintf().  In
 // particular, when the target buffer is too small, behaviors differ.  Consult the documentation
@@ -62,7 +62,7 @@
 extern "C" time_t timegm(struct tm* const tmp);
 #endif
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 template <typename Stream>
@@ -1008,4 +1008,4 @@ unsigned long long curTimeMicros64() {
 }
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

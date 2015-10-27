@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/base/disallow_copying.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 struct CloneOptions;
 class DBClientBase;
@@ -126,4 +126,4 @@ struct CloneOptions {
     bool syncIndexes;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -442,4 +442,4 @@ bool BatchedCommandRequest::getIndexedNS(const BSONObj& writeCmdObj,
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

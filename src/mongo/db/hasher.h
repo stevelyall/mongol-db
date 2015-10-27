@@ -34,12 +34,12 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonelement.h"
-#include "mongo/util/md5.hpp"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/util/md5.hpp"
 
-namespace mongo {
+namespace mongol {
 
 typedef int HashSeed;
 typedef unsigned char HashDigest[16];

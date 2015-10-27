@@ -32,20 +32,20 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/counter.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/rpc/reply_builder_interface.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/counter.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/rpc/reply_builder_interface.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -63,16 +63,16 @@ namespace rpc {
 class ServerSelectionMetadata;
 }  // namespace rpc
 
-/** mongodb "commands" (sent via db.$cmd.findOne(...))
+/** mongoldb "commands" (sent via db.$cmd.findOne(...))
     subclass to make a command.  define a singleton object for it.
     */
 class Command {
 protected:
-    // The type of the first field in 'cmdObj' must be mongo::String. The first field is
+    // The type of the first field in 'cmdObj' must be mongol::String. The first field is
     // interpreted as a collection name.
     std::string parseNsFullyQualified(const std::string& dbname, const BSONObj& cmdObj) const;
 
-    // The type of the first field in 'cmdObj' must be mongo::String or Symbol.
+    // The type of the first field in 'cmdObj' must be mongol::String or Symbol.
     // The first field is interpreted as a collection name.
     std::string parseNsCollectionRequired(const std::string& dbname, const BSONObj& cmdObj) const;
 
@@ -84,9 +84,9 @@ public:
     virtual ~Command();
 
     // Return the namespace for the command. If the first field in 'cmdObj' is of type
-    // mongo::String, then that field is interpreted as the collection name, and is
+    // mongol::String, then that field is interpreted as the collection name, and is
     // appended to 'dbname' after a '.' character. If the first field is not of type
-    // mongo::String, then 'dbname' is returned unmodified.
+    // mongol::String, then 'dbname' is returned unmodified.
     virtual std::string parseNs(const std::string& dbname, const BSONObj& cmdObj) const;
 
     // Utility that returns a ResourcePattern for the namespace returned from
@@ -181,9 +181,9 @@ public:
      *   which knows how to convert an execution stage tree into explain output.
      *
      * TODO: Remove the 'serverSelectionMetadata' parameter in favor of reading the
-     * ServerSelectionMetadata off 'txn'. Once OP_COMMAND is implemented in mongos, this metadata
+     * ServerSelectionMetadata off 'txn'. Once OP_COMMAND is implemented in mongols, this metadata
      * will be parsed and attached as a decoration on the OperationContext, as is already done on
-     * the mongod side.
+     * the mongold side.
      */
     virtual Status explain(OperationContext* txn,
                            const std::string& dbname,
@@ -237,7 +237,7 @@ public:
      * the argument, the command processor will instruct the RecoveryUnit to only return
      * "committed" data, failing if this isn't supported by the storage engine.
      *
-     * Note that this is never called on mongos. Sharded commands are responsible for forwarding
+     * Note that this is never called on mongols. Sharded commands are responsible for forwarding
      * the option to the shards as needed. We rely on the shards to fail the commands in the
      * cases where it isn't supported.
      */
@@ -314,14 +314,14 @@ public:
      * replication state. All the logic here is independent of any particular command; any
      * functionality relevant to a specific command should be confined to its run() method.
      *
-     * This is currently used by mongod and dbwebserver.
+     * This is currently used by mongold and dbwebserver.
      */
     static void execCommand(OperationContext* txn,
                             Command* command,
                             const rpc::RequestInterface& request,
                             rpc::ReplyBuilderInterface* replyBuilder);
 
-    // For mongos
+    // For mongols
     // TODO: remove this entirely now that all instances of ClientBasic are instances
     // of Client. This will happen as part of SERVER-18292
     static void execCommandClientBasic(OperationContext* txn,
@@ -378,7 +378,7 @@ public:
      *     }
      *
      * To make testing commands available by default, change the value to true before running any
-     * mongo initializers:
+     * mongol initializers:
      *
      *     int myMain(int argc, char** argv, char** envp) {
      *         static StaticObserver StaticObserver;
@@ -440,7 +440,7 @@ public:
                                       const DBException& exception);
 
     /**
-     * Records the error on to the OperationContext. This hook is needed because mongos
+     * Records the error on to the OperationContext. This hook is needed because mongols
      * does not have CurOp linked in to it.
      */
     static void registerError(OperationContext* txn, const DBException& exception);
@@ -464,4 +464,4 @@ void runCommands(OperationContext* txn,
                  const rpc::RequestInterface& request,
                  rpc::ReplyBuilderInterface* replyBuilder);
 
-}  // namespace mongo
+}  // namespace mongol

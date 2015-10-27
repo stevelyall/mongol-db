@@ -26,27 +26,27 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/jsthread.h"
+#include "mongol/scripting/mozjs/jsthread.h"
 
 #include <cstdio>
 #include "vm/PosixNSPR.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 // These are all executed on some object that owns a js thread, rather than a
@@ -297,4 +297,4 @@ void JSThreadInfo::Functions::_scopedThreadInject::call(JSContext* cx, JS::CallA
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

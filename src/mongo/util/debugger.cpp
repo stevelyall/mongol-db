@@ -27,9 +27,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/debugger.h"
+#include "mongol/util/debugger.h"
 
 #include <cstdlib>
 
@@ -42,9 +42,9 @@
 #include <signal.h>
 #endif
 
-#include "mongo/util/debug_util.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 void breakpoint() {
 #ifdef _WIN32
     DEV DebugBreak();

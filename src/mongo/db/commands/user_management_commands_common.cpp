@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/user_management_commands.h"
+#include "mongol/db/commands/user_management_commands.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_management_commands_parser.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/sequence_util.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_management_commands_parser.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/sequence_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 void redactPasswordData(mutablebson::Element parent) {
@@ -532,4 +532,4 @@ Status checkAuthForAuthSchemaUpgradeCommand(ClientBasic* client) {
 }
 
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

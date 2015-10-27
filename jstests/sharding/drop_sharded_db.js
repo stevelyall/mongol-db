@@ -2,12 +2,12 @@
 var st = new ShardingTest({ name : jsTestName() })
 st.stopBalancer()
 
-var mongos = st.s0
-var config = mongos.getDB( "config" )
+var mongols = st.s0
+var config = mongols.getDB( "config" )
 
-var dbA = mongos.getDB( "DropSharded_A" );
-var dbB = mongos.getDB( "DropSharded_B" );
-var dbC = mongos.getDB( "DropSharded_C" );
+var dbA = mongols.getDB( "DropSharded_A" );
+var dbB = mongols.getDB( "DropSharded_B" );
+var dbC = mongols.getDB( "DropSharded_C" );
 
 
 print( "1: insert some data and colls into all dbs" )
@@ -38,7 +38,7 @@ dbA.dropDatabase()
 
 print( "3: ensure only the non-suffixed db was dropped ")
 
-var dbs = mongos.getDBNames()
+var dbs = mongols.getDBNames()
 for( var i = 0; i < dbs.length; i++ ){
     assert.neq( dbs, "" + dbA )
 }

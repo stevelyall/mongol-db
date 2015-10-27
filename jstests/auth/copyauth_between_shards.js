@@ -5,7 +5,7 @@ var baseName = "jstests_clone_copyauth_between_shards";
 
 function copydbWithinShardedCluster(useReplSets, passCredentials, useAuth) {
     var clusterConfig = {shards : 1,
-                         mongos : 1,
+                         mongols : 1,
                          config : 1 };
 
     if (useAuth) {
@@ -18,15 +18,15 @@ function copydbWithinShardedCluster(useReplSets, passCredentials, useAuth) {
     }
     var st = new ShardingTest(clusterConfig);
 
-    var mongos = st.s;
+    var mongols = st.s;
 
-    var test1 = mongos.getDB('test1');
-    var test2 = mongos.getDB('test2');
+    var test1 = mongols.getDB('test1');
+    var test2 = mongols.getDB('test2');
 
     if (useAuth) {
-        mongos.getDB("admin").createUser({user: "super", pwd: "super", roles: ["root"]});
-        assert.throws(function() { mongos.getDB("test1")["test1"].findOne(); });
-        mongos.getDB("admin").auth("super", "super");
+        mongols.getDB("admin").createUser({user: "super", pwd: "super", roles: ["root"]});
+        assert.throws(function() { mongols.getDB("test1")["test1"].findOne(); });
+        mongols.getDB("admin").auth("super", "super");
     }
 
     test1.getCollection('test').insert({foo: 'bar'});
@@ -36,10 +36,10 @@ function copydbWithinShardedCluster(useReplSets, passCredentials, useAuth) {
 
     // The copyDatabase command acts differently depending on whether we pass username and password
     if (passCredentials) {
-        var result = mongos.getDB('admin').copyDatabase('test1', 'test2', undefined, "super", "super");
+        var result = mongols.getDB('admin').copyDatabase('test1', 'test2', undefined, "super", "super");
     }
     else {
-        var result = mongos.getDB('admin').copyDatabase('test1', 'test2');
+        var result = mongols.getDB('admin').copyDatabase('test1', 'test2');
     }
     printjson(result);
     assert.eq(result.ok, 1.0);

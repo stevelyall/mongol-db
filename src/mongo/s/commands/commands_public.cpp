@@ -28,42 +28,42 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/copydb.h"
-#include "mongo/db/commands/rename_collection.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/commands/run_on_all_shards_cmd.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/query/store_possible_cursor.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/version_manager.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/copydb.h"
+#include "mongol/db/commands/rename_collection.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/commands/run_on_all_shards_cmd.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/query/store_possible_cursor.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/version_manager.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::unique_ptr;
@@ -736,7 +736,7 @@ public:
                         }
                     }
                 } else {
-                    warning() << "mongos collstats doesn't know about: " << e.fieldName();
+                    warning() << "mongols collstats doesn't know about: " << e.fieldName();
                 }
             }
             shardStats.append(shardId, res);
@@ -942,7 +942,7 @@ public:
                      BSONObjBuilder& result) {
         string x = parseNs(dbName, cmdObj);
         if (!str::startsWith(x, dbName)) {
-            errmsg = str::stream() << "doing a splitVector across dbs isn't supported via mongos";
+            errmsg = str::stream() << "doing a splitVector across dbs isn't supported via mongols";
             return false;
         }
         return NotAllowedOnShardedCollectionCmd::run(txn, dbName, cmdObj, options, errmsg, result);
@@ -1069,10 +1069,10 @@ public:
 
         long long millisElapsed = timer.millis();
 
-        const char* mongosStageName = ClusterExplain::getStageNameForReadOp(shardResults, cmdObj);
+        const char* mongolsStageName = ClusterExplain::getStageNameForReadOp(shardResults, cmdObj);
 
         return ClusterExplain::buildExplainResult(
-            txn, shardResults, mongosStageName, millisElapsed, out);
+            txn, shardResults, mongolsStageName, millisElapsed, out);
     }
 } disinctCmd;
 
@@ -1212,7 +1212,7 @@ class Geo2dFindNearCmd : public PublicGridCommand {
 public:
     Geo2dFindNearCmd() : PublicGridCommand("geoNear") {}
     void help(stringstream& h) const {
-        h << "http://dochub.mongodb.org/core/geo#GeospatialIndexing-geoNearCommand";
+        h << "http://dochub.mongoldb.org/core/geo#GeospatialIndexing-geoNearCommand";
     }
     virtual bool passOptions() const {
         return true;
@@ -1351,7 +1351,7 @@ public:
                      int,
                      string& errmsg,
                      BSONObjBuilder& result) {
-        errmsg = "applyOps not allowed through mongos";
+        errmsg = "applyOps not allowed through mongols";
         return false;
     }
 } applyOpsCmd;
@@ -1373,7 +1373,7 @@ public:
                      int,
                      string& errmsg,
                      BSONObjBuilder& result) {
-        errmsg = "compact not allowed through mongos";
+        errmsg = "compact not allowed through mongols";
         return false;
     }
 } compactCmd;
@@ -1517,4 +1517,4 @@ public:
 
 }  // namespace pub_grid_cmds
 
-}  // namespace mongo
+}  // namespace mongol

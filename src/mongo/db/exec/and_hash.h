@@ -30,13 +30,13 @@
 
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Reads from N children, each of which must have a valid RecordId.  Uses a hash table to
@@ -131,4 +131,4 @@ private:
     size_t _maxMemUsage;
 };
 
-}  // namespace mongo
+}  // namespace mongol

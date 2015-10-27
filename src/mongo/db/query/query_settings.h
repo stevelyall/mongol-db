@@ -31,15 +31,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Holds allowed indices.
@@ -148,4 +148,4 @@ private:
     mutable stdx::mutex _mutex;
 };
 
-}  // namespace mongo
+}  // namespace mongol

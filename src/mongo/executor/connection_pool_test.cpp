@@ -25,16 +25,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/connection_pool_test_fixture.h"
+#include "mongol/executor/connection_pool_test_fixture.h"
 
-#include "mongo/executor/connection_pool.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/future.h"
+#include "mongol/executor/connection_pool.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/future.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace connection_pool_test_details {
 
@@ -787,4 +787,4 @@ TEST_F(ConnectionPoolTest, dropConnections) {
 
 }  // namespace connection_pool_test_details
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

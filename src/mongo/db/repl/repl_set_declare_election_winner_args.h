@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -75,4 +75,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

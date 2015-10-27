@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/minvalid.h"
+#include "mongol/db/repl/minvalid.h"
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {

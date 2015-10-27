@@ -33,7 +33,7 @@
 #include <string>
 
 
-namespace mongo {
+namespace mongol {
 
 class LogFile {
 public:

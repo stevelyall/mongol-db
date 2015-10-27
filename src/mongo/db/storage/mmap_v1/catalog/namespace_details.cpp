@@ -26,30 +26,30 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
 
 #include <algorithm>
 #include <list>
 
-#include "mongo/base/counter.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/db/db.h"
-#include "mongo/db/index_legacy.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/delete.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_index.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/db/db.h"
+#include "mongol/db/index_legacy.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/delete.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_index.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 NamespaceDetails::NamespaceDetails(const DiskLoc& loc, bool capped) {
     static_assert(sizeof(NamespaceDetails::Extra) <= sizeof(NamespaceDetails),
@@ -241,4 +241,4 @@ void NamespaceDetails::Extra::setNext(OperationContext* txn, long ofs) {
     *txn->recoveryUnit()->writing(&_next) = ofs;
 }
 
-}  // namespace mongo
+}  // namespace mongol

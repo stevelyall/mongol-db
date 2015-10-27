@@ -59,11 +59,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/util/decoration_container.h"
-#include "mongo/util/decoration_registry.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/util/decoration_container.h"
+#include "mongol/util/decoration_registry.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename D>
 class Decorable {
@@ -118,4 +118,4 @@ private:
     DecorationContainer _decorations;
 };
 
-}  // namespace mongo
+}  // namespace mongol

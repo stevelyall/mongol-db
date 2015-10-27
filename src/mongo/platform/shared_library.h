@@ -30,9 +30,9 @@
 #include <boost/filesystem.hpp>
 #include <memory>
 
-#include "mongo/base/status_with.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Loads shared library or DLL at runtime
@@ -94,4 +94,4 @@ private:
     void* const _handle;
 };
 
-}  // namespace mongo
+}  // namespace mongol

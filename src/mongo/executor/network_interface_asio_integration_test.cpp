@@ -26,36 +26,36 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <algorithm>
 #include <exception>
 
-#include "mongo/client/connection_string.h"
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/async_timer_asio.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/executor/network_interface_asio_test_utils.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/platform/random.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/integration_test.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/thread_pool.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/async_timer_asio.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio_test_utils.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/platform/random.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/integration_test.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/thread_pool.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
-class NetworkInterfaceASIOIntegrationTest : public mongo::unittest::Test {
+class NetworkInterfaceASIOIntegrationTest : public mongol::unittest::Test {
 public:
     void setUp() override {
         NetworkInterfaceASIO::Options options{};
@@ -303,4 +303,4 @@ TEST_F(NetworkInterfaceASIOIntegrationTest, StressTest) {
 
 }  // namespace
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

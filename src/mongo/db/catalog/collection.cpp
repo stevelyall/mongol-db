@@ -28,40 +28,40 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/collection.h"
+#include "mongol/db/catalog/collection.h"
 
 
-#include "mongo/base/counter.h"
-#include "mongo/base/owned_pointer_map.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/ops/update_driver.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/base/counter.h"
+#include "mongol/base/owned_pointer_map.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/ops/update_driver.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/db/storage/record_store.h"
 
-#include "mongo/db/auth/user_document_parser.h"  // XXX-ANDY
-#include "mongo/util/log.h"
+#include "mongol/db/auth/user_document_parser.h"  // XXX-ANDY
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const auto bannedExpressionsInValidators = std::set<StringData>{

@@ -27,7 +27,7 @@
 */
 #pragma once
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Database;
 class OperationContext;
@@ -36,4 +36,4 @@ namespace repl {
 // page in possible index and/or data pages for an op from the oplog
 void prefetchPagesForReplicatedOp(OperationContext* txn, Database* db, const BSONObj& op);
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

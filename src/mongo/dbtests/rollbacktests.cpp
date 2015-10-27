@@ -27,17 +27,17 @@
  */
 
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/head_manager.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/record_id.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/head_manager.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/record_id.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::list;

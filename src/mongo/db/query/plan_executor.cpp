@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/plan_executor.h"
+#include "mongol/db/query/plan_executor.h"
 
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/exec/cached_plan.h"
-#include "mongo/db/exec/multi_plan.h"
-#include "mongo/db/exec/pipeline_proxy.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/exec/subplan.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/query/plan_yield_policy.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/exec/cached_plan.h"
+#include "mongol/db/exec/multi_plan.h"
+#include "mongol/db/exec/pipeline_proxy.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/exec/subplan.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/query/plan_yield_policy.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/stdx/memory.h"
 
-#include "mongo/util/stacktrace.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -576,4 +576,4 @@ PlanExecutor::ScopedExecutorRegistration::~ScopedExecutorRegistration() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

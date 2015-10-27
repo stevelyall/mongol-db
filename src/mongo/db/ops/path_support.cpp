@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/path_support.h"
+#include "mongol/db/ops/path_support.h"
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace pathsupport {
 
 using std::string;
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 namespace {
 
@@ -61,7 +61,7 @@ Status maybePadTo(mutablebson::Element* elemArray, size_t sizeRequired) {
 
     if (sizeRequired > kMaxPaddingAllowed) {
         return Status(ErrorCodes::CannotBackfillArray,
-                      mongoutils::str::stream() << "can't backfill array to larger than "
+                      mongolutils::str::stream() << "can't backfill array to larger than "
                                                 << kMaxPaddingAllowed << " elements");
     }
 
@@ -137,7 +137,7 @@ Status findLongestPrefix(const FieldRef& prefix,
         *idxFound = i - 1;
         *elemFound = prev;
         return Status(ErrorCodes::PathNotViable,
-                      mongoutils::str::stream() << "cannot use the part (" << prefix.getPart(i - 1)
+                      mongolutils::str::stream() << "cannot use the part (" << prefix.getPart(i - 1)
                                                 << " of " << prefix.dottedField()
                                                 << ") to traverse the element ({" << curr.toString()
                                                 << "})");
@@ -170,7 +170,7 @@ Status createPathAt(const FieldRef& prefix,
     // we need padding.
     size_t i = idxFound;
     bool inArray = false;
-    if (elemFound.getType() == mongo::Array) {
+    if (elemFound.getType() == mongol::Array) {
         size_t newIdx = 0;
         if (!isNumeric(prefix.getPart(idxFound), &newIdx)) {
             return Status(ErrorCodes::InvalidPath, "Array require numeric fields");
@@ -421,4 +421,4 @@ Status addEqualitiesToDoc(const EqualityMatches& equalities, mutablebson::Docume
 }
 
 }  // namespace pathsupport
-}  // namespace mongo
+}  // namespace mongol

@@ -5,13 +5,13 @@
 
 var options = { shardOptions : { verbose : 2 } };
 
-var st = new ShardingTest({ shards : 2, mongos : 1, other : options });
+var st = new ShardingTest({ shards : 2, mongols : 1, other : options });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
-var coll = mongos.getCollection( "foo.bar" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
+var coll = mongols.getCollection( "foo.bar" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
 st.ensurePrimaryShard(coll.getDB().getName(), 'shard0001');

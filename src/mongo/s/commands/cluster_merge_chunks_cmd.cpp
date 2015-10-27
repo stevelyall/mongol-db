@@ -26,24 +26,24 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -210,4 +210,4 @@ BSONField<string> ClusterMergeChunksCommand::configField("config");
 BSONField<string> ClusterMergeChunksCommand::shardNameField("shardName");
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

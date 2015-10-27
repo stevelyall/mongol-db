@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/db/repl/task_runner.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/db/repl/task_runner.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -68,4 +68,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

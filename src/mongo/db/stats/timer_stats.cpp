@@ -27,9 +27,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/stats/timer_stats.h"
+#include "mongol/db/stats/timer_stats.h"
 
-namespace mongo {
+namespace mongol {
 
 TimerHolder::TimerHolder(TimerStats* stats) : _stats(stats), _recorded(false) {}
 

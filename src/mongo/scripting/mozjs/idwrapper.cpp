@@ -26,16 +26,16 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/idwrapper.h"
+#include "mongol/scripting/mozjs/idwrapper.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/scripting/mozjs/exception.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/scripting/mozjs/exception.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 IdWrapper::IdWrapper(JSContext* cx, JS::HandleId value) : _context(cx), _value(cx, value) {}
@@ -117,4 +117,4 @@ bool IdWrapper::isString() const {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

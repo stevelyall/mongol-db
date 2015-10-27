@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/range_deleter_db_env.h"
+#include "mongol/db/range_deleter_db_env.h"
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/d_state.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/d_state.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -127,4 +127,4 @@ void RangeDeleterDBEnv::getCursorIds(OperationContext* txn,
     autoColl.getCollection()->getCursorManager()->getCursorIds(openCursors);
 }
 
-}  // namespace mongo
+}  // namespace mongol

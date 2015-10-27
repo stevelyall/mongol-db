@@ -28,34 +28,34 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/config.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/commands/server_status_internal.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostname_canonicalization_worker.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/ramlog.h"
-#include "mongo/util/version.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/config.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/commands/server_status_internal.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostname_canonicalization_worker.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/ramlog.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::map;
@@ -327,4 +327,4 @@ public:
 } memBase;
 }
 
-}  // namespace mongo
+}  // namespace mongol

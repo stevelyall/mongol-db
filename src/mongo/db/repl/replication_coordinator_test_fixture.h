@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 struct HostAndPort;
@@ -55,7 +55,7 @@ class TopologyCoordinatorImpl;
 /**
  * Fixture for testing ReplicationCoordinatorImpl behaviors.
  */
-class ReplCoordTest : public mongo::unittest::Test {
+class ReplCoordTest : public mongol::unittest::Test {
 public:
     /**
      * Makes a ResponseStatus with the given "doc" response and optional elapsed time "millis".
@@ -230,4 +230,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

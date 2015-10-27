@@ -30,7 +30,7 @@
 
 #include <vector>
 
-#include "mongo/db/geo/s2.h"
+#include "mongol/db/geo/s2.h"
 #include "third_party/s2/s2cap.h"
 #include "third_party/s2/s2cell.h"
 #include "third_party/s2/s2loop.h"
@@ -38,7 +38,7 @@
 #include "third_party/s2/s2polyline.h"
 #include "third_party/s2/s2region.h"
 
-namespace mongo {
+namespace mongol {
 
 // Simple GeoJSON polygon with a custom CRS identifier as having a strict winding order.
 // The winding order will determine unambiguously the inside/outside of the polygon even

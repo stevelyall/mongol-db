@@ -30,13 +30,13 @@
 
 #pragma once
 
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/platform/unordered_set.h"
 
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 
 class DeletedRecord;
 class DocWriter;

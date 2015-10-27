@@ -50,11 +50,11 @@ baseEnv.Library('base', [
         'stop_words.cpp',
         'stop_words_list.cpp',
         'tokenizer.cpp',
-        ], LIBDEPS=["$BUILD_DIR/mongo/base",
-                    "$BUILD_DIR/mongo/db/common",
-                    "$BUILD_DIR/mongo/db/fts/unicode/unicode",
-                    "$BUILD_DIR/mongo/platform/platform",
-                    "$BUILD_DIR/mongo/util/md5",
+        ], LIBDEPS=["$BUILD_DIR/mongol/base",
+                    "$BUILD_DIR/mongol/db/common",
+                    "$BUILD_DIR/mongol/db/fts/unicode/unicode",
+                    "$BUILD_DIR/mongol/platform/platform",
+                    "$BUILD_DIR/mongol/util/md5",
                     "$BUILD_DIR/third_party/shim_stemmer",
                     ])
 
@@ -62,16 +62,16 @@ env.Library( 'server_common', [
              'fts_enabled.cpp'
              ],
              LIBDEPS=[
-                 '$BUILD_DIR/mongo/base',
-                 '$BUILD_DIR/mongo/db/server_parameters',
+                 '$BUILD_DIR/mongol/base',
+                 '$BUILD_DIR/mongol/db/server_parameters',
              ],
 )
 
-env.Library('ftsmongod', [
+env.Library('ftsmongold', [
         ], LIBDEPS=["base","server_common"])
 
 
-env.Library('ftsmongos', [
+env.Library('ftsmongols', [
         ], LIBDEPS=["server_common"])
 
 

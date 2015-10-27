@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/client/connection_string.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class RemoteCommandTargeterMock final : public RemoteCommandTargeter {
 public:
@@ -81,4 +81,4 @@ private:
     StatusWith<HostAndPort> _findHostReturnValue;
 };
 
-}  // namespace mongo
+}  // namespace mongol

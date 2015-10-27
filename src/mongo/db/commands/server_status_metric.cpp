@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/db/commands/server_status_metric.h"
+#include "mongol/db/commands/server_status_metric.h"
 
-#include "mongo/db/commands/server_status_internal.h"
+#include "mongol/db/commands/server_status_internal.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

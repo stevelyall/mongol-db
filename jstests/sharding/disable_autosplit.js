@@ -1,15 +1,15 @@
 //
-// Tests disabling of autosplit from mongos
+// Tests disabling of autosplit from mongols
 //
 
 var chunkSize = 1 //MB
 
 var st = new ShardingTest({ shards : 1, 
-                            mongos : 1, 
+                            mongols : 1, 
                             other : { 
                                 
                                 chunksize : chunkSize,
-                                mongosOptions : { noAutoSplit : "" }
+                                mongolsOptions : { noAutoSplit : "" }
                                 
                             } })
 
@@ -18,10 +18,10 @@ while( data.length < chunkSize * 1024 * 1024 ){
     data += data
 }
 
-var mongos = st.s0
-var admin = mongos.getDB( "admin" )
-var config = mongos.getDB( "config" )
-var coll = mongos.getCollection( "foo.bar" )
+var mongols = st.s0
+var admin = mongols.getDB( "admin" )
+var config = mongols.getDB( "config" )
+var coll = mongols.getCollection( "foo.bar" )
 
 printjson( admin.runCommand({ enableSharding : coll.getDB() + "" }) )
 printjson( admin.runCommand({ shardCollection : coll + "", key : { _id : 1 } }) )

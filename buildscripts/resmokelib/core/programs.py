@@ -16,9 +16,9 @@ from .. import utils
 from .. import config
 
 
-def mongod_program(logger, executable=None, process_kwargs=None, **kwargs):
+def mongold_program(logger, executable=None, process_kwargs=None, **kwargs):
     """
-    Returns a Process instance that starts a mongod executable with
+    Returns a Process instance that starts a mongold executable with
     arguments constructed from 'kwargs'.
     """
 
@@ -83,9 +83,9 @@ def mongod_program(logger, executable=None, process_kwargs=None, **kwargs):
     return _process.Process(logger, args, **process_kwargs)
 
 
-def mongos_program(logger, executable=None, process_kwargs=None, **kwargs):
+def mongols_program(logger, executable=None, process_kwargs=None, **kwargs):
     """
-    Returns a Process instance that starts a mongos executable with
+    Returns a Process instance that starts a mongols executable with
     arguments constructed from 'kwargs'.
     """
 
@@ -110,9 +110,9 @@ def mongos_program(logger, executable=None, process_kwargs=None, **kwargs):
     return _process.Process(logger, args, **process_kwargs)
 
 
-def mongo_shell_program(logger, executable=None, filename=None, process_kwargs=None, **kwargs):
+def mongol_shell_program(logger, executable=None, filename=None, process_kwargs=None, **kwargs):
     """
-    Returns a Process instance that starts a mongo shell with arguments
+    Returns a Process instance that starts a mongol shell with arguments
     constructed from 'kwargs'.
     """
 
@@ -142,22 +142,22 @@ def mongo_shell_program(logger, executable=None, filename=None, process_kwargs=N
             test_data[opt_name] = opt_default
     global_vars["TestData"] = test_data
 
-    # Pass setParameters for mongos and mongod through TestData. The setParameter parsing in
+    # Pass setParameters for mongols and mongold through TestData. The setParameter parsing in
     # servers.js is very primitive (just splits on commas), so this may break for non-scalar
     # setParameter values.
     if config.MONGOD_SET_PARAMETERS is not None:
         if "setParameters" in test_data:
             raise ValueError("setParameters passed via TestData can only be set from either the"
                              " command line or the suite YAML, not both")
-        mongod_set_parameters = utils.load_yaml(config.MONGOD_SET_PARAMETERS)
-        test_data["setParameters"] = _format_test_data_set_parameters(mongod_set_parameters)
+        mongold_set_parameters = utils.load_yaml(config.MONGOD_SET_PARAMETERS)
+        test_data["setParameters"] = _format_test_data_set_parameters(mongold_set_parameters)
 
     if config.MONGOS_SET_PARAMETERS is not None:
         if "setParametersMongos" in test_data:
             raise ValueError("setParametersMongos passed via TestData can only be set from either"
                              " the command line or the suite YAML, not both")
-        mongos_set_parameters = utils.load_yaml(config.MONGOS_SET_PARAMETERS)
-        test_data["setParametersMongos"] = _format_test_data_set_parameters(mongos_set_parameters)
+        mongols_set_parameters = utils.load_yaml(config.MONGOS_SET_PARAMETERS)
+        test_data["setParametersMongos"] = _format_test_data_set_parameters(mongols_set_parameters)
 
     for var_name in global_vars:
         _format_shell_vars(eval_sb, var_name, global_vars[var_name])
@@ -178,7 +178,7 @@ def mongo_shell_program(logger, executable=None, filename=None, process_kwargs=N
     # Apply the rest of the command line arguments.
     _apply_kwargs(args, kwargs)
 
-    # Have the mongos shell run the specified file.
+    # Have the mongols shell run the specified file.
     args.append(filename)
 
     _set_keyfile_permissions(test_data)
@@ -296,7 +296,7 @@ def _set_keyfile_permissions(opts):
     Change the permissions of keyfiles in 'opts' to 600, i.e. only the
     user can read and write the file.
 
-    This necessary to avoid having the mongod/mongos fail to start up
+    This necessary to avoid having the mongold/mongols fail to start up
     because "permissions on the keyfiles are too open".
 
     We can't permanently set the keyfile permissions because git is not

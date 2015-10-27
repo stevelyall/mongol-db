@@ -31,8 +31,8 @@ var roles = [
 
 /**
  * Parameters:
- *   conn -- connection, either to standalone mongod,
- *      or to mongos in sharded cluster
+ *   conn -- connection, either to standalone mongold,
+ *      or to mongols in sharded cluster
  *   t -- a test object from the tests array in jstests/auth/commands.js
  *   testcase -- the particular testcase from t to test
  *   r -- a role object from the "roles" array above
@@ -163,7 +163,7 @@ MongoRunner.stopMongod(conn);
 // run all tests sharded
 conn = new ShardingTest({
     shards: 2,
-    mongos: 1,
+    mongols: 1,
     keyFile: "jstests/libs/key1",
     other: { shardOptions: opts }
 });

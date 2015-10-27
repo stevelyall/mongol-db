@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/shard_registry.h"
+#include "mongol/s/client/shard_registry.h"
 
 #include <set>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/client/query_fetcher.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/client/remote_command_targeter_factory.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/client.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/grid.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/query_fetcher.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/client/remote_command_targeter_factory.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/client.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/grid.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::set;
@@ -692,4 +692,4 @@ void ShardRegistry::updateReplSetMonitor(const std::shared_ptr<RemoteCommandTarg
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

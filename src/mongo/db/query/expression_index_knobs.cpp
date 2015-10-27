@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/expression_index_knobs.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
+#include "mongol/db/query/expression_index_knobs.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_EXPORT_SERVER_PARAMETER(internalGeoPredicateQuery2DMaxCoveringCells, int, 16);
 
@@ -41,4 +41,4 @@ MONGO_EXPORT_SERVER_PARAMETER(internalQueryS2GeoFinestLevel, int, 23);
 MONGO_EXPORT_SERVER_PARAMETER(internalQueryS2GeoCoarsestLevel, int, 0);
 MONGO_EXPORT_SERVER_PARAMETER(internalQueryS2GeoMaxCells, int, 20);
 
-}  // namespace mongo
+}  // namespace mongol

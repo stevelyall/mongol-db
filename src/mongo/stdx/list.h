@@ -30,10 +30,10 @@
 
 #include <list>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 using std::list;
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

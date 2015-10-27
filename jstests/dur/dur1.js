@@ -11,7 +11,7 @@ function checkNoJournalFiles(path, pass) {
     var files = listFiles(path);
     if (files.some(function (f) { return f.name.indexOf("prealloc") < 0; })) {
         if (pass == null) {
-            // wait a bit longer for mongod to potentially finish if it is still running.
+            // wait a bit longer for mongold to potentially finish if it is still running.
             sleep(10000);
             return checkNoJournalFiles(path, 1);
         }
@@ -79,7 +79,7 @@ function verify() {
 }
 
 if( debugging ) { 
-    // mongod already running in debugger
+    // mongold already running in debugger
     conn = db.getMongo();
     work();
     sleep(30000);
@@ -93,13 +93,13 @@ var path1 = MongoRunner.dataPath + testname+"nodur";
 var path2 = MongoRunner.dataPath + testname+"dur";
 
 // non-durable version
-log("run mongod without journaling");
+log("run mongold without journaling");
 conn = MongoRunner.runMongod({dbpath: path1, nodur: "", smallfiles: ""});
 work();
 MongoRunner.stopMongod(conn);
 
 // durable version
-log("run mongod with --journal");
+log("run mongold with --journal");
 conn = MongoRunner.runMongod({dbpath: path2, journal: "", smallfiles: "", journalOptions: 8});
 work();
 
@@ -113,7 +113,7 @@ MongoRunner.stopMongod(conn.port, /*signal*/9);
 // journal file should be present, and non-empty as we killed hard
 
 // restart and recover
-log("restart mongod --journal and recover");
+log("restart mongold --journal and recover");
 conn = MongoRunner.runMongod({restart: true,
                               cleanData: false,
                               dbpath: path2,
@@ -122,7 +122,7 @@ conn = MongoRunner.runMongod({restart: true,
                               journalOptions: 8});
 verify();
 
-log("stop mongod");
+log("stop mongold");
 MongoRunner.stopMongod(conn);
 
 // stopMongod seems to be asynchronous (hmmm) so we sleep here.

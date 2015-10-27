@@ -29,16 +29,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/heap_record_store_btree.h"
+#include "mongol/db/storage/mmap_v1/heap_record_store_btree.h"
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 RecordData HeapRecordStoreBtree::dataFor(OperationContext* txn, const RecordId& loc) const {
     Records::const_iterator it = _records.find(loc);
@@ -153,4 +153,4 @@ void HeapRecordStoreBtreeRecoveryUnit::notifyInsert(OperationContext* ctx,
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/db/repl/storage_interface.h"
+#include "mongol/db/repl/storage_interface.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -46,4 +46,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

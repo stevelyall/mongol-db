@@ -29,21 +29,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_server_status.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_server_status.h"
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -77,4 +77,4 @@ BSONObj WiredTigerServerStatusSection::generateSection(OperationContext* txn,
     return bob.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

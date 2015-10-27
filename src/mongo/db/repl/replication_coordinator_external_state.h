@@ -30,12 +30,12 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class OID;
@@ -249,4 +249,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

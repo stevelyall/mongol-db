@@ -1,7 +1,7 @@
 // Test for SERVER-7430: Warning about smallfiles should include filename
 var baseName = "filesize";
 
-// Start mongod with --smallfiles
+// Start mongold with --smallfiles
 var m = MongoRunner.runMongod({nojournal: "", smallfiles: ""});
 
 var db = m.getDB( baseName );
@@ -10,7 +10,7 @@ var db = m.getDB( baseName );
 if (db.serverBuildInfo().bits == 32) {
     print("Skip on 32-bit");
 } else {
-    // Restart mongod without --smallFiles
+    // Restart mongold without --smallFiles
     MongoRunner.stopMongod(m);
     m = MongoRunner.runMongod({
         restart: true,

@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_spec.h"
 
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -42,7 +42,7 @@ namespace fts {
 
 using std::map;
 using std::string;
-using namespace mongoutils;
+using namespace mongolutils;
 
 namespace {
 void _addFTSStuff(BSONObjBuilder* b) {

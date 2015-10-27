@@ -17,7 +17,7 @@ function checkNWouldDelete(explain, nWouldDelete) {
     var executionStats = explain.executionStats;
     assert("executionStages" in executionStats);
 
-    // If passed through mongos, then DELETE should be below the SINGLE_SHARD mongos stage.
+    // If passed through mongols, then DELETE should be below the SINGLE_SHARD mongols stage.
     // Otherwise it is the root stage.
     var execStages = executionStats.executionStages;
     if ("SHARD_WRITE" === execStages.stage) {

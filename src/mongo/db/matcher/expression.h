@@ -31,15 +31,15 @@
 #pragma once
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/matcher/matchable.h"
-#include "mongo/db/matcher/match_details.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/matcher/matchable.h"
+#include "mongol/db/matcher/match_details.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class TreeMatchExpression;
 

@@ -28,18 +28,18 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/intrusive_ptr.hpp>
 #include <unordered_set>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * Registers an Accumulator to have the name 'key'. When an accumulator with name '$key' is found
  * during parsing of a $group stage, 'factory' will be called to construct the Accumulator.

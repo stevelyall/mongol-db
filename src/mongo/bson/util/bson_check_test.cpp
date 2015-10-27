@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(BsonCheck, CheckNothingLegal) {
@@ -72,4 +72,4 @@ TEST(BsonCheck, CheckNoDuplicates) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

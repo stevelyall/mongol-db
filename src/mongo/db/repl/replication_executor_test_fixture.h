@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/stdx/memory.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/executor/task_executor_test_fixture.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/executor/task_executor_test_fixture.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace executor {
 class NetworkInterfaceMock;
@@ -69,4 +69,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

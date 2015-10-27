@@ -30,7 +30,7 @@ MongoRunner.stopMongod(conn);
 // run all tests sharded
 var st = new ShardingTest({
     shards: 2,
-    mongos: 1,
+    mongols: 1,
     keyFile: "jstests/libs/key1",
 });
 var a = st.s.getDB( "copydb2-test-a" );

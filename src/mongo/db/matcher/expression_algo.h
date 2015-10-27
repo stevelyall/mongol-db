@@ -28,7 +28,7 @@
  *    it in the license file.
  */
 
-namespace mongo {
+namespace mongol {
 
 class MatchExpression;
 
@@ -60,4 +60,4 @@ namespace expression {
 bool isSubsetOf(const MatchExpression* lhs, const MatchExpression* rhs);
 
 }  // namespace expression
-}  // namespace mongo
+}  // namespace mongol

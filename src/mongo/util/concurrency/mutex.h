@@ -30,13 +30,13 @@
 #pragma once
 
 #ifdef _WIN32
-#include "mongo/platform/windows_basic.h"
+#include "mongol/platform/windows_basic.h"
 #endif
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/static_observer.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/static_observer.h"
 
-namespace mongo {
+namespace mongol {
 
 /** The concept with SimpleMutex is that it is a basic lock/unlock
  *  with no special functionality (such as try and try
@@ -100,4 +100,4 @@ private:
 };
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

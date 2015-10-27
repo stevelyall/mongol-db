@@ -26,34 +26,34 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/sharding_state_recovery.h"
+#include "mongol/db/s/sharding_state_recovery.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kRecoveryDocumentId[] = "minOpTimeRecovery";
@@ -307,4 +307,4 @@ Status ShardingStateRecovery::recover(OperationContext* txn) {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

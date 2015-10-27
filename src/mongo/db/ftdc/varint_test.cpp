@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/data_builder.h"
-#include "mongo/base/data_type_validated.h"
-#include "mongo/base/init.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/controller.h"
-#include "mongo/db/ftdc/varint.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_builder.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/base/init.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/controller.h"
+#include "mongol/db/ftdc/varint.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Test integer packing and unpacking
 void TestInt(std::uint64_t i) {
@@ -85,4 +85,4 @@ TEST(FTDCVarIntTest, TestDataBuilder) {
     };
 }
 
-}  // namespace mongo
+}  // namespace mongol

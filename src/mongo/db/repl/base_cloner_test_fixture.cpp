@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/base_cloner_test_fixture.h"
+#include "mongol/db/repl/base_cloner_test_fixture.h"
 
 #include <memory>
 
-#include "mongo/stdx/thread.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -252,4 +252,4 @@ Status ClonerStorageInterfaceMock::dropUserDatabases(OperationContext* txn) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

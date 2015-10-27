@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "MONGOPERF" "1" "January 30, 2015" "3.0" "mongodb-manual"
+.TH "MONGOPERF" "1" "January 30, 2015" "3.0" "mongoldb-manual"
 .SH NAME
-mongoperf \- MongoDB Performance Utility
+mongolperf \- MongoDB Performance Utility
 .
 .nr rst2man-indent-level 0
 .
@@ -32,16 +32,16 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .SH SYNOPSIS
 .sp
-\fBmongoperf\fP is a utility to check disk I/O performance
+\fBmongolperf\fP is a utility to check disk I/O performance
 independently of MongoDB.
 .sp
 It times tests of random disk I/O and presents the results. You can
-use \fBmongoperf\fP for any case apart from MongoDB. The
+use \fBmongolperf\fP for any case apart from MongoDB. The
 \fBmmf\fP \fBtrue\fP mode is completely generic. In
-that mode it is somewhat analogous to tools such as \fI\%bonnie++\fP (albeit mongoperf is
+that mode it is somewhat analogous to tools such as \fI\%bonnie++\fP (albeit mongolperf is
 simpler).
 .sp
-Specify options to \fBmongoperf\fP using a JavaScript document.
+Specify options to \fBmongolperf\fP using a JavaScript document.
 .sp
 \fBSEE ALSO:\fP
 .INDENT 0.0
@@ -54,37 +54,37 @@ Specify options to \fBmongoperf\fP using a JavaScript document.
 .IP \(bu 2
 \fI\%Output from an example run\fP
 .IP \(bu 2
-\fI\%Checking Disk Performance with the mongoperf Utility\fP
+\fI\%Checking Disk Performance with the mongolperf Utility\fP
 .UNINDENT
 .UNINDENT
 .UNINDENT
 .SH OPTIONS
 .INDENT 0.0
 .TP
-.B mongoperf
+.B mongolperf
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf
+.B mongolperf
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-help, \-h
-Returns information on the options and use of \fBmongoperf\fP\&.
+Returns information on the options and use of \fBmongolperf\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B <jsonconfig>
-\fBmongoperf\fP accepts configuration options in the form of a
+\fBmongolperf\fP accepts configuration options in the form of a
 file that holds a \fIJSON\fP document. You must stream the
-content of this file into \fBmongoperf\fP, as in the following
+content of this file into \fBmongolperf\fP, as in the following
 operation:
 .INDENT 7.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-mongoperf < config
+mongolperf < config
 .ft P
 .fi
 .UNINDENT
@@ -118,18 +118,18 @@ of these fields.
 .SH CONFIGURATION FIELDS
 .INDENT 0.0
 .TP
-.B mongoperf.nThreads
+.B mongolperf.nThreads
 \fIType:\fP Integer.
 .sp
 \fIDefault:\fP 1
 .sp
-Defines the number of threads \fBmongoperf\fP will use in the
+Defines the number of threads \fBmongolperf\fP will use in the
 test. To saturate your system\(aqs storage system you will need
 multiple threads. Consider setting \fBnThreads\fP to \fB16\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.fileSizeMB
+.B mongolperf.fileSizeMB
 \fIType:\fP Integer.
 .sp
 \fIDefault:\fP 1 megabyte (i.e. 1024\s-2\u2\d\s0 bytes)
@@ -138,18 +138,18 @@ Test file size.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.sleepMicros
+.B mongolperf.sleepMicros
 \fIType:\fP Integer.
 .sp
 \fIDefault:\fP 0
 .sp
-\fBmongoperf\fP will pause for the number of specified
+\fBmongolperf\fP will pause for the number of specified
 \fBsleepMicros\fP divided by the
 \fBnThreads\fP between each operation.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.mmf
+.B mongolperf.mmf
 \fIType:\fP Boolean.
 .sp
 \fIDefault:\fP \fBfalse\fP
@@ -160,11 +160,11 @@ files for the tests.
 Generally:
 .INDENT 7.0
 .IP \(bu 2
-when \fBmmf\fP is \fBfalse\fP, \fBmongoperf\fP
+when \fBmmf\fP is \fBfalse\fP, \fBmongolperf\fP
 tests direct, physical, I/O, without caching. Use a large file
 size to test heavy random I/O load and to avoid I/O coalescing.
 .IP \(bu 2
-when \fBmmf\fP is \fBtrue\fP, \fBmongoperf\fP
+when \fBmmf\fP is \fBtrue\fP, \fBmongolperf\fP
 runs tests of the caching system, and can use normal file system
 cache. Use \fBmmf\fP in this mode to test file system cache
 behavior with memory mapped files.
@@ -172,7 +172,7 @@ behavior with memory mapped files.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.r
+.B mongolperf.r
 \fIType:\fP Boolean.
 .sp
 \fIDefault:\fP \fBfalse\fP
@@ -184,7 +184,7 @@ Either \fBr\fP or \fBw\fP must be \fBtrue\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.w
+.B mongolperf.w
 \fIType:\fP Boolean.
 .sp
 \fIDefault:\fP \fBfalse\fP
@@ -196,7 +196,7 @@ Either \fBr\fP or \fBw\fP must be \fBtrue\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.recSizeKB
+.B mongolperf.recSizeKB
 New in version 2.4.
 
 .sp
@@ -208,17 +208,17 @@ The size of each write operation.
 .UNINDENT
 .INDENT 0.0
 .TP
-.B mongoperf.syncDelay
+.B mongolperf.syncDelay
 \fIType:\fP Integer.
 .sp
 \fIDefault:\fP 0
 .sp
-Seconds between disk flushes. \fBmongoperf.syncDelay\fP is
-similar to \fI\-\-syncdelay\fP for \fBmongod\fP\&.
+Seconds between disk flushes. \fBmongolperf.syncDelay\fP is
+similar to \fI\-\-syncdelay\fP for \fBmongold\fP\&.
 .sp
 The \fBsyncDelay\fP controls how frequently
-\fBmongoperf\fP performs an asynchronous disk flush of the memory
-mapped file used for testing. By default, \fBmongod\fP
+\fBmongolperf\fP performs an asynchronous disk flush of the memory
+mapped file used for testing. By default, \fBmongold\fP
 performs this operation every 60 seconds. Use
 \fBsyncDelay\fP to test basic system performance of
 this type of operation.
@@ -234,21 +234,21 @@ The default value of \fB0\fP disables this.
 .sp
 .nf
 .ft C
-mongoperf < jsonconfigfile
+mongolperf < jsonconfigfile
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Replace \fBjsonconfigfile\fP with the path to the \fBmongoperf\fP
-configuration. You may also invoke \fBmongoperf\fP in the
+Replace \fBjsonconfigfile\fP with the path to the \fBmongolperf\fP
+configuration. You may also invoke \fBmongolperf\fP in the
 following form:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-echo "{nThreads:16,fileSizeMB:10000,r:true,w:true}" | mongoperf
+echo "{nThreads:16,fileSizeMB:10000,r:true,w:true}" | mongolperf
 .ft P
 .fi
 .UNINDENT
@@ -257,10 +257,10 @@ echo "{nThreads:16,fileSizeMB:10000,r:true,w:true}" | mongoperf
 In this operation:
 .INDENT 0.0
 .IP \(bu 2
-\fBmongoperf\fP tests direct physical random read and write io\(aqs, using
+\fBmongolperf\fP tests direct physical random read and write io\(aqs, using
 16 concurrent reader threads.
 .IP \(bu 2
-\fBmongoperf\fP  uses a 10 gigabyte test file.
+\fBmongolperf\fP  uses a 10 gigabyte test file.
 .UNINDENT
 .sp
 Consider using \fBiostat\fP, as invoked in the following example to

@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 #ifdef _WIN32
 // Generate windows event name for shutdown signal
 std::string getShutdownSignalName(int processId) {
     const char* strEventNamePrefix = "Global\\Mongo_";
 
-    return mongoutils::str::stream() << strEventNamePrefix << processId;
+    return mongolutils::str::stream() << strEventNamePrefix << processId;
 }
 #endif
 }

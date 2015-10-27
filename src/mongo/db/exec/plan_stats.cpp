@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 void CommonStats::writeExplainTo(BSONObjBuilder* bob) const {
     if (NULL == bob) {
@@ -46,4 +46,4 @@ void PlanStageStats::writeExplainTo(BSONObjBuilder* bob) const {
     common.writeExplainTo(bob);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/util/elapsed_tracker.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/util/elapsed_tracker.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecordFetcher;
 
@@ -97,4 +97,4 @@ private:
     PlanExecutor* const _planYielding;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,13 +26,13 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/internedstring.h"
 
-#include "mongo/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/implscope.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 InternedStringTable::InternedStringTable(JSContext* cx) {
@@ -48,7 +48,7 @@ InternedStringTable::InternedStringTable(JSContext* cx) {
         }                                                                             \
         _internedStrings[i++].init(cx, INTERNED_STRING_TO_JSID(cx, s));               \
     } while (0);
-#include "mongo/scripting/mozjs/internedstring.defs"
+#include "mongol/scripting/mozjs/internedstring.defs"
 #undef MONGO_MOZJS_INTERNED_STRING
 }
 
@@ -62,4 +62,4 @@ InternedStringId::InternedStringId(JSContext* cx, InternedString id)
     : _id(cx, getScope(cx)->getInternedStringId(id)) {}
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

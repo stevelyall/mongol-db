@@ -29,9 +29,9 @@
 #pragma once
 
 
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class MmapV1RecordHeader;
 

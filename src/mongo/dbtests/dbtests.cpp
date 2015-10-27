@@ -29,29 +29,29 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/dbtests/dbtests.h"
 
-#include "mongo/base/initializer.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_mock.h"
-#include "mongo/dbtests/framework.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/signal_handlers_synchronous.h"
-#include "mongo/util/startup_test.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/text.h"
+#include "mongol/base/initializer.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
+#include "mongol/dbtests/framework.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/signal_handlers_synchronous.h"
+#include "mongol/util/startup_test.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 namespace dbtests {
 // This specifies default dbpath for our testing framework
 const std::string default_test_dbpath = "/tmp/unittest";
@@ -93,20 +93,20 @@ Status createIndexFromSpec(OperationContext* txn, StringData ns, const BSONObj& 
 }
 
 }  // namespace dbtests
-}  // namespace mongo
+}  // namespace mongol
 
 
 int dbtestsMain(int argc, char** argv, char** envp) {
     static StaticObserver StaticObserver;
     Command::testCommandsEnabled = true;
-    ::mongo::setupSynchronousSignalHandlers();
-    mongo::runGlobalInitializersOrDie(argc, argv, envp);
+    ::mongol::setupSynchronousSignalHandlers();
+    mongol::runGlobalInitializersOrDie(argc, argv, envp);
     repl::ReplSettings replSettings;
     replSettings.oplogSize = 10 * 1024 * 1024;
     repl::setGlobalReplicationCoordinator(new repl::ReplicationCoordinatorMock(replSettings));
     getGlobalAuthorizationManager()->setAuthEnabled(false);
     StartupTest::runTests();
-    return mongo::dbtests::runDbTests(argc, argv);
+    return mongol::dbtests::runDbTests(argc, argv);
 }
 
 #if defined(_WIN32)

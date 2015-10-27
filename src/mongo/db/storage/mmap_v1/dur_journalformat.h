@@ -33,9 +33,9 @@
 #include <sstream>
 #include <string>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace dur {
 

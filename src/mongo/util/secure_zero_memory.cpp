@@ -25,19 +25,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #if defined(MONGO_CONFIG_HAVE_MEMSET_S)
 #define __STDC_WANT_LIB_EXT1__ 1
 #endif
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cstring>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 void secureZeroMemory(void* mem, size_t size) {
     if (mem == nullptr) {
@@ -60,4 +60,4 @@ void secureZeroMemory(void* mem, size_t size) {
 #endif
 }
 
-}  // namespace mongo
+}  // namespace mongol

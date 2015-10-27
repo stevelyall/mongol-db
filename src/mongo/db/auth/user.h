@@ -30,16 +30,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Represents a MongoDB user.  Stores information about the user necessary for access control
@@ -225,4 +225,4 @@ private:
     AtomicUInt32 _isValid;  // Using as a boolean
 };
 
-}  // namespace mongo
+}  // namespace mongol

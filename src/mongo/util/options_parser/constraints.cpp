@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/constraints.h"
+#include "mongol/util/options_parser/constraints.h"
 
 #include <pcrecpp.h>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 Status NumericKeyConstraint::check(const Environment& env) {
@@ -135,4 +135,4 @@ Status StringFormatKeyConstraint::check(const Environment& env) {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

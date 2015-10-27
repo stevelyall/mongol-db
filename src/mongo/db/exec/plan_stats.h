@@ -33,13 +33,13 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/stage_types.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/net/listen.h"  // for Listener::getElapsedTimeMillis()
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/stage_types.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/net/listen.h"  // for Listener::getElapsedTimeMillis()
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The interface all specific-to-stage stats provide.
@@ -630,4 +630,4 @@ struct TextOrStats : public SpecificStats {
     size_t fetches;
 };
 
-}  // namespace mongo
+}  // namespace mongol

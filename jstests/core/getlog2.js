@@ -13,7 +13,7 @@ contains = function(arr, func) {
     return false;
 }
 
-// test doesn't work when talking to mongos
+// test doesn't work when talking to mongols
 if(db.isMaster().msg != "isdbgrid") {
   // run a slow query
   glcol.save({ "SENTINEL": 1 });

@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/find_and_modify.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/config.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/strategy.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/find_and_modify.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/config.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/strategy.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::shared_ptr;
@@ -233,4 +233,4 @@ private:
 } findAndModifyCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

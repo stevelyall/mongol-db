@@ -31,17 +31,17 @@
 #include <deque>
 #include <vector>
 
-#include "mongo/db/client.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/initial_sync.h"
-#include "mongo/db/repl/sync_tail.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
+#include "mongol/db/client.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/initial_sync.h"
+#include "mongol/db/repl/sync_tail.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 // Body of the thread that will do the background sync.
 void runSyncThread();
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

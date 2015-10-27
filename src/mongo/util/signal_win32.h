@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 #ifdef _WIN32
 // Generate windows event name for shutdown signal

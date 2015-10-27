@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/timestamp.h"
+#include "mongol/scripting/mozjs/timestamp.h"
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const TimestampInfo::className = "Timestamp";
@@ -75,4 +75,4 @@ void TimestampInfo::construct(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

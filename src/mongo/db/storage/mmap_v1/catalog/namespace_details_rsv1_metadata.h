@@ -32,11 +32,11 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecordStore;
 

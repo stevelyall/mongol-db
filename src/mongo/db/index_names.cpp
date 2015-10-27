@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-#include "mongo/db/index_names.h"
+#include "mongol/db/index_names.h"
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -86,4 +86,4 @@ IndexType IndexNames::nameToType(const string& accessMethod) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class S2AccessMethod : public IndexAccessMethod {
 public:
@@ -54,4 +54,4 @@ private:
     S2IndexingParams _params;
 };
 
-}  // namespace mongo
+}  // namespace mongol

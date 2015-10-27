@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/dist_lock_catalog.h"
+#include "mongol/s/catalog/dist_lock_catalog.h"
 
-namespace mongo {
+namespace mongol {
 
 DistLockCatalog::ServerInfo::ServerInfo(Date_t time, OID _electionId)
     : serverTime(std::move(time)), electionId(std::move(_electionId)) {}
 
-}  // namespace mongo
+}  // namespace mongol

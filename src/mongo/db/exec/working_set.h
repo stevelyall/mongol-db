@@ -31,13 +31,13 @@
 #include <vector>
 #include <unordered_set>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/snapshot.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/snapshot.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexAccessMethod;
 class RecordFetcher;
@@ -341,4 +341,4 @@ private:
     std::unique_ptr<RecordFetcher> _fetcher;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/cursor_manager.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/find.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/cursor_manager.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/find.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 MONGO_FP_DECLARE(rsStopGetMoreCmd);
@@ -457,4 +457,4 @@ public:
 
 } getMoreCmd;
 
-}  // namespace mongo
+}  // namespace mongol

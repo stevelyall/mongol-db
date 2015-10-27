@@ -1,4 +1,4 @@
-// @file db.cpp : Defines main() for the mongod program.
+// @file db.cpp : Defines main() for the mongold program.
 
 /**
 *    Copyright (C) 2008-2014 MongoDB Inc.
@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/optional.hpp>
@@ -40,94 +40,94 @@
 #include <signal.h>
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/base/initializer.h"
-#include "mongo/base/status.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/auth_index_d.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/catalog/index_key_validate.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/ftdc/ftdc_mongod.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index_rebuilder.h"
-#include "mongo/db/initialize_server_global_state.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/json.h"
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/mongod_options.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/range_deleter_service.h"
-#include "mongo/db/repair_database.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator_external_state_impl.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/storage_interface_impl.h"
-#include "mongo/db/repl/topology_coordinator_impl.h"
-#include "mongo/db/restapi.h"
-#include "mongo/db/s/sharding_state_recovery.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/startup_warnings_mongod.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/db/stats/snapshots.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/ttl.h"
-#include "mongo/executor/network_interface_factory.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/cmdline_utils/censor_cmdline.h"
-#include "mongo/util/concurrency/task.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/exception_filter_win32.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostname_canonicalization_worker.h"
-#include "mongo/util/net/message_server.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/ntservice.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/ramlog.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/signal_handlers.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/startup_test.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/text.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/version.h"
+#include "mongol/base/init.h"
+#include "mongol/base/initializer.h"
+#include "mongol/base/status.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/auth_index_d.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/catalog/index_key_validate.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/ftdc/ftdc_mongold.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index_rebuilder.h"
+#include "mongol/db/initialize_server_global_state.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/json.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/mongold_options.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/range_deleter_service.h"
+#include "mongol/db/repair_database.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator_external_state_impl.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/storage_interface_impl.h"
+#include "mongol/db/repl/topology_coordinator_impl.h"
+#include "mongol/db/restapi.h"
+#include "mongol/db/s/sharding_state_recovery.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/startup_warnings_mongold.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/db/stats/snapshots.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/ttl.h"
+#include "mongol/executor/network_interface_factory.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/cmdline_utils/censor_cmdline.h"
+#include "mongol/util/concurrency/task.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/exception_filter_win32.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostname_canonicalization_worker.h"
+#include "mongol/util/net/message_server.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/ntservice.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/ramlog.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/signal_handlers.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/startup_test.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/text.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/version.h"
 
 #if !defined(_WIN32)
 #include <sys/file.h>
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::cout;
@@ -227,7 +227,7 @@ static void logStartup(OperationContext* txn) {
 
     ScopedTransaction transaction(txn, MODE_X);
     Lock::GlobalWrite lk(txn->lockState());
-    AutoGetOrCreateDb autoDb(txn, "local", mongo::MODE_X);
+    AutoGetOrCreateDb autoDb(txn, "local", mongol::MODE_X);
     Database* db = autoDb.getDb();
     const std::string ns = "local.startup_log";
     Collection* collection = db->getCollection(ns);
@@ -271,7 +271,7 @@ static void checkForIdIndexes(OperationContext* txn, Database* db) {
         log() << "WARNING: the collection '" << *i << "' lacks a unique index on _id."
               << " This index is needed for replication to function properly" << startupWarningsLog;
         log() << "\t To fix this, you need to create a unique index on _id."
-              << " See http://dochub.mongodb.org/core/build-replica-set-indexes"
+              << " See http://dochub.mongoldb.org/core/build-replica-set-indexes"
               << startupWarningsLog;
     }
 }
@@ -363,7 +363,7 @@ static void repairDatabasesAndCheckVersion(OperationContext* txn) {
                 log() << "Index " << index << " claims to be of type '" << plugin << "', "
                       << "which is either invalid or did not exist before v2.4. "
                       << "See the upgrade section: "
-                      << "http://dochub.mongodb.org/core/upgrade-2.4" << startupWarningsLog;
+                      << "http://dochub.mongoldb.org/core/upgrade-2.4" << startupWarningsLog;
             }
 
             const Status keyStatus = validateKeyPattern(key);
@@ -371,7 +371,7 @@ static void repairDatabasesAndCheckVersion(OperationContext* txn) {
                 log() << "Problem with index " << index << ": " << keyStatus.reason()
                       << " This index can still be used however it cannot be rebuilt."
                       << " For more info see"
-                      << " http://dochub.mongodb.org/core/index-validation" << startupWarningsLog;
+                      << " http://dochub.mongoldb.org/core/index-validation" << startupWarningsLog;
             }
 
             if (index["v"].isNumber() && index["v"].numberInt() == 0) {
@@ -379,7 +379,7 @@ static void repairDatabasesAndCheckVersion(OperationContext* txn) {
                       << " v:0 format.  This format will not be supported in a future release."
                       << startupWarningsLog;
                 log() << "\t To fix this, you need to rebuild this index."
-                      << " For instructions, see http://dochub.mongodb.org/core/rebuild-v0-indexes"
+                      << " For instructions, see http://dochub.mongoldb.org/core/rebuild-v0-indexes"
                       << startupWarningsLog;
             }
         }
@@ -508,7 +508,7 @@ static void _initAndListen(int listenPort) {
         ss << "*********************************************************************" << endl;
         ss << " ERROR: dbpath (" << storageGlobalParams.dbpath << ") does not exist." << endl;
         ss << " Create this directory or give existing directory in --dbpath." << endl;
-        ss << " See http://dochub.mongodb.org/core/startingandstoppingmongo" << endl;
+        ss << " See http://dochub.mongoldb.org/core/startingandstoppingmongol" << endl;
         ss << "*********************************************************************" << endl;
         uassert(10296, ss.str().c_str(), boost::filesystem::exists(storageGlobalParams.dbpath));
     }
@@ -530,7 +530,7 @@ static void _initAndListen(int listenPort) {
     if (mmapv1GlobalOptions.journalOptions & MMAPV1Options::JournalRecoverOnly)
         return;
 
-    if (mongodGlobalParams.scriptingEnabled) {
+    if (mongoldGlobalParams.scriptingEnabled) {
         ScriptEngine::setup();
     }
 
@@ -560,7 +560,7 @@ static void _initAndListen(int listenPort) {
 
     {
 #ifndef _WIN32
-        mongo::signalForkSuccess();
+        mongol::signalForkSuccess();
 #endif
 
         Status status = authindex::verifySystemIndexes(startupOpCtx.get());
@@ -600,14 +600,14 @@ static void _initAndListen(int listenPort) {
             checkIfReplMissingFromCommandLine(startupOpCtx.get());
         if (missingRepl) {
             log() << startupWarningsLog;
-            log() << "** WARNING: mongod started without --replSet yet " << missingRepl
+            log() << "** WARNING: mongold started without --replSet yet " << missingRepl
                   << " documents are present in local.system.replset" << startupWarningsLog;
             log() << "**          Restart with --replSet unless you are doing maintenance and "
                   << " no other clients are connected." << startupWarningsLog;
             log() << "**          The TTL collection monitor will not start because of this."
                   << startupWarningsLog;
             log() << "**         ";
-            log() << " For more info see http://dochub.mongodb.org/core/ttlcollections";
+            log() << " For more info see http://dochub.mongoldb.org/core/ttlcollections";
             log() << startupWarningsLog;
         } else {
             startTTLBackgroundJob();
@@ -662,26 +662,26 @@ ExitCode initService() {
 }
 #endif
 
-}  // namespace mongo
+}  // namespace mongol
 
-using namespace mongo;
+using namespace mongol;
 
-static int mongoDbMain(int argc, char* argv[], char** envp);
+static int mongolDbMain(int argc, char* argv[], char** envp);
 
 #if defined(_WIN32)
 // In Windows, wmain() is an alternate entry point for main(), and receives the same parameters
 // as main() but encoded in Windows Unicode (UTF-16); "wide" 16-bit wchar_t characters.  The
 // WindowsCommandLine object converts these wide character strings to a UTF-8 coded equivalent
-// and makes them available through the argv() and envp() members.  This enables mongoDbMain()
+// and makes them available through the argv() and envp() members.  This enables mongolDbMain()
 // to process UTF-8 encoded arguments and environment variables without regard to platform.
 int wmain(int argc, wchar_t* argvW[], wchar_t* envpW[]) {
     WindowsCommandLine wcl(argc, argvW, envpW);
-    int exitCode = mongoDbMain(argc, wcl.argv(), wcl.envp());
+    int exitCode = mongolDbMain(argc, wcl.argv(), wcl.envp());
     quickExit(exitCode);
 }
 #else
 int main(int argc, char* argv[], char** envp) {
-    int exitCode = mongoDbMain(argc, argv, envp);
+    int exitCode = mongolDbMain(argc, argv, envp);
     quickExit(exitCode);
 }
 #endif
@@ -689,7 +689,7 @@ int main(int argc, char* argv[], char** envp) {
 MONGO_INITIALIZER_GENERAL(ForkServer,
                           ("EndStartupOptionHandling"),
                           ("default"))(InitializerContext* context) {
-    mongo::forkServerOrDie();
+    mongol::forkServerOrDie();
     return Status::OK();
 }
 
@@ -699,7 +699,7 @@ MONGO_INITIALIZER_GENERAL(ForkServer,
  */
 static void startupConfigActions(const std::vector<std::string>& args) {
     // The "command" option is deprecated.  For backward compatibility, still support the "run"
-    // and "dbppath" command.  The "run" command is the same as just running mongod, so just
+    // and "dbppath" command.  The "run" command is the same as just running mongold, so just
     // falls through.
     if (moe::startupOptionsParsed.count("command")) {
         vector<string> command = moe::startupOptionsParsed["command"].as<vector<string>>();
@@ -736,7 +736,7 @@ static void startupConfigActions(const std::vector<std::string>& args) {
         bool failed = false;
 
         string name =
-            (boost::filesystem::path(storageGlobalParams.dbpath) / "mongod.lock").string();
+            (boost::filesystem::path(storageGlobalParams.dbpath) / "mongold.lock").string();
         if (!boost::filesystem::exists(name) || boost::filesystem::file_size(name) == 0)
             failed = true;
 
@@ -809,11 +809,11 @@ MONGO_INITIALIZER_GENERAL(setSSLManagerType,
 #endif
 
 #if defined(_WIN32)
-namespace mongo {
-// the hook for mongoAbort
+namespace mongol {
+// the hook for mongolAbort
 extern void (*reportEventToSystem)(const char* msg);
 static void reportEventToSystemImpl(const char* msg) {
-    static ::HANDLE hEventLog = RegisterEventSource(NULL, TEXT("mongod"));
+    static ::HANDLE hEventLog = RegisterEventSource(NULL, TEXT("mongold"));
     if (hEventLog) {
         std::wstring s = toNativeString(msg);
         LPCTSTR txt = s.c_str();
@@ -821,14 +821,14 @@ static void reportEventToSystemImpl(const char* msg) {
         wassert(ok);
     }
 }
-}  // namespace mongo
+}  // namespace mongol
 #endif  // if defined(_WIN32)
 
-static int mongoDbMain(int argc, char* argv[], char** envp) {
+static int mongolDbMain(int argc, char* argv[], char** envp) {
     static StaticObserver staticObserver;
 
 #if defined(_WIN32)
-    mongo::reportEventToSystem = &mongo::reportEventToSystemImpl;
+    mongol::reportEventToSystem = &mongol::reportEventToSystemImpl;
 #endif
 
     setupSignalHandlers(false);
@@ -841,12 +841,12 @@ static int mongoDbMain(int argc, char* argv[], char** envp) {
         unsigned x = 0x12345678;
         unsigned char& b = (unsigned char&)x;
         if (b != 0x78) {
-            mongo::log(LogComponent::kControl) << "big endian cpus not yet supported" << endl;
+            mongol::log(LogComponent::kControl) << "big endian cpus not yet supported" << endl;
             return 33;
         }
     }
 
-    Status status = mongo::runGlobalInitializers(argc, argv, envp);
+    Status status = mongol::runGlobalInitializers(argc, argv, envp);
     if (!status.isOK()) {
         severe(LogComponent::kControl) << "Failed global initialization: " << status;
         quickExit(EXIT_FAILURE);

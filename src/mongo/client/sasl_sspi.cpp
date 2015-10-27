@@ -28,23 +28,23 @@
 
 #ifdef _WIN32
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
 #define SECURITY_WIN32 1  // Required for SSPI support.
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sasl/sasl.h>
 #include <sasl/saslplug.h>
 #include <sspi.h>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/client/sasl_sspi_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/text.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/client/sasl_sspi_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/text.h"
 
 extern "C" int plain_client_plug_init(const sasl_utils_t* utils,
                                       int maxversion,
@@ -58,7 +58,7 @@ extern "C" int crammd5_client_plug_init(const sasl_utils_t* utils,
                                         sasl_client_plug_t** pluglist,
                                         int* plugcount);
 
-namespace mongo {
+namespace mongol {
 namespace {
 /*
  * SSPI client plugin impl
@@ -102,7 +102,7 @@ void HandleLastError(const sasl_utils_t* utils, DWORD errCode, const char* msg) 
         return;
     }
 
-    std::string buffer(mongoutils::str::stream() << "SSPI: " << msg << ": " << err);
+    std::string buffer(mongolutils::str::stream() << "SSPI: " << msg << ": " << err);
     utils->seterror(utils->conn, 0, "%s", buffer.c_str());
     LocalFree(err);
 }
@@ -483,7 +483,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SaslSspiClientPlugin,
     int ret = sasl_client_add_plugin(sspiPluginName, sspiClientPluginInit);
     if (SASL_OK != ret) {
         return Status(ErrorCodes::UnknownError,
-                      mongoutils::str::stream() << "could not add SASL Client SSPI plugin "
+                      mongolutils::str::stream() << "could not add SASL Client SSPI plugin "
                                                 << sspiPluginName << ": "
                                                 << sasl_errstring(ret, NULL, NULL));
     }
@@ -496,7 +496,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SaslCramClientPlugin,
     int ret = sasl_client_add_plugin("CRAMMD5", crammd5_client_plug_init);
     if (SASL_OK != ret) {
         return Status(ErrorCodes::UnknownError,
-                      mongoutils::str::stream() << "Could not add SASL Client CRAM-MD5 plugin "
+                      mongolutils::str::stream() << "Could not add SASL Client CRAM-MD5 plugin "
                                                 << sspiPluginName << ": "
                                                 << sasl_errstring(ret, NULL, NULL));
     }
@@ -510,7 +510,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SaslPlainClientPlugin,
     int ret = sasl_client_add_plugin("PLAIN", plain_client_plug_init);
     if (SASL_OK != ret) {
         return Status(ErrorCodes::UnknownError,
-                      mongoutils::str::stream() << "Could not add SASL Client PLAIN plugin "
+                      mongolutils::str::stream() << "Could not add SASL Client PLAIN plugin "
                                                 << sspiPluginName << ": "
                                                 << sasl_errstring(ret, NULL, NULL));
     }
@@ -519,6 +519,6 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SaslPlainClientPlugin,
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // ifdef _WIN32

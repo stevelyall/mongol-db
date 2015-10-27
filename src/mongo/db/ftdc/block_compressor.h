@@ -31,11 +31,11 @@
 #include <cstdint>
 #include <vector>
 
-#include "mongo/base/data_range.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
+#include "mongol/base/data_range.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Compesses and uncompresses a block of buffer using zlib.
@@ -69,4 +69,4 @@ private:
     std::vector<std::uint8_t> _buffer;
 };
 
-}  // namespace mongo
+}  // namespace mongol

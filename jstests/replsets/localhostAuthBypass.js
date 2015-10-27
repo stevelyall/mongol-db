@@ -10,15 +10,15 @@ var password = "bar";
 
 load("jstests/libs/host_ipaddr.js");
 
-var createUser = function(mongo) {
+var createUser = function(mongol) {
     print("============ adding a user.");
-    mongo.getDB("admin").createUser({user: username, pwd: password, roles: jsTest.adminUserRoles});
+    mongol.getDB("admin").createUser({user: username, pwd: password, roles: jsTest.adminUserRoles});
 };
 
-var assertCannotRunCommands = function(mongo, isPrimary) {
+var assertCannotRunCommands = function(mongol, isPrimary) {
     print("============ ensuring that commands cannot be run.");
 
-    var test = mongo.getDB("test");
+    var test = mongol.getDB("test");
     assert.throws( function() { test.system.users.findOne(); });
     assert.throws( function() { test.foo.findOne({ _id: 0 }); });
 
@@ -37,10 +37,10 @@ var assertCannotRunCommands = function(mongo, isPrimary) {
 
     // DB operations
     var authorizeErrorCode = 13;
-    assert.commandFailedWithCode(mongo.getDB("test").copyDatabase("admin",  "admin2"),
+    assert.commandFailedWithCode(mongol.getDB("test").copyDatabase("admin",  "admin2"),
         authorizeErrorCode, "copyDatabase");
     // Create collection
-    assert.commandFailedWithCode(mongo.getDB("test").createCollection(
+    assert.commandFailedWithCode(mongol.getDB("test").createCollection(
         "log", { capped: true, size: 5242880, max: 5000 } ),
         authorizeErrorCode, "createCollection");
     // Set/Get system parameters
@@ -60,21 +60,21 @@ var assertCannotRunCommands = function(mongo, isPrimary) {
     params.forEach(function(p) {
         var cmd = { setParameter: 1 };
         cmd[p.param] = p.val;
-        assert.commandFailedWithCode(mongo.getDB("admin").runCommand(cmd),
+        assert.commandFailedWithCode(mongol.getDB("admin").runCommand(cmd),
             authorizeErrorCode, "setParameter: "+p.param);
     });
     params.forEach(function(p) {
         var cmd = { getParameter: 1 };
         cmd[p.param] = 1;
-        assert.commandFailedWithCode(mongo.getDB("admin").runCommand(cmd),
+        assert.commandFailedWithCode(mongol.getDB("admin").runCommand(cmd),
             authorizeErrorCode, "getParameter: "+p.param);
     });
 };
 
-var assertCanRunCommands = function(mongo) {
+var assertCanRunCommands = function(mongol) {
     print("============ ensuring that commands can be run.");
 
-    var test = mongo.getDB("test");
+    var test = mongol.getDB("test");
     // will throw on failure
     test.system.users.findOne();
 
@@ -89,12 +89,12 @@ var assertCanRunCommands = function(mongo) {
         { out: "other" }
     );
 
-    assert.commandWorked(mongo.getDB("admin").runCommand({replSetGetStatus: 1}));
+    assert.commandWorked(mongol.getDB("admin").runCommand({replSetGetStatus: 1}));
 };
 
-var authenticate = function(mongo) {
+var authenticate = function(mongol) {
     print("============ authenticating user.");
-    mongo.getDB("admin").auth(username, password);
+    mongol.getDB("admin").auth(username, password);
 };
 
 var start = function(useHostName) {
@@ -129,30 +129,30 @@ var runTest = function(useHostName) {
         secHosts.push("localhost:" + rs.getPort(sec));
     });
 
-    var mongo = new Mongo(host);
+    var mongol = new Mongo(host);
 
-    assertCannotRunCommands(mongo, true);
+    assertCannotRunCommands(mongol, true);
 
     // Test localhost access on secondaries
-    var mongoSecs = [];
+    var mongolSecs = [];
     secHosts.forEach(function(h) {
-        mongoSecs.push(new Mongo(h));
+        mongolSecs.push(new Mongo(h));
     });
 
-    mongoSecs.forEach(function(m) {
+    mongolSecs.forEach(function(m) {
         assertCannotRunCommands(m, false);
     });
 
-    createUser(mongo);
+    createUser(mongol);
 
-    assertCannotRunCommands(mongo, true);
+    assertCannotRunCommands(mongol, true);
 
-    authenticate(mongo);
+    authenticate(mongol);
 
-    assertCanRunCommands(mongo, true);
+    assertCanRunCommands(mongol, true);
 
     // Test localhost access on secondaries on exsiting connection
-    mongoSecs.forEach(function(m) {
+    mongolSecs.forEach(function(m) {
         assertCannotRunCommands(m, false);
         authenticate(m);
     });
@@ -161,13 +161,13 @@ var runTest = function(useHostName) {
     print("reconnecting with a new client.");
     print("===============================");
 
-    mongo = new Mongo(host);
+    mongol = new Mongo(host);
 
-    assertCannotRunCommands(mongo, true);
+    assertCannotRunCommands(mongol, true);
 
-    authenticate(mongo);
+    authenticate(mongol);
 
-    assertCanRunCommands(mongo, true);
+    assertCanRunCommands(mongol, true);
 
     // Test localhost access on secondaries on new connection
     secHosts.forEach(function(h) {
@@ -181,7 +181,7 @@ var runTest = function(useHostName) {
 
 var runNonlocalTest = function(ipAddr) {
     print("==========================");
-    print("starting mongod: non-local host access "+ipAddr);
+    print("starting mongold: non-local host access "+ipAddr);
     print("==========================");
 
     var rs = start(false);
@@ -193,21 +193,21 @@ var runNonlocalTest = function(ipAddr) {
         secHosts.push(ipAddr +  ":" + rs.getPort(sec));
     });
 
-    var mongo = new Mongo(host);
+    var mongol = new Mongo(host);
 
-    assertCannotRunCommands(mongo, true);
+    assertCannotRunCommands(mongol, true);
 
     // Test localhost access on secondaries
-    var mongoSecs = [];
+    var mongolSecs = [];
     secHosts.forEach(function(h) {
-        mongoSecs.push(new Mongo(h));
+        mongolSecs.push(new Mongo(h));
     });
 
-    mongoSecs.forEach(function(m) {
+    mongolSecs.forEach(function(m) {
         assertCannotRunCommands(m, false);
     });
 
-    assert.throws(function() { mongo.getDB("admin").createUser
+    assert.throws(function() { mongol.getDB("admin").createUser
         ({ user:username, pwd: password, roles: jsTest.adminUserRoles }); });
 
     shutdown(rs);

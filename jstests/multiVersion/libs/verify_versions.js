@@ -7,9 +7,9 @@ Mongo.prototype.getBinVersion = function() {
     return result.version
 }
 
-// Checks that our mongodb process is of a certain version
-assert.binVersion = function(mongo, version) {
-    var currVersion = mongo.getBinVersion();
+// Checks that our mongoldb process is of a certain version
+assert.binVersion = function(mongol, version) {
+    var currVersion = mongol.getBinVersion();
     assert(MongoRunner.areBinVersionsTheSame(MongoRunner.getBinVersionFor(currVersion),
                                              MongoRunner.getBinVersionFor(version)),
            "version " + version + " (" + MongoRunner.getBinVersionFor(version) + ")" + 

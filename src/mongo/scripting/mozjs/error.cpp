@@ -26,14 +26,14 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/error.h"
+#include "mongol/scripting/mozjs/error.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const ErrorInfo::className = "Error";
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

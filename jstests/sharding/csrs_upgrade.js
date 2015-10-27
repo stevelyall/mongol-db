@@ -77,7 +77,7 @@ var st;
     jsTest.log("Setting up SCCC sharded cluster")
     st = new ShardingTest({
         name: "csrsUpgrade",
-        mongos: 2,
+        mongols: 2,
         rs: { nodes: 3 },
         shards: 2,
         nopreallocj: true,
@@ -188,7 +188,7 @@ var st;
         if (csrsStatus.members[0].stateStr == "STARTUP" ||
             csrsStatus.members[0].stateStr == "STARTUP2" ||
             csrsStatus.members[0].stateStr == "RECOVERING") {
-            // Make sure first node is fully online or else mongoses still in SCCC mode might not
+            // Make sure first node is fully online or else mongolses still in SCCC mode might not
             // find any node online to talk to.
             return false;
         }
@@ -216,10 +216,10 @@ var st;
     delete sconfig.port;
     sconfig.configdb = csrsName + "/" + csrs[0].name;
     assertCanSplit(MongoRunner.runMongos(sconfig),
-                   "when mongos started with --configdb=" + sconfig.configdb);
+                   "when mongols started with --configdb=" + sconfig.configdb);
     sconfig.configdb = st.s0.fullOptions.configdb;
     assertCanSplit(MongoRunner.runMongos(sconfig),
-                   "when mongos started with --configdb=" + sconfig.configdb);
-    assertCanSplit(st.s0, "on mongos that drove the upgrade");
-    assertCanSplit(st.s1, "on mongos that was previously unaware of the upgrade");
+                   "when mongols started with --configdb=" + sconfig.configdb);
+    assertCanSplit(st.s0, "on mongols that drove the upgrade");
+    assertCanSplit(st.s1, "on mongols that was previously unaware of the upgrade");
 }());

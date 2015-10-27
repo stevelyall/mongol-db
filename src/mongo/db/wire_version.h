@@ -26,7 +26,7 @@
 *    it in the license file.
 */
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The 'WireVersion' captures all "protocol events" the write protocol went through.  A
@@ -34,7 +34,7 @@ namespace mongo {
  * existing messages. We may also add "logical" entries for releases, although that's not
  * mandatory.
  *
- * We use the wire version to determine if two agents (a driver, a mongos, or a mongod) can
+ * We use the wire version to determine if two agents (a driver, a mongols, or a mongold) can
  * interact. Each agent carries two versions, a 'max' and a 'min' one. If the two agents
  * are on the same 'max' number, they stricly speak the same wire protocol and it is safe
  * to allow them to communicate. If two agents' ranges do not intersect, they should not be
@@ -56,7 +56,7 @@ enum WireVersion {
     // support SCRAM-SHA1, listIndexes, listCollections, new explain
     RELEASE_2_7_7 = 3,
 
-    // Support find and getMore commands, as well as OP_COMMAND in mongod (but not mongos).
+    // Support find and getMore commands, as well as OP_COMMAND in mongold (but not mongols).
     FIND_COMMAND = 4,
 };
 
@@ -68,4 +68,4 @@ static const int maxWireVersion = FIND_COMMAND;
 // to allow communication with too old agents.
 static const int minWireVersion = RELEASE_2_4_AND_BEFORE;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONField;
-using mongo::BSONObj;
+using mongol::BSONField;
+using mongol::BSONObj;
 
 TEST(Assignment, Simple) {
     BSONField<int> x("x");

@@ -30,14 +30,14 @@
 
 #pragma once
 
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/concurrency/rwlockimpl.h"
-#include "mongo/util/concurrency/simplerwlock.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/time_support.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/rwlockimpl.h"
+#include "mongol/util/concurrency/simplerwlock.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class RWLock : public RWLockBase {
     enum {

@@ -28,13 +28,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/db/matcher/expression_tree.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/db/matcher/expression_tree.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 bool isComparisonMatchExpression(const MatchExpression* expr) {
@@ -273,4 +273,4 @@ bool isSubsetOf(const MatchExpression* lhs, const MatchExpression* rhs) {
 }
 
 }  // namespace expression
-}  // namespace mongo
+}  // namespace mongol

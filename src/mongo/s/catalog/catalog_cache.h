@@ -32,10 +32,10 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class CatalogManager;
 class DBConfig;
@@ -86,4 +86,4 @@ private:
     ShardedDatabasesMap _databases;
 };
 
-}  // namespace mongo
+}  // namespace mongol

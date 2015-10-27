@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/stats/top.h"
-#include "mongo/db/commands.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/db/commands.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 class TopCommand : public Command {
 public:

@@ -31,10 +31,10 @@
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsontypes.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsontypes.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Status;
 
@@ -45,4 +45,4 @@ class Status;
  */
 Status validateBSON(const char* buf, uint64_t maxLength);
 
-}  // namespace mongo
+}  // namespace mongol

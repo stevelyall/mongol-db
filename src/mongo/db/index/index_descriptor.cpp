@@ -28,12 +28,12 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/util/log.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 void populateOptionsMap(std::map<StringData, BSONElement>& theMap, const BSONObj& spec) {

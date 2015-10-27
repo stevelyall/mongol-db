@@ -31,9 +31,9 @@
 #include <cstdint>
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 class DecorationRegistry;
 
@@ -127,4 +127,4 @@ private:
     const std::unique_ptr<unsigned char[]> _decorationData;
 };
 
-}  // namespace mongo
+}  // namespace mongol

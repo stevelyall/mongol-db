@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 class OperationContext;
@@ -86,4 +86,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

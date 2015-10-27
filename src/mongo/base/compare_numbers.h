@@ -29,10 +29,10 @@
 
 #include <cmath>
 
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * These functions compare numbers using the same rules as BSON. Care is taken to always give
@@ -176,4 +176,4 @@ inline int compareDoubleToDecimal(double lhs, Decimal128 rhs) {
     return -compareDecimalToDouble(rhs, lhs);
 }
 
-}  // namespace mongo
+}  // namespace mongol

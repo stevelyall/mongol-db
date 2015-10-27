@@ -27,25 +27,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/engine.h"
+#include "mongol/scripting/engine.h"
 
 #include <cctype>
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
-#include "mongo/util/text.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::set;
@@ -278,7 +278,7 @@ extern const JSFile crud_api;
 extern const JSFile db;
 extern const JSFile explain_query;
 extern const JSFile explainable;
-extern const JSFile mongo;
+extern const JSFile mongol;
 extern const JSFile mr;
 extern const JSFile query;
 extern const JSFile upgrade_check;
@@ -294,7 +294,7 @@ void Scope::execCoreFiles() {
     execSetup(JSFiles::utils_sh);
     execSetup(JSFiles::utils_auth);
     execSetup(JSFiles::db);
-    execSetup(JSFiles::mongo);
+    execSetup(JSFiles::mongol);
     execSetup(JSFiles::mr);
     execSetup(JSFiles::query);
     execSetup(JSFiles::bulk_api);

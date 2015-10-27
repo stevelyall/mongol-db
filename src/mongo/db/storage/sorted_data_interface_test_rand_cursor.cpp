@@ -28,21 +28,21 @@
  */
 
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::set;
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 // A random iterator should never return any entries from an empty index.
 TEST(SortedDataInterface, GetRandomIteratorEmpty) {
@@ -243,4 +243,4 @@ TEST(SortedDataInterface, GetRandomIteratorLargeDocs) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

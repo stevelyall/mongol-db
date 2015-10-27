@@ -30,10 +30,10 @@
 
 #include <queue>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecordId;
 
@@ -101,4 +101,4 @@ private:
     MockStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

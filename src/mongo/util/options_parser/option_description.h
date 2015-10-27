@@ -29,11 +29,11 @@
 
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/util/options_parser/constraints.h"
-#include "mongo/util/options_parser/value.h"
+#include "mongol/base/status.h"
+#include "mongol/util/options_parser/constraints.h"
+#include "mongol/util/options_parser/value.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 /**
@@ -233,4 +233,4 @@ public:
 };
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

@@ -27,13 +27,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/client/authenticate.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/client/authenticate.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 
 /**
@@ -42,7 +42,7 @@ class BSONObj;
  * Do not use directly in client code.  Use the auth::authenticateClient() method, instead.
  *
  * Test against NULL for availability.  Client driver must be compiled with SASL support _and_
- * client application must have successfully executed mongo::runGlobalInitializersOrDie() or its
+ * client application must have successfully executed mongol::runGlobalInitializersOrDie() or its
  * ilk to make this functionality available.
  *
  * The "saslParameters" BSONObj should be initialized with zero or more of the
@@ -56,9 +56,9 @@ class BSONObj;
  *     "user": The std::string name of the user to authenticate.
  *     "db": The database target of the auth command, which identifies the location
  *         of the credential information for the user.  May be "$external" if credential
- *         information is stored outside of the mongo cluster.
+ *         information is stored outside of the mongol cluster.
  *     "pwd": The password.
- *     "serviceName": The GSSAPI service name to use.  Defaults to "mongodb".
+ *     "serviceName": The GSSAPI service name to use.  Defaults to "mongoldb".
  *     "serviceHostname": The GSSAPI hostname to use.  Defaults to the name of the remote host.
  *
  * Other fields in saslParameters are silently ignored.
@@ -127,20 +127,20 @@ extern const char* const saslCommandPayloadFieldName;
 extern const char* const saslCommandUserFieldName;
 
 /// Field containing the std::string identifier of the database containing credential information,
-/// or "$external" if the credential information is stored outside of the mongo cluster.
+/// or "$external" if the credential information is stored outside of the mongol cluster.
 extern const char* const saslCommandUserDBFieldName;
 
-/// Field overriding the FQDN of the hostname hosting the mongodb srevice in
+/// Field overriding the FQDN of the hostname hosting the mongoldb srevice in
 /// saslClientAuthenticate().
 extern const char* const saslCommandServiceHostnameFieldName;
 
-/// Field overriding the name of the mongodb service saslClientAuthenticate().
+/// Field overriding the name of the mongoldb service saslClientAuthenticate().
 extern const char* const saslCommandServiceNameFieldName;
 
 /// Default database against which sasl authentication commands should run.
 extern const char* const saslDefaultDBName;
 
-/// Default sasl service name, "mongodb".
+/// Default sasl service name, "mongoldb".
 extern const char* const saslDefaultServiceName;
 
 // Field whose value should be set to true if the field in saslCommandPasswordFieldName needs to

@@ -26,35 +26,35 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 #include <signal.h>
 
-#include "mongo/base/initializer.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/tools/mongobridge_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/text.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/initializer.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/tools/mongolbridge_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/text.h"
+#include "mongol/util/timer.h"
 
-using namespace mongo;
+using namespace mongol;
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 bool inShutdown() {
     return false;
 }
-}  // namespace mongo
+}  // namespace mongol
 
 void cleanup(int sig);
 
@@ -67,12 +67,12 @@ public:
         string errmsg;
 
         Timer connectTimer;
-        while (!dest.connect(HostAndPort(mongoBridgeGlobalParams.destUri), errmsg)) {
+        while (!dest.connect(HostAndPort(mongolBridgeGlobalParams.destUri), errmsg)) {
             // If we can't connect for the configured timeout, give up
             //
-            if (connectTimer.seconds() >= mongoBridgeGlobalParams.connectTimeoutSec) {
+            if (connectTimer.seconds() >= mongolBridgeGlobalParams.connectTimeoutSec) {
                 cout << "Unable to establish connection from " << mp_.psock->remoteString()
-                     << " to " << mongoBridgeGlobalParams.destUri << " after "
+                     << " to " << mongolBridgeGlobalParams.destUri << " after "
                      << connectTimer.seconds() << " seconds. Giving up." << endl;
                 mp_.shutdown();
                 return;
@@ -90,7 +90,7 @@ public:
                     mp_.shutdown();
                     break;
                 }
-                sleepmillis(mongoBridgeGlobalParams.delay);
+                sleepmillis(mongolBridgeGlobalParams.delay);
 
                 int oldId = m.header().getId();
                 if (m.operation() == dbQuery || m.operation() == dbMsg ||
@@ -179,13 +179,13 @@ inline void setupSignals() {}
 #endif
 
 int toolMain(int argc, char** argv, char** envp) {
-    mongo::runGlobalInitializersOrDie(argc, argv, envp);
+    mongol::runGlobalInitializersOrDie(argc, argv, envp);
 
     static StaticObserver staticObserver;
 
     setupSignals();
 
-    listener.reset(new MyListener(mongoBridgeGlobalParams.port));
+    listener.reset(new MyListener(mongolBridgeGlobalParams.port));
     listener->setupSockets();
     listener->initAndListen();
 

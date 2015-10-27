@@ -50,13 +50,13 @@ assert.neq(0, plan.executionStats.totalDocsExamined,
 // Commenting out negative.1.5 and 1.6 pending fix in SERVER-8650
 // // Test projection and $natural sort
 // var plan = coll.find({a:{$gt:70}},{a:1, b:1, c:1, _id:0}).sort({$natural:1}).hint({a:1, b:-1, c:1}).explain()
-// // indexOnly should be false but is not due to bug https://jira.mongodb.org/browse/SERVER-8561
+// // indexOnly should be false but is not due to bug https://jira.mongoldb.org/browse/SERVER-8561
 // assert.eq(true, plan.indexOnly, "negative.1.5 - indexOnly should be false on a non covered query")
 // assert.neq(0, plan.nscannedObjects, "negative.1.5 - nscannedObjects should not be 0 for a non covered query")
 
 // // Test sort on non-indexed field
 // var plan = coll.find({d:{$lt:1000}},{d:1, _id:0}).sort({c:1}).hint({d:1}).explain()
-// //indexOnly should be false but is not due to bug https://jira.mongodb.org/browse/SERVER-8562
+// //indexOnly should be false but is not due to bug https://jira.mongoldb.org/browse/SERVER-8562
 // assert.eq(true, plan.indexOnly, "negative.1.6 - indexOnly should be false on a non covered query")
 // assert.neq(0, plan.nscannedObjects, "negative.1.6 - nscannedObjects should not be 0 for a non covered query")
 

@@ -25,22 +25,22 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/algorithm.h"
 
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/json.h"
-#include "mongo/platform/basic.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/json.h"
+#include "mongol/platform/basic.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::Status;
-using namespace mongo::mutablebson;
+using mongol::Status;
+using namespace mongol::mutablebson;
 
-class DocumentTest : public mongo::unittest::Test {
+class DocumentTest : public mongol::unittest::Test {
 public:
     DocumentTest() : _doc() {}
 
@@ -308,23 +308,23 @@ TEST_F(CountTest, CountSiblingsMany) {
 }
 
 TEST(DeduplicateTest, ManyDuplicates) {
-    Document doc(mongo::fromjson("{ x : [ 1, 2, 2, 3, 3, 3, 4, 4, 4 ] }"));
+    Document doc(mongol::fromjson("{ x : [ 1, 2, 2, 3, 3, 3, 4, 4, 4 ] }"));
     deduplicateChildren(doc.root().leftChild(), woEqual(false));
-    ASSERT_TRUE(checkDoc(doc, mongo::fromjson("{x : [ 1, 2, 3, 4 ]}")));
+    ASSERT_TRUE(checkDoc(doc, mongol::fromjson("{x : [ 1, 2, 3, 4 ]}")));
 }
 
 TEST(FullNameTest, RootField) {
-    Document doc(mongo::fromjson("{ x : 1 }"));
+    Document doc(mongol::fromjson("{ x : 1 }"));
     ASSERT_EQUALS("x", getFullName(doc.root().leftChild()));
 }
 
 TEST(FullNameTest, OneLevel) {
-    Document doc(mongo::fromjson("{ x : { y: 1 } }"));
+    Document doc(mongol::fromjson("{ x : { y: 1 } }"));
     ASSERT_EQUALS("x.y", getFullName(doc.root().leftChild().leftChild()));
 }
 
 TEST(FullNameTest, InsideArray) {
-    Document doc(mongo::fromjson("{ x : { y: [ 1 , 2 ] } }"));
+    Document doc(mongol::fromjson("{ x : { y: [ 1 , 2 ] } }"));
     ASSERT_EQUALS("x.y.1",
                   getFullName(doc.root().leftChild().leftChild().leftChild().rightSibling()));
 }

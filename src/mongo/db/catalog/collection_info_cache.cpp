@@ -28,25 +28,25 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/collection_info_cache.h"
+#include "mongol/db/catalog/collection_info_cache.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index_legacy.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/planner_ixselect.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/clock_source.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index_legacy.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/planner_ixselect.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 CollectionInfoCache::CollectionInfoCache(Collection* collection)
     : _collection(collection),

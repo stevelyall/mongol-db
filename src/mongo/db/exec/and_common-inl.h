@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/working_set.h"
+#include "mongol/db/exec/working_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class AndCommon {
 public:
@@ -100,4 +100,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

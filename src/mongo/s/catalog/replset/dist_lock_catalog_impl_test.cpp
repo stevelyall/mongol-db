@@ -26,35 +26,35 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <utility>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/json.h"
-#include "mongo/client/remote_command_targeter_factory_mock.h"
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/query/find_and_modify_request.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/network_test_env.h"
-#include "mongo/executor/thread_pool_task_executor_test_fixture.h"
-#include "mongo/s/catalog/catalog_manager_mock.h"
-#include "mongo/s/catalog/replset/dist_lock_catalog_impl.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/json.h"
+#include "mongol/client/remote_command_targeter_factory_mock.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/query/find_and_modify_request.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/network_test_env.h"
+#include "mongol/executor/thread_pool_task_executor_test_fixture.h"
+#include "mongol/s/catalog/catalog_manager_mock.h"
+#include "mongol/s/catalog/replset/dist_lock_catalog_impl.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 using executor::NetworkInterfaceMock;
@@ -72,7 +72,7 @@ static const stdx::chrono::seconds kFutureTimeout{5};
 /**
  * Sets up the mocked out objects for testing the replica-set backed catalog manager.
  */
-class DistLockCatalogFixture : public mongo::unittest::Test {
+class DistLockCatalogFixture : public mongol::unittest::Test {
 public:
     template <typename Lambda>
     executor::NetworkTestEnv::FutureHandle<typename std::result_of<Lambda()>::type> launchAsync(
@@ -303,7 +303,7 @@ TEST_F(DistLockCatalogFixture, GrabLockNoOp) {
         OID myID("555f80be366c194b13fb0372");
         Date_t now(dateFromISOString("2015-05-22T19:17:18.098Z").getValue());
         auto resultStatus =
-            catalog()->grabLock(txn(), "test", myID, "me", "mongos", now, "because").getStatus();
+            catalog()->grabLock(txn(), "test", myID, "me", "mongols", now, "because").getStatus();
 
         ASSERT_EQUALS(ErrorCodes::LockStateChangeFailed, resultStatus.code());
     });
@@ -320,7 +320,7 @@ TEST_F(DistLockCatalogFixture, GrabLockNoOp) {
                         ts: ObjectId("555f80be366c194b13fb0372"),
                         state: 2,
                         who: "me",
-                        process: "mongos",
+                        process: "mongols",
                         when: { $date: "2015-05-22T19:17:18.098Z" },
                         why: "because"
                     }
@@ -344,7 +344,7 @@ TEST_F(DistLockCatalogFixture, GrabLockWithNewDoc) {
         OID myID("555f80be366c194b13fb0372");
         Date_t now(dateFromISOString("2015-05-22T19:17:18.098Z").getValue());
         auto resultStatus =
-            catalog()->grabLock(txn(), "test", myID, "me", "mongos", now, "because");
+            catalog()->grabLock(txn(), "test", myID, "me", "mongols", now, "because");
         ASSERT_OK(resultStatus.getStatus());
 
         const auto& lockDoc = resultStatus.getValue();
@@ -352,7 +352,7 @@ TEST_F(DistLockCatalogFixture, GrabLockWithNewDoc) {
         ASSERT_EQUALS("test", lockDoc.getName());
         ASSERT_EQUALS(myID, lockDoc.getLockID());
         ASSERT_EQUALS("me", lockDoc.getWho());
-        ASSERT_EQUALS("mongos", lockDoc.getProcess());
+        ASSERT_EQUALS("mongols", lockDoc.getProcess());
         ASSERT_EQUALS("because", lockDoc.getWhy());
     });
 
@@ -368,7 +368,7 @@ TEST_F(DistLockCatalogFixture, GrabLockWithNewDoc) {
                         ts: ObjectId("555f80be366c194b13fb0372"),
                         state: 2,
                         who: "me",
-                        process: "mongos",
+                        process: "mongols",
                         when: { $date: "2015-05-22T19:17:18.098Z" },
                         why: "because"
                     }
@@ -392,7 +392,7 @@ TEST_F(DistLockCatalogFixture, GrabLockWithNewDoc) {
                     ts: ObjectId("555f80be366c194b13fb0372"),
                     state: 2,
                     who: "me",
-                    process: "mongos",
+                    process: "mongols",
                     when: { $date: "2015-05-22T19:17:18.098Z" },
                     why: "because"
                 },
@@ -424,7 +424,7 @@ TEST_F(DistLockCatalogFixture, GrabLockWithBadLockDoc) {
                     ts: ObjectId("555f80be366c194b13fb0372"),
                     state: "x",
                     who: "me",
-                    process: "mongos",
+                    process: "mongols",
                     when: { $date: "2015-05-22T19:17:18.098Z" },
                     why: "because"
                 },
@@ -610,7 +610,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockNoOp) {
         Date_t now(dateFromISOString("2015-05-22T19:17:18.098Z").getValue());
         auto resultStatus =
             catalog()
-                ->overtakeLock(txn(), "test", myID, currentOwner, "me", "mongos", now, "because")
+                ->overtakeLock(txn(), "test", myID, currentOwner, "me", "mongols", now, "because")
                 .getStatus();
 
         ASSERT_EQUALS(ErrorCodes::LockStateChangeFailed, resultStatus.code());
@@ -633,7 +633,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockNoOp) {
                         ts: ObjectId("555f80be366c194b13fb0372"),
                         state: 2,
                         who: "me",
-                        process: "mongos",
+                        process: "mongols",
                         when: { $date: "2015-05-22T19:17:18.098Z" },
                         why: "because"
                     }
@@ -657,7 +657,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockWithNewDoc) {
         OID currentOwner("555f99712c99a78c5b083358");
         Date_t now(dateFromISOString("2015-05-22T19:17:18.098Z").getValue());
         auto resultStatus = catalog()->overtakeLock(
-            txn(), "test", myID, currentOwner, "me", "mongos", now, "because");
+            txn(), "test", myID, currentOwner, "me", "mongols", now, "because");
         ASSERT_OK(resultStatus.getStatus());
 
         const auto& lockDoc = resultStatus.getValue();
@@ -665,7 +665,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockWithNewDoc) {
         ASSERT_EQUALS("test", lockDoc.getName());
         ASSERT_EQUALS(myID, lockDoc.getLockID());
         ASSERT_EQUALS("me", lockDoc.getWho());
-        ASSERT_EQUALS("mongos", lockDoc.getProcess());
+        ASSERT_EQUALS("mongols", lockDoc.getProcess());
         ASSERT_EQUALS("because", lockDoc.getWhy());
     });
 
@@ -686,7 +686,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockWithNewDoc) {
                         ts: ObjectId("555f80be366c194b13fb0372"),
                         state: 2,
                         who: "me",
-                        process: "mongos",
+                        process: "mongols",
                         when: { $date: "2015-05-22T19:17:18.098Z" },
                         why: "because"
                     }
@@ -709,7 +709,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockWithNewDoc) {
                     ts: ObjectId("555f80be366c194b13fb0372"),
                     state: 2,
                     who: "me",
-                    process: "mongos",
+                    process: "mongols",
                     when: { $date: "2015-05-22T19:17:18.098Z" },
                     why: "because"
                 },
@@ -742,7 +742,7 @@ TEST_F(DistLockCatalogFixture, OvertakeLockWithBadLockDoc) {
                     ts: ObjectId("555f80be366c194b13fb0372"),
                     state: "x",
                     who: "me",
-                    process: "mongos",
+                    process: "mongols",
                     when: { $date: "2015-05-22T19:17:18.098Z" },
                     why: "because"
                 },
@@ -1579,4 +1579,4 @@ TEST_F(DistLockCatalogFixture, GetLockByNameUnsupportedFormat) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

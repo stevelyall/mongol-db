@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/auth/sasl_server_conversation.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/auth/sasl_server_conversation.h"
 
-namespace mongo {
+namespace mongol {
 /**
  *  Server side authentication session for SASL PLAIN.
  */
@@ -54,4 +54,4 @@ public:
     virtual StatusWith<bool> step(StringData inputData, std::string* outputData);
 };
 
-}  // namespace mongo
+}  // namespace mongol

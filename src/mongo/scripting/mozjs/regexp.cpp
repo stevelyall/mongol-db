@@ -26,14 +26,14 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/regexp.h"
+#include "mongol/scripting/mozjs/regexp.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const RegExpInfo::className = "RegExp";
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

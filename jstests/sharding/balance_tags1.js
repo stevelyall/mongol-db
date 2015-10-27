@@ -1,7 +1,7 @@
 // Test balancing all chunks off of one shard
 var st = new ShardingTest({ name: "balance_tags1",
                             shards: 3,
-                            mongos: 1,
+                            mongols: 1,
                             verbose: 1,
                             other: { chunkSize: 1,
                                      enableBalancer : true } });

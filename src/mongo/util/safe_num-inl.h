@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 inline SafeNum::SafeNum() : _type(EOO) {}
 
@@ -125,4 +125,4 @@ inline BSONType SafeNum::type() const {
     return _type;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Insert a key and verify that dupKeyCheck() returns a non-OK status for
 // the same key. When dupKeyCheck() is called with the exact (key, RecordId)
@@ -165,4 +165,4 @@ TEST(SortedDataInterface, DupKeyCheckWhenDiskLocAfter) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

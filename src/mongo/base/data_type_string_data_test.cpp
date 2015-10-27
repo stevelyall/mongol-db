@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_type_string_data.h"
+#include "mongol/base/data_type_string_data.h"
 
-#include "mongo/base/data_type_terminated.h"
-#include "mongo/base/data_range.h"
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_terminated.h"
+#include "mongol/base/data_range.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(DataTypeStringData, Basic) {
     char buf[100];
@@ -67,4 +67,4 @@ TEST(DataTypeStringData, Basic) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

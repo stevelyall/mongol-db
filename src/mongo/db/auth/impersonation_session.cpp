@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/impersonation_session.h"
+#include "mongol/db/auth/impersonation_session.h"
 
 #include <boost/optional.hpp>
 #include <tuple>
 
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/rpc/metadata/audit_metadata.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/rpc/metadata/audit_metadata.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 ImpersonationSessionGuard::ImpersonationSessionGuard(OperationContext* txn) : _txn(txn) {
     auto authSession = AuthorizationSession::get(_txn->getClient());
@@ -69,4 +69,4 @@ ImpersonationSessionGuard::~ImpersonationSessionGuard() {
         if (_active) { AuthorizationSession::get(_txn->getClient())->clearImpersonatedUserData(); })
 }
 
-}  // namespace mongo
+}  // namespace mongol

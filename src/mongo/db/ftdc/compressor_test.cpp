@@ -26,23 +26,23 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <limits>
 #include <random>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/ftdc/compressor.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/decompressor.h"
-#include "mongo/db/ftdc/ftdc_test.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/ftdc/compressor.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/decompressor.h"
+#include "mongol/db/ftdc/ftdc_test.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 #define ASSERT_HAS_SPACE(st) \
     ASSERT_TRUE(st.isOK());  \
@@ -338,7 +338,7 @@ TEST(FTDCCompressor, Types) {
                                << "bindata" << BSONBinData(&bytes[0], 3, bdtCustom)  // bindata
                                << "oid" << OID("010203040506070809101112")           // oid
                                << "bool" << true                                     // bool
-                               << "regex" << BSONRegEx("mongodb")                    // regex
+                               << "regex" << BSONRegEx("mongoldb")                    // regex
                                << "ref" << BSONDBRef("c", OID("010203040506070809101112"))  // ref
                                << "code" << BSONCode("func f() { return 1; }")              // code
                                << "codewscope" << BSONCodeWScope("func f() { return 1; }",
@@ -434,4 +434,4 @@ TEST(ZFTDCCompressor, TestManyMetrics) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

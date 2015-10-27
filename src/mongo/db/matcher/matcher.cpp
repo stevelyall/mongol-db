@@ -28,25 +28,25 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/matcher/path.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/base/init.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/matcher/path.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 Matcher::Matcher(const BSONObj& pattern, const MatchExpressionParser::WhereCallback& whereCallback)
     : _pattern(pattern) {
     StatusWithMatchExpression statusWithMatcher =
         MatchExpressionParser::parse(pattern, whereCallback);
     uassert(16810,
-            mongoutils::str::stream() << "bad query: " << statusWithMatcher.getStatus().toString(),
+            mongolutils::str::stream() << "bad query: " << statusWithMatcher.getStatus().toString(),
             statusWithMatcher.isOK());
 
     _expression = std::move(statusWithMatcher.getValue());
@@ -59,4 +59,4 @@ bool Matcher::matches(const BSONObj& doc, MatchDetails* details) const {
     return _expression->matchesBSON(doc, details);
 }
 
-}  // namespace mongo
+}  // namespace mongol

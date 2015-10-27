@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio.h"
 
 #include <utility>
 
-#include "mongo/base/system_error.h"
-#include "mongo/config.h"
-#include "mongo/executor/async_stream.h"
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/base/system_error.h"
+#include "mongol/config.h"
+#include "mongol/executor/async_stream.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 using asio::ip::tcp;
@@ -121,4 +121,4 @@ void NetworkInterfaceASIO::_setupSocket(AsyncOp* op, tcp::resolver::iterator end
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

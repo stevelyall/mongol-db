@@ -8,7 +8,7 @@ env.Library(
         'hostandport.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/foundation',
+        '$BUILD_DIR/mongol/util/foundation',
     ],
 )
 
@@ -37,12 +37,12 @@ env.Library(
         "ssl_options.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/server_options_core',
-        '$BUILD_DIR/mongo/util/background_job',
-        '$BUILD_DIR/mongo/util/concurrency/ticketholder',
-        '$BUILD_DIR/mongo/util/fail_point',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/options_parser/options_parser',
+        '$BUILD_DIR/mongol/db/server_options_core',
+        '$BUILD_DIR/mongol/util/background_job',
+        '$BUILD_DIR/mongol/util/concurrency/ticketholder',
+        '$BUILD_DIR/mongol/util/fail_point',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/options_parser/options_parser',
         'hostandport',
     ],
     LIBDEPS_TAGS=[
@@ -67,7 +67,7 @@ env.CppUnitTest(
         'sock_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/concurrency/synchronization',
+        '$BUILD_DIR/mongol/util/concurrency/synchronization',
         'network',
     ],
 )
@@ -78,8 +78,8 @@ env.Library(
         "hostname_canonicalization_worker.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/service_context',
         'network',
     ],
 )
@@ -91,7 +91,7 @@ env.Library(
     ],
     LIBDEPS=[
         'network',
-        '$BUILD_DIR/mongo/db/stats/counters',
+        '$BUILD_DIR/mongol/db/stats/counters',
     ],
     LIBDEPS_TAGS=[
         # Depends on inShutdown and dbexit

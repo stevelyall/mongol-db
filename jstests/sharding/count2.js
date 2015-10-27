@@ -2,8 +2,8 @@
 
 var s1 = new ShardingTest({ name: "count2",
                             shards: 2,
-                            mongos: 2 });
-var s2 = s1._mongos[1];
+                            mongols: 2 });
+var s2 = s1._mongols[1];
 
 s1.adminCommand( { enablesharding: "test" } );
 s1.ensurePrimaryShard('test', 'shard0001');
@@ -23,21 +23,21 @@ db1.save( { name : "fff" } )
 
 s1.adminCommand( { split : "test.foo" , middle : { name : "ddd" } } );
 
-assert.eq( 3, db1.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "initial count mongos1" );
-assert.eq( 3, db2.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "initial count mongos2" );
+assert.eq( 3, db1.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "initial count mongols1" );
+assert.eq( 3, db2.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "initial count mongols2" );
 
 s1.printChunks( "test.foo" )
 
 s1.adminCommand( { movechunk : "test.foo" , find : { name : "aaa" } , to : s1.getOther( s1.getServer( "test" ) ).name, _waitForDelete : true });
 
-assert.eq( 3, db1.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "post count mongos1" );
+assert.eq( 3, db1.count( { name : { $gte: "aaa" , $lt: "ddd" } } ) , "post count mongols1" );
 
-// The second mongos still thinks its shard mapping is valid and accepts a cound
+// The second mongols still thinks its shard mapping is valid and accepts a cound
 print( "before sleep: " + Date() )
 sleep( 2000 )
 print( "after  sleep: " + Date() )
 s1.printChunks( "test.foo" )
-assert.eq( 3, db2.find( { name : { $gte: "aaa" , $lt: "ddd" } } ).count() , "post count mongos2" );
+assert.eq( 3, db2.find( { name : { $gte: "aaa" , $lt: "ddd" } } ).count() , "post count mongols2" );
 
 db2.findOne();
 

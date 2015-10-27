@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/executor/task_executor.h"
-#include "mongo/s/query/router_exec_stage.h"
-#include "mongo/s/query/cluster_client_cursor_params.h"
-#include "mongo/s/query/async_results_merger.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/s/query/router_exec_stage.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
+#include "mongol/s/query/async_results_merger.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Draws results from the AsyncShardResultsMerger, which is the underlying source of the stream of
@@ -59,4 +59,4 @@ private:
     AsyncResultsMerger _arm;
 };
 
-}  // namespace mongo
+}  // namespace mongol

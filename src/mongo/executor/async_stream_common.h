@@ -30,9 +30,9 @@
 #include <system_error>
 #include <utility>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 void logCloseFailed(std::error_code ec);
@@ -71,4 +71,4 @@ void cancelStream(ASIOStream* stream, bool connected) {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

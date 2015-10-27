@@ -1,6 +1,6 @@
 /**
- * This tests that updates to user and role definitions made on one mongos propagate properly
- * to other mongoses.
+ * This tests that updates to user and role definitions made on one mongols propagate properly
+ * to other mongolses.
  */
 
 var authzErrorCode = 13;
@@ -11,7 +11,7 @@ var hasAuthzError = function (result) {
 
 var st = new ShardingTest({ shards: 2,
                             config: 3,
-                            mongos: [{},
+                            mongols: [{},
                                      {setParameter: "userCacheInvalidationIntervalSecs=5"},
                                      {setParameter: "userCacheInvalidationIntervalSecs=600"}],
                             keyFile: 'jstests/libs/key1' });
@@ -54,10 +54,10 @@ db3.auth('spencer', 'pwd');
 
 /**
  * At this point we have 3 handles to the "test" database, each of which are on connections to
- * different mongoses.  "db1", "db2", and "db3" are all auth'd as spencer@test and will be used
- * to verify that user and role data changes get propaged to their mongoses.
- * "db2" is connected to a mongos with a 5 second user cache invalidation interval,
- * while "db3" is connected to a mongos with a 10 minute cache invalidation interval.
+ * different mongolses.  "db1", "db2", and "db3" are all auth'd as spencer@test and will be used
+ * to verify that user and role data changes get propaged to their mongolses.
+ * "db2" is connected to a mongols with a 5 second user cache invalidation interval,
+ * while "db3" is connected to a mongols with a 10 minute cache invalidation interval.
  */
 
 (function testChangingInvalidationInterval() {
@@ -168,7 +168,7 @@ db3.auth('spencer', 'pwd');
  })();
 
 (function testConcurrentUserModification() {
-     jsTestLog("Testing having 2 mongoses modify the same user at the same time"); // SERVER-13850
+     jsTestLog("Testing having 2 mongolses modify the same user at the same time"); // SERVER-13850
 
      assert.writeOK(db1.foo.update({}, { $inc: { a: 1 }}));
      assert.writeOK(db3.foo.update({}, { $inc: { a: 1}}));
@@ -220,4 +220,4 @@ db3.auth('spencer', 'pwd');
 
 st.stop();
 
-print("SUCCESS Completed mongos_cache_invalidation.js");
+print("SUCCESS Completed mongols_cache_invalidation.js");

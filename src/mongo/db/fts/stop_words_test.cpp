@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/stop_words.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/stop_words.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 TEST(English, Basic1) {

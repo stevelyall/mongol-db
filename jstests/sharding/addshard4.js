@@ -3,7 +3,7 @@
 
 var s = new ShardingTest({ name: "addshard4",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            other: {useHostname : true} });
 
 var r = new ReplSetTest({name: "addshard4", nodes: 3});

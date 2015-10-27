@@ -28,23 +28,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
-#include "mongo/base/init.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/platform/basic.h"
+#include "mongol/base/init.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
 using stdx::make_unique;
 
 /**
- * Bogus no-op $where match expression to parse $where in mongos,
- * since mongos doesn't have script engine to compile JS functions.
+ * Bogus no-op $where match expression to parse $where in mongols,
+ * since mongols doesn't have script engine to compile JS functions.
  *
- * Linked into mongos, instead of the real WhereMatchExpression.
+ * Linked into mongols, instead of the real WhereMatchExpression.
  */
 class WhereNoOpMatchExpression : public MatchExpression {
 public:
@@ -95,7 +95,7 @@ Status WhereNoOpMatchExpression::init(StringData theCode) {
 
 void WhereNoOpMatchExpression::debugString(StringBuilder& debug, int level) const {
     _debugAddSpace(debug, level);
-    debug << "$where (only in mongos)\n";
+    debug << "$where (only in mongols)\n";
 
     _debugAddSpace(debug, level + 1);
     debug << "code: " << _code << "\n";

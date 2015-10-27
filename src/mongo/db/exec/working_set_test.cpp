@@ -27,24 +27,24 @@
  */
 
 /**
- * This file contains tests for mongo/db/exec/working_set.cpp
+ * This file contains tests for mongol/db/exec/working_set.cpp
  */
 
 
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/json.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/storage/snapshot.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/json.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/storage/snapshot.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
 using std::string;
 
-class WorkingSetFixture : public mongo::unittest::Test {
+class WorkingSetFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         ws.reset(new WorkingSet());

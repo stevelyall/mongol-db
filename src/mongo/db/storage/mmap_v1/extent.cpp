@@ -28,13 +28,13 @@
 *    it in the license file.
 */
 
-#include "mongo/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
 
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::iostream;
 using std::string;

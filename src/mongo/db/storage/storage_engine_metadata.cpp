@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/storage_engine_metadata.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
 
 #include <cstdio>
 #include <boost/filesystem.hpp>
@@ -40,12 +40,12 @@
 #include <ostream>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -172,7 +172,7 @@ Status StorageEngineMetadata::read() {
 
     // Validate 'storage.engine' field.
     BSONElement storageEngineElement = obj.getFieldDotted("storage.engine");
-    if (storageEngineElement.type() != mongo::String) {
+    if (storageEngineElement.type() != mongol::String) {
         return Status(ErrorCodes::FailedToParse,
                       str::stream() << "The 'storage.engine' field in metadata must be a string: "
                                     << storageEngineElement.toString());
@@ -265,4 +265,4 @@ Status StorageEngineMetadata::validateStorageEngineOption<bool>(StringData field
                       << (element.boolean() ? "true" : "false") << " and cannot be changed");
 }
 
-}  // namespace mongo
+}  // namespace mongol

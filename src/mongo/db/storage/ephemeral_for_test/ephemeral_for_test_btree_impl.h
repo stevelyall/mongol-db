@@ -29,11 +29,11 @@
  */
 
 
-#include "mongo/db/storage/sorted_data_interface.h"
+#include "mongol/db/storage/sorted_data_interface.h"
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class IndexCatalogEntry;
 
@@ -44,4 +44,4 @@ class IndexCatalogEntry;
 SortedDataInterface* getEphemeralForTestBtreeImpl(const Ordering& ordering,
                                                   std::shared_ptr<void>* dataInOut);
 
-}  // namespace mongo
+}  // namespace mongol

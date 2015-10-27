@@ -25,7 +25,7 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
 #include <boost/filesystem.hpp>
 #include <fstream>
@@ -41,16 +41,16 @@
 #include <unistd.h>
 #include <vector>
 
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/stringutils.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Read the first line from a file; return empty string on failure
@@ -68,14 +68,14 @@ struct ProcPsinfo {
     ProcPsinfo() {
         FILE* f = fopen("/proc/self/psinfo", "r");
         massert(16846,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "couldn't open \"/proc/self/psinfo\": " << errnoWithDescription(),
                 f);
         size_t num = fread(&psinfo, sizeof(psinfo), 1, f);
         int err = errno;
         fclose(f);
         massert(16847,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "couldn't read from \"/proc/self/psinfo\": " << errnoWithDescription(err),
                 num == 1);
     }
@@ -86,14 +86,14 @@ struct ProcUsage {
     ProcUsage() {
         FILE* f = fopen("/proc/self/usage", "r");
         massert(16848,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "couldn't open \"/proc/self/usage\": " << errnoWithDescription(),
                 f);
         size_t num = fread(&prusage, sizeof(prusage), 1, f);
         int err = errno;
         fclose(f);
         massert(16849,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "couldn't read from \"/proc/self/usage\": " << errnoWithDescription(err),
                 num == 1);
     }
@@ -139,13 +139,13 @@ void ProcessInfo::SystemInfo::collectSystemInfo() {
     char buf_native[32];
     if (sysinfo(SI_ARCHITECTURE_64, buf_64, sizeof(buf_64)) != -1 &&
         sysinfo(SI_ARCHITECTURE_NATIVE, buf_native, sizeof(buf_native)) != -1) {
-        addrSize = mongoutils::str::equals(buf_64, buf_native) ? 64 : 32;
+        addrSize = mongolutils::str::equals(buf_64, buf_native) ? 64 : 32;
     } else {
         log() << "Unable to determine system architecture: " << strerror(errno) << endl;
     }
 
     osType = unameData.sysname;
-    osName = mongoutils::str::ltrim(readLineFromFile("/etc/release"));
+    osName = mongolutils::str::ltrim(readLineFromFile("/etc/release"));
     osVersion = unameData.version;
     pageSize = static_cast<unsigned long long>(sysconf(_SC_PAGESIZE));
     memSize = pageSize * static_cast<unsigned long long>(sysconf(_SC_PHYS_PAGES));
@@ -158,7 +158,7 @@ void ProcessInfo::SystemInfo::collectSystemInfo() {
     // 2. Illumos kernel releases (which is all non Oracle Solaris releases)
     preferMsyncOverFSync = false;
 
-    if (mongoutils::str::startsWith(osName, "Oracle Solaris")) {
+    if (mongolutils::str::startsWith(osName, "Oracle Solaris")) {
         std::vector<std::string> versionComponents;
         splitStringDelim(osVersion, &versionComponents, '.');
 

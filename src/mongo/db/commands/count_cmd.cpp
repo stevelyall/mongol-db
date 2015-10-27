@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/count.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/range_preserver.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/log.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/count.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/range_preserver.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
@@ -176,4 +176,4 @@ public:
 } cmdCount;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

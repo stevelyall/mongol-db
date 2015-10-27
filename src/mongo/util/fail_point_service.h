@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/init.h"
-#include "mongo/util/fail_point_registry.h"
+#include "mongol/base/init.h"
+#include "mongol/util/fail_point_registry.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * @return the global fail point registry.
@@ -47,7 +47,7 @@ FailPointRegistry* getGlobalFailPointRegistry();
 #define MONGO_FP_DECLARE(fp)                                                          \
     FailPoint fp;                                                                     \
     MONGO_INITIALIZER_GENERAL(fp, ("FailPointRegistry"), ("AllFailPointsRegistered")) \
-    (::mongo::InitializerContext * context) {                                         \
+    (::mongol::InitializerContext * context) {                                         \
         return getGlobalFailPointRegistry()->addFailPoint(#fp, &fp);                  \
     }
 

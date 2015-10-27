@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/fsync.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/stats/fill_locker_info.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/fsync.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/stats/fill_locker_info.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 class CurrentOpCommand : public Command {
 public:
@@ -159,4 +159,4 @@ public:
 
 } currentOpCommand;
 
-}  // namespace mongo
+}  // namespace mongol

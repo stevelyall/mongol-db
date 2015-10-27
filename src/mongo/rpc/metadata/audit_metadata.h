@@ -31,12 +31,12 @@
 #include <boost/optional.hpp>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/role_name.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/role_name.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class Status;
@@ -100,4 +100,4 @@ extern const char kLegacyImpersonatedUsersFieldName[];
 extern const char kLegacyImpersonatedRolesFieldName[];
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

@@ -26,17 +26,17 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/init.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 class AuthzVersionParameter : public ServerParameter {
     MONGO_DISALLOW_COPYING(AuthzVersionParameter);
@@ -84,4 +84,4 @@ AuthorizationManager* getGlobalAuthorizationManager() {
     return globalAuthManager;
 }
 
-}  // namespace mongo
+}  // namespace mongol

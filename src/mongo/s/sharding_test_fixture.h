@@ -30,12 +30,12 @@
 
 #include <utility>
 
-#include "mongo/db/service_context.h"
-#include "mongo/executor/network_test_env.h"
-#include "mongo/util/net/message_port_mock.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/service_context.h"
+#include "mongol/executor/network_test_env.h"
+#include "mongol/util/net/message_port_mock.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class CatalogManager;
@@ -59,7 +59,7 @@ class TaskExecutor;
 /**
  * Sets up the mocked out objects for testing the replica-set backed catalog manager.
  */
-class ShardingTestFixture : public mongo::unittest::Test {
+class ShardingTestFixture : public mongol::unittest::Test {
 public:
     ShardingTestFixture();
     ~ShardingTestFixture();
@@ -187,4 +187,4 @@ private:
     DistLockManagerMock* _distLockManager = nullptr;
 };
 
-}  // namespace mongo
+}  // namespace mongol

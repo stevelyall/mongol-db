@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class StringDocWriter : public DocWriter {
@@ -59,4 +59,4 @@ private:
 };
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

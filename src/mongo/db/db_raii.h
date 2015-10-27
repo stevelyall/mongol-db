@@ -30,14 +30,14 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 
@@ -230,4 +230,4 @@ private:
     Collection* _collection;
 };
 
-}  // namespace mongo
+}  // namespace mongol

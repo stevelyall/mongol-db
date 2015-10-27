@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_mock.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/db/repl/read_concern_response.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/storage/snapshot_name.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/db/repl/read_concern_response.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/storage/snapshot_name.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using std::vector;
@@ -398,4 +398,4 @@ size_t ReplicationCoordinatorMock::getNumUncommittedSnapshots() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

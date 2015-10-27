@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -56,7 +56,7 @@ bool ShardingServerStatus::includeByDefault() const {
     return true;
 }
 
-// This implementation runs on mongoS.
+// This implementation runs on mongolS.
 BSONObj ShardingServerStatus::generateSection(OperationContext* txn,
                                               const BSONElement& configElement) const {
     invariant(grid.shardRegistry());
@@ -67,4 +67,4 @@ BSONObj ShardingServerStatus::generateSection(OperationContext* txn,
     return result.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

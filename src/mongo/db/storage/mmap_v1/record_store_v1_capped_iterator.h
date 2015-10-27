@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 
 class CappedRecordStoreV1;
 
@@ -95,4 +95,4 @@ private:
     bool _killedByInvalidate = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

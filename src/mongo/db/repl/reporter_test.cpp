@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_executor_test_fixture.h"
-#include "mongo/db/repl/reporter.h"
-#include "mongo/executor/network_interface_mock.h"
+#include "mongol/db/repl/replication_executor_test_fixture.h"
+#include "mongol/db/repl/reporter.h"
+#include "mongol/executor/network_interface_mock.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 using executor::NetworkInterfaceMock;
 using executor::RemoteCommandRequest;
 using executor::RemoteCommandResponse;

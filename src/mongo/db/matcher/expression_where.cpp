@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/memory.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;

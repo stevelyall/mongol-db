@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/index_iterator.h"
+#include "mongol/db/exec/index_iterator.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using stdx::make_unique;
@@ -90,4 +90,4 @@ unique_ptr<PlanStageStats> IndexIteratorStage::getStats() {
     return make_unique<PlanStageStats>(_commonStats, STAGE_INDEX_ITERATOR);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,42 +29,42 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
 
 #include <wiredtiger.h>
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/oplog_hack.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store_oplog_stones.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_size_storer.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/fail_point.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/oplog_hack.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store_oplog_stones.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_size_storer.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/fail_point.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
 
 //#define RS_ITERATOR_TRACE(x) log() << "WTRS::Iterator " << x
 #define RS_ITERATOR_TRACE(x)
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -1700,4 +1700,4 @@ void WiredTigerRecordStore::temp_cappedTruncateAfter(OperationContext* txn,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

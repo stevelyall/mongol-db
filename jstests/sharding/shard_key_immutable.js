@@ -4,11 +4,11 @@
  * A document must be created with a full non-array-or-regex shard key, and the value of that shard
  * key can never change.
  *
- * To enforce this invariant, we have the following mongos rule:
+ * To enforce this invariant, we have the following mongols rule:
  *
  * - Upserts must always contain the full shard key and must only be targeted* to the applicable shard.
  *
- * and the following mongod rules:
+ * and the following mongold rules:
  *
  * - Upserted shard key values must not be arrays (or regexes).
  * - If a shard key value is present in the update query, upserts must only insert documents which
@@ -28,7 +28,7 @@
  *
  * In addition, there is an rule where non-multi updates can only affect 0 or 1 documents.
  *
- * To enforce this, we have the following mongos rule:
+ * To enforce this, we have the following mongols rule:
  *
  * - Non-multi updates must be targeted based on an exact _id query or the full shard key.
  *

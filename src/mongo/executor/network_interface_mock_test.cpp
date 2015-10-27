@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 #include <memory>
 #include <utility>
 
-#include "mongo/base/status.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/test_network_connection_hook.h"
-#include "mongo/executor/thread_pool_mock.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/test_network_connection_hook.h"
+#include "mongol/executor/thread_pool_mock.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
-class NetworkInterfaceMockTest : public mongo::unittest::Test {
+class NetworkInterfaceMockTest : public mongol::unittest::Test {
 public:
     NetworkInterfaceMockTest() : _net{}, _executor(&_net, 1) {}
 
@@ -362,4 +362,4 @@ TEST_F(NetworkInterfaceMockTest, ConnectionHookHandleReplyFails) {
 
 }  // namespace
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

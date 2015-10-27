@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/killcursors_response.h"
+#include "mongol/db/query/killcursors_response.h"
 
-#include "mongo/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/get_status_from_command_result.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -137,4 +137,4 @@ void KillCursorsResponse::addToBSON(BSONObjBuilder* builder) const {
     addCursorArrayToBSON(cursorsUnknown, kUnknownField, builder);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,28 +26,28 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kFTDC
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kFTDC
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/file_manager.h"
+#include "mongol/db/ftdc/file_manager.h"
 
 #include <boost/filesystem.hpp>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/constants.h"
-#include "mongo/db/ftdc/file_reader.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/constants.h"
+#include "mongol/db/ftdc/file_reader.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 // TODO: See time_support.cpp for details on this interposition
 #if defined(_MSC_VER) && _MSC_VER < 1900
@@ -306,4 +306,4 @@ Status FTDCFileManager::close() {
     return _writer.close();
 }
 
-}  // namespace mongo
+}  // namespace mongol

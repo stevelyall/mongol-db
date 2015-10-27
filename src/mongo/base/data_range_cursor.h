@@ -31,12 +31,12 @@
 #include <cstring>
 #include <limits>
 
-#include "mongo/base/data_type.h"
-#include "mongo/base/data_range.h"
-#include "mongo/platform/endian.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/data_type.h"
+#include "mongol/base/data_range.h"
+#include "mongol/platform/endian.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class ConstDataRangeCursor : public ConstDataRange {
 public:
@@ -181,4 +181,4 @@ private:
     Status makeAdvanceStatus(size_t advance) const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

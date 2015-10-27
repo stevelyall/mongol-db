@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/repl/repl_settings.h"
+#include "mongol/db/repl/repl_settings.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/server_parameters.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/server_parameters.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 MONGO_EXPORT_STARTUP_SERVER_PARAMETER(maxSyncSourceLagSecs, int, 30);

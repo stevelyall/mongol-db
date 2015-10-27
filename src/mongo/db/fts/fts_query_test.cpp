@@ -29,10 +29,10 @@
 */
 
 
-#include "mongo/db/fts/fts_query.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_query.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 TEST(FTSQuery, Basic1) {

@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -144,4 +144,4 @@ void ReplSetHeartbeatArgsV1::addToBSON(BSONObjBuilder* builder) const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

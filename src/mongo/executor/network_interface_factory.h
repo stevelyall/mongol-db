@@ -31,9 +31,9 @@
 #include <memory>
 #include <string>
 
-#include "mongo/executor/network_interface.h"
+#include "mongol/executor/network_interface.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace rpc {
 class EgressMetadataHook;
@@ -56,4 +56,4 @@ std::unique_ptr<NetworkInterface> makeNetworkInterface(
     std::unique_ptr<rpc::EgressMetadataHook> metadataHook);
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

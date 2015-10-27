@@ -25,17 +25,17 @@
 *    exception statement from all source files in the program, then also delete
 *    it in the license file.
 */
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_parameters.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_parameters.h"
 
-#include "mongo/logger/parse_log_component_settings.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/logger/parse_log_component_settings.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -58,7 +58,7 @@ Status WiredTigerEngineRuntimeConfigParameter::set(const BSONElement& newValueEl
     } catch (MsgAssertionException msg) {
         return Status(
             ErrorCodes::BadValue,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "Invalid value for wiredTigerEngineRuntimeConfig via setParameter command: "
                 << newValueElement);
     }
@@ -78,7 +78,7 @@ Status WiredTigerEngineRuntimeConfigParameter::setFromString(const std::string& 
     int ret = _engine->reconfigure(str.c_str());
     if (ret != 0) {
         string result =
-            (mongoutils::str::stream() << "WiredTiger reconfiguration failed with error code ("
+            (mongolutils::str::stream() << "WiredTiger reconfiguration failed with error code ("
                                        << ret << "): " << wiredtiger_strerror(ret));
         error() << result;
 

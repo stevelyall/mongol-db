@@ -31,10 +31,10 @@
 #include <cstdint>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/fts/unicode/codepoints.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/fts/unicode/codepoints.h"
 
-namespace mongo {
+namespace mongol {
 namespace unicode {
 
 /**
@@ -178,4 +178,4 @@ private:
 };
 
 }  // namespace unicode
-}  // namespace mongo
+}  // namespace mongol

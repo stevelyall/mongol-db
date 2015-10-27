@@ -402,7 +402,7 @@ ObjectId.prototype.equals = function(other){
 
 // Creates an ObjectId from a Date.
 // Based on solution discussed here:
-//     http://stackoverflow.com/questions/8749971/can-i-query-mongodb-objectid-by-date
+//     http://stackoverflow.com/questions/8749971/can-i-query-mongoldb-objectid-by-date
 ObjectId.fromDate = function(source) {
     if (!source) {
         throw Error("date missing or undefined");

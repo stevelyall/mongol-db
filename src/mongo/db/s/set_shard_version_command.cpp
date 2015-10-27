@@ -26,30 +26,30 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/sharded_connection_info.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/sharded_connection_info.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using str::stream;
@@ -130,7 +130,7 @@ public:
         if (cmdObj["version"].eoo() && cmdObj["init"].trueValue()) {
             result.append("initialized", true);
 
-            // Send back wire version to let mongos know what protocol we can speak
+            // Send back wire version to let mongols know what protocol we can speak
             result.append("minWireVersion", minWireVersion);
             result.append("maxWireVersion", maxWireVersion);
 
@@ -163,7 +163,7 @@ public:
         oldVersion.addToBSON(result, "oldVersion");
 
         if (version.isWriteCompatibleWith(globalVersion)) {
-            // mongos and mongod agree!
+            // mongols and mongold agree!
             if (!oldVersion.isWriteCompatibleWith(version)) {
                 if (oldVersion < globalVersion && oldVersion.hasEqualEpoch(globalVersion)) {
                     info->setVersion(ns, version);
@@ -261,7 +261,7 @@ public:
 
             return false;
         } else if (!version.isWriteCompatibleWith(currVersion)) {
-            // We reloaded a version that doesn't match the version mongos was trying to
+            // We reloaded a version that doesn't match the version mongols was trying to
             // set.
 
             errmsg = str::stream() << "requested shard version differs from"
@@ -271,17 +271,17 @@ public:
 
             OCCASIONALLY warning() << errmsg;
 
-            // WARNING: the exact fields below are important for compatibility with mongos
+            // WARNING: the exact fields below are important for compatibility with mongols
             // version reload.
 
             result.append("ns", ns);
             currVersion.addToBSON(result, "globalVersion");
 
-            // If this was a reset of a collection or the last chunk moved out, inform mongos to
+            // If this was a reset of a collection or the last chunk moved out, inform mongols to
             // do a full reload.
             if (currVersion.epoch() != version.epoch() || !currVersion.isSet()) {
                 result.appendBool("reloadConfig", true);
-                // Zero-version also needed to trigger full mongos reload, sadly
+                // Zero-version also needed to trigger full mongols reload, sadly
                 // TODO: Make this saner, and less impactful (full reload on last chunk is bad)
                 ChunkVersion(0, 0, OID()).addToBSON(result, "version");
                 // For debugging
@@ -340,7 +340,7 @@ private:
             result.append("configdb",
                           BSON("stored" << storedRawConfigString << "given" << configdb));
 
-            errmsg = str::stream() << "mongos specified a different config database string : "
+            errmsg = str::stream() << "mongols specified a different config database string : "
                                    << "stored : " << storedRawConfigString
                                    << " vs given : " << configdb;
             return false;
@@ -359,4 +359,4 @@ private:
 } setShardVersionCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

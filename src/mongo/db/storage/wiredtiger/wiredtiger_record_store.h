@@ -35,13 +35,13 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/storage/capped_callback.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/fail_point_service.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/storage/capped_callback.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/fail_point_service.h"
 
 /**
  * Either executes the specified operation and returns it's value or randomly throws a write
@@ -49,7 +49,7 @@
  */
 #define WT_OP_CHECK(x) (((MONGO_FAIL_POINT(WTWriteConflictException))) ? (WT_ROLLBACK) : (x))
 
-namespace mongo {
+namespace mongol {
 
 class RecoveryUnit;
 class WiredTigerCursor;

@@ -31,10 +31,10 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A hash map that allows a different type to be used stored (K_S) than is used for lookups (K_L).
@@ -273,4 +273,4 @@ private:
 };
 }
 
-#include "mongo/util/unordered_fast_key_table_internal.h"
+#include "mongol/util/unordered_fast_key_table_internal.h"

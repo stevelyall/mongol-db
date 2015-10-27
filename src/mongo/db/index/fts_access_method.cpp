@@ -26,10 +26,10 @@
 *    it in the license file.
 */
 
-#include "mongo/db/index/fts_access_method.h"
-#include "mongo/db/index/expression_keys_private.h"
+#include "mongol/db/index/fts_access_method.h"
+#include "mongol/db/index/expression_keys_private.h"
 
-namespace mongo {
+namespace mongol {
 
 FTSAccessMethod::FTSAccessMethod(IndexCatalogEntry* btreeState, SortedDataInterface* btree)
     : IndexAccessMethod(btreeState, btree), _ftsSpec(btreeState->descriptor()->infoObj()) {}
@@ -38,4 +38,4 @@ void FTSAccessMethod::getKeys(const BSONObj& obj, BSONObjSet* keys) const {
     ExpressionKeysPrivate::getFTSKeys(obj, _ftsSpec, keys);
 }
 
-}  // namespace mongo
+}  // namespace mongol

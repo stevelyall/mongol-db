@@ -30,12 +30,12 @@
 
 #include <vector>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/cursor_id.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/explain_common.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/cursor_id.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/explain_common.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 class StatusWith;
@@ -79,7 +79,7 @@ public:
      * Extracts the read preference from 'cmdObj', or determines the read pref based on 'isSlaveOk'
      * if 'cmdObj' does not contain a read preference.
      *
-     * Expects a read preference that has already been "unwrapped" by the mongos command handling
+     * Expects a read preference that has already been "unwrapped" by the mongols command handling
      * code, e.g. { ... , $queryOptions: { $readPreference: { ... } } , ... }.
      *
      * Returns a non-OK status if 'cmdObj' has a read preference but the read preference does not
@@ -89,4 +89,4 @@ public:
                                                                       bool isSlaveOk);
 };
 
-}  // namespace mongo
+}  // namespace mongol

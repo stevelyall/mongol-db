@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-TOOLS=bsondump mongodump mongoexport mongofiles mongoimport mongooplog mongoperf mongorestore mongostat mongotop
+TOOLS=bsondump mongoldump mongolexport mongolfiles mongolimport mongoloplog mongolperf mongolrestore mongolstat mongoltop
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
@@ -20,17 +20,17 @@ build-stamp: configure-stamp
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED. 
 	# scons 
-	#docbook-to-man debian/mongodb.sgml > mongodb.1
+	#docbook-to-man debian/mongoldb.sgml > mongoldb.1
 
-	echo -n > debian/mongodb-enterprise-unstable-tools.manpages
+	echo -n > debian/mongoldb-enterprise-unstable-tools.manpages
 	for binary in ${TOOLS} ; \
 	do \
-	  echo debian/$$binary.1 >> debian/mongodb-enterprise-unstable-tools.manpages ; \
+	  echo debian/$$binary.1 >> debian/mongoldb-enterprise-unstable-tools.manpages ; \
 	done
 
-	echo debian/mongo.1 > debian/mongodb-enterprise-unstable-shell.manpages
-	echo debian/mongod.1 > debian/mongodb-enterprise-unstable-server.manpages
-	echo debian/mongos.1 > debian/mongodb-enterprise-unstable-mongos.manpages
+	echo debian/mongol.1 > debian/mongoldb-enterprise-unstable-shell.manpages
+	echo debian/mongold.1 > debian/mongoldb-enterprise-unstable-server.manpages
+	echo debian/mongols.1 > debian/mongoldb-enterprise-unstable-mongols.manpages
 
 	touch $@
 
@@ -40,26 +40,26 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# FIXME: scons freaks out at the presence of target files
-	# under debian/mongodb.
+	# under debian/mongoldb.
 	#scons -c
 
 	rm -f debian/*.manpages
 
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-unstable
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-unstable-shell
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-unstable-server
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-unstable-mongos
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-unstable-tools
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-unstable
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-unstable-shell
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-unstable-server
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-unstable-mongols
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-unstable-tools
 	rm -f config.log
-	rm -f mongo
-	rm -f mongod
-	rm -f mongoimportjson
-	rm -f mongoexport
-	rm -f mongorestore
-	rm -f mongodump
-	rm -f mongofiles
+	rm -f mongol
+	rm -f mongold
+	rm -f mongolimportjson
+	rm -f mongolexport
+	rm -f mongolrestore
+	rm -f mongoldump
+	rm -f mongolfiles
 	rm -f .sconsign.dblite
-	rm -f libmongoclient.a
+	rm -f libmongolclient.a
 	rm -rf client/*.o
 	rm -rf tools/*.o
 	rm -rf shell/*.o
@@ -76,31 +76,31 @@ install: build
 	dh_installdirs
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED.
-	# scons --prefix=$(CURDIR)/debian/mongodb/usr install
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-shell/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-server/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-mongos/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-tools/usr/bin
-	cp -v $(CURDIR)/bin/mongo $(CURDIR)/debian/mongodb-enterprise-unstable-shell/usr/bin
-	cp -v $(CURDIR)/bin/mongod $(CURDIR)/debian/mongodb-enterprise-unstable-server/usr/bin
-	cp -v $(CURDIR)/bin/mongos $(CURDIR)/debian/mongodb-enterprise-unstable-mongos/usr/bin
+	# scons --prefix=$(CURDIR)/debian/mongoldb/usr install
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-shell/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-server/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-mongols/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-tools/usr/bin
+	cp -v $(CURDIR)/bin/mongol $(CURDIR)/debian/mongoldb-enterprise-unstable-shell/usr/bin
+	cp -v $(CURDIR)/bin/mongold $(CURDIR)/debian/mongoldb-enterprise-unstable-server/usr/bin
+	cp -v $(CURDIR)/bin/mongols $(CURDIR)/debian/mongoldb-enterprise-unstable-mongols/usr/bin
 
 	for binary in ${TOOLS} ; \
 	do \
-	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongodb-enterprise-unstable-tools/usr/bin ; \
+	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongoldb-enterprise-unstable-tools/usr/bin ; \
 	done
 
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-server/etc
-	cp $(CURDIR)/debian/mongod.conf $(CURDIR)/debian/mongodb-enterprise-unstable-server/etc/mongod.conf 
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-server/etc
+	cp $(CURDIR)/debian/mongold.conf $(CURDIR)/debian/mongoldb-enterprise-unstable-server/etc/mongold.conf 
 
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-shell/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-server/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-mongos/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-unstable-tools/usr/share/lintian/overrides/
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-unstable-shell/usr/share/lintian/overrides/mongodb-enterprise-unstable-shell
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-unstable-server/usr/share/lintian/overrides/mongodb-enterprise-unstable-server
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-unstable-mongos/usr/share/lintian/overrides/mongodb-enterprise-unstable-mongos
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-unstable-tools/usr/share/lintian/overrides/mongodb-enterprise-unstable-tools
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-shell/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-server/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-mongols/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-unstable-tools/usr/share/lintian/overrides/
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-unstable-shell/usr/share/lintian/overrides/mongoldb-enterprise-unstable-shell
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-unstable-server/usr/share/lintian/overrides/mongoldb-enterprise-unstable-server
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-unstable-mongols/usr/share/lintian/overrides/mongoldb-enterprise-unstable-mongols
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-unstable-tools/usr/share/lintian/overrides/mongoldb-enterprise-unstable-tools
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -120,7 +120,7 @@ binary-arch: build install
 #	dh_installemacsen
 #	dh_installpam
 #	dh_installmime
-	dh_installinit -pmongodb-enterprise-unstable-server --name=mongod
+	dh_installinit -pmongoldb-enterprise-unstable-server --name=mongold
 #	dh_installinfo
 	dh_installman
 	dh_link

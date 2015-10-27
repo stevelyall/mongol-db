@@ -27,10 +27,10 @@
 
 #pragma once
 
-#include "mongo/util/background.h"
-#include "mongo/util/time_support.h"
+#include "mongol/util/background.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class CertificateExpirationMonitor : public PeriodicTask {
 public:
@@ -55,4 +55,4 @@ private:
     Date_t _lastCheckTime;
 };
 
-}  // namespace mongo
+}  // namespace mongol

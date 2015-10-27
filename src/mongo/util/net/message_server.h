@@ -34,9 +34,9 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-namespace mongo {
+namespace mongol {
 
 class MessageHandler {
 public:

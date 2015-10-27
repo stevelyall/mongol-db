@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/mongo_uri.h"
+#include "mongol/client/mongol_uri.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/password_digest.h"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -46,7 +46,7 @@
 
 #include <iterator>
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const char kAuthMechanismPropertiesKey[] = "mechanism_properties";
@@ -169,4 +169,4 @@ DBClientBase* MongoURI::connect(std::string& errmsg, double socketTimeout) const
     return ret;
 }
 
-}  // namespace mongo
+}  // namespace mongol

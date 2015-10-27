@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/db/storage/storage_options.h"
 
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 StorageGlobalParams storageGlobalParams;
 
 /**
- * The directory where the mongod instance stores its data.
+ * The directory where the mongold instance stores its data.
  */
 #ifdef _WIN32
 const char* StorageGlobalParams::kDefaultDbPath = "\\data\\db\\";
@@ -59,8 +59,8 @@ ExportedServerParameter<bool, ServerParameterType::kStartupAndRuntime> NoTableSc
     ServerParameterSet::getGlobal(), "notablescan", &storageGlobalParams.noTableScan);
 
 /**
- * Specify the interval in seconds between fsync operations where mongod flushes its
- * working memory to disk. By default, mongod flushes memory to disk every 60 seconds.
+ * Specify the interval in seconds between fsync operations where mongold flushes its
+ * working memory to disk. By default, mongold flushes memory to disk every 60 seconds.
  * In almost every situation you should not set this value and use the default setting.
  */
 ExportedServerParameter<double, ServerParameterType::kStartupAndRuntime> SyncdelaySetting(
@@ -91,4 +91,4 @@ public:
         return Status::OK();
     }
 } journalCommitIntervalSetting;
-}  // namespace mongo
+}  // namespace mongol

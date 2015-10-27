@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/executor/async_timer_asio.h"
+#include "mongol/executor/async_timer_asio.h"
 
-#include "mongo/stdx/memory.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 AsyncTimerASIO::AsyncTimerASIO(asio::io_service* service, Milliseconds expiration)
@@ -50,4 +50,4 @@ std::unique_ptr<AsyncTimerInterface> AsyncTimerFactoryASIO::make(asio::io_servic
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

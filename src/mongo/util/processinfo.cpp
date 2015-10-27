@@ -27,21 +27,21 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/util/processinfo.h"
+#include "mongol/base/init.h"
+#include "mongol/util/processinfo.h"
 
 #include <iostream>
 #include <fstream>
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 class PidFileWiper {
 public:

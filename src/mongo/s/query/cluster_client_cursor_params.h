@@ -32,19 +32,19 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/cursor_id.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/cursor_id.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
 struct ClusterClientCursorParams {
-    // When mongos has to do a merge in order to return results to the client in the correct sort
+    // When mongols has to do a merge in order to return results to the client in the correct sort
     // order, it requests a sortKey meta-projection using this field name.
     static const char kSortKeyField[];
 
@@ -141,4 +141,4 @@ struct ClusterClientCursorParams {
     bool isAllowPartialResults = false;
 };
 
-}  // mongo
+}  // mongol

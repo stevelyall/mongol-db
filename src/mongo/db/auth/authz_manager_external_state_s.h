@@ -31,17 +31,17 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authz_manager_external_state.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authz_manager_external_state.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/stdx/functional.h"
 
 
-namespace mongo {
+namespace mongol {
 
 /**
- * The implementation of AuthzManagerExternalState functionality for mongos.
+ * The implementation of AuthzManagerExternalState functionality for mongols.
  */
 class AuthzManagerExternalStateMongos : public AuthzManagerExternalState {
     MONGO_DISALLOW_COPYING(AuthzManagerExternalStateMongos);
@@ -70,4 +70,4 @@ public:
     bool hasAnyPrivilegeDocuments(OperationContext* txn) override;
 };
 
-}  // namespace mongo
+}  // namespace mongol

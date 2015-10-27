@@ -38,39 +38,39 @@
    local.pair.sync       - [deprecated] { initialsynccomplete: 1 }
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/master_slave.h"
+#include "mongol/db/repl/master_slave.h"
 
 #include <pcrecpp.h>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/handshake_args.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/sync_tail.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/handshake_args.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/sync_tail.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
 using std::cout;
 using std::endl;
@@ -81,7 +81,7 @@ using std::stringstream;
 using std::unique_ptr;
 using std::vector;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 void pretouchOperation(OperationContext* txn, const BSONObj& op);
@@ -279,8 +279,8 @@ void ReplSource::loadAll(OperationContext* txn, SourceVector& v) {
                 log() << "--source " << replSettings.source << " != " << tmp.hostName
                       << " from local.sources collection" << endl;
                 log() << "for instructions on changing this slave's source, see:" << endl;
-                log() << "http://dochub.mongodb.org/core/masterslave" << endl;
-                log() << "terminating mongod after 30 seconds" << endl;
+                log() << "http://dochub.mongoldb.org/core/masterslave" << endl;
+                log() << "terminating mongold after 30 seconds" << endl;
                 sleepsecs(30);
                 dbexit(EXIT_REPLICATION_ERROR);
             }
@@ -755,7 +755,7 @@ void ReplSource::_sync_pullOpLog_applyOperation(OperationContext* txn,
     }
 
     // This code executes on the slaves only, so it doesn't need to be sharding-aware since
-    // mongos will not send requests there. That's why the last argument is false (do not do
+    // mongols will not send requests there. That's why the last argument is false (do not do
     // version checking).
     OldClientContext ctx(txn, ns, false);
 
@@ -1423,4 +1423,4 @@ void pretouchOperation(OperationContext* txn, const BSONObj& op) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

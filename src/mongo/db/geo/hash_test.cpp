@@ -27,7 +27,7 @@
  */
 
 /**
- * This file contains tests for mongo/db/geo/hash.cpp.
+ * This file contains tests for mongol/db/geo/hash.cpp.
  */
 
 #include <string>
@@ -36,14 +36,14 @@
 #include <cmath>
 #include <algorithm>  // For max()
 
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/geo/shapes.h"
-#include "mongo/platform/random.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/platform/random.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-using mongo::GeoHash;
-using mongo::GeoHashConverter;
+using mongol::GeoHash;
+using mongol::GeoHashConverter;
 using std::string;
 using std::stringstream;
 
@@ -55,7 +55,7 @@ TEST(GeoHash, MakeZeroHash) {
 
 static string makeRandomBitString(int length) {
     stringstream ss;
-    mongo::PseudoRandom random(31337);
+    mongol::PseudoRandom random(31337);
     for (int i = 0; i < length; ++i) {
         if (random.nextInt32() & 1) {
             ss << "1";
@@ -83,12 +83,12 @@ static GeoHash makeHash(const string& a) {
 
 TEST(GeoHash, MakeTooLongHash) {
     string a = makeRandomBitString(100);
-    ASSERT_THROWS(makeHash(a), mongo::UserException);
+    ASSERT_THROWS(makeHash(a), mongol::UserException);
 }
 
 TEST(GeoHash, MakeOddHash) {
     string a = makeRandomBitString(13);
-    ASSERT_THROWS(makeHash(a), mongo::UserException);
+    ASSERT_THROWS(makeHash(a), mongol::UserException);
 }
 
 TEST(GeoHashConvertor, EdgeLength) {
@@ -373,9 +373,9 @@ TEST(GeoHashConverter, GeoHashBox) {
     GeoHashConverter converter(params);
 
     // Without expanding the box, the following point is not contained by its GeoHash box.
-    mongo::Point p(-7201198.6497758823, -0.1);
-    mongo::GeoHash hash = converter.hash(p);
-    mongo::Box box = converter.unhashToBoxCovering(hash);
+    mongol::Point p(-7201198.6497758823, -0.1);
+    mongol::GeoHash hash = converter.hash(p);
+    mongol::Box box = converter.unhashToBoxCovering(hash);
     ASSERT(box.inside(p));
 }
 

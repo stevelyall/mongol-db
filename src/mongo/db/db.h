@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace repl {
 class ReplSettings;
@@ -43,4 +43,4 @@ class ReplSettings;
 
 extern void (*snmpInit)();
 
-}  // namespace mongo
+}  // namespace mongol

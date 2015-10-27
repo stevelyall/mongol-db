@@ -28,73 +28,73 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/oplog.h"
+#include "mongol/db/repl/oplog.h"
 
 #include <deque>
 #include <set>
 #include <vector>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/apply_ops.h"
-#include "mongo/db/catalog/capped_utils.h"
-#include "mongo/db/catalog/coll_mod.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/create_collection.h"
-#include "mongo/db/catalog/drop_collection.h"
-#include "mongo/db/catalog/drop_database.h"
-#include "mongo/db/catalog/drop_indexes.h"
-#include "mongo/db/catalog/rename_collection.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/dbhash.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/delete.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/oplogreader.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/snapshot_thread.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/platform/random.h"
-#include "mongo/s/d_state.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/elapsed_tracker.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/apply_ops.h"
+#include "mongol/db/catalog/capped_utils.h"
+#include "mongol/db/catalog/coll_mod.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/create_collection.h"
+#include "mongol/db/catalog/drop_collection.h"
+#include "mongol/db/catalog/drop_database.h"
+#include "mongol/db/catalog/drop_indexes.h"
+#include "mongol/db/catalog/rename_collection.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/dbhash.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/delete.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/oplogreader.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/snapshot_thread.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/d_state.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/elapsed_tracker.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -469,7 +469,7 @@ void createOplog(OperationContext* txn, const std::string& oplogCollectionName, 
             if (n != o) {
                 stringstream ss;
                 ss << "cmdline oplogsize (" << n << ") different than existing (" << o
-                   << ") see: http://dochub.mongodb.org/core/increase-oplog";
+                   << ") see: http://dochub.mongoldb.org/core/increase-oplog";
                 log() << ss.str() << endl;
                 throw UserException(13257, ss.str());
             }
@@ -541,7 +541,7 @@ NamespaceString parseNs(const string& ns, const BSONObj& cmdObj) {
     BSONElement first = cmdObj.firstElement();
     uassert(28635,
             "no collection name specified",
-            first.canonicalType() == canonicalizeBSONType(mongo::String) &&
+            first.canonicalType() == canonicalizeBSONType(mongol::String) &&
                 first.valuestrsize() > 0);
     std::string coll = first.valuestr();
     return NamespaceString(NamespaceString(ns).db().toString(), coll);
@@ -883,7 +883,7 @@ Status applyCommand_inlock(OperationContext* txn, const BSONObj& op) {
         auto op = opsMap.find(o.firstElementFieldName());
         if (op == opsMap.end()) {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream() << "Invalid key '" << o.firstElementFieldName()
+                          mongolutils::str::stream() << "Invalid key '" << o.firstElementFieldName()
                                                     << "' found in field 'o'");
         }
         ApplyOpMetadata curOpToApply = op->second;
@@ -1125,4 +1125,4 @@ std::unique_ptr<SnapshotThread> SnapshotThread::start(ServiceContext* service) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

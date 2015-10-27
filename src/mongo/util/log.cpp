@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
 #ifdef _WIN32
 #include <io.h>
@@ -37,14 +37,14 @@
 #include <unistd.h>
 #endif
 
-#include "mongo/logger/ramlog.h"
-#include "mongo/logger/rotatable_file_manager.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/text.h"
-#include "mongo/util/time_support.h"
+#include "mongol/logger/ramlog.h"
+#include "mongol/logger/rotatable_file_manager.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/text.h"
+#include "mongol/util/time_support.h"
 
 using namespace std;
 
@@ -52,7 +52,7 @@ using namespace std;
 // TODO: Extra log context appending, and re-enable log_user_*.js
 // TODO: Eliminate cout/cerr.
 
-namespace mongo {
+namespace mongol {
 
 static logger::ExtraLogContextFn _appendExtraLogContext;
 
@@ -137,4 +137,4 @@ void logContext(const char* errmsg) {
 Tee* const warnings = RamLog::get("warnings");  // Things put here go in serverStatus
 Tee* const startupWarningsLog = RamLog::get("startupWarnings");  // intentionally leaked
 
-}  // namespace mongo
+}  // namespace mongol

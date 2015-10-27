@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/command_request.h"
+#include "mongol/rpc/command_request.h"
 
 #include <string>
 #include <utility>
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_type_string_data.h"
-#include "mongo/base/data_type_terminated.h"
-#include "mongo/base/data_type_validated.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/object_check.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_type_string_data.h"
+#include "mongol/base/data_type_terminated.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/object_check.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 namespace {
@@ -129,4 +129,4 @@ Protocol CommandRequest::getProtocol() const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

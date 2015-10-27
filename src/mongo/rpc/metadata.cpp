@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/metadata.h"
+#include "mongol/rpc/metadata.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata/audit_metadata.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/rpc/metadata/sharding_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata/audit_metadata.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/rpc/metadata/sharding_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 BSONObj makeEmptyMetadata() {
@@ -169,4 +169,4 @@ StatusWith<BSONObj> downconvertReplyMetadata(const BSONObj& commandReply,
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

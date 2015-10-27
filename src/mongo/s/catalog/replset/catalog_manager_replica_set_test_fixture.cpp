@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
 
-namespace mongo {
+namespace mongol {
 
 CatalogManagerReplSetTestFixture::CatalogManagerReplSetTestFixture() = default;
 
 CatalogManagerReplSetTestFixture::~CatalogManagerReplSetTestFixture() = default;
 
-}  // namespace mongo
+}  // namespace mongol

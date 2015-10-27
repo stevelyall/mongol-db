@@ -32,14 +32,14 @@
 
 #include <boost/exception/exception.hpp>
 
-#include "mongo/base/status.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
 namespace {
 
-using mongo::ErrorCodes;
-using mongo::Status;
+using mongol::ErrorCodes;
+using mongol::Status;
 
 TEST(Basic, Accessors) {
     Status status(ErrorCodes::MaxError, "error", 9999);
@@ -206,8 +206,8 @@ TEST(Parsing, CodeToEnum) {
 }
 
 TEST(Transformers, ExceptionToStatus) {
-    using mongo::DBException;
-    using mongo::exceptionToStatus;
+    using mongol::DBException;
+    using mongol::exceptionToStatus;
 
     auto reason = "oh no";
 

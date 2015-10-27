@@ -3,7 +3,7 @@ selector:
     roots:
     - jstests/noPassthrough/*.js
 
-# noPassthrough tests start their own mongod's.
+# noPassthrough tests start their own mongold's.
 executor:
   js_test:
     config:

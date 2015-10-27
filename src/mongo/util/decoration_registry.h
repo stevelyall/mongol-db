@@ -31,11 +31,11 @@
 #include <type_traits>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/decoration_container.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/decoration_container.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Registry of decorations.
@@ -135,4 +135,4 @@ private:
     size_t _totalSizeBytes{0};
 };
 
-}  // namespace mongo
+}  // namespace mongol

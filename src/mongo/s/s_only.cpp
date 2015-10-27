@@ -27,28 +27,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <tuple>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/reply_builder_interface.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/reply_builder_interface.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -172,4 +172,4 @@ void Command::runAgainstRegistered(OperationContext* txn,
 
 void Command::registerError(OperationContext* txn, const DBException& exception) {}
 
-}  // namespace mongo
+}  // namespace mongol

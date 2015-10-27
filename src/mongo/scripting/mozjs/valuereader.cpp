@@ -26,23 +26,23 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuereader.h"
 
 #include <cstdio>
 #include <js/CharacterEncoding.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/log.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 ValueReader::ValueReader(JSContext* cx, JS::MutableHandleValue value)
@@ -52,30 +52,30 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
     auto scope = getScope(_context);
 
     switch (elem.type()) {
-        case mongo::Code:
+        case mongol::Code:
             scope->newFunction(elem.valueStringData(), _value);
             return;
-        case mongo::CodeWScope:
+        case mongol::CodeWScope:
             if (!elem.codeWScopeObject().isEmpty())
                 warning() << "CodeWScope doesn't transfer to db.eval";
             scope->newFunction(StringData(elem.codeWScopeCode(), elem.codeWScopeCodeLen() - 1),
                                _value);
             return;
-        case mongo::Symbol:
-        case mongo::String:
+        case mongol::Symbol:
+        case mongol::String:
             fromStringData(elem.valueStringData());
             return;
-        case mongo::jstOID: {
+        case mongol::jstOID: {
             OIDInfo::make(_context, elem.OID(), _value);
             return;
         }
-        case mongo::NumberDouble:
+        case mongol::NumberDouble:
             _value.setDouble(elem.Number());
             return;
-        case mongo::NumberInt:
+        case mongol::NumberInt:
             _value.setInt32(elem.Int());
             return;
-        case mongo::Array: {
+        case mongol::Array: {
             JS::AutoValueVector avv(_context);
 
             BSONForEach(subElem, elem.embeddedObject()) {
@@ -93,22 +93,22 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
             _value.setObjectOrNull(array);
             return;
         }
-        case mongo::Object:
+        case mongol::Object:
             fromBSON(elem.embeddedObject(), &parent, readOnly);
             return;
-        case mongo::Date:
+        case mongol::Date:
             _value.setObjectOrNull(
                 JS_NewDateObjectMsec(_context, elem.Date().toMillisSinceEpoch()));
             return;
-        case mongo::Bool:
+        case mongol::Bool:
             _value.setBoolean(elem.Bool());
             return;
-        case mongo::EOO:
-        case mongo::jstNULL:
-        case mongo::Undefined:
+        case mongol::EOO:
+        case mongol::jstNULL:
+        case mongol::Undefined:
             _value.setNull();
             return;
-        case mongo::RegEx: {
+        case mongol::RegEx: {
             // TODO parse into a custom type that can support any patterns and flags SERVER-9803
 
             JS::AutoValueArray<2> args(_context);
@@ -123,7 +123,7 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
 
             return;
         }
-        case mongo::BinData: {
+        case mongol::BinData: {
             int len;
             const char* data = elem.binData(len);
             std::stringstream ss;
@@ -138,7 +138,7 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
             scope->getProto<BinDataInfo>().newInstance(args, _value);
             return;
         }
-        case mongo::bsonTimestamp: {
+        case mongol::bsonTimestamp: {
             JS::AutoValueArray<2> args(_context);
 
             args[0].setDouble(elem.timestampTime().toMillisSinceEpoch() / 1000);
@@ -148,7 +148,7 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
 
             return;
         }
-        case mongo::NumberLong: {
+        case mongol::NumberLong: {
             unsigned long long nativeUnsignedLong = elem.numberLong();
             // values above 2^53 are not accurately represented in JS
             if (static_cast<long long>(nativeUnsignedLong) ==
@@ -170,7 +170,7 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
 
             return;
         }
-        case mongo::NumberDecimal: {
+        case mongol::NumberDecimal: {
             Decimal128 decimal = elem.numberDecimal();
             JS::AutoValueArray<1> args(_context);
             ValueReader(_context, args[0]).fromDecimal128(decimal);
@@ -181,13 +181,13 @@ void ValueReader::fromBSONElement(const BSONElement& elem, const BSONObj& parent
 
             return;
         }
-        case mongo::MinKey:
+        case mongol::MinKey:
             scope->getProto<MinKeyInfo>().newInstance(_value);
             return;
-        case mongo::MaxKey:
+        case mongol::MaxKey:
             scope->getProto<MaxKeyInfo>().newInstance(_value);
             return;
-        case mongo::DBRef: {
+        case mongol::DBRef: {
             JS::AutoValueArray<1> oidArgs(_context);
             ValueReader(_context, oidArgs[0]).fromStringData(elem.dbrefOID().toString());
 
@@ -289,4 +289,4 @@ void ValueReader::fromDecimal128(Decimal128 decimal) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

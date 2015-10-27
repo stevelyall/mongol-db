@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/util/options_parser/options_parser.h"
+#include "mongol/util/options_parser/options_parser.h"
 
 #include <boost/program_options.hpp>
 #include <algorithm>
@@ -35,20 +35,20 @@
 #include <fstream>
 #include <stdio.h>
 
-#include "mongo/base/parse_number.h"
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/constraints.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_description.h"
-#include "mongo/util/options_parser/option_section.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/constraints.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_description.h"
+#include "mongol/util/options_parser/option_section.h"
+#include "mongol/util/scopeguard.h"
 #include "third_party/yaml-cpp-0.5.1/include/yaml-cpp/yaml.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 using namespace std;
@@ -381,7 +381,7 @@ Status addBoostVariablesToEnvironment(const po::variables_map& vm,
                      ++keyValueVectorIt) {
                     std::string key;
                     std::string value;
-                    if (!mongoutils::str::splitOn(*keyValueVectorIt, '=', key, value)) {
+                    if (!mongolutils::str::splitOn(*keyValueVectorIt, '=', key, value)) {
                         StringBuilder sb;
                         sb << "Illegal option assignment: \"" << *keyValueVectorIt << "\"";
                         return Status(ErrorCodes::BadValue, sb.str());
@@ -1001,4 +1001,4 @@ Status OptionsParser::run(const OptionSection& options,
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

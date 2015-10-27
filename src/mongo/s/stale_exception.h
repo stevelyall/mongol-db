@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 /**
  * Thrown whenever your config info for a given shard/chunk is out of date.
@@ -156,4 +156,4 @@ public:
         : StaleConfigException(raw, ErrorCodes::RecvStaleConfig, error) {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

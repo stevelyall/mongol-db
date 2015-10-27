@@ -26,23 +26,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/metadata_loader.h"
+#include "mongol/db/s/metadata_loader.h"
 
 #include <vector>
 
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/chunk_diff.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/util/log.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/chunk_diff.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::make_pair;
@@ -53,10 +53,10 @@ using std::string;
 namespace {
 
 /**
- * This is an adapter so we can use config diffs - mongos and mongod do them slightly
+ * This is an adapter so we can use config diffs - mongols and mongold do them slightly
  * differently.
  *
- * The mongod adapter here tracks only a single shard, and stores ranges by (min, max).
+ * The mongold adapter here tracks only a single shard, and stores ranges by (min, max).
  */
 class SCMConfigDiffTracker : public ConfigDiffTracker<BSONObj> {
 public:
@@ -155,7 +155,7 @@ Status MetadataLoader::initChunks(OperationContext* txn,
             metadata->_collVersion = oldMetadata->_collVersion;
 
             // TODO: This could be made more efficient if copying not required, but
-            // not as frequently reloaded as in mongos.
+            // not as frequently reloaded as in mongols.
             metadata->_chunksMap = oldMetadata->_chunksMap;
 
             LOG(2) << "loading new chunks for collection " << ns
@@ -291,4 +291,4 @@ Status MetadataLoader::promotePendingChunks(const CollectionMetadata* afterMetad
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

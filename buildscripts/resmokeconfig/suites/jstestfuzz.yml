@@ -10,7 +10,7 @@ executor:
         readMode: commands
     fixture:
       class: MongoDFixture
-      mongod_options:
+      mongold_options:
         set_parameters:
           enableTestCommands: 1
         verbose: ''

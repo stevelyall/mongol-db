@@ -31,18 +31,18 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 
 /**
- * ConnectionString handles parsing different ways to connect to mongo and determining method
+ * ConnectionString handles parsing different ways to connect to mongol and determining method
  * samples:
  *    server
  *    server:port
@@ -171,4 +171,4 @@ private:
     static stdx::mutex _connectHookMutex;
     static ConnectionHook* _connectHook;
 };
-}  // namespace mongo
+}  // namespace mongol

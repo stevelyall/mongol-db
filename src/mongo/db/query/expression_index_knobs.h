@@ -30,7 +30,7 @@
 
 #include <atomic>
 
-namespace mongo {
+namespace mongol {
 
 //
 // Geo Query knobs
@@ -59,4 +59,4 @@ extern std::atomic<int> internalQueryS2GeoCoarsestLevel;  // NOLINT
 // What is the maximum cell count that we want? (advisory, not a hard threshold)
 extern std::atomic<int> internalQueryS2GeoMaxCells;  // NOLINT
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "mongo/db/operation_context.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContextImpl : public OperationContext {
 public:
@@ -67,4 +67,4 @@ private:
     bool _writesAreReplicated;
 };
 
-}  // namespace mongo
+}  // namespace mongol

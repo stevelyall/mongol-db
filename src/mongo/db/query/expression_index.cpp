@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/expression_index.h"
+#include "mongol/db/query/expression_index.h"
 
 #include <iostream>
 
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/geo/r2_region_coverer.h"
-#include "mongo/db/hasher.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/query/expression_index_knobs.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/geo/r2_region_coverer.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/query/expression_index_knobs.h"
 #include "third_party/s2/s2cellid.h"
 #include "third_party/s2/s2region.h"
 #include "third_party/s2/s2regioncoverer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 
@@ -229,4 +229,4 @@ void ExpressionMapping::S2CellIdsToIntervalsWithParents(const std::vector<S2Cell
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

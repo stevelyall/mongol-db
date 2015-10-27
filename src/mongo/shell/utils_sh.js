@@ -3,7 +3,7 @@ sh = function() { return "try sh.help();" }
 sh._checkMongos = function() {
     var x = db.runCommand( "ismaster" );
     if ( x.msg != "isdbgrid" )
-        throw Error("not connected to a mongos");
+        throw Error("not connected to a mongols");
 }
 
 sh._checkFullName = function( fullName ) {
@@ -47,7 +47,7 @@ sh.help = function() {
     
     print( "\tsh.setBalancerState( <bool on or not> )   turns the balancer on or off true=on, false=off" );
     print( "\tsh.getBalancerState()                     return true if enabled" );
-    print( "\tsh.isBalancerRunning()                    return true if the balancer has work in progress on any mongos" );
+    print( "\tsh.isBalancerRunning()                    return true if the balancer has work in progress on any mongols" );
 
     print( "\tsh.disableBalancing(coll)                 disable balancing on one collection" );
     print( "\tsh.enableBalancing(coll)                  re-enable balancing on one collection" );
@@ -119,7 +119,7 @@ sh.isBalancerRunning = function (configDB) {
         configDB = sh._getConfigDB();
     var x = configDB.locks.findOne({ _id: "balancer" });
     if (x == null) {
-        print("config.locks collection empty or missing. be sure you are connected to a mongos");
+        print("config.locks collection empty or missing. be sure you are connected to a mongols");
         return false;
     }
     return x.state > 0;
@@ -130,7 +130,7 @@ sh.getBalancerHost = function(configDB) {
         configDB = sh._getConfigDB();
     var x = configDB.locks.findOne({ _id: "balancer" });
     if( x == null ){
-        print("config.locks collection does not contain balancer lock. be sure you are connected to a mongos");
+        print("config.locks collection does not contain balancer lock. be sure you are connected to a mongols");
         return ""
     }
     return x.process.match(/[^:]+:[^:]+/)[0]
@@ -180,7 +180,7 @@ sh.waitForDLock = function( lockId, onOrNot, timeout, interval ){
 sh.waitForPingChange = function( activePings, timeout, interval ){
     
     var isPingChanged = function( activePing ){
-        var newPing = sh._getConfigDB().mongos.findOne({ _id : activePing._id })
+        var newPing = sh._getConfigDB().mongols.findOne({ _id : activePing._id })
         return ! newPing || newPing.ping + "" != activePing.ping + ""
     }
     
@@ -215,7 +215,7 @@ sh.waitForPingChange = function( activePings, timeout, interval ){
 }
 
 sh.waitForBalancerOff = function( timeout, interval ){
-    var pings = sh._getConfigDB().mongos.find().toArray()
+    var pings = sh._getConfigDB().mongols.find().toArray()
     var activePings = []
     for( var i = 0; i < pings.length; i++ ){
         if( ! pings[i].waiting ) activePings.push( pings[i] )
@@ -299,7 +299,7 @@ sh.enableBalancing = function( coll ){
 }
 
 /*
- * Can call _lastMigration( coll ), _lastMigration( db ), _lastMigration( st ), _lastMigration( mongos ) 
+ * Can call _lastMigration( coll ), _lastMigration( db ), _lastMigration( st ), _lastMigration( mongols ) 
  */
 sh._lastMigration = function( ns ){
     

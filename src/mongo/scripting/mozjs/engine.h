@@ -31,12 +31,12 @@
 #include <jsapi.h>
 #include <unordered_map>
 
-#include "mongo/scripting/deadline_monitor.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/scripting/deadline_monitor.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 class MozJSImplScope;
@@ -45,13 +45,13 @@ class MozJSImplScope;
  * Implements the global ScriptEngine interface for MozJS.  The associated TU
  * pulls this in for the polymorphic globalScriptEngine.
  */
-class MozJSScriptEngine final : public mongo::ScriptEngine {
+class MozJSScriptEngine final : public mongol::ScriptEngine {
 public:
     MozJSScriptEngine();
     ~MozJSScriptEngine() override;
 
-    mongo::Scope* createScope() override;
-    mongo::Scope* createScopeForCurrentThread() override;
+    mongol::Scope* createScope() override;
+    mongol::Scope* createScopeForCurrentThread() override;
 
     void runTest() override {}
 
@@ -84,11 +84,11 @@ private:
     stdx::mutex _globalInterruptLock;
 
     using OpIdToScopeMap = std::unordered_map<unsigned, MozJSImplScope*>;
-    OpIdToScopeMap _opToScopeMap;  // map of mongo op ids to scopes (protected by
+    OpIdToScopeMap _opToScopeMap;  // map of mongol op ids to scopes (protected by
                                    // _globalInterruptLock).
 
     DeadlineMonitor<MozJSImplScope> _deadlineMonitor;
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 #include <string>
 #include <vector>
 
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/dist_lock_manager_mock.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
-#include "mongo/s/catalog/type_changelog.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/future.h"
-#include "mongo/util/log.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/dist_lock_manager_mock.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
+#include "mongol/s/catalog/type_changelog.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/future.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using executor::NetworkInterfaceMock;
@@ -329,7 +329,7 @@ TEST_F(ShardCollectionTest, anotherMongosSharding) {
 
     expectGetDatabase(db);
 
-    // Report that chunks exist for the given collection, indicating that another mongos must have
+    // Report that chunks exist for the given collection, indicating that another mongols must have
     // already started sharding the collection.
     expectCount(configHost, NamespaceString(ChunkType::ConfigNS), BSON(ChunkType::ns(ns)), 1);
 
@@ -823,4 +823,4 @@ TEST_F(ShardCollectionTest, withInitialData) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

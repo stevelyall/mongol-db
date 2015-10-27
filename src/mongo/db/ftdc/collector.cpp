@@ -26,20 +26,20 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/collector.h"
+#include "mongol/db/ftdc/collector.h"
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/constants.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/constants.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 void FTDCCollectorCollection::add(std::unique_ptr<FTDCCollectorInterface> collector) {
     // TODO: ensure the collectors all have unique names.
@@ -82,4 +82,4 @@ std::tuple<BSONObj, Date_t> FTDCCollectorCollection::collect(Client* client) {
     return std::tuple<BSONObj, Date_t>(builder.obj(), start);
 }
 
-}  // namespace mongo
+}  // namespace mongol

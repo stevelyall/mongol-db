@@ -1,12 +1,12 @@
 // Tests that updates can't change immutable fields (used in sharded system)
 var st = new ShardingTest({shards : 2,
-                           mongos : 1,
+                           mongols : 1,
                            verbose : 0})
 st.stopBalancer();
 
-var mongos = st.s;
-var config = mongos.getDB("config");
-var coll = mongos.getCollection(jsTestName() + ".coll1");
+var mongols = st.s;
+var config = mongols.getDB("config");
+var coll = mongols.getCollection(jsTestName() + ".coll1");
 var shard0 = st.shard0;
 
 printjson(config.adminCommand({enableSharding : coll.getDB() + ""}))

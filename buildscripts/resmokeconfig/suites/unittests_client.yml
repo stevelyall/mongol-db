@@ -2,7 +2,7 @@ selector:
   cpp_unit_test:
     root: build/unittests.txt
     include_files:
-      - build/**/mongo/client/*
+      - build/**/mongol/client/*
 
 executor:
   cpp_unit_test:

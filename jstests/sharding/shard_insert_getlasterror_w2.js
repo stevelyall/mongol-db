@@ -18,7 +18,7 @@
     // Spin up a sharded cluster, but do not add the shards
     var shardingTestConfig = {
         name : baseName,
-        mongos : 1,
+        mongols : 1,
         shards : 1,
         rs : { nodes : 3 },
         other : { manualAddShard : true }
@@ -36,17 +36,17 @@
     }
     assert.writeOK(bulk.execute({ w: 2 }));
 
-    // Get connection to mongos for the cluster
-    var mongosConn = shardingTest.s;
-    var testDB = mongosConn.getDB(testDBName);
+    // Get connection to mongols for the cluster
+    var mongolsConn = shardingTest.s;
+    var testDB = mongolsConn.getDB(testDBName);
 
     // Add replSet1 as only shard
-    mongosConn.adminCommand({ addshard : replSet1.getURL() });
+    mongolsConn.adminCommand({ addshard : replSet1.getURL() });
 
     // Enable sharding on test db and its collection foo
-    assert.commandWorked(mongosConn.getDB('admin').runCommand({ enablesharding : testDBName }));
+    assert.commandWorked(mongolsConn.getDB('admin').runCommand({ enablesharding : testDBName }));
     testDB[testCollName].ensureIndex({ x : 1 });
-    assert.commandWorked(mongosConn.getDB('admin').
+    assert.commandWorked(mongolsConn.getDB('admin').
                          runCommand({ shardcollection : testDBName + '.' + testCollName,
                                       key : { x : 1 }}))
 

@@ -33,10 +33,10 @@
 #include <string>
 #include <utility>
 
-#include "mongo/bson/bson_field.h"
-#include "mongo/db/write_concern_options.h"
+#include "mongol/bson/bson_field.h"
+#include "mongol/db/write_concern_options.h"
 
-namespace mongo {
+namespace mongol {
 
 struct WriteConcernOptions;
 class BSONObj;
@@ -212,4 +212,4 @@ private:
     boost::optional<bool> _waitForDelete;
 };
 
-}  // namespace mongo
+}  // namespace mongol

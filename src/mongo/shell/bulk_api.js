@@ -980,7 +980,7 @@ var _bulk_api_module = (function() {
         };
       }
 
-      // Handling of writeback not needed for mongo shell.
+      // Handling of writeback not needed for mongol shell.
       return extractedErr;
     };
 
@@ -1117,7 +1117,7 @@ var _bulk_api_module = (function() {
     this.execute = function(_writeConcern) {
       if(executed) throw Error("A bulk operation cannot be re-executed");
 
-      // If writeConcern set, use it, else get from collection (which will inherit from db/mongo)
+      // If writeConcern set, use it, else get from collection (which will inherit from db/mongol)
       writeConcern = _writeConcern ? _writeConcern : coll.getWriteConcern();
       if (writeConcern instanceof WriteConcern)
           writeConcern = writeConcern.toJSON();

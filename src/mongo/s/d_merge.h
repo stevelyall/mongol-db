@@ -28,10 +28,10 @@
 
 #include <string>
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 

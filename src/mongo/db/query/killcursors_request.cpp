@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/killcursors_request.h"
+#include "mongol/db/query/killcursors_request.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -102,4 +102,4 @@ BSONObj KillCursorsRequest::toBSON() const {
     return builder.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

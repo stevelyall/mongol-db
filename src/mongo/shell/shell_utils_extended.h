@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils_extended.h
+// mongol/shell/shell_utils_extended.h
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -30,7 +30,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class Scope;
 

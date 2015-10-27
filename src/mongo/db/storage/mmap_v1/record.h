@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 
 class DeletedRecord;
 
@@ -177,4 +177,4 @@ private:
 
 static_assert(16 == sizeof(DeletedRecord), "16 == sizeof(DeletedRecord)");
 
-}  // namespace mongo
+}  // namespace mongol

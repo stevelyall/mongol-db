@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Insert a key and verify that the number of entries in the index equals 1.
 TEST(SortedDataInterface, Insert) {
@@ -360,4 +360,4 @@ TEST(SortedDataInterface, InsertMultipleCompoundKeys) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

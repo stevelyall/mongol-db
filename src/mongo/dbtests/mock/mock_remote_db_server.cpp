@@ -25,29 +25,29 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
 
 #include <tuple>
 
-#include "mongo/dbtests/mock/mock_dbclient_connection.h"
-#include "mongo/rpc/command_reply.h"
-#include "mongo/rpc/command_reply_builder.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/dbtests/mock/mock_dbclient_connection.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/rpc/command_reply_builder.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/assert_util.h"
 
 using std::string;
 using std::vector;
 
-namespace mongo {
+namespace mongol {
 
 MockRemoteDBServer::CircularBSONIterator::CircularBSONIterator(const vector<BSONObj>& replyVector) {
-    for (std::vector<mongo::BSONObj>::const_iterator iter = replyVector.begin();
+    for (std::vector<mongol::BSONObj>::const_iterator iter = replyVector.begin();
          iter != replyVector.end();
          ++iter) {
         _replyObjs.push_back(iter->copy());
@@ -108,7 +108,7 @@ bool MockRemoteDBServer::isRunning() const {
     return _isRunning;
 }
 
-void MockRemoteDBServer::setCommandReply(const string& cmdName, const mongo::BSONObj& replyObj) {
+void MockRemoteDBServer::setCommandReply(const string& cmdName, const mongol::BSONObj& replyObj) {
     vector<BSONObj> replySequence;
     replySequence.push_back(replyObj);
     setCommandReply(cmdName, replySequence);
@@ -156,7 +156,7 @@ rpc::UniqueReply MockRemoteDBServer::runCommandWithMetadata(MockRemoteDBServer::
     }
 
     if (_delayMilliSec > 0) {
-        mongo::sleepmillis(_delayMilliSec);
+        mongol::sleepmillis(_delayMilliSec);
     }
 
     checkIfUp(id);
@@ -195,9 +195,9 @@ bool MockRemoteDBServer::runCommand(MockRemoteDBServer::InstanceID id,
     return info["ok"].trueValue();
 }
 
-mongo::BSONArray MockRemoteDBServer::query(MockRemoteDBServer::InstanceID id,
+mongol::BSONArray MockRemoteDBServer::query(MockRemoteDBServer::InstanceID id,
                                            const string& ns,
-                                           mongo::Query query,
+                                           mongol::Query query,
                                            int nToReturn,
                                            int nToSkip,
                                            const BSONObj* fieldsToReturn,
@@ -206,7 +206,7 @@ mongo::BSONArray MockRemoteDBServer::query(MockRemoteDBServer::InstanceID id,
     checkIfUp(id);
 
     if (_delayMilliSec > 0) {
-        mongo::sleepmillis(_delayMilliSec);
+        mongol::sleepmillis(_delayMilliSec);
     }
 
     checkIfUp(id);
@@ -223,8 +223,8 @@ mongo::BSONArray MockRemoteDBServer::query(MockRemoteDBServer::InstanceID id,
     return BSONArray(result.obj());
 }
 
-mongo::ConnectionString::ConnectionType MockRemoteDBServer::type() const {
-    return mongo::ConnectionString::CUSTOM;
+mongol::ConnectionString::ConnectionType MockRemoteDBServer::type() const {
+    return mongol::ConnectionString::CUSTOM;
 }
 
 size_t MockRemoteDBServer::getCmdCount() const {
@@ -255,7 +255,7 @@ void MockRemoteDBServer::checkIfUp(InstanceID id) const {
     scoped_spinlock sLock(_lock);
 
     if (!_isRunning || id < _instanceID) {
-        throw mongo::SocketException(mongo::SocketException::CLOSED, _hostAndPort);
+        throw mongol::SocketException(mongol::SocketException::CLOSED, _hostAndPort);
     }
 }
 }

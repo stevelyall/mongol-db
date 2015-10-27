@@ -29,20 +29,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/db/storage/mmap_v1/compress.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/queue.h"
-#include "mongo/util/stringutils.h"
-#include "mongo/util/text.h"
-#include "mongo/util/thread_safe_string.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/db/storage/mmap_v1/compress.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/queue.h"
+#include "mongol/util/stringutils.h"
+#include "mongol/util/text.h"
+#include "mongol/util/thread_safe_string.h"
+#include "mongol/util/time_support.h"
 
 namespace BasicTests {
 
@@ -228,12 +228,12 @@ public:
             if (sec == 1)
                 matches++;
             else
-                mongo::unittest::log() << "temp millis: " << t.millis() << endl;
+                mongol::unittest::log() << "temp millis: " << t.millis() << endl;
             ASSERT(sec >= 0 && sec <= 2);
             t.reset();
         }
         if (matches < 2)
-            mongo::unittest::log() << "matches:" << matches << endl;
+            mongol::unittest::log() << "matches:" << matches << endl;
         ASSERT(matches >= 2);
 
         sleepmicros(1527123);

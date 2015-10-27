@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/fts/fts_basic_tokenizer.h"
+#include "mongol/db/fts/fts_basic_tokenizer.h"
 
-#include "mongo/db/fts/fts_query.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/db/fts/stop_words.h"
-#include "mongo/db/fts/tokenizer.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/fts/fts_query.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/db/fts/stop_words.h"
+#include "mongol/db/fts/tokenizer.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 using std::string;
@@ -92,4 +92,4 @@ StringData BasicFTSTokenizer::get() const {
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

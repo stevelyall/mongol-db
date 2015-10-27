@@ -28,11 +28,11 @@
 
 #include <string>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 using std::string;
 
 // Test if the reserved field is short of 4 bytes
@@ -139,4 +139,4 @@ TEST(DBMessage1, GoodInsert2) {
 }
 
 
-}  // mongo namespace
+}  // mongol namespace

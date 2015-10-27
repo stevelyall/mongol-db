@@ -45,7 +45,7 @@ res = db.apples.mapReduce( m, r, { out : { inline : 1 }, query : { apples : { '$
 total = res.results[0];
 assert.eq( 11, total.value.apples );
 
-// mapreduce with geo query gives error on mongodb version 1.6.2
+// mapreduce with geo query gives error on mongoldb version 1.6.2
 // uncaught exception: map reduce failed: {
 // "assertion" : "manual matcher config not allowed",
 // "assertionCode" : 13285,

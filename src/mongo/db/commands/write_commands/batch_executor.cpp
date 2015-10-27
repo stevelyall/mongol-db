@@ -26,63 +26,63 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/write_commands/batch_executor.h"
+#include "mongol/db/commands/write_commands/batch_executor.h"
 
 #include <memory>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop_metrics.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/exec/update.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/ops/parsed_delete.h"
-#include "mongo/db/ops/parsed_update.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharded_connection_info.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/db/stats/top.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/write_ops/batched_upsert_detail.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/elapsed_tracker.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop_metrics.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/exec/update.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/ops/parsed_delete.h"
+#include "mongol/db/ops/parsed_update.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharded_connection_info.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/write_ops/batched_upsert_detail.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/elapsed_tracker.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -205,7 +205,7 @@ bool checkShardVersion(OperationContext* txn,
     // treated as unsharded.
     ShardingState* shardingState = ShardingState::get(txn);
     if (!shardingState->enabled()) {
-        // Being in this state is really a bug on the caller side (most likely mongos), unless
+        // Being in this state is really a bug on the caller side (most likely mongols), unless
         // this is a test or someone manually constructing commands with sharding fields using the
         // shell.
         result->setError(toWriteError({ErrorCodes::NotYetInitialized,
@@ -304,7 +304,7 @@ void WriteBatchExecutor::executeBatch(const BatchedCommandRequest& request,
     vector<BatchedUpsertDetail*>& upserted = upsertedOwned.mutableVector();
 
     // If the request has a shard version, but the operation doesn't have a shard version, this
-    // means it came from an old mongos instance (pre 3.2) that set the version in the "metadata"
+    // means it came from an old mongols instance (pre 3.2) that set the version in the "metadata"
     // field instead of at the top level. Set the value in order to ensure the
     // dependent code works.
     // TODO(spencer): Remove this after 3.2 ships.
@@ -1365,4 +1365,4 @@ static void multiRemove(OperationContext* txn,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

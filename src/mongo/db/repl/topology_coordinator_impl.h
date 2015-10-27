@@ -31,18 +31,18 @@
 #include <string>
 #include <vector>
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/last_vote.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/topology_coordinator.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/last_vote.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/topology_coordinator.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -463,4 +463,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

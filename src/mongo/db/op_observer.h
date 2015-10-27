@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 struct CollectionOptions;
 class NamespaceString;
 class OperationContext;
@@ -86,4 +86,4 @@ public:
                            double size);
 };
 
-}  // namespace mongo
+}  // namespace mongol

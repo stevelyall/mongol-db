@@ -26,33 +26,33 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/chunk.h"
+#include "mongol/s/chunk.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/platform/random.h"
-#include "mongo/s/balancer_policy.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/balancer_policy.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -267,7 +267,7 @@ BSONObj Chunk::_getExtremeKey(OperationContext* txn, bool doSplitAtLower) const 
 }
 
 void Chunk::pickMedianKey(OperationContext* txn, BSONObj& medianKey) const {
-    // Ask the mongod holding this chunk to figure out the split points.
+    // Ask the mongold holding this chunk to figure out the split points.
     ScopedDbConnection conn(_getShardConnectionString(txn));
     BSONObj result;
     BSONObjBuilder cmd;
@@ -523,7 +523,7 @@ bool Chunk::moveAndCommit(OperationContext* txn,
     LOG(worked ? 1 : 0) << "moveChunk result: " << res;
 
     // if succeeded, needs to reload to pick up the new location
-    // if failed, mongos may be stale
+    // if failed, mongols may be stale
     // reload is excessive here as the failure could be simply because collection metadata is taken
     _manager->reload(txn);
 
@@ -552,8 +552,8 @@ bool Chunk::splitIfShould(OperationContext* txn, long dataWritten) const {
         TicketHolderReleaser releaser(&(getManager()->_splitHeuristics._splitTickets));
 
         // this is a bit ugly
-        // we need it so that mongos blocks for the writes to actually be committed
-        // this does mean mongos has more back pressure than mongod alone
+        // we need it so that mongols blocks for the writes to actually be committed
+        // this does mean mongols has more back pressure than mongold alone
         // since it nots 100% tcp queue bound
         // this was implicit before since we did a splitVector on the same socket
         ShardConnection::sync();
@@ -599,7 +599,7 @@ bool Chunk::splitIfShould(OperationContext* txn, long dataWritten) const {
         // Top chunk optimization - try to move the top chunk out of this shard
         // to prevent the hot spot from staying on a single shard. This is based on
         // the assumption that succeeding inserts will fall on the top chunk.
-        BSONElement shouldMigrate = res["shouldMigrate"];  // not in mongod < 1.9.1 but that is ok
+        BSONElement shouldMigrate = res["shouldMigrate"];  // not in mongold < 1.9.1 but that is ok
         if (!shouldMigrate.eoo() && shouldBalance) {
             BSONObj range = shouldMigrate.embeddedObject();
 
@@ -688,7 +688,7 @@ string Chunk::toString() const {
 void Chunk::markAsJumbo(OperationContext* txn) const {
     // set this first
     // even if we can't set it in the db
-    // at least this mongos won't try and keep moving
+    // at least this mongols won't try and keep moving
     _jumbo = true;
 
     Status result = grid.catalogManager(txn)->update(txn,
@@ -734,4 +734,4 @@ bool Chunk::setMaxChunkSizeSizeMB(int newMaxChunkSize) {
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

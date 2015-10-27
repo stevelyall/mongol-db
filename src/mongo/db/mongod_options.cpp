@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/db/mongod_options.h"
+#include "mongol/db/mongold_options.h"
 
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/config.h"
-#include "mongo/db/db.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_options_helpers.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/logger/console_appender.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/version.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/config.h"
+#include "mongol/db/db.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_options_helpers.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/logger/console_appender.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::cout;
 using std::endl;
 using std::string;
 
-MongodGlobalParams mongodGlobalParams;
+MongodGlobalParams mongoldGlobalParams;
 
 extern DiagLog _diaglog;
 
@@ -456,7 +456,7 @@ Status addMongodOptions(moe::OptionSection* options) {
              "sharding.clusterRole",
              "",
              moe::String,
-             "Choose what role this mongod has in a sharded cluster.  Possible values are:\n"
+             "Choose what role this mongold has in a sharded cluster.  Possible values are:\n"
              "    \"configsvr\": Start this node as a config server.  Starts on port 27019 by "
              "default."
              "    \"shardsvr\": Start this node as a shard server.  Starts on port 27018 by "
@@ -525,8 +525,8 @@ Status addMongodOptions(moe::OptionSection* options) {
 
     // This is a deprecated option that we are supporting for backwards compatibility
     // The first value for this option can be either 'dbpath' or 'run'.
-    // If it is 'dbpath', mongod prints the dbpath and exits.  Any extra values are ignored.
-    // If it is 'run', mongod runs normally.  Providing extra values is an error.
+    // If it is 'dbpath', mongold prints the dbpath and exits.  Any extra values are ignored.
+    // If it is 'run', mongold runs normally.  Providing extra values is an error.
     options->addOptionChaining("command", "command", moe::StringVector, "command")
         .hidden()
         .positional(1, 3)
@@ -587,7 +587,7 @@ bool handlePreValidationMongodOptions(const moe::Environment& params,
     }
     if (params.count("version") && params["version"].as<bool>() == true) {
         setPlainConsoleLogger();
-        log() << mongodVersion() << endl;
+        log() << mongoldVersion() << endl;
         printBuildInfo();
         return false;
     }
@@ -654,7 +654,7 @@ Status validateMongodOptions(const moe::Environment& params) {
 
 Status canonicalizeMongodOptions(moe::Environment* params) {
     // Need to handle this before canonicalizing the general "server options", since
-    // httpinterface and nohttpinterface are shared between mongos and mongod, but mongod has
+    // httpinterface and nohttpinterface are shared between mongols and mongold, but mongold has
     // extra validation required.
     if (params->count("net.http.RESTInterfaceEnabled") &&
         (*params)["net.http.RESTInterfaceEnabled"].as<bool>() == true) {
@@ -1068,7 +1068,7 @@ Status storeMongodOptions(const moe::Environment& params, const std::vector<std:
         serverGlobalParams.jsonp = params["net.http.JSONPEnabled"].as<bool>();
     }
     if (params.count("security.javascriptEnabled")) {
-        mongodGlobalParams.scriptingEnabled = params["security.javascriptEnabled"].as<bool>();
+        mongoldGlobalParams.scriptingEnabled = params["security.javascriptEnabled"].as<bool>();
     }
     if (params.count("storage.mmapv1.preallocDataFiles")) {
         mmapv1GlobalOptions.prealloc = params["storage.mmapv1.preallocDataFiles"].as<bool>();
@@ -1258,7 +1258,7 @@ Status storeMongodOptions(const moe::Environment& params, const std::vector<std:
                       "****\n"
                       "Replica Pairs have been deprecated. Invalid options: "
                       "--pairwith, --arbiter, and/or --opIdMem\n"
-                      "<http://dochub.mongodb.org/core/replicapairs>\n"
+                      "<http://dochub.mongoldb.org/core/replicapairs>\n"
                       "****");
     }
 
@@ -1316,4 +1316,4 @@ const repl::ReplSettings& getGlobalReplSettings() {
     return globalReplSettings;
 }
 
-}  // namespace mongo
+}  // namespace mongol

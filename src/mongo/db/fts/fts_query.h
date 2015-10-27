@@ -33,12 +33,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/db/fts/stop_words.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/base/status.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/db/fts/stop_words.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

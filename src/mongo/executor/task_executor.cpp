@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/task_executor.h"
+#include "mongol/executor/task_executor.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 TaskExecutor::TaskExecutor() = default;
@@ -85,4 +85,4 @@ void TaskExecutor::setCallbackForHandle(CallbackHandle* cbHandle,
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

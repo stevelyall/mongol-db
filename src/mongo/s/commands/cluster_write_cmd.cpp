@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/client.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/write_commands/write_commands_common.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/chunk_manager_targeter.h"
-#include "mongo/s/client/dbclient_multi_command.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/cluster_write.h"
-#include "mongo/s/dbclient_shard_resolver.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/write_ops/batch_upconvert.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/client.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/write_commands/write_commands_common.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/chunk_manager_targeter.h"
+#include "mongol/s/client/dbclient_multi_command.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/cluster_write.h"
+#include "mongol/s/dbclient_shard_resolver.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/write_ops/batch_upconvert.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -59,7 +59,7 @@ using std::vector;
 namespace {
 
 /**
- * Base class for mongos write commands.  Cluster write commands support batch writes and write
+ * Base class for mongols write commands.  Cluster write commands support batch writes and write
  * concern, and return per-item error information.  All cluster write commands use the entry
  * point ClusterWriteCmd::run().
  *
@@ -338,4 +338,4 @@ public:
 } clusterDeleteCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

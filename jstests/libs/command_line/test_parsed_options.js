@@ -31,10 +31,10 @@ function mergeOptions(obj1, obj2) {
 }
 
 // Test that the parsed result of setting certain command line options has the correct format in
-// mongod.  See SERVER-13379.
+// mongold.  See SERVER-13379.
 //
 // Arguments:
-//   mongoRunnerConfig - Configuration object to pass to the mongo runner
+//   mongolRunnerConfig - Configuration object to pass to the mongol runner
 //   expectedResult - Object formatted the same way as the result of running the "getCmdLineOpts"
 //      command, but with only the fields that should be set by the options implied by the first
 //      argument set.
@@ -44,20 +44,20 @@ function mergeOptions(obj1, obj2) {
 // testGetCmdLineOptsMongod({ port : 10000 }, { "parsed" : { "net" : { "port" : 10000 } } });
 //
 var getCmdLineOptsBaseMongod;
-function testGetCmdLineOptsMongod(mongoRunnerConfig, expectedResult) {
+function testGetCmdLineOptsMongod(mongolRunnerConfig, expectedResult) {
 
-    // Get the options object returned by "getCmdLineOpts" when we spawn a mongod using our test
+    // Get the options object returned by "getCmdLineOpts" when we spawn a mongold using our test
     // framework without passing any additional options.  We need this because the framework adds
     // options of its own, and we only want to compare against the options we care about.
     function getBaseOptsObject() {
 
-        // Start mongod with no options
+        // Start mongold with no options
         var baseMongod = MongoRunner.runMongod();
 
         // Get base command line opts.  Needed because the framework adds its own options
         var getCmdLineOptsBaseMongod = baseMongod.adminCommand("getCmdLineOpts");
 
-        // Stop the mongod we used to get the options
+        // Stop the mongold we used to get the options
         MongoRunner.stopMongod(baseMongod.port);
 
         return getCmdLineOptsBaseMongod;
@@ -86,22 +86,22 @@ function testGetCmdLineOptsMongod(mongoRunnerConfig, expectedResult) {
     // Merge with the result that we expect
     expectedResult = mergeOptions(getCmdLineOptsExpected, expectedResult);
 
-    // Start mongod with options
-    var mongod = MongoRunner.runMongod(mongoRunnerConfig);
+    // Start mongold with options
+    var mongold = MongoRunner.runMongod(mongolRunnerConfig);
 
-    // Create and authenticate high-privilege user in case mongod is running with authorization.
+    // Create and authenticate high-privilege user in case mongold is running with authorization.
     // Try/catch is necessary in case this is being run on an uninitiated replset, by a test
     // such as repl_options.js for example.
     var ex;
     try {
-        mongod.getDB("admin").createUser({user: "root", pwd: "pass", roles: ["root"]});
-        mongod.getDB("admin").auth("root", "pass");
+        mongold.getDB("admin").createUser({user: "root", pwd: "pass", roles: ["root"]});
+        mongold.getDB("admin").auth("root", "pass");
     }
     catch (ex) {
     }
 
     // Get the parsed options
-    var getCmdLineOptsResult = mongod.adminCommand("getCmdLineOpts");
+    var getCmdLineOptsResult = mongold.adminCommand("getCmdLineOpts");
 
     // Delete port and dbPath if we are not explicitly setting them, since they will change on
     // multiple runs of the test framework and cause false failures.
@@ -120,15 +120,15 @@ function testGetCmdLineOptsMongod(mongoRunnerConfig, expectedResult) {
     assert.docEq(getCmdLineOptsResult.parsed, expectedResult.parsed);
 
     // Cleanup
-    mongod.getDB("admin").logout();
-    MongoRunner.stopMongod(mongod.port);
+    mongold.getDB("admin").logout();
+    MongoRunner.stopMongod(mongold.port);
 }
 
 // Test that the parsed result of setting certain command line options has the correct format in
-// mongos.  See SERVER-13379.
+// mongols.  See SERVER-13379.
 //
 // Arguments:
-//   mongoRunnerConfig - Configuration object to pass to the mongo runner
+//   mongolRunnerConfig - Configuration object to pass to the mongol runner
 //   expectedResult - Object formatted the same way as the result of running the "getCmdLineOpts"
 //      command, but with only the fields that should be set by the options implied by the first
 //      argument set.
@@ -138,14 +138,14 @@ function testGetCmdLineOptsMongod(mongoRunnerConfig, expectedResult) {
 // testGetCmdLineOptsMongos({ port : 10000 }, { "parsed" : { "net" : { "port" : 10000 } } });
 //
 var getCmdLineOptsBaseMongos;
-function testGetCmdLineOptsMongos(mongoRunnerConfig, expectedResult) {
+function testGetCmdLineOptsMongos(mongolRunnerConfig, expectedResult) {
     "use strict";
 
-    // Get the options object returned by "getCmdLineOpts" when we spawn a mongos using our test
+    // Get the options object returned by "getCmdLineOpts" when we spawn a mongols using our test
     // framework without passing any additional options.  We need this because the framework adds
     // options of its own, and we only want to compare against the options we care about.
-    function getCmdLineOptsFromMongos(mongosOptions) {
-        // Start mongod with no options
+    function getCmdLineOptsFromMongos(mongolsOptions) {
+        // Start mongold with no options
         var baseMongod = MongoRunner.runMongod({
             configsvr: "",
             journal: "",
@@ -168,7 +168,7 @@ function testGetCmdLineOptsMongos(mongoRunnerConfig, expectedResult) {
                 return tojson(ismasterResult);
             });
 
-        var options = Object.merge(mongosOptions, {configdb: configdbStr});
+        var options = Object.merge(mongolsOptions, {configdb: configdbStr});
         var baseMongos = MongoRunner.runMongos(options);
 
         // Get base command line opts.  Needed because the framework adds its own options
@@ -177,7 +177,7 @@ function testGetCmdLineOptsMongos(mongoRunnerConfig, expectedResult) {
         // Remove the configdb option
         delete getCmdLineOptsResult.parsed.sharding.configDB;
 
-        // Stop the mongod and mongos we used to get the options
+        // Stop the mongold and mongols we used to get the options
         MongoRunner.stopMongos(baseMongos);
         MongoRunner.stopMongod(baseMongod);
 
@@ -203,7 +203,7 @@ function testGetCmdLineOptsMongos(mongoRunnerConfig, expectedResult) {
     expectedResult = mergeOptions(getCmdLineOptsExpected, expectedResult);
 
     // Get the parsed options
-    var getCmdLineOptsResult = getCmdLineOptsFromMongos(mongoRunnerConfig);
+    var getCmdLineOptsResult = getCmdLineOptsFromMongos(mongolRunnerConfig);
 
     // Delete port if we are not explicitly setting it, since it will change on multiple runs of the
     // test framework and cause false failures.

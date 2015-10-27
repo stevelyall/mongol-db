@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace CommandTests {
 

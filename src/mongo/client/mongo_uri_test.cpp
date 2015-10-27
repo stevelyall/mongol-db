@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/mongo_uri.h"
+#include "mongol/client/mongol_uri.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-using mongo::MongoURI;
+using mongol::MongoURI;
 
 struct URITestCase {
     std::string URI;
     std::string uname;
     std::string password;
-    mongo::ConnectionString::ConnectionType type;
+    mongol::ConnectionString::ConnectionType type;
     std::string setname;
     size_t numservers;
     size_t numOptions;
@@ -50,24 +50,24 @@ struct InvalidURITestCase {
     std::string URI;
 };
 
-const mongo::ConnectionString::ConnectionType kMaster = mongo::ConnectionString::MASTER;
-const mongo::ConnectionString::ConnectionType kSet = mongo::ConnectionString::SET;
+const mongol::ConnectionString::ConnectionType kMaster = mongol::ConnectionString::MASTER;
+const mongol::ConnectionString::ConnectionType kSet = mongol::ConnectionString::SET;
 
 const URITestCase validCases[] = {
 
-    {"mongodb://user:pwd@127.0.0.1", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@127.0.0.1", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@127.0.0.1", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@127.0.0.1", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://127.0.0.1/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://127.0.0.1/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@127.0.0.1:1234", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@127.0.0.1:1234", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@127.0.0.1:1234", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@127.0.0.1:1234", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://127.0.0.1:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://127.0.0.1:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@127.0.0.1,127.0.0.2/?replicaSet=replName",
+    {"mongoldb://user:pwd@127.0.0.1,127.0.0.2/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -76,7 +76,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@127.0.0.1,127.0.0.2/?replicaSet=replName",
+    {"mongoldb://user@127.0.0.1,127.0.0.2/?replicaSet=replName",
      "user",
      "",
      kSet,
@@ -85,7 +85,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://127.0.0.1,127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://127.0.0.1,127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -94,7 +94,7 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@127.0.0.1:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user:pwd@127.0.0.1:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -103,7 +103,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@127.0.0.1:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user@127.0.0.1:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "",
      kSet,
@@ -112,7 +112,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://127.0.0.1:1234,127.0.0.1:1234/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://127.0.0.1:1234,127.0.0.1:1234/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -121,19 +121,19 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@[::1]", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@[::1]", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@[::1]", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@[::1]", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://[::1]/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://[::1]/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@[::1]:1234", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@[::1]:1234", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@[::1]:1234", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@[::1]:1234", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://[::1]:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://[::1]:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@[::1],127.0.0.2/?replicaSet=replName",
+    {"mongoldb://user:pwd@[::1],127.0.0.2/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -142,9 +142,9 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@[::1],127.0.0.2/?replicaSet=replName", "user", "", kSet, "replName", 2, 1, ""},
+    {"mongoldb://user@[::1],127.0.0.2/?replicaSet=replName", "user", "", kSet, "replName", 2, 1, ""},
 
-    {"mongodb://[::1],127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://[::1],127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -153,7 +153,7 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user:pwd@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -162,7 +162,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "",
      kSet,
@@ -171,7 +171,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://[::1]:1234,[::1]:1234/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://[::1]:1234,[::1]:1234/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -180,19 +180,19 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@[::1]", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@[::1]", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@[::1]", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@[::1]", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://[::1]/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://[::1]/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@[::1]:1234", "user", "pwd", kMaster, "", 1, 0, ""},
+    {"mongoldb://user:pwd@[::1]:1234", "user", "pwd", kMaster, "", 1, 0, ""},
 
-    {"mongodb://user@[::1]:1234", "user", "", kMaster, "", 1, 0, ""},
+    {"mongoldb://user@[::1]:1234", "user", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb://[::1]:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
+    {"mongoldb://[::1]:1234/dbName?foo=a&c=b", "", "", kMaster, "", 1, 2, "dbName"},
 
-    {"mongodb://user:pwd@[::1],127.0.0.2/?replicaSet=replName",
+    {"mongoldb://user:pwd@[::1],127.0.0.2/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -201,9 +201,9 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@[::1],127.0.0.2/?replicaSet=replName", "user", "", kSet, "replName", 2, 1, ""},
+    {"mongoldb://user@[::1],127.0.0.2/?replicaSet=replName", "user", "", kSet, "replName", 2, 1, ""},
 
-    {"mongodb://[::1],127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://[::1],127.0.0.2/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -212,7 +212,7 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user:pwd@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "pwd",
      kSet,
@@ -221,7 +221,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://user@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
+    {"mongoldb://user@[::1]:1234,127.0.0.2:1234/?replicaSet=replName",
      "user",
      "",
      kSet,
@@ -230,7 +230,7 @@ const URITestCase validCases[] = {
      1,
      ""},
 
-    {"mongodb://[::1]:1234,[::1]:1234/dbName?foo=a&c=b&replicaSet=replName",
+    {"mongoldb://[::1]:1234,[::1]:1234/dbName?foo=a&c=b&replicaSet=replName",
      "",
      "",
      kSet,
@@ -239,7 +239,7 @@ const URITestCase validCases[] = {
      3,
      "dbName"},
 
-    {"mongodb://user:pwd@[::1]/?authMechanism=GSSAPI&authMechanismProperties=SERVICE_NAME:foobar",
+    {"mongoldb://user:pwd@[::1]/?authMechanism=GSSAPI&authMechanismProperties=SERVICE_NAME:foobar",
      "user",
      "pwd",
      kMaster,
@@ -248,7 +248,7 @@ const URITestCase validCases[] = {
      2,
      ""},
 
-    {"mongodb://user:pwd@[::1]/?authMechanism=GSSAPI&gssapiServiceName=foobar",
+    {"mongoldb://user:pwd@[::1]/?authMechanism=GSSAPI&gssapiServiceName=foobar",
      "user",
      "pwd",
      kMaster,
@@ -256,9 +256,9 @@ const URITestCase validCases[] = {
      1,
      2,
      ""},
-    {"mongodb:///tmp/mongodb-27017.sock", "", "", kMaster, "", 1, 0, ""},
+    {"mongoldb:///tmp/mongoldb-27017.sock", "", "", kMaster, "", 1, 0, ""},
 
-    {"mongodb:///tmp/mongodb-27017.sock,/tmp/mongodb-27018.sock/?replicaSet=replName",
+    {"mongoldb:///tmp/mongoldb-27017.sock,/tmp/mongoldb-27018.sock/?replicaSet=replName",
      "",
      "",
      kSet,
@@ -269,9 +269,9 @@ const URITestCase validCases[] = {
 
 const InvalidURITestCase invalidCases[] = {
 
-    {"mongodb://"},
+    {"mongoldb://"},
 
-    {"mongodb://localhost:27017,localhost:27018?replicaSet=missingSlash"},
+    {"mongoldb://localhost:27017,localhost:27018?replicaSet=missingSlash"},
 };
 
 TEST(MongoURI, GoodTrickyURIs) {
@@ -279,11 +279,11 @@ TEST(MongoURI, GoodTrickyURIs) {
 
     for (size_t i = 0; i != numCases; ++i) {
         const URITestCase testCase = validCases[i];
-        mongo::unittest::log() << "Testing URI: " << testCase.URI << '\n';
+        mongol::unittest::log() << "Testing URI: " << testCase.URI << '\n';
         std::string errMsg;
         auto cs_status = MongoURI::parse(testCase.URI);
         if (!cs_status.getStatus().toString().empty()) {
-            mongo::unittest::log() << "error with uri: " << cs_status.getStatus().toString();
+            mongol::unittest::log() << "error with uri: " << cs_status.getStatus().toString();
         }
         ASSERT_TRUE(cs_status.isOK());
         auto result = cs_status.getValue();
@@ -305,7 +305,7 @@ TEST(MongoURI, InvalidURIs) {
 
     for (size_t i = 0; i != numCases; ++i) {
         const InvalidURITestCase testCase = invalidCases[i];
-        mongo::unittest::log() << "Testing URI: " << testCase.URI << '\n';
+        mongol::unittest::log() << "Testing URI: " << testCase.URI << '\n';
         auto cs_status = MongoURI::parse(testCase.URI);
         ASSERT_FALSE(cs_status.isOK());
     }

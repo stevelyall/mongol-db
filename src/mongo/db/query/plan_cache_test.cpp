@@ -27,26 +27,26 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/plan_cache.h
+ * This file contains tests for mongol/db/query/plan_cache.h
  */
 
-#include "mongo/db/query/plan_cache.h"
+#include "mongol/db/query/plan_cache.h"
 
 #include <algorithm>
 #include <ostream>
 #include <memory>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_test_lib.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_test_lib.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -411,7 +411,7 @@ TEST(PlanCacheTest, AddValidSolution) {
  * a full-blown QuerySolution. Finally, assert that the query solution
  * recovered from the cache is identical to the original "best solution".
  */
-class CachePlanSelectionTest : public mongo::unittest::Test {
+class CachePlanSelectionTest : public mongol::unittest::Test {
 protected:
     void setUp() {
         params.options = QueryPlannerParams::INCLUDE_COLLSCAN;

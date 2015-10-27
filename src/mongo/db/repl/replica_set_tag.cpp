@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replica_set_tag.h"
+#include "mongol/db/repl/replica_set_tag.h"
 
 #include <algorithm>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/sequence_util.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/sequence_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 bool ReplicaSetTag::operator==(const ReplicaSetTag& other) const {
@@ -236,4 +236,4 @@ void ReplicaSetTagConfig::_appendConstraint(
 
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

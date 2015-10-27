@@ -11,12 +11,12 @@ var options = { rs : useReplicaSet,
                 shardOptions : { master : "", oplogSize : 10 },
                 rsOptions : { nodes : 1, oplogSize : 10 } };
 
-var st = new ShardingTest({ shards : 2, mongos : 1, other : options });
+var st = new ShardingTest({ shards : 2, mongols : 1, other : options });
 
-var mongos = st.s0;
-var coll = mongos.getCollection( "foo.bar" );
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
+var mongols = st.s0;
+var coll = mongols.getCollection( "foo.bar" );
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
 printjson( admin.runCommand({ movePrimary : coll.getDB() + "", to : shards[0]._id }) );

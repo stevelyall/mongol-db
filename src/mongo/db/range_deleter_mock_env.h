@@ -32,10 +32,10 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/range_deleter.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/range_deleter.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 struct DeletedRange {
     std::string ns;
@@ -56,7 +56,7 @@ struct DeletedRangeCmp {
  * deletes, setting open cursors IDs per namespace and the ability to
  * record the history of deletes performed through this environment.
  */
-class RangeDeleterMockEnv : public mongo::RangeDeleterEnv {
+class RangeDeleterMockEnv : public mongol::RangeDeleterEnv {
 public:
     RangeDeleterMockEnv();
 

@@ -32,16 +32,16 @@
 // This file contains simple single-threaded tests, which check various aspects of the Btree logic
 //
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/instance.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_test_help.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_test_help.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

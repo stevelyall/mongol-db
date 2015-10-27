@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Methods used by several parts of the planning process.
@@ -83,4 +83,4 @@ public:
     static void reverseScans(QuerySolutionNode* node);
 };
 
-}  // namespace mongo
+}  // namespace mongol

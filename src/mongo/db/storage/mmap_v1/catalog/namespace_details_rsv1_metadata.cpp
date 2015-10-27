@@ -28,12 +28,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
 
 
-#include "mongo/db/operation_context.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::numeric_limits;

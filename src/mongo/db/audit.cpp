@@ -26,7 +26,7 @@
  *    it in the license file.
  */
 
-#include "mongo/db/audit.h"
+#include "mongol/db/audit.h"
 
 #if MONGO_ENTERPRISE_VERSION
 #define MONGO_AUDIT_STUB ;
@@ -35,7 +35,7 @@
     {}
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace audit {
 
 void logAuthentication(ClientBasic* client,
@@ -189,4 +189,4 @@ void logAuthentication(ClientBasic* client,
                                               bool* fieldIsPresent) MONGO_AUDIT_STUB
 
 }  // namespace audit
-}  // namespace mongo
+}  // namespace mongol

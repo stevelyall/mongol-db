@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/dbtests/mock/mock_replica_set.h"
+#include "mongol/dbtests/mock/mock_replica_set.h"
 
-#include "mongo/db/repl/member_state.h"
-#include "mongo/dbtests/mock/mock_conn_registry.h"
-#include "mongo/dbtests/mock/mock_dbclient_connection.h"
-#include "mongo/util/map_util.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/dbtests/mock/mock_conn_registry.h"
+#include "mongol/dbtests/mock/mock_dbclient_connection.h"
+#include "mongol/util/map_util.h"
 
 #include <sstream>
 
-using namespace mongo::repl;
+using namespace mongol::repl;
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;

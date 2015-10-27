@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/type_tags.h"
+#include "mongol/s/catalog/type_tags.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::string;
 

@@ -27,14 +27,14 @@
 
 /** Unit tests for OwnedPointerVector. */
 
-#include "mongo/base/owned_pointer_vector.h"
+#include "mongol/base/owned_pointer_vector.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -357,4 +357,4 @@ TEST(OwnedPointerVectorTest, PopAndDeleteBack) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

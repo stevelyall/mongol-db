@@ -65,7 +65,7 @@
     assert.eq(8, cursor.next()["_id"]);
 
     // Tests that a tailable cursor over an empty capped collection produces a dead cursor, intended
-    // to be run on both mongod and mongos. For SERVER-20720.
+    // to be run on both mongold and mongols. For SERVER-20720.
     t.drop();
     db.createCollection(t.getName(), {capped: true, size: 1024});
 

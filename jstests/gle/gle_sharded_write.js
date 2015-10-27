@@ -3,13 +3,13 @@
 // Note that test should work correctly with and without write commands.
 //
 
-var st = new ShardingTest({ shards : 2, mongos : 1 });
+var st = new ShardingTest({ shards : 2, mongols : 1 });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var config = mongos.getDB( "config" );
-var coll = mongos.getCollection( jsTestName() + ".coll" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var config = mongols.getDB( "config" );
+var coll = mongols.getCollection( jsTestName() + ".coll" );
 var shards = config.shards.find().toArray();
 
 assert.commandWorked( admin.runCommand({ enableSharding : coll.getDB().toString() }) );
@@ -142,7 +142,7 @@ assert(gle.singleShard);
 assert.eq(coll.count(), 0);
 
 //
-// Geo $near is not supported on mongos
+// Geo $near is not supported on mongols
 coll.ensureIndex( { loc: "2dsphere" } );
 coll.remove({});
 var query = {

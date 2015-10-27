@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/auth/sasl_server_conversation.h"
+#include "mongol/db/auth/sasl_server_conversation.h"
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 SaslServerConversation::~SaslServerConversation(){};
 
@@ -38,4 +38,4 @@ std::string SaslServerConversation::getPrincipalId() {
     return _user;
 }
 
-}  // namespace mongo
+}  // namespace mongol

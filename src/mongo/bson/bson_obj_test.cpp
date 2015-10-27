@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/platform/decimal128.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/platform/decimal128.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-using namespace mongo;
+using namespace mongol;
 
 TEST(BSONObjToString, EmptyArray) {
     const char text[] = "{ x: [] }";
-    mongo::BSONObj o1 = mongo::fromjson(text);
+    mongol::BSONObj o1 = mongol::fromjson(text);
     const std::string o1_str = o1.toString();
     ASSERT_EQUALS(text, o1_str);
 }

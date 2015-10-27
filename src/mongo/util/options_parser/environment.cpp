@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/environment.h"
+#include "mongol/util/options_parser/environment.h"
 
 #include <iostream>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/options_parser/constraints.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/options_parser/constraints.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 using std::shared_ptr;
@@ -369,4 +369,4 @@ BSONObj Environment::toBSON() const {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

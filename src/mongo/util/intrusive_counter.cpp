@@ -26,15 +26,15 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/intrusive_counter.h"
+#include "mongol/util/intrusive_counter.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 using boost::intrusive_ptr;
-using namespace mongoutils;
+using namespace mongolutils;
 
 intrusive_ptr<const RCString> RCString::create(StringData s) {
     uassert(16493,

@@ -12,7 +12,7 @@ function step(msg) {
 
 var s = new ShardingTest({ name: "dumprestore9a",
                            shards: 2,
-                           mongos: 3,
+                           mongols: 3,
                            other: { chunkSize: 1, enableBalancer : 1 } });
 
 step("Shard collection");
@@ -46,7 +46,7 @@ step("dump cluster");
 
 dumpdir = MongoRunner.dataDir + "/dumprestore9-dump1/";
 resetDbpath(dumpdir);
-runMongoProgram( "mongodump", "--host", s._mongos[0].host, "--out", dumpdir );
+runMongoProgram( "mongoldump", "--host", s._mongols[0].host, "--out", dumpdir );
 
 step("Shutting down cluster");
 
@@ -55,7 +55,7 @@ s.stop();
 step("Starting up clean cluster");
 s = new ShardingTest({ name: "dumprestore9b",
                        shards: 2,
-                       mongos: 3,
+                       mongols: 3,
                        other: {chunkSize:1} });
 
 db = s.getDB( "aaa" );
@@ -65,7 +65,7 @@ assert.eq(0, coll.count(), "Data wasn't cleaned up by restarting sharding test")
 
 step("Restore data and config");
 
-runMongoProgram( "mongorestore", dumpdir, "--host", s._mongos[1].host, "--restoreShardingConfig", "--forceConfigRestore");
+runMongoProgram( "mongolrestore", dumpdir, "--host", s._mongols[1].host, "--restoreShardingConfig", "--forceConfigRestore");
 
 config = s.getDB("config");
 assert(config.databases.findOne({_id:'aaa'}).partitioned, "Config data wasn't restored properly");

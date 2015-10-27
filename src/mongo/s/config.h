@@ -30,12 +30,12 @@
 
 #include <set>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkManager;
 class CollectionType;
@@ -221,7 +221,7 @@ public:
     static void reloadSettings(OperationContext* txn);
 
     /**
-     * For use in mongos and mongod which needs notifications about changes to shard and config
+     * For use in mongols and mongold which needs notifications about changes to shard and config
      * server replset membership to update the ShardRegistry.
      *
      * This is expected to be run in an existing thread.
@@ -230,7 +230,7 @@ public:
                                                         const std::string& newConnectionString);
 
     /**
-     * For use in mongos which needs notifications about changes to shard replset membership to
+     * For use in mongols which needs notifications about changes to shard replset membership to
      * update the config.shards collection.
      *
      * This is expected to be run in a brand new thread.
@@ -239,4 +239,4 @@ public:
                                                        const std::string& newConnectionString);
 };
 
-}  // namespace mongo
+}  // namespace mongol

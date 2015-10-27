@@ -25,24 +25,24 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_type.h"
+#include "mongol/base/data_type.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status DataType::makeTrivialLoadStatus(size_t sizeOfT, size_t length, size_t debug_offset) {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "buffer size too small to read (" << sizeOfT << ") bytes out of buffer[" << length
        << "] at offset: " << debug_offset;
     return Status(ErrorCodes::Overflow, ss);
 }
 
 Status DataType::makeTrivialStoreStatus(size_t sizeOfT, size_t length, size_t debug_offset) {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "buffer size too small to write (" << sizeOfT << ") bytes into buffer[" << length
        << "] at offset: " << debug_offset;
     return Status(ErrorCodes::Overflow, ss);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,9 +31,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 class Environment;
@@ -46,7 +46,7 @@ class Value;
  *
  *  Usage:
  *
- *  namespace moe = mongo::optionenvironment;
+ *  namespace moe = mongol::optionenvironment;
  *
  *  moe::OptionsParser parser;
  *  moe::Environment environment;
@@ -121,4 +121,4 @@ private:
 };
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

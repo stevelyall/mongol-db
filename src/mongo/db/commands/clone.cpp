@@ -26,20 +26,20 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::set;
 using std::string;

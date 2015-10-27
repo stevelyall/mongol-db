@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_executor.h"
+#include "mongol/db/repl/replication_executor.h"
 
 #include <limits>
 
-#include "mongo/db/repl/database_task.h"
-#include "mongo/db/repl/storage_interface.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/repl/database_task.h"
+#include "mongol/db/repl/storage_interface.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -614,4 +614,4 @@ stdx::function<void()> makeNoExcept(const stdx::function<void()>& fn) {
 }  // namespace
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

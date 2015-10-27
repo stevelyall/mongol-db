@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
+#include "mongol/db/commands.h"
 
-namespace mongo {
+namespace mongol {
 
 bool Command::testCommandsEnabled = false;
 
-}  // namespace mongo
+}  // namespace mongol

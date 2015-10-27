@@ -28,12 +28,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_array.h"
 
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 Status ArrayMatchingMatchExpression::initPath(StringData path) {
     _path = path;

@@ -28,24 +28,24 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/data_file.h"
+#include "mongol/db/storage/mmap_v1/data_file.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <utility>
 #include <vector>
 
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/util/log.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 
@@ -54,7 +54,7 @@ namespace {
 void data_file_check(void* _mb) {
     if (sizeof(char*) == 4) {
         uassert(10084,
-                "can't map file memory - mongo requires 64 bit build for larger datasets",
+                "can't map file memory - mongol requires 64 bit build for larger datasets",
                 _mb != NULL);
     } else {
         uassert(10085, "can't map file memory", _mb != NULL);
@@ -86,7 +86,7 @@ int DataFile::maxSize() {
 NOINLINE_DECL void DataFile::badOfs(int ofs) const {
     msgasserted(13440,
                 str::stream() << "bad offset:" << ofs << " accessing file: " << mmf.filename()
-                              << ". See http://dochub.mongodb.org/core/data-recovery");
+                              << ". See http://dochub.mongoldb.org/core/data-recovery");
 }
 
 int DataFile::_defaultSize() const {

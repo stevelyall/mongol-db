@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/platform/strnlen.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/platform/strnlen.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /** helper to read and parse a block of memory
     methods throw the eof exception if the operation would pass the end of the

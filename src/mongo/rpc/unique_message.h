@@ -31,11 +31,11 @@
 #include <memory>
 #include <utility>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/rpc/request_interface.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/rpc/request_interface.h"
 
-namespace mongo {
+namespace mongol {
 class Message;
 namespace rpc {
 
@@ -91,4 +91,4 @@ using UniqueReply = UniqueMessage<ReplyInterface>;
 using UniqueRequest = UniqueMessage<RequestInterface>;
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

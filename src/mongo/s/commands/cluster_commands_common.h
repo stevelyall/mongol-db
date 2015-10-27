@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/s/strategy.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/s/strategy.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -136,4 +136,4 @@ int getUniqueCodeFromCommandResults(const std::vector<Strategy::CommandResult>& 
  */
 bool appendEmptyResultSet(BSONObjBuilder& result, Status status, const std::string& ns);
 
-}  // namespace mongo
+}  // namespace mongol

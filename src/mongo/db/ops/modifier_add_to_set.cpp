@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_add_to_set.h"
+#include "mongol/db/ops/modifier_add_to_set.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mb = mutablebson;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 namespace {
 
@@ -131,12 +131,12 @@ Status ModifierAddToSet::init(const BSONElement& modExpr, const Options& opts, b
 
     // If the type of the value is 'Object', we might be dealing with a $each. See if that
     // is the case.
-    if (modExpr.type() == mongo::Object) {
+    if (modExpr.type() == mongol::Object) {
         BSONElement modExprObjPayload = modExpr.embeddedObject().firstElement();
         if (!modExprObjPayload.eoo() && StringData(modExprObjPayload.fieldName()) == "$each") {
             // It is a $each. Verify that the payload is an array as is required for $each,
             // set our flag, and store the array as our value.
-            if (modExprObjPayload.type() != mongo::Array) {
+            if (modExprObjPayload.type() != mongol::Array) {
                 return Status(ErrorCodes::BadValue,
                               str::stream() << "The argument to $each in $addToSet must "
                                                "be an array but it was of type "
@@ -176,14 +176,14 @@ Status ModifierAddToSet::init(const BSONElement& modExpr, const Options& opts, b
         const BSONType type = valCursor.getType();
         dassert(valCursor.hasValue());
         switch (type) {
-            case mongo::Object: {
+            case mongol::Object: {
                 Status s = valCursor.getValueObject().storageValidEmbedded();
                 if (!s.isOK())
                     return s;
 
                 break;
             }
-            case mongo::Array: {
+            case mongol::Array: {
                 Status s = valCursor.getValueArray().storageValidEmbedded();
                 if (!s.isOK())
                     return s;
@@ -244,7 +244,7 @@ Status ModifierAddToSet::prepare(mb::Element root, StringData matchedField, Exec
     }
 
     // This operation only applies to arrays
-    if (_preparedState->elemFound.getType() != mongo::Array) {
+    if (_preparedState->elemFound.getType() != mongol::Array) {
         mb::Element idElem = mb::findElementNamed(root.leftChild(), "_id");
         return Status(ErrorCodes::BadValue,
                       str::stream()
@@ -395,4 +395,4 @@ Status ModifierAddToSet::log(LogBuilder* logBuilder) const {
     return logBuilder->addToSets(logElement);
 }
 
-}  // namespace mongo
+}  // namespace mongol

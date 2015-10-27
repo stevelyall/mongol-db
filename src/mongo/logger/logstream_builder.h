@@ -31,14 +31,14 @@
 #include <sstream>
 #include <string>
 
-#include "mongo/logger/labeled_level.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/log_severity.h"
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/util/exit_code.h"
+#include "mongol/logger/labeled_level.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/log_severity.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/util/exit_code.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 class Tee;
@@ -195,7 +195,7 @@ public:
         // We can't rely on ADL to find our custom stream out class,
         // since neither the class (ostream) nor the argument are in
         // our namespace. Just manually invoke
-        mongo::operator<<(stream(), d);
+        mongol::operator<<(stream(), d);
         return *this;
     }
 
@@ -234,4 +234,4 @@ private:
 
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

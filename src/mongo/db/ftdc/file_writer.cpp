@@ -26,25 +26,25 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kFTDC
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kFTDC
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/file_writer.h"
+#include "mongol/db/ftdc/file_writer.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/ftdc/compressor.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/ftdc/compressor.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 FTDCFileWriter::~FTDCFileWriter() {
     close();
@@ -219,4 +219,4 @@ void FTDCFileWriter::closeWithoutFlushForTest() {
     _archiveStream.close();
 }
 
-}  // namespace mongo
+}  // namespace mongol

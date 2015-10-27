@@ -27,16 +27,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/service_context.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/init.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/service_context.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 /* Make a WiredTigerCustomizationHooks pointer a decoration on the global ServiceContext */
 MONGO_INITIALIZER_WITH_PREREQUISITES(SetWiredTigerCustomizationHooks, ("SetGlobalEnvironment"))
@@ -73,4 +73,4 @@ std::string EmptyWiredTigerCustomizationHooks::getOpenConfig(StringData tableNam
     return "";
 }
 
-}  // namespace mongo
+}  // namespace mongol

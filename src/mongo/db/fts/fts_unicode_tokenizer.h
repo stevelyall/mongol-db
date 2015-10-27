@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/db/fts/tokenizer.h"
-#include "mongo/db/fts/unicode/string.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/db/fts/tokenizer.h"
+#include "mongol/db/fts/unicode/string.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 class FTSLanguage;
@@ -47,7 +47,7 @@ class StopWords;
  * Unicode delimiters (see gen_delimiter_list.py)
  * Uses
  * - A list of Unicode delimiters for tokenizing words (see gen_delimiter_list.py).
- * - tolower from mongo::unicode, which supports UTF-8 simple and Turkish case folding
+ * - tolower from mongol::unicode, which supports UTF-8 simple and Turkish case folding
  * - Stemmer (ie, Snowball Stemmer) to stem words.
  * - Embeded stop word lists for each language in StopWord class
  *
@@ -92,4 +92,4 @@ private:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

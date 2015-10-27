@@ -28,13 +28,13 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/parse_number.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/server_parameters.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/server_parameters.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -124,4 +124,4 @@ Status ExportedServerParameter<vector<string>, ServerParameterType::kStartupOnly
     return set(v);
 }
 
-}  // namespace mongo
+}  // namespace mongol

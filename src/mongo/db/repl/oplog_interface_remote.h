@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/repl/oplog_interface.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/db/repl/oplog_interface.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 
@@ -58,4 +58,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

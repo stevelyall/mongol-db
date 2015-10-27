@@ -7,10 +7,10 @@
 var st = new ShardingTest({ shards : 2, verbose : 4 });
 st.stopBalancer();
 
-var mongos = st.s0;
-var coll = mongos.getCollection("foo.bar");
-var admin = mongos.getDB("admin");
-var shards = mongos.getDB("config").shards.find().toArray();
+var mongols = st.s0;
+var coll = mongols.getCollection("foo.bar");
+var admin = mongols.getDB("admin");
+var shards = mongols.getDB("config").shards.find().toArray();
 
 assert.commandWorked(admin.runCommand({ enableSharding : coll.getDB().getName() }));
 printjson(admin.runCommand({ movePrimary : coll.getDB().getName(), to : shards[0]._id }));

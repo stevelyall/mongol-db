@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/snapshot_manager.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/snapshot_manager.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -82,4 +82,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

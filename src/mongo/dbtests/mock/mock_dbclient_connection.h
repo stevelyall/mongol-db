@@ -30,16 +30,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
 
-namespace mongo {
+namespace mongol {
 /**
- * A simple class for mocking mongo::DBClientConnection.
+ * A simple class for mocking mongol::DBClientConnection.
  *
  * Also check out sample usage in dbtests/mock_dbclient_conn_test.cpp
  */
-class MockDBClientConnection : public mongo::DBClientConnection {
+class MockDBClientConnection : public mongol::DBClientConnection {
 public:
     /**
      * Create a mock connection to a mock server.
@@ -65,8 +65,8 @@ public:
     }
 
     bool runCommand(const std::string& dbname,
-                    const mongo::BSONObj& cmdObj,
-                    mongo::BSONObj& info,
+                    const mongol::BSONObj& cmdObj,
+                    mongol::BSONObj& info,
                     int options = 0);
 
     rpc::UniqueReply runCommandWithMetadata(StringData database,
@@ -74,11 +74,11 @@ public:
                                             const BSONObj& metadata,
                                             const BSONObj& commandArgs) final;
 
-    std::unique_ptr<mongo::DBClientCursor> query(const std::string& ns,
-                                                 mongo::Query query = mongo::Query(),
+    std::unique_ptr<mongol::DBClientCursor> query(const std::string& ns,
+                                                 mongol::Query query = mongol::Query(),
                                                  int nToReturn = 0,
                                                  int nToSkip = 0,
-                                                 const mongo::BSONObj* fieldsToReturn = 0,
+                                                 const mongol::BSONObj* fieldsToReturn = 0,
                                                  int queryOptions = 0,
                                                  int batchSize = 0);
 
@@ -96,7 +96,7 @@ public:
     // Getters
     //
 
-    mongo::ConnectionString::ConnectionType type() const;
+    mongol::ConnectionString::ConnectionType type() const;
     bool isFailed() const;
     double getSoTimeout() const;
     std::string getServerAddress() const;
@@ -105,16 +105,16 @@ public:
     //
     // Unsupported methods (defined to get rid of virtual function was hidden error)
     //
-    unsigned long long query(stdx::function<void(const mongo::BSONObj&)> f,
+    unsigned long long query(stdx::function<void(const mongol::BSONObj&)> f,
                              const std::string& ns,
-                             mongo::Query query,
-                             const mongo::BSONObj* fieldsToReturn = 0,
+                             mongol::Query query,
+                             const mongol::BSONObj* fieldsToReturn = 0,
                              int queryOptions = 0);
 
-    unsigned long long query(stdx::function<void(mongo::DBClientCursorBatchIterator&)> f,
+    unsigned long long query(stdx::function<void(mongol::DBClientCursorBatchIterator&)> f,
                              const std::string& ns,
-                             mongo::Query query,
-                             const mongo::BSONObj* fieldsToReturn = 0,
+                             mongol::Query query,
+                             const mongol::BSONObj* fieldsToReturn = 0,
                              int queryOptions = 0);
 
     //
@@ -122,12 +122,12 @@ public:
     //
 
     void killCursor(long long cursorID);
-    bool callRead(mongo::Message& toSend, mongo::Message& response);
-    bool call(mongo::Message& toSend,
-              mongo::Message& response,
+    bool callRead(mongol::Message& toSend, mongol::Message& response);
+    bool call(mongol::Message& toSend,
+              mongol::Message& response,
               bool assertOk = true,
               std::string* actualServer = 0);
-    void say(mongo::Message& toSend, bool isRetry = false, std::string* actualServer = 0);
+    void say(mongol::Message& toSend, bool isRetry = false, std::string* actualServer = 0);
     bool lazySupported() const;
 
 private:

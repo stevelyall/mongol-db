@@ -29,12 +29,12 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/logger/component_message_log_domain.h"
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/logger/component_message_log_domain.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -69,4 +69,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

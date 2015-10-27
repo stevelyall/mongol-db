@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/replica_set_monitor_manager.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/replica_set_monitor_manager.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Global connection pool (used by all references to the internal DB client).
@@ -43,4 +43,4 @@ extern DBConnectionPool globalConnPool;
  */
 extern ReplicaSetMonitorManager globalRSMonitorManager;
 
-}  // namespace mongo
+}  // namespace mongol

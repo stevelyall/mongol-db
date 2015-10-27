@@ -32,7 +32,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 size_t compress(const char* input, size_t input_length, std::string* output);
 

@@ -26,51 +26,51 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_external_state_impl.h"
+#include "mongol/db/repl/replication_coordinator_external_state_impl.h"
 
 #include <sstream>
 #include <string>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/oid.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/isself.h"
-#include "mongo/db/repl/last_vote.h"
-#include "mongo/db/repl/master_slave.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/rs_sync.h"
-#include "mongo/db/repl/snapshot_thread.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/s/sharding_state_recovery.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/net/message_port.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/isself.h"
+#include "mongol/db/repl/last_vote.h"
+#include "mongol/db/repl/master_slave.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/rs_sync.h"
+#include "mongol/db/repl/snapshot_thread.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/s/sharding_state_recovery.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/net/message_port.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -430,4 +430,4 @@ bool ReplicationCoordinatorExternalStateImpl::isReadCommittedSupportedByStorageE
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

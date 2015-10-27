@@ -26,14 +26,14 @@
  */
 
 #pragma once
-#include "mongo/util/options_parser/option_description.h"
+#include "mongol/util/options_parser/option_description.h"
 
 #include <boost/program_options.hpp>
 #include <list>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 namespace po = boost::program_options;
@@ -49,7 +49,7 @@ namespace po = boost::program_options;
  *
  *  Usage:
  *
- *  namespace moe = mongo::optionenvironment;
+ *  namespace moe = mongol::optionenvironment;
  *
  *  moe::OptionsParser parser;
  *  moe::Environment environment;
@@ -169,4 +169,4 @@ private:
 };
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

@@ -30,14 +30,14 @@
 
 #pragma once
 
-#include "mongo/bson/bson_validate.h"
-#include "mongo/client/constants.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_port.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/client/constants.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_port.h"
 
-namespace mongo {
+namespace mongol {
 
 /* db response format
 
@@ -94,7 +94,7 @@ namespace mongo {
 
 namespace QueryResult {
 #pragma pack(1)
-/* see http://dochub.mongodb.org/core/mongowireprotocol
+/* see http://dochub.mongoldb.org/core/mongolwireprotocol
 */
 struct Layout {
     MsgData::Layout msgdata;
@@ -203,7 +203,7 @@ public:
 /* For the database/server protocol, these objects and functions encapsulate
    the various messages transmitted over the connection.
 
-   See http://dochub.mongodb.org/core/mongowireprotocol
+   See http://dochub.mongoldb.org/core/mongolwireprotocol
 */
 class DbMessage {
     // Assume sizeof(int) == 4 bytes
@@ -352,4 +352,4 @@ void replyToQuery(int queryResultFlags, Message& m, DbResponse& dbresponse, BSON
  * @param resultObj The bson object that contains the reply data.
  */
 void replyToQuery(int queryResultFlags, Message& response, const BSONObj& resultObj);
-}  // namespace mongo
+}  // namespace mongol

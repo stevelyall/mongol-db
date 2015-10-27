@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/db/index/external_key_generator.h"
+#include "mongol/db/index/external_key_generator.h"
 
 #include <cmath>
 #include <string>
 
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/2d_common.h"
-#include "mongo/db/index/btree_key_generator.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/2d_common.h"
+#include "mongol/db/index/btree_key_generator.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 void getKeysForUpgradeChecking(const BSONObj& infoObj, const BSONObj& doc, BSONObjSet* keys) {
@@ -193,4 +193,4 @@ bool isAnyIndexKeyTooLarge(const BSONObj& index, const BSONObj& doc) {
     return largestKeySize > 1024;
 }
 
-}  // namespace mongo
+}  // namespace mongol

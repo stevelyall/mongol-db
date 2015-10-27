@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/matchable.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/matchable.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The MatchExpression uses the MatchableDocument interface to see if a document satisfies the
@@ -168,4 +168,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

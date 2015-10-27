@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/router_stage_limit.h"
+#include "mongol/s/query/router_stage_limit.h"
 
-namespace mongo {
+namespace mongol {
 
 RouterStageLimit::RouterStageLimit(std::unique_ptr<RouterExecStage> child, long long limit)
     : RouterExecStage(std::move(child)), _limit(limit) {
@@ -63,4 +63,4 @@ bool RouterStageLimit::remotesExhausted() {
     return getChildStage()->remotesExhausted();
 }
 
-}  // namespace mongo
+}  // namespace mongol

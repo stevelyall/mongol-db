@@ -28,10 +28,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * if doc is ok, then return is BSONObj()

@@ -31,10 +31,10 @@
 
 #include <cstdint>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 class FTSLanguage;
@@ -96,4 +96,4 @@ public:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

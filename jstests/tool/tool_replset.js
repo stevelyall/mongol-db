@@ -10,7 +10,7 @@
  * 8. Import the collection.
  * 9. Add data to the oplog.rs collection.
  * 10. Ensure that the document doesn't exist yet.
- * 11. Now play the mongooplog tool.
+ * 11. Now play the mongoloplog tool.
  * 12. Make sure that the oplog was played
 */
 
@@ -33,28 +33,28 @@
     var replSetConnString = "tool_replset/127.0.0.1:" + replTest.ports[0] +
                             ",127.0.0.1:" + replTest.ports[1];
 
-    // Test with mongodump/mongorestore
+    // Test with mongoldump/mongolrestore
     print("dump the db");
     var data = MongoRunner.dataDir + "/tool_replset-dump1/";
-    runMongoProgram("mongodump", "--host", replSetConnString, "--out", data);
+    runMongoProgram("mongoldump", "--host", replSetConnString, "--out", data);
 
     print("db successfully dumped, dropping now");
     master.getDB("foo").dropDatabase();
     replTest.awaitReplication();
 
     print("restore the db");
-    runMongoProgram("mongorestore", "--host", replSetConnString, "--dir", data);
+    runMongoProgram("mongolrestore", "--host", replSetConnString, "--dir", data);
 
     print("db successfully restored, checking count")
     var x = master.getDB("foo").getCollection("bar").count();
-    assert.eq(x, 100, "mongorestore should have successfully restored the collection");
+    assert.eq(x, 100, "mongolrestore should have successfully restored the collection");
 
     replTest.awaitReplication();
 
-    // Test with mongoexport/mongoimport
+    // Test with mongolexport/mongolimport
     print("export the collection");
     var extFile = MongoRunner.dataDir + "/tool_replset/export";
-    runMongoProgram("mongoexport", "--host", replSetConnString, "--out", extFile,
+    runMongoProgram("mongolexport", "--host", replSetConnString, "--out", extFile,
                     "-d", "foo", "-c", "bar");
 
     print("collection successfully exported, dropping now");
@@ -62,25 +62,25 @@
     replTest.awaitReplication();
 
     print("import the collection");
-    runMongoProgram("mongoimport", "--host", replSetConnString, "--file", extFile,
+    runMongoProgram("mongolimport", "--host", replSetConnString, "--file", extFile,
                     "-d", "foo", "-c", "bar");
 
     var x = master.getDB("foo").getCollection("bar").count();
-    assert.eq(x, 100, "mongoimport should have successfully imported the collection");
+    assert.eq(x, 100, "mongolimport should have successfully imported the collection");
     var doc = {_id: 5, x: 17};
     var oplogEntry = {ts: new Timestamp(), "op": "i", "ns": "foo.bar", "o": doc, "v": NumberInt(2)}
     assert.writeOK(master.getDB("local").oplog.rs.insert(oplogEntry));
 
     assert.eq(100, master.getDB("foo").getCollection("bar").count(), "count before running " +
-              "mongooplog was not 100 as expected");
+              "mongoloplog was not 100 as expected");
 
-    runMongoProgram("mongooplog" , "--from", "127.0.0.1:" + replTest.ports[0],
+    runMongoProgram("mongoloplog" , "--from", "127.0.0.1:" + replTest.ports[0],
                                    "--host", replSetConnString);
 
-    print("finished running mongooplog to replay the oplog")
+    print("finished running mongoloplog to replay the oplog")
 
     assert.eq(101, master.getDB("foo").getCollection("bar").count(), "count after running " +
-              "mongooplog was not 101 as expected")
+              "mongoloplog was not 101 as expected")
 
     print("all tests successful, stopping replica set")
 

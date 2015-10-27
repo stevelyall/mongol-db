@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Insert multiple keys and try to iterate through all of them
 // using a forward cursor while calling savePosition() and
@@ -514,4 +514,4 @@ TEST(SortedDataInterface, SaveUnpositionedAndRestore) {
     ASSERT_EQ(cursor->seek(key3, true), IndexKeyEntry(key3, loc1));
 }
 
-}  // namespace mongo
+}  // namespace mongol

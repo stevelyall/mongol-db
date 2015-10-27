@@ -30,7 +30,7 @@
 
 #include <vector>
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class FieldRef;
@@ -69,4 +69,4 @@ public:
     virtual const std::vector<FieldRef*>* getImmutableFields() const = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

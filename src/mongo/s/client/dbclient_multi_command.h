@@ -30,10 +30,10 @@
 
 #include <deque>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/s/client/multi_command_dispatch.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/s/client/multi_command_dispatch.h"
 
-namespace mongo {
+namespace mongol {
 
 class ShardConnection;
 
@@ -88,4 +88,4 @@ private:
     PendingQueue _pendingCommands;
 };
 
-}  // namespace mongo
+}  // namespace mongol

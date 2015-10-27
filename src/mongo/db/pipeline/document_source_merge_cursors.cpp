@@ -26,12 +26,12 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::make_pair;

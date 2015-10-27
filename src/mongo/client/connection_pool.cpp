@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connection_pool.h"
+#include "mongol/client/connection_pool.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/rpc/unique_message.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/rpc/unique_message.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const Date_t kNeverTooStale = Date_t::max();
@@ -282,4 +282,4 @@ void ConnectionPool::ConnectionPtr::done(Date_t now) {
     _pool = NULL;
 }
 
-}  // namespace mongo
+}  // namespace mongol

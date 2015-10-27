@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * A simple thread-safe fail point implementation that can be activated and
  * deactivated, as well as embed temporary data into it.
@@ -234,5 +234,5 @@ private:
  * you want to access the data stored in the fail point.
  */
 #define MONGO_FAIL_POINT_BLOCK(symbol, blockSymbol) \
-    for (mongo::ScopedFailPoint blockSymbol(&symbol); MONGO_unlikely(blockSymbol.isActive());)
+    for (mongol::ScopedFailPoint blockSymbol(&symbol); MONGO_unlikely(blockSymbol.isActive());)
 }

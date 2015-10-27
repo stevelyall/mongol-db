@@ -26,46 +26,46 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/find_and_modify.h"
+#include "mongol/db/commands/find_and_modify.h"
 
 #include <memory>
 #include <boost/optional.hpp>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/ops/parsed_delete.h"
-#include "mongo/db/ops/parsed_update.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/find_and_modify_request.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/s/d_state.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/ops/parsed_delete.h"
+#include "mongol/db/ops/parsed_update.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/find_and_modify_request.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/s/d_state.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -503,4 +503,4 @@ public:
 
 } cmdFindAndModify;
 
-}  // namespace mongo
+}  // namespace mongol

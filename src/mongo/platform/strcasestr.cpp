@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/strcasestr.h"
+#include "mongol/platform/strcasestr.h"
 
 #if defined(__sun)
 #include <dlfcn.h>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
 #endif
 
 #if defined(_WIN32) || defined(__sun)
@@ -47,7 +47,7 @@
 #define STRCASESTR_EMULATION_NAME strcasestr
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace pal {
 
 /**
@@ -75,7 +75,7 @@ const char* STRCASESTR_EMULATION_NAME(const char* haystack, const char* needle) 
 #if defined(__sun)
 
 typedef const char* (*StrCaseStrFunc)(const char* haystack, const char* needle);
-static StrCaseStrFunc strcasestr_switcher = mongo::pal::strcasestr_emulation;
+static StrCaseStrFunc strcasestr_switcher = mongol::pal::strcasestr_emulation;
 
 const char* strcasestr(const char* haystack, const char* needle) {
     return strcasestr_switcher(haystack, needle);
@@ -84,13 +84,13 @@ const char* strcasestr(const char* haystack, const char* needle) {
 #endif  // #if defined(__sun)
 
 }  // namespace pal
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // #if defined(_WIN32) || defined(__sun)
 
 #if defined(__sun)
 
-namespace mongo {
+namespace mongol {
 
 // 'strcasestr()' on Solaris will call the emulation if the symbol is not found
 //
@@ -99,12 +99,12 @@ MONGO_INITIALIZER_GENERAL(SolarisStrCaseCmp,
                           ("default"))(InitializerContext* context) {
     void* functionAddress = dlsym(RTLD_DEFAULT, "strcasestr");
     if (functionAddress != NULL) {
-        mongo::pal::strcasestr_switcher =
-            reinterpret_cast<mongo::pal::StrCaseStrFunc>(functionAddress);
+        mongol::pal::strcasestr_switcher =
+            reinterpret_cast<mongol::pal::StrCaseStrFunc>(functionAddress);
     }
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // __sun

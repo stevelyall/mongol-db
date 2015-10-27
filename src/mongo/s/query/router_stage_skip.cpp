@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/router_stage_skip.h"
+#include "mongol/s/query/router_stage_skip.h"
 
-namespace mongo {
+namespace mongol {
 
 RouterStageSkip::RouterStageSkip(std::unique_ptr<RouterExecStage> child, long long skip)
     : RouterExecStage(std::move(child)), _skip(skip) {
@@ -64,4 +64,4 @@ bool RouterStageSkip::remotesExhausted() {
     return getChildStage()->remotesExhausted();
 }
 
-}  // namespace mongo
+}  // namespace mongol

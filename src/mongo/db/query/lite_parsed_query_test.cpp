@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 #include <boost/optional/optional_io.hpp>
 
-#include "mongo/db/json.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
@@ -1216,5 +1216,5 @@ TEST(LiteParsedQueryTest, ParseFromCommandForbidExtraOption) {
     ASSERT_NOT_OK(result.getStatus());
 }
 
-}  // namespace mongo
+}  // namespace mongol
 }  // namespace

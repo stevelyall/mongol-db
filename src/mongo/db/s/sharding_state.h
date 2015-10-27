@@ -32,15 +32,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/oid.h"
-#include "mongo/db/s/migration_destination_manager.h"
-#include "mongo/db/s/migration_source_manager.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/ticketholder.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/s/migration_destination_manager.h"
+#include "mongol/db/s/migration_source_manager.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/ticketholder.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -365,4 +365,4 @@ private:
     CollectionMetadataMap _collMetadata;
 };
 
-}  // namespace mongo
+}  // namespace mongol

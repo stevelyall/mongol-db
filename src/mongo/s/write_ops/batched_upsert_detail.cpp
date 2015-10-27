@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/s/write_ops/batched_upsert_detail.h"
+#include "mongol/s/write_ops/batched_upsert_detail.h"
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const BSONField<int> BatchedUpsertDetail::index("index");
 const BSONField<BSONObj> BatchedUpsertDetail::upsertedID("_id");
@@ -159,4 +159,4 @@ const BSONObj& BatchedUpsertDetail::getUpsertedID() const {
     return _upsertedID;
 }
 
-}  // namespace mongo
+}  // namespace mongol

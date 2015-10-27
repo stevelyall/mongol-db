@@ -32,16 +32,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct MongoBridgeGlobalParams {
     int port;
@@ -52,7 +52,7 @@ struct MongoBridgeGlobalParams {
     MongoBridgeGlobalParams() : port(0), delay(0), connectTimeoutSec(15) {}
 };
 
-extern MongoBridgeGlobalParams mongoBridgeGlobalParams;
+extern MongoBridgeGlobalParams mongolBridgeGlobalParams;
 
 Status addMongoBridgeOptions(moe::OptionSection* options);
 

@@ -33,12 +33,12 @@
 #include <algorithm>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
-/* in the mongo source code, "client" means "database". */
+/* in the mongol source code, "client" means "database". */
 
 const size_t MaxDatabaseNameLen = 128;  // max str len for the db name, including null char
 
@@ -218,7 +218,7 @@ public:
     static bool special(StringData ns);
 
     /**
-     * Returns true for DBs with special meaning to mongodb.
+     * Returns true for DBs with special meaning to mongoldb.
      */
     static bool internalDb(StringData ns) {
         if (ns == "admin")
@@ -359,6 +359,6 @@ struct NamespaceDBEquals {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/db/namespace_string-inl.h"
+#include "mongol/db/namespace_string-inl.h"

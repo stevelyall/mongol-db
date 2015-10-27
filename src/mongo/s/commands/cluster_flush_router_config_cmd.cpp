@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class FlushRouterConfigCmd : public Command {
@@ -79,4 +79,4 @@ public:
 } flushRouterConfigCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

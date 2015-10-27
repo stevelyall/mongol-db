@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Returns true if the process is a mongos, and false otherwise.
+ * Returns true if the process is a mongols, and false otherwise.
  *
  */
 function isMongos(db) {
@@ -12,7 +12,7 @@ function isMongos(db) {
 }
 
 /**
- * Returns true if the process is a mongod, and false otherwise.
+ * Returns true if the process is a mongold, and false otherwise.
  *
  */
 function isMongod(db) {
@@ -29,7 +29,7 @@ function isMMAPv1(db) {
     assert.commandWorked(status);
 
     assert(isMongod(db),
-           'no storage engine is reported when connected to mongos');
+           'no storage engine is reported when connected to mongols');
     assert.neq('undefined', typeof status.storageEngine,
                'missing storage engine info in server status');
 
@@ -46,7 +46,7 @@ function isWiredTiger(db) {
     assert.commandWorked(status);
 
     assert(isMongod(db),
-           'no storage engine is reported when connected to mongos');
+           'no storage engine is reported when connected to mongols');
     assert.neq('undefined', typeof status.storageEngine,
                'missing storage engine info in server status');
 

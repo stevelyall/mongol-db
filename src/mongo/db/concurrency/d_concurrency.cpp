@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/d_concurrency.h"
 
 #include <string>
 
-#include "mongo/db/service_context.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 //  SERVER-14668: Remove or invert sense once MMAPv1 CLL can be default
@@ -229,4 +229,4 @@ void synchronizeOnCappedInFlightResource(Locker* lockState, const NamespaceStrin
     Lock::ResourceLock{lockState, resource, MODE_IX};  // held until end of WUOW.
 }
 
-}  // namespace mongo
+}  // namespace mongol

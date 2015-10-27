@@ -26,34 +26,34 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/migration_impl.h"
+#include "mongol/db/s/migration_impl.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/s/sharding_state_recovery.h"
-#include "mongo/logger/ramlog.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/s/sharding_state_recovery.h"
+#include "mongol/logger/ramlog.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using str::stream;
@@ -69,7 +69,7 @@ const WriteConcernOptions DefaultWriteConcernForMigration(2,
 
 WriteConcernOptions getDefaultWriteConcernForMigration() {
     repl::ReplicationCoordinator* replCoordinator = repl::getGlobalReplicationCoordinator();
-    if (replCoordinator->getReplicationMode() == mongo::repl::ReplicationCoordinator::modeReplSet) {
+    if (replCoordinator->getReplicationMode() == mongol::repl::ReplicationCoordinator::modeReplSet) {
         Status status =
             replCoordinator->checkIfWriteConcernCanBeSatisfied(DefaultWriteConcernForMigration);
         if (status.isOK()) {
@@ -500,7 +500,7 @@ Status ChunkMoveOperationState::commitMigration() {
         // there's no further action to be done.
         //
         // If the commit did not make it, currently the only way to fix this state is to
-        // bounce the mongod so that the old state (before migrating) is brought in.
+        // bounce the mongold so that the old state (before migrating) is brought in.
 
         warning() << "moveChunk commit outcome ongoing" << migrateLog;
         sleepsecs(10);
@@ -593,4 +593,4 @@ Status ChunkMoveOperationState::start(BSONObj shardKeyPattern) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

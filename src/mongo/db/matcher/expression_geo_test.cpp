@@ -30,16 +30,16 @@
 
 /** Unit tests for MatchExpression operator implementations in match_operators.{h,cpp}. */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(ExpressionGeoTest, Geo1) {
     BSONObj query = fromjson("{loc:{$within:{$box:[{x: 4, y:4},[6,6]]}}}");

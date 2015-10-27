@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_view.h"
+#include "mongol/base/data_view.h"
 
 #include <cstring>
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(DataView, ConstDataView) {
     char buf[sizeof(uint32_t) * 3];
@@ -74,4 +74,4 @@ TEST(DataView, DataView) {
     ASSERT_EQUALS(native, dv.read<BigEndian<uint32_t>>(sizeof(uint32_t) * 2));
 }
 
-}  // namespace mongo
+}  // namespace mongol

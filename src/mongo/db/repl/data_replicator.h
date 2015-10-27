@@ -31,26 +31,26 @@
 
 #include <vector>
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/applier.h"
-#include "mongo/db/repl/collection_cloner.h"
-#include "mongo/db/repl/database_cloner.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/reporter.h"
-#include "mongo/db/repl/sync_source_selector.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/queue.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/applier.h"
+#include "mongol/db/repl/collection_cloner.h"
+#include "mongol/db/repl/database_cloner.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/reporter.h"
+#include "mongol/db/repl/sync_source_selector.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/queue.h"
 
-namespace mongo {
+namespace mongol {
 
 class QueryFetcher;
 
@@ -316,4 +316,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

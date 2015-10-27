@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/db/fts/tokenizer.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/db/fts/tokenizer.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 class FTSLanguage;
@@ -81,4 +81,4 @@ private:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

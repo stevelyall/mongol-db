@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/catalog_manager.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/batched_delete_document.h"
-#include "mongo/s/write_ops/batched_delete_request.h"
-#include "mongo/s/write_ops/batched_insert_request.h"
-#include "mongo/s/write_ops/batched_update_document.h"
+#include "mongol/base/status.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
+#include "mongol/s/write_ops/batched_delete_request.h"
+#include "mongol/s/write_ops/batched_insert_request.h"
+#include "mongol/s/write_ops/batched_update_document.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -152,4 +152,4 @@ Status CatalogManager::remove(OperationContext* txn,
     return getStatus(*response);
 }
 
-}  // namespace mongo
+}  // namespace mongol

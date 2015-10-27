@@ -28,22 +28,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/kv/kv_catalog.h"
+#include "mongol/db/storage/kv/kv_catalog.h"
 
 #include <stdlib.h>
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/recovery_unit.h"
-#include "mongo/platform/random.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/recovery_unit.h"
+#include "mongol/platform/random.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 // This is a global resource, which protects accesses to the catalog metadata (instance-wide).
 // It is never used with KVEngines that support doc-level locking so this should never conflict

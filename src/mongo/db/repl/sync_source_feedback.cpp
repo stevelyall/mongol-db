@@ -26,31 +26,31 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/sync_source_feedback.h"
+#include "mongol/db/repl/sync_source_feedback.h"
 
-#include "mongo/client/constants.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/oplogreader.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/constants.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/oplogreader.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -202,4 +202,4 @@ void SyncSourceFeedback::run() {
     }
 }
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

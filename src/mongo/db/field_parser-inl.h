@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 template <class T>
 void _genFieldErrMsg(const BSONElement& elem,
@@ -359,4 +359,4 @@ FieldParser::FieldState FieldParser::extract(BSONElement elem,
     return FIELD_INVALID;
 }
 
-}  // namespace mongo
+}  // namespace mongol

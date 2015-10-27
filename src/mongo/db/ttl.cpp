@@ -28,37 +28,37 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ttl.h"
+#include "mongol/db/ttl.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/fsync.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/background.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/fsync.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/background.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::endl;

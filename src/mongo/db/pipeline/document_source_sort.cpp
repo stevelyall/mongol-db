@@ -26,18 +26,18 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/value.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/value.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::unique_ptr;
@@ -352,5 +352,5 @@ intrusive_ptr<DocumentSource> DocumentSourceSort::getMergeSource() {
 }
 }
 
-#include "mongo/db/sorter/sorter.cpp"
+#include "mongol/db/sorter/sorter.cpp"
 // Explicit instantiation unneeded since we aren't exposing Sorter outside of this file.

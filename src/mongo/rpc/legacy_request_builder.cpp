@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/legacy_request_builder.h"
+#include "mongol/rpc/legacy_request_builder.h"
 
 #include <utility>
 #include <tuple>
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 LegacyRequestBuilder::LegacyRequestBuilder() : LegacyRequestBuilder(stdx::make_unique<Message>()) {}
@@ -48,7 +48,7 @@ LegacyRequestBuilder::~LegacyRequestBuilder() {}
 
 LegacyRequestBuilder::LegacyRequestBuilder(std::unique_ptr<Message> message)
     : _message{std::move(message)} {
-    _builder.skip(mongo::MsgData::MsgDataHeaderSize);
+    _builder.skip(mongol::MsgData::MsgDataHeaderSize);
 }
 
 LegacyRequestBuilder& LegacyRequestBuilder::setDatabase(StringData database) {
@@ -123,4 +123,4 @@ std::unique_ptr<Message> LegacyRequestBuilder::done() {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

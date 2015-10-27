@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 // NOTE:
 // The connection pools themselves are placed in different files and are currently hard to move
@@ -36,7 +36,7 @@ namespace mongo {
 // TODO: Extract conn pools from driver files and shardconnection.cpp
 
 /**
- * Struct namespace for connection pool options on mongos and mongod
+ * Struct namespace for connection pool options on mongols and mongold
  */
 struct ConnPoolOptions {
     /**

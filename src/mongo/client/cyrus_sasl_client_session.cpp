@@ -25,19 +25,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/cyrus_sasl_client_session.h"
+#include "mongol/client/cyrus_sasl_client_session.h"
 
-#include "mongo/base/init.h"
-#include "mongo/client/native_sasl_client_session.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/base/init.h"
+#include "mongol/client/native_sasl_client_session.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 SaslClientSession* createCyrusSaslClientSession(const std::string& mech) {
@@ -62,7 +62,7 @@ typedef unsigned long SaslAllocSize;
 typedef int (*SaslCallbackFn)();
 
 void* saslOurMalloc(SaslAllocSize sz) {
-    return mongoMalloc(sz);
+    return mongolMalloc(sz);
 }
 
 void* saslOurCalloc(SaslAllocSize count, SaslAllocSize size) {
@@ -74,7 +74,7 @@ void* saslOurCalloc(SaslAllocSize count, SaslAllocSize size) {
 }
 
 void* saslOurRealloc(void* ptr, SaslAllocSize sz) {
-    return mongoRealloc(ptr, sz);
+    return mongolRealloc(ptr, sz);
 }
 
 /*
@@ -124,7 +124,7 @@ int saslClientLogSwallow(void* context, int priority, const char* message) {
  * CyrusSaslAllocatorsAndMutexes as a prerequisite and CyrusSaslClientContext as a
  * dependent.  If it wishes to override both, it should implement a MONGO_INITIALIZER_GENERAL
  * with CyrusSaslAllocatorsAndMutexes and CyrusSaslClientContext as dependents, or
- * initialize the library before calling mongo::runGlobalInitializersOrDie().
+ * initialize the library before calling mongol::runGlobalInitializersOrDie().
  */
 MONGO_INITIALIZER_WITH_PREREQUISITES(CyrusSaslClientContext,
                                      ("NativeSaslClientContext", "CyrusSaslAllocatorsAndMutexes"))
@@ -140,7 +140,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(CyrusSaslClientContext,
     int result = sasl_client_init(saslClientGlobalCallbacks);
     if (result != SASL_OK) {
         return Status(ErrorCodes::UnknownError,
-                      mongoutils::str::stream() << "Could not initialize sasl client components ("
+                      mongolutils::str::stream() << "Could not initialize sasl client components ("
                                                 << sasl_errstring(result, NULL, NULL) << ")");
     }
 
@@ -250,7 +250,7 @@ Status CyrusSaslClientSession::initialize() {
 
     if (SASL_OK != result) {
         return Status(ErrorCodes::UnknownError,
-                      mongoutils::str::stream() << sasl_errstring(result, NULL, NULL));
+                      mongolutils::str::stream() << sasl_errstring(result, NULL, NULL));
     }
 
     return Status::OK();

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/util/options_parser/startup_options.h"
 
 #include <iostream>
 
-#include "mongo/util/exit_code.h"
-#include "mongo/util/options_parser/option_description.h"
-#include "mongo/util/options_parser/option_section.h"
-#include "mongo/util/options_parser/options_parser.h"
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/util/exit_code.h"
+#include "mongol/util/options_parser/option_description.h"
+#include "mongol/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/options_parser.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 MONGO_STARTUP_OPTIONS_PARSE(StartupOptions)(InitializerContext* context) {
@@ -53,4 +53,4 @@ MONGO_STARTUP_OPTIONS_PARSE(StartupOptions)(InitializerContext* context) {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

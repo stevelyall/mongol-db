@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Verify that calling touch() on an empty index returns an OK status.
 TEST(SortedDataInterface, TouchEmpty) {
@@ -84,4 +84,4 @@ TEST(SortedDataInterface, TouchNonEmpty) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

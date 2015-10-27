@@ -26,24 +26,24 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/bindata.h"
+#include "mongol/scripting/mozjs/bindata.h"
 
 #include <iomanip>
 #include <cctype>
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/scripting/mozjs/wrapconstrainedmethod.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/scripting/mozjs/wrapconstrainedmethod.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec BinDataInfo::methods[4] = {
@@ -172,7 +172,7 @@ void BinDataInfo::Functions::base64::call(JSContext* cx, JS::CallArgs args) {
 void BinDataInfo::Functions::hex::call(JSContext* cx, JS::CallArgs args) {
     auto str = getEncoded(args.thisv());
 
-    std::string data = mongo::base64::decode(*str);
+    std::string data = mongol::base64::decode(*str);
     std::stringstream ss;
     ss.setf(std::ios_base::hex, std::ios_base::basefield);
     ss.fill('0');
@@ -225,4 +225,4 @@ void BinDataInfo::construct(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

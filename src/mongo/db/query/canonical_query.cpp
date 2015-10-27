@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/canonical_query.h"
+#include "mongol/db/query/canonical_query.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
@@ -613,4 +613,4 @@ std::string CanonicalQuery::toStringShort() const {
     return ss;
 }
 
-}  // namespace mongo
+}  // namespace mongol

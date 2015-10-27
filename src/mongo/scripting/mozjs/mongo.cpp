@@ -26,26 +26,26 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/mongo.h"
+#include "mongol/scripting/mozjs/mongol.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/client/mongo_uri.h"
-#include "mongo/client/native_sasl_client_session.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/client/sasl_client_session.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/scripting/mozjs/cursor.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/scripting/mozjs/wrapconstrainedmethod.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/client/mongol_uri.h"
+#include "mongol/client/native_sasl_client_session.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/client/sasl_client_session.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/scripting/mozjs/cursor.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/scripting/mozjs/wrapconstrainedmethod.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec MongoBase::methods[] = {
@@ -367,7 +367,7 @@ void MongoBase::Functions::auth::call(JSContext* cx, JS::CallArgs args) {
                           << ValueWriter(cx, args[2]).toString());
             break;
         default:
-            uasserted(ErrorCodes::BadValue, "mongoAuth takes 1 object or 3 string arguments");
+            uasserted(ErrorCodes::BadValue, "mongolAuth takes 1 object or 3 string arguments");
     }
 
     conn->auth(params);
@@ -665,4 +665,4 @@ void MongoExternalInfo::Functions::_forgetReplSet::call(JSContext* cx, JS::CallA
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

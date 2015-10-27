@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/and_hash.h"
+#include "mongol/db/exec/and_hash.h"
 
-#include "mongo/db/exec/and_common-inl.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/exec/and_common-inl.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
 namespace {
 
@@ -43,7 +43,7 @@ const size_t kDefaultMaxMemUsageBytes = 32 * 1024 * 1024;
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -156,7 +156,7 @@ PlanStage::StageState AndHashStage::work(WorkingSetID* out) {
                     // failed, in which case 'id' is valid.  If ID is invalid, we
                     // create our own error message.
                     if (WorkingSet::INVALID_ID == *out) {
-                        mongoutils::str::stream ss;
+                        mongolutils::str::stream ss;
                         ss << "hashed AND stage failed to read in look ahead results "
                            << "from child " << i
                            << ", childStatus: " << PlanStage::stateStr(childStatus);
@@ -184,7 +184,7 @@ PlanStage::StageState AndHashStage::work(WorkingSetID* out) {
     if (_hashingChildren) {
         // Check memory usage of previously hashed results.
         if (_memUsage > _maxMemUsage) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "hashed AND stage buffered data usage of " << _memUsage
                << " bytes exceeds internal limit of " << kDefaultMaxMemUsageBytes << " bytes";
             Status status(ErrorCodes::Overflow, ss);
@@ -313,7 +313,7 @@ PlanStage::StageState AndHashStage::readFirstChild(WorkingSetID* out) {
         // failed, in which case 'id' is valid.  If ID is invalid, we
         // create our own error message.
         if (WorkingSet::INVALID_ID == id) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "hashed AND stage failed to read in results to from first child";
             Status status(ErrorCodes::InternalError, ss);
             *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -412,7 +412,7 @@ PlanStage::StageState AndHashStage::hashOtherChildren(WorkingSetID* out) {
         // failed, in which case 'id' is valid.  If ID is invalid, we
         // create our own error message.
         if (WorkingSet::INVALID_ID == id) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "hashed AND stage failed to read in results from other child " << _currentChild;
             Status status(ErrorCodes::InternalError, ss);
             *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -500,4 +500,4 @@ const SpecificStats* AndHashStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

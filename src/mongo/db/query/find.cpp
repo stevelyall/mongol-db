@@ -26,42 +26,42 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/find.h"
+#include "mongol/db/query/find.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::unique_ptr;
@@ -625,7 +625,7 @@ std::string runQuery(OperationContext* txn,
     // ClientCursor should allow this check to go away.
     if (!shardingState->getVersion(nss.ns()).isWriteCompatibleWith(shardingVersionAtStart)) {
         // if the version changed during the query we might be missing some data and its safe to
-        // send this as mongos can resend at this point
+        // send this as mongols can resend at this point
         throw SendStaleConfigException(nss.ns(),
                                        "version changed during initial query",
                                        shardingVersionAtStart,
@@ -693,4 +693,4 @@ std::string runQuery(OperationContext* txn,
     return curop.debug().exhaust ? nss.ns() : "";
 }
 
-}  // namespace mongo
+}  // namespace mongol

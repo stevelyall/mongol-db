@@ -26,35 +26,35 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/config.h"
+#include "mongol/s/config.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/client.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_write.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/client.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_write.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;
@@ -394,7 +394,7 @@ std::shared_ptr<ChunkManager> DBConfig::getChunkManager(OperationContext* txn,
     // LEGACY BEHAVIOR
     //
     // It's possible to get into a state when dropping collections when our new version is
-    // less than our prev version. Behave identically to legacy mongos, for now, and warn to
+    // less than our prev version. Behave identically to legacy mongols, for now, and warn to
     // draw attention to the problem.
     //
     // TODO: Assert in next version, to allow smooth upgrades
@@ -839,4 +839,4 @@ void ConfigServer::replicaSetChangeConfigServerUpdateHook(const string& setName,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/projection_exec.h"
+#include "mongol/db/exec/projection_exec.h"
 
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::max;
 using std::string;
@@ -97,7 +97,7 @@ ProjectionExec::ProjectionExec(const BSONObj& spec,
             verify(1 == obj.nFields());
 
             BSONElement e2 = obj.firstElement();
-            if (mongoutils::str::equals(e2.fieldName(), "$slice")) {
+            if (mongolutils::str::equals(e2.fieldName(), "$slice")) {
                 if (e2.isNumber()) {
                     int i = e2.numberInt();
                     if (i < 0) {
@@ -118,7 +118,7 @@ ProjectionExec::ProjectionExec(const BSONObj& spec,
 
                     add(e.fieldName(), skip, limit);
                 }
-            } else if (mongoutils::str::equals(e2.fieldName(), "$elemMatch")) {
+            } else if (mongolutils::str::equals(e2.fieldName(), "$elemMatch")) {
                 _arrayOpType = ARRAY_OP_ELEM_MATCH;
 
                 // Create a MatchExpression for the elemMatch.
@@ -129,11 +129,11 @@ ProjectionExec::ProjectionExec(const BSONObj& spec,
                     MatchExpressionParser::parse(elemMatchObj, whereCallback);
                 verify(statusWithMatcher.isOK());
                 // And store it in _matchers.
-                _matchers[mongoutils::str::before(e.fieldName(), '.').c_str()] =
+                _matchers[mongolutils::str::before(e.fieldName(), '.').c_str()] =
                     statusWithMatcher.getValue().release();
 
                 add(e.fieldName(), true);
-            } else if (mongoutils::str::equals(e2.fieldName(), "$meta")) {
+            } else if (mongolutils::str::equals(e2.fieldName(), "$meta")) {
                 verify(String == e2.type());
                 if (e2.valuestr() == LiteParsedQuery::metaTextScore) {
                     _meta[e.fieldName()] = META_TEXT_SCORE;
@@ -155,7 +155,7 @@ ProjectionExec::ProjectionExec(const BSONObj& spec,
             } else {
                 verify(0);
             }
-        } else if (mongoutils::str::equals(e.fieldName(), "_id") && !e.trueValue()) {
+        } else if (mongolutils::str::equals(e.fieldName(), "_id") && !e.trueValue()) {
             _includeID = false;
         } else {
             add(e.fieldName(), e.trueValue());
@@ -168,7 +168,7 @@ ProjectionExec::ProjectionExec(const BSONObj& spec,
             }
         }
 
-        if (mongoutils::str::contains(e.fieldName(), ".$")) {
+        if (mongolutils::str::contains(e.fieldName(), ".$")) {
             _arrayOpType = ARRAY_OP_POSITIONAL;
         }
     }
@@ -240,7 +240,7 @@ Status ProjectionExec::transform(WorkingSetMember* member) const {
         }
 
         // Must be possible to do both returnKey meta-projection and sortKey meta-projection so that
-        // mongos can support returnKey.
+        // mongols can support returnKey.
         for (auto fieldName : _sortKeyMetaFields) {
             auto sortKeyMetaStatus = addSortKeyMetaProj(fieldName, *member, &builder);
             if (!sortKeyMetaStatus.isOK()) {
@@ -284,7 +284,7 @@ Status ProjectionExec::transform(WorkingSetMember* member) const {
         BSONObjIterator it(_source);
         while (it.more()) {
             BSONElement specElt = it.next();
-            if (mongoutils::str::equals("_id", specElt.fieldName())) {
+            if (mongolutils::str::equals("_id", specElt.fieldName())) {
                 continue;
             }
 
@@ -370,7 +370,7 @@ Status ProjectionExec::transform(const BSONObj& in,
         BSONElement elt = it.next();
 
         // Case 1: _id
-        if (mongoutils::str::equals("_id", elt.fieldName())) {
+        if (mongolutils::str::equals("_id", elt.fieldName())) {
             if (_includeID) {
                 bob->append(elt);
             }
@@ -513,7 +513,7 @@ Status ProjectionExec::append(BSONObjBuilder* bob,
         if (details && arrayOpType == ARRAY_OP_POSITIONAL) {
             // $ positional operator specified
             if (!details->hasElemMatchKey()) {
-                mongoutils::str::stream error;
+                mongolutils::str::stream error;
                 error << "positional operator (" << elt.fieldName()
                       << ".$) requires corresponding field"
                       << " in query specifier";
@@ -536,4 +536,4 @@ Status ProjectionExec::append(BSONObjBuilder* bob,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

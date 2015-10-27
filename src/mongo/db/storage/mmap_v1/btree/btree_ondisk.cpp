@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/btree/btree_ondisk.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_ondisk.h"
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 void DiskLoc56Bit::operator=(const DiskLoc& loc) {
     ofs = loc.getOfs();
@@ -56,4 +56,4 @@ void DiskLoc56Bit::operator=(const DiskLoc& loc) {
     memcpy(_a, &la, 3);  // endian
 }
 
-}  // namespace mongo
+}  // namespace mongol

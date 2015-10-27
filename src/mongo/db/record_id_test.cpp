@@ -28,11 +28,11 @@
 
 /** Unit tests for RecordId. */
 
-#include "mongo/db/record_id.h"
+#include "mongol/db/record_id.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(RecordId, HashEqual) {
@@ -65,4 +65,4 @@ TEST(RecordId, HashNotEqual) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

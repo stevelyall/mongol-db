@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/dist_lock_manager_mock.h"
+#include "mongol/s/catalog/dist_lock_manager_mock.h"
 
 #include <algorithm>
 
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using stdx::chrono::milliseconds;
 

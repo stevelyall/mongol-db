@@ -26,21 +26,21 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/s/version_mongos.h"
+#include "mongol/s/version_mongols.h"
 
 #include <iostream>
 
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/server_options.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/version.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/server_options.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 void printShardingVersionInfo(bool out) {
     if (out) {
@@ -59,4 +59,4 @@ void printShardingVersionInfo(bool out) {
         logProcessDetails();
     }
 }
-}  // namespace mongo
+}  // namespace mongol

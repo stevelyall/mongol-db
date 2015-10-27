@@ -26,20 +26,20 @@
 *    it in the license file.
 */
 
-#include "mongo/db/commands/rename_collection.h"
+#include "mongol/db/commands/rename_collection.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 namespace rename_collection {
 
 Status checkAuthForRenameCollectionCommand(ClientBasic* client,
@@ -99,4 +99,4 @@ Status checkAuthForRenameCollectionCommand(ClientBasic* client,
 }
 
 }  // namespace rename_collection
-}  // namespace mongo
+}  // namespace mongol

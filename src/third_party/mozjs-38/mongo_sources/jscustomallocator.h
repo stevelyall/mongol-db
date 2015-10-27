@@ -38,13 +38,13 @@
     do {                            \
     } while (0)
 
-namespace mongo {
+namespace mongol {
 namespace sm {
 JS_PUBLIC_API(size_t) get_total_bytes();
 JS_PUBLIC_API(void) reset(size_t max_bytes);
 JS_PUBLIC_API(size_t) get_max_bytes();
 }  // namespace sm
-}  // namespace mongo
+}  // namespace mongol
 
 #ifdef DEBUG
 extern JS_PUBLIC_DATA(uint32_t) OOM_maxAllocations;

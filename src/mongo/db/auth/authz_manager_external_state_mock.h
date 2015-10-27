@@ -32,15 +32,15 @@
 #include <map>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authz_manager_external_state_local.h"
-#include "mongo/db/auth/role_graph.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authz_manager_external_state_local.h"
+#include "mongol/db/auth/role_graph.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationManager;
 
@@ -125,4 +125,4 @@ private:
     NamespaceDocumentMap _documents;      // Mock database.
 };
 
-}  // namespace mongo
+}  // namespace mongol

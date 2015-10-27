@@ -28,13 +28,13 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/db/server_parameters.h"
+#include "mongol/db/server_parameters.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 namespace {
 

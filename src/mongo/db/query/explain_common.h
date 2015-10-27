@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * Utilities used for explain implementations on both mongod and mongos.
+ * Utilities used for explain implementations on both mongold and mongols.
  */
 class ExplainCommon {
 public:

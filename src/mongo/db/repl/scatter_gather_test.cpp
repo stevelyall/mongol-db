@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_algorithm.h"
-#include "mongo/db/repl/scatter_gather_runner.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_algorithm.h"
+#include "mongol/db/repl/scatter_gather_runner.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -94,7 +94,7 @@ private:
 /**
  * ScatterGatherTest base class which sets up the ReplicationExecutor and NetworkInterfaceMock.
  */
-class ScatterGatherTest : public mongo::unittest::Test {
+class ScatterGatherTest : public mongol::unittest::Test {
 protected:
     NetworkInterfaceMock* getNet() {
         return _net;
@@ -410,4 +410,4 @@ TEST_F(ScatterGatherTest, SuccessfulScatterGatherViaRun) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

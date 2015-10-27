@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 
 /**
@@ -52,4 +52,4 @@ void setInternalUserAuthParams(const BSONObj& authParamsIn);
  * returned.
  **/
 BSONObj getInternalUserAuthParamsWithFallback();
-}  // namespace mongo
+}  // namespace mongol

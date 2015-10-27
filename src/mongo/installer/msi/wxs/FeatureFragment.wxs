@@ -13,10 +13,10 @@
         <ComponentGroupRef Id="cg_License" />
         <Feature Id="Server"
                  Title ="Server"
-                 Description="The MongoDB server (mongod)"
+                 Description="The MongoDB server (mongold)"
                  Level ="1">
-          <ComponentRef Id="c_mongod"/>
-          <ComponentRef Id="c_mongodPdb"/>
+          <ComponentRef Id="c_mongold"/>
+          <ComponentRef Id="c_mongoldPdb"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseServer" />
           <?endif ?>
@@ -26,9 +26,9 @@
         </Feature>
         <Feature Id="Client"
                  Title ="Client"
-                 Description="The MongoDB client/shell (mongo)"
+                 Description="The MongoDB client/shell (mongol)"
                  Level ="1">
-          <ComponentRef Id="c_mongo"/>
+          <ComponentRef Id="c_mongol"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseBase" />
           <?endif ?>
@@ -38,10 +38,10 @@
         </Feature>
         <Feature Id="MonitoringTools"
                  Title ="Monitoring Tools"
-                 Description="MongoDB monitoring tools (mongostat, mongotop)"
+                 Description="MongoDB monitoring tools (mongolstat, mongoltop)"
                  Level ="1">
-          <ComponentRef Id="c_mongostat"/>
-          <ComponentRef Id="c_mongotop"/>
+          <ComponentRef Id="c_mongolstat"/>
+          <ComponentRef Id="c_mongoltop"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseBase" />
           <?endif ?>
@@ -51,12 +51,12 @@
         </Feature>
         <Feature Id="ImportExportTools"
                  Title ="Import/Export Tools"
-                 Description="MongoDB import/export tools (mongodump/mongorestore and mongoexport/mongoimport)"
+                 Description="MongoDB import/export tools (mongoldump/mongolrestore and mongolexport/mongolimport)"
                  Level ="1">
-          <ComponentRef Id="c_mongodump"/>
-          <ComponentRef Id="c_mongorestore"/>
-          <ComponentRef Id="c_mongoexport"/>
-          <ComponentRef Id="c_mongoimport"/>
+          <ComponentRef Id="c_mongoldump"/>
+          <ComponentRef Id="c_mongolrestore"/>
+          <ComponentRef Id="c_mongolexport"/>
+          <ComponentRef Id="c_mongolimport"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseBase" />
           <?endif ?>
@@ -66,10 +66,10 @@
         </Feature>
         <Feature Id="Router"
                  Title ="Router"
-                 Description="The MongoDB Router (mongos)"
+                 Description="The MongoDB Router (mongols)"
                  Level ="1">
-          <ComponentRef Id="c_mongos"/>
-          <ComponentRef Id="c_mongosPdb"/>
+          <ComponentRef Id="c_mongols"/>
+          <ComponentRef Id="c_mongolsPdb"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseBase" />
           <?endif ?>
@@ -79,12 +79,12 @@
         </Feature>     
         <Feature Id="MiscellaneousTools"
                 Title ="Miscellaneous Tools"
-                Description="Miscellaneous MongoDB tools (bsondump, mongofiles, mongooplog, mongoperf)"
+                Description="Miscellaneous MongoDB tools (bsondump, mongolfiles, mongoloplog, mongolperf)"
                 Level ="1">
           <ComponentRef Id="c_bsondump"/>
-          <ComponentRef Id="c_mongofiles"/>
-          <ComponentRef Id="c_mongooplog"/>
-          <ComponentRef Id="c_mongoperf"/>
+          <ComponentRef Id="c_mongolfiles"/>
+          <ComponentRef Id="c_mongoloplog"/>
+          <ComponentRef Id="c_mongolperf"/>
           <?if $(var.Edition) = Enterprise ?>
             <ComponentGroupRef Id="cg_EnterpriseBase" />
           <?endif ?>

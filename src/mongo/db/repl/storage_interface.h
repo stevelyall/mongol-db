@@ -30,14 +30,14 @@
 #pragma once
 
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
 namespace repl {
 
 /**
- * Storage interface used by used by the ReplicationExecutor inside mongod for supporting
+ * Storage interface used by used by the ReplicationExecutor inside mongold for supporting
  * ReplicationExectutor's ability to take database locks.
  */
 class StorageInterface {
@@ -54,4 +54,4 @@ protected:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

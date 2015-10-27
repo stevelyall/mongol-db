@@ -25,16 +25,16 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/util/net/ssl_expiration.h"
+#include "mongol/util/net/ssl_expiration.h"
 
 #include <string>
 
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 static const auto oneDay = stdx::chrono::hours(24);
 
@@ -71,4 +71,4 @@ void CertificateExpirationMonitor::taskDoWork() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

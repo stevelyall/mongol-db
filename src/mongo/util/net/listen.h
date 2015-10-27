@@ -33,14 +33,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/config.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/ticketholder.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/config.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/ticketholder.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 const int DEFAULT_MAX_CONN = 1000000;
 

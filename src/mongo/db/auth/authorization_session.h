@@ -32,18 +32,18 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_session_external_state.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/user_set.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_session_external_state.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/user_set.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 class ClientBasic;
 
 /**
@@ -51,7 +51,7 @@ class ClientBasic;
  * the users which have been authenticated, as well as a set of privileges that have been
  * granted to those users to perform various actions.
  *
- * An AuthorizationSession object is present within every mongo::ClientBasic object.
+ * An AuthorizationSession object is present within every mongol::ClientBasic object.
  *
  * Users in the _authenticatedUsers cache may get marked as invalid by the AuthorizationManager,
  * for instance if their privileges are changed by a user or role modification command.  At the
@@ -274,4 +274,4 @@ private:
     bool _impersonationFlag;
 };
 
-}  // namespace mongo
+}  // namespace mongol

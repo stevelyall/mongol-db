@@ -31,12 +31,12 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/fts/stop_words.h"
+#include "mongol/db/fts/stop_words.h"
 
-#include "mongo/base/init.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/init.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

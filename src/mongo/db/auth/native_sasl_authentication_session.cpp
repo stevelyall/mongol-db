@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/db/auth/native_sasl_authentication_session.h"
+#include "mongol/db/auth/native_sasl_authentication_session.h"
 
 #include <boost/range/size.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
-#include "mongo/db/auth/authz_session_external_state_mock.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/auth/sasl_plain_server_conversation.h"
-#include "mongo/db/auth/sasl_scramsha1_server_conversation.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/auth/authz_session_external_state_mock.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/auth/sasl_plain_server_conversation.h"
+#include "mongol/db/auth/sasl_scramsha1_server_conversation.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 
@@ -64,7 +64,7 @@ MONGO_INITIALIZER(NativeSaslServerCore)(InitializerContext* context) {
     if (saslGlobalParams.hostName.empty())
         saslGlobalParams.hostName = getHostNameCached();
     if (saslGlobalParams.serviceName.empty())
-        saslGlobalParams.serviceName = "mongodb";
+        saslGlobalParams.serviceName = "mongoldb";
 
     SaslAuthenticationSession::create = createNativeSaslAuthenticationSession;
     return Status::OK();
@@ -125,7 +125,7 @@ Status NativeSaslAuthenticationSession::start(StringData authenticationDatabase,
         _saslConversation.reset(new SaslSCRAMSHA1ServerConversation(this));
     } else {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << "SASL mechanism " << mechanism
+                      mongolutils::str::stream() << "SASL mechanism " << mechanism
                                                 << " is not supported");
     }
 
@@ -135,7 +135,7 @@ Status NativeSaslAuthenticationSession::start(StringData authenticationDatabase,
 Status NativeSaslAuthenticationSession::step(StringData inputData, std::string* outputData) {
     if (!_saslConversation) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream()
+                      mongolutils::str::stream()
                           << "The authentication session has not been properly initialized");
     }
 
@@ -156,4 +156,4 @@ const char* NativeSaslAuthenticationSession::getMechanism() const {
     return _mechanism.c_str();
 }
 
-}  // namespace mongo
+}  // namespace mongol

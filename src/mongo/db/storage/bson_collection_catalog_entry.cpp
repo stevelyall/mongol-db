@@ -28,9 +28,9 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/bson_collection_catalog_entry.h"
+#include "mongol/db/storage/bson_collection_catalog_entry.h"
 
-namespace mongo {
+namespace mongol {
 
 BSONCollectionCatalogEntry::BSONCollectionCatalogEntry(StringData ns)
     : CollectionCatalogEntry(ns) {}

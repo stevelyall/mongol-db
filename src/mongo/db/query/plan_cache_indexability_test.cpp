@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/plan_cache_indexability.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/plan_cache_indexability.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 std::unique_ptr<MatchExpression> parseMatchExpression(const BSONObj& obj) {
@@ -209,4 +209,4 @@ TEST(PlanCacheIndexabilityTest, IndexNeitherSparseNorPartial) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

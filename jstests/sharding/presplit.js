@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "presplit",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            other: { chunkSize : 1 } });
 
 s.adminCommand( { enablesharding : "test" } );

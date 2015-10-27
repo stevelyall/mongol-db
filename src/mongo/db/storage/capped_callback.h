@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/db/record_id.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class RecordData;

@@ -15,7 +15,7 @@ env.CppUnitTest(
         'bson_field_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -25,7 +25,7 @@ env.CppUnitTest(
         'bson_obj_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -35,7 +35,7 @@ env.CppUnitTest(
         'bson_obj_data_type_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ]
 )
 
@@ -45,7 +45,7 @@ env.CppUnitTest(
         'bson_validate_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -55,7 +55,7 @@ env.CppUnitTest(
         'bsonobjbuilder_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -65,6 +65,6 @@ env.CppUnitTest(
         'oid_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )

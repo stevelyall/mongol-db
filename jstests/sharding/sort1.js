@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "sort1",
                            shards: 2,
-                           mongos: 2 });
+                           mongols: 2 });
 
 s.adminCommand( { enablesharding : "test" } );
 s.ensurePrimaryShard('test', 'shard0001');
@@ -56,7 +56,7 @@ assert.eq( 100 , z.length , "C1" )
 b = 1.5 * Date.timeFunc( function(){ z = s.getServer("test").getDB( "test" ).data.find().sort( { 'sub.num' : 1 } ).toArray(); } , 200 );
 assert.eq( 67 , z.length , "C2" )
 
-print( "a: " + a + " b:" + b + " mongos slow down: " + Math.ceil( 100 * ( ( a - b ) / b ) ) + "%" )
+print( "a: " + a + " b:" + b + " mongols slow down: " + Math.ceil( 100 * ( ( a - b ) / b ) ) + "%" )
 
 // -- secondary index sorting
 

@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/db/index/s2_access_method.h"
+#include "mongol/db/index/s2_access_method.h"
 
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 static const string kIndexVersionFieldName("2dsphereIndexVersion");
 
@@ -106,4 +106,4 @@ void S2AccessMethod::getKeys(const BSONObj& obj, BSONObjSet* keys) const {
     ExpressionKeysPrivate::getS2Keys(obj, _descriptor->keyPattern(), _params, keys);
 }
 
-}  // namespace mongo
+}  // namespace mongol

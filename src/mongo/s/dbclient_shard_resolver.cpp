@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/s/dbclient_shard_resolver.h"
+#include "mongol/s/dbclient_shard_resolver.h"
 
 #include <set>
 
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -97,4 +97,4 @@ Status DBClientShardResolver::findMaster(const ConnectionString& connString,
     MONGO_UNREACHABLE;
 }
 
-}  // namespace mongo
+}  // namespace mongol

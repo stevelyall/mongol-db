@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_manager.h"
+#include "mongol/logger/log_manager.h"
 
-#include "mongo/logger/console_appender.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/console_appender.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 LogManager::LogManager() {
@@ -56,4 +56,4 @@ MessageLogDomain* LogManager::getNamedDomain(const std::string& name) {
 }
 
 }  // logger
-}  // mongo
+}  // mongol

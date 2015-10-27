@@ -31,14 +31,14 @@
 #include <jsapi.h>
 #include <string>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/exception.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
-#include "mongo/scripting/mozjs/lifetimestack.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/exception.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/scripting/mozjs/lifetimestack.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -232,4 +232,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

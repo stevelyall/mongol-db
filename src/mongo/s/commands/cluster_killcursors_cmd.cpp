@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/killcursors_common.h"
-#include "mongo/s/grid.h"
+#include "mongol/db/commands/killcursors_common.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ClusterKillCursorsCmd final : public KillCursorsCmdBase {
@@ -45,4 +45,4 @@ private:
 } clusterKillCursorsCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

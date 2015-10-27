@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/text.h"
+#include "mongol/db/exec/text.h"
 
 #include <vector>
 
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/text_or.h"
-#include "mongo/db/exec/text_match.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/fts/fts_index_format.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/text_or.h"
+#include "mongol/db/exec/text_match.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/fts/fts_index_format.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -145,4 +145,4 @@ unique_ptr<PlanStage> TextStage::buildTextTree(OperationContext* txn,
     return treeRoot;
 }
 
-}  // namespace mongo
+}  // namespace mongol

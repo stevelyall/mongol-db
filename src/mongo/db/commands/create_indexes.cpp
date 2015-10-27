@@ -28,32 +28,32 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

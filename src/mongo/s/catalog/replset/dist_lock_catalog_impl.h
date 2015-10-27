@@ -31,14 +31,14 @@
 #include <boost/optional.hpp>
 #include <vector>
 
-#include "mongo/bson/oid.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/catalog/dist_lock_catalog.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/catalog/dist_lock_catalog.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 class ShardRegistry;

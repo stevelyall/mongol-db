@@ -31,22 +31,22 @@
 #include <atomic>
 #include <string>
 
-#include "mongo/platform/atomic_proxy.h"
+#include "mongol/platform/atomic_proxy.h"
 
 /*
  * This file defines the storage for options that come from the command line related to data file
- * persistence.  Many executables that can access data files directly such as mongod and certain
+ * persistence.  Many executables that can access data files directly such as mongold and certain
  * tools use these variables, but each executable may have a different set of command line flags
  * that allow the user to change a different subset of these options.
  */
 
-namespace mongo {
+namespace mongol {
 
 struct StorageGlobalParams {
-    // Default data directory for mongod when running in non-config server mode.
+    // Default data directory for mongold when running in non-config server mode.
     static const char* kDefaultDbPath;
 
-    // Default data directory for mongod when running as the config database of
+    // Default data directory for mongold when running as the config database of
     // a sharded cluster.
     static const char* kDefaultConfigDbPath;
 
@@ -65,13 +65,13 @@ struct StorageGlobalParams {
     }
 
     // --storageEngine
-    // storage engine for this instance of mongod.
+    // storage engine for this instance of mongold.
     std::string engine;
 
     // True if --storageEngine was passed on the command line, and false otherwise.
     bool engineSetByUser;
 
-    // The directory where the mongod instance stores its data.
+    // The directory where the mongold instance stores its data.
     std::string dbpath;
 
     // --upgrade
@@ -116,4 +116,4 @@ struct StorageGlobalParams {
 
 extern StorageGlobalParams storageGlobalParams;
 
-}  // namespace mongo
+}  // namespace mongol

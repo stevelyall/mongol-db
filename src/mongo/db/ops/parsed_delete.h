@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/query/plan_executor.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/query/plan_executor.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class Database;
@@ -115,4 +115,4 @@ private:
     std::unique_ptr<CanonicalQuery> _canonicalQuery;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,10 +31,10 @@
 #pragma once
 
 
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/db/storage/recovery_unit_noop.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/recovery_unit_noop.h"
 
-namespace mongo {
+namespace mongol {
 
 class DevNullKVEngine : public KVEngine {
 public:

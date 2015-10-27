@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "stats",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            verbose: 1,
                            other: { enableBalancer: true } });
 
@@ -95,13 +95,13 @@ function dbStatComp(stat_obj, stat_obj_scaled, scale) {
     statComp(stat_obj.avgObjSize, stat_obj_scaled.avgObjSize, 1);
 }
 
-function collStatComp(stat_obj, stat_obj_scaled, scale, mongos) {
+function collStatComp(stat_obj, stat_obj_scaled, scale, mongols) {
     statComp(stat_obj.size, stat_obj_scaled.size, scale);
     statComp(stat_obj.storageSize, stat_obj_scaled.storageSize, scale);
     statComp(stat_obj.totalIndexSize, stat_obj_scaled.totalIndexSize, scale);
     statComp(stat_obj.avgObjSize, stat_obj_scaled.avgObjSize, scale);
-    /* lastExtentSize doesn't exist in mongos level collection stats */
-    if (!mongos) {
+    /* lastExtentSize doesn't exist in mongols level collection stats */
+    if (!mongols) {
         statComp(stat_obj.lastExtentSize, stat_obj_scaled.lastExtentSize, scale);
     }
 }

@@ -26,20 +26,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/ops/field_checker.h"
+#include "mongol/db/ops/field_checker.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/status.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/status.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::ErrorCodes;
-using mongo::FieldRef;
-using mongo::fieldchecker::isUpdatable;
-using mongo::fieldchecker::isPositional;
-using mongo::Status;
+using mongol::ErrorCodes;
+using mongol::FieldRef;
+using mongol::fieldchecker::isUpdatable;
+using mongol::fieldchecker::isPositional;
+using mongol::Status;
 
 TEST(IsUpdatable, Basics) {
     FieldRef fieldRef("x");

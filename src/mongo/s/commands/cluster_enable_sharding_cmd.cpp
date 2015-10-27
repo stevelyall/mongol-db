@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class EnableShardingCmd : public Command {
@@ -118,4 +118,4 @@ public:
 } enableShardingCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/keypattern.h"
+#include "mongol/db/keypattern.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(KeyPattern, ExtendRangeBound) {
     BSONObj bound = BSON("a" << 55);

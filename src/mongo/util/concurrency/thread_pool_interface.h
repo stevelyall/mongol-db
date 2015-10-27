@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 
@@ -87,4 +87,4 @@ protected:
     ThreadPoolInterface() = default;
 };
 
-}  // namespace mongo
+}  // namespace mongol

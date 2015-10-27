@@ -31,49 +31,49 @@
 #include <jsapi.h>
 #include <vm/PosixNSPR.h>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/scripting/mozjs/bindata.h"
-#include "mongo/scripting/mozjs/bson.h"
-#include "mongo/scripting/mozjs/countdownlatch.h"
-#include "mongo/scripting/mozjs/cursor.h"
-#include "mongo/scripting/mozjs/cursor_handle.h"
-#include "mongo/scripting/mozjs/db.h"
-#include "mongo/scripting/mozjs/dbcollection.h"
-#include "mongo/scripting/mozjs/dbpointer.h"
-#include "mongo/scripting/mozjs/dbquery.h"
-#include "mongo/scripting/mozjs/dbref.h"
-#include "mongo/scripting/mozjs/engine.h"
-#include "mongo/scripting/mozjs/error.h"
-#include "mongo/scripting/mozjs/global.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/jsthread.h"
-#include "mongo/scripting/mozjs/maxkey.h"
-#include "mongo/scripting/mozjs/minkey.h"
-#include "mongo/scripting/mozjs/mongo.h"
-#include "mongo/scripting/mozjs/mongohelpers.h"
-#include "mongo/scripting/mozjs/nativefunction.h"
-#include "mongo/scripting/mozjs/numberint.h"
-#include "mongo/scripting/mozjs/numberlong.h"
-#include "mongo/scripting/mozjs/numberdecimal.h"
-#include "mongo/scripting/mozjs/object.h"
-#include "mongo/scripting/mozjs/oid.h"
-#include "mongo/scripting/mozjs/regexp.h"
-#include "mongo/scripting/mozjs/timestamp.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/scripting/mozjs/bindata.h"
+#include "mongol/scripting/mozjs/bson.h"
+#include "mongol/scripting/mozjs/countdownlatch.h"
+#include "mongol/scripting/mozjs/cursor.h"
+#include "mongol/scripting/mozjs/cursor_handle.h"
+#include "mongol/scripting/mozjs/db.h"
+#include "mongol/scripting/mozjs/dbcollection.h"
+#include "mongol/scripting/mozjs/dbpointer.h"
+#include "mongol/scripting/mozjs/dbquery.h"
+#include "mongol/scripting/mozjs/dbref.h"
+#include "mongol/scripting/mozjs/engine.h"
+#include "mongol/scripting/mozjs/error.h"
+#include "mongol/scripting/mozjs/global.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/jsthread.h"
+#include "mongol/scripting/mozjs/maxkey.h"
+#include "mongol/scripting/mozjs/minkey.h"
+#include "mongol/scripting/mozjs/mongol.h"
+#include "mongol/scripting/mozjs/mongolhelpers.h"
+#include "mongol/scripting/mozjs/nativefunction.h"
+#include "mongol/scripting/mozjs/numberint.h"
+#include "mongol/scripting/mozjs/numberlong.h"
+#include "mongol/scripting/mozjs/numberdecimal.h"
+#include "mongol/scripting/mozjs/object.h"
+#include "mongol/scripting/mozjs/oid.h"
+#include "mongol/scripting/mozjs/regexp.h"
+#include "mongol/scripting/mozjs/timestamp.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
  * Implementation Scope for MozJS
  *
  * The Implementation scope holds the actual mozjs runtime and context objects,
- * along with a number of global prototypes for mongoDB specific types. Each
+ * along with a number of global prototypes for mongolDB specific types. Each
  * ImplScope requires it's own thread and cannot be accessed from any thread
  * other than the one it was created on (this is a detail inherited from the
  * JSRuntime). If you need a scope that can be accessed by different threads
  * over the course of it's lifetime, see MozJSProxyScope
  *
- * For more information about overriden fields, see mongo::Scope
+ * For more information about overriden fields, see mongol::Scope
  */
 class MozJSImplScope final : public Scope {
     MONGO_DISALLOW_COPYING(MozJSImplScope);
@@ -227,18 +227,18 @@ public:
     template <typename T>
     typename std::enable_if<std::is_same<T, MongoExternalInfo>::value, WrapType<T>&>::type
     getProto() {
-        return _mongoExternalProto;
+        return _mongolExternalProto;
     }
 
     template <typename T>
     typename std::enable_if<std::is_same<T, MongoHelpersInfo>::value, WrapType<T>&>::type
     getProto() {
-        return _mongoHelpersProto;
+        return _mongolHelpersProto;
     }
 
     template <typename T>
     typename std::enable_if<std::is_same<T, MongoLocalInfo>::value, WrapType<T>&>::type getProto() {
-        return _mongoLocalProto;
+        return _mongolLocalProto;
     }
 
     template <typename T>
@@ -382,9 +382,9 @@ private:
     WrapType<JSThreadInfo> _jsThreadProto;
     WrapType<MaxKeyInfo> _maxKeyProto;
     WrapType<MinKeyInfo> _minKeyProto;
-    WrapType<MongoExternalInfo> _mongoExternalProto;
-    WrapType<MongoHelpersInfo> _mongoHelpersProto;
-    WrapType<MongoLocalInfo> _mongoLocalProto;
+    WrapType<MongoExternalInfo> _mongolExternalProto;
+    WrapType<MongoHelpersInfo> _mongolHelpersProto;
+    WrapType<MongoLocalInfo> _mongolLocalProto;
     WrapType<NativeFunctionInfo> _nativeFunctionProto;
     WrapType<NumberIntInfo> _numberIntProto;
     WrapType<NumberLongInfo> _numberLongProto;
@@ -400,4 +400,4 @@ inline MozJSImplScope* getScope(JSContext* cx) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

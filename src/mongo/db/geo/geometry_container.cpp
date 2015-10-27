@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/geo/geometry_container.h"
+#include "mongol/db/geo/geometry_container.h"
 
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::equals;
+using mongolutils::str::equals;
 
 bool GeometryContainer::isSimpleContainer() const {
     return NULL != _point || NULL != _line || NULL != _polygon;
@@ -1291,4 +1291,4 @@ const CapWithCRS* GeometryContainer::getCapGeometryHack() const {
     return _cap.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

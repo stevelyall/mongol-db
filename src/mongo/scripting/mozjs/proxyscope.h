@@ -30,14 +30,14 @@
 
 #include "vm/PosixNSPR.h"
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/scripting/mozjs/engine.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/scripting/mozjs/engine.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 class MozJSImplScope;
@@ -58,7 +58,7 @@ class MozJSImplScope;
  * the argument capture and method dispatch explicit, but I'll wait until we've
  * measured it before bothering.
  *
- * See mongo::Scope for details on all of the overridden functions
+ * See mongol::Scope for details on all of the overridden functions
  *
  */
 class MozJSProxyScope final : public Scope {
@@ -201,4 +201,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

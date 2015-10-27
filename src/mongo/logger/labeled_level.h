@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "mongo/logger/log_severity.h"
+#include "mongol/logger/log_severity.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -99,4 +99,4 @@ inline bool operator==(const int i, const LabeledLevel& ll) {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

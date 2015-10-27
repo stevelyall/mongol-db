@@ -26,17 +26,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/oid.h"
-#include "mongo/base/status_with.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/oid.h"
+#include "mongol/base/status_with.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 
 TEST(CollectionType, Empty) {

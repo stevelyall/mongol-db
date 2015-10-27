@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_shard.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 const std::string ShardType::ConfigNS = "config.shards";
 
@@ -177,4 +177,4 @@ void ShardType::setTags(const std::vector<std::string>& tags) {
     _tags = tags;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Writes useful information about the running process to the diagnostic log on startup.
@@ -41,4 +41,4 @@ void logProcessDetails();
  */
 void logProcessDetailsForLogRotate();
 
-}  // namespace mongo
+}  // namespace mongol

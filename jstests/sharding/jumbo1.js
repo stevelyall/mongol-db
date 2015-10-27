@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "jumbo1",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            other: { chunkSize: 1 } });
 
 s.adminCommand( { enablesharding : "test" } );

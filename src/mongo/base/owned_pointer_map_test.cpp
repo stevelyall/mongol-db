@@ -27,14 +27,14 @@
 
 /** Unit tests for OwnedPointerMap. */
 
-#include "mongo/base/owned_pointer_map.h"
+#include "mongol/base/owned_pointer_map.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::make_pair;
@@ -127,4 +127,4 @@ TEST(OwnedPointerMapTest, OwnedPointersWithCompare) {
 
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

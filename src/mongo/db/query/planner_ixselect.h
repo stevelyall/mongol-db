@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Methods for determining what fields and predicates can use indices.
@@ -212,4 +212,4 @@ private:
                                                         const std::vector<IndexEntry>& indices);
 };
 
-}  // namespace mongo
+}  // namespace mongol

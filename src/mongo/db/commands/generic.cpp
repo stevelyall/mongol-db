@@ -26,43 +26,43 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <time.h>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/background.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/shutdown.h"
-#include "mongo/db/db.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/ntservice.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/ramlog.h"
-#include "mongo/util/version.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/background.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/shutdown.h"
+#include "mongol/db/db.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/ntservice.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/ramlog.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;

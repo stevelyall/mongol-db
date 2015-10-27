@@ -26,10 +26,10 @@
 *    then also delete it in the license file.
 */
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 
 struct StorageGlobalParams;
 struct ServerGlobalParams;
@@ -54,7 +54,7 @@ public:
 };
 
 // Checks various startup conditions and logs any necessary warnings that
-// are specific to the mongod process.
+// are specific to the mongold process.
 void logMongodStartupWarnings(const StorageGlobalParams& storageParams,
                               const ServerGlobalParams& serverParams);
-}  // namespace mongo
+}  // namespace mongol

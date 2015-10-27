@@ -30,23 +30,23 @@
  */
 
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user_document_parser.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user_document_parser.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
 #define ASSERT_NULL(EXPR) ASSERT_FALSE(EXPR)
 #define ASSERT_NON_NULL(EXPR) ASSERT_TRUE(EXPR)
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
 
-class V1UserDocumentParsing : public ::mongo::unittest::Test {
+class V1UserDocumentParsing : public ::mongol::unittest::Test {
 public:
     V1UserDocumentParsing() {}
 
@@ -211,7 +211,7 @@ TEST_F(V1UserDocumentParsing, MixedV0V1UserDocumentsAreInvalid) {
     ASSERT_FALSE(user->getRoles().more());
 }
 
-class V2UserDocumentParsing : public ::mongo::unittest::Test {
+class V2UserDocumentParsing : public ::mongol::unittest::Test {
 public:
     V2UserDocumentParsing() {}
 
@@ -490,4 +490,4 @@ TEST_F(V2UserDocumentParsing, V2RoleExtraction) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

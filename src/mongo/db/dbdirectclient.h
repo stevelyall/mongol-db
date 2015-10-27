@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -101,4 +101,4 @@ private:
     OperationContext* _txn;
 };
 
-}  // namespace mongo
+}  // namespace mongol

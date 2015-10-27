@@ -30,33 +30,33 @@
  * Unit tests of the unittest framework itself.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <limits>
 #include <string>
 
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/unittest/death_test.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/unittest/death_test.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-namespace stdx = mongo::stdx;
+namespace stdx = mongol::stdx;
 
 bool containsPattern(const std::string& pattern, const std::string& value) {
     return value.find(pattern) != std::string::npos;
 }
 
 #define ASSERT_TEST_FAILS(TEST_STMT) \
-    ASSERT_THROWS(TEST_STMT, mongo::unittest::TestAssertionFailureException)
+    ASSERT_THROWS(TEST_STMT, mongol::unittest::TestAssertionFailureException)
 
 #define ASSERT_TEST_FAILS_MATCH(TEST_STMT, PATTERN)                                        \
     ASSERT_THROWS_PRED(                                                                    \
         TEST_STMT,                                                                         \
-        mongo::unittest::TestAssertionFailureException,                                    \
+        mongol::unittest::TestAssertionFailureException,                                    \
         stdx::bind(containsPattern,                                                        \
                    PATTERN,                                                                \
-                   stdx::bind(&mongo::unittest::TestAssertionFailureException::getMessage, \
+                   stdx::bind(&mongol::unittest::TestAssertionFailureException::getMessage, \
                               stdx::placeholders::_1)))
 
 TEST(UnitTestSelfTest, DoNothing) {}
@@ -139,11 +139,11 @@ DEATH_TEST(DeathTestSelfTest, TestDeath, "Invariant failure false") {
     invariant(false);
 }
 
-class DeathTestSelfTestFixture : public ::mongo::unittest::Test {
+class DeathTestSelfTestFixture : public ::mongol::unittest::Test {
 public:
     void setUp() override {}
     void tearDown() override {
-        mongo::unittest::log() << "Died in tear-down";
+        mongol::unittest::log() << "Died in tear-down";
         invariant(false);
     }
 };

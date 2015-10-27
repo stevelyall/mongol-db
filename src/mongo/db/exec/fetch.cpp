@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/fetch.h"
+#include "mongol/db/exec/fetch.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -145,7 +145,7 @@ PlanStage::StageState FetchStage::work(WorkingSetID* out) {
         // failed, in which case 'id' is valid.  If ID is invalid, we
         // create our own error message.
         if (WorkingSet::INVALID_ID == id) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "fetch stage failed to read in results from child";
             Status status(ErrorCodes::InternalError, ss);
             *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -245,4 +245,4 @@ const SpecificStats* FetchStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

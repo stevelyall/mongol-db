@@ -26,25 +26,25 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kFTDC
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kFTDC
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/controller.h"
+#include "mongol/db/ftdc/controller.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 void FTDCController::setEnabled(bool enabled) {
     stdx::lock_guard<stdx::mutex> lock(_mutex);
@@ -209,4 +209,4 @@ void FTDCController::doLoop() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

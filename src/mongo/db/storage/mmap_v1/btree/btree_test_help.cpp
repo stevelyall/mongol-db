@@ -29,13 +29,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/btree/btree_test_help.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_test_help.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/unittest/unittest.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

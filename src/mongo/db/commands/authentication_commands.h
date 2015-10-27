@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/commands.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/commands.h"
 
-namespace mongo {
+namespace mongol {
 
 class CmdAuthenticate : public Command {
 public:

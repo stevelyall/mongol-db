@@ -6,12 +6,12 @@
  * Unit tests of the unittest framework itself.
  */
 
-#include "mongo/logger/console.h"
+#include "mongol/logger/console.h"
 #include <iostream>
 #include <ostream>
 #include <sstream>
 #include <string>
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
@@ -25,7 +25,7 @@ TEST(ConsoleTest, testUtf8) {
     // this constant should match ConsoleStreamBuffer::bufferSize in console.cpp
     const size_t bufferSize = 1024U;
 
-    mongo::Console console;
+    mongol::Console console;
     ostream& out = console.out();
 
     // example unicode code points are from:

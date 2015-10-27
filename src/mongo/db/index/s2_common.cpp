@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/db/index/s2_common.h"
+#include "mongol/db/index/s2_common.h"
 
 #include <cstdlib>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/geo/geometry_container.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/geo/geometry_container.h"
 #include "third_party/s2/s2cellid.h"
 #include "third_party/s2/s2regioncoverer.h"
 
-namespace mongo {
+namespace mongol {
 
 // Points will only be indexed at this level
 const int kPointIndexedLevel = S2::kMaxCellLevel;
@@ -93,4 +93,4 @@ BSONObj S2CellIdToIndexKey(const S2CellId& cellId, S2IndexVersion indexVersion) 
     }
     return b.obj();
 }
-}  // namespace mongo
+}  // namespace mongol

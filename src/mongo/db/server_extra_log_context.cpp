@@ -26,19 +26,19 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/user_set.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/user_set.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // Server parameter controlling whether or not user ids are included in log entries.
@@ -77,4 +77,4 @@ MONGO_INITIALIZER(SetServerLogContextFunction)(InitializerContext*) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

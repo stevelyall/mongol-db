@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/rpc/protocol.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/rpc/protocol.h"
 
-namespace mongo {
+namespace mongol {
 class Message;
 
 namespace rpc {
@@ -87,4 +87,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

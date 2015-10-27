@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/member_config.h"
+#include "mongol/db/repl/member_config.h"
 
 #include <boost/algorithm/string.hpp>
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 const std::string MemberConfig::kIdFieldName = "_id";
@@ -310,4 +310,4 @@ BSONObj MemberConfig::toBSON(const ReplicaSetTagConfig& tagConfig) const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

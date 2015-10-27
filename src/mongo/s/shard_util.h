@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/s/client/shard.h"
+#include "mongol/s/client/shard.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class ShardRegistry;
@@ -56,4 +56,4 @@ StatusWith<long long> retrieveTotalShardSize(OperationContext* txn,
                                              ShardRegistry* shardRegistry);
 };
 
-}  // namespace mongo
+}  // namespace mongol

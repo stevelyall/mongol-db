@@ -32,9 +32,9 @@
 
 #include <set>
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * a.$ -> a

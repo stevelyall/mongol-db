@@ -44,7 +44,7 @@
 #error "unknown platform"
 #endif
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Returns the number of leading 0-bits in num. Returns 64 if num is 0.

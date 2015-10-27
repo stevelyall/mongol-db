@@ -26,43 +26,43 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/authentication_commands.h"
+#include "mongol/db/commands/authentication_commands.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/mongo_authentication_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/auth/security_key.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_options.h"
-#include "mongo/platform/random.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/text.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/mongol_authentication_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/auth/security_key.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_options.h"
+#include "mongol/platform/random.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::hex;
 using std::string;
@@ -165,8 +165,8 @@ bool CmdAuthenticate::run(OperationContext* txn,
     if (Command::testCommandsEnabled && user.getDB() == "admin" &&
         user.getUser() == internalSecurity.user->getName().getUser()) {
         // Allows authenticating as the internal user against the admin database.  This is to
-        // support the auth passthrough test framework on mongos (since you can't use the local
-        // database on a mongos, so you can't auth as the internal user without this).
+        // support the auth passthrough test framework on mongols (since you can't use the local
+        // database on a mongols, so you can't auth as the internal user without this).
         user = internalSecurity.user->getName();
     }
 
@@ -378,8 +378,8 @@ public:
         if (Command::testCommandsEnabled && dbname == "admin") {
             // Allows logging out as the internal user against the admin database, however
             // this actually logs out of the local database as well. This is to
-            // support the auth passthrough test framework on mongos (since you can't use the
-            // local database on a mongos, so you can't logout as the internal user
+            // support the auth passthrough test framework on mongols (since you can't use the
+            // local database on a mongols, so you can't logout as the internal user
             // without this).
             authSession->logoutDatabase("local");
         }

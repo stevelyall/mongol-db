@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 template <typename T>
@@ -37,5 +37,5 @@ Test::RegistrationAgent<T>::RegistrationAgent(const std::string& suiteName,
     Suite::getSuite(suiteName)->add<T>(testName);
 }
 
-}  // namespace mongo
+}  // namespace mongol
 }  // namespace unittest

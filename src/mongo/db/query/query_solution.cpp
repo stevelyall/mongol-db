@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/query/query_solution.h"
 
-#include "mongo/db/index_names.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/planner_analysis.h"
-#include "mongo/db/query/query_planner_common.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/planner_analysis.h"
+#include "mongol/db/query/query_planner_common.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 
 string QuerySolutionNode::toString() const {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     appendToString(&ss, 0);
     return ss;
 }
 
 // static
-void QuerySolutionNode::addIndent(mongoutils::str::stream* ss, int level) {
+void QuerySolutionNode::addIndent(mongolutils::str::stream* ss, int level) {
     for (int i = 0; i < level; ++i) {
         *ss << "---";
     }
 }
 
-void QuerySolutionNode::addCommon(mongoutils::str::stream* ss, int indent) const {
+void QuerySolutionNode::addCommon(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent + 1);
     *ss << "fetched = " << fetched() << '\n';
     addIndent(ss, indent + 1);
@@ -67,7 +67,7 @@ void QuerySolutionNode::addCommon(mongoutils::str::stream* ss, int indent) const
 // TextNode
 //
 
-void TextNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void TextNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "TEXT\n";
     addIndent(ss, indent + 1);
@@ -110,7 +110,7 @@ QuerySolutionNode* TextNode::clone() const {
 
 CollectionScanNode::CollectionScanNode() : tailable(false), direction(1), maxScan(0) {}
 
-void CollectionScanNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void CollectionScanNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "COLLSCAN\n";
     addIndent(ss, indent + 1);
@@ -143,7 +143,7 @@ AndHashNode::AndHashNode() {}
 
 AndHashNode::~AndHashNode() {}
 
-void AndHashNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void AndHashNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "AND_HASH\n";
     if (NULL != filter) {
@@ -197,7 +197,7 @@ AndSortedNode::AndSortedNode() {}
 
 AndSortedNode::~AndSortedNode() {}
 
-void AndSortedNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void AndSortedNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "AND_SORTED\n";
     addCommon(ss, indent);
@@ -247,7 +247,7 @@ OrNode::OrNode() : dedup(true) {}
 
 OrNode::~OrNode() {}
 
-void OrNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void OrNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "OR\n";
     if (NULL != filter) {
@@ -307,7 +307,7 @@ MergeSortNode::MergeSortNode() : dedup(true) {}
 
 MergeSortNode::~MergeSortNode() {}
 
-void MergeSortNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void MergeSortNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "MERGE_SORT\n";
     if (NULL != filter) {
@@ -366,7 +366,7 @@ QuerySolutionNode* MergeSortNode::clone() const {
 
 FetchNode::FetchNode() {}
 
-void FetchNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void FetchNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "FETCH\n";
     if (NULL != filter) {
@@ -398,7 +398,7 @@ QuerySolutionNode* FetchNode::clone() const {
 IndexScanNode::IndexScanNode()
     : indexIsMultiKey(false), direction(1), maxScan(0), addKeyMetadata(false) {}
 
-void IndexScanNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void IndexScanNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "IXSCAN\n";
     addIndent(ss, indent + 1);
@@ -606,7 +606,7 @@ bool IndexScanNode::operator==(const IndexScanNode& other) const {
 // ProjectionNode
 //
 
-void ProjectionNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void ProjectionNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "PROJ\n";
     addIndent(ss, indent + 1);
@@ -644,7 +644,7 @@ QuerySolutionNode* ProjectionNode::clone() const {
 // SortKeyGeneratorNode
 //
 
-void SortKeyGeneratorNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void SortKeyGeneratorNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "SORT_KEY_GENERATOR\n";
     addIndent(ss, indent + 1);
@@ -669,7 +669,7 @@ QuerySolutionNode* SortKeyGeneratorNode::clone() const {
 // SortNode
 //
 
-void SortNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void SortNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "SORT\n";
     addIndent(ss, indent + 1);
@@ -698,7 +698,7 @@ QuerySolutionNode* SortNode::clone() const {
 //
 
 
-void LimitNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void LimitNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "LIMIT\n";
     addIndent(ss, indent + 1);
@@ -723,7 +723,7 @@ QuerySolutionNode* LimitNode::clone() const {
 // SkipNode
 //
 
-void SkipNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void SkipNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "SKIP\n";
     addIndent(ss, indent + 1);
@@ -747,7 +747,7 @@ QuerySolutionNode* SkipNode::clone() const {
 // GeoNear2DNode
 //
 
-void GeoNear2DNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void GeoNear2DNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "GEO_NEAR_2D\n";
     addIndent(ss, indent + 1);
@@ -778,7 +778,7 @@ QuerySolutionNode* GeoNear2DNode::clone() const {
 // GeoNear2DSphereNode
 //
 
-void GeoNear2DSphereNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void GeoNear2DSphereNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "GEO_NEAR_2DSPHERE\n";
     addIndent(ss, indent + 1);
@@ -811,7 +811,7 @@ QuerySolutionNode* GeoNear2DSphereNode::clone() const {
 // ShardingFilterNode
 //
 
-void ShardingFilterNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void ShardingFilterNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "SHARDING_FILTER\n";
     if (NULL != filter) {
@@ -837,7 +837,7 @@ QuerySolutionNode* ShardingFilterNode::clone() const {
 // KeepMutationsNode
 //
 
-void KeepMutationsNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void KeepMutationsNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "KEEP_MUTATIONS\n";
     if (NULL != filter) {
@@ -866,7 +866,7 @@ QuerySolutionNode* KeepMutationsNode::clone() const {
 // DistinctNode
 //
 
-void DistinctNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void DistinctNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "DISTINCT\n";
     addIndent(ss, indent + 1);
@@ -894,7 +894,7 @@ QuerySolutionNode* DistinctNode::clone() const {
 // CountNode
 //
 
-void CountNode::appendToString(mongoutils::str::stream* ss, int indent) const {
+void CountNode::appendToString(mongolutils::str::stream* ss, int indent) const {
     addIndent(ss, indent);
     *ss << "COUNT\n";
     addIndent(ss, indent + 1);
@@ -919,4 +919,4 @@ QuerySolutionNode* CountNode::clone() const {
     return copy;
 }
 
-}  // namespace mongo
+}  // namespace mongol

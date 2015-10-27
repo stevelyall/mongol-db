@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Basic structure that contains a value and an opTime.
@@ -46,4 +46,4 @@ public:
     repl::OpTime opTime;
 };
 
-}  // namespace mongo
+}  // namespace mongol

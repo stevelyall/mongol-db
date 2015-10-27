@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/sharding_test_fixture.h"
+#include "mongol/s/sharding_test_fixture.h"
 
 #include <algorithm>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/remote_command_targeter_factory_mock.h"
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/thread_pool_task_executor_test_fixture.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/dist_lock_manager_mock.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
-#include "mongo/s/catalog/type_changelog.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/clock_source_mock.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/remote_command_targeter_factory_mock.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/thread_pool_task_executor_test_fixture.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/dist_lock_manager_mock.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/type_changelog.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/clock_source_mock.h"
 
-namespace mongo {
+namespace mongol {
 
 using executor::NetworkInterfaceMock;
 using executor::NetworkTestEnv;
@@ -441,4 +441,4 @@ void ShardingTestFixture::checkReadConcern(const BSONObj& cmdObj,
     ASSERT_EQ(expectedTerm, afterObj[repl::OpTime::kTermFieldName].numberLong());
 }
 
-}  // namespace mongo
+}  // namespace mongol

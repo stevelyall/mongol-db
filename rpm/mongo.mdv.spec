@@ -1,4 +1,4 @@
-%define name    mongodb
+%define name    mongoldb
 %define version %{dynamic_version}
 %define release %{dynamic_release}
 
@@ -7,10 +7,10 @@ Version: %{version}
 Release: %{release}
 Summary: MongoDB client shell and tools
 License: AGPL 3.0
-URL: http://www.mongodb.org
+URL: http://www.mongoldb.org
 Group: Databases
 
-Source0: http://downloads.mongodb.org/src/%{name}-src-r%{version}.tar.gz
+Source0: http://downloads.mongoldb.org/src/%{name}-src-r%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: js-devel, readline-devel, boost-devel, pcre-devel
 BuildRequires: gcc-c++, scons
@@ -31,13 +31,13 @@ MongoDB features:
 * Text Search
 * Aggregation Framework & Native MapReduce
 
-This package contains the mongo shell, import/export tools, and other client utilities.
+This package contains the mongol shell, import/export tools, and other client utilities.
 
 
 %package server
 Summary: MongoDB server, sharding server, and support scripts
 Group: Databases
-Requires: mongodb
+Requires: mongoldb
 
 %description server
 MongoDB is built for scalability, performance and high availability, scaling from single server deployments to large, complex multi-site architectures. By leveraging in-memory computing, MongoDB provides high performance for both reads and writes. MongoDB’s native replication and automated failover enable enterprise-grade reliability and operational flexibility.
@@ -92,87 +92,87 @@ scons --prefix=$RPM_BUILD_ROOT%{_usr} install
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
 cp debian/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/init.d
-cp rpm/init.d-mongod $RPM_BUILD_ROOT%{_sysconfdir}/init.d/mongod
-chmod a+x $RPM_BUILD_ROOT%{_sysconfdir}/init.d/mongod
+cp rpm/init.d-mongold $RPM_BUILD_ROOT%{_sysconfdir}/init.d/mongold
+chmod a+x $RPM_BUILD_ROOT%{_sysconfdir}/init.d/mongold
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
-cp rpm/mongod.conf $RPM_BUILD_ROOT%{_sysconfdir}/mongod.conf
+cp rpm/mongold.conf $RPM_BUILD_ROOT%{_sysconfdir}/mongold.conf
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-cp rpm/mongod.sysconfig $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mongod
-mkdir -p $RPM_BUILD_ROOT%{_var}/lib/mongo
-mkdir -p $RPM_BUILD_ROOT%{_var}/log/mongo
-touch $RPM_BUILD_ROOT%{_var}/log/mongo/mongod.log
+cp rpm/mongold.sysconfig $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mongold
+mkdir -p $RPM_BUILD_ROOT%{_var}/lib/mongol
+mkdir -p $RPM_BUILD_ROOT%{_var}/log/mongol
+touch $RPM_BUILD_ROOT%{_var}/log/mongol/mongold.log
 
 %clean
 scons -c
 rm -rf $RPM_BUILD_ROOT
 
 %pre server
-%{_sbindir}/useradd -M -r -U -d %{_var}/lib/mongo -s /bin/false \
-    -c mongod mongod > /dev/null 2>&1
+%{_sbindir}/useradd -M -r -U -d %{_var}/lib/mongol -s /bin/false \
+    -c mongold mongold > /dev/null 2>&1
 
 %post server
 if test $1 = 1
 then
-  /sbin/chkconfig --add mongod
+  /sbin/chkconfig --add mongold
 fi
 
 %preun server
 if test $1 = 0
 then
-  /sbin/chkconfig --del mongod
+  /sbin/chkconfig --del mongold
 fi
 
 %postun server
 if test $1 -ge 1
 then
-  /sbin/service mongod stop >/dev/null 2>&1 || :
+  /sbin/service mongold stop >/dev/null 2>&1 || :
 fi
 
 %files
 %defattr(-,root,root,-)
 %doc README GNU-AGPL-3.0.txt
 
-%{_bindir}/mongo
-%{_bindir}/mongodump
-%{_bindir}/mongoexport
-%{_bindir}/mongofiles
-%{_bindir}/mongoimport
-%{_bindir}/mongorestore
-%{_bindir}/mongostat
+%{_bindir}/mongol
+%{_bindir}/mongoldump
+%{_bindir}/mongolexport
+%{_bindir}/mongolfiles
+%{_bindir}/mongolimport
+%{_bindir}/mongolrestore
+%{_bindir}/mongolstat
 
-%{_mandir}/man1/mongo.1*
-%{_mandir}/man1/mongod.1*
-%{_mandir}/man1/mongodump.1*
-%{_mandir}/man1/mongoexport.1*
-%{_mandir}/man1/mongofiles.1*
-%{_mandir}/man1/mongoimport.1*
-%{_mandir}/man1/mongosniff.1*
-%{_mandir}/man1/mongostat.1*
-%{_mandir}/man1/mongorestore.1*
+%{_mandir}/man1/mongol.1*
+%{_mandir}/man1/mongold.1*
+%{_mandir}/man1/mongoldump.1*
+%{_mandir}/man1/mongolexport.1*
+%{_mandir}/man1/mongolfiles.1*
+%{_mandir}/man1/mongolimport.1*
+%{_mandir}/man1/mongolsniff.1*
+%{_mandir}/man1/mongolstat.1*
+%{_mandir}/man1/mongolrestore.1*
 
 %files server
 %defattr(-,root,root,-)
-%config(noreplace) %{_sysconfdir}/mongod.conf
-%{_bindir}/mongod
-%{_bindir}/mongos
-%{_mandir}/man1/mongos.1*
-%{_sysconfdir}/init.d/mongod
-%{_sysconfdir}/sysconfig/mongod
-%attr(0755,mongod,mongod) %dir %{_var}/lib/mongo
-%attr(0755,mongod,mongod) %dir %{_var}/log/mongo
-%attr(0640,mongod,mongod) %config(noreplace) %verify(not md5 size mtime) %{_var}/log/mongo/mongod.log
+%config(noreplace) %{_sysconfdir}/mongold.conf
+%{_bindir}/mongold
+%{_bindir}/mongols
+%{_mandir}/man1/mongols.1*
+%{_sysconfdir}/init.d/mongold
+%{_sysconfdir}/sysconfig/mongold
+%attr(0755,mongold,mongold) %dir %{_var}/lib/mongol
+%attr(0755,mongold,mongold) %dir %{_var}/log/mongol
+%attr(0640,mongold,mongold) %config(noreplace) %verify(not md5 size mtime) %{_var}/log/mongol/mongold.log
 
 %files devel
-%{_includedir}/mongo
-%{_libdir}/libmongoclient.a
-#%{_libdir}/libmongotestfiles.a
+%{_includedir}/mongol
+%{_libdir}/libmongolclient.a
+#%{_libdir}/libmongoltestfiles.a
 
 %changelog
 * Sun Mar 21 2010 Ludovic Bellière <xrogaan@gmail.com>
-- Update mongo.spec for mandriva packaging
+- Update mongol.spec for mandriva packaging
 
 * Thu Jan 28 2010 Richard M Kreuter <richard@10gen.com>
 - Minor fixes.
 
 * Sat Oct 24 2009 Joe Miklojcik <jmiklojcik@shopwiki.com> - 
-- Wrote mongo.spec.
+- Wrote mongol.spec.

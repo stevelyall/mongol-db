@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_session_external_state.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_session_external_state.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Mock of the AuthzSessionExternalState class used only for testing.
@@ -76,4 +76,4 @@ private:
     bool _serverIsArbiterReturnValue;
 };
 
-}  // namespace mongo
+}  // namespace mongol

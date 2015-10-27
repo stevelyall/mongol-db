@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/cached_plan.h"
+#include "mongol/db/exec/cached_plan.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/multi_plan.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/plan_yield_policy.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/stage_builder.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/multi_plan.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/plan_yield_policy.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/stage_builder.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 const char* CachedPlanStage::kStageType = "CACHED_PLAN";
@@ -345,4 +345,4 @@ void CachedPlanStage::updatePlanCache() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

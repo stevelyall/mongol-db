@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and content of a batched insert runCommand,
@@ -137,4 +137,4 @@ private:
     bool _shouldBypassValidation;
 };
 
-}  // namespace mongo
+}  // namespace mongol

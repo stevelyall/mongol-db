@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_insert_request.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_insert_request.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -133,4 +133,4 @@ TEST(BatchedInsertRequest, GenIDNone) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

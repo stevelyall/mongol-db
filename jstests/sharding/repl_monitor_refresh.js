@@ -8,16 +8,16 @@
 var NODE_COUNT = 3;
 var st = new ShardingTest({ shards: { rs0: { nodes: NODE_COUNT, oplogSize: 10 }}});
 var replTest = st.rs0;
-var mongos = st.s;
+var mongols = st.s;
 
-var shardDoc = mongos.getDB('config').shards.findOne();
+var shardDoc = mongols.getDB('config').shards.findOne();
 assert.eq(NODE_COUNT, shardDoc.host.split(',').length); // seed list should contain all nodes
 
 /* Make sure that the first node is not the primary (by making the second one primary).
  * We need to do this since the ReplicaSetMonitor iterates over the nodes one
  * by one and you can't remove a node that is currently the primary.
  */
-var connPoolStats = mongos.getDB('admin').runCommand({ connPoolStats: 1 });
+var connPoolStats = mongols.getDB('admin').runCommand({ connPoolStats: 1 });
 var targetHostName = connPoolStats['replicaSets'][replTest.name].hosts[1].addr;
 
 var priConn = replTest.getPrimary();
@@ -42,7 +42,7 @@ try {
     print('Expected exception because of reconfig' + x);
 }
 
-ReplSetTest.awaitRSClientHosts(mongos, { host: targetHostName },
+ReplSetTest.awaitRSClientHosts(mongols, { host: targetHostName },
     { ok: true, ismaster: true });
 
 // Remove first node from set
@@ -56,7 +56,7 @@ try {
 }
 
 assert.soon(function() {
-    var connPoolStats = mongos.getDB('admin').runCommand('connPoolStats');
+    var connPoolStats = mongols.getDB('admin').runCommand('connPoolStats');
     var replView = connPoolStats.replicaSets[replTest.name].hosts;
     jsTest.log('current replView: ' + tojson(replView));
 
@@ -64,7 +64,7 @@ assert.soon(function() {
 });
 
 assert.soon(function() {
-    shardDoc = mongos.getDB('config').shards.findOne();
+    shardDoc = mongols.getDB('config').shards.findOne();
     jsTest.log('shardDoc: ' + tojson(shardDoc));
     // seed list should contain one less node
     return shardDoc.host.split(',').length == NODE_COUNT - 1;

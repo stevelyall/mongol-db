@@ -22,13 +22,13 @@ env.Library(
         "query_solution.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/db/index/expression_params",
-        "$BUILD_DIR/mongo/db/matcher/expression_algo",
-        "$BUILD_DIR/mongo/db/matcher/expressions",
-        "$BUILD_DIR/mongo/db/matcher/expressions_text",
-        "$BUILD_DIR/mongo/db/index_names",
-        "$BUILD_DIR/mongo/db/server_parameters",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/db/index/expression_params",
+        "$BUILD_DIR/mongol/db/matcher/expression_algo",
+        "$BUILD_DIR/mongol/db/matcher/expressions",
+        "$BUILD_DIR/mongol/db/matcher/expressions_text",
+        "$BUILD_DIR/mongol/db/index_names",
+        "$BUILD_DIR/mongol/db/server_parameters",
         "command_request_response",
         "index_bounds",
         "query_common",
@@ -51,9 +51,9 @@ env.Library(
         "internal_plans",
         "query_planner",
         "query_planner_test_lib",
-        "$BUILD_DIR/mongo/db/curop",
-        "$BUILD_DIR/mongo/db/exec/exec",
-        "$BUILD_DIR/mongo/db/s/sharding",
+        "$BUILD_DIR/mongol/db/curop",
+        "$BUILD_DIR/mongol/db/exec/exec",
+        "$BUILD_DIR/mongol/db/s/sharding",
     ],
     LIBDEPS_TAGS=[
         # Depends on files from serverOnlyFiles, and has many other
@@ -62,7 +62,7 @@ env.Library(
     ]
 )
 
-# Shared mongod/mongos query code.
+# Shared mongold/mongols query code.
 env.Library(
     target="query_common",
     source=[
@@ -70,7 +70,7 @@ env.Library(
         "explain_common.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
+        "$BUILD_DIR/mongol/base",
         "lite_parsed_query",
     ],
 )
@@ -82,9 +82,9 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         "query",
-        "$BUILD_DIR/mongo/db/serveronly",
-        "$BUILD_DIR/mongo/dbtests/mocklib",
-        "$BUILD_DIR/mongo/util/ntservice_mock",
+        "$BUILD_DIR/mongol/db/serveronly",
+        "$BUILD_DIR/mongol/dbtests/mocklib",
+        "$BUILD_DIR/mongol/util/ntservice_mock",
     ],
     NO_CRUTCH = True,
 )
@@ -99,12 +99,12 @@ env.Library(
         "interval.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/db/index_names",
-        "$BUILD_DIR/mongo/db/index/expression_params",
-        "$BUILD_DIR/mongo/db/matcher/expressions_geo",
-        "$BUILD_DIR/mongo/db/mongohasher",
-        "$BUILD_DIR/mongo/db/server_parameters",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/db/index_names",
+        "$BUILD_DIR/mongol/db/index/expression_params",
+        "$BUILD_DIR/mongol/db/matcher/expressions_geo",
+        "$BUILD_DIR/mongol/db/mongolhasher",
+        "$BUILD_DIR/mongol/db/server_parameters",
     ],
 )
 
@@ -119,12 +119,12 @@ env.Library(
         'killcursors_response.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/db/namespace_string',
-        '$BUILD_DIR/mongo/db/repl/optime',
-        '$BUILD_DIR/mongo/rpc/command_status',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/db/namespace_string',
+        '$BUILD_DIR/mongol/db/repl/optime',
+        '$BUILD_DIR/mongol/rpc/command_status',
     ]
 )
 
@@ -149,9 +149,9 @@ env.Library(
         "internal_plans.cpp"
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/exec/exec',
-        '$BUILD_DIR/mongo/db/exec/working_set',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/exec/exec',
+        '$BUILD_DIR/mongol/db/exec/working_set',
     ],
     LIBDEPS_TAGS=[
         # Circular with the 'query' library in this directory
@@ -165,8 +165,8 @@ env.Library(
         "lite_parsed_query.cpp"
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/db/repl/read_concern_args",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/db/repl/read_concern_args",
     ],
 )
 
@@ -177,7 +177,7 @@ env.Library(
     ],
     LIBDEPS=[
         "query_planner_test_lib",
-        "$BUILD_DIR/mongo/unittest/unittest",
+        "$BUILD_DIR/mongol/unittest/unittest",
     ],
 )
 
@@ -198,7 +198,7 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         "query_planner",
-        "$BUILD_DIR/mongo/db/matcher/expressions_text",
+        "$BUILD_DIR/mongol/db/matcher/expressions_text",
     ],
 )
 
@@ -350,9 +350,9 @@ env.CppUnitTest(
     LIBDEPS=[
         "query",
         "query_planner_test_fixture",
-        "$BUILD_DIR/mongo/db/serveronly",
-        "$BUILD_DIR/mongo/dbtests/mocklib",
-        "$BUILD_DIR/mongo/util/ntservice_mock",
+        "$BUILD_DIR/mongol/db/serveronly",
+        "$BUILD_DIR/mongol/dbtests/mocklib",
+        "$BUILD_DIR/mongol/util/ntservice_mock",
     ],
     NO_CRUTCH = True,
 )

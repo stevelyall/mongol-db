@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/protocol.h"
+#include "mongol/rpc/protocol.h"
 
 #include <algorithm>
 #include <iterator>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 namespace {
@@ -146,10 +146,10 @@ StatusWith<ProtocolSet> parseProtocolSetFromIsMasterReply(const BSONObj& isMaste
 }
 
 bool supportsWireVersionForOpCommandInMongod(int minWireVersion, int maxWireVersion) {
-    // FIND_COMMAND versions support OP_COMMAND (in mongod but not mongos).
+    // FIND_COMMAND versions support OP_COMMAND (in mongold but not mongols).
     return (minWireVersion <= WireVersion::FIND_COMMAND) &&
         (maxWireVersion >= WireVersion::FIND_COMMAND);
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

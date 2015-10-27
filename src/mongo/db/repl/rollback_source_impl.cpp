@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/rollback_source_impl.h"
+#include "mongol/db/repl/rollback_source_impl.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/oplogreader.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/oplogreader.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 RollbackSourceImpl::RollbackSourceImpl(GetConnectionFn getConnection,
@@ -96,4 +96,4 @@ StatusWith<BSONObj> RollbackSourceImpl::getCollectionInfo(const NamespaceString&
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

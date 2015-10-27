@@ -14,7 +14,7 @@ import uuid
 from buildscripts import utils
 from buildscripts import moduleconfig
 
-from mongo_scons_utils import (
+from mongol_scons_utils import (
     default_buildinfo_environment_data,
     default_variant_dir_generator,
     get_toolchain_ver,
@@ -203,7 +203,7 @@ add_option('server-js',
     choices=['on', 'off'],
     const='on',
     default='on',
-    help='Build mongod without JavaScript support',
+    help='Build mongold without JavaScript support',
     type='choice',
 )
 
@@ -425,18 +425,18 @@ add_option("experimental-decimal-support",
     nargs='?',
 )
 
-def find_mongo_custom_variables():
+def find_mongol_custom_variables():
     files = []
     for path in sys.path:
-        probe = os.path.join(path, 'mongo_custom_variables.py')
+        probe = os.path.join(path, 'mongol_custom_variables.py')
         if os.path.isfile(probe):
             if not has_option('mute'):
-                print "Using mongo variable customization file {0}".format(probe)
+                print "Using mongol variable customization file {0}".format(probe)
             files.append(probe)
     return files
 
 add_option('variables-files',
-    default=find_mongo_custom_variables(),
+    default=find_mongol_custom_variables(),
     help="Specify variables files to load",
 )
 
@@ -540,8 +540,8 @@ def variable_tools_converter(val):
         "gziptool",
         "jsheader",
         "mergelib",
-        "mongo_integrationtest",
-        "mongo_unittest",
+        "mongol_integrationtest",
+        "mongol_unittest",
         "textfile",
     ]
 
@@ -620,7 +620,7 @@ env_vars.Add('MONGO_BUILDINFO_ENVIRONMENT_DATA',
 env_vars.Add('MONGO_DIST_SRC_PREFIX',
     help='Sets the prefix for files in the source distribution archive',
     converter=variable_distsrc_converter,
-    default="mongodb-src-r${MONGO_VERSION}")
+    default="mongoldb-src-r${MONGO_VERSION}")
 
 env_vars.Add('MONGO_DISTARCH',
     help='Adds a string representing the target processor architecture to the dist archive',
@@ -751,7 +751,7 @@ printLocalInfo()
 
 boostLibs = [ "thread" , "filesystem" , "program_options", "system", "regex" ]
 
-onlyServer = len( COMMAND_LINE_TARGETS ) == 0 or ( len( COMMAND_LINE_TARGETS ) == 1 and str( COMMAND_LINE_TARGETS[0] ) in [ "mongod" , "mongos" , "test" ] )
+onlyServer = len( COMMAND_LINE_TARGETS ) == 0 or ( len( COMMAND_LINE_TARGETS ) == 1 and str( COMMAND_LINE_TARGETS[0] ) in [ "mongold" , "mongols" , "test" ] )
 
 releaseBuild = has_option("release")
 
@@ -1090,7 +1090,7 @@ if link_model.startswith("dynamic"):
     #   links all of them.
     #
     # - The symbol is provided by an executable into which the library
-    #   will be linked. The mongo::inShutdown symbol is a good
+    #   will be linked. The mongol::inShutdown symbol is a good
     #   example.
     #
     # All of these are defects in the linking model. In an effort to
@@ -1485,8 +1485,8 @@ if not use_system_version_of_library("boost"):
     boostSuffix = "-%s.0" % get_option( "internal-boost")
 
 # discover modules, and load the (python) module for each module's build.py
-mongo_modules = moduleconfig.discover_modules('src/mongo/db/modules', get_option('modules'))
-env['MONGO_MODULES'] = [m.name for m in mongo_modules]
+mongol_modules = moduleconfig.discover_modules('src/mongol/db/modules', get_option('modules'))
+env['MONGO_MODULES'] = [m.name for m in mongol_modules]
 
 # --- check system ---
 
@@ -1702,7 +1702,7 @@ def doConfigure(myenv):
         AddToCCFLAGSIfSupported(myenv, "-Wno-tautological-constant-out-of-range-compare")
 
         # New in clang-3.4, trips up things mostly in third_party, but in a few places in the
-        # primary mongo sources as well.
+        # primary mongol sources as well.
         AddToCCFLAGSIfSupported(myenv, "-Wno-unused-const-variable")
 
         # Prevents warning about unused but set variables found in boost version 1.49
@@ -2361,7 +2361,7 @@ def doConfigure(myenv):
             myenv.ConfError("The toolchain does not support std::atomic, cannot continue")
 
     # ask each module to configure itself and the build environment.
-    moduleconfig.configure_modules(mongo_modules, conf)
+    moduleconfig.configure_modules(mongol_modules, conf)
 
     def CheckLinkSSL(context):
         test_body = """
@@ -2420,7 +2420,7 @@ def doLint( env , target , source ):
         raise Exception("clang-format lint errors")
 
     import buildscripts.lint
-    if not buildscripts.lint.run_lint( [ "src/mongo/" ] ):
+    if not buildscripts.lint.run_lint( [ "src/mongol/" ] ):
         raise Exception( "lint errors" )
 
 env.Alias( "lint" , [] , [ doLint ] )
@@ -2443,8 +2443,8 @@ def getSystemInstallName():
     os_name = os_name_translations.get(os_name, os_name)
     n = os_name + "-" + arch_name
 
-    if len(mongo_modules):
-            n += "-" + "-".join(m.name for m in mongo_modules)
+    if len(mongol_modules):
+            n += "-" + "-".join(m.name for m in mongol_modules)
 
     dn = env.subst('$MONGO_DISTMOD')
     if len(dn) > 0:
@@ -2473,9 +2473,9 @@ def add_version_to_distsrc(env, archive):
 
 env.AddDistSrcCallback(add_version_to_distsrc)
 
-env['SERVER_DIST_BASENAME'] = env.subst('mongodb-%s-$MONGO_DISTNAME' % (getSystemInstallName()))
+env['SERVER_DIST_BASENAME'] = env.subst('mongoldb-%s-$MONGO_DISTNAME' % (getSystemInstallName()))
 
-module_sconscripts = moduleconfig.get_module_sconscripts(mongo_modules)
+module_sconscripts = moduleconfig.get_module_sconscripts(mongol_modules)
 
 # The following symbols are exported for use in subordinate SConscript files.
 # Ideally, the SConscript files would be purely declarative.  They would only
@@ -2501,12 +2501,12 @@ env.AddMethod(injectMongoIncludePaths, 'InjectMongoIncludePaths')
 
 compileDb = env.Alias("compiledb", env.CompilationDatabase('compile_commands.json'))
 
-env.Alias("distsrc-tar", env.DistSrc("mongodb-src-${MONGO_VERSION}.tar"))
+env.Alias("distsrc-tar", env.DistSrc("mongoldb-src-${MONGO_VERSION}.tar"))
 env.Alias("distsrc-tgz", env.GZip(
-    target="mongodb-src-${MONGO_VERSION}.tgz",
-    source=["mongodb-src-${MONGO_VERSION}.tar"])
+    target="mongoldb-src-${MONGO_VERSION}.tgz",
+    source=["mongoldb-src-${MONGO_VERSION}.tar"])
 )
-env.Alias("distsrc-zip", env.DistSrc("mongodb-src-${MONGO_VERSION}.zip"))
+env.Alias("distsrc-zip", env.DistSrc("mongoldb-src-${MONGO_VERSION}.zip"))
 env.Alias("distsrc", "distsrc-tgz")
 
 env.SConscript('src/SConscript', variant_dir='$BUILD_DIR', duplicate=False)

@@ -1,10 +1,10 @@
-// @file collection.js - DBCollection support in the mongo shell
+// @file collection.js - DBCollection support in the mongol shell
 // db.colName is a DBCollection object
 // or db["colName"]
 
 if ( ( typeof  DBCollection ) == "undefined" ){
-    DBCollection = function( mongo , db , shortName , fullName ){
-        this._mongo = mongo;
+    DBCollection = function( mongol , db , shortName , fullName ){
+        this._mongol = mongol;
         this._db = db;
         this._shortName = shortName;
         this._fullName = fullName;
@@ -20,8 +20,8 @@ DBCollection.prototype.verify = function(){
 
     assert.eq( this._fullName , this._db._name + "." + this._shortName , "name mismatch" );
 
-    assert( this._mongo , "no mongo in DBCollection" );
-    assert( this.getMongo() , "no mongo from getMongo()" );
+    assert( this._mongol , "no mongol in DBCollection" );
+    assert( this.getMongo() , "no mongol from getMongo()" );
 }
 
 DBCollection.prototype.getName = function(){
@@ -192,7 +192,7 @@ DBCollection.prototype._validateForStorage = function( o ){
 };
 
 DBCollection.prototype.find = function( query , fields , limit , skip, batchSize, options ){
-    var cursor = new DBQuery( this._mongo , this._db , this ,
+    var cursor = new DBQuery( this._mongol , this._db , this ,
                         this._fullName , this._massageObject( query ) , fields , limit , skip , batchSize , options || this.getQueryOptions() );
 
     var connObj = this.getMongo();
@@ -753,7 +753,7 @@ DBCollection.prototype.diskStorageStats = function(opt) {
 
     var res = this._db.runCommand(cmd);
     if (!res.ok && res.errmsg.match(/no such cmd/)) {
-        print("this command requires starting mongod with --enableExperimentalStorageDetailsCmd");
+        print("this command requires starting mongold with --enableExperimentalStorageDetailsCmd");
     }
     return res;
 }
@@ -829,7 +829,7 @@ DBCollection.prototype.pagesInRAM = function(opt) {
 
     var res = this._db.runCommand(cmd);
     if (!res.ok && res.errmsg.match(/no such cmd/)) {
-        print("this command requires starting mongod with --enableExperimentalStorageDetailsCmd");
+        print("this command requires starting mongold with --enableExperimentalStorageDetailsCmd");
     }
     return res;
 }
@@ -916,7 +916,7 @@ DBCollection.prototype._getIndexesCommand = function(filter){
     if ( !res.ok ) {
 
         if ( res.code == 59 ) {
-            // command doesn't exist, old mongod
+            // command doesn't exist, old mongold
             return null;
         }
 
@@ -932,7 +932,7 @@ DBCollection.prototype._getIndexesCommand = function(filter){
         throw _getErrorWithCode(ret, "listIndexes failed: " + tojson(res));
     }
 
-    return new DBCommandCursor(this._mongo, res).toArray();
+    return new DBCommandCursor(this._mongol, res).toArray();
 }
 
 DBCollection.prototype.getIndexes = function(filter){
@@ -1112,7 +1112,7 @@ DBCollection.prototype.exists = function(){
     var res = this._db.runCommand( "listCollections",
                                   { filter : { name : this._shortName } } );
     if ( res.ok ) {
-        var cursor = new DBCommandCursor( this._mongo, res );
+        var cursor = new DBCommandCursor( this._mongol, res );
         if ( !cursor.hasNext() )
             return null;
         return cursor.next();
@@ -1211,7 +1211,7 @@ DBCollection.prototype.aggregate = function(pipeline, aggregateOptions) {
     assert.commandWorked(res, "aggregate failed");
 
     if ("cursor" in res) {
-        return new DBCommandCursor(this._mongo, res);
+        return new DBCommandCursor(this._mongol, res);
     }
 
     return res;
@@ -1331,7 +1331,7 @@ DBCollection.autocomplete = function(obj){
 /*
 Usage :
 
-mongo <mongos>
+mongol <mongols>
 > load('path-to-file/shardingAdditions.js')
 Loading custom sharding extensions...
 true

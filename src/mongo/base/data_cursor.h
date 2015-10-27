@@ -30,11 +30,11 @@
 #include <cstddef>
 #include <cstring>
 
-#include "mongo/base/data_type.h"
-#include "mongo/base/data_view.h"
-#include "mongo/platform/endian.h"
+#include "mongol/base/data_type.h"
+#include "mongol/base/data_view.h"
+#include "mongol/platform/endian.h"
 
-namespace mongo {
+namespace mongol {
 
 class ConstDataCursor : public ConstDataView {
 public:
@@ -194,4 +194,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,28 +26,28 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem.hpp>
 #include <iostream>
 
-#include "mongo/base/data_type_validated.h"
-#include "mongo/base/init.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/constants.h"
-#include "mongo/db/ftdc/controller.h"
-#include "mongo/db/ftdc/ftdc_test.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/service_context.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/constants.h"
+#include "mongol/db/ftdc/controller.h"
+#include "mongol/db/ftdc/ftdc_test.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/service_context.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class FTDCMetricsCollectorMockTee : public FTDCCollectorInterface {
 public:
@@ -196,4 +196,4 @@ TEST(FTDCControllerTest, TestFull) {
     ValidateDocumentList(alog, allDocs);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,30 +26,30 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/range_deleter_service.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/migration_impl.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/logger/ramlog.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/range_deleter_service.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/migration_impl.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/logger/ramlog.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using str::stream;
@@ -68,7 +68,7 @@ Tee* const migrateLog = RamLog::get("migrate");
 
 /**
  * This is the main entry for moveChunk, which is called to initiate a move by a donor side. It can
- * be called by either mongos as a result of a user request or an automatic balancing action.
+ * be called by either mongols as a result of a user request or an automatic balancing action.
  *
  * Format:
  * {
@@ -517,4 +517,4 @@ public:
 } moveChunkCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

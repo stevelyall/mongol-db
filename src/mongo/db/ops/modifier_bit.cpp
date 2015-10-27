@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_bit.h"
+#include "mongol/db/ops/modifier_bit.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mb = mutablebson;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 struct ModifierBit::PreparedState {
     PreparedState(mutablebson::Document& doc)
@@ -87,7 +87,7 @@ Status ModifierBit::init(const BSONElement& modExpr, const Options& opts, bool* 
                                     << _fieldRef.dottedField() << "'");
     }
 
-    if (modExpr.type() != mongo::Object)
+    if (modExpr.type() != mongol::Object)
         return Status(ErrorCodes::BadValue,
                       str::stream() << "The $bit modifier is not compatible with a "
                                     << typeName(modExpr.type())
@@ -124,7 +124,7 @@ Status ModifierBit::init(const BSONElement& modExpr, const Options& opts, bool* 
                               << "}");
         }
 
-        if ((curOp.type() != mongo::NumberInt) && (curOp.type() != mongo::NumberLong))
+        if ((curOp.type() != mongol::NumberInt) && (curOp.type() != mongol::NumberLong))
             return Status(ErrorCodes::BadValue,
                           str::stream()
                               << "The $bit modifier field must be an Integer(32/64 bit); a '"
@@ -274,4 +274,4 @@ SafeNum ModifierBit::apply(SafeNum value) const {
     return value;
 }
 
-}  // namespace mongo
+}  // namespace mongol

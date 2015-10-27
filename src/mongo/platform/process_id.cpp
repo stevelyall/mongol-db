@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/process_id.h"
+#include "mongol/platform/process_id.h"
 
 #include <iostream>
 #include <sstream>
 #include <limits>
 
-namespace mongo {
+namespace mongol {
 
 static_assert(sizeof(NativeProcessId) == sizeof(uint32_t),
               "sizeof(NativeProcessId) == sizeof(uint32_t)");
@@ -76,4 +76,4 @@ std::ostream& operator<<(std::ostream& os, ProcessId pid) {
     return os << pid.toNative();
 }
 
-}  // namespace mongo
+}  // namespace mongol

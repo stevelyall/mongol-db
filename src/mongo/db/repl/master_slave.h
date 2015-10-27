@@ -29,7 +29,7 @@
 #pragma once
 
 
-#include "mongo/db/repl/oplogreader.h"
+#include "mongol/db/repl/oplogreader.h"
 
 /* replication data overview
 
@@ -41,7 +41,7 @@
      local.oplog.$<source>
 */
 
-namespace mongo {
+namespace mongol {
 
 class Database;
 class OldThreadPool;
@@ -205,4 +205,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

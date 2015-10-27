@@ -26,9 +26,9 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #ifdef _WIN32
 #include <mmsystem.h>
@@ -37,13 +37,13 @@
 #include <stdio.h>
 #endif
 
-#include "mongo/base/init.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/base/init.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stacktrace.h"
 
 #ifdef _WIN32
 
-namespace mongo {
+namespace mongol {
 
 MONGO_INITIALIZER(Behaviors_Win32)(InitializerContext*) {
     // do not display dialog on abort()
@@ -67,6 +67,6 @@ MONGO_INITIALIZER(Behaviors_Win32)(InitializerContext*) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // _WIN32

@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 
-#include "mongo/base/init.h"
-#include "mongo/executor/task_executor_test_common.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/replication_executor_test_fixture.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/barrier.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/map_util.h"
+#include "mongol/base/init.h"
+#include "mongol/executor/task_executor_test_common.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/replication_executor_test_fixture.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/barrier.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/map_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -56,7 +56,7 @@ using executor::NetworkInterfaceMock;
 const int64_t prngSeed = 1;
 
 MONGO_INITIALIZER(ReplExecutorCommonTests)(InitializerContext*) {
-    mongo::executor::addTestsForExecutor(
+    mongol::executor::addTestsForExecutor(
         "ReplicationExecutorCommon",
         [](std::unique_ptr<executor::NetworkInterfaceMock>* net) {
             return stdx::make_unique<ReplicationExecutor>(
@@ -173,4 +173,4 @@ TEST_F(ReplicationExecutorTest, CancelBeforeRunningFutureWork) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

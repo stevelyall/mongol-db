@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/platform/basic.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class FieldPath {
 public:
@@ -108,7 +108,7 @@ private:
 
 /* ======================= INLINED IMPLEMENTATIONS ========================== */
 
-namespace mongo {
+namespace mongol {
 
 inline size_t FieldPath::getPathLength() const {
     return vFieldName.size();

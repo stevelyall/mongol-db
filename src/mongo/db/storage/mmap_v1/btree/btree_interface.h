@@ -28,17 +28,17 @@
 
 #include <string>
 
-#include "mongo/bson/ordering.h"
-#include "mongo/db/catalog/head_manager.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/sorted_data_interface.h"
+#include "mongol/bson/ordering.h"
+#include "mongol/db/catalog/head_manager.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/sorted_data_interface.h"
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 class SavedCursorRegistry;
 
 SortedDataInterface* getMMAPV1Interface(HeadManager* headManager,
@@ -47,4 +47,4 @@ SortedDataInterface* getMMAPV1Interface(HeadManager* headManager,
                                         const Ordering& ordering,
                                         const std::string& indexName,
                                         int version);
-}  // namespace mongo
+}  // namespace mongol

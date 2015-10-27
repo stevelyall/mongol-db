@@ -25,32 +25,32 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/replica_set_monitor.h"
+#include "mongol/client/replica_set_monitor.h"
 
 #include <algorithm>
 #include <limits>
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/client/replica_set_monitor_internal.h"
-#include "mongo/db/server_options.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/background.h"
-#include "mongo/util/concurrency/mutex.h"  // for StaticObserver
-#include "mongo/util/debug_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/string_map.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/timer.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/client/replica_set_monitor_internal.h"
+#include "mongol/db/server_options.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/background.h"
+#include "mongol/util/concurrency/mutex.h"  // for StaticObserver
+#include "mongol/util/debug_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/string_map.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::numeric_limits;

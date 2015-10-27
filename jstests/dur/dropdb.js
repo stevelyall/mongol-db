@@ -10,7 +10,7 @@ function checkNoJournalFiles(path, pass) {
     var files = listFiles(path);
     if (files.some(function (f) { return f.name.indexOf("prealloc") < 0; })) {
         if (pass == null) {
-            // wait a bit longer for mongod to potentially finish if it is still running.
+            // wait a bit longer for mongold to potentially finish if it is still running.
             sleep(10000);
             return checkNoJournalFiles(path, 1);
         }
@@ -96,7 +96,7 @@ function verify() {
 }
 
 if (debugging) {
-    // mongod already running in debugger
+    // mongold already running in debugger
     conn = db.getMongo();
     work();
     verify();
@@ -109,14 +109,14 @@ var path1 = MongoRunner.dataPath + testname + "nodur";
 var path2 = MongoRunner.dataPath + testname + "dur";
 
 // non-durable version
-log("mongod nodur");
+log("mongold nodur");
 conn = MongoRunner.runMongod({dbpath: path1, nojournal: "", smallfiles: ""});
 work();
 verify();
 MongoRunner.stopMongod(conn);
 
 // durable version
-log("mongod dur");
+log("mongold dur");
 conn = MongoRunner.runMongod({dbpath: path2, journal: "", smallfiles: "", journalOptions: 8});
 work();
 verify();
@@ -143,7 +143,7 @@ conn = MongoRunner.runMongod({restart: true,
 log("verify after recovery");
 verify();
 
-log("stop mongod");
+log("stop mongold");
 MongoRunner.stopMongod(conn);
 sleep(5000);
 

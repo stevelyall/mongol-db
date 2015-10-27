@@ -27,19 +27,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_snapshot_manager.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_snapshot_manager.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status WiredTigerSnapshotManager::prepareForCreateSnapshot(OperationContext* txn) {
     WiredTigerRecoveryUnit::get(txn)->prepareForCreateSnapshot(txn);
@@ -105,4 +105,4 @@ SnapshotName WiredTigerSnapshotManager::beginTransactionOnCommittedSnapshot(
     return *_committedSnapshot;
 }
 
-}  // namespace mongo
+}  // namespace mongol

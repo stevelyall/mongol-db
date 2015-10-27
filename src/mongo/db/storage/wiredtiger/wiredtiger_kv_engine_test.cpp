@@ -29,12 +29,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/kv/kv_engine_test_harness.h"
+#include "mongol/db/storage/kv/kv_engine_test_harness.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/unittest/temp_dir.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerKVHarnessHelper : public KVHarnessHelper {
 public:

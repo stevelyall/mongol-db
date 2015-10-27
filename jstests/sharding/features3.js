@@ -7,7 +7,7 @@
 //   - Tests fsync and fsync+lock permissions on sharded db
 
 var s = new ShardingTest({shards: 2,
-                          mongos: 1,
+                          mongols: 1,
                           verbose:1});
 var db = s.getDB("test");   // db variable name is required due to startParallelShell()
 var numDocs = 10000;

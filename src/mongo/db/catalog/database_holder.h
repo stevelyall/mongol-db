@@ -30,12 +30,12 @@
 
 #include <set>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class Database;
 class OperationContext;

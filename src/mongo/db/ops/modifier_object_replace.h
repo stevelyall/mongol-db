@@ -29,13 +29,13 @@
 #pragma once
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/ops/modifier_interface.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/ops/modifier_interface.h"
 
-namespace mongo {
+namespace mongol {
 
 class LogBuilder;
 
@@ -90,4 +90,4 @@ private:
     std::unique_ptr<PreparedState> _preparedState;
 };
 
-}  // namespace mongo
+}  // namespace mongol

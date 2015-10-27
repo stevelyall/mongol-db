@@ -25,7 +25,7 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_option_init.h"
 
 /*
  * These are the initializer groups for command line and config file option registration, parsing,

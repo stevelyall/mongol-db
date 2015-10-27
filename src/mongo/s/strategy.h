@@ -30,12 +30,12 @@
 
 #include <atomic>
 
-#include "mongo/db/query/explain_common.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/request.h"
+#include "mongol/db/query/explain_common.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/request.h"
 
-namespace mongo {
+namespace mongol {
 
 class LiteParsedQuery;
 class OperationContext;
@@ -65,7 +65,7 @@ public:
      * the of the explain command on success. On failure, returns a non-OK status and does not
      * modify 'out'.
      *
-     * Used both if mongos receives an explain command and if it receives an OP_QUERY find with the
+     * Used both if mongols receives an explain command and if it receives an OP_QUERY find with the
      * $explain modifier.
      */
     static Status explainFind(OperationContext* txn,
@@ -125,4 +125,4 @@ protected:
     static bool handleSpecialNamespaces(OperationContext* txn, Request& request, QueryMessage& q);
 };
 
-}  // namespace mongo
+}  // namespace mongol

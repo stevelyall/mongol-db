@@ -29,8 +29,8 @@
 
 #include <unordered_map>
 
-namespace mongo {
+namespace mongol {
 
 using std::unordered_map;
 
-}  // namespace mongo
+}  // namespace mongol

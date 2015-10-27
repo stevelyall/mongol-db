@@ -29,28 +29,28 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/restapi.h"
+#include "mongol/db/restapi.h"
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/background.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/repl/master_slave.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/net/miniwebserver.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/background.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/repl/master_slave.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/net/miniwebserver.h"
 
-namespace mongo {
+namespace mongol {
 
 bool getInitialSyncCompleted();
 

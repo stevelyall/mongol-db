@@ -26,15 +26,15 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/dbref.h"
+#include "mongol/scripting/mozjs/dbref.h"
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const DBRefInfo::className = "DBRef";
@@ -66,4 +66,4 @@ void DBRefInfo::construct(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

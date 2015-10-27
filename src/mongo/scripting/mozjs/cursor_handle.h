@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/scripting/mozjs/wraptype.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/scripting/mozjs/wraptype.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -68,4 +68,4 @@ struct CursorHandleInfo : public BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

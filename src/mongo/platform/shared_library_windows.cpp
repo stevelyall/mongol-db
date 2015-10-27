@@ -25,20 +25,20 @@
  *    exception statement from all source files in the program, then also delete
  *    it in the license file.
  */
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/shared_library.h"
+#include "mongol/platform/shared_library.h"
 
 #include <boost/filesystem.hpp>
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/text.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 SharedLibrary::~SharedLibrary() {
     if (_handle) {
@@ -82,4 +82,4 @@ StatusWith<void*> SharedLibrary::getSymbol(StringData name) {
     return StatusWith<void*>(function);
 }
 
-}  // namespace mongo
+}  // namespace mongol

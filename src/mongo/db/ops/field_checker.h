@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 class FieldRef;
 
@@ -56,4 +56,4 @@ bool isPositional(const FieldRef& fieldRef, size_t* pos, size_t* count = NULL);
 
 }  // namespace fieldchecker
 
-}  // namespace mongo
+}  // namespace mongol

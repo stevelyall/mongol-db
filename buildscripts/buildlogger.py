@@ -17,8 +17,8 @@ The script configures itself from environment variables:
     BUILDLOGGER_CREDENTIALS (see below)
 
 This script has two modes: a "test" mode, intended to wrap the invocation of
-an individual test file, and a "global" mode, intended to wrap the mongod
-instances that run throughout the duration of a mongo test phase (the logs
+an individual test file, and a "global" mode, intended to wrap the mongold
+instances that run throughout the duration of a mongol test phase (the logs
 from "global" invocations are displayed interspersed with the logs of each
 test, in order to let the buildlogs web app display the full output sensibly.)
 
@@ -90,7 +90,7 @@ for path in possible_paths:
             pass
 
 
-URL_ROOT = os.environ.get('BUILDLOGGER_URL', 'http://buildlogs.mongodb.org/')
+URL_ROOT = os.environ.get('BUILDLOGGER_URL', 'http://buildlogs.mongoldb.org/')
 TIMEOUT_SECONDS = 10
 socket.setdefaulttimeout(TIMEOUT_SECONDS)
 
@@ -208,7 +208,7 @@ def append_test_logs(build_id, test_id, log_lines):
 @traceback_to_stderr
 def append_global_logs(build_id, log_lines):
     """
-    "global" logs are for the mongod(s) started by smoke.py
+    "global" logs are for the mongold(s) started by smoke.py
     that last the duration of a test phase -- since there
     may be output in here that is important but spans individual
     tests, the buildlogs webapp handles these logs specially.

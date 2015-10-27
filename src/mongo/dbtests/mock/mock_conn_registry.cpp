@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/dbtests/mock/mock_conn_registry.h"
+#include "mongol/dbtests/mock/mock_conn_registry.h"
 
-#include "mongo/base/init.h"
-#include "mongo/dbtests/mock/mock_dbclient_connection.h"
+#include "mongol/base/init.h"
+#include "mongol/dbtests/mock/mock_dbclient_connection.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -85,7 +85,7 @@ MockConnRegistry::MockConnHook::MockConnHook(MockConnRegistry* registry) : _regi
 
 MockConnRegistry::MockConnHook::~MockConnHook() {}
 
-mongo::DBClientBase* MockConnRegistry::MockConnHook::connect(const ConnectionString& connString,
+mongol::DBClientBase* MockConnRegistry::MockConnHook::connect(const ConnectionString& connString,
                                                              std::string& errmsg,
                                                              double socketTimeout) {
     const string hostName(connString.toString());

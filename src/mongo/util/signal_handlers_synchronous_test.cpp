@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cmath>
 #include <cstdlib>
 #include <csignal>
 
-#include "mongo/unittest/unittest.h"
-#include "mongo/unittest/death_test.h"
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/unittest/death_test.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
 namespace {
-using namespace mongo;
+using namespace mongol;
 
 // Tests of signals that should be ignored raise each signal twice, to ensure that the handler isn't
 // reset.

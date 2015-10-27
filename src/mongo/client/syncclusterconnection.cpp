@@ -28,20 +28,20 @@
  */
 
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/syncclusterconnection.h"
+#include "mongol/client/syncclusterconnection.h"
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/util/log.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;

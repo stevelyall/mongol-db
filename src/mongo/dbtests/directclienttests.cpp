@@ -29,18 +29,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/db/client.h"
-#include "mongo/db/db.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/json.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/client.h"
+#include "mongol/db/db.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/json.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/timer.h"
 
 namespace DirectClientTests {
 
@@ -50,10 +50,10 @@ using std::vector;
 class ClientBase {
 public:
     ClientBase() {
-        mongo::LastError::get(cc()).reset();
+        mongol::LastError::get(cc()).reset();
     }
     virtual ~ClientBase() {
-        mongo::LastError::get(cc()).reset();
+        mongol::LastError::get(cc()).reset();
     }
 };
 

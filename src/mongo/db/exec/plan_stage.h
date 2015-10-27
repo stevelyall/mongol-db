@@ -31,11 +31,11 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/invalidation_type.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/invalidation_type.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class RecordId;
@@ -363,4 +363,4 @@ private:
     OperationContext* _opCtx;
 };
 
-}  // namespace mongo
+}  // namespace mongol

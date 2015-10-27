@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/random.h"
+#include "mongol/platform/random.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -48,10 +48,10 @@
 #include <fstream>
 #include <limits>
 
-#include <mongo/util/log.h>
-#include <mongo/util/assert_util.h>
+#include <mongol/util/log.h>
+#include <mongol/util/assert_util.h>
 
-namespace mongo {
+namespace mongol {
 
 // ---- PseudoRandom  -----
 
@@ -198,4 +198,4 @@ SecureRandom* SecureRandom::create() {
 #error Must implement SecureRandom for platform
 
 #endif
-}  // namespace mongo
+}  // namespace mongol

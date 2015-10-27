@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_basic_phrase_matcher.h"
+#include "mongol/db/fts/fts_basic_phrase_matcher.h"
 
-#include "mongo/platform/strcasestr.h"
+#include "mongol/platform/strcasestr.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 using std::string;
@@ -46,4 +46,4 @@ bool BasicFTSPhraseMatcher::phraseMatches(const string& phrase,
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/scripting/mozjs/wraptype.h"
+#include "mongol/scripting/mozjs/wraptype.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -61,4 +61,4 @@ struct OIDInfo : public BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

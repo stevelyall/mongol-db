@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 class OperationContext;
 class Status;
 class StorageEngine;

@@ -1,11 +1,11 @@
-// Tests various cases of dropping and recreating collections in the same namespace with multiple mongoses
+// Tests various cases of dropping and recreating collections in the same namespace with multiple mongolses
 
-var st = new ShardingTest({ shards : 3, mongos : 3, verbose : 1 })
+var st = new ShardingTest({ shards : 3, mongols : 3, verbose : 1 })
 // Stop balancer, it'll interfere
 st.stopBalancer()
 
-// Use separate mongoses for admin, inserting data, and validating results, so no
-// single-mongos tricks will work
+// Use separate mongolses for admin, inserting data, and validating results, so no
+// single-mongols tricks will work
 var insertMongos = st.s2
 var staleMongos = st.s1
 

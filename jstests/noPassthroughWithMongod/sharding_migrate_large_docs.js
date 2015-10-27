@@ -2,15 +2,15 @@
 // Tests migration behavior of large documents
 //
 
-var st = new ShardingTest({ shards : 2, mongos : 1,
-                            other : { mongosOptions : { noAutoSplit : "" },
+var st = new ShardingTest({ shards : 2, mongols : 1,
+                            other : { mongolsOptions : { noAutoSplit : "" },
                                       shardOptions : { /* binVersion : "latest" */ } } });
 st.stopBalancer()
 
-var mongos = st.s0;
-var coll = mongos.getCollection( "foo.bar" );
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
+var mongols = st.s0;
+var coll = mongols.getCollection( "foo.bar" );
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
 var shardAdmin = st.shard0.getDB( "admin" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
@@ -54,7 +54,7 @@ jsTest.log( "Starting migration..." );
 assert( admin.runCommand({ moveChunk : coll + "", find : { _id : 0 }, to : shards[1]._id }).ok );
 assert( admin.runCommand({ moveChunk : coll + "", find : { _id : -1 }, to : shards[1]._id }).ok );
 
-// Ensure that the doc count is correct and that the mongos query path can handle docs near the 16MB
+// Ensure that the doc count is correct and that the mongols query path can handle docs near the 16MB
 // user BSON size limit.
 assert.eq( 9, coll.find().itcount() );
 

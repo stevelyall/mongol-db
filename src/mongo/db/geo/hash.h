@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class GeoHash;
 class Box;
@@ -269,4 +269,4 @@ private:
     // 8 * max(|max|, |min|) * u
     double _errorUnhashToBox;
 };
-}  // namespace mongo
+}  // namespace mongol

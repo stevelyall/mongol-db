@@ -28,12 +28,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/path_internal.h"
-#include "mongo/db/matcher/path.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/path_internal.h"
+#include "mongol/db/matcher/path.h"
 
-namespace mongo {
+namespace mongol {
 
 Status ElementPath::init(StringData path) {
     _shouldTraverseNonleafArrays = true;

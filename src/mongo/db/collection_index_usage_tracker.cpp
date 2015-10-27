@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/collection_index_usage_tracker.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/clock_source.h"
-#include "mongo/util/log.h"
+#include "mongol/db/collection_index_usage_tracker.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 CollectionIndexUsageTracker::CollectionIndexUsageTracker(ClockSource* clockSource)
     : _clockSource(clockSource) {
@@ -67,4 +67,4 @@ CollectionIndexUsageMap CollectionIndexUsageTracker::getUsageStats() const {
     return _indexUsageMap;
 }
 
-}  // namespace mongo
+}  // namespace mongol

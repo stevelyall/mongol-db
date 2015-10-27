@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/index/expression_params.h"
+#include "mongol/db/index/expression_params.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/hasher.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/2d_common.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/2d_common.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/util/mongolutils/str.h"
 #include "third_party/s2/s2.h"
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 void ExpressionParams::parseTwoDParams(const BSONObj& infoObj, TwoDIndexingParams* out) {
     BSONObjIterator i(infoObj.getObjectField("key"));
@@ -188,4 +188,4 @@ void ExpressionParams::parse2dsphereParams(const BSONObj& infoObj, S2IndexingPar
             out->indexVersion == S2_INDEX_VERSION_3 || out->indexVersion == S2_INDEX_VERSION_2 ||
                 out->indexVersion == S2_INDEX_VERSION_1);
 }
-}  // namespace mongo
+}  // namespace mongol

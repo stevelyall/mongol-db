@@ -26,27 +26,27 @@
 *    it in the license file.
 */
 
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_session_external_state_mock.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/ops/update_driver.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_session_external_state_mock.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/ops/update_driver.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 void addRoleNameToObjectElement(mutablebson::Element object, const RoleName& role) {
     fassert(17175, object.appendString(AuthorizationManager::ROLE_NAME_FIELD_NAME, role.getRole()));
@@ -73,7 +73,7 @@ void addPrivilegeObjectsOrWarningsToArrayElement(mutablebson::Element privileges
             fassert(17179,
                     warningsElement.appendString(
                         "",
-                        std::string(mongoutils::str::stream()
+                        std::string(mongolutils::str::stream()
                                     << "Skipped privileges on resource "
                                     << privileges[i].getResourcePattern().toString()
                                     << ". Reason: " << errmsg)));
@@ -293,4 +293,4 @@ Status AuthzManagerExternalStateMock::_queryVector(
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

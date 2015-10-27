@@ -33,21 +33,21 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/client/remote_command_runner_impl.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/list.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/thread_pool.h"
+#include "mongol/client/remote_command_runner_impl.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/list.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/thread_pool.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class NetworkConnectionHook;
 
 /**
  * Implementation of the network interface for use by classes implementing TaskExecutor
- * inside mongod.
+ * inside mongold.
  *
  * This implementation manages a dynamically sized group of worker threads for performing
  * network operations.  The minimum and maximum number of threads is set at compile time, and
@@ -173,4 +173,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

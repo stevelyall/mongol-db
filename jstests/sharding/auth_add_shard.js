@@ -6,7 +6,7 @@
 
 // login method to login into the database
 function login(userObj) {
-    var authResult = mongos.getDB(userObj.db).auth(userObj.username, userObj.password); 
+    var authResult = mongols.getDB(userObj.db).auth(userObj.username, userObj.password); 
     printjson(authResult);
 }
 
@@ -15,16 +15,16 @@ adminUser = { db : "admin", username : "foo", password : "bar" };
 
 //set up a 2 shard cluster with keyfile
 var st = new ShardingTest( { name : "auth_add_shard1", shards : 1,
-                            mongos : 1, verbose : 1, keyFile : "jstests/libs/key1" } )
+                            mongols : 1, verbose : 1, keyFile : "jstests/libs/key1" } )
 
-var mongos = st.s0
-var admin = mongos.getDB("admin")
+var mongols = st.s0
+var admin = mongols.getDB("admin")
 
 print("1 shard system setup");
 
 //add the admin user
 print("adding user");
-mongos.getDB(adminUser.db).createUser({user: adminUser.username, pwd: adminUser.password, roles: jsTest.adminUserRoles});
+mongols.getDB(adminUser.db).createUser({user: adminUser.username, pwd: adminUser.password, roles: jsTest.adminUserRoles});
 
 //login as admin user
 login(adminUser);
@@ -32,7 +32,7 @@ login(adminUser);
 st.stopBalancer();
 assert.eq( 1, st.config.shards.count() , "initial server count wrong" );
 
-//start a mongod with NO keyfile
+//start a mongold with NO keyfile
 var conn = MongoRunner.runMongod({});
 print (conn);
 
@@ -42,11 +42,11 @@ var result = admin.runCommand( {addShard : conn.host} );
 printjson(result);
 // make sure the shard wasn't added
 assert.eq(result.ok, 0, "added shard without keyfile");
-// stop mongod
+// stop mongold
 MongoRunner.stopMongod( conn );
 
 //--------------- Test 2 --------------------
-//start mongod again, this time with keyfile 
+//start mongold again, this time with keyfile 
 var conn = MongoRunner.runMongod( {keyFile : "jstests/libs/key1"} );
 //try adding the new shard
 var result = admin.runCommand( {addShard : conn.host} );
@@ -55,8 +55,8 @@ printjson(result);
 assert.eq(result.ok, 1, "failed to add shard with keyfile");
 
 //Add some data
-var db = mongos.getDB("foo");
-var collA = mongos.getCollection("foo.bar")
+var db = mongols.getDB("foo");
+var collA = mongols.getCollection("foo.bar")
 
 // enable sharding on a collection
 printjson( admin.runCommand( { enableSharding : "" + collA.getDB() } ) )
@@ -74,7 +74,7 @@ printjson( admin.runCommand( { moveChunk : "foo.bar", find : { _id : 1 }, to : "
 
 //verify the chunk was moved
 admin.runCommand( { flushRouterConfig : 1 } )
-var config = mongos.getDB("config")
+var config = mongols.getDB("config")
 config.printShardingStatus(true)
 
 // start balancer before removing the shard

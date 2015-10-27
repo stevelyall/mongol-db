@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "mongo/bson/bsonelement.h"
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 
 int getGtLtOp(const BSONElement& e);
 
@@ -79,7 +79,7 @@ enum FieldCompareResult {
     BSON( "a" << GT << 23.4 << NE << 30 << "b" << 2 ) produces the object
     { a: { \$gt: 23.4, \$ne: 30 }, b: 2 }.
 */
-#define BSON(x) ((::mongo::BSONObjBuilder(64) << x).obj())
+#define BSON(x) ((::mongol::BSONObjBuilder(64) << x).obj())
 
 /** Use BSON_ARRAY macro like BSON macro, but without keys
 
@@ -87,7 +87,7 @@ enum FieldCompareResult {
                         BSON( "foo" << BSON_ARRAY( "bar" << "baz" << "qux" ) ) );
 
  */
-#define BSON_ARRAY(x) ((::mongo::BSONArrayBuilder() << x).arr())
+#define BSON_ARRAY(x) ((::mongol::BSONArrayBuilder() << x).arr())
 
 /* Utility class to auto assign object IDs.
    Example:

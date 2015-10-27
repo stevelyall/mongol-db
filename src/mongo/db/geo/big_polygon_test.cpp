@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/geo/big_polygon.h"
+#include "mongol/db/geo/big_polygon.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::unique_ptr;
 using std::string;
 using std::vector;

@@ -30,13 +30,13 @@
 
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/s/ns_targeter.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/s/ns_targeter.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
-namespace mongo {
+namespace mongol {
 
 struct TargetedWrite;
 struct ChildWriteOp;

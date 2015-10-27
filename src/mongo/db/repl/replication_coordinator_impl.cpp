@@ -26,55 +26,55 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
 
 #include <algorithm>
 #include <limits>
 
-#include "mongo/base/status.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/repl/check_quorum_for_config_change.h"
-#include "mongo/db/repl/elect_cmd_runner.h"
-#include "mongo/db/repl/election_winner_declarer.h"
-#include "mongo/db/repl/freshness_checker.h"
-#include "mongo/db/repl/handshake_args.h"
-#include "mongo/db/repl/is_master_response.h"
-#include "mongo/db/repl/last_vote.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/db/repl/read_concern_response.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/repl_set_declare_election_winner_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/repl_set_html_summary.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replica_set_config_checks.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/rslog.h"
-#include "mongo/db/repl/topology_coordinator.h"
-#include "mongo/db/repl/update_position_args.h"
-#include "mongo/db/repl/vote_requester.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/status.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/repl/check_quorum_for_config_change.h"
+#include "mongol/db/repl/elect_cmd_runner.h"
+#include "mongol/db/repl/election_winner_declarer.h"
+#include "mongol/db/repl/freshness_checker.h"
+#include "mongol/db/repl/handshake_args.h"
+#include "mongol/db/repl/is_master_response.h"
+#include "mongol/db/repl/last_vote.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/db/repl/read_concern_response.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/repl_set_declare_election_winner_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/repl_set_html_summary.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replica_set_config_checks.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/rslog.h"
+#include "mongol/db/repl/topology_coordinator.h"
+#include "mongol/db/repl/update_position_args.h"
+#include "mongol/db/repl/vote_requester.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::NetworkInterface;
@@ -311,7 +311,7 @@ bool ReplicationCoordinatorImpl::_startLoadLocalConfig(OperationContext* txn) {
     Status status = localConfig.initialize(cfg.getValue());
     if (!status.isOK()) {
         error() << "Locally stored replica set configuration does not parse; See "
-                   "http://www.mongodb.org/dochub/core/recover-replica-set-from-invalid-config "
+                   "http://www.mongoldb.org/dochub/core/recover-replica-set-from-invalid-config "
                    "for information on how to recover from this. Got \"" << status
                 << "\" while parsing " << cfg.getValue();
         fassertFailedNoTrace(28545);
@@ -359,7 +359,7 @@ void ReplicationCoordinatorImpl::_finishLoadLocalConfig(
             myIndex = StatusWith<int>(-1);
         } else {
             error() << "Locally stored replica set configuration is invalid; See "
-                       "http://www.mongodb.org/dochub/core/recover-replica-set-from-invalid-config"
+                       "http://www.mongoldb.org/dochub/core/recover-replica-set-from-invalid-config"
                        " for information on how to recover from this. Got \"" << myIndex.getStatus()
                     << "\" while validating " << localConfig.toBSON();
             fassertFailedNoTrace(28544);
@@ -3362,4 +3362,4 @@ void ReplicationCoordinatorImpl::_scheduleElectionWinNotification() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

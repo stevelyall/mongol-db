@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/catalog_manager_mock.h"
+#include "mongol/s/catalog/catalog_manager_mock.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -204,4 +204,4 @@ Status CatalogManagerMock::initConfigVersion(OperationContext* txn) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

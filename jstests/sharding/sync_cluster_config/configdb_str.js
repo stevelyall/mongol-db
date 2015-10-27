@@ -1,5 +1,5 @@
 /**
- * Test that mongos with the "wrong" configdb string should not be able to write to config.
+ * Test that mongols with the "wrong" configdb string should not be able to write to config.
  */
 
 (function() {

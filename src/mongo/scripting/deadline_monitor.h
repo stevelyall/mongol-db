@@ -29,14 +29,14 @@
 
 #include <cstdint>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DeadlineMonitor
@@ -71,7 +71,7 @@ public:
         // of this instance must be initialized before the thread is created.  As a result, we
         // should not create the thread in the initializer list.  Creating it there leaves us
         // vulnerable to errors introduced by rearranging the order of fields in the class.
-        _monitorThread = stdx::thread(&mongo::DeadlineMonitor<_Task>::deadlineMonitorThread, this);
+        _monitorThread = stdx::thread(&mongol::DeadlineMonitor<_Task>::deadlineMonitorThread, this);
     }
 
     ~DeadlineMonitor() {
@@ -164,4 +164,4 @@ private:
     bool _inShutdown = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

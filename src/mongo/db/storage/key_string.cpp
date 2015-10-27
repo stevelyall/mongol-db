@@ -28,21 +28,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/key_string.h"
+#include "mongol/db/storage/key_string.h"
 
 #include <cmath>
 
-#include "mongo/base/data_view.h"
-#include "mongo/platform/bits.h"
-#include "mongo/platform/strnlen.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
+#include "mongol/base/data_view.h"
+#include "mongol/platform/bits.h"
+#include "mongol/platform/strnlen.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -134,7 +134,7 @@ uint8_t bsonTypeToGenericKeyStringType(BSONType type) {
         case NumberLong:
             return CType::kNumeric;
 
-        case mongo::String:
+        case mongol::String:
         case Symbol:
             return CType::kStringLike;
 
@@ -1214,4 +1214,4 @@ uint8_t KeyString::TypeBits::Reader::readBit() {
     return (_typeBits._buf[byte] & (1 << offsetInByte)) ? 1 : 0;
 }
 
-}  // namespace mongo
+}  // namespace mongol

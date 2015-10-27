@@ -29,11 +29,11 @@
 #pragma once
 
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This stage implements skip functionality.  It drops the first 'toSkip' results from its child
@@ -69,4 +69,4 @@ private:
     SkipStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

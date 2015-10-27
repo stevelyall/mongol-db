@@ -28,14 +28,14 @@
 
 /** Unit tests for BSONElementHasher. */
 
-#include "mongo/db/hasher.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/bson/bsontypes.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/bson/bsontypes.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // Helper methods
@@ -331,7 +331,7 @@ TEST(BSONElementHasher, HashTimeStamp) {
 }
 
 TEST(BSONElementHasher, HashRegEx) {
-    BSONObj o = BSON("check" << BSONRegEx("mongodb"));
+    BSONObj o = BSON("check" << BSONRegEx("mongoldb"));
     ASSERT_EQUALS(hashIt(o), -7275792090268217043LL);
 
     o = BSON("check" << BSONRegEx(".*", "i"));
@@ -357,4 +357,4 @@ TEST(BSONElementHasher, HashCodeWScope) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -31,14 +31,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/logger/appender.h"
-#include "mongo/logger/log_severity.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/logger/appender.h"
+#include "mongol/logger/log_severity.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 // Used for testing logging framework only.
@@ -86,4 +86,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

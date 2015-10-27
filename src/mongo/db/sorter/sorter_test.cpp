@@ -26,23 +26,23 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/sorter/sorter.h"
+#include "mongol/db/sorter/sorter.h"
 
 #include <boost/filesystem.hpp>
 
-#include "mongo/config.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/config.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 // Need access to internal classes
-#include "mongo/db/sorter/sorter.cpp"
+#include "mongol/db/sorter/sorter.cpp"
 
-namespace mongo {
-using namespace mongo::sorter;
+namespace mongol {
+using namespace mongol::sorter;
 using std::make_shared;
 using std::pair;
 
@@ -173,7 +173,7 @@ void _assertIteratorsEquivalent(It1 it1, It2 it2, int line) {
         }
 
     } catch (...) {
-        mongo::unittest::log() << "Failure from line " << line << " on iteration " << iteration
+        mongol::unittest::log() << "Failure from line " << line << " on iteration " << iteration
                                << std::endl;
         throw;
     }
@@ -540,7 +540,7 @@ class LotsOfDataWithLimit : public LotsOfDataLittleMemory<Random> {
 };
 }
 
-class SorterSuite : public mongo::unittest::Suite {
+class SorterSuite : public mongol::unittest::Suite {
 public:
     SorterSuite() : Suite("sorter") {}
 
@@ -562,5 +562,5 @@ public:
     }
 };
 
-mongo::unittest::SuiteInstance<SorterSuite> extSortTests;
+mongol::unittest::SuiteInstance<SorterSuite> extSortTests;
 }

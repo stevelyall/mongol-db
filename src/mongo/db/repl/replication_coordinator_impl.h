@@ -32,28 +32,28 @@
 #include <memory>
 #include <utility>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/repl/data_replicator.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_coordinator_external_state.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/storage_interface.h"
-#include "mongo/db/repl/update_position_args.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/snapshot_name.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/repl/data_replicator.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/storage_interface.h"
+#include "mongol/db/repl/update_position_args.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/snapshot_name.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class Timer;
 template <typename T>
@@ -85,7 +85,7 @@ class ReplicationCoordinatorImpl : public ReplicationCoordinator, public KillOpL
 public:
     // For testing only.
     using StepDownNonBlockingResult =
-        std::pair<std::unique_ptr<mongo::Lock::GlobalLock>, ReplicationExecutor::EventHandle>;
+        std::pair<std::unique_ptr<mongol::Lock::GlobalLock>, ReplicationExecutor::EventHandle>;
 
     // Takes ownership of the "externalState", "topCoord" and "network" objects.
     ReplicationCoordinatorImpl(const ReplSettings& settings,
@@ -1215,7 +1215,7 @@ private:
     OID _myRID;  // (M)
 
     // Rollback ID. Used to check if a rollback happened during some interval of time
-    // TODO: ideally this should only change on rollbacks NOT on mongod restarts also.
+    // TODO: ideally this should only change on rollbacks NOT on mongold restarts also.
     int _rbid;  // (M)
 
     // list of information about clients waiting on replication.  Does *not* own the
@@ -1380,4 +1380,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

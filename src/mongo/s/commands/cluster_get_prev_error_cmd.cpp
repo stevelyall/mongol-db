@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 #include <string>
 
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/s/client/shard_connection.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/client/shard_connection.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class GetPrevErrorCmd : public Command {
@@ -73,4 +73,4 @@ public:
 } cmdGetPrevError;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

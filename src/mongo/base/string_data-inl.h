@@ -31,7 +31,7 @@
 
 #include <stdexcept>
 
-namespace mongo {
+namespace mongol {
 
 inline int StringData::compare(StringData other) const {
     // It is illegal to pass nullptr to memcmp. It is an invariant of
@@ -141,4 +141,4 @@ inline bool StringData::endsWith(StringData suffix) const {
     return substr(thisSize - suffixSize) == suffix;
 }
 
-}  // namespace mongo
+}  // namespace mongol

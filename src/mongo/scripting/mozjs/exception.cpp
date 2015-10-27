@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/exception.h"
+#include "mongol/scripting/mozjs/exception.h"
 
 #include <jsfriendapi.h>
 #include <limits>
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 namespace {
@@ -58,7 +58,7 @@ static_assert(UINT_MAX - JSErr_Limit > ErrorCodes::MaxError,
 
 }  // namespace
 
-void mongoToJSException(JSContext* cx) {
+void mongolToJSException(JSContext* cx) {
     auto status = exceptionToStatus();
 
     auto callback =
@@ -124,4 +124,4 @@ void throwCurrentJSException(JSContext* cx, ErrorCodes::Error altCode, StringDat
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/apply_ops.h"
+#include "mongol/db/catalog/apply_ops.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands/dbhash.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/dbhash.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 Status applyOps(OperationContext* txn,
                 const std::string& dbName,
                 const BSONObj& applyOpCmd,
@@ -204,4 +204,4 @@ Status applyOps(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

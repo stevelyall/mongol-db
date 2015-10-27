@@ -15,17 +15,17 @@ for the target x86, or x86-64 platform. More detailed platform instructions can 
 MongoDB Tools
 --------------
 
-The MongoDB command line tools (mongodump, mongorestore, mongoimport, mongoexport, etc)
+The MongoDB command line tools (mongoldump, mongolrestore, mongolimport, mongolexport, etc)
 have been rewritten in [Go](http://golang.org/) and are no longer included in this repository.
 
-The source for the tools is now available at [mongodb/mongo-tools](https://github.com/mongodb/mongo-tools).
+The source for the tools is now available at [mongoldb/mongol-tools](https://github.com/mongoldb/mongol-tools).
 
 SCons
 ---------------
 
-For detail information about building, please see [the build manual](http://www.mongodb.org/about/contributors/tutorial/build-mongodb-from-source/)
+For detail information about building, please see [the build manual](http://www.mongoldb.org/about/contributors/tutorial/build-mongoldb-from-source/)
 
-If you want to build everything (mongod, mongo, tests, etc):
+If you want to build everything (mongold, mongol, tests, etc):
 
     $ scons all
 
@@ -35,30 +35,30 @@ If you only want to build the database:
 
 To install
 
-    $ scons --prefix=/opt/mongo install
+    $ scons --prefix=/opt/mongol install
 
-Please note that prebuilt binaries are available on [mongodb.org](http://www.mongodb.org/downloads) and may be the easiest way to get started.
+Please note that prebuilt binaries are available on [mongoldb.org](http://www.mongoldb.org/downloads) and may be the easiest way to get started.
 
 SCons Targets
 --------------
 
-* mongod
-* mongos
-* mongo
-* core (includes mongod, mongos, mongo)
+* mongold
+* mongols
+* mongol
+* core (includes mongold, mongols, mongol)
 * all
 
 Windows
 --------------
 
-See [the windows build manual](http://www.mongodb.org/about/contributors/tutorial/build-mongodb-from-source/#windows-specific-instructions)
+See [the windows build manual](http://www.mongoldb.org/about/contributors/tutorial/build-mongoldb-from-source/#windows-specific-instructions)
 
 Build requirements:
 * Visual Studio 2013 Update 2 or newer
 * Python 2.7, ActiveState ActivePython 2.7.x Community Edition for Windows is recommended
 * SCons
 
-Or download a prebuilt binary for Windows at www.mongodb.org.
+Or download a prebuilt binary for Windows at www.mongoldb.org.
 
 Debian/Ubuntu
 --------------
@@ -70,7 +70,7 @@ To install dependencies on Debian or Ubuntu systems:
 
 To run tests as well, you will need PyMongo:
 
-    # aptitude install python-pymongo
+    # aptitude install python-pymongol
 
 Then build as usual with `scons`:
 
@@ -81,11 +81,11 @@ OS X
 
 Using [Homebrew](http://brew.sh):
 
-    $ brew install mongodb
+    $ brew install mongoldb
 
 Using [MacPorts](http://www.macports.org):
 
-    $ sudo port install mongodb
+    $ sudo port install mongoldb
 
 FreeBSD
 --------------

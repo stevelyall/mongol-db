@@ -1,5 +1,5 @@
 /**
- * This tests whether slaveOk reads are properly routed through mongos in
+ * This tests whether slaveOk reads are properly routed through mongols in
  * an authenticated environment. This test also includes restarting the
  * entire set, then querying afterwards.
  */
@@ -28,18 +28,18 @@ var rsOpts = { oplogSize: 50 };
 var st = new ShardingTest({ keyFile: 'jstests/libs/key1', shards: 1,
     rs: rsOpts, other: { nopreallocj: 1 }});
 
-var mongos = st.s;
+var mongols = st.s;
 var replTest = st.rs0;
-var testDB = mongos.getDB( 'AAAAA' );
+var testDB = mongols.getDB( 'AAAAA' );
 var coll = testDB.user;
 var nodeCount = replTest.nodes.length;
 
 /* Add an admin user to the replica member to simulate connecting from
- * remote location. This is because mongod allows unautheticated
+ * remote location. This is because mongold allows unautheticated
  * connections to access the server from localhost connections if there
  * is no admin user.
  */
-var adminDB = mongos.getDB( 'admin' )
+var adminDB = mongols.getDB( 'admin' )
 adminDB.createUser({user: 'user', pwd: 'password', roles: jsTest.adminUserRoles});
 adminDB.auth( 'user', 'password' );
 var priAdminDB = replTest.getPrimary().getDB( 'admin' );
@@ -53,7 +53,7 @@ coll.setSlaveOk( true );
  * state, which will make the ReplicaSetMonitor mark them as
  * ok = false and not eligible for slaveOk queries.
  */
-ReplSetTest.awaitRSClientHosts( mongos, replTest.getSecondaries(),
+ReplSetTest.awaitRSClientHosts( mongols, replTest.getSecondaries(),
    { ok : true, secondary : true });
 
 var bulk = coll.initializeUnorderedBulkOp();
@@ -62,7 +62,7 @@ for ( var x = 0; x < 20; x++ ) {
 }
 assert.writeOK(bulk.execute({ w: nodeCount }));
 
-/* Although mongos never caches query results, try to do a different query
+/* Although mongols never caches query results, try to do a different query
  * everytime just to be sure.
  */
 var vToFind = 0;
@@ -85,13 +85,13 @@ coll.setSlaveOk( true );
  * A node that is previously labeled as secondary can now be a primary, so we
  * wait for the replSetMonitorWatcher thread to refresh the nodes information.
  */
-ReplSetTest.awaitRSClientHosts( mongos, replTest.getSecondaries(),
+ReplSetTest.awaitRSClientHosts( mongols, replTest.getSecondaries(),
     { ok : true, secondary : true });
 //
-// We also need to wait for the primary, it's possible that the mongos may think a node is a 
+// We also need to wait for the primary, it's possible that the mongols may think a node is a 
 // secondary but it actually changed to a primary before we send our final query.
 //
-ReplSetTest.awaitRSClientHosts( mongos, replTest.getPrimary(),
+ReplSetTest.awaitRSClientHosts( mongols, replTest.getPrimary(),
     { ok : true, ismaster : true });
 
 // Recheck if we can still query secondaries after refreshing connections.

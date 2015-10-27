@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/and_hash.h"
-#include "mongo/db/exec/and_sorted.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/limit.h"
-#include "mongo/db/exec/merge_sort.h"
-#include "mongo/db/exec/or.h"
-#include "mongo/db/exec/skip.h"
-#include "mongo/db/exec/sort.h"
-#include "mongo/db/exec/text.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/index/fts_access_method.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/and_hash.h"
+#include "mongol/db/exec/and_sorted.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/limit.h"
+#include "mongol/db/exec/merge_sort.h"
+#include "mongol/db/exec/or.h"
+#include "mongol/db/exec/skip.h"
+#include "mongol/db/exec/sort.h"
+#include "mongol/db/exec/text.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/index/fts_access_method.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -496,4 +496,4 @@ MONGO_INITIALIZER(RegisterStageDebugCmd)(InitializerContext* context) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

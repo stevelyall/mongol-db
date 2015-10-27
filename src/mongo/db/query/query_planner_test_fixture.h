@@ -33,15 +33,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
-class QueryPlannerTest : public mongo::unittest::Test {
+class QueryPlannerTest : public mongol::unittest::Test {
 protected:
     void setUp();
 
@@ -155,7 +155,7 @@ protected:
 
     void dumpSolutions() const;
 
-    void dumpSolutions(mongoutils::str::stream& ost) const;
+    void dumpSolutions(mongolutils::str::stream& ost) const;
 
     /**
      * Checks number solutions. Generates assertion message
@@ -197,4 +197,4 @@ protected:
     OwnedPointerVector<QuerySolution> solns;
 };
 
-}  // namespace mongo
+}  // namespace mongol

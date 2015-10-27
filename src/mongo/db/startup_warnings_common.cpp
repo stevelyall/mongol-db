@@ -26,21 +26,21 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/startup_warnings_common.h"
+#include "mongol/db/startup_warnings_common.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
 
-#include "mongo/db/server_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/version.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // system warnings
@@ -107,4 +107,4 @@ void logCommonStartupWarnings(const ServerGlobalParams& serverParams) {
         log() << startupWarningsLog;
     }
 }
-}  // namespace mongo
+}  // namespace mongol

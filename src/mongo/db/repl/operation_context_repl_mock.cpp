@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
 
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/concurrency/locker.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/concurrency/locker.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 OperationContextReplMock::OperationContextReplMock() : OperationContextReplMock(0) {}
@@ -82,4 +82,4 @@ bool OperationContextReplMock::writesAreReplicated() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

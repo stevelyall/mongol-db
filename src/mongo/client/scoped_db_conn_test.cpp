@@ -25,30 +25,30 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 #include <string>
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/reply_builder_interface.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message_port.h"
-#include "mongo/util/net/message_server.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/reply_builder_interface.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message_port.h"
+#include "mongol/util/net/message_server.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
 /**
  * Tests for ScopedDbConnection, particularly in connection pool management.
@@ -57,7 +57,7 @@
  * connection).
  */
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -433,4 +433,4 @@ TEST_F(DummyServerFixture, DontReturnConnGoneBadToPool) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

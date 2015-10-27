@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple_iterator.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple_iterator.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // Regular / non-capped collection traversal

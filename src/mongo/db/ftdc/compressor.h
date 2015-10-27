@@ -34,14 +34,14 @@
 #include <tuple>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/ftdc/block_compressor.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/ftdc/block_compressor.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * FTDCCompressor is responsible for taking a set of BSON documents containing metrics, and
@@ -187,4 +187,4 @@ private:
     std::vector<std::uint64_t> _prevmetrics;
 };
 
-}  // namespace mongo
+}  // namespace mongol

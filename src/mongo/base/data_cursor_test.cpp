@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_cursor.h"
+#include "mongol/base/data_cursor.h"
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(DataCursor, ConstDataCursor) {
     char buf[100];
@@ -104,4 +104,4 @@ TEST(DataCursor, DataCursor) {
     ASSERT_EQUALS(static_cast<uint64_t>(3), cdc.readAndAdvance<BigEndian<uint64_t>>());
 }
 
-}  // namespace mongo
+}  // namespace mongol

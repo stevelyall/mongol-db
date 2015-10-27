@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This stage outputs the union of its children.  It optionally deduplicates on RecordId.
@@ -85,4 +85,4 @@ private:
     OrStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

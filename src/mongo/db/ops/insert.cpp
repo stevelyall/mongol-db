@@ -28,15 +28,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 StatusWith<BSONObj> fixDocumentForInsert(const BSONObj& doc) {
     if (doc.objsize() > BSONObjMaxUserSize)

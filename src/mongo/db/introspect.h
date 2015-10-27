@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 class Database;
 class OperationContext;
@@ -45,4 +45,4 @@ void profile(OperationContext* txn, int op);
  */
 Status createProfileCollection(OperationContext* txn, Database* db);
 
-}  // namespace mongo
+}  // namespace mongol

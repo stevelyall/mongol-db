@@ -28,9 +28,9 @@
  *    THIS IS A GENERATED FILE, DO NOT MODIFY.
  */
 
-#include "mongo/db/fts/unicode/codepoints.h"
+#include "mongol/db/fts/unicode/codepoints.h"
 
-namespace mongo {
+namespace mongol {
 namespace unicode {
 
 char32_t codepointRemoveDiacritics(char32_t codepoint) {
@@ -3966,4 +3966,4 @@ char32_t codepointRemoveDiacritics(char32_t codepoint) {
     }
 }
 }  //  namespace unicode
-}  //  namespace mongo
+}  //  namespace mongol

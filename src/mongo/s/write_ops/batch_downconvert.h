@@ -31,15 +31,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/s/write_ops/batch_write_exec.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/write_error_detail.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/write_error_detail.h"
 
-namespace mongo {
+namespace mongol {
 
 class MultiCommandDispatch;
 
@@ -86,4 +86,4 @@ Status extractGLEErrors(const BSONObj& gleResponse, GLEErrors* errors);
  */
 BSONObj stripNonWCInfo(const BSONObj& gleResponse);
 
-}  // namespace mongo
+}  // namespace mongol

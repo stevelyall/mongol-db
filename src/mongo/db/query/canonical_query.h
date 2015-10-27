@@ -29,14 +29,14 @@
 #pragma once
 
 
-#include "mongo/base/status.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/db/query/parsed_projection.h"
+#include "mongol/base/status.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/db/query/parsed_projection.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery {
 public:
@@ -227,4 +227,4 @@ private:
     std::unique_ptr<ParsedProjection> _proj;
 };
 
-}  // namespace mongo
+}  // namespace mongol

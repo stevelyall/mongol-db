@@ -31,10 +31,10 @@
 #include <memory>
 #include <boost/filesystem/path.hpp>
 
-#include "mongo/db/db.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/db.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class Cursor;
@@ -232,4 +232,4 @@ struct Helpers {
     };
 };
 
-}  // namespace mongo
+}  // namespace mongol

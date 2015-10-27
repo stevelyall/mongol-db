@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/json.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/json.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(BatchedCommandRequest, BasicInsert) {
@@ -217,4 +217,4 @@ TEST(BatchedCommandRequest, DeleteClone) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

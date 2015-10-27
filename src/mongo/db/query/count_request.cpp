@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/count_request.h"
+#include "mongol/db/query/count_request.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kCmdName[] = "count";
@@ -121,4 +121,4 @@ StatusWith<CountRequest> CountRequest::parseFromBSON(const std::string& dbname,
     return request;
 }
 
-}  // namespace mongo
+}  // namespace mongol

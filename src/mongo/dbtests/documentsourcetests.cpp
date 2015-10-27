@@ -28,16 +28,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/pipeline/dependencies.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/pipeline/dependencies.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/dbtests/dbtests.h"
 namespace DocumentSourceCursorTests {
 
 using boost::intrusive_ptr;
@@ -70,7 +70,7 @@ protected:
 
 namespace DocumentSourceCursor {
 
-using mongo::DocumentSourceCursor;
+using mongol::DocumentSourceCursor;
 
 class Base : public CollectionBase {
 public:

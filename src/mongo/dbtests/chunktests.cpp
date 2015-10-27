@@ -28,13 +28,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/json.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/s/chunk_manager.h"
+#include "mongol/db/json.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/s/chunk_manager.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;
@@ -360,4 +360,4 @@ public:
 SuiteInstance<All> myAll;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

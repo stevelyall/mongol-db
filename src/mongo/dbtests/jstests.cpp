@@ -29,23 +29,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 #include <limits>
 
-#include "mongo/base/parse_number.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
 using std::cout;
 using std::endl;
@@ -160,11 +160,11 @@ class LogRecordingScope {
 public:
     LogRecordingScope()
         : _logged(false),
-          _threadName(mongo::getThreadName()),
-          _handle(mongo::logger::globalLogDomain()->attachAppender(
-              mongo::logger::MessageLogDomain::AppenderAutoPtr(new Tee(this)))) {}
+          _threadName(mongol::getThreadName()),
+          _handle(mongol::logger::globalLogDomain()->attachAppender(
+              mongol::logger::MessageLogDomain::AppenderAutoPtr(new Tee(this)))) {}
     ~LogRecordingScope() {
-        mongo::logger::globalLogDomain()->detachAppender(_handle);
+        mongol::logger::globalLogDomain()->detachAppender(_handle);
     }
     /** @return most recent log entry. */
     bool logged() const {
@@ -172,13 +172,13 @@ public:
     }
 
 private:
-    class Tee : public mongo::logger::MessageLogDomain::EventAppender {
+    class Tee : public mongol::logger::MessageLogDomain::EventAppender {
     public:
         Tee(LogRecordingScope* scope) : _scope(scope) {}
         virtual ~Tee() {}
         virtual Status append(const logger::MessageEventEphemeral& event) {
             // Don't want to consider logging by background threads.
-            if (mongo::getThreadName() == _scope->_threadName) {
+            if (mongol::getThreadName() == _scope->_threadName) {
                 _scope->_logged = true;
             }
             return Status::OK();
@@ -189,7 +189,7 @@ private:
     };
     bool _logged;
     const string _threadName;
-    mongo::logger::MessageLogDomain::AppenderHandle _handle;
+    mongol::logger::MessageLogDomain::AppenderHandle _handle;
 };
 
 /** Error logging in Scope::exec(). */
@@ -401,11 +401,11 @@ public:
 
         BSONObj out;
 
-        ASSERT_THROWS(s->invoke("blah.y = 'e'", 0, 0), mongo::UserException);
-        ASSERT_THROWS(s->invoke("blah.a = 19;", 0, 0), mongo::UserException);
-        ASSERT_THROWS(s->invoke("blah.zz.a = 19;", 0, 0), mongo::UserException);
-        ASSERT_THROWS(s->invoke("blah.zz = { a : 19 };", 0, 0), mongo::UserException);
-        ASSERT_THROWS(s->invoke("delete blah['x']", 0, 0), mongo::UserException);
+        ASSERT_THROWS(s->invoke("blah.y = 'e'", 0, 0), mongol::UserException);
+        ASSERT_THROWS(s->invoke("blah.a = 19;", 0, 0), mongol::UserException);
+        ASSERT_THROWS(s->invoke("blah.zz.a = 19;", 0, 0), mongol::UserException);
+        ASSERT_THROWS(s->invoke("blah.zz = { a : 19 };", 0, 0), mongol::UserException);
+        ASSERT_THROWS(s->invoke("delete blah['x']", 0, 0), mongol::UserException);
 
         // read-only object itself can be overwritten
         s->invoke("blah = {}", 0, 0);
@@ -663,11 +663,11 @@ public:
         BSONObj in = b.obj();
         s->setObject("a", in);
         BSONObj out = s->getObject("a");
-        ASSERT_EQUALS(mongo::NumberLong, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberLong, out.firstElement().type());
 
         ASSERT(s->exec("b = {b:a.a}", "foo", false, true, false));
         out = s->getObject("b");
-        ASSERT_EQUALS(mongo::NumberLong, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberLong, out.firstElement().type());
         if (val != out.firstElement().numberLong()) {
             cout << val << endl;
             cout << out.firstElement().numberLong() << endl;
@@ -707,7 +707,7 @@ public:
 
         ASSERT(s->exec("w = {w:z.z}", "foo", false, true, false));
         out = s->getObject("w");
-        ASSERT_EQUALS(mongo::NumberLong, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberLong, out.firstElement().type());
         ASSERT_EQUALS(4, out.firstElement().numberLong());
     }
 };
@@ -751,11 +751,11 @@ public:
         BSONObj in = b.obj();
         s->setObject("a", in);
         BSONObj out = s->getObject("a");
-        ASSERT_EQUALS(mongo::NumberLong, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberLong, out.firstElement().type());
 
         ASSERT(s->exec("b = {b:a.a}", "foo", false, true, false));
         out = s->getObject("b");
-        ASSERT_EQUALS(mongo::NumberLong, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberLong, out.firstElement().type());
         if (val != out.firstElement().numberLong()) {
             cout << val << endl;
             cout << out.firstElement().numberLong() << endl;
@@ -797,12 +797,12 @@ public:
 
         // Test the scope object
         BSONObj out = s->getObject("a");
-        ASSERT_EQUALS(mongo::NumberDecimal, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberDecimal, out.firstElement().type());
         ASSERT_TRUE(val.isEqual(out.firstElement().numberDecimal()));
 
         ASSERT(s->exec("b = {b:a.a}", "foo", false, true, false));
         out = s->getObject("b");
-        ASSERT_EQUALS(mongo::NumberDecimal, out.firstElement().type());
+        ASSERT_EQUALS(mongol::NumberDecimal, out.firstElement().type());
         ASSERT_TRUE(val.isEqual(out.firstElement().numberDecimal()));
 
         // Test that the appropriate string output is generated
@@ -980,7 +980,7 @@ public:
     }
     void run() {
         if (!globalScriptEngine->utf8Ok()) {
-            mongo::unittest::log() << "warning: utf8 not supported" << endl;
+            mongol::unittest::log() << "warning: utf8 not supported" << endl;
             return;
         }
         string utf8ObjSpec = "{'_id':'\\u0001\\u007f\\u07ff\\uffff'}";
@@ -1156,12 +1156,12 @@ protected:
     // This can be overriden if a different meaning of equality besides woCompare is needed
     virtual void bsonEquals(const BSONObj& expected, const BSONObj& actual) {
         if (expected.woCompare(actual)) {
-            ::mongo::log() << "want:" << expected.jsonString() << " size: " << expected.objsize()
+            ::mongol::log() << "want:" << expected.jsonString() << " size: " << expected.objsize()
                            << endl;
-            ::mongo::log() << "got :" << actual.jsonString() << " size: " << actual.objsize()
+            ::mongol::log() << "got :" << actual.jsonString() << " size: " << actual.objsize()
                            << endl;
-            ::mongo::log() << expected.hexDump() << endl;
-            ::mongo::log() << actual.hexDump() << endl;
+            ::mongol::log() << expected.hexDump() << endl;
+            ::mongol::log() << actual.hexDump() << endl;
         }
         ASSERT(!expected.woCompare(actual));
     }
@@ -1749,7 +1749,7 @@ class JSTimestamp : public TestRoundTrip {
 class TimestampMax : public TestRoundTrip {
     virtual BSONObj bson() const {
         BSONObjBuilder b;
-        b.appendMaxForType("a", mongo::bsonTimestamp);
+        b.appendMaxForType("a", mongol::bsonTimestamp);
         BSONObj o = b.obj();
         return o;
     }

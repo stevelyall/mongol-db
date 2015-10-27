@@ -27,10 +27,10 @@
  */
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class Status;
@@ -91,4 +91,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

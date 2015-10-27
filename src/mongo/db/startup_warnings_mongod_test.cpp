@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <fstream>
 #include <ostream>
 
-#include "mongo/db/startup_warnings_mongod.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/startup_warnings_mongold.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::unittest::TempDir;
+using mongol::unittest::TempDir;
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(StartupWarningsMongodTest, ReadTransparentHugePagesParameterInvalidDirectory) {
     StatusWith<std::string> result =

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/concurrency/locker.h"
+#include "mongol/db/concurrency/locker.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Constructs a human-readable BSON from the specified LockerInfo structure.
@@ -38,4 +38,4 @@ namespace mongo {
  */
 void fillLockerInfo(const Locker::LockerInfo& lockerInfo, BSONObjBuilder& infoBuilder);
 
-}  // namespace mongo
+}  // namespace mongol

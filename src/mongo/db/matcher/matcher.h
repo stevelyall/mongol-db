@@ -31,15 +31,15 @@
 #pragma once
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/matcher/match_details.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/match_details.h"
 
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Matcher is a simple wrapper around a BSONObj and the MatchExpression created from it.
@@ -68,4 +68,4 @@ private:
     std::unique_ptr<MatchExpression> _expression;
 };
 
-}  // namespace mongo
+}  // namespace mongol

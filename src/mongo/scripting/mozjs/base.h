@@ -30,7 +30,7 @@
 
 #include <jsapi.h>
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -89,4 +89,4 @@ struct BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

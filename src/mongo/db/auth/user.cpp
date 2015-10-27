@@ -26,20 +26,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/user.h"
+#include "mongol/db/auth/user.h"
 
 #include <vector>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/sequence_util.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/sequence_util.h"
 
-namespace mongo {
+namespace mongol {
 
 User::User(const UserName& name) : _name(name), _refCount(0), _isValid(1) {}
 
@@ -156,4 +156,4 @@ void User::decrementRefCount() {
     dassert(_refCount > 0);
     --_refCount;
 }
-}  // namespace mongo
+}  // namespace mongol

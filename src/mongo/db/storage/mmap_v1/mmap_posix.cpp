@@ -27,9 +27,9 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -37,26 +37,26 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include "mongo/platform/atomic_word.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/startup_test.h"
 
 using std::endl;
 using std::numeric_limits;
 using std::vector;
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 namespace {
-mongo::AtomicUInt64 mmfNextId(0);
+mongol::AtomicUInt64 mmfNextId(0);
 }
 
-namespace mongo {
+namespace mongol {
 static size_t fetchMinOSPageSizeBytes() {
     size_t minOSPageSizeBytes = sysconf(_SC_PAGESIZE);
     minOSPageSizeBytesTest(minOSPageSizeBytes);
@@ -323,4 +323,4 @@ MemoryMappedFile::Flushable* MemoryMappedFile::prepareFlush() {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

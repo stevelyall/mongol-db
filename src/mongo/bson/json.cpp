@@ -25,23 +25,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/bson/json.h"
+#include "mongol/bson/json.h"
 
 #include <cstdint>
 
-#include "mongo/base/parse_number.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/platform/strtoll.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/platform/strtoll.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::ostringstream;
@@ -1330,4 +1330,4 @@ bool isArray(StringData str) {
     return parser.isArray();
 }
 
-} /* namespace mongo */
+} /* namespace mongol */

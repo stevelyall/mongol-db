@@ -31,13 +31,13 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 typedef StatusWith<RotatableFileWriter*> StatusWithRotatableFileWriter;
@@ -89,4 +89,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

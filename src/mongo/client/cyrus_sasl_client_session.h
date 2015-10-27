@@ -26,11 +26,11 @@
  */
 
 
-#include "mongo/client/sasl_client_session.h"
+#include "mongol/client/sasl_client_session.h"
 
 #include <sasl/sasl.h>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Implementation of the client side of a SASL authentication conversation.
@@ -85,4 +85,4 @@ private:
     sasl_callback_t _callbacks[maxCallbacks];
 };
 
-}  // namespace mongo
+}  // namespace mongol

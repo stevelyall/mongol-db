@@ -37,11 +37,11 @@
 #include <boost/functional/hash.hpp>
 #include <cstdint>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 template <class Version>
 class BtreeBucket;
@@ -220,4 +220,4 @@ inline std::ostream& operator<<(std::ostream& stream, const DiskLoc& loc) {
     return stream << loc.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

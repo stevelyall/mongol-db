@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/eof.h"
+#include "mongol/db/exec/eof.h"
 
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -66,4 +66,4 @@ const SpecificStats* EOFStage::getSpecificStats() const {
     return nullptr;
 }
 
-}  // namespace mongo
+}  // namespace mongol

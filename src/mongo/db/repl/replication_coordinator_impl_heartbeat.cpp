@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <algorithm>
 
-#include "mongo/base/status.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/elect_cmd_runner.h"
-#include "mongo/db/repl/freshness_checker.h"
-#include "mongo/db/repl/heartbeat_response_action.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/replica_set_config_checks.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/topology_coordinator.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/elect_cmd_runner.h"
+#include "mongol/db/repl/freshness_checker.h"
+#include "mongol/db/repl/heartbeat_response_action.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/replica_set_config_checks.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/topology_coordinator.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -723,4 +723,4 @@ void ReplicationCoordinatorImpl::_startElectSelfIfEligibleV1() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

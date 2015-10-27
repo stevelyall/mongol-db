@@ -19,7 +19,7 @@ var blacklist = [
     'count_noindex.js',
 
     // Disabled due to SERVER-20057, 'Concurrent, sharded mapReduces can fail when temporary
-    // namespaces collide across mongos processes'
+    // namespaces collide across mongols processes'
     'map_reduce_drop.js',
     'map_reduce_inline.js',
     'map_reduce_merge.js',
@@ -41,10 +41,10 @@ var blacklist = [
 
     'agg_group_external.js', // uses >100MB of data, which can overwhelm test hosts
     'agg_sort_external.js', // uses >100MB of data, which can overwhelm test hosts
-    'compact.js', // compact can only be run against a standalone mongod
-    'compact_simultaneous_padding_bytes.js', // compact can only be run against a mongod
-    'convert_to_capped_collection.js', // convertToCapped can't be run on mongos processes
-    'convert_to_capped_collection_index.js', // convertToCapped can't be run on mongos processes
+    'compact.js', // compact can only be run against a standalone mongold
+    'compact_simultaneous_padding_bytes.js', // compact can only be run against a mongold
+    'convert_to_capped_collection.js', // convertToCapped can't be run on mongols processes
+    'convert_to_capped_collection_index.js', // convertToCapped can't be run on mongols processes
     'findAndModify_remove_queue.js', // remove cannot be {} for findAndModify
     'findAndModify_update_collscan.js', // findAndModify requires a shard key
     'findAndModify_update_queue.js', // findAndModify requires a shard key
@@ -72,8 +72,8 @@ var blacklist = [
     'update_simple_eval_nolock.js', // eval doesn't work with sharded collections
     'update_upsert_multi.js', // our update queries lack shard keys
     'update_upsert_multi_noindex.js', // our update queries lack shard keys
-    'yield_and_hashed.js', // stagedebug can only be run against a standalone mongod
-    'yield_and_sorted.js', // stagedebug can only be run against a standalone mongod
+    'yield_and_hashed.js', // stagedebug can only be run against a standalone mongold
+    'yield_and_sorted.js', // stagedebug can only be run against a standalone mongold
 ].map(function(file) { return dir + '/' + file; });
 
 // SERVER-16196 re-enable executing workloads against sharded clusters

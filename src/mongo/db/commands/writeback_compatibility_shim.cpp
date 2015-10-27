@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/init.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 /**
- * This command is required in v3.0 mongod to prevent v2.6 mongos from entering a tight loop and
+ * This command is required in v3.0 mongold to prevent v2.6 mongols from entering a tight loop and
  * spamming the server with invalid writebacklisten requests.  This command reports an error
  * and pauses, which is safe because the original v2.6 WBL command was a long-poll (30s).
  */
@@ -86,13 +86,13 @@ public:
 
     virtual bool run(
         OperationContext* opCtx, const string&, BSONObj&, int, string&, BSONObjBuilder& result) {
-        string errMsg = stream() << "Writeback functionality is no longer present in v3.0 mongod, "
-                                 << "a v2.6 mongos may be running in the v3.0 cluster at "
+        string errMsg = stream() << "Writeback functionality is no longer present in v3.0 mongold, "
+                                 << "a v2.6 mongols may be running in the v3.0 cluster at "
                                  << opCtx->getClient()->clientAddress(false);
 
         error() << errMsg;
 
-        // Prevent v2.6 mongos from spamming writebacklisten retries
+        // Prevent v2.6 mongols from spamming writebacklisten retries
         const int kSleepSecsBeforeMessage = 5;
         sleepsecs(kSleepSecsBeforeMessage);
 
@@ -101,7 +101,7 @@ public:
 };
 
 /**
- * The "writeBacksQueued" field is required in ServerStatus output to avoid v2.6 mongos crashing
+ * The "writeBacksQueued" field is required in ServerStatus output to avoid v2.6 mongols crashing
  * confusingly when upgrading a cluster.
  */
 class WriteBacksQueuedSSM : public ServerStatusMetric {

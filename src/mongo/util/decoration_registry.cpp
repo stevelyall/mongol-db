@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/decoration_registry.h"
+#include "mongol/util/decoration_registry.h"
 
-namespace mongo {
+namespace mongol {
 
 DecorationContainer::DecorationDescriptor DecorationRegistry::declareDecoration(
     const size_t sizeBytes,
@@ -87,4 +87,4 @@ DecorationRegistry::DecorationInfo::DecorationInfo(
       constructor(std::move(inConstructor)),
       destructor(std::move(inDestructor)) {}
 
-}  // namespace mongo
+}  // namespace mongol

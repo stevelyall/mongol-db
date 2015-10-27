@@ -4,7 +4,7 @@ function setupTest() {
 
     s = new ShardingTest( { shards : 2,
                             verbose : 1,
-                            mongos : 1,
+                            mongols : 1,
                             other: { rs: true,
                                      numReplicas: 2,
                                      chunkSize: 1,

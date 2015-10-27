@@ -27,18 +27,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 #undef MONGO_PCH_WHITELISTED  // needed for log.h
 
-#include "mongo/util/progress_meter.h"
+#include "mongol/util/progress_meter.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 void ProgressMeter::reset(unsigned long long total, int secondsBetween, int checkInterval) {
     _total = total;

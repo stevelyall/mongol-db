@@ -32,16 +32,16 @@
 #include <queue>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/cursor_id.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/s/query/cluster_client_cursor_params.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/cursor_id.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class CursorResponse;
 
@@ -222,7 +222,7 @@ private:
         int retryCount = 0;
 
         // Count of fetched docs during ARM processing of the current batch. Used to reduce the
-        // batchSize in getMore when mongod returned less docs than the requested batchSize.
+        // batchSize in getMore when mongold returned less docs than the requested batchSize.
         long long fetchedCount = 0;
 
     private:
@@ -363,4 +363,4 @@ private:
     executor::TaskExecutor::EventHandle _killCursorsScheduledEvent;
 };
 
-}  // namespace mongo
+}  // namespace mongol

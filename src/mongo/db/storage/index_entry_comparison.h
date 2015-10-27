@@ -32,10 +32,10 @@
 #include <tuple>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Represents a single item in an index. An index item simply consists of a key
@@ -203,4 +203,4 @@ private:
 
 };  // struct IndexEntryComparison
 
-}  // namespace mongo
+}  // namespace mongol

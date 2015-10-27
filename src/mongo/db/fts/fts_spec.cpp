@@ -27,24 +27,24 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_spec.h"
 
-#include "mongo/db/field_ref.h"
-#include "mongo/db/fts/fts_element_iterator.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/db/fts/fts_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/fts/fts_element_iterator.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/db/fts/fts_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
 using std::map;
 using std::string;
-using namespace mongoutils;
+using namespace mongolutils;
 
 const double DEFAULT_WEIGHT = 1;
 const double MAX_WEIGHT = 1000000000;
@@ -104,7 +104,7 @@ FTSSpec::FTSSpec(const BSONObj& indexInfo) {
     // TODO: consder propagating the index ns to here to improve the error message
     uassert(28682,
             str::stream() << "Unrecognized language " << indexLanguage
-                          << " found for text index. Verify mongod was started with the"
+                          << " found for text index. Verify mongold was started with the"
                              " correct options.",
             swl.getStatus().isOK());
     _defaultLanguage = swl.getValue();
@@ -162,7 +162,7 @@ const FTSLanguage* FTSSpec::_getLanguageToUseV2(const BSONObj& userDoc,
     }
     uassert(17261,
             "found language override field in document with non-string type",
-            e.type() == mongo::String);
+            e.type() == mongol::String);
     StatusWithFTSLanguage swl = FTSLanguage::make(e.String(), getTextIndexVersion());
     uassert(17262, "language override unsupported: " + e.String(), swl.getStatus().isOK());
     return swl.getValue();

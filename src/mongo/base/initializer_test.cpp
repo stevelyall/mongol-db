@@ -29,11 +29,11 @@
  * Unit tests of the Initializer type.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/base/initializer.h"
-#include "mongo/base/initializer_dependency_graph.h"
-#include "mongo/base/make_string_vector.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/init.h"
+#include "mongol/base/initializer.h"
+#include "mongol/base/initializer_dependency_graph.h"
+#include "mongol/base/make_string_vector.h"
+#include "mongol/unittest/unittest.h"
 
 /*
  * Unless otherwise specified, all tests herein use the following
@@ -71,7 +71,7 @@
         ASSERT_ADD_INITIALIZER(_graph_, "n8", FN8, ("n5", "n6", "n7"), MONGO_NO_DEPENDENTS);     \
     } while (false)
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 int globalCounts[9];
@@ -188,4 +188,4 @@ TEST(InitializerTest, Step5Misimplemented) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

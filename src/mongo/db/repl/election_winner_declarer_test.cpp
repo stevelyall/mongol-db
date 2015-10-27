@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/election_winner_declarer.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/election_winner_declarer.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 using std::unique_ptr;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -54,7 +54,7 @@ bool stringContains(const std::string& haystack, const std::string& needle) {
 }
 
 
-class ElectionWinnerDeclarerTest : public mongo::unittest::Test {
+class ElectionWinnerDeclarerTest : public mongol::unittest::Test {
 public:
     virtual void setUp() {
         std::string setName = "rs0";
@@ -224,4 +224,4 @@ TEST_F(ElectionWinnerDeclarerTest, FinishWithOnlyMissingResponses) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

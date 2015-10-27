@@ -27,20 +27,20 @@
 
 #pragma once
 
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_manager.h"
 
 #include <vector>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct SSLParams {
     enum class Protocols { TLS1_0, TLS1_1, TLS1_2 };

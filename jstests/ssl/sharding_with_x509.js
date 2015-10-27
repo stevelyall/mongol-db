@@ -1,5 +1,5 @@
 // Tests basic sharding with x509 cluster auth 
-// The purpose is to verify the connectivity between mongos and the shards
+// The purpose is to verify the connectivity between mongols and the shards
 
 var x509_options = {sslMode : "requireSSL",
                     sslPEMKeyFile : "jstests/libs/server.pem",
@@ -13,11 +13,11 @@ var x509_options = {sslMode : "requireSSL",
 // is fixed the "enableBalancer" line could be removed.
 var st = new ShardingTest({ name : "sharding_with_x509" ,
                             shards : 2,
-                            mongos : 1,
+                            mongols : 1,
                             other: {
                                 enableBalancer: true,
                                 configOptions : x509_options,
-                                mongosOptions : x509_options,
+                                mongolsOptions : x509_options,
                                 rsOptions : x509_options,
                                 shardOptions : x509_options
                             }});

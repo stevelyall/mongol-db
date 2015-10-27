@@ -30,13 +30,13 @@
 
 #include <vector>
 
-#include "mongo/base/data_range.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/ftdc/block_compressor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/data_range.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/ftdc/block_compressor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Inflates a compressed chunk of metrics into a list of BSON documents
@@ -60,4 +60,4 @@ private:
     BlockCompressor _compressor;
 };
 
-}  // namespace mongo
+}  // namespace mongol

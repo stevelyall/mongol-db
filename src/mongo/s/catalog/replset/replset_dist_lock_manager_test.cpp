@@ -26,32 +26,32 @@
  *    it in the license file.
  */
 
-#include "mongo/s/catalog/replset/replset_dist_lock_manager.h"
+#include "mongol/s/catalog/replset/replset_dist_lock_manager.h"
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 #include <string>
 #include <type_traits>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/json.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/s/catalog/dist_lock_catalog_mock.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/system_tick_source.h"
-#include "mongo/util/tick_source_mock.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/json.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/s/catalog/dist_lock_catalog_mock.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/system_tick_source.h"
+#include "mongol/util/tick_source_mock.h"
+#include "mongol/util/time_support.h"
 
 /**
  * Tests for ReplSetDistLockManager. Note that unlock and ping operations are executed on a
@@ -59,7 +59,7 @@
  * assertion calls should be performed on the main thread.
  */
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::map;
@@ -75,7 +75,7 @@ const Seconds kLockExpiration(10);
  * Basic fixture for ReplSetDistLockManager that starts it up before the test begins
  * and shuts it down when a test finishes.
  */
-class ReplSetDistLockManagerFixture : public mongo::unittest::Test {
+class ReplSetDistLockManagerFixture : public mongol::unittest::Test {
 public:
     ReplSetDistLockManagerFixture()
         : _dummyDoNotUse(stdx::make_unique<DistLockCatalogMock>()),
@@ -1859,4 +1859,4 @@ TEST_F(RSDistLockMgrWithMockTickSource, CanOvertakeIfNoPingDocument) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

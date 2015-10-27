@@ -26,54 +26,54 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/mr.h"
+#include "mongol/db/commands/mr.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/parallel.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/db.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/range_preserver.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharded_connection_info.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/d_state.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/parallel.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/db.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/range_preserver.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharded_connection_info.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/d_state.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::set;
@@ -1253,7 +1253,7 @@ public:
     virtual void help(stringstream& help) const {
         help << "Run a map/reduce operation on the server.\n";
         help << "Note this is used for aggregation, not querying, in MongoDB.\n";
-        help << "http://dochub.mongodb.org/core/mapreduce";
+        help << "http://dochub.mongoldb.org/core/mapreduce";
     }
 
     virtual bool isWriteCommandForConfigServer() const {

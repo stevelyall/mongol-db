@@ -29,28 +29,28 @@
 #include <ostream>
 #include <sstream>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/options_parser/constraints.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_description.h"
-#include "mongo/util/options_parser/option_section.h"
-#include "mongo/util/options_parser/options_parser.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/options_parser/constraints.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_description.h"
+#include "mongol/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/options_parser.h"
 
 namespace {
 
-using mongo::ErrorCodes;
-using mongo::Status;
+using mongol::ErrorCodes;
+using mongol::Status;
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
-#define TEST_CONFIG_PATH(x) "src/mongo/util/options_parser/test_config_files/" x
+#define TEST_CONFIG_PATH(x) "src/mongol/util/options_parser/test_config_files/" x
 
 class OptionsParserTester : public moe::OptionsParser {
 public:
     Status readConfigFile(const std::string& filename, std::string* config) {
         if (filename != _filename) {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Parser using filename: " << filename
                << " which does not match expected filename: " << _filename;
             return Status(ErrorCodes::InternalError, sb.str());
@@ -73,8 +73,8 @@ TEST(Registration, EmptySingleName) {
     try {
         testOpts.addOptionChaining("dup", "", moe::Switch, "dup");
         testOpts.addOptionChaining("new", "", moe::Switch, "dup");
-    } catch (::mongo::DBException& e) {
-        ::mongo::StringBuilder sb;
+    } catch (::mongol::DBException& e) {
+        ::mongol::StringBuilder sb;
         sb << "Was not able to register two options with empty single name: " << e.what();
         FAIL(sb.str());
     }
@@ -93,8 +93,8 @@ TEST(Registration, EmptySingleName) {
             .setSources(moe::SourceYAMLConfig);
         testOptsValid.addOptionChaining("new", "", moe::Switch, "dup")
             .setSources(moe::SourceYAMLConfig);
-    } catch (::mongo::DBException& e) {
-        ::mongo::StringBuilder sb;
+    } catch (::mongol::DBException& e) {
+        ::mongol::StringBuilder sb;
         sb << "Was not able to register two options with empty single name" << e.what();
         FAIL(sb.str());
     }
@@ -110,7 +110,7 @@ TEST(Registration, DuplicateSingleName) {
         testOpts.addOptionChaining("dup", "dup", moe::Switch, "dup");
         testOpts.addOptionChaining("new", "dup", moe::Switch, "dup");
         FAIL("Was able to register duplicate single name");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -120,7 +120,7 @@ TEST(Registration, DuplicateDottedName) {
         testOpts.addOptionChaining("dup", "dup", moe::Switch, "dup");
         testOpts.addOptionChaining("dup", "new", moe::Switch, "dup");
         FAIL("Was able to register duplicate single name");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -132,7 +132,7 @@ TEST(Registration, DuplicatePositional) {
         testOpts.addOptionChaining("positional", "positional", moe::Int, "Positional")
             .positional(1, 1);
         FAIL("Was able to register duplicate positional option");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -142,31 +142,31 @@ TEST(Registration, BadRangesPositional) {
         testOpts.addOptionChaining("positional1", "positional1", moe::String, "Positional")
             .positional(-1, 1);
         FAIL("Was able to register positional with negative start for range");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
     try {
         testOpts.addOptionChaining("positional1", "positional1", moe::String, "Positional")
             .positional(2, 1);
         FAIL("Was able to register positional with start of range larger than end");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
     try {
         testOpts.addOptionChaining("positional1", "positional1", moe::String, "Positional")
             .positional(1, -2);
         FAIL("Was able to register positional with bad end of range");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
     try {
         testOpts.addOptionChaining("positional1", "positional1", moe::String, "Positional")
             .positional(0, 1);
         FAIL("Was able to register positional with bad start of range");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
     try {
         testOpts.addOptionChaining("positional1", "positional1", moe::String, "Positional")
             .positional(1, 2);
         FAIL("Was able to register multi valued positional with non StringVector type");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -176,7 +176,7 @@ TEST(Registration, DefaultValueWrongType) {
         testOpts.addOptionChaining("port", "port", moe::Int, "Port")
             .setDefault(moe::Value("String"));
         FAIL("Was able to register default value with wrong type");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -186,7 +186,7 @@ TEST(Registration, ImplicitValueWrongType) {
         testOpts.addOptionChaining("port", "port", moe::Int, "Port")
             .setImplicit(moe::Value("String"));
         FAIL("Was able to register implicit value with wrong type");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -196,7 +196,7 @@ TEST(Registration, ComposableNotVectorOrMap) {
         testOpts.addOptionChaining("setParameter", "setParameter", moe::String, "Multiple Values")
             .composing();
         FAIL("Was able to register composable option with wrong type");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -210,7 +210,7 @@ TEST(Registration, ComposableWithImplicit) {
             .setImplicit(moe::Value(implicitVal))
             .composing();
         FAIL("Was able to register composable option with implicit value");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 
     try {
@@ -221,7 +221,7 @@ TEST(Registration, ComposableWithImplicit) {
             .composing()
             .setImplicit(moe::Value(implicitVal));
         FAIL("Was able to set implicit value on composable option");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -235,7 +235,7 @@ TEST(Registration, ComposableWithDefault) {
             .setDefault(moe::Value(defaultVal))
             .composing();
         FAIL("Was able to register composable option with default value");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 
     try {
@@ -246,7 +246,7 @@ TEST(Registration, ComposableWithDefault) {
             .composing()
             .setDefault(moe::Value(defaultVal));
         FAIL("Was able to set default value on composable option");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -257,7 +257,7 @@ TEST(Registration, NumericRangeConstraint) {
         defaultVal.push_back("default");
         testOpts.addOptionChaining("port", "port", moe::String, "Port").validRange(1000, 65535);
         FAIL("Was able to register non numeric option with constraint on range");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -266,7 +266,7 @@ TEST(Registration, StringFormatConstraint) {
     try {
         testOpts.addOptionChaining("port", "port", moe::Int, "Port").format("[0-9]*", "[0-9]*");
         FAIL("Was able to register non string option with constraint on format");
-    } catch (::mongo::DBException&) {
+    } catch (::mongol::DBException&) {
     }
 }
 
@@ -683,7 +683,7 @@ TEST(Parsing, DefaultValuesNotInBSON) {
 
     ASSERT_OK(parser.run(testOpts, argv, env_map, &environment));
 
-    mongo::BSONObj expected = BSON("val1" << 6);
+    mongol::BSONObj expected = BSON("val1" << 6);
     ASSERT_EQUALS(expected, environment.toBSON());
 }
 
@@ -2181,7 +2181,7 @@ TEST(ChainingInterface, GoodReference) {
         testOpts.addOptionChaining("ref", "ref", moe::String, "Save this Reference");
     int i;
     for (i = 0; i < 100; i++) {
-        ::mongo::StringBuilder sb;
+        ::mongol::StringBuilder sb;
         sb << "filler" << i;
         testOpts.addOptionChaining(sb.str(), sb.str(), moe::String, "Filler Option");
     }
@@ -2235,7 +2235,7 @@ TEST(ChainingInterface, Basic) {
             ASSERT_TRUE(iterator->_implicit.isEmpty());
             ASSERT_EQUALS(iterator->_isComposing, false);
         } else {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Found extra option: " << iterator->_dottedName << " which we did not register";
             FAIL(sb.str());
         }
@@ -2264,7 +2264,7 @@ TEST(ChainingInterface, Hidden) {
             ASSERT_TRUE(iterator->_implicit.isEmpty());
             ASSERT_EQUALS(iterator->_isComposing, false);
         } else {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Found extra option: " << iterator->_dottedName << " which we did not register";
             FAIL(sb.str());
         }
@@ -2296,7 +2296,7 @@ TEST(ChainingInterface, DefaultValue) {
             ASSERT_TRUE(iterator->_implicit.isEmpty());
             ASSERT_EQUALS(iterator->_isComposing, false);
         } else {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Found extra option: " << iterator->_dottedName << " which we did not register";
             FAIL(sb.str());
         }
@@ -2328,7 +2328,7 @@ TEST(ChainingInterface, ImplicitValue) {
             ASSERT_TRUE(iterator->_implicit.equal(implicitVal));
             ASSERT_EQUALS(iterator->_isComposing, false);
         } else {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Found extra option: " << iterator->_dottedName << " which we did not register";
             FAIL(sb.str());
         }
@@ -2358,7 +2358,7 @@ TEST(ChainingInterface, Composing) {
             ASSERT_TRUE(iterator->_implicit.isEmpty());
             ASSERT_EQUALS(iterator->_isComposing, true);
         } else {
-            ::mongo::StringBuilder sb;
+            ::mongol::StringBuilder sb;
             sb << "Found extra option: " << iterator->_dottedName << " which we did not register";
             FAIL(sb.str());
         }
@@ -3663,14 +3663,14 @@ TEST(YAMLConfigFile, DeprecatedDottedNameSameAsCanonicalDottedName) {
     moe::OptionSection testOpts;
     ASSERT_THROWS(testOpts.addOptionChaining(
                       "dotted.canonical", "var1", moe::Int, "Var1", "dotted.canonical"),
-                  ::mongo::DBException);
+                  ::mongol::DBException);
 }
 
 // Deprecated dotted name cannot be the empty string.
 TEST(YAMLConfigFile, DeprecatedDottedNameEmptyString) {
     moe::OptionSection testOpts;
     ASSERT_THROWS(testOpts.addOptionChaining("dotted.canonical", "var1", moe::Int, "Var1", ""),
-                  ::mongo::DBException);
+                  ::mongol::DBException);
 }
 
 // Deprecated dotted name cannot be the same as another option's dotted name.
@@ -3679,7 +3679,7 @@ TEST(YAMLConfigFile, DeprecatedDottedNameSameAsOtherOptionsDottedName) {
     testOpts.addOptionChaining("dotted.canonical1", "var1", moe::Int, "Var1");
     ASSERT_THROWS(testOpts.addOptionChaining(
                       "dotted.canonical2", "var2", moe::Int, "Var2", "dotted.canonical1"),
-                  ::mongo::DBException);
+                  ::mongol::DBException);
 }
 
 // Deprecated dotted name cannot be the same as another option's deprecated dotted name.
@@ -3688,7 +3688,7 @@ TEST(YAMLConfigFile, DeprecatedDottedNameSameAsOtherOptionsDeprecatedDottedName)
     testOpts.addOptionChaining("dotted.canonical1", "var1", moe::Int, "Var1", "dotted.deprecated1");
     ASSERT_THROWS(testOpts.addOptionChaining(
                       "dotted.canonical2", "var2", moe::Int, "Var2", "dotted.deprecated1"),
-                  ::mongo::DBException);
+                  ::mongol::DBException);
 }
 
 // It is an error to have both canonical and deprecated dotted names in the same
@@ -3737,7 +3737,7 @@ TEST(YAMLConfigFile, DeprecatedDottedNameMultipleDeprecated) {
         moe::Environment environment;
         std::map<std::string, std::string> env_map;
 
-        ::mongo::StringBuilder sb;
+        ::mongol::StringBuilder sb;
         sb << *i << ": 6";
         parser.setConfig("config.yaml", sb.str());
 

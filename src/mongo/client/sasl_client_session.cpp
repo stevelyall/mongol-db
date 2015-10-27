@@ -25,16 +25,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/client/sasl_client_session.h"
+#include "mongol/client/sasl_client_session.h"
 
-#include "mongo/base/init.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/base/init.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
-namespace mongo {
+namespace mongol {
 SaslClientSession::SaslClientSessionFactoryFn SaslClientSession::create;
 
 SaslClientSession::SaslClientSession() {}
@@ -69,4 +69,4 @@ StringData SaslClientSession::getParameter(Parameter id) {
     return StringData(buffer.data.get(), buffer.size);
 }
 
-}  // namespace mongo
+}  // namespace mongol

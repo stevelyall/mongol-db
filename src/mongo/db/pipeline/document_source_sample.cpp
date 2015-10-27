@@ -26,17 +26,17 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/value.h"
+#include "mongol/db/client.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/value.h"
 
-namespace mongo {
+namespace mongol {
 using boost::intrusive_ptr;
 
 DocumentSourceSample::DocumentSourceSample(const intrusive_ptr<ExpressionContext>& pExpCtx)
@@ -111,4 +111,4 @@ intrusive_ptr<DocumentSource> DocumentSourceSample::getMergeSource() {
     // Just need to merge the pre-sorted documents by their random values.
     return DocumentSourceSort::create(pExpCtx, randSortSpec, _size);
 }
-}  // mongo
+}  // mongol

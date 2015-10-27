@@ -28,25 +28,25 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::dec;
@@ -158,7 +158,7 @@ public:
     virtual void help(stringstream& help) const {
         help << "DEPRECATED\n"
              << "Evaluate javascript at the server.\n"
-             << "http://dochub.mongodb.org/core/serversidecodeexecution";
+             << "http://dochub.mongoldb.org/core/serversidecodeexecution";
     }
     virtual bool isWriteCommandForConfigServer() const {
         return false;
@@ -192,4 +192,4 @@ public:
 } cmdeval;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

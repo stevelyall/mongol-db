@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/db/auth/sasl_authentication_session.h"
+#include "mongol/db/auth/sasl_authentication_session.h"
 
 #include <boost/range/size.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
-#include "mongo/db/auth/authz_session_external_state_mock.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/auth/authz_session_external_state_mock.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 SaslAuthenticationSession::SaslAuthenticationSessionFactoryFn SaslAuthenticationSession::create;
 
 // Mechanism name constants.
@@ -56,7 +56,7 @@ const char SaslAuthenticationSession::mechanismGSSAPI[] = "GSSAPI";
 const char SaslAuthenticationSession::mechanismPLAIN[] = "PLAIN";
 
 /**
- * Standard method in mongodb for determining if "authenticatedUser" may act as "requestedUser."
+ * Standard method in mongoldb for determining if "authenticatedUser" may act as "requestedUser."
  *
  * The standard rule in MongoDB is simple.  The authenticated user name must be the same as the
  * requested user name.
@@ -81,12 +81,12 @@ StringData SaslAuthenticationSession::getAuthenticationDatabase() const {
     if (Command::testCommandsEnabled && _authenticationDatabase == "admin" &&
         getPrincipalId() == internalSecurity.user->getName().getUser()) {
         // Allows authenticating as the internal user against the admin database.  This is to
-        // support the auth passthrough test framework on mongos (since you can't use the local
-        // database on a mongos, so you can't auth as the internal user without this).
+        // support the auth passthrough test framework on mongols (since you can't use the local
+        // database on a mongols, so you can't auth as the internal user without this).
         return internalSecurity.user->getName().getDB();
     } else {
         return _authenticationDatabase;
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

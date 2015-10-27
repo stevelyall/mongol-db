@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/s/query/router_exec_stage.h"
+#include "mongol/s/query/router_exec_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Skips the first n results from the child and then passes through the remaining results.
@@ -51,4 +51,4 @@ private:
     long long _skippedSoFar = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 import os
 import sys
 
-import pymongo
+import pymongol
 
 from . import fixtures
 from . import testcases
@@ -92,7 +92,7 @@ class CustomBehavior(object):
 class CleanEveryN(CustomBehavior):
     """
     Restarts the fixture after it has ran 'n' tests.
-    On mongod-related fixtures, this will clear the dbpath.
+    On mongold-related fixtures, this will clear the dbpath.
     """
 
     DEFAULT_N = 20
@@ -166,11 +166,11 @@ class CheckReplDBHash(CustomBehavior):
             sb = []  # String builder.
 
             primary = self.fixture.get_primary()
-            primary_conn = utils.new_mongo_client(port=primary.port)
+            primary_conn = utils.new_mongol_client(port=primary.port)
 
             for secondary in self.fixture.get_secondaries():
-                read_preference = pymongo.ReadPreference.SECONDARY
-                secondary_conn = utils.new_mongo_client(port=secondary.port,
+                read_preference = pymongol.ReadPreference.SECONDARY
+                secondary_conn = utils.new_mongol_client(port=secondary.port,
                                                         read_preference=read_preference)
                 # Skip arbiters.
                 if secondary_conn.admin.command("isMaster").get("arbiterOnly", False):
@@ -198,7 +198,7 @@ class CheckReplDBHash(CustomBehavior):
             test_report.addFailure(self.test_case, sys.exc_info())
             test_report.stopTest(self.test_case)
             raise errors.ServerFailure(err.message)
-        except pymongo.errors.WTimeoutError:
+        except pymongol.errors.WTimeoutError:
             self.test_case.logger.exception("Awaiting replication timed out.")
             self.test_case.return_code = 2
             test_report.addError(self.test_case, sys.exc_info())
@@ -424,7 +424,7 @@ class CheckReplDBHash(CustomBehavior):
         their _id.
         """
 
-        return [doc for doc in collection.find().sort("_id", pymongo.ASCENDING)]
+        return [doc for doc in collection.find().sort("_id", pymongol.ASCENDING)]
 
     @staticmethod
     def _get_collection_diff(primary_docs, secondary_docs, sb):

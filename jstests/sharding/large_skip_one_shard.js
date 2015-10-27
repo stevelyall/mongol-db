@@ -1,14 +1,14 @@
 /**
  * Tests that a sharded query targeted to a single shard will use passed-in skip.
  */
-var st = new ShardingTest({ shards : 2, mongos : 1});
+var st = new ShardingTest({ shards : 2, mongols : 1});
 
-var mongos = st.s0;
-var shards = mongos.getDB( "config" ).shards.find().toArray();
+var mongols = st.s0;
+var shards = mongols.getDB( "config" ).shards.find().toArray();
 
-var admin = mongos.getDB( "admin" );
-var collSharded = mongos.getCollection( "testdb.collSharded" );
-var collUnSharded = mongos.getCollection( "testdb.collUnSharded" );
+var admin = mongols.getDB( "admin" );
+var collSharded = mongols.getCollection( "testdb.collSharded" );
+var collUnSharded = mongols.getCollection( "testdb.collUnSharded" );
 
 // Set up a sharded and unsharded collection
 assert( admin.runCommand({ enableSharding : collSharded.getDB() + "" }).ok );

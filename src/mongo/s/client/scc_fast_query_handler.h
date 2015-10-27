@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/s/client/multi_host_query.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/s/client/multi_host_query.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Query handler that plugs in to a SyncClusterConnection and allows query on fastest host

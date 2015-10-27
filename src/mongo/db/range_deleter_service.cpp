@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/range_deleter_service.h"
+#include "mongol/db/range_deleter_service.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/range_deleter_db_env.h"
+#include "mongol/base/init.h"
+#include "mongol/db/range_deleter_db_env.h"
 
 namespace {
 
-mongo::RangeDeleter* _deleter = NULL;
+mongol::RangeDeleter* _deleter = NULL;
 }
 
-namespace mongo {
+namespace mongol {
 
 MONGO_INITIALIZER(RangeDeleterInit)(InitializerContext* context) {
     _deleter = new RangeDeleter(new RangeDeleterDBEnv);

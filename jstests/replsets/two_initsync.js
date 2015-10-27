@@ -2,7 +2,7 @@
 
 // try running as :
 // 
-//   mongo --nodb two_initsync.js | tee out | grep -v ^m31
+//   mongol --nodb two_initsync.js | tee out | grep -v ^m31
 //
 
 var debugging = 0;

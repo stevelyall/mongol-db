@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/query/planner_ixselect.h"
+#include "mongol/db/query/planner_ixselect.h"
 
 #include <vector>
 
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/matcher/expression_algo.h"
-#include "mongo/db/matcher/expression_array.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/matcher/expression_text.h"
-#include "mongo/db/query/indexability.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/util/log.h"
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/matcher/expression_algo.h"
+#include "mongol/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/matcher/expression_text.h"
+#include "mongol/db/query/indexability.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 static double fieldWithDefault(const BSONObj& infoObj, const string& name, double def) {
     BSONElement e = infoObj[name];
@@ -766,4 +766,4 @@ void QueryPlannerIXSelect::stripInvalidAssignmentsTo2dsphereIndices(
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

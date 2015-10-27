@@ -30,14 +30,14 @@
 
 /** Unit tests for MatchMatchExpression operator implementations in match_operators.{h,cpp}. */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(MatchExpressionTest, Parse1) {
     // TreeMatchExpression* e = NULL;

@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/initializer_dependency_graph.h"
+#include "mongol/base/initializer_dependency_graph.h"
 
 #include <algorithm>
 #include <iterator>
 #include <sstream>
 
-namespace mongo {
+namespace mongol {
 
 InitializerDependencyGraph::InitializerDependencyGraph() {}
 InitializerDependencyGraph::~InitializerDependencyGraph() {}
@@ -151,4 +151,4 @@ Status InitializerDependencyGraph::recursiveTopSort(const NodeMap& nodeMap,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

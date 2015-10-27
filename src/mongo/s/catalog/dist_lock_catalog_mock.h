@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/status_with.h"
-#include "mongo/s/catalog/dist_lock_catalog.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/status_with.h"
+#include "mongol/s/catalog/dist_lock_catalog.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Mock implementation of DistLockCatalog for testing.

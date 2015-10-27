@@ -28,30 +28,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple_iterator.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/progress_meter.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/timer.h"
-#include "mongo/util/touch_pages.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple_iterator.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/progress_meter.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/timer.h"
+#include "mongol/util/touch_pages.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::vector;

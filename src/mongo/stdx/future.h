@@ -30,7 +30,7 @@
 
 #include <future>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 using ::std::async;          // NOLINT
@@ -41,4 +41,4 @@ using ::std::packaged_task;  // NOLINT
 using ::std::promise;        // NOLINT
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

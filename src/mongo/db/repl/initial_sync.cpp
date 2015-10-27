@@ -26,20 +26,20 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/initial_sync.h"
+#include "mongol/db/repl/initial_sync.h"
 
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 unsigned replSetForceInitialSyncFailure = 0;
@@ -120,4 +120,4 @@ void InitialSync::_applyOplogUntil(OperationContext* txn, const OpTime& endOpTim
     }  // end of while (true)
 }
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

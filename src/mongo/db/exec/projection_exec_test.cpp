@@ -1,5 +1,5 @@
 /**
- *    Copyright (C) 2013 mongoDB Inc.
+ *    Copyright (C) 2013 mongolDB Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
  *    it under the terms of the GNU Affero General Public License, version 3,
@@ -27,18 +27,18 @@
  */
 
 /**
- * This file contains tests for mongo/db/exec/projection_exec.cpp
+ * This file contains tests for mongol/db/exec/projection_exec.cpp
  */
 
-#include "mongo/db/exec/projection_exec.h"
+#include "mongol/db/exec/projection_exec.h"
 
 #include <memory>
-#include "mongo/db/json.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -96,7 +96,7 @@ void testTransform(const char* specStr,
     // There are fewer checks to perform if we are expected a failed status.
     if (!expectedStatusOK) {
         if (status.isOK()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "expected transform() to fail but got success instead."
                << "\nprojection spec: " << specStr << "\nquery: " << queryStr
                << "\nobject before projection: " << objStr;
@@ -108,7 +108,7 @@ void testTransform(const char* specStr,
     // If we are expecting a successful transformation but got a failed status instead,
     // print out status message in assertion message.
     if (!status.isOK()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "transform() test failed: unexpected failed status: " << status.toString()
            << "\nprojection spec: " << specStr << "\nquery: " << queryStr
            << "\nobject before projection: " << objStr
@@ -120,7 +120,7 @@ void testTransform(const char* specStr,
     const BSONObj& obj = wsm.obj.value();
     BSONObj expectedObj = fromjson(expectedObjStr);
     if (obj != expectedObj) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "transform() test failed: unexpected projected object."
            << "\nprojection spec: " << specStr << "\nquery: " << queryStr
            << "\nobject before projection: " << objStr
@@ -240,14 +240,14 @@ TEST(ProjectionExecTest, TransformMetaTextScore) {
     testTransform("{b: {$meta: 'textScore'}}",
                   "{}",
                   "{a: 'hello'}",
-                  new mongo::TextScoreComputedData(100),
+                  new mongol::TextScoreComputedData(100),
                   true,
                   "{a: 'hello', b: 100}");
     // Projected meta field should overwrite existing field.
     testTransform("{b: {$meta: 'textScore'}}",
                   "{}",
                   "{a: 'hello', b: -1}",
-                  new mongo::TextScoreComputedData(100),
+                  new mongol::TextScoreComputedData(100),
                   true,
                   "{a: 'hello', b: 100}");
 }
@@ -256,7 +256,7 @@ TEST(ProjectionExecTest, TransformMetaSortKey) {
     testTransform("{b: {$meta: 'sortKey'}}",
                   "{}",
                   "{a: 'hello'}",
-                  new mongo::SortKeyComputedData(BSON("" << 99)),
+                  new mongol::SortKeyComputedData(BSON("" << 99)),
                   true,
                   "{a: 'hello', b: {'': 99}}");
 
@@ -264,7 +264,7 @@ TEST(ProjectionExecTest, TransformMetaSortKey) {
     testTransform("{a: {$meta: 'sortKey'}}",
                   "{}",
                   "{a: 'hello'}",
-                  new mongo::SortKeyComputedData(BSON("" << 99)),
+                  new mongol::SortKeyComputedData(BSON("" << 99)),
                   true,
                   "{a: {'': 99}}");
 }

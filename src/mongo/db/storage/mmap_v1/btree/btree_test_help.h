@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/db/json.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_logic.h"
-#include "mongo/db/storage/mmap_v1/heap_record_store_btree.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_test_help.h"
+#include "mongol/db/json.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_logic.h"
+#include "mongol/db/storage/mmap_v1/heap_record_store_btree.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_test_help.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Generates a string of the specified length containing repeated concatenation of the
@@ -147,4 +147,4 @@ private:
     BtreeLogicTestHelper<OnDiskFormat>* _helper;
 };
 
-}  // namespace mongo
+}  // namespace mongol

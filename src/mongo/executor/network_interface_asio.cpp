@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio.h"
 
 #include <utility>
 
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/async_timer_asio.h"
-#include "mongo/executor/async_timer_interface.h"
-#include "mongo/executor/async_timer_mock.h"
-#include "mongo/executor/connection_pool_asio.h"
-#include "mongo/rpc/metadata/metadata_hook.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/time_support.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/async_timer_asio.h"
+#include "mongol/executor/async_timer_interface.h"
+#include "mongol/executor/async_timer_mock.h"
+#include "mongol/executor/connection_pool_asio.h"
+#include "mongol/rpc/metadata/metadata_hook.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 #if defined(_MSC_VER) && _MSC_VER < 1900
@@ -324,4 +324,4 @@ bool NetworkInterfaceASIO::inShutdown() const {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

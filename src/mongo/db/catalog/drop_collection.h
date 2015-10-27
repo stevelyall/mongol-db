@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObjBuilder;
 class NamespaceString;
 class OperationContext;
@@ -40,4 +40,4 @@ class OperationContext;
 Status dropCollection(OperationContext* txn,
                       const NamespaceString& collectionName,
                       BSONObjBuilder& result);
-}  // namespace mongo
+}  // namespace mongol

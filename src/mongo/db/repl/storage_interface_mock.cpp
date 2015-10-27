@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/storage_interface_mock.h"
+#include "mongol/db/repl/storage_interface_mock.h"
 
-#include "mongo/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 StorageInterfaceMock::StorageInterfaceMock() {}
@@ -46,4 +46,4 @@ OperationContext* StorageInterfaceMock::createOperationContext() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

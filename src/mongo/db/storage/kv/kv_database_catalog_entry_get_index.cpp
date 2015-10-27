@@ -28,26 +28,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/kv/kv_database_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_database_catalog_entry.h"
 
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/index/2d_access_method.h"
-#include "mongo/db/index/btree_access_method.h"
-#include "mongo/db/index/fts_access_method.h"
-#include "mongo/db/index/hash_access_method.h"
-#include "mongo/db/index/haystack_access_method.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index/s2_access_method.h"
-#include "mongo/db/storage/kv/kv_collection_catalog_entry.h"
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/index/2d_access_method.h"
+#include "mongol/db/index/btree_access_method.h"
+#include "mongol/db/index/fts_access_method.h"
+#include "mongol/db/index/hash_access_method.h"
+#include "mongol/db/index/haystack_access_method.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index/s2_access_method.h"
+#include "mongol/db/storage/kv/kv_collection_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 IndexAccessMethod* KVDatabaseCatalogEntry::getIndex(OperationContext* txn,
                                                     const CollectionCatalogEntry* collection,

@@ -31,9 +31,9 @@
 #include <boost/intrusive_ptr.hpp>
 #include <memory>
 
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 class Collection;
 class DocumentSourceCursor;
 class DocumentSourceSort;
@@ -46,7 +46,7 @@ struct DepsTracker;
 
 /*
   PipelineD is an extension of the Pipeline class, but with additional
-  material that references symbols that are not available in mongos,
+  material that references symbols that are not available in mongols,
   where the remainder of the Pipeline class also functions.  PipelineD
   is a friend of Pipeline so that it can have equal access to Pipeline's
   members.
@@ -119,4 +119,4 @@ private:
         const BSONObj& projectionObj = BSONObj());
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,10 +29,10 @@
 #pragma once
 
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/query/count_request.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/query/count_request.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Stage used by the count command. This stage sits at the root of a plan tree
@@ -88,4 +88,4 @@ private:
     CountStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

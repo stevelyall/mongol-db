@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/s/shard_resolver.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/s/shard_resolver.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -58,4 +58,4 @@ public:
                                    ConnectionString* shardHost) const = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

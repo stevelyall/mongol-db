@@ -128,7 +128,7 @@ class Distro(object):
         return self.n
 
     def pkgbase(self):
-        return "mongodb"
+        return "mongoldb"
 
     def archname(self, arch):
         if re.search("^(debian|ubuntu)", self.n):
@@ -150,26 +150,26 @@ class Distro(object):
 
         Examples:
 
-        repo/apt/ubuntu/dists/precise/mongodb-enterprise/testing/multiverse/binary-amd64
-        repo/apt/ubuntu/dists/precise/mongodb-enterprise/testing/multiverse/binary-i386
+        repo/apt/ubuntu/dists/precise/mongoldb-enterprise/testing/multiverse/binary-amd64
+        repo/apt/ubuntu/dists/precise/mongoldb-enterprise/testing/multiverse/binary-i386
 
-        repo/apt/ubuntu/dists/precise/mongodb-enterprise/2.5/multiverse/binary-amd64
-        repo/apt/ubuntu/dists/precise/mongodb-enterprise/2.5/multiverse/binary-i386
+        repo/apt/ubuntu/dists/precise/mongoldb-enterprise/2.5/multiverse/binary-amd64
+        repo/apt/ubuntu/dists/precise/mongoldb-enterprise/2.5/multiverse/binary-i386
 
-        repo/apt/ubuntu/dists/trusty/mongodb-enterprise/2.5/multiverse/binary-amd64
-        repo/apt/ubuntu/dists/trusty/mongodb-enterprise/2.5/multiverse/binary-i386
+        repo/apt/ubuntu/dists/trusty/mongoldb-enterprise/2.5/multiverse/binary-amd64
+        repo/apt/ubuntu/dists/trusty/mongoldb-enterprise/2.5/multiverse/binary-i386
 
-        repo/apt/debian/dists/wheezy/mongodb-enterprise/2.5/main/binary-amd64
-        repo/apt/debian/dists/wheezy/mongodb-enterprise/2.5/main/binary-i386
+        repo/apt/debian/dists/wheezy/mongoldb-enterprise/2.5/main/binary-amd64
+        repo/apt/debian/dists/wheezy/mongoldb-enterprise/2.5/main/binary-i386
 
-        repo/yum/redhat/6/mongodb-enterprise/2.5/x86_64
-        repo/yum/redhat/6/mongodb-enterprise/2.5/i386
+        repo/yum/redhat/6/mongoldb-enterprise/2.5/x86_64
+        repo/yum/redhat/6/mongoldb-enterprise/2.5/i386
 
-        repo/zypper/suse/11/mongodb-enterprise/2.5/x86_64
-        repo/zypper/suse/11/mongodb-enterprise/2.5/i386
+        repo/zypper/suse/11/mongoldb-enterprise/2.5/x86_64
+        repo/zypper/suse/11/mongoldb-enterprise/2.5/i386
 
-        repo/zypper/suse/11/mongodb-enterprise/testing/x86_64
-        repo/zypper/suse/11/mongodb-enterprise/testing/i386
+        repo/zypper/suse/11/mongoldb-enterprise/testing/x86_64
+        repo/zypper/suse/11/mongoldb-enterprise/testing/i386
 
         """
 
@@ -181,11 +181,11 @@ class Distro(object):
           repo_directory = spec.branch()
 
         if re.search("^(debian|ubuntu)", self.n):
-            return "repo/apt/%s/dists/%s/mongodb-enterprise/%s/%s/binary-%s/" % (self.n, self.repo_os_version(build_os), repo_directory, self.repo_component(), self.archname(arch))
+            return "repo/apt/%s/dists/%s/mongoldb-enterprise/%s/%s/binary-%s/" % (self.n, self.repo_os_version(build_os), repo_directory, self.repo_component(), self.archname(arch))
         elif re.search("(redhat|fedora|centos)", self.n):
-            return "repo/yum/%s/%s/mongodb-enterprise/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
+            return "repo/yum/%s/%s/mongoldb-enterprise/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
         elif re.search("(suse)", self.n):
-            return "repo/zypper/%s/%s/mongodb-enterprise/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
+            return "repo/zypper/%s/%s/mongoldb-enterprise/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
         else:
             raise Exception("BUG: unsupported platform?")
 
@@ -274,7 +274,7 @@ def main(argv):
     os.chdir(prefix)
     try:
       # Download the binaries.
-      urlfmt="http://downloads.mongodb.com/linux/mongodb-linux-%s-enterprise-%s-%s.tgz"
+      urlfmt="http://downloads.mongoldb.com/linux/mongoldb-linux-%s-enterprise-%s-%s.tgz"
 
       # Build a package for each distro/spec/arch tuple, and
       # accumulate the repository-layout directories.
@@ -299,15 +299,15 @@ def main(argv):
 def tarfile(build_os, arch, spec):
     """Return the location where we store the downloaded tarball for
     this package"""
-    return "dl/mongodb-linux-%s-enterprise-%s-%s.tar.gz" % (spec.version(), build_os, arch)
+    return "dl/mongoldb-linux-%s-enterprise-%s-%s.tar.gz" % (spec.version(), build_os, arch)
 
 def setupdir(distro, build_os, arch, spec):
     # The setupdir will be a directory containing all inputs to the
     # distro's packaging tools (e.g., package metadata files, init
     # scripts, etc), along with the already-built binaries).  In case
     # the following format string is unclear, an example setupdir
-    # would be dst/x86_64/debian-sysvinit/wheezy/mongodb-org-unstable/
-    # or dst/x86_64/redhat/rhel57/mongodb-org-unstable/
+    # would be dst/x86_64/debian-sysvinit/wheezy/mongoldb-org-unstable/
+    # or dst/x86_64/redhat/rhel57/mongoldb-org-unstable/
     return "dst/%s/%s/%s/%s%s-%s/" % (arch, distro.name(), build_os, distro.pkgbase(), spec.suffix(), spec.pversion(distro))
 
 def unpack_binaries_into(build_os, arch, spec, where):
@@ -321,7 +321,7 @@ def unpack_binaries_into(build_os, arch, spec, where):
     os.chdir(where)
     try:
 	packager.sysassert(["tar", "xvzf", rootdir+"/"+tarfile(build_os, arch, spec)])
-    	release_dir = glob('mongodb-linux-*')[0]
+    	release_dir = glob('mongoldb-linux-*')[0]
         for releasefile in "bin", "snmp", "LICENSE.txt", "README", "THIRD-PARTY-NOTICES", "MPL-2":
             os.rename("%s/%s" % (release_dir, releasefile), releasefile)
         os.rmdir(release_dir)
@@ -349,11 +349,11 @@ def make_package(distro, build_os, arch, spec, srcdir):
     # packaging infrastructure will move the files to wherever they
     # need to go.
     unpack_binaries_into(build_os, arch, spec, sdir)
-    # Remove the mongosniff binary due to libpcap dynamic
+    # Remove the mongolsniff binary due to libpcap dynamic
     # linkage.  FIXME: this removal should go away
     # eventually.
-    if os.path.exists(sdir + "bin/mongosniff"):
-      os.unlink(sdir + "bin/mongosniff")
+    if os.path.exists(sdir + "bin/mongolsniff"):
+      os.unlink(sdir + "bin/mongolsniff")
     return distro.make_pkg(build_os, arch, spec, srcdir)
 
 def make_repo(repodir, distro, build_os, spec):
@@ -383,10 +383,10 @@ def make_deb_repo(repo, distro, build_os, spec):
     # Notes: the Release{,.gpg} files must live in a special place,
     # and must be created after all the Packages.gz files have been
     # done.
-    s="""Origin: mongodb
-Label: mongodb
+    s="""Origin: mongoldb
+Label: mongoldb
 Suite: %s
-Codename: %s/mongodb-enterprise
+Codename: %s/mongoldb-enterprise
 Architectures: amd64
 Components: %s
 Description: MongoDB packages

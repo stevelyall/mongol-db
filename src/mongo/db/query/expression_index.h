@@ -30,16 +30,16 @@
 
 #include <vector>
 
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/index_bounds_builder.h"  // For OrderedIntervalList
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/index_bounds_builder.h"  // For OrderedIntervalList
 
 class S2CellId;
 class S2Region;
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Functions that compute expression index mappings.
@@ -79,4 +79,4 @@ public:
                               OrderedIntervalList* oilOut);
 };
 
-}  // namespace mongo
+}  // namespace mongol

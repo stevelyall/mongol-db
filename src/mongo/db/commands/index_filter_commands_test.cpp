@@ -27,19 +27,19 @@
  */
 
 /**
- * This file contains tests for mongo/db/commands/index_filter_commands.h
+ * This file contains tests for mongol/db/commands/index_filter_commands.h
  */
 
-#include "mongo/db/commands/index_filter_commands.h"
+#include "mongol/db/commands/index_filter_commands.h"
 
 
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -57,7 +57,7 @@ vector<BSONObj> getFilters(const QuerySettings& querySettings) {
     ASSERT_OK(ListFilters::list(querySettings, &bob));
     BSONObj resultObj = bob.obj();
     BSONElement filtersElt = resultObj.getField("filters");
-    ASSERT_EQUALS(filtersElt.type(), mongo::Array);
+    ASSERT_EQUALS(filtersElt.type(), mongol::Array);
     vector<BSONElement> filtersEltArray = filtersElt.Array();
     vector<BSONObj> filters;
     for (vector<BSONElement>::const_iterator i = filtersEltArray.begin();
@@ -83,7 +83,7 @@ vector<BSONObj> getFilters(const QuerySettings& querySettings) {
 
         // indexes
         BSONElement indexesElt = obj.getField("indexes");
-        ASSERT_EQUALS(indexesElt.type(), mongo::Array);
+        ASSERT_EQUALS(indexesElt.type(), mongol::Array);
 
         // All fields OK. Append to vector.
         filters.push_back(obj.getOwned());

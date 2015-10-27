@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/s/sharding_test_fixture.h"
+#include "mongol/s/sharding_test_fixture.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Sets up the mocked out objects for testing the replica-set backed catalog manager.
@@ -41,4 +41,4 @@ public:
     ~CatalogManagerReplSetTestFixture();
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 class FieldRef;
 class UpdateLifecycle;
@@ -238,4 +238,4 @@ private:
     PlanExecutor::YieldPolicy _yieldPolicy;
 };
 
-}  // namespace mongo
+}  // namespace mongol

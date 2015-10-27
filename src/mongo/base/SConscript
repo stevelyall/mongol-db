@@ -37,7 +37,7 @@ env.Library(
         'system_error.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 

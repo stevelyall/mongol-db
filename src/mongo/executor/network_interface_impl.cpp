@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_impl.h"
+#include "mongol/executor/network_interface_impl.h"
 
 #include <memory>
 
-#include "mongo/client/connection_pool.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/time_support.h"
+#include "mongol/client/connection_pool.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 namespace {
@@ -231,4 +231,4 @@ void NetworkInterfaceImpl::_processAlarms() {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

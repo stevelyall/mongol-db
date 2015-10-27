@@ -33,11 +33,11 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/fts/fts_language.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/fts/fts_language.h"
 #include "third_party/libstemmer_c/include/libstemmer.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

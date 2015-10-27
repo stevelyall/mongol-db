@@ -31,7 +31,7 @@
 #include <cstdint>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 /**
@@ -67,4 +67,4 @@ public:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

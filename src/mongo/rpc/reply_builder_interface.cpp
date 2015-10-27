@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/reply_builder_interface.h"
+#include "mongol/rpc/reply_builder_interface.h"
 
 #include <utility>
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/net/message.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 namespace {
@@ -83,4 +83,4 @@ ReplyBuilderInterface& ReplyBuilderInterface::setCommandReply(Status nonOKStatus
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

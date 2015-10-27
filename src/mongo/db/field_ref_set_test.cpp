@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/field_ref_set.h"
+#include "mongol/db/field_ref_set.h"
 
-#include "mongo/db/field_ref.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::FieldRef;
-using mongo::FieldRefSet;
+using mongol::FieldRef;
+using mongol::FieldRefSet;
 
 TEST(EmptySet, Normal) {
     // insert "b"

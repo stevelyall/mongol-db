@@ -1,5 +1,5 @@
 DBCollection.prototype._createWriteConcern = function(options) {
-    // If writeConcern set, use it, else get from collection (which will inherit from db/mongo)
+    // If writeConcern set, use it, else get from collection (which will inherit from db/mongol)
     var writeConcern = options.writeConcern || this.getWriteConcern();
     var writeConcernOptions = ['w', 'wtimeout', 'j', 'fsync'];
 

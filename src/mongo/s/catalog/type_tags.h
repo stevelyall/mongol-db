@@ -31,9 +31,9 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Status;
@@ -114,4 +114,4 @@ private:
     boost::optional<BSONObj> _maxKey;
 };
 
-}  // namespace mongo
+}  // namespace mongol

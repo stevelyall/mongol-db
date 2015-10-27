@@ -25,20 +25,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/connection_pool_asio.h"
+#include "mongol/executor/connection_pool_asio.h"
 
 #include <asio.hpp>
 
-#include "mongo/executor/async_stream_factory_interface.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/legacy_request_builder.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/executor/async_stream_factory_interface.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/legacy_request_builder.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace connection_pool_asio {
 
@@ -233,4 +233,4 @@ std::unique_ptr<ConnectionPool::ConnectionInterface> ASIOImpl::makeConnection(
 
 }  // namespace connection_pool_asio
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

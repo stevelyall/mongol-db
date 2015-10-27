@@ -26,58 +26,58 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
 
 #include <pcrecpp.h>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/s/catalog/config_server_version.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/type_actionlog.h"
-#include "mongo/s/catalog/type_changelog.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/s/catalog/config_server_version.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/type_actionlog.h"
+#include "mongol/s/catalog/type_changelog.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_FP_DECLARE(setDropCollDistLockWait);
 
@@ -137,7 +137,7 @@ Status CatalogManagerReplicaSet::shardCollection(OperationContext* txn,
                                                  bool unique,
                                                  const vector<BSONObj>& initPoints,
                                                  const set<ShardId>& initShardIds) {
-    // Lock the collection globally so that no other mongos can try to shard or drop the collection
+    // Lock the collection globally so that no other mongols can try to shard or drop the collection
     // at the same time.
     auto scopedDistLock = getDistLockManager()->lock(txn, ns, "shardCollection");
     if (!scopedDistLock.isOK()) {
@@ -154,10 +154,10 @@ Status CatalogManagerReplicaSet::shardCollection(OperationContext* txn,
 
     {
         // In 3.0 and prior we include this extra safety check that the collection is not getting
-        // sharded concurrently by two different mongos instances. It is not 100%-proof, but it
+        // sharded concurrently by two different mongols instances. It is not 100%-proof, but it
         // reduces the chance that two invocations of shard collection will step on each other's
         // toes.  Now we take the distributed lock so going forward this check won't be necessary
-        // but we leave it around for compatibility with other mongoses from 3.0.
+        // but we leave it around for compatibility with other mongolses from 3.0.
         // TODO(spencer): Remove this after 3.2 ships.
         auto countStatus = _runCountCommandOnConfig(
             txn, NamespaceString(ChunkType::ConfigNS), BSON(ChunkType::ns(ns)));
@@ -203,8 +203,8 @@ Status CatalogManagerReplicaSet::shardCollection(OperationContext* txn,
     collInfo.save(txn, ns);
     manager->reload(txn, true);
 
-    // Tell the primary mongod to refresh its data
-    // TODO:  Think the real fix here is for mongos to just
+    // Tell the primary mongold to refresh its data
+    // TODO:  Think the real fix here is for mongols to just
     //        assume that all collections are sharded, when we get there
     SetShardVersionRequest ssv = SetShardVersionRequest::makeForVersioningNoPersist(
         grid.shardRegistry()->getConfigServerConnectionString(),
@@ -1275,4 +1275,4 @@ bool CatalogManagerReplicaSet::_runReadCommand(OperationContext* txn,
     return Command::appendCommandStatus(*result, lastStatus);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/write_error_detail.h"
+#include "mongol/s/write_ops/write_error_detail.h"
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 const BSONField<int> WriteErrorDetail::index("index");
 const BSONField<int> WriteErrorDetail::errCode("code");
 const BSONField<BSONObj> WriteErrorDetail::errInfo("errInfo");
@@ -222,4 +222,4 @@ const std::string& WriteErrorDetail::getErrMessage() const {
     return _errMessage;
 }
 
-}  // namespace mongo
+}  // namespace mongol

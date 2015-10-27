@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/service_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/service_context.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ReplicationCoordinator* getGlobalReplicationCoordinator() {
@@ -45,4 +45,4 @@ void setGlobalReplicationCoordinator(ReplicationCoordinator* coord) {
                                       std::unique_ptr<ReplicationCoordinator>(coord));
 }
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -31,12 +31,12 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 struct GetMoreRequest {
     static const char kGetMoreCommandName[];
@@ -90,4 +90,4 @@ private:
     Status isValid() const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

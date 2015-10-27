@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class DeleteRequest {
     MONGO_DISALLOW_COPYING(DeleteRequest);
@@ -123,4 +123,4 @@ private:
     PlanExecutor::YieldPolicy _yieldPolicy;
 };
 
-}  // namespace mongo
+}  // namespace mongol

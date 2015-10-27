@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/initialize_server_global_state.h"
+#include "mongol/db/initialize_server_global_state.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
@@ -43,34 +43,34 @@
 #include <sys/wait.h>
 #endif
 
-#include "mongo/base/init.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/auth/security_key.h"
-#include "mongo/db/server_options.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/console_appender.h"
-#include "mongo/logger/message_event.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/logger/ramlog.h"
-#include "mongo/logger/rotatable_file_appender.h"
-#include "mongo/logger/rotatable_file_manager.h"
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/logger/syslog_appender.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/base/init.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/auth/security_key.h"
+#include "mongol/db/server_options.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/console_appender.h"
+#include "mongol/logger/message_event.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/ramlog.h"
+#include "mongol/logger/rotatable_file_appender.h"
+#include "mongol/logger/rotatable_file_manager.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/logger/syslog_appender.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/quick_exit.h"
 
 namespace fs = boost::filesystem;
 
-namespace mongo {
+namespace mongol {
 
 using std::cerr;
 using std::cout;
@@ -240,14 +240,14 @@ MONGO_INITIALIZER_GENERAL(ServerLogRedirection,
             exists = boost::filesystem::exists(absoluteLogpath);
         } catch (boost::filesystem::filesystem_error& e) {
             return Status(ErrorCodes::FileNotOpen,
-                          mongoutils::str::stream() << "Failed probe for \"" << absoluteLogpath
+                          mongolutils::str::stream() << "Failed probe for \"" << absoluteLogpath
                                                     << "\": " << e.code().message());
         }
 
         if (exists) {
             if (boost::filesystem::is_directory(absoluteLogpath)) {
                 return Status(ErrorCodes::FileNotOpen,
-                              mongoutils::str::stream()
+                              mongolutils::str::stream()
                                   << "logpath \"" << absoluteLogpath
                                   << "\" should name a file, not a directory.");
             }
@@ -259,7 +259,7 @@ MONGO_INITIALIZER_GENERAL(ServerLogRedirection,
                           << renameTarget << "\".";
                 } else {
                     return Status(ErrorCodes::FileRenameFailed,
-                                  mongoutils::str::stream()
+                                  mongolutils::str::stream()
                                       << "Could not rename preexisting log file \""
                                       << absoluteLogpath << "\" to \"" << renameTarget
                                       << "\"; run with --logappend or manually remove file: "
@@ -312,7 +312,7 @@ MONGO_INITIALIZER_GENERAL(ServerLogRedirection,
  * case, to avoid static-destructor problems in the server, this exits the
  * process immediately with code EXIT_FAILURE.
  *
- * TODO: Remove once exit() executes safely in mongo server processes.
+ * TODO: Remove once exit() executes safely in mongol server processes.
  */
 static void shortCircuitExit() {
     quickExit(EXIT_FAILURE);
@@ -370,4 +370,4 @@ bool initializeServerGlobalState() {
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

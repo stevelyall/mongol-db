@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/connection_pool_asio.h"
-#include "mongo/executor/downconvert_find_and_getmore_commands.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/metadata/metadata_hook.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/connection_pool_asio.h"
+#include "mongol/executor/downconvert_find_and_getmore_commands.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/metadata/metadata_hook.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 using asio::ip::tcp;
@@ -248,4 +248,4 @@ void NetworkInterfaceASIO::AsyncOp::setOnFinish(RemoteCommandCompletionFn&& onFi
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

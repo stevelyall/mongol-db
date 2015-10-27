@@ -34,7 +34,7 @@
  *        Format for Object:
  *          { cmdline-param-with-no-arg : "",
  *            param-with-arg : arg }
- *        This turns into "mongod --cmdline-param-with-no-arg --param-with-arg arg" 
+ *        This turns into "mongold --cmdline-param-with-no-arg --param-with-arg arg" 
  *  
  *     oplogSize {number}: Default: 40
  *     useSeedList {boolean}: Use the connection string format of this set
@@ -215,7 +215,7 @@ ReplSetTest.prototype.getOptions = function( n , extra , putBinaryFirst ){
 
 
     if ( putBinaryFirst )
-        a.push( "mongod" );
+        a.push( "mongold" );
 
     if ( extra.noReplSet ) {
         delete extra.noReplSet;
@@ -878,7 +878,7 @@ ReplSetTest.prototype.stop = function(n, signal, opts) {
     }
     
     var port = this.getPort( n );
-    print('ReplSetTest stop *** Shutting down mongod in port ' + port + ' ***');
+    print('ReplSetTest stop *** Shutting down mongold in port ' + port + ' ***');
     var ret = MongoRunner.stopMongod( port , signal, opts );
 
     print('ReplSetTest stop *** Mongod in port ' + port +
@@ -925,7 +925,7 @@ ReplSetTest.prototype.stopSet = function( signal , forRestart, opts ) {
  */
 ReplSetTest.prototype.ensureOplogsMatch = function() {
     "use strict";
-    var OplogReader = function(mongo) {
+    var OplogReader = function(mongol) {
             this.next = function() {
                 if (!this.cursor)
                     throw Error("reader is not open!");
@@ -960,12 +960,12 @@ ReplSetTest.prototype.ensureOplogsMatch = function() {
             };
             
             this.getOplogColl = function () {
-                return this.mongo.getDB("local")["oplog.rs"];
+                return this.mongol.getDB("local")["oplog.rs"];
             }
             
             this.lastDoc = null;
             this.cursor = null;
-            this.mongo = mongo;
+            this.mongol = mongol;
     };
     
     if (this.nodes.length && this.nodes.length > 1) {
@@ -992,7 +992,7 @@ ReplSetTest.prototype.ensureOplogsMatch = function() {
             for(var i = 1; i < rsSize; i++) { 
                 assert.eq(ts, 
                           readers[i].next()["ts"], 
-                          " non-matching ts for node: " + readers[i].mongo);
+                          " non-matching ts for node: " + readers[i].mongol);
             }
         }
         

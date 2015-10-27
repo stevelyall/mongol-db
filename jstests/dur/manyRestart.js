@@ -11,7 +11,7 @@ function checkNoJournalFiles(path, pass) {
     var files = listFiles(path);
     if (files.some(function (f) { return f.name.indexOf("prealloc") < 0; })) {
         if (pass == null) {
-            // wait a bit longer for mongod to potentially finish if it is still running.
+            // wait a bit longer for mongold to potentially finish if it is still running.
             sleep(10000);
             return checkNoJournalFiles(path, 1);
         }
@@ -91,7 +91,7 @@ function verifyRows(nrows) {
 }
 
 if( debugging ) { 
-    // mongod already running in debugger
+    // mongold already running in debugger
     conn = db.getMongo();
     work();
     sleep(30000);
@@ -105,7 +105,7 @@ var path1 = MongoRunner.dataPath + testname+"nodur";
 var path2 = MongoRunner.dataPath + testname+"dur";
 
 // non-durable version
-log("starting first mongod");
+log("starting first mongold");
 conn = MongoRunner.runMongod({dbpath: path1, nojournal: "", smallfiles: ""});
 work();
 MongoRunner.stopMongod(conn);
@@ -114,7 +114,7 @@ MongoRunner.stopMongod(conn);
 // Sat Jun 11 14:07:57 Error: boost::filesystem::create_directory: Access is denied: "\data\db\manyRestartsdur" (anon):1
 sleep(1000);
 
-log("starting second mongod");
+log("starting second mongold");
 conn = MongoRunner.runMongod({dbpath: path2, journal: "", smallfiles: "", journalOptions: 8});
 work();
 // wait for group commit.
@@ -126,7 +126,7 @@ sleep(5000);
 for (var i = 0; i < 3; ++i) {
 
     // durable version
-    log("restarting second mongod");
+    log("restarting second mongold");
     conn = MongoRunner.runMongod({restart: true,
                                   cleanData: false,
                                   dbpath: path2,
@@ -180,7 +180,7 @@ var nrows = 0;
 for (var i = 0; i < 5; ++i) {
 
     // durable version
-    log("restarting second mongod");
+    log("restarting second mongold");
     conn = MongoRunner.runMongod({restart: true,
                                   cleanData: false,
                                   dbpath: path2,

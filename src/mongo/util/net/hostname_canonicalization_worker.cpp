@@ -25,21 +25,21 @@
  *    delete this exception statement from all source files in the program,
  *    then also delete it in the license file.
  */
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/hostname_canonicalization_worker.h"
+#include "mongol/util/net/hostname_canonicalization_worker.h"
 
-#include "mongo/db/service_context.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostname_canonicalization.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/service_context.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostname_canonicalization.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const auto getCanonicalizerTask =
@@ -89,4 +89,4 @@ HostnameCanonicalizationWorker* HostnameCanonicalizationWorker::get(ServiceConte
     return getCanonicalizerTask(context).get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

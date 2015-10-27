@@ -7,7 +7,7 @@ DB.prototype._defaultAuthenticationMechanism = "SCRAM-SHA-1"; // SERVER-11428
 var baseName = "jstests_clone_copyauth";
 
 /*
- * Helper to spawn a replica set, sharded cluster, or a single mongod and hide it all behind the
+ * Helper to spawn a replica set, sharded cluster, or a single mongold and hide it all behind the
  * same interface.
  *
  * Arguments:
@@ -17,8 +17,8 @@ var baseName = "jstests_clone_copyauth";
  *
  * Member variables:
  *
- * conn - a connection to the node used to access this cluster, whether it's the mongod, a primary
- * mongod in a replica set, or a mongos.
+ * conn - a connection to the node used to access this cluster, whether it's the mongold, a primary
+ * mongold in a replica set, or a mongols.
  * connString - the full connection string used to connect to this cluster.  For a replica set this
  * is the full connection string including the replica set name.
  *
@@ -31,7 +31,7 @@ function ClusterSpawnHelper(clusterType, startWithAuth) {
     if (clusterType === "sharded") {
         var shardingTestConfig = {
             name : baseName + "_source",
-            mongos : 1,
+            mongols : 1,
             shards : 1,
             config : 1
         }

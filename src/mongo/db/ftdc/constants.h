@@ -26,7 +26,7 @@
  * then also delete it in the license file.
  */
 
-namespace mongo {
+namespace mongol {
 
 extern const char kFTDCInterimFile[];
 extern const char kFTDCArchiveFile[];
@@ -42,4 +42,4 @@ extern const char kFTDCDocsField[];
 extern const char kFTDCCollectStartField[];
 extern const char kFTDCCollectEndField[];
 
-}  // namespace mongo
+}  // namespace mongol

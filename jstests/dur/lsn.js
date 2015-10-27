@@ -1,5 +1,5 @@
 /* test durability, specifically last sequence number function
-   runs mongod, kill -9's, recovers
+   runs mongold, kill -9's, recovers
    then writes more data and verifies with DurParanoid that it matches
 */
 
@@ -63,8 +63,8 @@ function work() {
 }
 
 if( debugging ) {
-    // mongod already running in debugger
-    print("DOING DEBUG MODE BEHAVIOR AS 'db' IS DEFINED -- RUN mongo --nodb FOR REGULAR TEST BEHAVIOR");
+    // mongold already running in debugger
+    print("DOING DEBUG MODE BEHAVIOR AS 'db' IS DEFINED -- RUN mongol --nodb FOR REGULAR TEST BEHAVIOR");
     conn = db.getMongo();
     work();
     sleep(30000);
@@ -74,8 +74,8 @@ if( debugging ) {
 // directories
 var path2 = MongoRunner.dataPath + testname+"dur";
 
-// run mongod with a short --syncdelay to make LSN writing sooner
-log("run mongod --journal and a short --syncdelay");
+// run mongold with a short --syncdelay to make LSN writing sooner
+log("run mongold --journal and a short --syncdelay");
 conn = MongoRunner.runMongod({dbpath: path2,
                               syncdelay: 2,
                               journal: "",
@@ -88,7 +88,7 @@ work();
 log("wait a while for a sync and an lsn write");
 sleep(14); // wait for lsn write
 
-log("kill mongod -9");
+log("kill mongold -9");
 MongoRunner.stopMongod(conn, /*signal*/9);
 
 // journal file should be present, and non-empty as we killed hard
@@ -108,7 +108,7 @@ MongoRunner.stopMongod(conn, /*signal*/9);
 );*/
 
 // restart and recover
-log("restart mongod, recover, verify");
+log("restart mongold, recover, verify");
 conn = MongoRunner.runMongod({restart:true,
                               cleanData: false,
                               dbpath: path2,
@@ -133,7 +133,7 @@ log("add data after recovery");
     d.xyz.insert({ x: 1 });
 }
 
-log("stop mongod " + conn.port);
+log("stop mongold " + conn.port);
 MongoRunner.stopMongod(conn);
 
 print(testname + " SUCCESS");

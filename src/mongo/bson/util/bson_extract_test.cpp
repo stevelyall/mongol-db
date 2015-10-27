@@ -29,13 +29,13 @@
 #include <limits>
 #include <string>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(ExtractBSON, ExtractField) {
     BSONObj obj = BSON("a" << 1 << "b"

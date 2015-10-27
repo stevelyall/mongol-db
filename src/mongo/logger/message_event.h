@@ -29,12 +29,12 @@
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/log_severity.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/string_data.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/log_severity.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -91,4 +91,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

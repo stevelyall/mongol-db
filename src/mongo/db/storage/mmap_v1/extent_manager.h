@@ -34,11 +34,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 class DataFile;
 class MmapV1RecordHeader;

@@ -5,10 +5,10 @@
 /**
  * Allows synchronization between background ops and the test operations
  */
-var waitForLock = function( mongo, name ){
+var waitForLock = function( mongol, name ){
     
     var ts = new ObjectId()
-    var lockColl = mongo.getCollection( "config.testLocks" )
+    var lockColl = mongol.getCollection( "config.testLocks" )
     
     lockColl.update({ _id : name, state : 0 }, { $set : { state : 0 } }, true)
     
@@ -49,44 +49,44 @@ var waitForLock = function( mongo, name ){
 /**
  * Allows a test or background op to say it's finished
  */
-var setFinished = function( mongo, name, finished ){
+var setFinished = function( mongol, name, finished ){
     if( finished || finished == undefined )
-        mongo.getCollection( "config.testFinished" ).update({ _id : name }, { _id : name }, true )
+        mongol.getCollection( "config.testFinished" ).update({ _id : name }, { _id : name }, true )
     else
-        mongo.getCollection( "config.testFinished" ).remove({ _id : name })
+        mongol.getCollection( "config.testFinished" ).remove({ _id : name })
 }
 
 /**
  * Checks whether a test or background op is finished
  */
-var isFinished = function( mongo, name ){
-    return mongo.getCollection( "config.testFinished" ).findOne({ _id : name }) != null 
+var isFinished = function( mongol, name ){
+    return mongol.getCollection( "config.testFinished" ).findOne({ _id : name }) != null 
 }
 
 /**
  * Sets the result of a background op
  */
-var setResult = function( mongo, name, result, err ){
-    mongo.getCollection( "config.testResult" ).update({ _id : name }, { _id : name, result : result, err : err }, true )
+var setResult = function( mongol, name, result, err ){
+    mongol.getCollection( "config.testResult" ).update({ _id : name }, { _id : name, result : result, err : err }, true )
 }
 
 /**
  * Gets the result for a background op
  */
-var getResult = function( mongo, name ){
-    return mongo.getCollection( "config.testResult" ).findOne({ _id : name })
+var getResult = function( mongol, name ){
+    return mongol.getCollection( "config.testResult" ).findOne({ _id : name })
 }
 
 /**
- * Overrides the parallel shell code in mongo
+ * Overrides the parallel shell code in mongol
  */
 function startParallelShell( jsCode, port ){
     
     var x;
     if ( port ) {
-        x = startMongoProgramNoConnect( "mongo" , "--port" , port , "--eval" , jsCode );
+        x = startMongoProgramNoConnect( "mongol" , "--port" , port , "--eval" , jsCode );
     } else {
-        x = startMongoProgramNoConnect( "mongo" , "--eval" , jsCode , db ? db.getMongo().host : null );        
+        x = startMongoProgramNoConnect( "mongol" , "--eval" , jsCode , db ? db.getMongo().host : null );        
     }
     
     return function(){
@@ -96,15 +96,15 @@ function startParallelShell( jsCode, port ){
     };
 }
 
-startParallelOps = function( mongo, proc, args, context ){
+startParallelOps = function( mongol, proc, args, context ){
                  
     var procName = proc.name + "-" + new ObjectId()
     var seed = new ObjectId( new ObjectId().valueOf().split("").reverse().join("") )
                                                                            .getTimestamp().getTime()
        
     // Make sure we aren't finished before we start
-    setFinished( mongo, procName, false )
-    setResult( mongo, procName, undefined, undefined )
+    setFinished( mongol, procName, false )
+    setResult( mongol, procName, undefined, undefined )
     
     // TODO: Make this a context of its own
     var procContext = { procName : procName,
@@ -166,7 +166,7 @@ startParallelOps = function( mongo, proc, args, context ){
     
     var contexts = [ RandomFunctionContext, context ]
     
-    var testDataColl = mongo.getCollection( "config.parallelTest" )
+    var testDataColl = mongol.getCollection( "config.parallelTest" )
     
     testDataColl.insert({ _id : procName,
                           bootstrapper : tojson( bootstrapper ),
@@ -192,7 +192,7 @@ startParallelOps = function( mongo, proc, args, context ){
     if (typeof db !== 'undefined') {
         oldDB = db;
     }
-    db = mongo.getDB( "test" )
+    db = mongol.getDB( "test" )
     
     jsTest.log( "Starting " + proc.name + " operations..." )
     
@@ -202,10 +202,10 @@ startParallelOps = function( mongo, proc, args, context ){
           
     
     var join = function(){ 
-        setFinished( mongo, procName, true )
+        setFinished( mongol, procName, true )
         
         rawJoin();
-        result = getResult( mongo, procName )
+        result = getResult( mongol, procName )
                            
         assert.neq( result, null )                 
                            
@@ -216,15 +216,15 @@ startParallelOps = function( mongo, proc, args, context ){
     }
     
     join.isFinished = function(){
-        return isFinished( mongo, procName )
+        return isFinished( mongol, procName )
     }
     
     join.setFinished = function( finished ){
-        return setFinished( mongo, procName, finished )
+        return setFinished( mongol, procName, finished )
     }
     
     join.waitForLock = function( name ){
-        return waitForLock( mongo, name )
+        return waitForLock( mongol, name )
     }
     
     return join
@@ -274,7 +274,7 @@ var RandomFunctionContext = function( context ){
         var numShards = 2 //Random.randInt( 1, 10 )
         var rs = false //Random.randBool()
         var st = new ShardingTest({ shards : numShards, 
-                                    mongos : 4, 
+                                    mongols : 4, 
                                     other : { rs : rs } })
         
         return st

@@ -29,13 +29,13 @@
 
 #include <set>
 
-#include "mongo/db/client_basic.h"
-#include "mongo/s/write_ops/batch_write_exec.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * Client decoration that holds information needed to by mongos to process
+ * Client decoration that holds information needed to by mongols to process
  * getLastError commands.
  */
 class ClusterLastErrorInfo {
@@ -109,4 +109,4 @@ private:
  */
 void saveGLEStats(const BSONObj& metadataObj, StringData conn);
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/rpc/metadata/config_server_metadata.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 using repl::OpTime;
@@ -58,10 +58,10 @@ StatusWith<ConfigServerMetadata> ConfigServerMetadata::readFromMetadata(
     const BSONElement& metadataElem) {
     if (metadataElem.eoo()) {
         return ConfigServerMetadata{};
-    } else if (metadataElem.type() != mongo::Object) {
+    } else if (metadataElem.type() != mongol::Object) {
         return {ErrorCodes::TypeMismatch,
                 str::stream() << "ConfigServerMetadata element has incorrect type: expected"
-                              << mongo::Object << " but got " << metadataElem.type()};
+                              << mongol::Object << " but got " << metadataElem.type()};
     }
 
     BSONObj configMetadataObj = metadataElem.Obj();
@@ -82,4 +82,4 @@ void ConfigServerMetadata::writeToMetadata(BSONObjBuilder* builder) const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

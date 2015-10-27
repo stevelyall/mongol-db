@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/d_merge.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/d_merge.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -135,7 +135,7 @@ public:
         }
 
         //
-        // This might be the first call from mongos, so we may need to pass the config and shard
+        // This might be the first call from mongols, so we may need to pass the config and shard
         // information to initialize the sharding state.
         //
 
@@ -187,4 +187,4 @@ BSONField<string> MergeChunksCommand::shardNameField("shardName");
 BSONField<OID> MergeChunksCommand::epochField("epoch");
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

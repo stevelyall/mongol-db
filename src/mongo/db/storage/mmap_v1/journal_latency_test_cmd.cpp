@@ -26,33 +26,33 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem/convenience.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <string>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/storage/mmap_v1/aligned_builder.h"
-#include "mongo/db/storage/mmap_v1/logfile.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/util/background.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/storage/mmap_v1/aligned_builder.h"
+#include "mongol/db/storage/mmap_v1/logfile.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/background.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::max;
 using std::min;

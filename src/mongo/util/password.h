@@ -32,7 +32,7 @@
 #include <boost/program_options.hpp>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 std::string askPassword();
 }

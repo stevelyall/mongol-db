@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/write_ops/batched_update_document.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/write_ops/batched_update_document.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and content of a batched update runCommand,
@@ -134,4 +134,4 @@ private:
     bool _shouldBypassValidation;
 };
 
-}  // namespace mongo
+}  // namespace mongol

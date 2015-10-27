@@ -33,10 +33,10 @@
 #include <list>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class CollectionCatalogEntry;

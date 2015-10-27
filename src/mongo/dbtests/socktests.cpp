@@ -29,11 +29,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/isself.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/db/repl/isself.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/net/sock.h"
 
 namespace SockTests {
 
@@ -46,7 +46,7 @@ public:
 
         HostAndPort h("asdfasdfasdf_no_such_host");
         // this fails uncomment when fixed.
-        ASSERT(!mongo::repl::isSelf(h));
+        ASSERT(!mongol::repl::isSelf(h));
     }
 };
 

@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/util/cmdline_utils/censor_cmdline.h"
+#include "mongol/util/cmdline_utils/censor_cmdline.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace cmdline_utils {
 
@@ -48,7 +48,7 @@ static bool _isPasswordArgument(const char* argumentName) {
         NULL  // Last entry sentinel.
     };
     for (const char* const* current = passwordArguments; *current; ++current) {
-        if (mongoutils::str::equals(argumentName, *current))
+        if (mongolutils::str::equals(argumentName, *current))
             return true;
     }
     return false;
@@ -71,7 +71,7 @@ static bool _isPasswordSwitch(const char* switchName) {
     switchName += i;
 
     for (const char* const* current = passwordSwitches; *current; ++current) {
-        if (mongoutils::str::equals(switchName, *current))
+        if (mongolutils::str::equals(switchName, *current))
             return true;
     }
     return false;

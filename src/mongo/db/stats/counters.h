@@ -29,14 +29,14 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/concurrency/spin_lock.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/concurrency/spin_lock.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * for storing operation counters

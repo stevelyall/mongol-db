@@ -26,21 +26,21 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/db/auth/authz_manager_external_state_local.h"
+#include "mongol/db/auth/authz_manager_external_state_local.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user_document_parser.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user_document_parser.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 
@@ -74,12 +74,12 @@ Status AuthzManagerExternalStateLocal::getStoredAuthorizationVersion(OperationCo
             return Status::OK();
         } else if (versionElement.eoo()) {
             return Status(ErrorCodes::NoSuchKey,
-                          mongoutils::str::stream() << "No "
+                          mongolutils::str::stream() << "No "
                                                     << AuthorizationManager::schemaVersionFieldName
                                                     << " field in version document.");
         } else {
             return Status(ErrorCodes::TypeMismatch,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Could not determine schema version of authorization data.  "
                                  "Bad (non-numeric) type " << typeName(versionElement.type())
                               << " (" << versionElement.type() << ") for "
@@ -120,7 +120,7 @@ void addPrivilegeObjectsOrWarningsToArrayElement(mutablebson::Element privileges
             fassert(17157,
                     warningsElement.appendString(
                         "",
-                        std::string(mongoutils::str::stream()
+                        std::string(mongolutils::str::stream()
                                     << "Skipped privileges on resource "
                                     << privileges[i].getResourcePattern().toString()
                                     << ". Reason: " << errmsg)));
@@ -222,7 +222,7 @@ Status AuthzManagerExternalStateLocal::_getUserDocument(OperationContext* txn,
     if (status == ErrorCodes::NoMatchingDocument) {
         status =
             Status(ErrorCodes::UserNotFound,
-                   mongoutils::str::stream() << "Could not find user " << userName.getFullName());
+                   mongolutils::str::stream() << "Could not find user " << userName.getFullName());
     }
     return status;
 }
@@ -430,4 +430,4 @@ void AuthzManagerExternalStateLocal::logOp(
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

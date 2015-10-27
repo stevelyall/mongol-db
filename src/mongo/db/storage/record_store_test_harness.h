@@ -32,11 +32,11 @@
 
 #include <cstdint>
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecordStore;
 class RecoveryUnit;

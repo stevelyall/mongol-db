@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/service_context.h"
+#include "mongol/db/service_context.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -82,7 +82,7 @@ Status validateStorageOptions(
     while (storageIt.more()) {
         BSONElement storageElement = storageIt.next();
         StringData storageEngineName = storageElement.fieldNameStringData();
-        if (storageElement.type() != mongo::Object) {
+        if (storageElement.type() != mongol::Object) {
             return Status(ErrorCodes::BadValue,
                           str::stream() << "'storageEngine." << storageElement.fieldNameStringData()
                                         << "' has to be an embedded document.");
@@ -260,4 +260,4 @@ BSONArray storageEngineList() {
 void appendStorageEngineList(BSONObjBuilder* result) {
     result->append("storageEngines", storageEngineList());
 }
-}  // namespace mongo
+}  // namespace mongol

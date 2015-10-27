@@ -3,7 +3,7 @@
 // Don't start any shards, yet
 var s = new ShardingTest({name: "add_shard2",
                           shards: 1, 
-                          mongos: 1,
+                          mongols: 1,
                           other: {useHostname : true} });
 
 // Start two new instances, which will be used for shards

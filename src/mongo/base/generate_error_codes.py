@@ -173,7 +173,7 @@ class js_generator(base_generator):
         return self.error_class_predicate_template % dict(class_name=class_name, cases=cases)
 
     source_template = '''// AUTO-GENERATED FILE DO NOT EDIT
-// See src/mongo/base/generate_error_codes.py
+// See src/mongol/base/generate_error_codes.py
 /*    Copyright 2015 MongoDB, Inc.
 *
 *    This program is free software: you can redistribute it and/or  modify
@@ -271,7 +271,7 @@ class cpp_generator(base_generator):
         return self.error_class_predicate_template % dict(class_name=class_name, cases=cases)
 
     header_template = '''// AUTO-GENERATED FILE DO NOT EDIT
-// See src/mongo/base/generate_error_codes.py
+// See src/mongol/base/generate_error_codes.py
 /*    Copyright 2014 MongoDB, Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
@@ -300,13 +300,13 @@ class cpp_generator(base_generator):
  */
 #pragma once
 #include <string>
-#include "mongo/base/string_data.h"
-namespace mongo {
+#include "mongol/base/string_data.h"
+namespace mongol {
     /**
      * This is a generated class containing a table of error codes and their corresponding error
-     * strings. The class is derived from the definitions in src/mongo/base/error_codes.err file.
+     * strings. The class is derived from the definitions in src/mongol/base/error_codes.err file.
      *
-     * Do not update this file directly. Update src/mongo/base/error_codes.err instead.
+     * Do not update this file directly. Update src/mongol/base/error_codes.err instead.
      */
     class ErrorCodes {
     public:
@@ -329,11 +329,11 @@ namespace mongo {
         static Error fromInt(int code);
         %(error_code_class_predicate_declarations)s;
     };
-}  // namespace mongo
+}  // namespace mongol
 '''
 
     source_template = '''// AUTO-GENERATED FILE DO NOT EDIT
-// See src/mongo/base/generate_error_codes.py
+// See src/mongol/base/generate_error_codes.py
 /*    Copyright 2014 MongoDB, Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
@@ -360,13 +360,13 @@ namespace mongo {
  *    delete this exception statement from all source files in the program,
  *    then also delete it in the license file.
  */
-#include "mongo/base/error_codes.h"
-#include "mongo/util/mongoutils/str.h"
-namespace mongo {
+#include "mongol/base/error_codes.h"
+#include "mongol/util/mongolutils/str.h"
+namespace mongol {
     std::string ErrorCodes::errorString(Error err) {
         switch (err) {
         %(symbol_to_string_cases)s;
-        default: return mongoutils::str::stream() << "Location" << err;
+        default: return mongolutils::str::stream() << "Location" << err;
         }
     }
     ErrorCodes::Error ErrorCodes::fromString(StringData name) {
@@ -380,7 +380,7 @@ namespace mongo {
 namespace {
     static_assert(sizeof(ErrorCodes::Error) == sizeof(int), "sizeof(ErrorCodes::Error) == sizeof(int)");
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol
 '''
 
     error_class_predicate_template = '''bool ErrorCodes::is%(class_name)s(Error err) {

@@ -25,16 +25,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/message_log_domain.h"
+#include "mongol/logger/message_log_domain.h"
 
-#include "mongo/logger/log_domain-impl.h"
+#include "mongol/logger/log_domain-impl.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 template class LogDomain<MessageEventEphemeral>;
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

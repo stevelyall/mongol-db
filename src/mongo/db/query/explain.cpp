@@ -26,32 +26,32 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/explain.h"
+#include "mongol/db/query/explain.h"
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/exec/count_scan.h"
-#include "mongo/db/exec/distinct_scan.h"
-#include "mongo/db/exec/idhack.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/multi_plan.h"
-#include "mongo/db/exec/near.h"
-#include "mongo/db/exec/text.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/query/stage_builder.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/version.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/exec/count_scan.h"
+#include "mongol/db/exec/distinct_scan.h"
+#include "mongol/db/exec/idhack.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/multi_plan.h"
+#include "mongol/db/exec/near.h"
+#include "mongol/db/exec/text.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/query/stage_builder.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/version.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::string;
 using std::unique_ptr;
 using std::vector;
@@ -164,7 +164,7 @@ size_t getDocsExamined(StageType type, const SpecificStats* specific) {
 /**
  * Adds to the plan summary string being built by 'ss' for the execution stage 'stage'.
  */
-void addStageSummaryStr(const PlanStage* stage, mongoutils::str::stream& ss) {
+void addStageSummaryStr(const PlanStage* stage, mongolutils::str::stream& ss) {
     // First add the stage type string.
     const CommonStats* common = stage->getCommonStats();
     ss << common->stageTypeStr;
@@ -194,9 +194,9 @@ void addStageSummaryStr(const PlanStage* stage, mongoutils::str::stream& ss) {
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 // static
 void Explain::statsToBSON(const PlanStageStats& stats,
@@ -699,7 +699,7 @@ std::string Explain::getPlanSummary(const PlanStage* root) {
     flattenExecTree(root, &stages);
 
     // Use this stream to build the plan summary string.
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     bool seenLeaf = false;
 
     for (size_t i = 0; i < stages.size(); i++) {
@@ -783,4 +783,4 @@ void Explain::getSummaryStats(const PlanExecutor& exec, PlanSummaryStats* statsO
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

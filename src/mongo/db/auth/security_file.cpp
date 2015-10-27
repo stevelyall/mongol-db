@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/security_key.h"
+#include "mongol/db/auth/security_key.h"
 
 #include <sys/stat.h>
 #include <string>
 
-#include "mongo/base/status_with.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -104,4 +104,4 @@ StatusWith<std::string> readSecurityFile(const std::string& filename) {
     return StatusWith<std::string>(str);
 }
 
-}  // namespace mongo
+}  // namespace mongol

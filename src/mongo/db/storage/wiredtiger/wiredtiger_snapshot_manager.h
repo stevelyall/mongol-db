@@ -32,12 +32,12 @@
 #include <boost/optional.hpp>
 #include <wiredtiger.h>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/storage/snapshot_manager.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/storage/snapshot_manager.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerSnapshotManager final : public SnapshotManager {
     MONGO_DISALLOW_COPYING(WiredTigerSnapshotManager);

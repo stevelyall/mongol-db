@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 class CollectionMetadata;
 
@@ -101,4 +101,4 @@ private:
     const std::shared_ptr<CollectionMetadata> _metadata;
 };
 
-}  // namespace mongo
+}  // namespace mongol

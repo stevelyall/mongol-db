@@ -30,18 +30,18 @@
 #pragma once
 
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientmockcursor.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientmockcursor.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * Simple adapter class for mongo::DBClientMockCursor to mongo::DBClientCursor.
+ * Simple adapter class for mongol::DBClientMockCursor to mongol::DBClientCursor.
  * Only supports more and next, the behavior of other operations are undefined.
  */
-class MockDBClientCursor : public mongo::DBClientCursor {
+class MockDBClientCursor : public mongol::DBClientCursor {
 public:
-    MockDBClientCursor(mongo::DBClientBase* client, const mongo::BSONArray& mockCollection);
+    MockDBClientCursor(mongol::DBClientBase* client, const mongol::BSONArray& mockCollection);
 
     bool more();
 
@@ -49,10 +49,10 @@ public:
      * Note: has the same contract as DBClientCursor - returned BSONObj will
      * become invalid when this cursor is destroyed.
      */
-    mongo::BSONObj next();
+    mongol::BSONObj next();
 
 private:
-    std::unique_ptr<mongo::DBClientMockCursor> _cursor;
-    mongo::BSONObj _resultSet;
+    std::unique_ptr<mongol::DBClientMockCursor> _cursor;
+    mongol::BSONObj _resultSet;
 };
 }

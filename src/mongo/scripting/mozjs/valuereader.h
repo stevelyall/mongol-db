@@ -31,9 +31,9 @@
 #include <jsapi.h>
 #include <string>
 
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -58,4 +58,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

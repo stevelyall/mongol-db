@@ -31,7 +31,7 @@
 #include <cstdint>
 #include <limits>
 
-namespace mongo {
+namespace mongol {
 
 class SnapshotName {
 public:

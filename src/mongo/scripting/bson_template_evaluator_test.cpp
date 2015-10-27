@@ -26,11 +26,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/scripting/bson_template_evaluator.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/scripting/bson_template_evaluator.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -750,4 +750,4 @@ TEST(BSONTemplateEvaluatorTest, NESTING) {
     ASSERT_EQUALS(obj7_foo.String(), "ab");
 }
 }  // end anonymous namespace
-}  // end namespace mongo
+}  // end namespace mongol

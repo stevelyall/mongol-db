@@ -4,7 +4,7 @@
 //  2.) reverse order
 // @tags : [ hashed ]
 
-var s = new ShardingTest( { name : jsTestName() , shards : 1 , mongos : 1, verbose : 1 } );
+var s = new ShardingTest( { name : jsTestName() , shards : 1 , mongols : 1, verbose : 1 } );
 var dbName = "test";
 var collName = "foo";
 var ns = dbName + "." + collName;

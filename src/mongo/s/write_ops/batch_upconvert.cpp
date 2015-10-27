@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batch_upconvert.h"
+#include "mongol/s/write_ops/batch_upconvert.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/batched_delete_document.h"
-#include "mongo/s/write_ops/batched_update_document.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
+#include "mongol/s/write_ops/batched_update_document.h"
 
-namespace mongo {
+namespace mongol {
 
 using str::stream;
 using std::string;
@@ -227,4 +227,4 @@ bool batchErrorToLastError(const BatchedCommandRequest& request,
     return false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

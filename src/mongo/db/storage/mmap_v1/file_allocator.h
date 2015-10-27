@@ -27,15 +27,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <list>
 #include <boost/filesystem/path.hpp>
 
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /*
  * Handles allocation of contiguous files on disk.  Allocation may be
@@ -104,4 +104,4 @@ private:
     static FileAllocator* _instance;
 };
 
-}  // namespace mongo
+}  // namespace mongol

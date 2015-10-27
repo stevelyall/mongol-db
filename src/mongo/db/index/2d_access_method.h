@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/index/2d_common.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/index/2d_common.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexCatalogEntry;
 class IndexDescriptor;
@@ -59,4 +59,4 @@ private:
     TwoDIndexingParams _params;
 };
 
-}  // namespace mongo
+}  // namespace mongol

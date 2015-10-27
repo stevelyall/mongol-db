@@ -27,18 +27,18 @@
 
 #include <string>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 namespace {
 
-using mongo::FieldRef;
-using mongo::StringData;
-using mongoutils::str::stream;
+using mongol::FieldRef;
+using mongol::StringData;
+using mongolutils::str::stream;
 using std::string;
 
 TEST(Empty, NoFields) {

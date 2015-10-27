@@ -25,28 +25,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/dbclient_rs.h"
+#include "mongol/client/dbclient_rs.h"
 
 #include <memory>
 #include <utility>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -88,7 +88,7 @@ public:
  * Format A (official format):
  * { query: <actual query>, $readPreference: <read pref obj> }
  *
- * Format B (unofficial internal format from mongos):
+ * Format B (unofficial internal format from mongols):
  * { <actual query>, $queryOptions: { $readPreference: <read pref obj> }}
  *
  * @param query the raw query document
@@ -120,8 +120,8 @@ ReadPreferenceSetting* _extractReadPref(const BSONObj& query, int queryOptions) 
 
     // Default read pref is primary only or secondary preferred with slaveOK
     ReadPreference pref = queryOptions & QueryOption_SlaveOk
-        ? mongo::ReadPreference::SecondaryPreferred
-        : mongo::ReadPreference::PrimaryOnly;
+        ? mongol::ReadPreference::SecondaryPreferred
+        : mongol::ReadPreference::PrimaryOnly;
     return new ReadPreferenceSetting(pref, TagSet());
 }
 }  // namespace
@@ -671,7 +671,7 @@ DBClientConnection* DBClientReplicaSet::selectNodeUsingTags(
     _lastSlaveOkHost = selectedNode;
 
     // Primary connection is special because it is the only connection that is
-    // versioned in mongos. Therefore, we have to make sure that this object
+    // versioned in mongols. Therefore, we have to make sure that this object
     // maintains only one connection to the primary and use that connection
     // every time we need to talk to the primary.
     if (monitor->isPrimary(selectedNode)) {

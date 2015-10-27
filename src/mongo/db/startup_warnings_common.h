@@ -26,11 +26,11 @@
 *    then also delete it in the license file.
 */
 
-namespace mongo {
+namespace mongol {
 
 struct ServerGlobalParams;
 
 // Checks various startup conditions and logs any necessary warnings that
-// are common to both mongod and mongos processes.
+// are common to both mongold and mongols processes.
 void logCommonStartupWarnings(const ServerGlobalParams& serverParams);
-}  // namespace mongo
+}  // namespace mongol

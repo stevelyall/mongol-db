@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/read_preference.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 void checkParse(const BSONObj& rpsObj, const ReadPreferenceSetting& expected) {
     const auto swRps = ReadPreferenceSetting::fromBSON(rpsObj);

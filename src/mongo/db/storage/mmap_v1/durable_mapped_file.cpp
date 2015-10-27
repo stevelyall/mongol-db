@@ -34,25 +34,25 @@
  * MemoryMappedFile class, not this.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
 
 #include <utility>
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/processinfo.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/processinfo.h"
 
-using namespace mongoutils;
+using namespace mongolutils;
 
-namespace mongo {
+namespace mongol {
 
 using std::dec;
 using std::endl;
@@ -162,7 +162,7 @@ __declspec(noinline) void PointerToDurableMappedFile::makeChunkWritable(size_t c
             severe() << "VirtualProtect for " << mmf->filename() << " chunk " << chunkno
                      << " failed with " << errnoWithDescription(dosError) << " (chunk size is "
                      << protectSize << ", address is " << hex << protectStart << dec << ")"
-                     << " in mongo::makeChunkWritable, terminating" << endl;
+                     << " in mongol::makeChunkWritable, terminating" << endl;
 
             fassertFailed(16362);
         }

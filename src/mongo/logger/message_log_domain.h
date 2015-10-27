@@ -31,13 +31,13 @@
 #include <string>
 #include <vector>
 
-#include "mongo/logger/log_domain.h"
-#include "mongo/logger/message_event.h"
+#include "mongol/logger/log_domain.h"
+#include "mongol/logger/message_event.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 typedef LogDomain<MessageEventEphemeral> MessageLogDomain;
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

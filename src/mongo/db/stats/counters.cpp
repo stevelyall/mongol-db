@@ -27,17 +27,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/stats/counters.h"
+#include "mongol/db/stats/counters.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 

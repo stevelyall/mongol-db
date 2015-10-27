@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 

@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/parsed_update.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/query_planner_common.h"
+#include "mongol/db/ops/parsed_update.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/query_planner_common.h"
 
-namespace mongo {
+namespace mongol {
 
 ParsedUpdate::ParsedUpdate(OperationContext* txn, const UpdateRequest* request)
     : _txn(txn), _request(request), _driver(UpdateDriver::Options()), _canonicalQuery() {}
@@ -149,4 +149,4 @@ UpdateDriver* ParsedUpdate::getDriver() {
     return &_driver;
 }
 
-}  // namespace mongo
+}  // namespace mongol

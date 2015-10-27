@@ -33,7 +33,7 @@
 #include <memory>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 /** Reports information about a match request. */
 class MatchDetails {

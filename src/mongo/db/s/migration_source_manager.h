@@ -32,12 +32,12 @@
 #include <set>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/stdx/condition_variable.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/stdx/condition_variable.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Database;
@@ -178,4 +178,4 @@ private:
     std::set<RecordId> _cloneLocs;  // (C)
 };
 
-}  // namespace mongo
+}  // namespace mongol

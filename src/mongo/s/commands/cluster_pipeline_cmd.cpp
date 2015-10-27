@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/intrusive_ptr.hpp>
 #include <initializer_list>
@@ -36,26 +36,26 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/platform/random.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/query/store_possible_cursor.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/platform/random.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/query/store_possible_cursor.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::unique_ptr;
@@ -147,7 +147,7 @@ public:
         const bool needPrimaryShardMerger = pipeline->needsPrimaryShardMerger();
         const bool needSplit = shardKeyMatches.isEmpty() || needPrimaryShardMerger;
 
-        // Split the pipeline into pieces for mongod(s) and this mongos. If needSplit is true,
+        // Split the pipeline into pieces for mongold(s) and this mongols. If needSplit is true,
         // 'pipeline' will become the merger side.
         intrusive_ptr<Pipeline> shardPipeline(needSplit ? pipeline->splitForSharded() : pipeline);
 
@@ -234,7 +234,7 @@ public:
         }
 
         // Run merging command on random shard, unless a stage needs the primary shard. Need to use
-        // ShardConnection so that the merging mongod is sent the config servers on connection init.
+        // ShardConnection so that the merging mongold is sent the config servers on connection init.
         auto& prng = txn->getClient()->getPrng();
         const auto& mergingShardId = needPrimaryShardMerger
             ? conf->getPrimaryId()
@@ -422,4 +422,4 @@ bool PipelineCommand::aggPassthrough(OperationContext* txn,
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

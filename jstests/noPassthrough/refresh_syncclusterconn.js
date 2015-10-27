@@ -8,20 +8,20 @@
  * 5. Try an insert again. This should work fine.
  */
 
-var mongoA = MongoRunner.runMongod({});
-var mongoB = MongoRunner.runMongod({});
-var mongoC = MongoRunner.runMongod({});
-var mongoSCC = new Mongo(mongoA.host + "," + mongoB.host + "," + mongoC.host);
+var mongolA = MongoRunner.runMongod({});
+var mongolB = MongoRunner.runMongod({});
+var mongolC = MongoRunner.runMongod({});
+var mongolSCC = new Mongo(mongolA.host + "," + mongolB.host + "," + mongolC.host);
 
-MongoRunner.stopMongod(mongoA);
-MongoRunner.runMongod({ restart: mongoA.runId });
+MongoRunner.stopMongod(mongolA);
+MongoRunner.runMongod({ restart: mongolA.runId });
 
 try {
-    mongoSCC.getCollection("foo.bar").insert({ x : 1});
+    mongolSCC.getCollection("foo.bar").insert({ x : 1});
     assert(false , "must throw an insert exception");
 } catch (e) {
     printjson(e);
 }
 
-mongoSCC.getCollection("foo.bar").insert({ blah : "blah" });
-assert.eq(null, mongoSCC.getDB("foo").getLastError());
+mongolSCC.getCollection("foo.bar").insert({ blah : "blah" });
+assert.eq(null, mongolSCC.getDB("foo").getLastError());

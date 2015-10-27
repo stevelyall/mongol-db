@@ -6,9 +6,9 @@ env.Library(
         'ephemeral_for_test_record_store.cpp'
         ],
     LIBDEPS= [
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/storage/oplog_hack',
-        '$BUILD_DIR/mongo/util/foundation',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/storage/oplog_hack',
+        '$BUILD_DIR/mongol/util/foundation',
         ]
     )
 
@@ -21,12 +21,12 @@ env.Library(
         ],
     LIBDEPS= [
         'ephemeral_for_test_record_store',
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/namespace_string',
-        '$BUILD_DIR/mongo/db/catalog/collection_options',
-        '$BUILD_DIR/mongo/db/index/index_descriptor',
-        '$BUILD_DIR/mongo/db/storage/index_entry_comparison',
-        '$BUILD_DIR/mongo/util/foundation',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/namespace_string',
+        '$BUILD_DIR/mongol/db/catalog/collection_options',
+        '$BUILD_DIR/mongol/db/index/index_descriptor',
+        '$BUILD_DIR/mongol/db/storage/index_entry_comparison',
+        '$BUILD_DIR/mongol/util/foundation',
         ]
     )
 
@@ -37,7 +37,7 @@ env.Library(
         ],
     LIBDEPS= [
         'storage_ephemeral_for_test_core',
-        '$BUILD_DIR/mongo/db/storage/kv/kv_engine'
+        '$BUILD_DIR/mongol/db/storage/kv/kv_engine'
         ]
     )
 
@@ -47,7 +47,7 @@ env.CppUnitTest(
            ],
    LIBDEPS=[
         'storage_ephemeral_for_test_core',
-        '$BUILD_DIR/mongo/db/storage/sorted_data_interface_test_harness'
+        '$BUILD_DIR/mongol/db/storage/sorted_data_interface_test_harness'
         ]
    )
 
@@ -57,7 +57,7 @@ env.CppUnitTest(
            ],
    LIBDEPS=[
         'storage_ephemeral_for_test_core',
-        '$BUILD_DIR/mongo/db/storage/record_store_test_harness'
+        '$BUILD_DIR/mongol/db/storage/record_store_test_harness'
         ]
    )
 
@@ -67,6 +67,6 @@ env.CppUnitTest(
             ],
     LIBDEPS=[
         'storage_ephemeral_for_test_core',
-        '$BUILD_DIR/mongo/db/storage/kv/kv_engine_test_harness',
+        '$BUILD_DIR/mongol/db/storage/kv/kv_engine_test_harness',
         ],
     )

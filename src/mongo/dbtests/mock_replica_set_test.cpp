@@ -25,29 +25,29 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/dbtests/mock/mock_replica_set.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/dbtests/mock/mock_replica_set.h"
+#include "mongol/unittest/unittest.h"
 
 #include <set>
 #include <string>
 
-using mongo::BSONArrayBuilder;
-using mongo::BSONElement;
-using mongo::BSONObj;
-using mongo::BSONObjBuilder;
-using mongo::BSONObjIterator;
-using mongo::ConnectionString;
-using mongo::HostAndPort;
-using mongo::MockRemoteDBServer;
-using mongo::MockReplicaSet;
-using mongo::repl::ReplicaSetConfig;
+using mongol::BSONArrayBuilder;
+using mongol::BSONElement;
+using mongol::BSONObj;
+using mongol::BSONObjBuilder;
+using mongol::BSONObjIterator;
+using mongol::ConnectionString;
+using mongol::HostAndPort;
+using mongol::MockRemoteDBServer;
+using mongol::MockReplicaSet;
+using mongol::repl::ReplicaSetConfig;
 
 using std::set;
 using std::string;
 using std::vector;
 
-namespace mongo_test {
+namespace mongol_test {
 TEST(MockReplicaSetTest, SetName) {
     MockReplicaSet replSet("n", 3);
     ASSERT_EQUALS("n", replSet.getSetName());

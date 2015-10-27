@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/progress_meter.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/util/progress_meter.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 // Trivial unit test to validate build dependencies.
 TEST(ProgressMeterTest, ToString) {

@@ -31,7 +31,7 @@
 
 #include <cstdint>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Uses http://en.wikipedia.org/wiki/Xorshift
@@ -100,4 +100,4 @@ public:
 
     static SecureRandom* create();
 };
-}  // namespace mongo
+}  // namespace mongol

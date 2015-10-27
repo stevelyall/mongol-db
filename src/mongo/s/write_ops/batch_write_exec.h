@@ -32,15 +32,15 @@
 #include <map>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/s/ns_targeter.h"
-#include "mongo/s/shard_resolver.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/s/ns_targeter.h"
+#include "mongol/s/shard_resolver.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
 
-namespace mongo {
+namespace mongol {
 
 class BatchWriteExecStats;
 class MultiCommandDispatch;

@@ -35,13 +35,13 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 /** this is very much like a boost::path.  however, we define a new type to get some type
     checking.  if you want to say 'my param MUST be a relative path", use this.

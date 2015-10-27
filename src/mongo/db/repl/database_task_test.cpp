@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/database_task.h"
-#include "mongo/db/repl/operation_context_repl_mock.h"
-#include "mongo/db/repl/task_runner.h"
-#include "mongo/db/repl/task_runner_test_fixture.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
+#include "mongol/db/repl/database_task.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/task_runner.h"
+#include "mongol/db/repl/task_runner_test_fixture.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 const std::string databaseName = "mydb";
 const std::string collectionName = "mycoll";

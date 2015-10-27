@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/db/commands.h"
+#include "mongol/db/commands.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 class ClientBasic;
@@ -65,4 +65,4 @@ protected:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

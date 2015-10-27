@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class NetStatCmd : public Command {
@@ -79,4 +79,4 @@ public:
 } netstat;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

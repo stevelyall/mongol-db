@@ -32,9 +32,9 @@
 #include <tuple>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -109,4 +109,4 @@ private:
     std::vector<std::unique_ptr<FTDCCollectorInterface>> _collectors;
 };
 
-}  // namespace mongo
+}  // namespace mongol

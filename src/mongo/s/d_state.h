@@ -31,7 +31,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Client;

@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/read_concern_response.h"
+#include "mongol/db/repl/read_concern_response.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
+#include "mongol/bson/bsonobjbuilder.h"
 
 using std::string;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 const string ReadConcernResponse::kWaitedMSFieldName("waitedMS");
@@ -75,4 +75,4 @@ Status ReadConcernResponse::getStatus() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

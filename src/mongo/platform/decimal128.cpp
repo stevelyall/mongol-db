@@ -25,8 +25,8 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
-#include "mongo/platform/decimal128.h"
+#include "mongol/platform/basic.h"
+#include "mongol/platform/decimal128.h"
 
 #include <cmath>
 #include <cstdlib>
@@ -41,10 +41,10 @@
 #include <third_party/IntelRDFPMathLib20U1/LIBRARY/src/bid_functions.h>
 #undef _WCHAR_T
 
-#include "mongo/config.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/config.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 // Determine system's endian ordering in order to construct decimal 128 values directly
@@ -665,4 +665,4 @@ std::ostream& operator<<(std::ostream& stream, const Decimal128& value) {
     return stream << value.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

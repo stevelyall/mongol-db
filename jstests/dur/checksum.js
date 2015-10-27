@@ -74,7 +74,7 @@ mkdir(path + '/journal');
 copyFile("jstests/libs/dur_checksum_bad_first.journal", path + "/journal/j._0");
 copyFile("jstests/libs/dur_checksum_good.journal", path + "/journal/j._1");
 
-exitCode = runMongoProgram("mongod",
+exitCode = runMongoProgram("mongold",
                            "--port", allocatePort(),
                            "--dbpath", path,
                            "--journal",
@@ -84,7 +84,7 @@ exitCode = runMongoProgram("mongod",
 
 assert.eq(exitCode, 100 /*EXIT_UNCAUGHT*/);
 
-// TODO Possibly we could check the mongod log to verify that the correct type of exception was
-// thrown.  But that would introduce a dependency on the mongod log format, which we may not want.
+// TODO Possibly we could check the mongold log to verify that the correct type of exception was
+// thrown.  But that would introduce a dependency on the mongold log format, which we may not want.
 
 jsTest.log("SUCCESS checksum.js");

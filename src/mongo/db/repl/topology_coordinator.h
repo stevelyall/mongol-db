@@ -31,15 +31,15 @@
 #include <string>
 #include <iosfwd>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class Timestamp;
 
@@ -509,4 +509,4 @@ private:
 std::ostream& operator<<(std::ostream& os, TopologyCoordinator::Role role);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

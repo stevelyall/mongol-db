@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/decoration_container.h"
+#include "mongol/util/decoration_container.h"
 
-#include "mongo/util/decoration_registry.h"
+#include "mongol/util/decoration_registry.h"
 
-namespace mongo {
+namespace mongol {
 
 DecorationContainer::DecorationContainer(const DecorationRegistry* registry)
     : _registry(registry),
@@ -44,4 +44,4 @@ DecorationContainer::~DecorationContainer() {
     _registry->destruct(this);
 }
 
-}  // namespace mongo
+}  // namespace mongol

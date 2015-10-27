@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_repair_iterator.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_repair_iterator.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 
@@ -207,4 +207,4 @@ void RecordStoreV1RepairCursor::invalidate(OperationContext* txn, const RecordId
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

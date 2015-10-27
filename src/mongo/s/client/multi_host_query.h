@@ -30,14 +30,14 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // NOTE TO DEVS

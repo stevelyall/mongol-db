@@ -26,20 +26,20 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/field_path.h"
+#include "mongol/db/pipeline/field_path.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::ostream;
 using std::string;
 using std::stringstream;
 using std::vector;
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 const char FieldPath::prefix[] = "$";
 

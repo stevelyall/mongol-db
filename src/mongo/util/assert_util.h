@@ -30,19 +30,19 @@
 #include <typeinfo>
 #include <string>
 
-#include "mongo/base/status.h"  // NOTE: This is safe as utils depend on base
-#include "mongo/platform/compiler.h"
-#include "mongo/logger/log_severity.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/logstream_builder.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/base/status.h"  // NOTE: This is safe as utils depend on base
+#include "mongol/platform/compiler.h"
+#include "mongol/logger/log_severity.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/logstream_builder.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/debug_util.h"
 
 #define MONGO_INCLUDE_INVARIANT_H_WHITELISTED
-#include "mongo/util/invariant.h"
+#include "mongol/util/invariant.h"
 #undef MONGO_INCLUDE_INVARIANT_H_WHITELISTED
 
-namespace mongo {
+namespace mongol {
 
 class AssertionCount {
 public:
@@ -82,7 +82,7 @@ class DBException;
 std::string causedBy(const DBException& e);
 std::string causedBy(const std::string& e);
 
-/** Most mongo exceptions inherit from this; this is commonly caught in most threads */
+/** Most mongol exceptions inherit from this; this is commonly caught in most threads */
 class DBException : public std::exception {
 public:
     DBException(const ExceptionInfo& ei) : _ei(ei) {
@@ -231,7 +231,7 @@ inline void fassertNoTrace(int msgid, const Status& status) {
 #define MONGO_uassert(msgid, msg, expr)     \
     do {                                    \
         if (MONGO_unlikely(!(expr))) {      \
-            ::mongo::uasserted(msgid, msg); \
+            ::mongol::uasserted(msgid, msg); \
         }                                   \
     } while (false)
 
@@ -268,7 +268,7 @@ inline void fassertStatusOK(int msgid, const Status& s) {
 #define MONGO_wassert(_Expression)                                \
     do {                                                          \
         if (MONGO_unlikely(!(_Expression))) {                     \
-            ::mongo::wasserted(#_Expression, __FILE__, __LINE__); \
+            ::mongol::wasserted(#_Expression, __FILE__, __LINE__); \
         }                                                         \
     } while (false)
 
@@ -280,7 +280,7 @@ inline void fassertStatusOK(int msgid, const Status& s) {
 #define MONGO_massert(msgid, msg, expr)       \
     do {                                      \
         if (MONGO_unlikely(!(expr))) {        \
-            ::mongo::msgasserted(msgid, msg); \
+            ::mongol::msgasserted(msgid, msg); \
         }                                     \
     } while (false)
 
@@ -301,16 +301,16 @@ inline void massertNoTraceStatusOK(const Status& status) {
 #define MONGO_verify(_Expression)                                    \
     do {                                                             \
         if (MONGO_unlikely(!(_Expression))) {                        \
-            ::mongo::verifyFailed(#_Expression, __FILE__, __LINE__); \
+            ::mongol::verifyFailed(#_Expression, __FILE__, __LINE__); \
         }                                                            \
     } while (false)
 
 
 #define MONGO_invariantOK(expression)                                                         \
     do {                                                                                      \
-        const ::mongo::Status _invariantOK_status = expression;                               \
+        const ::mongol::Status _invariantOK_status = expression;                               \
         if (MONGO_unlikely(!_invariantOK_status.isOK())) {                                    \
-            ::mongo::invariantOKFailed(#expression, _invariantOK_status, __FILE__, __LINE__); \
+            ::mongol::invariantOKFailed(#expression, _invariantOK_status, __FILE__, __LINE__); \
         }                                                                                     \
     } while (false)
 
@@ -349,7 +349,7 @@ std::string demangleName(const std::type_info& typeinfo);
  */
 Status exceptionToStatus();
 
-}  // namespace mongo
+}  // namespace mongol
 
 #define MONGO_ASSERT_ON_EXCEPTION(expression)                                         \
     try {                                                                             \
@@ -378,15 +378,15 @@ Status exceptionToStatus();
     try {                                                                                      \
         expression;                                                                            \
     } catch (const std::exception& e) {                                                        \
-        ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),                  \
-                                          ::mongo::getThreadName(),                            \
-                                          ::mongo::logger::LogSeverity::Log())                 \
+        ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),                  \
+                                          ::mongol::getThreadName(),                            \
+                                          ::mongol::logger::LogSeverity::Log())                 \
             << "caught exception (" << e.what() << ") in destructor (" << __FUNCTION__ << ")"  \
             << std::endl;                                                                      \
     } catch (...) {                                                                            \
-        ::mongo::logger::LogstreamBuilder(::mongo::logger::globalLogDomain(),                  \
-                                          ::mongo::getThreadName(),                            \
-                                          ::mongo::logger::LogSeverity::Log())                 \
+        ::mongol::logger::LogstreamBuilder(::mongol::logger::globalLogDomain(),                  \
+                                          ::mongol::getThreadName(),                            \
+                                          ::mongol::logger::LogSeverity::Log())                 \
             << "caught unknown exception in destructor (" << __FUNCTION__ << ")" << std::endl; \
     }
 
@@ -402,4 +402,4 @@ Status exceptionToStatus();
  *         MONGO_UNREACHABLE;
  */
 
-#define MONGO_UNREACHABLE ::mongo::invariantFailed("Hit a MONGO_UNREACHABLE!", __FILE__, __LINE__);
+#define MONGO_UNREACHABLE ::mongol::invariantFailed("Hit a MONGO_UNREACHABLE!", __FILE__, __LINE__);

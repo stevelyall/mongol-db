@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class Timestamp;
 
@@ -81,4 +81,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

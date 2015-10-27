@@ -29,7 +29,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 class Tee {
@@ -44,4 +44,4 @@ public:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

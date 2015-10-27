@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/executor/async_timer_mock.h"
+#include "mongol/executor/async_timer_mock.h"
 
-#include "mongo/stdx/memory.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 namespace {
@@ -121,4 +121,4 @@ void AsyncTimerFactoryMock::fastForward(Milliseconds time) {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

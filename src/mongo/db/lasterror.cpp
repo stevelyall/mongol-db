@@ -27,14 +27,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/lasterror.h"
+#include "mongol/db/lasterror.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 LastError LastError::noError;
 
@@ -112,4 +112,4 @@ void LastError::startRequest() {
     ++_nPrev;
 }
 
-}  // namespace mongo
+}  // namespace mongol

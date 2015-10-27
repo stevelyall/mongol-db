@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 // This class parses geographic data.
 // It parses a subset of GeoJSON and creates S2 shapes from it.
@@ -98,4 +98,4 @@ public:
     static bool parsePointWithMaxDistance(const BSONObj& obj, PointWithCRS* out, double* maxOut);
 };
 
-}  // namespace mongo
+}  // namespace mongol

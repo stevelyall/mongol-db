@@ -2,11 +2,11 @@
 Description=High-performance, schema-free document-oriented database
 
 [Service]
-User=mongod
-Group=mongod
-Environment="OPTIONS=--quiet -f /etc/mongod.conf"
-ExecStart=/usr/local/bin/mongod $OPTIONS run
-PIDFile=/var/run/mongodb/mongod.pid
+User=mongold
+Group=mongold
+Environment="OPTIONS=--quiet -f /etc/mongold.conf"
+ExecStart=/usr/local/bin/mongold $OPTIONS run
+PIDFile=/var/run/mongoldb/mongold.pid
 
 [Install]
 WantedBy=multi-user.target

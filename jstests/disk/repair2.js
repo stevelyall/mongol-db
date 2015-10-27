@@ -88,7 +88,7 @@ MongoRunner.stopMongod( m.port );
 
 //Test database name and repairPath with --repair
 resetDbpath( longRepairPath )
-var returnCode = runMongoProgram("mongod",
+var returnCode = runMongoProgram("mongold",
                                  "--port", m.port,
                                  "--repair",
                                  "--directoryperdb",
@@ -106,7 +106,7 @@ check();
 MongoRunner.stopMongod( m.port );
 
 resetDbpath( repairpath );
-returnCode = runMongoProgram("mongod",
+returnCode = runMongoProgram("mongold",
                              "--port", m.port,
                              "--repair",
                              "--directoryperdb",
@@ -125,7 +125,7 @@ check();
 MongoRunner.stopMongod( m.port );
 
 resetDbpath( repairpath );
-returnCode = runMongoProgram("mongod",
+returnCode = runMongoProgram("mongold",
                              "--port", m.port,
                              "--repair",
                              "--directoryperdb",

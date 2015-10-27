@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/engine.h"
+#include "mongol/scripting/mozjs/engine.h"
 
-#include "mongo/db/operation_context.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/proxyscope.h"
-#include "mongo/util/log.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/proxyscope.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 void ScriptEngine::setup() {
     if (!globalScriptEngine) {
@@ -63,11 +63,11 @@ MozJSScriptEngine::~MozJSScriptEngine() {
     JS_ShutDown();
 }
 
-mongo::Scope* MozJSScriptEngine::createScope() {
+mongol::Scope* MozJSScriptEngine::createScope() {
     return new MozJSProxyScope(this);
 }
 
-mongo::Scope* MozJSScriptEngine::createScopeForCurrentThread() {
+mongol::Scope* MozJSScriptEngine::createScopeForCurrentThread() {
     return new MozJSImplScope(this);
 }
 
@@ -134,4 +134,4 @@ void MozJSScriptEngine::unregisterOperation(unsigned int opId) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

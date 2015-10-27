@@ -26,14 +26,14 @@
 *    it in the license file.
 */
 
-#include "mongo/db/catalog/index_key_validate.h"
+#include "mongol/db/catalog/index_key_validate.h"
 
-#include "mongo/db/field_ref.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -50,7 +50,7 @@ Status validateKeyPattern(const BSONObj& key) {
     if (pluginName.size()) {
         if (!IndexNames::isKnownName(pluginName))
             return Status(
-                code, mongoutils::str::stream() << "Unknown index plugin '" << pluginName << '\'');
+                code, mongolutils::str::stream() << "Unknown index plugin '" << pluginName << '\'');
     }
 
     BSONObjIterator it(key);
@@ -77,7 +77,7 @@ Status validateKeyPattern(const BSONObj& key) {
         }
 
         // "$**" is acceptable for a text index.
-        if (mongoutils::str::equals(keyElement.fieldName(), "$**") &&
+        if (mongolutils::str::equals(keyElement.fieldName(), "$**") &&
             keyElement.valuestrsafe() == IndexNames::TEXT)
             continue;
 
@@ -109,4 +109,4 @@ Status validateKeyPattern(const BSONObj& key) {
 
     return Status::OK();
 }
-}  // namespace mongo
+}  // namespace mongol

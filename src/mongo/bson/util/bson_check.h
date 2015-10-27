@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Confirms that "o" only contains fields whose names are in "begin".."end",
@@ -81,4 +81,4 @@ Status bsonCheckOnlyHasFields(StringData objectName,
     return bsonCheckOnlyHasFields(objectName, o, &legals[0], legals + N);
 }
 
-}  // namespace mongo
+}  // namespace mongol

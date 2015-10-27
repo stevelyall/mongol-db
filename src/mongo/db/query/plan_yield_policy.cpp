@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/plan_yield_policy.h"
+#include "mongol/db/query/plan_yield_policy.h"
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_yield.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_yield.h"
 
-namespace mongo {
+namespace mongol {
 
 PlanYieldPolicy::PlanYieldPolicy(PlanExecutor* exec, PlanExecutor::YieldPolicy policy)
     : _policy(policy),
@@ -110,4 +110,4 @@ bool PlanYieldPolicy::yield(RecordFetcher* fetcher) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

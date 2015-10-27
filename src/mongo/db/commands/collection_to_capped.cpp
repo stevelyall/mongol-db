@@ -28,23 +28,23 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/capped_utils.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/find.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/capped_utils.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/find.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;

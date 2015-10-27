@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/unowned_ptr.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/unowned_ptr.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 RecordId doInsert(unowned_ptr<OperationContext> txn, unowned_ptr<RecordStore> rs) {
@@ -185,4 +185,4 @@ TEST(RecordStore_CappedVisibility, NonEmptyInitialState) {
     ASSERT_ID_EQ(rs->getCursor(longLivedOp.get())->seekExact(otherId), otherId);
 }
 
-}  // namespace mongo
+}  // namespace mongol

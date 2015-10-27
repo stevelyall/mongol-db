@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/util/processinfo.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/unittest/unittest.h"
 
-using mongo::ProcessInfo;
+using mongol::ProcessInfo;
 
-namespace mongo_test {
+namespace mongol_test {
 TEST(ProcessInfo, SysInfoIsInitialized) {
     ProcessInfo processInfo;
     if (processInfo.supported()) {

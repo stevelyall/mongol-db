@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/scatter_gather_algorithm.h"
+#include "mongol/db/repl/scatter_gather_algorithm.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ScatterGatherAlgorithm::~ScatterGatherAlgorithm() {}
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

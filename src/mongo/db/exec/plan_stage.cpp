@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 void PlanStage::saveState() {
     ++_commonStats.yields;
@@ -83,4 +83,4 @@ void PlanStage::reattachToOperationContext(OperationContext* opCtx) {
     doReattachToOperationContext();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,15 +31,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/s/bson_serializable.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/s/write_ops/batched_upsert_detail.h"
-#include "mongo/s/write_ops/wc_error_detail.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/s/bson_serializable.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/s/write_ops/batched_upsert_detail.h"
+#include "mongol/s/write_ops/wc_error_detail.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and content of a insert/update/delete runCommand,
@@ -178,7 +178,7 @@ private:
 
     // (O)  repl::OpTime assigned to the write op when it was written to the oplog.
     //      Normally, getLastError can use Client::_lastOp, but this is not valid for
-    //      mongos which loses track of the session due to RCAR.  Therefore, we must
+    //      mongols which loses track of the session due to RCAR.  Therefore, we must
     //      keep track of the lastOp manually ourselves.
     repl::OpTime _lastOp;
     bool _isLastOpSet;
@@ -197,4 +197,4 @@ private:
     std::unique_ptr<WCErrorDetail> _wcErrDetails;
 };
 
-}  // namespace mongo
+}  // namespace mongol

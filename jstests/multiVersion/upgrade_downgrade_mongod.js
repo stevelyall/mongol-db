@@ -1,20 +1,20 @@
 /**
  * Test the upgrade/downgrade process for the last stable release <~~> the latest release
- * with the same storage engine (and options), via mongod binary swap.
+ * with the same storage engine (and options), via mongold binary swap.
  * New features/changes tested in 3.2:
  *  - Partial index
  *      This sets partialFilterExpression attribute for an index.
- *      After downgrade, mongod should start up, but may miss documents when using the partial index
+ *      After downgrade, mongold should start up, but may miss documents when using the partial index
  *      to answer queries.
  *  - Document validation
  *      This sets the validator attribute for a collection.
  *      After downgrade, this should be ignored.
  *  - Text index
  *      This sets the text index version to a new value.
- *      After downgrade, mongod should fail to start (SERVER-19557).
+ *      After downgrade, mongold should fail to start (SERVER-19557).
  *  - Geo index
  *      This sets the geo 2dsphere index version to a new value.
- *      After downgrade, mongod should fail to start.
+ *      After downgrade, mongold should fail to start.
 */
 
 (function() {
@@ -555,8 +555,8 @@
 
         jsTestLog(test.name);
 
-        // Set mongod options
-        var mongodOptions = {
+        // Set mongold options
+        var mongoldOptions = {
             remember: true,
             cleanData: true,
             binVersion: test.fromBinVersion,
@@ -564,15 +564,15 @@
             smallfiles: ""
         };
 
-        // Additional mongod options
+        // Additional mongold options
         if (test.options) {
             for (var option in test.options) {
-                mongodOptions[option] = test.options[option];
+                mongoldOptions[option] = test.options[option];
             }
         }
 
-        // Start mongod
-        var conn = MongoRunner.runMongod(mongodOptions);
+        // Start mongold
+        var conn = MongoRunner.runMongod(mongoldOptions);
         assert(conn, test.name + ' start');
 
         // Change writeMode to commands
@@ -583,16 +583,16 @@
             func.call(test, conn);
         });
 
-        // Stop existing mongod
+        // Stop existing mongold
         MongoRunner.stopMongod(conn);
 
-        // Restart mongod under a different version
-        mongodOptions.restart = conn;
-        mongodOptions.binVersion = test.toBinVersion;
-        mongodOptions.cleanData = false;
-        conn = MongoRunner.runMongod(mongodOptions);
+        // Restart mongold under a different version
+        mongoldOptions.restart = conn;
+        mongoldOptions.binVersion = test.toBinVersion;
+        mongoldOptions.cleanData = false;
+        conn = MongoRunner.runMongod(mongoldOptions);
         if (test.data.failedConn) {
-            // We are expecting a mongod failure
+            // We are expecting a mongold failure
             expectedConn = null;
         } else {
             expectedConn = conn || true;
@@ -608,7 +608,7 @@
                 func.call(test, conn);
             });
 
-            // Test finished, stop mongod
+            // Test finished, stop mongold
             MongoRunner.stopMongod(conn);
         }
     });

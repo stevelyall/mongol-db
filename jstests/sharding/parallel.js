@@ -3,7 +3,7 @@
 "use strict";
 
 var numShards = 3
-var s = new ShardingTest({name: "parallel", shards: numShards, mongos: 2});
+var s = new ShardingTest({name: "parallel", shards: numShards, mongols: 2});
 
 s.adminCommand( { enablesharding : "test" } );
 s.ensurePrimaryShard('test', 'shard0001');
@@ -31,7 +31,7 @@ var doCommand = function( dbname , cmd ) {
                     host : db.getMongo().host , parallel : 2 , seconds : 2 } )
     printjson(x)
     x = benchRun( { ops : [ { op : "findOne" , ns : dbname + ".$cmd" , query : cmd } ] ,
-                    host : s._mongos[1].host , parallel : 2 , seconds : 2 } )
+                    host : s._mongols[1].host , parallel : 2 , seconds : 2 } )
     printjson(x)
 }
 

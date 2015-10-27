@@ -31,16 +31,16 @@
 #include <list>
 #include <memory>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_fetcher.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_fetcher.h"
 
-namespace mongo {
+namespace mongol {
 
 class PlanYieldPolicy;
 
@@ -146,4 +146,4 @@ private:
     CachedPlanStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

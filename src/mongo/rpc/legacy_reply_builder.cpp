@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/legacy_reply_builder.h"
+#include "mongol/rpc/legacy_reply_builder.h"
 
 #include <iterator>
 
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 namespace {
@@ -210,7 +210,7 @@ std::unique_ptr<Message> LegacyReplyBuilder::done() {
     auto msgHeaderSz = static_cast<std::size_t>(MsgData::MsgDataHeaderSize);
 
     invariant(static_cast<std::size_t>(bufBuilder.len()) + msgHeaderSz <=
-              mongo::MaxMessageSizeBytes);
+              mongol::MaxMessageSizeBytes);
 
     QueryResult::View qr = bufBuilder.buf();
 
@@ -230,7 +230,7 @@ std::unique_ptr<Message> LegacyReplyBuilder::done() {
 
 std::size_t LegacyReplyBuilder::availableBytes() const {
     std::size_t msgHeaderSz = static_cast<std::size_t>(MsgData::MsgDataHeaderSize);
-    return mongo::MaxMessageSizeBytes - _currentLength - msgHeaderSz;
+    return mongol::MaxMessageSizeBytes - _currentLength - msgHeaderSz;
 }
 
 Status LegacyReplyBuilder::_hasSpaceFor(std::size_t dataSize) const {
@@ -244,4 +244,4 @@ Status LegacyReplyBuilder::_hasSpaceFor(std::size_t dataSize) const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

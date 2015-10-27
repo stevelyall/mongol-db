@@ -29,11 +29,11 @@
 
 #include <iosfwd>
 
-#include "mongo/logger/encoder.h"
-#include "mongo/logger/message_event.h"
-#include "mongo/util/time_support.h"
+#include "mongol/logger/encoder.h"
+#include "mongol/logger/message_event.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -82,4 +82,4 @@ public:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

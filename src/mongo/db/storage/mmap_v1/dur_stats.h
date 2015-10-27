@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace dur {
 
 /**

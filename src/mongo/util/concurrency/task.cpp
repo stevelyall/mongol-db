@@ -27,15 +27,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/concurrency/task.h"
+#include "mongol/util/concurrency/task.h"
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/time_support.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace task {
 

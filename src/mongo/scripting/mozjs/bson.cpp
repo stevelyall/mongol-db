@@ -26,22 +26,22 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/bson.h"
+#include "mongol/scripting/mozjs/bson.h"
 
 #include <boost/optional.hpp>
 #include <set>
 
-#include "mongo/scripting/mozjs/idwrapper.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/util/string_map.h"
+#include "mongol/scripting/mozjs/idwrapper.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const BSONInfo::className = "BSON";
@@ -215,7 +215,7 @@ void BSONInfo::resolve(JSContext* cx, JS::HandleObject obj, JS::HandleId id, boo
 
         o.defineProperty(id, vp, JSPROP_ENUMERATE);
 
-        if (!holder->_readOnly && (elem.type() == mongo::Object || elem.type() == mongo::Array)) {
+        if (!holder->_readOnly && (elem.type() == mongol::Object || elem.type() == mongol::Array)) {
             // if accessing a subobject, we have no way to know if
             // modifications are being made on writable objects
 
@@ -259,4 +259,4 @@ void BSONInfo::postInstall(JSContext* cx, JS::HandleObject global, JS::HandleObj
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

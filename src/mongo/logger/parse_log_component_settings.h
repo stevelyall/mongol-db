@@ -30,9 +30,9 @@
 
 #include <vector>
 
-#include "mongo/logger/log_component.h"
+#include "mongol/logger/log_component.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 template <typename T>
@@ -59,4 +59,4 @@ struct LogComponentSetting {
 StatusWith<std::vector<LogComponentSetting>> parseLogComponentSettings(const BSONObj& settings);
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

@@ -31,11 +31,11 @@
 #include <string>
 #include <utility>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/repl/optime.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 const char OpTime::kTimestampFieldName[] = "ts";
@@ -102,4 +102,4 @@ std::ostream& operator<<(std::ostream& out, const OpTime& opTime) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

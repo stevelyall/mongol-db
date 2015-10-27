@@ -26,10 +26,10 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/fail_point_service.h"
+#include "mongol/util/fail_point_service.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 

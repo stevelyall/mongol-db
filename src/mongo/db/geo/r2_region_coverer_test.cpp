@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kGeo
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kGeo
 
 #include <chrono>
 #include <random>
 
-#include "mongo/db/geo/r2_region_coverer.h"
+#include "mongol/db/geo/r2_region_coverer.h"
 
-#include "mongo/base/init.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/platform/random.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/geo/geometry_container.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/platform/random.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/geo/geometry_container.h"
+#include "mongol/util/log.h"
 
 namespace {
 
 using std::auto_ptr;
-using namespace mongo;
-using mongo::Polygon;  // "windows.h" has another Polygon for Windows GDI.
+using namespace mongol;
+using mongol::Polygon;  // "windows.h" has another Polygon for Windows GDI.
 
 std::default_random_engine generator;
 

@@ -33,11 +33,11 @@
 #include <string>
 #include <map>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_proxy.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_proxy.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServerParameterSet;
 class OperationContext;

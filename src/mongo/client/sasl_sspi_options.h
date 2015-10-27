@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/util/net/hostname_canonicalization.h"
+#include "mongol/util/net/hostname_canonicalization.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 
@@ -39,7 +39,7 @@ class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct SASLSSPIGlobalParams {
     // HostnameCanonicalizationMode to use for resolving SASL hostname into the SPN's hostname
@@ -51,4 +51,4 @@ extern SASLSSPIGlobalParams saslSSPIGlobalParams;
 Status addSASLSSPIOptions(moe::OptionSection* options);
 Status storeSASLSSPIOptions(const moe::Environment& params);
 
-}  // namespace mongo
+}  // namespace mongol

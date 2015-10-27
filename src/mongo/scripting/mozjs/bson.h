@@ -30,10 +30,10 @@
 
 #include <tuple>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/scripting/mozjs/wraptype.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/scripting/mozjs/wraptype.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -74,4 +74,4 @@ struct BSONInfo : public BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

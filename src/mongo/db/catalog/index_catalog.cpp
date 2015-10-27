@@ -28,42 +28,42 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/index_catalog.h"
+#include "mongol/db/catalog/index_catalog.h"
 
 #include <vector>
 
-#include "mongo/db/audit.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/catalog/index_key_validate.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index_legacy.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/ops/delete.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/catalog/index_key_validate.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index_legacy.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/ops/delete.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -257,7 +257,7 @@ Status IndexCatalog::_upgradeDatabaseMinorVersionIfNeeded(OperationContext* txn,
         const string errmsg = str::stream()
             << "Found pre-existing index " << index << " with invalid type '" << plugin << "'. "
             << "Disallowing creation of new index type '" << newPluginName << "'. See "
-            << "http://dochub.mongodb.org/core/index-type-changes";
+            << "http://dochub.mongoldb.org/core/index-type-changes";
 
         return Status(ErrorCodes::CannotCreateIndex, errmsg);
     }
@@ -472,7 +472,7 @@ Status IndexCatalog::_isSpecOk(const BSONObj& spec) const {
         // isASupportedIndexVersionNumber() is what we can use
         if (v != 0 && v != 1) {
             return Status(ErrorCodes::CannotCreateIndex,
-                          str::stream() << "this version of mongod cannot build new indexes "
+                          str::stream() << "this version of mongold cannot build new indexes "
                                         << "of version number " << v);
         }
     }
@@ -581,7 +581,7 @@ Status IndexCatalog::_isSpecOk(const BSONObj& spec) const {
     if (storageEngineElement.eoo()) {
         return Status::OK();
     }
-    if (storageEngineElement.type() != mongo::Object) {
+    if (storageEngineElement.type() != mongol::Object) {
         return Status(ErrorCodes::CannotCreateIndex,
                       "\"storageEngine\" options must be a document if present");
     }

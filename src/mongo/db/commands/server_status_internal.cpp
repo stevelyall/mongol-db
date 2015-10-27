@@ -28,21 +28,21 @@
 *    it in the license file.
 */
 
-#include "mongo/db/commands/server_status_internal.h"
+#include "mongol/db/commands/server_status_internal.h"
 
 #include <iostream>
 
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::cerr;
 using std::endl;
 using std::map;
 using std::string;
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 MetricTree* MetricTree::theMetricTree = NULL;
 

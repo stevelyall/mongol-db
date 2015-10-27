@@ -30,7 +30,7 @@
 #pragma once
 
 
-namespace mongo {
+namespace mongol {
 
 class TickSource;
 
@@ -91,4 +91,4 @@ private:
 
     long long _old;
 };
-}  // namespace mongo
+}  // namespace mongol

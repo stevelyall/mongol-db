@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/config.h"
-#include "mongo/db/concurrency/lock_manager_test_help.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/config.h"
+#include "mongol/db/concurrency/lock_manager_test_help.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 const int NUM_PERF_ITERS = 1000 * 1000;  // numeber of iterations to use for lock perf
 }
@@ -362,4 +362,4 @@ TEST(Locker, PerformanceLocker) {
 
 #endif  // MONGO_CONFIG_DEBUG_BUILD
 
-}  // namespace mongo
+}  // namespace mongol

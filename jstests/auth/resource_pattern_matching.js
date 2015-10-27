@@ -247,11 +247,11 @@ print('--- done with the rs tests ---');
 
 print('--- sharding test ---')
 var st = new ShardingTest({
-  mongos: 2,
+  mongols: 2,
   shard: 1,
   keyFile: keyfile,
   other: {
-    mongosOptions: { 'auth': null, 'httpinterface': null },
+    mongolsOptions: { 'auth': null, 'httpinterface': null },
     configOptions: { 'auth': null, 'httpinterface': null },
     shardOptions: { 'auth': null, 'httpinterface': null }
   }

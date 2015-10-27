@@ -27,19 +27,19 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/query_planner.cpp
+ * This file contains tests for mongol/db/query/query_planner.cpp
  */
 
 #include <ostream>
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class QueryPlannerTestLib {
 public:
@@ -57,4 +57,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

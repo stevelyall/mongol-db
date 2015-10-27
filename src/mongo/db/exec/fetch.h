@@ -30,12 +30,12 @@
 
 #include <memory>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class SeekableRecordCursor;
 
@@ -102,4 +102,4 @@ private:
     FetchStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

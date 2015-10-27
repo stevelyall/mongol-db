@@ -33,11 +33,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class DatabaseCatalogEntry;
 class OperationContext;
@@ -263,4 +263,4 @@ protected:
     virtual ~StorageEngine() {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

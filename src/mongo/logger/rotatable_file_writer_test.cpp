@@ -25,23 +25,23 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <fstream>
 
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-using namespace mongo;
-using namespace mongo::logger;
+using namespace mongol;
+using namespace mongol::logger;
 
 const std::string logFileName("LogTest_RotatableFileAppender.txt");
 const std::string logFileNameRotated("LogTest_RotatableFileAppender_Rotated.txt");
 
 // TODO(schwerin): Create a safe, uniform mechanism by which unit tests may read and write
 // temporary files.
-class RotatableFileWriterTest : public mongo::unittest::Test {
+class RotatableFileWriterTest : public mongol::unittest::Test {
 public:
     RotatableFileWriterTest() {
         unlink(logFileName.c_str());
@@ -141,4 +141,4 @@ TEST_F(RotatableFileWriterTest, RotationTest) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

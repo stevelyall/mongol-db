@@ -64,8 +64,8 @@
     -->
 
     <Property Id="ARPPRODUCTICON" Value="MongoDBIcon" />
-    <Property Id="ARPHELPLINK" Value="http://www.mongodb.org/" />
-    <Property Id="ARPURLINFOABOUT" Value="http://www.mongodb.org/" />
+    <Property Id="ARPHELPLINK" Value="http://www.mongoldb.org/" />
+    <Property Id="ARPURLINFOABOUT" Value="http://www.mongoldb.org/" />
 
     <Icon Id="MongoDBIcon" SourceFile="$(var.ProjectDir)Installer_Icon_32x32.ico" />
 

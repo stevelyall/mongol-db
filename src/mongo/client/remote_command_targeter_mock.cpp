@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/remote_command_targeter_mock.h"
+#include "mongol/client/remote_command_targeter_mock.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/read_preference.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/read_preference.h"
 
-namespace mongo {
+namespace mongol {
 
 RemoteCommandTargeterMock::RemoteCommandTargeterMock()
     : _findHostReturnValue(Status(ErrorCodes::InternalError, "No return value set")) {}
@@ -68,4 +68,4 @@ void RemoteCommandTargeterMock::setFindHostReturnValue(StatusWith<HostAndPort> r
     _findHostReturnValue = std::move(returnValue);
 }
 
-}  // namespace mongo
+}  // namespace mongol

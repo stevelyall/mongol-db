@@ -31,18 +31,18 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/collection_cloner.h"
-#include "mongo/db/repl/replication_executor_test_fixture.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/collection_cloner.h"
+#include "mongol/db/repl/replication_executor_test_fixture.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 struct CollectionOptions;
 class OperationContext;
@@ -166,4 +166,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

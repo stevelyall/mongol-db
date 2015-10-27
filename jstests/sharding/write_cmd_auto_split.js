@@ -16,7 +16,7 @@ jsTest.log('Test single batch insert should auto-split');
 
 assert.eq(1, configDB.chunks.find().itcount());
 
-// Note: Estimated 'chunk size' tracked by mongos is initialized with a random value so
+// Note: Estimated 'chunk size' tracked by mongols is initialized with a random value so
 // we are going to be conservative.
 for (var x = 0; x < 1100; x++) {
     var res = testDB.runCommand({ insert: 'insert',
@@ -75,7 +75,7 @@ configDB.adminCommand({ shardCollection: 'test.insert', key: { x: 1 }});
 
 assert.eq(1, configDB.chunks.find().itcount());
 
-// Note: Estimated 'chunk size' tracked by mongos is initialized with a random value so
+// Note: Estimated 'chunk size' tracked by mongols is initialized with a random value so
 // we are going to be conservative.
 for (var x = 0; x < 1100; x += 400) {
     var docs = [];

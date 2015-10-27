@@ -25,14 +25,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/write_concern_options.h"
+#include "mongol/db/write_concern_options.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/field_parser.h"
+#include "mongol/base/status.h"
+#include "mongol/db/field_parser.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -46,7 +46,7 @@ namespace {
  */
 enum WriteConcern { W_NONE = 0, W_NORMAL = 1 };
 
-const BSONField<bool> mongosSecondaryThrottleField("_secondaryThrottle", true);
+const BSONField<bool> mongolsSecondaryThrottleField("_secondaryThrottle", true);
 const BSONField<bool> secondaryThrottleField("secondaryThrottle", true);
 const BSONField<BSONObj> writeConcernField("writeConcern");
 
@@ -128,7 +128,7 @@ Status WriteConcernOptions::parseSecondaryThrottle(const BSONObj& doc,
 
     if (fieldState != FieldParser::FIELD_SET) {
         fieldState =
-            FieldParser::extract(doc, mongosSecondaryThrottleField, &isSecondaryThrottle, &errMsg);
+            FieldParser::extract(doc, mongolsSecondaryThrottleField, &isSecondaryThrottle, &errMsg);
 
         if (fieldState == FieldParser::FIELD_INVALID) {
             return Status(ErrorCodes::FailedToParse, errMsg);
@@ -191,4 +191,4 @@ bool WriteConcernOptions::validForConfigServers() const {
     return wNumNodes == 1 || wMode == kMajority;
 }
 
-}  // namespace mongo
+}  // namespace mongol

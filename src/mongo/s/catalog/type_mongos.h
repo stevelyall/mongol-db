@@ -31,27 +31,27 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and contents of documents contained in the
- * config.mongos collection. All manipulation of documents coming from that
+ * config.mongols collection. All manipulation of documents coming from that
  * collection should be done with this class.
  */
 class MongosType {
 public:
-    // Name of the mongos collection in the config server.
+    // Name of the mongols collection in the config server.
     static const std::string ConfigNS;
 
-    // Field names and types in the mongos collection type.
+    // Field names and types in the mongols collection type.
     static const BSONField<std::string> name;
     static const BSONField<Date_t> ping;
     static const BSONField<long long> uptime;
     static const BSONField<bool> waiting;
-    static const BSONField<std::string> mongoVersion;
+    static const BSONField<std::string> mongolVersion;
     static const BSONField<long long> configVersion;
 
     /**
@@ -100,12 +100,12 @@ public:
     void setWaiting(const bool waiting);
 
     const std::string& getMongoVersion() const {
-        return _mongoVersion.get();
+        return _mongolVersion.get();
     }
     bool isMongoVersionSet() const {
-        return _mongoVersion.is_initialized();
+        return _mongolVersion.is_initialized();
     }
-    void setMongoVersion(const std::string& mongoVersion);
+    void setMongoVersion(const std::string& mongolVersion);
 
     long long getConfigVersion() const {
         return _configVersion.get();
@@ -115,7 +115,7 @@ public:
 private:
     // Convention: (M)andatory, (O)ptional, (S)pecial rule.
 
-    // (M) "host:port" for this mongos
+    // (M) "host:port" for this mongols
     boost::optional<std::string> _name;
     // (M) last time it was seen alive
     boost::optional<Date_t> _ping;
@@ -123,10 +123,10 @@ private:
     boost::optional<long long> _uptime;
     // (M) used to indicate if we are going to sleep after ping. For testing purposes
     boost::optional<bool> _waiting;
-    // (O) the mongodb version of the pinging mongos
-    boost::optional<std::string> _mongoVersion;
-    // (O) the config version of the pinging mongos
+    // (O) the mongoldb version of the pinging mongols
+    boost::optional<std::string> _mongolVersion;
+    // (O) the config version of the pinging mongols
     boost::optional<long long> _configVersion;
 };
 
-}  // namespace mongo
+}  // namespace mongol

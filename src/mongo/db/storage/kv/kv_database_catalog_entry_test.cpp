@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/kv/kv_database_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_database_catalog_entry.h"
 
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/devnull/devnull_kv_engine.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/devnull/devnull_kv_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(KVDatabaseCatalogEntryTest, CreateCollectionValidNamespace) {
     KVStorageEngine storageEngine(new DevNullKVEngine());

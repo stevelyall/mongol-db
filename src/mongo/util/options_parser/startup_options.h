@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_section.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 /*
@@ -63,4 +63,4 @@ extern OptionSection startupOptions;
 extern Environment startupOptionsParsed;
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

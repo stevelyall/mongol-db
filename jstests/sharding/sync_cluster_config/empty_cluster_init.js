@@ -1,6 +1,6 @@
 //
-// Tests initialization of an empty cluster with multiple mongoses.
-// Starts a bunch of mongoses in parallel, and ensures that there's only a single config 
+// Tests initialization of an empty cluster with multiple mongolses.
+// Starts a bunch of mongolses in parallel, and ensures that there's only a single config 
 // version initialization.
 //
 
@@ -18,26 +18,26 @@ var configConn = configSvrA;
 configConn.getDB("config").setProfilingLevel(2);
 
 //
-// Start a bunch of mongoses which will probably interfere
+// Start a bunch of mongolses which will probably interfere
 //
 
-jsTest.log("Starting first set of mongoses in parallel...");
+jsTest.log("Starting first set of mongolses in parallel...");
 
-var mongoses = [];
+var mongolses = [];
 for (var i = 0; i < 3; i++) {
-    var mongos = MongoRunner.runMongos({ binVersion : "latest", 
+    var mongols = MongoRunner.runMongos({ binVersion : "latest", 
                                          configdb : configConnStr,
                                          waitForConnect : false });
     
-    mongoses.push(mongos);
+    mongolses.push(mongols);
 }
 
-// Eventually connect to a mongo host, to be sure that the config upgrade happened
+// Eventually connect to a mongol host, to be sure that the config upgrade happened
 // (This can take longer on extremely slow bbots or VMs)
-var mongosConn = null;
+var mongolsConn = null;
 assert.soon(function() {
     try {
-        mongosConn = new Mongo(mongoses[0].host);
+        mongolsConn = new Mongo(mongolses[0].host);
         return true;
     }
     catch (e) {
@@ -45,28 +45,28 @@ assert.soon(function() {
         printjson(e);
         return false;
     }
-}, "Mongos " + mongoses[0].host + " did not start.", 5 * 60 * 1000 );
+}, "Mongos " + mongolses[0].host + " did not start.", 5 * 60 * 1000 );
 
-var version = mongosConn.getCollection("config.version").findOne();
+var version = mongolsConn.getCollection("config.version").findOne();
 
 //
-// Start a second set of mongoses which should respect the initialized version
+// Start a second set of mongolses which should respect the initialized version
 //
 
-jsTest.log("Starting second set of mongoses...");
+jsTest.log("Starting second set of mongolses...");
 
 for (var i = 0; i < 3; i++) {
-    var mongos = MongoRunner.runMongos({ binVersion : "latest", 
+    var mongols = MongoRunner.runMongos({ binVersion : "latest", 
                                          configdb : configConnStr,
                                          waitForConnect : false });
     
-    mongoses.push(mongos);
+    mongolses.push(mongols);
 }
 
 // Eventually connect to a host
 assert.soon(function() {
     try {
-        mongosConn = new Mongo(mongoses[mongoses.length - 1].host);
+        mongolsConn = new Mongo(mongolses[mongolses.length - 1].host);
         return true;
     }
     catch (e) {
@@ -74,11 +74,11 @@ assert.soon(function() {
         printjson(e);
         return false;
     }
-}, "Later mongos " + mongoses[ mongoses.length - 1 ].host + " did not start.", 5 * 60 * 1000 );
+}, "Later mongols " + mongolses[ mongolses.length - 1 ].host + " did not start.", 5 * 60 * 1000 );
 
-// Shut down our mongoses now that we've tested them
-for (var i = 0; i < mongoses.length; i++) {
-    MongoRunner.stopMongos(mongoses[i]);
+// Shut down our mongolses now that we've tested them
+for (var i = 0; i < mongolses.length; i++) {
+    MongoRunner.stopMongos(mongolses[i]);
 }
 
 jsTest.log("Mongoses stopped...");

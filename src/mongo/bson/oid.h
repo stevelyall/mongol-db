@@ -31,11 +31,11 @@
 
 #include <string>
 
-#include "mongo/base/data_view.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/data_view.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 class SecureRandom;
 
 /**
@@ -219,7 +219,7 @@ inline StringBuilder& operator<<(StringBuilder& s, const OID& o) {
 }
 
 /** Formatting mode for generating JSON from BSON.
-    See <http://dochub.mongodb.org/core/mongodbextendedjson>
+    See <http://dochub.mongoldb.org/core/mongoldbextendedjson>
     for details.
 */
 enum JsonStringFormat {
@@ -245,4 +245,4 @@ inline bool operator<=(const OID& lhs, const OID& rhs) {
     return lhs.compare(rhs) <= 0;
 }
 
-}  // namespace mongo
+}  // namespace mongol

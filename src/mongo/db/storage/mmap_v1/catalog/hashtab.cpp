@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/catalog/hashtab.h"
+#include "mongol/db/storage/mmap_v1/catalog/hashtab.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 int NamespaceHashTable::_find(const Namespace& k, bool& found) const {
     found = false;
@@ -82,4 +82,4 @@ NamespaceHashTable::NamespaceHashTable(void* buf, int buflen, const char* name)
     maxChain = (int)(n * 0.05);
 }
 
-}  // namespace mongo
+}  // namespace mongol

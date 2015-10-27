@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/sharded_connection_info.h"
+#include "mongol/db/s/sharded_connection_info.h"
 
 #include <boost/optional.hpp>
 #include <boost/utility/in_place_factory.hpp>
 
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/sharding_connection_hook.h"
-#include "mongo/util/log.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/sharding_connection_hook.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -108,4 +108,4 @@ void ShardedConnectionInfo::addHook() {
     alreadyAddedHook.store(1);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-TOOLS=bsondump mongodump mongoexport mongofiles mongoimport mongooplog mongoperf mongorestore mongostat mongotop
+TOOLS=bsondump mongoldump mongolexport mongolfiles mongolimport mongoloplog mongolperf mongolrestore mongolstat mongoltop
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
@@ -20,16 +20,16 @@ build-stamp: configure-stamp
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED. 
 	# scons 
-	#docbook-to-man debian/mongodb.sgml > mongodb.1
-	echo -n > debian/mongodb-enterprise-tools.manpages
+	#docbook-to-man debian/mongoldb.sgml > mongoldb.1
+	echo -n > debian/mongoldb-enterprise-tools.manpages
 	for binary in ${TOOLS} ; \
 	do \
-	  echo debian/$$binary.1 >> debian/mongodb-enterprise-tools.manpages ; \
+	  echo debian/$$binary.1 >> debian/mongoldb-enterprise-tools.manpages ; \
 	done
 
-	echo debian/mongo.1 > debian/mongodb-enterprise-shell.manpages
-	echo debian/mongod.1 > debian/mongodb-enterprise-server.manpages
-	echo debian/mongos.1 > debian/mongodb-enterprise-mongos.manpages
+	echo debian/mongol.1 > debian/mongoldb-enterprise-shell.manpages
+	echo debian/mongold.1 > debian/mongoldb-enterprise-server.manpages
+	echo debian/mongols.1 > debian/mongoldb-enterprise-mongols.manpages
 
 	touch $@
 
@@ -39,26 +39,26 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# FIXME: scons freaks out at the presence of target files
-	# under debian/mongodb.
+	# under debian/mongoldb.
 	#scons -c
 
 	rm -f debian/*.manpages
 
-	rm -rf $(CURDIR)/debian/mongodb-enterprise
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-shell
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-server
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-mongos
-	rm -rf $(CURDIR)/debian/mongodb-enterprise-tools
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-shell
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-server
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-mongols
+	rm -rf $(CURDIR)/debian/mongoldb-enterprise-tools
 	rm -f config.log
-	rm -f mongo
-	rm -f mongod
-	rm -f mongoimportjson
-	rm -f mongoexport
-	rm -f mongorestore
-	rm -f mongodump
-	rm -f mongofiles
+	rm -f mongol
+	rm -f mongold
+	rm -f mongolimportjson
+	rm -f mongolexport
+	rm -f mongolrestore
+	rm -f mongoldump
+	rm -f mongolfiles
 	rm -f .sconsign.dblite
-	rm -f libmongoclient.a
+	rm -f libmongolclient.a
 	rm -rf client/*.o
 	rm -rf tools/*.o
 	rm -rf shell/*.o
@@ -75,31 +75,31 @@ install: build
 	dh_installdirs
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED.
-	# scons --prefix=$(CURDIR)/debian/mongodb/usr install
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-shell/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-server/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-mongos/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-tools/usr/bin
-	cp -v $(CURDIR)/bin/mongo $(CURDIR)/debian/mongodb-enterprise-shell/usr/bin
-	cp -v $(CURDIR)/bin/mongod $(CURDIR)/debian/mongodb-enterprise-server/usr/bin
-	cp -v $(CURDIR)/bin/mongos $(CURDIR)/debian/mongodb-enterprise-mongos/usr/bin
+	# scons --prefix=$(CURDIR)/debian/mongoldb/usr install
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-shell/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-server/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-mongols/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-tools/usr/bin
+	cp -v $(CURDIR)/bin/mongol $(CURDIR)/debian/mongoldb-enterprise-shell/usr/bin
+	cp -v $(CURDIR)/bin/mongold $(CURDIR)/debian/mongoldb-enterprise-server/usr/bin
+	cp -v $(CURDIR)/bin/mongols $(CURDIR)/debian/mongoldb-enterprise-mongols/usr/bin
 
 	for binary in ${TOOLS} ; \
 	do \
-	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongodb-enterprise-tools/usr/bin ; \
+	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongoldb-enterprise-tools/usr/bin ; \
 	done
 
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-server/etc
-	cp $(CURDIR)/debian/mongod.conf $(CURDIR)/debian/mongodb-enterprise-server/etc/mongod.conf 
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-server/etc
+	cp $(CURDIR)/debian/mongold.conf $(CURDIR)/debian/mongoldb-enterprise-server/etc/mongold.conf 
 
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-shell/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-server/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-mongos/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-enterprise-tools/usr/share/lintian/overrides/
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-shell/usr/share/lintian/overrides/mongodb-enterprise-shell
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-server/usr/share/lintian/overrides/mongodb-enterprise-server
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-mongos/usr/share/lintian/overrides/mongodb-enterprise-mongos
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-enterprise-tools/usr/share/lintian/overrides/mongodb-enterprise-tools
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-shell/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-server/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-mongols/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-enterprise-tools/usr/share/lintian/overrides/
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-shell/usr/share/lintian/overrides/mongoldb-enterprise-shell
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-server/usr/share/lintian/overrides/mongoldb-enterprise-server
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-mongols/usr/share/lintian/overrides/mongoldb-enterprise-mongols
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-enterprise-tools/usr/share/lintian/overrides/mongoldb-enterprise-tools
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -119,7 +119,7 @@ binary-arch: build install
 #	dh_installemacsen
 #	dh_installpam
 #	dh_installmime
-	dh_installinit -pmongodb-enterprise-server --name=mongod
+	dh_installinit -pmongoldb-enterprise-server --name=mongold
 #	dh_installinfo
 	dh_installman
 	dh_link

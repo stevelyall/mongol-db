@@ -34,13 +34,13 @@
 #include <type_traits>
 #include <utility>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
 #define MONGO_INCLUDE_INVARIANT_H_WHITELISTED
-#include "mongo/util/invariant.h"
+#include "mongol/util/invariant.h"
 #undef MONGO_INCLUDE_INVARIANT_H_WHITELISTED
 
-namespace mongo {
+namespace mongol {
 
 /**
  * StatusWith is used to return an error or a value.
@@ -61,7 +61,7 @@ namespace mongo {
  */
 template <typename T>
 class StatusWith {
-    static_assert(!(std::is_same<T, mongo::Status>::value), "StatusWith<Status> is banned.");
+    static_assert(!(std::is_same<T, mongol::Status>::value), "StatusWith<Status> is banned.");
 
 public:
     /**
@@ -207,4 +207,4 @@ bool operator!=(const ErrorCodes::Error code, const StatusWith<T>& sw) {
     return !(code == sw);
 }
 
-}  // namespace mongo
+}  // namespace mongol

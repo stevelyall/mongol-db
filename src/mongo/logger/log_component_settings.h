@@ -27,11 +27,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/log_severity.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/log_severity.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -93,4 +93,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

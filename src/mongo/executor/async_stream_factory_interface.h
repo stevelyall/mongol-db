@@ -31,9 +31,9 @@
 #include <asio.hpp>
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 struct HostAndPort;
 namespace executor {
 
@@ -56,4 +56,4 @@ protected:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

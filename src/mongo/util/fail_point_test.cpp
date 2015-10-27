@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <stdexcept>
 #include <string>
 #include <vector>
 
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/fail_point.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/fail_point.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-using mongo::FailPoint;
-namespace stdx = mongo::stdx;
+using mongol::FailPoint;
+namespace stdx = mongol::stdx;
 
-namespace mongo_test {
+namespace mongol_test {
 TEST(FailPoint, InitialState) {
     FailPoint failPoint;
     ASSERT_FALSE(failPoint.shouldFail());
@@ -145,14 +145,14 @@ TEST(FailPoint, SetGetParam) {
 TEST(FailPoint, SetInvalidMode) {
     FailPoint failPoint;
 
-    ASSERT_THROWS(failPoint.setMode(static_cast<FailPoint::Mode>(9999)), mongo::UserException);
+    ASSERT_THROWS(failPoint.setMode(static_cast<FailPoint::Mode>(9999)), mongol::UserException);
     ASSERT_FALSE(failPoint.shouldFail());
 
-    ASSERT_THROWS(failPoint.setMode(static_cast<FailPoint::Mode>(-1)), mongo::UserException);
+    ASSERT_THROWS(failPoint.setMode(static_cast<FailPoint::Mode>(-1)), mongol::UserException);
     ASSERT_FALSE(failPoint.shouldFail());
 }
 
-class FailPointStress : public mongo::unittest::Test {
+class FailPointStress : public mongol::unittest::Test {
 public:
     void setUp() {
         _fp.setMode(FailPoint::alwaysOn, 0, BSON("a" << 44));
@@ -187,12 +187,12 @@ private:
     void blockTask() {
         while (true) {
             MONGO_FAIL_POINT_BLOCK(_fp, scopedFp) {
-                const mongo::BSONObj& data = scopedFp.getData();
+                const mongol::BSONObj& data = scopedFp.getData();
 
                 // Expanded ASSERT_EQUALS since the error is not being
                 // printed out properly
                 if (data["a"].numberInt() != 44) {
-                    mongo::error() << "blockTask thread detected anomaly"
+                    mongol::error() << "blockTask thread detected anomaly"
                                    << " - data: " << data << std::endl;
                     ASSERT(false);
                 }
@@ -208,10 +208,10 @@ private:
         while (true) {
             try {
                 MONGO_FAIL_POINT_BLOCK(_fp, scopedFp) {
-                    const mongo::BSONObj& data = scopedFp.getData();
+                    const mongol::BSONObj& data = scopedFp.getData();
 
                     if (data["a"].numberInt() != 44) {
-                        mongo::error() << "blockWithExceptionTask thread detected anomaly"
+                        mongol::error() << "blockWithExceptionTask thread detected anomaly"
                                        << " - data: " << data << std::endl;
                         ASSERT(false);
                     }
@@ -258,7 +258,7 @@ private:
 
 TEST_F(FailPointStress, Basic) {
     startTest();
-    mongo::sleepsecs(30);
+    mongol::sleepsecs(30);
     stopTest();
 }
 

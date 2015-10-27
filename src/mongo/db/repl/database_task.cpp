@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/database_task.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/database_task.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 // static
@@ -100,4 +100,4 @@ DatabaseTask::Task DatabaseTask::makeCollectionLockTask(const Task& task,
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

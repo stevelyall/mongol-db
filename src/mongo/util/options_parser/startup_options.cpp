@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/util/options_parser/startup_options.h"
 
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_section.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 OptionSection startupOptions("Options");
 Environment startupOptionsParsed;
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

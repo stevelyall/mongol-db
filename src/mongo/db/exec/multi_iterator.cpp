@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/multi_iterator.h"
+#include "mongol/db/exec/multi_iterator.h"
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -153,4 +153,4 @@ unique_ptr<PlanStageStats> MultiIteratorStage::getStats() {
     return ret;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -1,4 +1,4 @@
-// mongo.js
+// mongol.js
 
 // NOTE 'Mongo' may be defined here or in MongoJS.cpp.  Add code to init, not to this constructor.
 if ( typeof Mongo == "undefined" ){
@@ -20,8 +20,8 @@ if ( ! Mongo.prototype.remove )
 if ( ! Mongo.prototype.update )
     Mongo.prototype.update = function( ns , query , obj , upsert ){ throw Error("update not implemented"); }
 
-if ( typeof mongoInject == "function" ){
-    mongoInject( Mongo.prototype );
+if ( typeof mongolInject == "function" ){
+    mongolInject( Mongo.prototype );
 }
 
 Mongo.prototype.setSlaveOk = function( value ) {
@@ -149,7 +149,7 @@ Mongo.prototype.getReadPrefTagSet = function () {
     return this._readPrefTagSet;
 };
 
-// Returns a readPreference object of the type expected by mongos.
+// Returns a readPreference object of the type expected by mongols.
 Mongo.prototype.getReadPref = function () {
     var obj = {}, mode, tagSet;
     if (typeof(mode = this.getReadPrefMode()) === "string") {
@@ -189,7 +189,7 @@ connect = function(url, user, pass) {
     if (0 == url.length) {
         throw Error("Empty connection string");
     }
-    if (!url.startsWith("mongodb://")) {
+    if (!url.startsWith("mongoldb://")) {
         var colon = url.lastIndexOf(":");
         var slash = url.lastIndexOf("/");
         if (0 == colon || 0 == slash) {
@@ -214,7 +214,7 @@ connect = function(url, user, pass) {
 
     chatty("connecting to: " + url)
     var db;
-    if (url.startsWith("mongodb://")) {
+    if (url.startsWith("mongoldb://")) {
         db = new Mongo(url);
         if (db.defaultDB.length == 0) {
             throw Error("Missing database name in connection string \"" + url + "\"");

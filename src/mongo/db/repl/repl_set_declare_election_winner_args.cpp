@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/repl/repl_set_declare_election_winner_args.h"
+#include "mongol/db/repl/repl_set_declare_election_winner_args.h"
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -152,4 +152,4 @@ void ReplSetDeclareElectionWinnerResponse::addToBSON(BSONObjBuilder* builder) co
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

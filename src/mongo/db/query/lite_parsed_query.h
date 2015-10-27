@@ -31,10 +31,10 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class QueryMessage;
 class Status;
@@ -154,7 +154,7 @@ public:
     // Read preference is attached to commands in "wrapped" form, e.g.
     //   { $query: { <cmd>: ... } , <kWrappedReadPrefField>: { ... } }
     //
-    // However, mongos internally "unwraps" the read preference and adds it as a parameter to the
+    // However, mongols internally "unwraps" the read preference and adds it as a parameter to the
     // command, e.g.
     //  { <cmd>: ... , <kUnwrappedReadPrefField>: { <kWrappedReadPrefField>: { ... } } }
     static const std::string kWrappedReadPrefField;
@@ -402,4 +402,4 @@ private:
     boost::optional<long long> _replicationTerm;
 };
 
-}  // namespace mongo
+}  // namespace mongol

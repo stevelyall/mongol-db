@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/s/sharding_state.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/s/sharding_state.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -55,7 +55,7 @@ bool ShardingServerStatus::includeByDefault() const {
     return true;
 }
 
-// This implementation runs on mongoD.
+// This implementation runs on mongolD.
 BSONObj ShardingServerStatus::generateSection(OperationContext* txn,
                                               const BSONElement& configElement) const {
     ShardingState* shardingState = ShardingState::get(txn);
@@ -67,4 +67,4 @@ BSONObj ShardingServerStatus::generateSection(OperationContext* txn,
     return result.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

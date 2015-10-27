@@ -31,13 +31,13 @@
 
 #pragma once
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
 extern std::string dbExecCommand;
 
@@ -76,4 +76,4 @@ void assembleResponse(OperationContext* txn,
 
 void maybeCreatePidFile();
 
-}  // namespace mongo
+}  // namespace mongol

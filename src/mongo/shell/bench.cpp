@@ -28,28 +28,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/shell/bench.h"
+#include "mongol/shell/bench.h"
 
 #include <pcrecpp.h>
 #include <iostream>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/scripting/bson_template_evaluator.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
-#include "mongo/util/version.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/scripting/bson_template_evaluator.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
+#include "mongol/util/version.h"
 
 // ---------------------------------
 // ---- benchmarking system --------
@@ -73,7 +73,7 @@ inline pcrecpp::RE_Options flags2options(const char* flags) {
 }
 }
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::cout;
@@ -267,7 +267,7 @@ void BenchRunState::waitForState(State awaitedState) {
             break;
         default:
             msgasserted(16152,
-                        mongoutils::str::stream() << "Cannot wait for state " << awaitedState);
+                        mongolutils::str::stream() << "Cannot wait for state " << awaitedState);
     }
 }
 
@@ -415,7 +415,7 @@ int runQueryWithReadCommands(DBClientBase* conn,
 void BenchRunWorker::generateLoadOnConnection(DBClientBase* conn) {
     verify(conn);
     long long count = 0;
-    mongo::Timer timer;
+    mongol::Timer timer;
 
     BsonTemplateEvaluator bsonTemplateEvaluator(_randomSeed);
     invariant(bsonTemplateEvaluator.setId(_id) == BsonTemplateEvaluator::StatusSuccess);
@@ -932,7 +932,7 @@ void BenchRunner::start() {
 
         // initial stats
         _brState.tellWorkersToCollectStats();
-        _brTimer = new mongo::Timer();
+        _brTimer = new mongol::Timer();
     }
 }
 
@@ -1076,4 +1076,4 @@ BSONObj BenchRunner::benchFinish(const BSONObj& argsFake, void* data) {
     return BSON("" << finalObj);
 }
 
-}  // namespace mongo
+}  // namespace mongol

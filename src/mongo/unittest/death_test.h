@@ -31,9 +31,9 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
 /**
  * Constructs a single death test named "TEST_NAME" within the test case "CASE_NAME".
@@ -46,14 +46,14 @@
  * in the setUp() method of the fixture.
  */
 #define DEATH_TEST(CASE_NAME, TEST_NAME, MATCH_EXPR)                                               \
-    class _TEST_TYPE_NAME(CASE_NAME, TEST_NAME) : public ::mongo::unittest::Test {                 \
+    class _TEST_TYPE_NAME(CASE_NAME, TEST_NAME) : public ::mongol::unittest::Test {                 \
     private:                                                                                       \
         virtual void _doTest();                                                                    \
                                                                                                    \
         static const RegistrationAgent<                                                            \
-            ::mongo::unittest::DeathTest<_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)>> _agent;           \
+            ::mongol::unittest::DeathTest<_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)>> _agent;           \
     };                                                                                             \
-    const ::mongo::unittest::Test::RegistrationAgent<::mongo::unittest::DeathTest<_TEST_TYPE_NAME( \
+    const ::mongol::unittest::Test::RegistrationAgent<::mongol::unittest::DeathTest<_TEST_TYPE_NAME( \
         CASE_NAME, TEST_NAME)>> _TEST_TYPE_NAME(CASE_NAME, TEST_NAME)::_agent(#CASE_NAME,          \
                                                                               #TEST_NAME);         \
     std::string getDeathTestPattern(_TEST_TYPE_NAME(CASE_NAME, TEST_NAME)*) {                      \
@@ -73,9 +73,9 @@
         virtual void _doTest();                                                                    \
                                                                                                    \
         static const RegistrationAgent<                                                            \
-            ::mongo::unittest::DeathTest<_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)>> _agent;        \
+            ::mongol::unittest::DeathTest<_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)>> _agent;        \
     };                                                                                             \
-    const ::mongo::unittest::Test::RegistrationAgent<::mongo::unittest::DeathTest<_TEST_TYPE_NAME( \
+    const ::mongol::unittest::Test::RegistrationAgent<::mongol::unittest::DeathTest<_TEST_TYPE_NAME( \
         FIXTURE_NAME, TEST_NAME)>> _TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)::_agent(#FIXTURE_NAME, \
                                                                                     #TEST_NAME);   \
     std::string getDeathTestPattern(_TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)*) {                   \
@@ -83,7 +83,7 @@
     }                                                                                              \
     void _TEST_TYPE_NAME(FIXTURE_NAME, TEST_NAME)::_doTest()
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 class DeathTestImpl : public Test {
@@ -112,4 +112,4 @@ private:
 };
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

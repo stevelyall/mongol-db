@@ -26,9 +26,9 @@
  */
 
 
-#include "mongo/client/sasl_client_session.h"
+#include "mongol/client/sasl_client_session.h"
 
-namespace mongo {
+namespace mongol {
 
 class SaslClientConversation;
 
@@ -62,4 +62,4 @@ private:
     std::unique_ptr<SaslClientConversation> _saslConversation;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,12 +30,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/string_data.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::StringData;
+using mongol::StringData;
 using std::string;
 
 TEST(Construction, Empty) {
@@ -146,7 +146,7 @@ void SDHasher_check<4>(void) {
     ASSERT_EQUALS(StringData::Hasher()(""), static_cast<size_t>(0));
     ASSERT_EQUALS(StringData::Hasher()("foo"), static_cast<size_t>(4138058784ULL));
     ASSERT_EQUALS(StringData::Hasher()("pizza"), static_cast<size_t>(3587803311ULL));
-    ASSERT_EQUALS(StringData::Hasher()("mongo"), static_cast<size_t>(3724335885ULL));
+    ASSERT_EQUALS(StringData::Hasher()("mongol"), static_cast<size_t>(3724335885ULL));
     ASSERT_EQUALS(StringData::Hasher()("murmur"), static_cast<size_t>(1945310157ULL));
 }
 
@@ -155,7 +155,7 @@ void SDHasher_check<8>(void) {
     ASSERT_EQUALS(StringData::Hasher()(""), static_cast<size_t>(0));
     ASSERT_EQUALS(StringData::Hasher()("foo"), static_cast<size_t>(16316970633193145697ULL));
     ASSERT_EQUALS(StringData::Hasher()("pizza"), static_cast<size_t>(12165495155477134356ULL));
-    ASSERT_EQUALS(StringData::Hasher()("mongo"), static_cast<size_t>(2861051452199491487ULL));
+    ASSERT_EQUALS(StringData::Hasher()("mongol"), static_cast<size_t>(2861051452199491487ULL));
     ASSERT_EQUALS(StringData::Hasher()("murmur"), static_cast<size_t>(18237957392784716687ULL));
 }
 

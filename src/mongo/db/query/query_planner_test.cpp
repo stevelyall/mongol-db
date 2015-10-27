@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_test_fixture.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_test_fixture.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 //
 // Equality

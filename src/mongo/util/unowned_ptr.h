@@ -31,7 +31,7 @@
 #include <memory>
 #include <type_traits>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A "smart" pointer that explicitly indicates a lack of ownership.
@@ -110,4 +110,4 @@ private:
     T* _p = nullptr;
 };
 
-}  // namespace mongo
+}  // namespace mongol

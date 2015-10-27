@@ -30,15 +30,15 @@
 
 #include <map>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/list.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/list.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 class NetworkConnectionHook;
 }
@@ -210,4 +210,4 @@ private:
     const std::unique_ptr<executor::NetworkConnectionHook> _hook;
 };
 
-}  // namespace mongo
+}  // namespace mongol

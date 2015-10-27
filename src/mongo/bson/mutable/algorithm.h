@@ -31,11 +31,11 @@
 #include <algorithm>
 #include <vector>
 
-#include "mongo/bson/mutable/const_element.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/mutable/const_element.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 /** For an overview of mutable BSON, please see the file document.h in this directory.
@@ -278,7 +278,7 @@ std::string getFullName(ElementType element, char delim = '.') {
         curr = curr.parent();
     }
 
-    mongoutils::str::stream name;
+    mongolutils::str::stream name;
     bool first = true;
     for (std::vector<StringData>::reverse_iterator it = names.rbegin(); it != names.rend(); ++it) {
         if (!first)
@@ -289,4 +289,4 @@ std::string getFullName(ElementType element, char delim = '.') {
     return name;
 }
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

@@ -5,15 +5,15 @@ var DB;
 (function() {
 
 if (DB === undefined) {
-    DB = function( mongo , name ){
-        this._mongo = mongo;
+    DB = function( mongol , name ){
+        this._mongol = mongol;
         this._name = name;
     }
 }
 
 DB.prototype.getMongo = function(){
-    assert( this._mongo , "why no mongo!" );
-    return this._mongo;
+    assert( this._mongol , "why no mongol!" );
+    return this._mongol;
 }
 
 DB.prototype.getSiblingDB = function( name ){
@@ -31,7 +31,7 @@ DB.prototype.stats = function(scale){
 }
 
 DB.prototype.getCollection = function( name ){
-    return new DBCollection( this._mongo , this , name , this._name + "." + name );
+    return new DBCollection( this._mongol , this , name , this._name + "." + name );
 }
 
 DB.prototype.commandHelp = function( name ){
@@ -333,8 +333,8 @@ DB.prototype.cloneDatabase = function(from) {
  <p>
  This is a low level administrative function is not typically used.
  
- * @param {String} from mongod instance from which to clnoe (dbhostname:port).  May
- not be this mongod instance, as clone from self is not allowed.
+ * @param {String} from mongold instance from which to clnoe (dbhostname:port).  May
+ not be this mongold instance, as clone from self is not allowed.
  * @param {String} collection name of collection to clone.
  * @param {Object} query query specifying which elements of collection are to be cloned.
  * @return Object returned has member ok set to true if operation succeeds, false otherwise.
@@ -734,7 +734,7 @@ DB.prototype._getCollectionInfosCommand = function(filter) {
     filter = filter || {};
     var res = this.runCommand({listCollections: 1, filter: filter});
     if ( res.code == 59 ) {
-        // command doesn't exist, old mongod
+        // command doesn't exist, old mongold
         return null;
     }
 
@@ -746,7 +746,7 @@ DB.prototype._getCollectionInfosCommand = function(filter) {
         throw _getErrorWithCode(res, "listCollections failed: " + tojson(res));
     }
 
-    return new DBCommandCursor(this._mongo, res).toArray().sort(compareOn("name"));
+    return new DBCommandCursor(this._mongol, res).toArray().sort(compareOn("name"));
 }
 
 /**
@@ -1141,7 +1141,7 @@ DB.prototype.setSlaveOk = function( value ) {
 
 DB.prototype.getSlaveOk = function() {
     if (this._slaveOk != undefined) return this._slaveOk;
-    return this._mongo.getSlaveOk();
+    return this._mongol.getSlaveOk();
 }
 
 DB.prototype.getQueryOptions = function() {
@@ -1230,7 +1230,7 @@ function _hashPassword(username, password) {
         throw Error("User passwords must be of type string. Was given password with type: " +
                     typeof(password));
     }
-    return hex_md5(username + ":mongo:" + password);
+    return hex_md5(username + ":mongol:" + password);
 }
 
 /**
@@ -1602,8 +1602,8 @@ DB.prototype.getWriteConcern = function() {
     if (this._writeConcern)
         return this._writeConcern;
     
-    if (this._mongo.getWriteConcern())
-        return this._mongo.getWriteConcern();
+    if (this._mongol.getWriteConcern())
+        return this._mongol.getWriteConcern();
 
     return null;
 };

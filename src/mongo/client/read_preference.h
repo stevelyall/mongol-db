@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 template <typename T>
 class StatusWith;
 
@@ -151,4 +151,4 @@ struct ReadPreferenceSetting {
     TagSet tags;
 };
 
-}  // namespace mongo
+}  // namespace mongol

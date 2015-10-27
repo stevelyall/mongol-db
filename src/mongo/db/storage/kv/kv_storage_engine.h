@@ -33,12 +33,12 @@
 #include <map>
 #include <string>
 
-#include "mongo/db/storage/kv/kv_catalog.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/storage/kv/kv_catalog.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class KVCatalog;
 class KVEngine;

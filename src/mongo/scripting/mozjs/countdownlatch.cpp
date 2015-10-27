@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/countdownlatch.h"
+#include "mongol/scripting/mozjs/countdownlatch.h"
 
 #include <unordered_map>
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const CountDownLatchInfo::className = "CountDownLatch";
@@ -195,4 +195,4 @@ void CountDownLatchInfo::postInstall(JSContext* cx,
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

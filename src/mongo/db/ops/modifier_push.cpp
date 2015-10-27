@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/db/ops/modifier_push.h"
+#include "mongol/db/ops/modifier_push.h"
 
 #include <algorithm>
 #include <limits>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::abs;
 using std::numeric_limits;
 
 namespace mb = mutablebson;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 namespace {
 
@@ -113,7 +113,7 @@ Status parseEachMode(ModifierPush::ModifierPushMode pushMode,
     BSONObjIterator itMod(modExpr.embeddedObject());
     while (itMod.more()) {
         BSONElement modElem = itMod.next();
-        if (mongoutils::str::equals(modElem.fieldName(), kEach)) {
+        if (mongolutils::str::equals(modElem.fieldName(), kEach)) {
             if (seenEach) {
                 return Status(ErrorCodes::BadValue, "Only one $each clause is supported.");
             }
@@ -128,25 +128,25 @@ Status parseEachMode(ModifierPush::ModifierPushMode pushMode,
     BSONObjIterator itPush(modExpr.embeddedObject());
     while (itPush.more()) {
         BSONElement elem = itPush.next();
-        if (mongoutils::str::equals(elem.fieldName(), kSlice)) {
+        if (mongolutils::str::equals(elem.fieldName(), kSlice)) {
             if (seenSlice) {
                 return Status(ErrorCodes::BadValue, "Only one $slice clause is supported.");
             }
             *sliceElem = elem;
             seenSlice = true;
-        } else if (mongoutils::str::equals(elem.fieldName(), kSort)) {
+        } else if (mongolutils::str::equals(elem.fieldName(), kSort)) {
             if (seenSort) {
                 return Status(ErrorCodes::BadValue, "Only one $sort clause is supported.");
             }
             *sortElem = elem;
             seenSort = true;
-        } else if (mongoutils::str::equals(elem.fieldName(), kPosition)) {
+        } else if (mongolutils::str::equals(elem.fieldName(), kPosition)) {
             if (seenPosition) {
                 return Status(ErrorCodes::BadValue, "Only one $position clause is supported.");
             }
             *positionElem = elem;
             seenPosition = true;
-        } else if (!mongoutils::str::equals(elem.fieldName(), kEach)) {
+        } else if (!mongolutils::str::equals(elem.fieldName(), kEach)) {
             return Status(ErrorCodes::BadValue,
                           str::stream()
                               << "Unrecognized clause in $push: " << elem.fieldNameStringData());
@@ -640,7 +640,7 @@ Status ModifierPush::log(LogBuilder* logBuilder) const {
             while (itEach.more()) {
                 BSONElement eachItem = itEach.next();
                 // value for the logElement ("field.path.name.N": <value>)
-                const std::string positionalName = mongoutils::str::stream()
+                const std::string positionalName = mongolutils::str::stream()
                     << _fieldRef.dottedField() << "." << position++;
 
                 Status s = logBuilder->addToSetsWithNewFieldName(positionalName, eachItem);
@@ -651,7 +651,7 @@ Status ModifierPush::log(LogBuilder* logBuilder) const {
             return Status::OK();
         } else {
             // single value for the logElement ("field.path.name.N": <value>)
-            const std::string positionalName = mongoutils::str::stream() << _fieldRef.dottedField()
+            const std::string positionalName = mongolutils::str::stream() << _fieldRef.dottedField()
                                                                          << "." << position++;
 
             return logBuilder->addToSetsWithNewFieldName(positionalName, _val);
@@ -659,4 +659,4 @@ Status ModifierPush::log(LogBuilder* logBuilder) const {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

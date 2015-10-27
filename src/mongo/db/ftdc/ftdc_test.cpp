@@ -26,25 +26,25 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/ftdc_test.h"
+#include "mongol/db/ftdc/ftdc_test.h"
 
 #include <boost/filesystem.hpp>
 
-#include "mongo/base/data_type_validated.h"
-#include "mongo/base/init.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/db/client.h"
-#include "mongo/db/ftdc/file_reader.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/clock_source.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/db/client.h"
+#include "mongol/db/ftdc/file_reader.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/clock_source.h"
 
-namespace mongo {
+namespace mongol {
 
 void ValidateDocumentList(const boost::filesystem::path& p, const std::vector<BSONObj>& docs) {
     FTDCFileReader reader;
@@ -129,4 +129,4 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(FTDCTestInit,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/mr.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/config.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/strategy.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/mr.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/config.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/strategy.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::map;
@@ -116,7 +116,7 @@ BSONObj fixForShards(const BSONObj& orig,
 /**
  * Outline for sharded map reduce for sharded output, $out replace:
  *
- * ============= mongos =============
+ * ============= mongols =============
  * 1. Send map reduce command to all relevant shards with some extra info like the value for
  *    the chunkSize and the name of the temporary output collection.
  *
@@ -126,7 +126,7 @@ BSONObj fixForShards(const BSONObj& orig,
  * 3. Calls splitVector on itself against the output collection and puts the results into the
  *    response object.
  *
- * ============= mongos =============
+ * ============= mongols =============
  * 4. If the output collection is *not* sharded, uses the information from splitVector to
  *    create a pre-split sharded collection.
  *
@@ -145,7 +145,7 @@ BSONObj fixForShards(const BSONObj& orig,
  * 9. Atomically drops the old output collection and renames the temporary collection to the
  *    output collection.
  *
- * ============= mongos =============
+ * ============= mongols =============
  * 10. Releases the distributed lock acquired at step #5.
  *
  * 11. Inspects the BSONObject size from step #8 and determines if it needs to split.
@@ -589,4 +589,4 @@ private:
 } clusterMapReduceCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

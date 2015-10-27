@@ -25,14 +25,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/connection_pool.h"
+#include "mongol/executor/connection_pool.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/scopeguard.h"
 
 
 // One interesting implementation note herein concerns how setup() and
@@ -42,7 +42,7 @@
 // value. In practice, dumping the locks is always safe (because we restrict
 // ourselves to operations over the connection).
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -625,4 +625,4 @@ void ConnectionPool::SpecificPool::updateStateInLock() {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

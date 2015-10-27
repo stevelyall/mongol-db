@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -139,4 +139,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

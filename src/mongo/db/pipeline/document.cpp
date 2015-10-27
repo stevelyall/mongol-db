@@ -26,18 +26,18 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document.h"
+#include "mongol/db/pipeline/document.h"
 
 #include <boost/functional/hash.hpp>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/pipeline/field_path.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/pipeline/field_path.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
-using namespace mongoutils;
+namespace mongol {
+using namespace mongolutils;
 using boost::intrusive_ptr;
 using std::string;
 using std::vector;

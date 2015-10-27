@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/s/ns_targeter.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/s/ns_targeter.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A MockRange represents a range with endpoint that a MockNSTargeter uses to direct writes to
@@ -215,4 +215,4 @@ inline void assertEndpointsEqual(const ShardEndpoint& endpointA, const ShardEndp
     ASSERT_EQUALS(endpointA.shardVersion.epoch(), endpointB.shardVersion.epoch());
 }
 
-}  // namespace mongo
+}  // namespace mongol

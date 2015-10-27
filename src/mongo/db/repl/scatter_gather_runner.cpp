@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/scatter_gather_runner.h"
+#include "mongol/db/repl/scatter_gather_runner.h"
 
 #include <algorithm>
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/repl/scatter_gather_algorithm.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/repl/scatter_gather_algorithm.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -150,4 +150,4 @@ void ScatterGatherRunner::_signalSufficientResponsesReceived(ReplicationExecutor
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

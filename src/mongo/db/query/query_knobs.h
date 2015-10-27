@@ -30,9 +30,9 @@
 
 #include <atomic>
 
-#include "mongo/platform/atomic_proxy.h"
+#include "mongol/platform/atomic_proxy.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // multi-plan ranking
@@ -108,4 +108,4 @@ extern std::atomic<int> internalQueryExecYieldPeriodMS;  // NOLINT
 // Limit the size that we write without yielding to 16MB / 64 (max expected number of indexes)
 const int64_t insertVectorMaxBytes = 256 * 1024;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,12 +31,12 @@
 #include <boost/filesystem/path.hpp>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/ftdc/decompressor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/ftdc/decompressor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Utilities for inflating and deflating BSON documents and metric arrays
@@ -192,4 +192,4 @@ Date_t roundTime(Date_t now, Milliseconds period);
 
 }  // namespace FTDCUtil
 
-}  // namespace mongo
+}  // namespace mongol

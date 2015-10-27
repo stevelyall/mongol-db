@@ -27,17 +27,17 @@
  */
 
 /**
- * This file contains tests for mongo/db/commands/mr.h
+ * This file contains tests for mongol/db/commands/mr.h
  */
 
-#include "mongo/db/commands/mr.h"
+#include "mongol/db/commands/mr.h"
 
 #include <string>
 
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

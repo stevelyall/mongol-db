@@ -33,10 +33,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  *  Background thread dispatching.
@@ -151,7 +151,7 @@ public:
      *  Starts the BackgroundJob that runs PeriodicTasks. You may call this multiple times,
      *  from multiple threads, and the BackgroundJob will be started only once. Please note
      *  that since this method starts threads, it is not appropriate to call it from within
-     *  a mongo initializer. Calling this method after calling 'stopRunningPeriodicTasks'
+     *  a mongol initializer. Calling this method after calling 'stopRunningPeriodicTasks'
      *  does not re-start the background job.
      */
     static void startRunningPeriodicTasks();
@@ -169,4 +169,4 @@ public:
 };
 
 
-}  // namespace mongo
+}  // namespace mongol

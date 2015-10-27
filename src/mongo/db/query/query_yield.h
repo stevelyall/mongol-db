@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class RecordFetcher;
@@ -49,4 +49,4 @@ public:
     static void yieldAllLocks(OperationContext* txn, RecordFetcher* fetcher);
 };
 
-}  // namespace mongo
+}  // namespace mongol

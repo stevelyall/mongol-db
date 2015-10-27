@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 // Tests setEndPosition with next().
 void testSetEndPosition_Next_Forward(bool unique, bool inclusive) {
     auto harnessHelper = newHarnessHelper();
@@ -414,4 +414,4 @@ TEST(SortedDataInterface, SetEndPosition_Empty_Reverse_Standard_Inclusive) {
 TEST(SortedDataInterface, SetEndPosition_Empty_Reverse_Standard_Exclusive) {
     testSetEndPosition_Empty_Reverse(false, false);
 }
-}  // namespace mongo
+}  // namespace mongol

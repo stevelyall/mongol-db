@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/executor/network_interface_factory.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/executor/network_interface_factory.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 class PoolStats final : public Command {
 public:
@@ -65,10 +65,10 @@ public:
 
     bool run(OperationContext* txn,
              const std::string&,
-             mongo::BSONObj&,
+             mongol::BSONObj&,
              int,
              std::string&,
-             mongo::BSONObjBuilder& result) override {
+             mongol::BSONObjBuilder& result) override {
         BSONObjBuilder poolStats(result.subobjStart("pools"));
 
         // Global connection pool
@@ -108,4 +108,4 @@ public:
 
 } poolStatsCmd;
 
-}  // namespace mongo
+}  // namespace mongol

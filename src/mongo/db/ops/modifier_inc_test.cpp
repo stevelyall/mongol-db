@@ -27,43 +27,43 @@
  */
 
 
-#include "mongo/db/ops/modifier_inc.h"
+#include "mongol/db/ops/modifier_inc.h"
 
 #include <cstdint>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::Decimal128;
-using mongo::LogBuilder;
-using mongo::ModifierInc;
-using mongo::ModifierInterface;
-using mongo::NumberInt;
-using mongo::Status;
-using mongo::StringData;
-using mongo::fromjson;
-using mongo::mutablebson::ConstElement;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
-using mongo::mutablebson::countChildren;
+using mongol::BSONObj;
+using mongol::Decimal128;
+using mongol::LogBuilder;
+using mongol::ModifierInc;
+using mongol::ModifierInterface;
+using mongol::NumberInt;
+using mongol::Status;
+using mongol::StringData;
+using mongol::fromjson;
+using mongol::mutablebson::ConstElement;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
+using mongol::mutablebson::countChildren;
 
 /** Helper to build and manipulate a $inc mod. */
 class Mod {
 public:
     explicit Mod(BSONObj modObj)
         : _modObj(modObj),
-          _mod(mongoutils::str::equals(modObj.firstElement().fieldName(), "$mul")
+          _mod(mongolutils::str::equals(modObj.firstElement().fieldName(), "$mul")
                    ? ModifierInc::MODE_MUL
                    : ModifierInc::MODE_INC) {
         StringData modName = modObj.firstElement().fieldName();
@@ -125,7 +125,7 @@ TEST(Init, InitParsesNumberDouble) {
 }
 
 TEST(Init, InitParsesNumberDecimal) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         Mod incMod(BSON("$inc" << BSON("a" << Decimal128(1.0))));
     }
 }
@@ -284,7 +284,7 @@ TEST(NoOp, Double) {
 }
 
 TEST(NoOp, Decimal) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         Document doc(BSON("a" << Decimal128("1.0")));
         Mod incMod(BSON("$inc" << BSON("a" << Decimal128("0.0"))));
         ModifierInterface::ExecInfo execInfo;
@@ -297,7 +297,7 @@ TEST(Upcasting, UpcastIntToLong) {
     // Checks that $inc : NumberLong(0) turns a NumberInt into a NumberLong and logs it
     // correctly.
     Document doc(BSON("a" << static_cast<int>(1)));
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Mod incMod(BSON("$inc" << BSON("a" << static_cast<long long>(0))));
 
@@ -308,20 +308,20 @@ TEST(Upcasting, UpcastIntToLong) {
     ASSERT_OK(incMod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());
     ASSERT_OK(incMod.log(&logBuilder));
     ASSERT_EQUALS(fromjson("{ $set : { a : 1 } }"), logDoc);
-    ASSERT_EQUALS(mongo::NumberLong, logDoc.root()["$set"]["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, logDoc.root()["$set"]["a"].getType());
 }
 
 TEST(Upcasting, UpcastIntToDouble) {
     // Checks that $inc : 0.0 turns a NumberInt into a NumberDouble and logs it
     // correctly.
     Document doc(BSON("a" << static_cast<int>(1)));
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Mod incMod(fromjson("{ $inc : { a : 0.0 } }"));
 
@@ -332,20 +332,20 @@ TEST(Upcasting, UpcastIntToDouble) {
     ASSERT_OK(incMod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1.0 }"), doc);
-    ASSERT_EQUALS(mongo::NumberDouble, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());
     ASSERT_OK(incMod.log(&logBuilder));
     ASSERT_EQUALS(fromjson("{ $set : { a : 1.0 } }"), logDoc);
-    ASSERT_EQUALS(mongo::NumberDouble, logDoc.root()["$set"]["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, logDoc.root()["$set"]["a"].getType());
 }
 
 TEST(Upcasting, UpcastLongToDouble) {
     // Checks that $inc : 0.0 turns a NumberLong into a NumberDouble and logs it
     // correctly.
     Document doc(BSON("a" << static_cast<long long>(1)));
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 
     Mod incMod(fromjson("{ $inc : { a : 0.0 } }"));
 
@@ -356,19 +356,19 @@ TEST(Upcasting, UpcastLongToDouble) {
     ASSERT_OK(incMod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1.0 }"), doc);
-    ASSERT_EQUALS(mongo::NumberDouble, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());
     ASSERT_OK(incMod.log(&logBuilder));
     ASSERT_EQUALS(fromjson("{ $set : { a : 1.0 } }"), logDoc);
-    ASSERT_EQUALS(mongo::NumberDouble, logDoc.root()["$set"]["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, logDoc.root()["$set"]["a"].getType());
 }
 
 TEST(Upcasting, DoublesStayDoubles) {
     // Checks that $inc : 0 doesn't change a NumberDouble away from double
     Document doc(fromjson("{ a : 1.0 }"));
-    ASSERT_EQUALS(mongo::NumberDouble, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, doc.root()["a"].getType());
 
     Mod incMod(fromjson("{ $inc : { a : 1 } }"));
 
@@ -379,21 +379,21 @@ TEST(Upcasting, DoublesStayDoubles) {
     ASSERT_OK(incMod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 2.0 }"), doc);
-    ASSERT_EQUALS(mongo::NumberDouble, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());
     ASSERT_OK(incMod.log(&logBuilder));
     ASSERT_EQUALS(fromjson("{ $set : { a : 2.0 } }"), logDoc);
-    ASSERT_EQUALS(mongo::NumberDouble, logDoc.root()["$set"]["a"].getType());
+    ASSERT_EQUALS(mongol::NumberDouble, logDoc.root()["$set"]["a"].getType());
 }
 
 TEST(Upcasting, UpcastIntToDecimal) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         // Checks that $inc : NumberDecimal(0) turns a NumberInt into a NumberDecimal and logs it
         // correctly.
         Document doc(BSON("a" << static_cast<int>(1)));
-        ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
         Mod incMod(fromjson("{ $inc : { a : NumberDecimal(\"0\") }}"));
 
@@ -404,22 +404,22 @@ TEST(Upcasting, UpcastIntToDecimal) {
         ASSERT_OK(incMod.apply());
         ASSERT_FALSE(doc.isInPlaceModeEnabled());
         ASSERT_EQUALS(fromjson("{ a : NumberDecimal(\"1.0\") }"), doc);
-        ASSERT_EQUALS(mongo::NumberDecimal, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, doc.root()["a"].getType());
 
         Document logDoc;
         LogBuilder logBuilder(logDoc.root());
         ASSERT_OK(incMod.log(&logBuilder));
         ASSERT_EQUALS(fromjson("{ $set : { a : NumberDecimal(\"1.0\") }}"), logDoc);
-        ASSERT_EQUALS(mongo::NumberDecimal, logDoc.root()["$set"]["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, logDoc.root()["$set"]["a"].getType());
     }
 }
 
 TEST(Upcasting, UpcastLongToDecimal) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         // Checks that $inc : NumberDecimal(0) turns a NumberLong into a NumberDecimal and logs it
         // correctly.
         Document doc(BSON("a" << static_cast<long long>(1)));
-        ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 
         Mod incMod(fromjson("{ $inc : { a : NumberDecimal(\"0\") }}"));
 
@@ -430,22 +430,22 @@ TEST(Upcasting, UpcastLongToDecimal) {
         ASSERT_OK(incMod.apply());
         ASSERT_FALSE(doc.isInPlaceModeEnabled());
         ASSERT_EQUALS(fromjson("{ a : NumberDecimal(\"1.0\") }"), doc);
-        ASSERT_EQUALS(mongo::NumberDecimal, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, doc.root()["a"].getType());
 
         Document logDoc;
         LogBuilder logBuilder(logDoc.root());
         ASSERT_OK(incMod.log(&logBuilder));
         ASSERT_EQUALS(fromjson("{ $set : { a : NumberDecimal(\"1.0\") }}"), logDoc);
-        ASSERT_EQUALS(mongo::NumberDecimal, logDoc.root()["$set"]["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, logDoc.root()["$set"]["a"].getType());
     }
 }
 
 TEST(Upcasting, UpcastDoubleToDecimal) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         // Checks that $inc : NumberDecimal(0) turns a double into a NumberDecimal and logs it
         // correctly.
         Document doc(BSON("a" << static_cast<double>(1.0)));
-        ASSERT_EQUALS(mongo::NumberDouble, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDouble, doc.root()["a"].getType());
 
         Mod incMod(fromjson("{ $inc : { a : NumberDecimal(\"0\") }}"));
 
@@ -456,22 +456,22 @@ TEST(Upcasting, UpcastDoubleToDecimal) {
         ASSERT_OK(incMod.apply());
         ASSERT_FALSE(doc.isInPlaceModeEnabled());
         ASSERT_EQUALS(fromjson("{ a : NumberDecimal(\"1.0\") }"), doc);
-        ASSERT_EQUALS(mongo::NumberDecimal, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, doc.root()["a"].getType());
 
         Document logDoc;
         LogBuilder logBuilder(logDoc.root());
         ASSERT_OK(incMod.log(&logBuilder));
         ASSERT_EQUALS(fromjson("{ $set : { a : NumberDecimal(\"1.0\") }}"), logDoc);
-        ASSERT_EQUALS(mongo::NumberDecimal, logDoc.root()["$set"]["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, logDoc.root()["$set"]["a"].getType());
     }
 }
 
 TEST(Upcasting, DecimalsStayDecimals) {
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         // Checks that $inc : NumberDecimal(1) keeps a NumberDecimal as a NumberDecimal and logs it
         // correctly.
-        Document doc(BSON("a" << mongo::Decimal128("1.0")));
-        ASSERT_EQUALS(mongo::NumberDecimal, doc.root()["a"].getType());
+        Document doc(BSON("a" << mongol::Decimal128("1.0")));
+        ASSERT_EQUALS(mongol::NumberDecimal, doc.root()["a"].getType());
 
         Mod incMod(fromjson("{ $inc : { a : NumberDecimal(\"1\") }}"));
 
@@ -482,13 +482,13 @@ TEST(Upcasting, DecimalsStayDecimals) {
         ASSERT_OK(incMod.apply());
         ASSERT_TRUE(doc.isInPlaceModeEnabled());
         ASSERT_EQUALS(fromjson("{ a : NumberDecimal(\"2.0\") }"), doc);
-        ASSERT_EQUALS(mongo::NumberDecimal, doc.root()["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, doc.root()["a"].getType());
 
         Document logDoc;
         LogBuilder logBuilder(logDoc.root());
         ASSERT_OK(incMod.log(&logBuilder));
         ASSERT_EQUALS(fromjson("{ $set : { a : NumberDecimal(\"2.0\") }}"), logDoc);
-        ASSERT_EQUALS(mongo::NumberDecimal, logDoc.root()["$set"]["a"].getType());
+        ASSERT_EQUALS(mongol::NumberDecimal, logDoc.root()["$set"]["a"].getType());
     }
 }
 
@@ -498,7 +498,7 @@ TEST(Spilling, OverflowIntToLong) {
     const int initial_value = std::numeric_limits<int32_t>::max();
 
     Document doc(BSON("a" << static_cast<int>(initial_value)));
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Mod incMod(fromjson("{ $inc : { a : 1 } }"));
     ModifierInterface::ExecInfo execInfo;
@@ -516,7 +516,7 @@ TEST(Spilling, UnderflowIntToLong) {
     const int initial_value = std::numeric_limits<int32_t>::min();
 
     Document doc(BSON("a" << static_cast<int>(initial_value)));
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Mod incMod(fromjson("{ $inc : { a : -1 } }"));
     ModifierInterface::ExecInfo execInfo;
@@ -605,7 +605,7 @@ TEST(Multiplication, ApplyMissingElementInt) {
     ASSERT_OK(incMod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(BSON("a" << int_zero << "b" << int_zero), doc);
-    ASSERT_EQUALS(mongo::NumberInt, doc.root().rightChild().getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root().rightChild().getType());
 }
 
 TEST(Multiplication, ApplyMissingElementLongLong) {
@@ -622,7 +622,7 @@ TEST(Multiplication, ApplyMissingElementLongLong) {
     ASSERT_OK(incMod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(BSON("a" << ll_zero << "b" << ll_zero), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root().rightChild().getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root().rightChild().getType());
 }
 
 TEST(Multiplication, ApplyMissingElementDouble) {
@@ -639,7 +639,7 @@ TEST(Multiplication, ApplyMissingElementDouble) {
     ASSERT_OK(incMod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(BSON("a" << double_zero << "b" << 0), doc);
-    ASSERT_EQUALS(mongo::NumberDouble, doc.root().rightChild().getType());
+    ASSERT_EQUALS(mongol::NumberDouble, doc.root().rightChild().getType());
 }
 
 }  // namespace

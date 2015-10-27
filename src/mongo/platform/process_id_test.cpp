@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/process_id.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(ProcessId, Comparison) {
@@ -65,4 +65,4 @@ TEST(ProcessId, GetCurrentEqualsSelf) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

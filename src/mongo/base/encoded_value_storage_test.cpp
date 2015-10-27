@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/encoded_value_storage.h"
+#include "mongol/base/encoded_value_storage.h"
 
 #include <cstring>
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Simplistic encoded value view and value classes to test EncodedValueStorage
 namespace EncodedValueStorageTest {
@@ -142,4 +142,4 @@ TEST(EncodedValueStorage, EncodedValueStorage) {
     ASSERT_EQUALS(static_cast<uint32_t>(3), raw.constView().getBE());
 }
 
-}  // namespace mongo
+}  // namespace mongol

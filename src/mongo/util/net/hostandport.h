@@ -30,10 +30,10 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/platform/hash_namespace.h"
 
-namespace mongo {
+namespace mongol {
 class Status;
 class StringData;
 template <typename T>
@@ -124,13 +124,13 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const HostAndPort& hp);
 
-}  // namespace mongo
+}  // namespace mongol
 
 MONGO_HASH_NAMESPACE_START
 
 template <>
-struct hash<mongo::HostAndPort> {
-    size_t operator()(const mongo::HostAndPort& host) const;
+struct hash<mongol::HostAndPort> {
+    size_t operator()(const mongol::HostAndPort& host) const;
 };
 
 MONGO_HASH_NAMESPACE_END

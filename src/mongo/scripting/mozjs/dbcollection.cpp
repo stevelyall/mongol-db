@@ -26,20 +26,20 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/dbcollection.h"
+#include "mongol/scripting/mozjs/dbcollection.h"
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/scripting/mozjs/bson.h"
-#include "mongo/scripting/mozjs/db.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/s/d_state.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/scripting/mozjs/bson.h"
+#include "mongol/scripting/mozjs/db.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/s/d_state.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const DBCollectionInfo::className = "DBCollection";
@@ -67,7 +67,7 @@ void DBCollectionInfo::construct(JSContext* cx, JS::CallArgs args) {
     scope->getProto<DBCollectionInfo>().newObject(&thisv);
     ObjectWrapper o(cx, thisv);
 
-    o.setValue(InternedString::_mongo, args.get(0));
+    o.setValue(InternedString::_mongol, args.get(0));
     o.setValue(InternedString::_db, args.get(1));
     o.setValue(InternedString::_shortName, args.get(2));
     o.setValue(InternedString::_fullName, args.get(3));
@@ -82,4 +82,4 @@ void DBCollectionInfo::construct(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

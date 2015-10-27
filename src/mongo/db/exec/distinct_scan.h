@@ -29,15 +29,15 @@
 #pragma once
 
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/index_bounds.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/index_bounds.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexAccessMethod;
 class IndexDescriptor;
@@ -114,4 +114,4 @@ private:
     DistinctScanStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

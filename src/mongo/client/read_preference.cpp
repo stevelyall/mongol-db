@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/read_preference.h"
+#include "mongol/client/read_preference.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kModeFieldName[] = "mode";
@@ -134,7 +134,7 @@ StatusWith<ReadPreferenceSetting> ReadPreferenceSetting::fromBSON(const BSONObj&
     TagSet tags;
     BSONElement tagsElem;
     auto tagExtractStatus =
-        bsonExtractTypedField(readPrefObj, kTagsFieldName, mongo::Array, &tagsElem);
+        bsonExtractTypedField(readPrefObj, kTagsFieldName, mongol::Array, &tagsElem);
     if (tagExtractStatus.isOK()) {
         tags = TagSet{BSONArray(tagsElem.Obj().getOwned())};
 
@@ -176,4 +176,4 @@ std::string ReadPreferenceSetting::toString() const {
     return toBSON().toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

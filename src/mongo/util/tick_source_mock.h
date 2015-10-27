@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/stdx/chrono.h"
-#include "mongo/util/tick_source.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/util/tick_source.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Mock tick source with millisecond resolution that doesn't gives a fixed tick count
@@ -56,4 +56,4 @@ public:
 private:
     TickSource::Tick _currentTicks = 0;
 };
-}  // namespace mongo
+}  // namespace mongol

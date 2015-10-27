@@ -25,16 +25,16 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/concurrency/old_thread_pool.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 ThreadPool::Options makeOptions(int nThreads, const std::string& threadNamePrefix) {
@@ -72,4 +72,4 @@ void OldThreadPool::schedule(Task task) {
     fassert(28705, _pool.schedule(task));
 }
 
-}  // namespace mongo
+}  // namespace mongol

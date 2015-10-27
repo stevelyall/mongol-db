@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/db/service_context.h"
-#include "mongo/db/json.h"
-#include "mongo/db/storage/storage_engine_metadata.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/json.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
-class MMAPV1FactoryTest : public mongo::unittest::Test {
+class MMAPV1FactoryTest : public mongol::unittest::Test {
 private:
     virtual void setUp() {
         ServiceContext* globalEnv = getGlobalServiceContext();

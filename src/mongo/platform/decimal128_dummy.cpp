@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/decimal128.h"
+#include "mongol/platform/decimal128.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 Decimal128::Decimal128(int32_t int32Value) {
     invariant(false);
@@ -207,4 +207,4 @@ const Decimal128 Decimal128::kNegativeInfinity = Decimal128();
 const Decimal128 Decimal128::kPositiveNaN = Decimal128();
 const Decimal128 Decimal128::kNegativeNaN = Decimal128();
 
-}  // namespace mongo
+}  // namespace mongol

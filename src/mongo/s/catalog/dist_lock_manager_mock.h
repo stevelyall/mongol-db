@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class DistLockManagerMock : public DistLockManager {
 public:

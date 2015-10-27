@@ -26,14 +26,14 @@
 *    it in the license file.
 */
 
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/master_slave.h"  // replSettings
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/operation_context.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/master_slave.h"  // replSettings
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -130,4 +130,4 @@ public:
     }
 } cmdResync;
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

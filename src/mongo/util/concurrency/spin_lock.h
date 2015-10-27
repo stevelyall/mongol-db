@@ -31,12 +31,12 @@
 #pragma once
 
 #ifdef _WIN32
-#include "mongo/platform/windows_basic.h"
+#include "mongol/platform/windows_basic.h"
 #endif
 
 #include "mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The spinlock currently requires late GCC support routines to be efficient.
@@ -112,4 +112,4 @@ private:
     SpinLock& _l;
 };
 
-}  // namespace mongo
+}  // namespace mongol

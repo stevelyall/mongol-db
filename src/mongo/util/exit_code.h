@@ -1,4 +1,4 @@
-/** @file mongo/util/exit_code.h
+/** @file mongol/util/exit_code.h
  *
  * Mongo exit codes.
  */
@@ -32,7 +32,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 enum ExitCode {
     EXIT_CLEAN = 0,
@@ -65,11 +65,11 @@ void exitCleanly(ExitCode code);
 
 /**
  * Signal main or  ServiceMain thread to exit
- * Important for the ServiceMain thread to do the exit when mongod/s are running as NT Services
+ * Important for the ServiceMain thread to do the exit when mongold/s are running as NT Services
  * on Windows.
  * It is not required to be called before exitCleanly in the general case, only for
  * proper NT Service shutdown.
  */
 void signalShutdown();
 
-}  // namespace mongo
+}  // namespace mongol

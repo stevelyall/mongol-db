@@ -30,10 +30,10 @@
 
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 
@@ -85,4 +85,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

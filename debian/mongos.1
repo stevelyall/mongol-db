@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH "MONGOS" "1" "January 30, 2015" "3.0" "mongodb-manual"
+.TH "MONGOS" "1" "January 30, 2015" "3.0" "mongoldb-manual"
 .SH NAME
-mongos \- MongoDB Sharded Cluster Query Router
+mongols \- MongoDB Sharded Cluster Query Router
 .
 .nr rst2man-indent-level 0
 .
@@ -32,42 +32,42 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .SH SYNOPSIS
 .sp
-\fBmongos\fP for "MongoDB Shard," is a routing service for
+\fBmongols\fP for "MongoDB Shard," is a routing service for
 MongoDB shard configurations that processes queries from the
 application layer, and determines the location of this data in the
 \fIsharded cluster\fP, in order to complete these operations.
 From the perspective of the application, a
-\fBmongos\fP instance behaves identically to any other MongoDB
+\fBmongols\fP instance behaves identically to any other MongoDB
 instance.
 .SH CONSIDERATIONS
 .sp
-Never change the name of the \fBmongos\fP binary.
+Never change the name of the \fBmongols\fP binary.
 .SH OPTIONS
 .SS Core Options
 .INDENT 0.0
 .TP
-.B mongos
+.B mongols
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-help, \-h
-Returns information on the options and use of \fBmongos\fP\&.
+Returns information on the options and use of \fBmongols\fP\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-version
-Returns the \fBmongos\fP release number.
+Returns the \fBmongols\fP release number.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-config <filename>, \-f <filename>
 Specifies a configuration file for runtime configuration options. The
 configuration file is the preferred method for runtime configuration of
-\fBmongos\fP\&. The options are equivalent to the command\-line
-configuration options. See http://docs.mongodb.org/manual/reference/configuration\-options for
+\fBmongols\fP\&. The options are equivalent to the command\-line
+configuration options. See http://docs.mongoldb.org/manual/reference/configuration\-options for
 more information.
 .sp
-Ensure the configuration file uses ASCII encoding. The \fBmongos\fP
+Ensure the configuration file uses ASCII encoding. The \fBmongols\fP
 instance does not support configuration files with non\-ASCII encoding,
 including UTF\-8.
 .UNINDENT
@@ -81,7 +81,7 @@ including the option multiple times, (e.g. \fB\-vvvvv\fP\&.)
 .INDENT 0.0
 .TP
 .B \-\-quiet
-Runs the \fBmongos\fP in a quiet mode that attempts to limit the amount
+Runs the \fBmongols\fP in a quiet mode that attempts to limit the amount
 of output.
 .sp
 This option suppresses:
@@ -113,9 +113,9 @@ Changed in version 2.6.0: The \fBdeb\fP and \fBrpm\fP packages include a default
 configuration file that sets \fI\%\-\-bind_ip\fP to \fB127.0.0.1\fP\&.
 
 .sp
-Specifies the IP address that \fBmongos\fP binds to in order to listen
-for connections from applications. You may attach \fBmongos\fP to any
-interface. When attaching \fBmongos\fP to a publicly accessible
+Specifies the IP address that \fBmongols\fP binds to in order to listen
+for connections from applications. You may attach \fBmongols\fP to any
+interface. When attaching \fBmongols\fP to a publicly accessible
 interface, ensure that you have implemented proper authentication and
 firewall restrictions to protect the integrity of your database.
 .UNINDENT
@@ -123,11 +123,11 @@ firewall restrictions to protect the integrity of your database.
 .TP
 .B \-\-maxConns <number>
 Specifies the maximum number of simultaneous connections that
-\fBmongos\fP will accept. This setting will have no effect if the
+\fBmongols\fP will accept. This setting will have no effect if the
 value of this setting is higher than your operating system\(aqs configured
 maximum connection tracking threshold.
 .sp
-This setting is particularly useful for \fBmongos\fP if you
+This setting is particularly useful for \fBmongols\fP if you
 have a client that creates a number of connections but allows them
 to timeout rather than close the connections. When you set
 \fBmaxIncomingConnections\fP, ensure the value is slightly
@@ -170,7 +170,7 @@ To instead append to the log file, set the \fI\%\-\-logappend\fP option.
 .TP
 .B \-\-logappend
 Appends new entries to the end of the log file rather than overwriting
-the content of the log when the \fBmongos\fP instance restarts.
+the content of the log when the \fBmongols\fP instance restarts.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -217,9 +217,9 @@ _
 .INDENT 0.0
 .TP
 .B \-\-pidfilepath <path>
-Specifies a file location to hold the process ID of the \fBmongos\fP
-process where \fBmongos\fP will write its PID. This is useful for
-tracking the \fBmongos\fP process in combination with the
+Specifies a file location to hold the process ID of the \fBmongols\fP
+process where \fBmongols\fP will write its PID. This is useful for
+tracking the \fBmongols\fP process in combination with the
 \fI\%\-\-fork\fP option. Without a specified \fI\%\-\-pidfilepath\fP option, the
 process creates no PID file.
 .UNINDENT
@@ -236,7 +236,7 @@ information.
 .TP
 .B \-\-setParameter <options>
 Specifies one of the MongoDB parameters described in
-http://docs.mongodb.org/manual/reference/parameters\&. You can specify multiple \fBsetParameter\fP
+http://docs.mongoldb.org/manual/reference/parameters\&. You can specify multiple \fBsetParameter\fP
 fields.
 .UNINDENT
 .INDENT 0.0
@@ -263,7 +263,7 @@ Authentication.
 .INDENT 0.0
 .TP
 .B \-\-nounixsocket
-Disables listening on the UNIX domain socket. The \fBmongos\fP process
+Disables listening on the UNIX domain socket. The \fBmongols\fP process
 always listens on the UNIX socket unless one of the following is true:
 .INDENT 7.0
 .IP \(bu 2
@@ -274,7 +274,7 @@ always listens on the UNIX socket unless one of the following is true:
 \fBbindIp\fP does not specify \fB127.0.0.1\fP
 .UNINDENT
 .sp
-New in version 2.6: \fBmongos\fP installed from official \fB\&.deb\fP and \fB\&.rpm\fP packages
+New in version 2.6: \fBmongols\fP installed from official \fB\&.deb\fP and \fB\&.rpm\fP packages
 have the \fBbind_ip\fP configuration set to \fB127.0.0.1\fP by
 default.
 
@@ -285,7 +285,7 @@ default.
 \fIDefault\fP: /tmp
 .sp
 The path for the UNIX socket. If this option has no value, the
-\fBmongos\fP process creates a socket with \fB/tmp\fP as a prefix. MongoDB
+\fBmongols\fP process creates a socket with \fB/tmp\fP as a prefix. MongoDB
 creates and listens on a UNIX socket unless one of the following is true:
 .INDENT 7.0
 .IP \(bu 2
@@ -299,9 +299,9 @@ creates and listens on a UNIX socket unless one of the following is true:
 .INDENT 0.0
 .TP
 .B \-\-fork
-Enables a \fIdaemon\fP mode that runs the \fBmongos\fP process in the
-background. By default \fBmongos\fP does not run as a daemon:
-typically you will run \fBmongos\fP as a daemon, either by using
+Enables a \fIdaemon\fP mode that runs the \fBmongols\fP process in the
+background. By default \fBmongols\fP does not run as a daemon:
+typically you will run \fBmongols\fP as a daemon, either by using
 \fI\%\-\-fork\fP or by using a controlling process that handles the
 daemonization process (e.g. as with \fBupstart\fP and \fBsystemd\fP).
 .UNINDENT
@@ -314,12 +314,12 @@ Specifies the \fIconfiguration database\fP for the
 configuration servers, in a comma separated list. \fBAlways\fP use 3
 config servers in production environments.
 .sp
-All \fBmongos\fP instances \fBmust\fP specify the exact same value for
+All \fBmongols\fP instances \fBmust\fP specify the exact same value for
 \fI\%\-\-configdb\fP
 .sp
 If your configuration databases reside in more that one data center,
 order the hosts so that first config sever in the list is the closest to the
-majority of your \fBmongos\fP instances.
+majority of your \fBmongols\fP instances.
 .sp
 \fBWARNING:\fP
 .INDENT 7.0
@@ -334,13 +334,13 @@ server is not available or offline.
 .B \-\-localThreshold
 \fIDefault\fP: 15
 .sp
-Affects the logic that \fBmongos\fP uses when selecting
+Affects the logic that \fBmongols\fP uses when selecting
 \fIreplica set\fP members to pass read operations from clients.
 Specify a value in milliseconds. The default value of \fB15\fP
 corresponds to the default value in all of the client \fBdrivers\fP\&.
 .sp
-When \fBmongos\fP receives a request that permits reads to
-\fIsecondary\fP members, the \fBmongos\fP will:
+When \fBmongols\fP receives a request that permits reads to
+\fIsecondary\fP members, the \fBmongols\fP will:
 .INDENT 7.0
 .IP \(bu 2
 Find the member of the set with the lowest ping time.
@@ -348,7 +348,7 @@ Find the member of the set with the lowest ping time.
 Construct a list of replica set members that is within a ping time of
 15 milliseconds of the nearest suitable member of the set.
 .sp
-If you specify a value for the \fI\%\-\-localThreshold\fP option, \fBmongos\fP will
+If you specify a value for the \fI\%\-\-localThreshold\fP option, \fBmongols\fP will
 construct the list of replica members that are within the latency
 allowed by this value.
 .IP \(bu 2
@@ -358,7 +358,7 @@ Select a member to read from at random from this list.
 The ping time used for a member compared by the \fI\%\-\-localThreshold\fP setting is a
 moving average of recent ping times, calculated at most every 10
 seconds. As a result, some queries may reach members above the threshold
-until the \fBmongos\fP recalculates the average.
+until the \fBmongols\fP recalculates the average.
 .sp
 See the \fIreplica\-set\-read\-preference\-behavior\-member\-selection\fP
 section of the \fBread preference\fP
@@ -382,21 +382,21 @@ nodes.
 .sp
 This option affects chunk size \fIonly\fP when you initialize the cluster
 for the first time. If you later modify the option, the new value has no
-effect. See the http://docs.mongodb.org/manual/tutorial/modify\-chunk\-size\-in\-sharded\-cluster
+effect. See the http://docs.mongoldb.org/manual/tutorial/modify\-chunk\-size\-in\-sharded\-cluster
 procedure if you need to change the chunk size on an existing sharded
 cluster.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-\-noAutoSplit
-Prevents \fBmongos\fP from automatically inserting metadata splits
+Prevents \fBmongols\fP from automatically inserting metadata splits
 in a \fIsharded collection\fP\&. If set on all
-\fBmongos\fP instances, this prevents MongoDB from creating new
+\fBmongols\fP instances, this prevents MongoDB from creating new
 chunks as the data in a collection grows.
 .sp
-Because any \fBmongos\fP in a cluster can create a split, to
+Because any \fBmongols\fP in a cluster can create a split, to
 totally disable splitting in a cluster you must set \fI\%\-\-noAutoSplit\fP on all
-\fBmongos\fP\&.
+\fBmongols\fP\&.
 .sp
 \fBWARNING:\fP
 .INDENT 7.0
@@ -411,7 +411,7 @@ cluster may become imbalanced over time. Enable with caution.
 .INDENT 3.5
 .SS See
 .sp
-http://docs.mongodb.org/manual/tutorial/configure\-ssl for full
+http://docs.mongoldb.org/manual/tutorial/configure\-ssl for full
 documentation of MongoDB\(aqs support.
 .UNINDENT
 .UNINDENT
@@ -421,15 +421,15 @@ documentation of MongoDB\(aqs support.
 Deprecated since version 2.6.
 
 .sp
-Enables SSL for \fBmongos\fP\&.
+Enables SSL for \fBmongols\fP\&.
 .sp
-With \fI\%\-\-sslOnNormalPorts\fP, a \fBmongos\fP requires SSL encryption for all
+With \fI\%\-\-sslOnNormalPorts\fP, a \fBmongols\fP requires SSL encryption for all
 connections on the default MongoDB port, or the port specified by
 \fI\-\-port\fP\&. By default, \fI\%\-\-sslOnNormalPorts\fP is
 disabled.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -478,7 +478,7 @@ _
 .TE
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -493,7 +493,7 @@ or absolute paths.
 When SSL is enabled, you must specify \fI\-\-sslPEMKeyFile\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -503,16 +503,16 @@ New in version 2.2.
 .sp
 Specifies the password to de\-crypt the certificate\-key file (i.e.
 \fB\-\-sslPEMKeyFile\fP). Use the \fI\-\-sslPEMKeyPassword\fP option only if the
-certificate\-key file is encrypted. In all cases, the \fBmongos\fP will
+certificate\-key file is encrypted. In all cases, the \fBmongols\fP will
 redact the password from all logging and reporting output.
 .sp
 Changed in version 2.6: If the private key in the PEM file is encrypted and you do not
-specify the \fI\-\-sslPEMKeyPassword\fP option, the \fBmongos\fP will prompt for a
+specify the \fI\-\-sslPEMKeyPassword\fP option, the \fBmongols\fP will prompt for a
 passphrase. See \fIssl\-certificate\-password\fP\&.
 
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -568,7 +568,7 @@ _
 .TE
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -586,7 +586,7 @@ authentication, the cluster uses the \fB\&.pem\fP file specified in the
 .sp
 The default distribution of MongoDB does not contain support for
 SSL.  For more information on MongoDB and SSL, see
-http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -596,15 +596,15 @@ New in version 2.6.
 .sp
 Specifies the password to de\-crypt the x.509 certificate\-key file
 specified with \fB\-\-sslClusterFile\fP\&. Use the \fI\%\-\-sslClusterPassword\fP option only
-if the certificate\-key file is encrypted. In all cases, the \fBmongos\fP
+if the certificate\-key file is encrypted. In all cases, the \fBmongols\fP
 will redact the password from all logging and reporting output.
 .sp
 If the x.509 key file is encrypted and you do not specify the
-\fI\%\-\-sslClusterPassword\fP option, the \fBmongos\fP will prompt for a passphrase. See
+\fI\%\-\-sslClusterPassword\fP option, the \fBmongols\fP will prompt for a passphrase. See
 \fIssl\-certificate\-password\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -617,19 +617,19 @@ from the Certificate Authority. Specify the file name of the
 \fB\&.pem\fP file using relative or absolute paths.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .sp
 \fBWARNING:\fP
 .INDENT 7.0
 .INDENT 3.5
 If the \fI\-\-sslCAFile\fP option and its target
 file are not specified, x.509 client and member authentication will not
-function. \fBmongod\fP, and \fBmongos\fP in sharded systems,
+function. \fBmongold\fP, and \fBmongols\fP in sharded systems,
 will not be able to verify the certificates of processes connecting to it
 against the trusted certificate authority (CA) that issued them, breaking
 the certificate chain.
 .sp
-As of version 2.6.4, \fBmongod\fP will not start with x.509
+As of version 2.6.4, \fBmongold\fP will not start with x.509
 authentication enabled if the CA file is not specified.
 .UNINDENT
 .UNINDENT
@@ -645,7 +645,7 @@ List. Specify the file name of the \fB\&.pem\fP file using relative or
 absolute paths.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -660,20 +660,20 @@ update their configuration files.
 
 .sp
 Disables the requirement for SSL certificate validation that
-\fB\-\-sslCAFile\fP enables. With the \fI\%\-\-sslWeakCertificateValidation\fP option, the \fBmongos\fP
+\fB\-\-sslCAFile\fP enables. With the \fI\%\-\-sslWeakCertificateValidation\fP option, the \fBmongols\fP
 will accept connections when the client does not present a certificate
 when establishing the connection.
 .sp
-If the client presents a certificate and the \fBmongos\fP has \fI\%\-\-sslWeakCertificateValidation\fP
-enabled, the \fBmongos\fP will validate the certificate using the root
+If the client presents a certificate and the \fBmongols\fP has \fI\%\-\-sslWeakCertificateValidation\fP
+enabled, the \fBmongols\fP will validate the certificate using the root
 certificate chain specified by \fB\-\-sslCAFile\fP and reject clients
 with invalid certificates.
 .sp
 Use the \fI\%\-\-sslWeakCertificateValidation\fP option if you have a mixed deployment that includes
-clients that do not or cannot present certificates to the \fBmongos\fP\&.
+clients that do not or cannot present certificates to the \fBmongols\fP\&.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -687,7 +687,7 @@ the \fBallowInvalidCertificates\fP setting, MongoDB
 logs as a warning the use of the invalid certificate.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -696,13 +696,13 @@ New in version 3.0.
 
 .sp
 Disables the validation of the hostnames in SSL certificates, when
-connecting to other \fBmongos\fP instances for inter\-process
-authentication. This allows \fBmongos\fP to connect to other
-\fBmongos\fP instances if the hostnames in their certificates do not
+connecting to other \fBmongols\fP instances for inter\-process
+authentication. This allows \fBmongols\fP to connect to other
+\fBmongols\fP instances if the hostnames in their certificates do not
 match their configured hostname.
 .sp
 The default distribution of MongoDB does not contain support for SSL.
-For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tutorial/configure\-ssl\&.
+For more information on MongoDB and SSL, see http://docs.mongoldb.org/manual/tutorial/configure\-ssl\&.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -710,7 +710,7 @@ For more information on MongoDB and SSL, see http://docs.mongodb.org/manual/tuto
 New in version 2.4.
 
 .sp
-Directs the \fBmongos\fP to use the FIPS mode of the installed OpenSSL
+Directs the \fBmongols\fP to use the FIPS mode of the installed OpenSSL
 library. Your system must have a FIPS compliant OpenSSL library to use
 the \fI\-\-sslFIPSMode\fP option.
 .sp
@@ -719,7 +719,7 @@ the \fI\-\-sslFIPSMode\fP option.
 .INDENT 3.5
 FIPS Compatible SSL is
 available only in \fI\%MongoDB Enterprise\fP\&. See
-http://docs.mongodb.org/manual/tutorial/configure\-fips for more information.
+http://docs.mongoldb.org/manual/tutorial/configure\-fips for more information.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -878,7 +878,7 @@ Available only in \fI\%MongoDB Enterprise\fP\&.
 .INDENT 0.0
 .TP
 .B \-\-ipv6
-Enables IPv6 support and allows the \fBmongos\fP to connect to the
+Enables IPv6 support and allows the \fBmongols\fP to connect to the
 MongoDB instance using an IPv6 network. All MongoDB programs and
 processes disable IPv6 support by default.
 .UNINDENT

@@ -7,20 +7,20 @@
 
 var shardTest = new ShardingTest({ name: "recovering_slaveok",
                                    shards: 2,
-                                   mongos: 2,
+                                   mongols: 2,
                                    other: { rs: true } });
 
-var mongos = shardTest.s0;
-var mongosSOK = shardTest.s1;
-mongosSOK.setSlaveOk();
+var mongols = shardTest.s0;
+var mongolsSOK = shardTest.s1;
+mongolsSOK.setSlaveOk();
 
-var admin = mongos.getDB("admin");
-var config = mongos.getDB("config");
+var admin = mongols.getDB("admin");
+var config = mongols.getDB("config");
 
-var dbase = mongos.getDB("test");
+var dbase = mongols.getDB("test");
 var coll = dbase.getCollection("foo");
-var dbaseSOk = mongosSOK.getDB( "" + dbase );
-var collSOk = mongosSOK.getCollection( "" + coll );
+var dbaseSOk = mongolsSOK.getDB( "" + dbase );
+var collSOk = mongolsSOK.getCollection( "" + coll );
 
 var rsA = shardTest._rs[0].test;
 var rsB = shardTest._rs[1].test;
@@ -93,12 +93,12 @@ rsA.waitForState(rsA.getSecondaries(), rsA.SECONDARY, 5 * 60 * 1000 );
 
 print("10: check our regular and slaveOk query");
 
-// We need to make sure our nodes are considered accessible from mongos - otherwise we fail
+// We need to make sure our nodes are considered accessible from mongols - otherwise we fail
 // See SERVER-7274
 ReplSetTest.awaitRSClientHosts(coll.getMongo(), rsA.nodes, { ok : true });
 ReplSetTest.awaitRSClientHosts(coll.getMongo(), rsB.nodes, { ok : true });
 
-// We need to make sure at least one secondary is accessible from mongos - otherwise we fail
+// We need to make sure at least one secondary is accessible from mongols - otherwise we fail
 // See SERVER-7699
 ReplSetTest.awaitRSClientHosts(collSOk.getMongo(), [rsA.getSecondaries()[0]], 
                                { secondary : true, ok : true });

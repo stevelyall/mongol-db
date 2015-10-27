@@ -26,24 +26,24 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 #include <tuple>
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/commands/run_on_all_shards_cmd.h"
-#include "mongo/s/strategy.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/commands/run_on_all_shards_cmd.h"
+#include "mongol/s/strategy.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kInprogFieldName[] = "inprog";
@@ -82,7 +82,7 @@ public:
         // This allows users to pass the value of the opid field directly to killOp.
 
         // 2) we change the field name of "client" to "client_s". This is because each
-        // client is actually a mongos.
+        // client is actually a mongols.
 
         // TODO: failpoint for a shard response being invalid.
 
@@ -148,4 +148,4 @@ public:
 } clusterCurrentOpCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

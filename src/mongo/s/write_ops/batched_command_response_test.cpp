@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -58,7 +58,7 @@ TEST(BatchedCommandResponse, Basic) {
         BSON(BatchedCommandResponse::ok(false)
              << BatchedCommandResponse::errCode(-1)
              << BatchedCommandResponse::errMessage("this batch didn't work")
-             << BatchedCommandResponse::n(0) << "opTime" << mongo::Timestamp(1ULL)
+             << BatchedCommandResponse::n(0) << "opTime" << mongol::Timestamp(1ULL)
              << BatchedCommandResponse::writeErrors() << writeErrorsArray
              << BatchedCommandResponse::writeConcernError() << writeConcernError);
 
@@ -73,4 +73,4 @@ TEST(BatchedCommandResponse, Basic) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

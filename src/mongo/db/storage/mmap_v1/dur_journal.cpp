@@ -28,42 +28,42 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kJournal
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kJournal
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur_journal.h"
+#include "mongol/db/storage/mmap_v1/dur_journal.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/config.h"
-#include "mongo/db/client.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/mmap_v1/aligned_builder.h"
-#include "mongo/db/storage/mmap_v1/compress.h"
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/db/storage/mmap_v1/dur_journalimpl.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/db/storage/mmap_v1/logfile.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/platform/random.h"
-#include "mongo/util/checksum.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/file.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/listen.h"  // getelapsedtimemillis
-#include "mongo/util/progress_meter.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/init.h"
+#include "mongol/config.h"
+#include "mongol/db/client.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/aligned_builder.h"
+#include "mongol/db/storage/mmap_v1/compress.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/db/storage/mmap_v1/dur_journalimpl.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/db/storage/mmap_v1/logfile.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/platform/random.h"
+#include "mongol/util/checksum.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/file.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/listen.h"  // getelapsedtimemillis
+#include "mongol/util/progress_meter.h"
+#include "mongol/util/timer.h"
 
-using namespace mongoutils;
+using namespace mongolutils;
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::hex;

@@ -69,37 +69,37 @@
    @see https://docs.google.com/drawings/edit?id=1TklsmZzm7ohIZkwgeK6rMvsdaR13KjtJYMsfLr175Zc
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kJournal
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kJournal
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
 
 #include <iomanip>
 #include <utility>
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/mmap_v1/aligned_builder.h"
-#include "mongo/db/storage/mmap_v1/dur_commitjob.h"
-#include "mongo/db/storage/mmap_v1/dur_journal.h"
-#include "mongo/db/storage/mmap_v1/dur_journal_writer.h"
-#include "mongo/db/storage/mmap_v1/dur_recover.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/mmap_v1/aligned_builder.h"
+#include "mongol/db/storage/mmap_v1/dur_commitjob.h"
+#include "mongol/db/storage/mmap_v1/dur_journal.h"
+#include "mongol/db/storage/mmap_v1/dur_journal_writer.h"
+#include "mongol/db/storage/mmap_v1/dur_recover.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::fixed;
@@ -327,7 +327,7 @@ void remapPrivateViewImpl(double fraction) {
 //
 // However, the record fetcher logic unfortunately operates without any locks and on
 // Windows and Solaris remap is not atomic and there is a window where the record fetcher
-// might get an access violation. That's why we acquire the mongo files mutex here in X
+// might get an access violation. That's why we acquire the mongol files mutex here in X
 // mode and the record fetcher takes in in S-mode (see MmapV1RecordFetcher for more
 // detail).
 //
@@ -887,4 +887,4 @@ void startup() {
 }
 
 }  // namespace dur
-}  // namespace mongo
+}  // namespace mongol

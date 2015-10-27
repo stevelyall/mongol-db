@@ -35,9 +35,9 @@
           These tests use DBDirectClient; they are a bit white-boxish.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/thread/condition.hpp>
 #include <boost/thread/mutex.hpp>
@@ -46,22 +46,22 @@
 #include <iostream>
 #include <mutex>
 
-#include "mongo/config.h"
-#include "mongo/db/client.h"
-#include "mongo/db/db.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/dbtests/framework_options.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
-#include "mongo/util/version.h"
+#include "mongol/config.h"
+#include "mongol/db/client.h"
+#include "mongol/db/db.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/dbtests/framework_options.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
+#include "mongol/util/version.h"
 
 namespace PerfTests {
 
@@ -81,10 +81,10 @@ const bool profiling = false;
 class ClientBase {
 public:
     ClientBase() : _client(&_txn) {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
     virtual ~ClientBase() {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
 
 protected:
@@ -270,7 +270,7 @@ public:
         client()->dropCollection(ns());
         prep();
         int hlm = howLong();
-        mongo::Timer t;
+        mongol::Timer t;
         n = 0;
         const unsigned int Batch = batchSize();
 
@@ -296,7 +296,7 @@ public:
         {
             if (test2name != name()) {
                 dur::stats.curr()->reset();
-                mongo::Timer t;
+                mongol::Timer t;
                 unsigned long long n = 0;
                 while (1) {
                     unsigned int i;
@@ -313,7 +313,7 @@ public:
         if (testThreaded()) {
             const int nThreads = 8;
             // cout << "testThreaded nThreads:" << nThreads << endl;
-            mongo::Timer t;
+            mongol::Timer t;
             const unsigned long long result = launchThreads(nThreads);
             say(result / nThreads, t.micros(), test2name + "-threaded");
         }

@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/record_access_tracker.h"
+#include "mongol/db/storage/mmap_v1/record_access_tracker.h"
 
 #include <cstring>
 
-#include "mongo/base/init.h"
-#include "mongo/config.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/platform/bits.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/processinfo.h"
+#include "mongol/base/init.h"
+#include "mongol/config.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/platform/bits.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/processinfo.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -343,4 +343,4 @@ void RecordAccessTracker::disableSystemBlockInMemCheck() {
     _blockSupported = false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

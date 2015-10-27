@@ -57,9 +57,9 @@ CLANG_FORMAT_SOURCE_URL_BASE = string.Template("http://llvm.org/releases/$versio
 # Path in the tarball to the clang-format binary
 CLANG_FORMAT_SOURCE_TAR_BASE = string.Template("clang+llvm-$version-$tar_path/bin/" + CLANG_FORMAT_PROGNAME)
 
-# Path to the modules in the mongodb source tree
+# Path to the modules in the mongoldb source tree
 # Has to match the string in SConstruct
-MODULE_DIR = "src/mongo/db/modules"
+MODULE_DIR = "src/mongol/db/modules"
 
 # Copied from python 2.7 version of subprocess.py
 # Exception classes used by this module.
@@ -165,7 +165,7 @@ def get_clang_format_from_llvm(llvm_distro, tar_path, dest_file):
     shutil.move(get_tar_path(CLANG_FORMAT_VERSION, tar_path), dest_file)
 
 def get_clang_format_from_linux_cache(dest_file):
-    """Get clang-format from mongodb's cache
+    """Get clang-format from mongoldb's cache
     """
     # Get URL
     url = CLANG_FORMAT_HTTP_LINUX_CACHE
@@ -378,7 +378,7 @@ def parallel_process(items, func):
     return pp_result[0]
 
 def get_base_dir():
-    """Get the base directory for mongo repo.
+    """Get the base directory for mongol repo.
         This script assumes that it is running in buildscripts/, and uses
         that to find the base directory.
     """
@@ -395,10 +395,10 @@ def get_repos():
 
     # Get a list of modules
     # TODO: how do we filter rocks, does it matter?
-    mongo_modules = moduleconfig.discover_module_directories(
+    mongol_modules = moduleconfig.discover_module_directories(
                         os.path.join(base_dir, MODULE_DIR), None)
 
-    paths = [os.path.join(base_dir, MODULE_DIR, m) for m in mongo_modules]
+    paths = [os.path.join(base_dir, MODULE_DIR, m) for m in mongol_modules]
 
     paths.append(base_dir)
 
@@ -473,7 +473,7 @@ class Repo(object):
         gito = self._callgito(["ls-files"])
 
         # This allows us to pick all the interesting files
-        # in the mongo and mongo-enterprise repos
+        # in the mongol and mongol-enterprise repos
         file_list = [line.rstrip()
                 for line in gito.splitlines() if "src" in line and not "src/third_party" in line]
 

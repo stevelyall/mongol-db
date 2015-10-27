@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/collection_metadata.h"
+#include "mongol/db/s/collection_metadata.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::make_pair;
@@ -738,4 +738,4 @@ void CollectionMetadata::fillKeyPatternFields() {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

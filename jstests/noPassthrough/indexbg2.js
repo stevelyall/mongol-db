@@ -16,7 +16,7 @@ var resetParallel = function() {
 
 var doParallel = function( work ) {
     resetParallel();
-    startMongoProgramNoConnect( "mongo", "--eval", work + "; db." + baseName + "_parallelStatus.save( {done:1} );", db.getMongo().host );
+    startMongoProgramNoConnect( "mongol", "--eval", work + "; db." + baseName + "_parallelStatus.save( {done:1} );", db.getMongo().host );
 };
 
 var doneParallel = function() {

@@ -34,16 +34,16 @@
 
 #include <boost/filesystem/path.hpp>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_access_tracker.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_access_tracker.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class DataFile;
 class DataFileVersion;

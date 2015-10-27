@@ -27,29 +27,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/exec/geo_near.h"
+#include "mongol/db/exec/geo_near.h"
 
 // For s2 search
 #include "third_party/s2/s2regionintersection.h"
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/query/expression_index.h"
-#include "mongo/db/query/expression_index_knobs.h"
-#include "mongo/util/log.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/query/expression_index.h"
+#include "mongol/db/query/expression_index_knobs.h"
+#include "mongol/util/log.h"
 
 #include <algorithm>
 
-namespace mongo {
+namespace mongol {
 
 using std::abs;
 using std::unique_ptr;
@@ -325,7 +325,7 @@ void GeoNear2DStage::DensityEstimator::buildIndexScan(OperationContext* txn,
     std::sort(neighbors.begin(), neighbors.end());
 
     for (vector<GeoHash>::const_iterator it = neighbors.begin(); it != neighbors.end(); it++) {
-        mongo::BSONObjBuilder builder;
+        mongol::BSONObjBuilder builder;
         it->appendHashMin(&builder, "");
         it->appendHashMax(&builder, "");
         oil.intervals.push_back(IndexBoundsBuilder::makeRangeInterval(builder.obj(), true, true));
@@ -1019,4 +1019,4 @@ StatusWith<double> GeoNear2DSphereStage::computeDistance(WorkingSetMember* membe
     return computeGeoNearDistance(_nearParams, member);
 }
 
-}  // namespace mongo
+}  // namespace mongol

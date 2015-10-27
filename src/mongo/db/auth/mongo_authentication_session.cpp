@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/mongo_authentication_session.h"
+#include "mongol/db/auth/mongol_authentication_session.h"
 
-namespace mongo {
+namespace mongol {
 
 MongoAuthenticationSession::MongoAuthenticationSession(nonce64 nonce)
     : AuthenticationSession(AuthenticationSession::SESSION_TYPE_MONGO), _nonce(nonce) {}
 
 MongoAuthenticationSession::~MongoAuthenticationSession() {}
 
-}  // namespace mongo
+}  // namespace mongol

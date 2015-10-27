@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/field_path.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/pipeline/field_path.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/dbtests/dbtests.h"
 
-namespace mongo {
+namespace mongol {
 using std::string;
 using std::vector;
 
@@ -249,4 +249,4 @@ public:
     }
 };
 SuiteInstance<All> myall;
-}  // namespace mongo
+}  // namespace mongol

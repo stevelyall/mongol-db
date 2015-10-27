@@ -6,60 +6,60 @@
         <File Id="f_bsondump" Name="bsondump.exe" Source="$(var.ToolBinarySource)\bsondump.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongo" Guid="395C3DA5-A905-409C-AD96-29BFFF5E12D6">
-        <File Id="f_mongo" Name="mongo.exe" Source="$(var.BinarySource)\mongo.exe"
+      <Component Id="c_mongol" Guid="395C3DA5-A905-409C-AD96-29BFFF5E12D6">
+        <File Id="f_mongol" Name="mongol.exe" Source="$(var.BinarySource)\mongol.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongod" Guid="7EDFB4A2-5A45-4C41-8F6D-976558B3A9D6">
-        <File Id="f_mongod" Name="mongod.exe" Source="$(var.BinarySource)\mongod.exe"
+      <Component Id="c_mongold" Guid="7EDFB4A2-5A45-4C41-8F6D-976558B3A9D6">
+        <File Id="f_mongold" Name="mongold.exe" Source="$(var.BinarySource)\mongold.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongodPdb" Guid="8B41A2E2-911C-4399-8E9F-D3C1AD3B9EDD">
-        <File Id="f_mongodPdb" Name="mongod.pdb" Source="$(var.BinarySource)\mongod.pdb"
+      <Component Id="c_mongoldPdb" Guid="8B41A2E2-911C-4399-8E9F-D3C1AD3B9EDD">
+        <File Id="f_mongoldPdb" Name="mongold.pdb" Source="$(var.BinarySource)\mongold.pdb"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongodump" Guid="FFE32884-ACAD-4EC6-AF84-6BC94F55819E">
-        <File Id="f_mongodump" Name="mongodump.exe" Source="$(var.ToolBinarySource)\mongodump.exe"
+      <Component Id="c_mongoldump" Guid="FFE32884-ACAD-4EC6-AF84-6BC94F55819E">
+        <File Id="f_mongoldump" Name="mongoldump.exe" Source="$(var.ToolBinarySource)\mongoldump.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongoexport" Guid="FD5FFDE2-53A1-45F3-9CCA-3AC311DF647C">
-        <File Id="f_mongoexport" Name="mongoexport.exe" Source="$(var.ToolBinarySource)\mongoexport.exe"
+      <Component Id="c_mongolexport" Guid="FD5FFDE2-53A1-45F3-9CCA-3AC311DF647C">
+        <File Id="f_mongolexport" Name="mongolexport.exe" Source="$(var.ToolBinarySource)\mongolexport.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongofiles" Guid="CF8696D3-92B4-4CB9-B4D0-16155D726FE6">
-        <File Id="f_mongofiles" Name="mongofiles.exe" Source="$(var.ToolBinarySource)\mongofiles.exe"
+      <Component Id="c_mongolfiles" Guid="CF8696D3-92B4-4CB9-B4D0-16155D726FE6">
+        <File Id="f_mongolfiles" Name="mongolfiles.exe" Source="$(var.ToolBinarySource)\mongolfiles.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongoimport" Guid="A4C06F69-2BB3-4068-A7E7-25347CCF01DE">
-        <File Id="f_mongoimport" Name="mongoimport.exe" Source="$(var.ToolBinarySource)\mongoimport.exe"
+      <Component Id="c_mongolimport" Guid="A4C06F69-2BB3-4068-A7E7-25347CCF01DE">
+        <File Id="f_mongolimport" Name="mongolimport.exe" Source="$(var.ToolBinarySource)\mongolimport.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongooplog" Guid="FAD84CBB-4666-4C22-A0DF-E1D2AEEC1601">
-        <File Id="f_mongooplog" Name="mongooplog.exe" Source="$(var.ToolBinarySource)\mongooplog.exe"
+      <Component Id="c_mongoloplog" Guid="FAD84CBB-4666-4C22-A0DF-E1D2AEEC1601">
+        <File Id="f_mongoloplog" Name="mongoloplog.exe" Source="$(var.ToolBinarySource)\mongoloplog.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongoperf" Guid="B046CCD2-39DC-4CB4-8A58-A7790148C41E">
-        <File Id="f_mongoperf" Name="mongoperf.exe" Source="$(var.BinarySource)\mongoperf.exe"
+      <Component Id="c_mongolperf" Guid="B046CCD2-39DC-4CB4-8A58-A7790148C41E">
+        <File Id="f_mongolperf" Name="mongolperf.exe" Source="$(var.BinarySource)\mongolperf.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongorestore" Guid="72A16D11-242E-4368-93C9-5F6162C548FC">
-        <File Id="f_mongorestore" Name="mongorestore.exe" Source="$(var.ToolBinarySource)\mongorestore.exe"
+      <Component Id="c_mongolrestore" Guid="72A16D11-242E-4368-93C9-5F6162C548FC">
+        <File Id="f_mongolrestore" Name="mongolrestore.exe" Source="$(var.ToolBinarySource)\mongolrestore.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongos" Guid="3CA63864-9FA0-4DAE-A664-2BE9A157FB60">
-        <File Id="f_mongos" Name="mongos.exe" Source="$(var.BinarySource)\mongos.exe"
+      <Component Id="c_mongols" Guid="3CA63864-9FA0-4DAE-A664-2BE9A157FB60">
+        <File Id="f_mongols" Name="mongols.exe" Source="$(var.BinarySource)\mongols.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongosPdb" Guid="F1694AB8-4B0D-4096-AD67-948063FF2A6C">
-        <File Id="f_mongosPdb" Name="mongos.pdb" Source="$(var.BinarySource)\mongos.pdb"
+      <Component Id="c_mongolsPdb" Guid="F1694AB8-4B0D-4096-AD67-948063FF2A6C">
+        <File Id="f_mongolsPdb" Name="mongols.pdb" Source="$(var.BinarySource)\mongols.pdb"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongostat" Guid="0A881C85-AB39-4247-BADD-C8191F2FFF0C">
-        <File Id="f_mongostat" Name="mongostat.exe" Source="$(var.ToolBinarySource)\mongostat.exe"
+      <Component Id="c_mongolstat" Guid="0A881C85-AB39-4247-BADD-C8191F2FFF0C">
+        <File Id="f_mongolstat" Name="mongolstat.exe" Source="$(var.ToolBinarySource)\mongolstat.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
-      <Component Id="c_mongotop" Guid="616C562D-0504-4F2D-A6E7-CC21A58F9F81">
-        <File Id="f_mongotop" Name="mongotop.exe" Source="$(var.ToolBinarySource)\mongotop.exe"
+      <Component Id="c_mongoltop" Guid="616C562D-0504-4F2D-A6E7-CC21A58F9F81">
+        <File Id="f_mongoltop" Name="mongoltop.exe" Source="$(var.ToolBinarySource)\mongoltop.exe"
               DiskId ="1" KeyPath="yes"/>
       </Component>
       <?if $(var.Edition) = Enterprise ?>
@@ -98,11 +98,11 @@
                 DiskId="1" KeyPath="yes" />
         </Component>
         <Component Id="c_snmpConfMaster" Guid="0C8CAA6C-1473-4B14-9EE5-AF5A35B1DD8D">
-          <File Id="f_snmpConfMaster" Name="mongod.conf.master" Source="$(var.EnterpriseBase)\docs\mongod.conf.master"
+          <File Id="f_snmpConfMaster" Name="mongold.conf.master" Source="$(var.EnterpriseBase)\docs\mongold.conf.master"
                 DiskId="1" KeyPath="yes" />
         </Component>
         <Component Id="c_snmpConfSubagent" Guid="6FB66102-41A7-41BD-BB1F-1987E150FA78">
-          <File Id="f_snmpConfSubagent" Name="mongod.conf.subagent" Source="$(var.EnterpriseBase)\docs\mongod.conf.subagent"
+          <File Id="f_snmpConfSubagent" Name="mongold.conf.subagent" Source="$(var.EnterpriseBase)\docs\mongold.conf.subagent"
                 DiskId="1" KeyPath="yes" />
         </Component>
         <Component Id="c_snmpMongodMib" Guid="F3E98C6B-FE42-44E7-8A1F-E47BDDD0A3D7">

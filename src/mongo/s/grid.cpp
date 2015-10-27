@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/grid.h"
+#include "mongol/s/grid.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status_with.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 // Global grid instance
 Grid grid;
@@ -139,4 +139,4 @@ CatalogManager* Grid::catalogManager(OperationContext* txn) {
     return _catalogManager->getCatalogManagerToUse(txn);
 }
 
-}  // namespace mongo
+}  // namespace mongol

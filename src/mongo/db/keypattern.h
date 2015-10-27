@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A KeyPattern is an expression describing a transformation of a document into a
@@ -117,4 +117,4 @@ private:
     BSONObj _pattern;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,36 +26,36 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/find.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/log.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/find.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -267,7 +267,7 @@ public:
             ctx.getDb() ? ctx.getDb()->getProfilingLevel() : serverGlobalParams.defaultProfile;
 
         // It is possible that the sharding version will change during yield while we are
-        // retrieving a plan executor. If this happens we will throw an error and mongos will
+        // retrieving a plan executor. If this happens we will throw an error and mongols will
         // retry.
         const ChunkVersion shardingVersionAtStart = shardingState->getVersion(nss.ns());
 
@@ -329,7 +329,7 @@ public:
         // ClientCursor should allow this check to go away.
         if (!shardingState->getVersion(nss.ns()).isWriteCompatibleWith(shardingVersionAtStart)) {
             // Version changed while retrieving a PlanExecutor. Terminate the operation,
-            // signaling that mongos should retry.
+            // signaling that mongols should retry.
             throw SendStaleConfigException(nss.ns(),
                                            "version changed during find command",
                                            shardingVersionAtStart,
@@ -379,4 +379,4 @@ public:
 
 } findCmd;
 
-}  // namespace mongo
+}  // namespace mongol

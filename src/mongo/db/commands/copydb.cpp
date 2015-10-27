@@ -26,24 +26,24 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/copydb.h"
-#include "mongo/db/commands/copydb_start_commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/status.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/copydb.h"
+#include "mongol/db/commands/copydb_start_commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::string;
 using std::stringstream;
@@ -61,7 +61,7 @@ using std::stringstream;
  *
  * Note that in all cases both the target and source database must be unsharded.
  *
- * The "copydb" command gets sent by the client or the mongos to the destination of the copy
+ * The "copydb" command gets sent by the client or the mongols to the destination of the copy
  * operation.  The node, cluster, or shard that recieves the "copydb" command must then query
  * the source of the database to be copied for all the contents and metadata of the database.
  *
@@ -80,7 +80,7 @@ using std::stringstream;
  * send it to the target when it runs the "copydb" command, which can then use that information
  * to authenticate with the source.
  *
- * NOTE: mongos doesn't know how to call or handle the "copydbgetnonce" command.  See
+ * NOTE: mongols doesn't know how to call or handle the "copydbgetnonce" command.  See
  * SERVER-6427.
  *
  * NOTE: Since internal cluster auth works differently, "copydb" currently doesn't work between

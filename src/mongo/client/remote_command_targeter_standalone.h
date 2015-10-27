@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Implements a standalone instance remote command targeter, which always returns the same
@@ -53,4 +53,4 @@ private:
     const HostAndPort _hostAndPort;
 };
 
-}  // namespace mongo
+}  // namespace mongol

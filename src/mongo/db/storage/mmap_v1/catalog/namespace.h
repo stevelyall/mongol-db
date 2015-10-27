@@ -33,9 +33,9 @@
 #include <cstring>
 #include <string>
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 #pragma pack(1)
 /**
@@ -109,6 +109,6 @@ private:
 };
 #pragma pack()
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace-inl.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace-inl.h"

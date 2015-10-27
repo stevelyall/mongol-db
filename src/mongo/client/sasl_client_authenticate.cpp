@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/client/sasl_client_authenticate.h"
+#include "mongol/client/sasl_client_authenticate.h"
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 void (*saslClientAuthenticate)(auth::RunCommandHook runCommand,
                                StringData hostname,
@@ -60,7 +60,7 @@ const char* const saslCommandServiceHostnameFieldName = "serviceHostname";
 const char* const saslCommandServiceNameFieldName = "serviceName";
 const char* const saslCommandDigestPasswordFieldName = "digestPassword";
 const char* const saslDefaultDBName = "$external";
-const char* const saslDefaultServiceName = "mongodb";
+const char* const saslDefaultServiceName = "mongoldb";
 
 Status saslExtractPayload(const BSONObj& cmdObj, std::string* payload, BSONType* type) {
     BSONElement payloadElement;
@@ -90,4 +90,4 @@ Status saslExtractPayload(const BSONObj& cmdObj, std::string* payload, BSONType*
 
     return Status::OK();
 }
-}  // namespace mongo
+}  // namespace mongol

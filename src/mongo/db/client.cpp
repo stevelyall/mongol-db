@@ -32,23 +32,23 @@
    to an open socket (or logical connection if pooling on sockets) from a client.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
+#include "mongol/db/client.h"
 
 #include <boost/functional/hash.hpp>
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/service_context.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/service_context.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using logger::LogComponent;
 
@@ -160,4 +160,4 @@ bool haveClient() {
     return currentClient.getMake()->get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

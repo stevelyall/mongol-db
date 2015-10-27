@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/scripting/engine.h"
-#include "mongo/scripting/mozjs/wraptype.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/scripting/mozjs/wraptype.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -69,4 +69,4 @@ struct NativeFunctionInfo : public BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

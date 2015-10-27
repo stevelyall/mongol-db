@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/router_stage_remove_sortkey.h"
+#include "mongol/s/query/router_stage_remove_sortkey.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/s/query/cluster_client_cursor_params.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 RouterStageRemoveSortKey::RouterStageRemoveSortKey(std::unique_ptr<RouterExecStage> child)
     : RouterExecStage(std::move(child)) {}
@@ -65,4 +65,4 @@ bool RouterStageRemoveSortKey::remotesExhausted() {
     return getChildStage()->remotesExhausted();
 }
 
-}  // namespace mongo
+}  // namespace mongol

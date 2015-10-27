@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/compressor.h"
+#include "mongol/db/ftdc/compressor.h"
 
-#include "mongo/base/data_builder.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/ftdc/varint.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/data_builder.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/ftdc/varint.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::swap;
 
@@ -233,4 +233,4 @@ void FTDCCompressor::_reset(const BSONObj& referenceDoc, Date_t date) {
     _deltas.resize(_metricsCount * _maxDeltas);
 }
 
-}  // namespace mongo
+}  // namespace mongol

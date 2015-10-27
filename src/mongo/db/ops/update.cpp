@@ -28,33 +28,33 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/update.h"
+#include "mongol/db/ops/update.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/update.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/update_driver.h"
-#include "mongo/db/ops/update_lifecycle.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/update_index_data.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/update.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/update_driver.h"
+#include "mongol/db/ops/update_lifecycle.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/update_index_data.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 UpdateResult update(OperationContext* txn,
                     Database* db,
@@ -139,4 +139,4 @@ BSONObj applyUpdateOperators(const BSONObj& from, const BSONObj& operators) {
     return doc.getObject();
 }
 
-}  // namespace mongo
+}  // namespace mongol

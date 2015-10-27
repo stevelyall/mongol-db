@@ -32,9 +32,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 struct BSONArray;
 class BSONObj;
@@ -122,4 +122,4 @@ private:
     boost::optional<std::vector<std::string>> _tags;
 };
 
-}  // namespace mongo
+}  // namespace mongol

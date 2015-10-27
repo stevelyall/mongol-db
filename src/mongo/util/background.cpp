@@ -27,28 +27,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/background.h"
+#include "mongol/util/background.h"
 
-#include "mongo/config.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/timer.h"
+#include "mongol/config.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/timer.h"
 
 using namespace std;
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -182,7 +182,7 @@ void BackgroundJob::jobBody() {
 void BackgroundJob::go() {
     stdx::unique_lock<stdx::mutex> l(_status->mutex);
     massert(17234,
-            mongoutils::str::stream() << "backgroundJob already running: " << name(),
+            mongolutils::str::stream() << "backgroundJob already running: " << name(),
             _status->state != Running);
 
     // If the job is already 'done', for instance because it was cancelled or already
@@ -352,4 +352,4 @@ void PeriodicTaskRunner::_runTask(PeriodicTask* const task) {
     LOG(ms <= kMinLogMs ? 3 : 0) << "task: " << taskName << " took: " << ms << "ms" << endl;
 }
 
-}  // namespace mongo
+}  // namespace mongol

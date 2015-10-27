@@ -6,7 +6,7 @@ from __future__ import absolute_import
 
 import os.path
 
-import pymongo
+import pymongol
 
 from . import interface
 from . import standalone
@@ -24,8 +24,8 @@ class MasterSlaveFixture(interface.ReplFixture):
     def __init__(self,
                  logger,
                  job_num,
-                 mongod_executable=None,
-                 mongod_options=None,
+                 mongold_executable=None,
+                 mongold_options=None,
                  master_options=None,
                  slave_options=None,
                  dbpath_prefix=None,
@@ -33,11 +33,11 @@ class MasterSlaveFixture(interface.ReplFixture):
 
         interface.ReplFixture.__init__(self, logger, job_num)
 
-        if "dbpath" in mongod_options:
-            raise ValueError("Cannot specify mongod_options.dbpath")
+        if "dbpath" in mongold_options:
+            raise ValueError("Cannot specify mongold_options.dbpath")
 
-        self.mongod_executable = mongod_executable
-        self.mongod_options = utils.default_if_none(mongod_options, {})
+        self.mongold_executable = mongold_executable
+        self.mongold_options = utils.default_if_none(mongold_options, {})
         self.master_options = utils.default_if_none(master_options, {})
         self.slave_options = utils.default_if_none(slave_options, {})
         self.preserve_dbpath = preserve_dbpath
@@ -53,11 +53,11 @@ class MasterSlaveFixture(interface.ReplFixture):
         self.slave = None
 
     def setup(self):
-        self.master = self._new_mongod_master()
+        self.master = self._new_mongold_master()
         self.master.setup()
         self.port = self.master.port
 
-        self.slave = self._new_mongod_slave()
+        self.slave = self._new_mongold_slave()
         self.slave.setup()
 
     def await_ready(self):
@@ -66,7 +66,7 @@ class MasterSlaveFixture(interface.ReplFixture):
 
         # Do a replicated write to ensure that the slave has finished with its initial sync before
         # starting to run any tests.
-        client = utils.new_mongo_client(self.port)
+        client = utils.new_mongol_client(self.port)
 
         # Keep retrying this until it times out waiting for replication.
         def insert_fn(remaining_secs):
@@ -77,7 +77,7 @@ class MasterSlaveFixture(interface.ReplFixture):
 
         try:
             self.retry_until_wtimeout(insert_fn)
-        except pymongo.errors.WTimeoutError:
+        except pymongol.errors.WTimeoutError:
             self.logger.info("Replication of write operation timed out.")
             raise
 
@@ -126,7 +126,7 @@ class MasterSlaveFixture(interface.ReplFixture):
         deployment.
         """
 
-        client = utils.new_mongo_client(self.port)
+        client = utils.new_mongol_client(self.port)
 
         # We verify that each database has replicated to the slave because in the case of an initial
         # sync, the slave may acknowledge writes to one database before it has finished syncing
@@ -156,7 +156,7 @@ class MasterSlaveFixture(interface.ReplFixture):
 
             try:
                 self.retry_until_wtimeout(insert_fn)
-            except pymongo.errors.WTimeoutError:
+            except pymongol.errors.WTimeoutError:
                 self.logger.info("Replication of write operation timed out.")
                 raise
 
@@ -164,44 +164,44 @@ class MasterSlaveFixture(interface.ReplFixture):
 
         self.logger.info("Finished awaiting replication.")
 
-    def _new_mongod(self, mongod_logger, mongod_options):
+    def _new_mongold(self, mongold_logger, mongold_options):
         """
         Returns a standalone.MongoDFixture with the specified logger and
         options.
         """
-        return standalone.MongoDFixture(mongod_logger,
+        return standalone.MongoDFixture(mongold_logger,
                                         self.job_num,
-                                        mongod_executable=self.mongod_executable,
-                                        mongod_options=mongod_options,
+                                        mongold_executable=self.mongold_executable,
+                                        mongold_options=mongold_options,
                                         preserve_dbpath=self.preserve_dbpath)
 
-    def _new_mongod_master(self):
+    def _new_mongold_master(self):
         """
         Returns a standalone.MongoDFixture configured to be used as the
         master of a master-slave deployment.
         """
 
         logger_name = "%s:master" % (self.logger.name)
-        mongod_logger = logging.loggers.new_logger(logger_name, parent=self.logger)
+        mongold_logger = logging.loggers.new_logger(logger_name, parent=self.logger)
 
-        mongod_options = self.mongod_options.copy()
-        mongod_options.update(self.master_options)
-        mongod_options["master"] = ""
-        mongod_options["dbpath"] = os.path.join(self._dbpath_prefix, "master")
-        return self._new_mongod(mongod_logger, mongod_options)
+        mongold_options = self.mongold_options.copy()
+        mongold_options.update(self.master_options)
+        mongold_options["master"] = ""
+        mongold_options["dbpath"] = os.path.join(self._dbpath_prefix, "master")
+        return self._new_mongold(mongold_logger, mongold_options)
 
-    def _new_mongod_slave(self):
+    def _new_mongold_slave(self):
         """
         Returns a standalone.MongoDFixture configured to be used as the
         slave of a master-slave deployment.
         """
 
         logger_name = "%s:slave" % (self.logger.name)
-        mongod_logger = logging.loggers.new_logger(logger_name, parent=self.logger)
+        mongold_logger = logging.loggers.new_logger(logger_name, parent=self.logger)
 
-        mongod_options = self.mongod_options.copy()
-        mongod_options.update(self.slave_options)
-        mongod_options["slave"] = ""
-        mongod_options["source"] = "localhost:%d" % (self.port)
-        mongod_options["dbpath"] = os.path.join(self._dbpath_prefix, "slave")
-        return self._new_mongod(mongod_logger, mongod_options)
+        mongold_options = self.mongold_options.copy()
+        mongold_options.update(self.slave_options)
+        mongold_options["slave"] = ""
+        mongold_options["source"] = "localhost:%d" % (self.port)
+        mongold_options["dbpath"] = os.path.join(self._dbpath_prefix, "slave")
+        return self._new_mongold(mongold_logger, mongold_options)

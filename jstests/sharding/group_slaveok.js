@@ -35,7 +35,7 @@ var sec = rst.getSecondary()
 rst.stop(rst.getMaster());
 printjson( rst.status() )
 
-// Wait for the mongos to recognize the slave
+// Wait for the mongols to recognize the slave
 ReplSetTest.awaitRSClientHosts( conn, sec, { ok : true, secondary : true } )
 
 // Need to check slaveOk=true first, since slaveOk=false will destroy conn in pool when

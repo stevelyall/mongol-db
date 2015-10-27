@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/repl/replica_set_tag.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/repl/replica_set_tag.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -159,4 +159,4 @@ TEST_F(ReplicaSetTagMatchTest, MultipleConstraints) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

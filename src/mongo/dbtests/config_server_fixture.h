@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class CustomDirectClient : public DBDirectClient {
 public:
@@ -92,7 +92,7 @@ private:
  * Use this if your test requires complex commands and writing to many collections,
  * otherwise a unit test in the mock framework may be a better option.
  */
-class ConfigServerFixture : public mongo::unittest::Test {
+class ConfigServerFixture : public mongol::unittest::Test {
 public:
     ConfigServerFixture();
 
@@ -122,4 +122,4 @@ protected:
     virtual void tearDown();
 };
 
-}  // namespace mongo
+}  // namespace mongol

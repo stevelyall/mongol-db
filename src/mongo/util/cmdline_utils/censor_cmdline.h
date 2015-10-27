@@ -31,9 +31,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace cmdline_utils {
 

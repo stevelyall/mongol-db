@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_component.h"
+#include "mongol/logger/log_component.h"
 
 
-#include "mongo/base/init.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/init.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 namespace {
@@ -204,4 +204,4 @@ std::ostream& operator<<(std::ostream& os, LogComponent component) {
 }
 
 }  // logger
-}  // mongo
+}  // mongol

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/ops/modifier_interface.h"
+#include "mongol/db/ops/modifier_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace modifiertable {
 
 // NOTE: Please update jstests/verify_update_mods.js or include a jstest for any new mods
@@ -67,4 +67,4 @@ ModifierType getType(StringData typeStr);
 ModifierInterface* makeUpdateMod(ModifierType modType);
 
 }  // namespace modifiertable
-}  // namespace mongo
+}  // namespace mongol

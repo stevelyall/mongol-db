@@ -32,7 +32,7 @@
 
 #include <cstdint>
 
-namespace mongo {
+namespace mongol {
 
 /** Keep track of elapsed time. After a set amount of time, tells you to do something. */
 class ElapsedTracker {
@@ -56,4 +56,4 @@ private:
     int64_t _last;
 };
 
-}  // namespace mongo
+}  // namespace mongol

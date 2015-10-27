@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/task_executor_test_common.h"
+#include "mongol/executor/task_executor_test_common.h"
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/executor/task_executor_test_fixture.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/executor/task_executor_test_fixture.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
@@ -358,7 +358,7 @@ COMMON_EXECUTOR_TEST(ScheduleWorkAt) {
 }
 
 std::string getRequestDescription(const RemoteCommandRequest& request) {
-    return mongoutils::str::stream() << "Request(" << request.target.toString() << ", "
+    return mongolutils::str::stream() << "Request(" << request.target.toString() << ", "
                                      << request.dbname << ", " << request.cmdObj << ')';
 }
 
@@ -368,7 +368,7 @@ static void setStatusOnRemoteCommandCompletion(
     Status* outStatus) {
     if (cbData.request != expectedRequest) {
         *outStatus = Status(ErrorCodes::BadValue,
-                            mongoutils::str::stream()
+                            mongolutils::str::stream()
                                 << "Actual request: " << getRequestDescription(cbData.request)
                                 << "; expected: " << getRequestDescription(expectedRequest));
         return;
@@ -503,4 +503,4 @@ void addTestsForExecutor(const std::string& suiteName, ExecutorFactory makeExecu
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

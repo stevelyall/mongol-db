@@ -3,9 +3,9 @@ var st = new ShardingTest({ keyFile : 'jstests/libs/key1', shards : 2, chunkSize
                             other : { nopreallocj : 1, verbose : 2, useHostname : true,
                                       configOptions : { verbose : 2 }}});
 
-var mongos = st.s;
-var adminDB = mongos.getDB('admin');
-var db = mongos.getDB('test')
+var mongols = st.s;
+var adminDB = mongols.getDB('admin');
+var db = mongols.getDB('test')
 
 adminDB.createUser({user: 'admin', pwd: 'password', roles: jsTest.adminUserRoles});
 

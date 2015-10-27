@@ -26,17 +26,17 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/db/auth/resource_pattern.h"
+#include "mongol/db/auth/resource_pattern.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 std::string ResourcePattern::toString() const {
     switch (_matchType) {
@@ -63,4 +63,4 @@ std::ostream& operator<<(std::ostream& os, const ResourcePattern& pattern) {
     return os << pattern.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

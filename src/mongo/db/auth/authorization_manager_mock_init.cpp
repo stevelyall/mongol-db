@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_manager_external_state.h"
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
+#include "mongol/base/init.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_manager_external_state.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
 
 
 // This file provides mock initialization for tests which depend upon,
 // but do not use, the auth subsystem.
 // TODO: Remove this file once all unused inclusion of auth has been removed.
 
-namespace mongo {
+namespace mongol {
 namespace {
 std::unique_ptr<AuthzManagerExternalState> createAuthzManagerExternalStateMock() {
     return stdx::make_unique<AuthzManagerExternalStateMock>();

@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/db/range_deleter_service.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/db/range_deleter_service.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using str::stream;
@@ -299,4 +299,4 @@ BSONField<BSONObj> CleanupOrphanedCommand::startingFromKeyField("startingFromKey
 BSONField<BSONObj> CleanupOrphanedCommand::stoppedAtKeyField("stoppedAtKey");
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

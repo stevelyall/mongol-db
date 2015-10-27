@@ -30,18 +30,18 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/initializer_function.h"
-#include "mongo/base/status.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/initializer_function.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Type representing the act of registering a process-global intialization function.
  *
  * Create a module-global instance of this type to register a new initializer, to be run by a
- * call to a variant of mongo::runGlobalInitializers().  See mongo/base/initializer.h,
- * mongo/base/init.h and mongo/base/initializer_dependency_graph.h for details.
+ * call to a variant of mongol::runGlobalInitializers().  See mongol/base/initializer.h,
+ * mongol/base/init.h and mongol/base/initializer_dependency_graph.h for details.
  */
 class GlobalInitializerRegisterer {
     MONGO_DISALLOW_COPYING(GlobalInitializerRegisterer);
@@ -53,4 +53,4 @@ public:
                                 const std::vector<std::string>& dependents);
 };
 
-}  // namespace mongo
+}  // namespace mongol

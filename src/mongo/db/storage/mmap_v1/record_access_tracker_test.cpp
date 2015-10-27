@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/record_access_tracker.h"
+#include "mongol/db/storage/mmap_v1/record_access_tracker.h"
 
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

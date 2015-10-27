@@ -28,13 +28,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace ClientTests {
 

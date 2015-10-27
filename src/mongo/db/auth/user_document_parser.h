@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class V1UserDocumentParser {
     MONGO_DISALLOW_COPYING(V1UserDocumentParser);
@@ -75,4 +75,4 @@ public:
     Status initializeUserPrivilegesFromUserDocument(const BSONObj& doc, User* user) const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

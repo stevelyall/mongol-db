@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/create_collection.h"
+#include "mongol/db/catalog/create_collection.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
 
-namespace mongo {
+namespace mongol {
 Status createCollection(OperationContext* txn, const std::string& dbName, const BSONObj& cmdObj) {
     BSONObjIterator it(cmdObj);
 
@@ -89,4 +89,4 @@ Status createCollection(OperationContext* txn, const std::string& dbName, const 
     MONGO_WRITE_CONFLICT_RETRY_LOOP_END(txn, "create", nss.ns());
     return Status::OK();
 }
-}  // namespace mongo
+}  // namespace mongol

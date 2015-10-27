@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/command_reply_builder.h"
+#include "mongol/rpc/command_reply_builder.h"
 
 #include <utility>
 
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/message.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 CommandReplyBuilder::CommandReplyBuilder() : CommandReplyBuilder(stdx::make_unique<Message>()) {}
 
 CommandReplyBuilder::CommandReplyBuilder(std::unique_ptr<Message> message)
     : _message{std::move(message)} {
-    _builder.skip(mongo::MsgData::MsgDataHeaderSize);
+    _builder.skip(mongol::MsgData::MsgDataHeaderSize);
 }
 
 CommandReplyBuilder& CommandReplyBuilder::setMetadata(const BSONObj& metadata) {
@@ -104,7 +104,7 @@ void CommandReplyBuilder::reset() {
         return;
     }
     _builder.reset();
-    _builder.skip(mongo::MsgData::MsgDataHeaderSize);
+    _builder.skip(mongol::MsgData::MsgDataHeaderSize);
     _message = stdx::make_unique<Message>();
     _state = State::kMetadata;
 }
@@ -124,8 +124,8 @@ std::size_t CommandReplyBuilder::availableBytes() const {
     int intLen = _builder.len();
     invariant(0 <= intLen);
     std::size_t len = static_cast<std::size_t>(intLen);
-    invariant(len <= mongo::MaxMessageSizeBytes);
-    return mongo::MaxMessageSizeBytes - len;
+    invariant(len <= mongol::MaxMessageSizeBytes);
+    return mongol::MaxMessageSizeBytes - len;
 }
 
 Status CommandReplyBuilder::_hasSpaceFor(std::size_t dataSize) const {
@@ -139,4 +139,4 @@ Status CommandReplyBuilder::_hasSpaceFor(std::size_t dataSize) const {
 }
 
 }  // rpc
-}  // mongo
+}  // mongol

@@ -29,10 +29,10 @@
 #pragma once
 
 
-#include "mongo/db/storage/mmap_v1/durop.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/storage/mmap_v1/durop.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace dur {
 
 typedef std::vector<std::shared_ptr<DurOp>> DurOpsVector;
@@ -222,4 +222,4 @@ private:
 };
 
 }  // namespace "dur"
-}  // namespace "mongo"
+}  // namespace "mongol"

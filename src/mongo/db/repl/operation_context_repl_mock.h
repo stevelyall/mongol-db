@@ -29,9 +29,9 @@
 #pragma once
 
 
-#include "mongo/db/operation_context_noop.h"
+#include "mongol/db/operation_context_noop.h"
 
-namespace mongo {
+namespace mongol {
 
 class Locker;
 
@@ -70,4 +70,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

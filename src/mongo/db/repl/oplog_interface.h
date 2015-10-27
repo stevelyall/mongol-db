@@ -32,12 +32,12 @@
 #include <string>
 #include <utility>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/record_id.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class OplogInterface {
@@ -76,4 +76,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

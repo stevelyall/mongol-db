@@ -28,13 +28,13 @@
 #pragma once
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/logger/appender.h"
-#include "mongo/logger/encoder.h"
-#include "mongo/logger/rotatable_file_writer.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/logger/appender.h"
+#include "mongol/logger/encoder.h"
+#include "mongol/logger/rotatable_file_writer.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -69,4 +69,4 @@ private:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

@@ -25,16 +25,16 @@
  *    delete this exception statement from all source files in the program,
  *    then also delete it in the license file.
  */
-#include "mongo/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_lockpings.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 const std::string LockpingsType::ConfigNS = "config.lockpings";
 
 const BSONField<std::string> LockpingsType::process("_id");
@@ -98,4 +98,4 @@ std::string LockpingsType::toString() const {
     return toBSON().toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

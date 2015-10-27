@@ -46,7 +46,7 @@ if (doIt) {
     MongoRunner.stopMongod( m.port );
 
     resetDbpath( repairpath );
-    var rc = runMongoProgram("mongod", "--nssize", "8", "--noprealloc", "--smallfiles", "--repair",
+    var rc = runMongoProgram("mongold", "--nssize", "8", "--noprealloc", "--smallfiles", "--repair",
                              "--port", m.port, "--dbpath", dbpath, "--repairpath", repairpath);
     assert.eq.automsg( "0", "rc" );
     m = MongoRunner.runMongod({

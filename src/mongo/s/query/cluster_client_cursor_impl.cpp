@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_client_cursor_impl.h"
+#include "mongol/s/query/cluster_client_cursor_impl.h"
 
-#include "mongo/s/query/router_stage_limit.h"
-#include "mongo/s/query/router_stage_merge.h"
-#include "mongo/s/query/router_stage_mock.h"
-#include "mongo/s/query/router_stage_remove_sortkey.h"
-#include "mongo/s/query/router_stage_skip.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/s/query/router_stage_limit.h"
+#include "mongol/s/query/router_stage_merge.h"
+#include "mongol/s/query/router_stage_mock.h"
+#include "mongol/s/query/router_stage_remove_sortkey.h"
+#include "mongol/s/query/router_stage_skip.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 ClusterClientCursorImpl::ClusterClientCursorImpl(executor::TaskExecutor* executor,
                                                  ClusterClientCursorParams params)
@@ -106,4 +106,4 @@ std::unique_ptr<RouterExecStage> ClusterClientCursorImpl::buildMergerPlan(
     return root;
 }
 
-}  // namespace mongo
+}  // namespace mongol

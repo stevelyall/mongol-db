@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/async_results_merger.h"
+#include "mongol/s/query/async_results_merger.h"
 
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/client/remote_command_targeter_factory_mock.h"
-#include "mongo/db/json.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/executor/thread_pool_task_executor_test_fixture.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/sharding_test_fixture.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/client/remote_command_targeter_factory_mock.h"
+#include "mongol/db/json.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/executor/thread_pool_task_executor_test_fixture.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/sharding_test_fixture.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -1310,4 +1310,4 @@ TEST_F(AsyncResultsMergerTest, RetryOnHostUnreachableAllowPartialResults) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

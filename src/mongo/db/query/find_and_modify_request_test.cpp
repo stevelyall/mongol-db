@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/json.h"
-#include "mongo/db/query/find_and_modify_request.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/json.h"
+#include "mongol/db/query/find_and_modify_request.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(FindAndModifyRequest, BasicUpdate) {
@@ -418,4 +418,4 @@ TEST(FindAndModifyRequest, ParseWithRemoveAndReturnNew) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

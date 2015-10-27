@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/util/clock_source.h"
-#include "mongo/util/time_support.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Mock clock source that returns a fixed time until explicitly advanced.
@@ -59,4 +59,4 @@ private:
     Date_t _now;
 };
 
-}  // namespace mongo
+}  // namespace mongol

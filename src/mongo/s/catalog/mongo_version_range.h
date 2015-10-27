@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * The MongoVersionRange represents a min/max of MongoDB versions, useful for

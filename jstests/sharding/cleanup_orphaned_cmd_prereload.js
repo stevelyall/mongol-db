@@ -5,10 +5,10 @@
 var st = new ShardingTest({ shards: 2 });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
-var coll = mongos.getCollection( "foo.bar" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
+var coll = mongols.getCollection( "foo.bar" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
 printjson( admin.runCommand({ movePrimary : coll.getDB() + "", to : shards[0]._id }) );

@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/command_request_builder.h"
+#include "mongol/rpc/command_request_builder.h"
 
 #include <utility>
 
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/message.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 CommandRequestBuilder::CommandRequestBuilder()
@@ -46,7 +46,7 @@ CommandRequestBuilder::~CommandRequestBuilder() {}
 
 CommandRequestBuilder::CommandRequestBuilder(std::unique_ptr<Message> message)
     : _message{std::move(message)} {
-    _builder.skip(mongo::MsgData::MsgDataHeaderSize);  // Leave room for message header.
+    _builder.skip(mongol::MsgData::MsgDataHeaderSize);  // Leave room for message header.
 }
 
 CommandRequestBuilder& CommandRequestBuilder::setDatabase(StringData database) {
@@ -110,4 +110,4 @@ std::unique_ptr<Message> CommandRequestBuilder::done() {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/is_master_response.h"
+#include "mongol/db/repl/is_master_response.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/oid.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/oid.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -458,4 +458,4 @@ void IsMasterResponse::markAsShutdownInProgress() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

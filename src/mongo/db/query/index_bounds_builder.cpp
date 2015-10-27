@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/query/index_bounds_builder.h"
+#include "mongol/db/query/index_bounds_builder.h"
 
 #include <cmath>
 #include <limits>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/expression_index.h"
-#include "mongo/db/query/expression_index_knobs.h"
-#include "mongo/db/query/indexability.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/db/geo/s2.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/expression_index.h"
+#include "mongol/db/query/expression_index_knobs.h"
+#include "mongol/db/query/indexability.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/db/geo/s2.h"
 #include "third_party/s2/s2cell.h"
 #include "third_party/s2/s2regioncoverer.h"
 
-namespace mongo {
+namespace mongol {
 
 string IndexBoundsBuilder::simpleRegex(const char* regex,
                                        const char* flags,
@@ -92,7 +92,7 @@ string IndexBoundsBuilder::simpleRegex(const char* regex,
         }
     }
 
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
 
     while (*regex) {
         char c = *(regex++);
@@ -236,7 +236,7 @@ void IndexBoundsBuilder::translate(const MatchExpression* expr,
     oilOut->name = elt.fieldName();
 
     bool isHashed = false;
-    if (mongoutils::str::equals("hashed", elt.valuestrsafe())) {
+    if (mongolutils::str::equals("hashed", elt.valuestrsafe())) {
         isHashed = true;
     }
 
@@ -556,14 +556,14 @@ void IndexBoundsBuilder::translate(const MatchExpression* expr,
     } else if (MatchExpression::GEO == expr->matchType()) {
         const GeoMatchExpression* gme = static_cast<const GeoMatchExpression*>(expr);
 
-        if (mongoutils::str::equals("2dsphere", elt.valuestrsafe())) {
+        if (mongolutils::str::equals("2dsphere", elt.valuestrsafe())) {
             verify(gme->getGeoExpression().getGeometry().hasS2Region());
             const S2Region& region = gme->getGeoExpression().getGeometry().getS2Region();
             S2IndexingParams indexParams;
             ExpressionParams::parse2dsphereParams(index.infoObj, &indexParams);
             ExpressionMapping::cover2dsphere(region, indexParams, oilOut);
             *tightnessOut = IndexBoundsBuilder::INEXACT_FETCH;
-        } else if (mongoutils::str::equals("2d", elt.valuestrsafe())) {
+        } else if (mongolutils::str::equals("2d", elt.valuestrsafe())) {
             verify(gme->getGeoExpression().getGeometry().hasR2Region());
             const R2Region& region = gme->getGeoExpression().getGeometry().getR2Region();
 
@@ -1000,4 +1000,4 @@ bool IndexBoundsBuilder::isSingleInterval(const IndexBounds& bounds,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

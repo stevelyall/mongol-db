@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/util/tick_source.h"
+#include "mongol/util/tick_source.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Tick source based on platform specific clock ticks. Should be of reasonably high
@@ -51,4 +51,4 @@ public:
      */
     static SystemTickSource* get();
 };
-}  // namespace mongo
+}  // namespace mongol

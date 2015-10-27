@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/drop_database.h"
+#include "mongol/db/catalog/drop_database.h"
 
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/log.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 Status dropDatabase(OperationContext* txn, const std::string& dbName) {
     MONGO_WRITE_CONFLICT_RETRY_LOOP_BEGIN {
         ScopedTransaction transaction(txn, MODE_X);
@@ -72,7 +72,7 @@ Status dropDatabase(OperationContext* txn, const std::string& dbName) {
         log() << "dropDatabase " << dbName << " starting";
 
         BackgroundOperation::assertNoBgOpInProgForDb(dbName);
-        mongo::dropDatabase(txn, db);
+        mongol::dropDatabase(txn, db);
 
         log() << "dropDatabase " << dbName << " finished";
 
@@ -87,4 +87,4 @@ Status dropDatabase(OperationContext* txn, const std::string& dbName) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

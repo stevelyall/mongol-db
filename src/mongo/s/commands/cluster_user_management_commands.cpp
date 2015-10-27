@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/user_management_commands.h"
+#include "mongol/db/commands/user_management_commands.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/user_management_commands_parser.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/config.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/user_management_commands_parser.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/config.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -758,10 +758,10 @@ public:
 } cmdInvalidateUserCache;
 
 /**
- * This command is used only by mongorestore to handle restoring users/roles.  We do this so
- * that mongorestore doesn't do direct inserts into the admin.system.users and
+ * This command is used only by mongolrestore to handle restoring users/roles.  We do this so
+ * that mongolrestore doesn't do direct inserts into the admin.system.users and
  * admin.system.roles, which would bypass the authzUpdateLock and allow multiple concurrent
- * modifications to users/roles.  What mongorestore now does instead is it inserts all user/role
+ * modifications to users/roles.  What mongolrestore now does instead is it inserts all user/role
  * definitions it wants to restore into temporary collections, then this command moves those
  * user/role definitions into their proper place in admin.system.users and admin.system.roles.
  * It either adds the users/roles to the existing ones or replaces the existing ones, depending
@@ -784,7 +784,7 @@ public:
     }
 
     virtual void help(stringstream& ss) const {
-        ss << "Internal command used by mongorestore for updating user/role data";
+        ss << "Internal command used by mongolrestore for updating user/role data";
     }
 
     virtual Status checkAuthForCommand(ClientBasic* client,
@@ -897,4 +897,4 @@ public:
     }
 } cmdAuthSchemaUpgrade;
 
-}  // namespace mongo
+}  // namespace mongol

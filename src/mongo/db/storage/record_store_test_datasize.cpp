@@ -28,16 +28,16 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 
@@ -94,4 +94,4 @@ TEST(RecordStoreTestHarness, DataSizeNonEmpty) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -27,7 +27,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // MongoDB customization: includes basetsd.h under Windows where SSIZE_T is declared.
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include "snappy.h"
 #include "snappy-internal.h"

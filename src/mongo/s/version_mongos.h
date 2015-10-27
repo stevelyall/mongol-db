@@ -26,7 +26,7 @@
 *    then also delete it in the license file.
 */
 
-namespace mongo {
-// print mongos version info
+namespace mongol {
+// print mongols version info
 void printShardingVersionInfo(bool out);
-}  // namespace mongo
+}  // namespace mongol

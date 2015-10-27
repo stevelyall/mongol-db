@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/config.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/concurrency/threadlocal.h"
+#include "mongol/base/string_data.h"
+#include "mongol/config.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/concurrency/threadlocal.h"
 
-namespace mongo {
+namespace mongol {
 
 /** separated out as later the implementation of this may be different than RWLock,
     depending on OS, as there is no upgrade etc. facility herein.

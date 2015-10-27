@@ -31,22 +31,22 @@
 #include <memory>
 #include <string>
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #ifdef MONGO_CONFIG_SSL
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/time_support.h"
 
 #include <openssl/err.h>
 #include <openssl/ssl.h>
 
 #endif  // #ifdef MONGO_CONFIG_SSL
 
-namespace mongo {
+namespace mongol {
 /*
  * @return the SSL version std::string prefixed with prefix and suffixed with suffix
  */
@@ -54,7 +54,7 @@ const std::string getSSLVersion(const std::string& prefix, const std::string& su
 }
 
 #ifdef MONGO_CONFIG_SSL
-namespace mongo {
+namespace mongol {
 struct SSLParams;
 
 class SSLConnection {

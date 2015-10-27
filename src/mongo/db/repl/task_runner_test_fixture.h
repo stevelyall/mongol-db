@@ -30,10 +30,10 @@
 
 #include <memory>
 
-#include "mongo/base/status.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class OldThreadPool;
 class OperationContext;
@@ -78,4 +78,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

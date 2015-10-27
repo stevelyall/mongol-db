@@ -26,36 +26,36 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/sharding_state.h"
+#include "mongol/db/s/sharding_state.h"
 
-#include "mongo/client/connection_string.h"
-#include "mongo/client/remote_command_targeter_factory_impl.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/metadata_loader.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharded_connection_info.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/sharding_initialization.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/remote_command_targeter_factory_impl.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/metadata_loader.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharded_connection_info.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/sharding_initialization.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -517,8 +517,8 @@ Status ShardingState::refreshMetadataIfNeeded(OperationContext* txn,
     //
     // Cases:
     // A) Initial config load and/or secondary take-over.
-    // B) Migration TO this shard finished, notified by mongos.
-    // C) Dropping a collection, notified (currently) by mongos.
+    // B) Migration TO this shard finished, notified by mongols.
+    // C) Dropping a collection, notified (currently) by mongols.
     // D) Stale client wants to reload metadata with a different *epoch*, so we aren't sure.
 
     if (storedShardVersion.epoch() != reqShardVersion.epoch()) {
@@ -851,7 +851,7 @@ bool ShardingState::needCollectionMetadata(OperationContext* txn, const string& 
 
     Client* client = txn->getClient();
 
-    // Shard version information received from mongos may either by attached to the Client or
+    // Shard version information received from mongols may either by attached to the Client or
     // directly to the OperationContext.
     return ShardedConnectionInfo::get(client, false) ||
         OperationShardVersion::get(txn).hasShardVersion();
@@ -868,4 +868,4 @@ shared_ptr<CollectionMetadata> ShardingState::getCollectionMetadata(const string
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

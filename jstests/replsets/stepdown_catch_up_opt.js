@@ -57,7 +57,7 @@
         );
     }
 
-    // If any of these assertions fail, we need to disable the fail point in order for the mongod to
+    // If any of these assertions fail, we need to disable the fail point in order for the mongold to
     // shut down.
     try {
 

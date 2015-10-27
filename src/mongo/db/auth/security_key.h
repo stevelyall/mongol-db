@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 template <class T>
 class StatusWith;
 
@@ -43,4 +43,4 @@ class StatusWith;
  */
 bool setUpSecurityKey(const std::string& filename);
 
-}  // namespace mongo
+}  // namespace mongol

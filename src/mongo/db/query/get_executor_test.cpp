@@ -27,17 +27,17 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/get_executor.h
+ * This file contains tests for mongol/db/query/get_executor.h
  */
 
-#include "mongo/db/query/get_executor.h"
+#include "mongol/db/query/get_executor.h"
 
-#include "mongo/db/json.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/json.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

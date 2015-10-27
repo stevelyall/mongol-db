@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 class OperationContext;
 
 /**
@@ -47,4 +47,4 @@ private:
     bool _active{false};
 };
 
-}  // namespace mongo
+}  // namespace mongol

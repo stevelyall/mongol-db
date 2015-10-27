@@ -1,8 +1,8 @@
 var st = new ShardingTest({numShards: 2, nopreallocj: "", enableBalancer: true});
-var mongos = st.s;
+var mongols = st.s;
 
-var admin = mongos.getDB("admin");
-db = mongos.getDB("test");
+var admin = mongols.getDB("admin");
+db = mongols.getDB("test");
 var coll = db.getCollection("stuff")
 
 assert.commandWorked(admin.runCommand({ enablesharding : coll.getDB().getName() }));
@@ -31,7 +31,7 @@ admin.printShardingStatus()
 
 admin.runCommand({ shardcollection : "" + coll, key : { _id : 1 } })
 
-assert.lt( 5 , mongos.getDB( "config" ).chunks.find( { ns : "test.stuff" } ).count() , "not enough chunks" );
+assert.lt( 5 , mongols.getDB( "config" ).chunks.find( { ns : "test.stuff" } ).count() , "not enough chunks" );
 
 assert.soon( 
     function(){
@@ -49,7 +49,7 @@ assert.soon(
             throw e;
         }
          
-        res = mongos.getDB( "config" ).chunks.group( { cond : { ns : "test.stuff" } , 
+        res = mongols.getDB( "config" ).chunks.group( { cond : { ns : "test.stuff" } , 
                                                        key : { shard : 1 }  , 
                                                        reduce : function( doc , out ){ out.nChunks++; } , 
                                                        initial : { nChunks : 0 } } );

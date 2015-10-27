@@ -34,16 +34,16 @@
 #include <vector>
 #include <boost/version.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/logger/appender.h"
-#include "mongo/logger/message_event.h"
-#include "mongo/logger/tee.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/logger/appender.h"
+#include "mongol/logger/message_event.h"
+#include "mongol/logger/tee.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Fixed-capacity log of line-oriented messages.

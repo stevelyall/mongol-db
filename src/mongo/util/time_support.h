@@ -35,10 +35,10 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/status_with.h"
-#include "mongo/stdx/chrono.h"
+#include "mongol/base/status_with.h"
+#include "mongol/stdx/chrono.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename Allocator>
 class StringBuilderImpl;
@@ -371,4 +371,4 @@ char* ctime(const time_t* timep);
 struct tm* gmtime(const time_t* timep);
 struct tm* localtime(const time_t* timep);
 
-}  // namespace mongo
+}  // namespace mongol

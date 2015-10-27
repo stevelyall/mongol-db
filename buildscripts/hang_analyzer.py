@@ -5,7 +5,7 @@
 A prototype hang analyzer for MCI integration to help investigate test timeouts
 
 1. Script supports taking dumps, and/or dumping a summary of useful information about a process
-2. Script will iterate through a list of interesting processes (mongo, mongod, and mongos), 
+2. Script will iterate through a list of interesting processes (mongol, mongold, and mongols), 
     and run the tools from step 1.
 
 Supports Linux, MacOS X, and Windows.
@@ -329,7 +329,7 @@ def get_hang_analyzers():
     return [ps, dbg]
 
 
-interesting_processes = ["mongo", "mongod", "mongos", "_test", "dbtest", "python"]
+interesting_processes = ["mongol", "mongold", "mongols", "_test", "dbtest", "python"]
 
 def is_interesting_process(p):
     for ip in interesting_processes:

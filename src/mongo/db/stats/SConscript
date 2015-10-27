@@ -8,9 +8,9 @@ env.Library(
         'timer_stats.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/concurrency/spin_lock',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/concurrency/spin_lock',
     ],
 )
 
@@ -30,7 +30,7 @@ env.Library(
         'top.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/service_context',
     ],
 )
 
@@ -50,7 +50,7 @@ env.Library(
         'counters.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/util/concurrency/spin_lock',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/util/concurrency/spin_lock',
     ],
 )

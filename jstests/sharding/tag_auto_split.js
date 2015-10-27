@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "tag_auto_split",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            other: { enableBalancer : true } });
 
 db = s.getDB( "test" );

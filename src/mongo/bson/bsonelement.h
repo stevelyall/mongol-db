@@ -35,16 +35,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/base/data_view.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/bson/oid.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/config.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/platform/strnlen.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/base/data_view.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/bson/oid.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/config.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/platform/strnlen.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONElement;
 class BSONObjBuilder;
@@ -78,13 +78,13 @@ public:
         std::string foo = obj["foo"].String(); // std::exception if not a std::string type or DNE
     */
     std::string String() const {
-        return chk(mongo::String).str();
+        return chk(mongol::String).str();
     }
     const StringData checkAndGetStringData() const {
-        return chk(mongo::String).valueStringData();
+        return chk(mongol::String).valueStringData();
     }
     Date_t Date() const {
-        return chk(mongo::Date).date();
+        return chk(mongol::Date).date();
     }
     double Number() const {
         return chk(isNumber()).number();
@@ -102,10 +102,10 @@ public:
         return chk(NumberInt)._numberInt();
     }
     bool Bool() const {
-        return chk(mongo::Bool).boolean();
+        return chk(mongol::Bool).boolean();
     }
     std::vector<BSONElement> Array() const;  // see implementation for detailed comments
-    mongo::OID OID() const {
+    mongol::OID OID() const {
         return chk(jstOID).__oid();
     }
     void Null() const {
@@ -139,7 +139,7 @@ public:
         v = Bool();
     }
     void Val(BSONObj& v) const;
-    void Val(mongo::OID& v) const {
+    void Val(mongol::OID& v) const {
         v = OID();
     }
     void Val(int& v) const {
@@ -254,7 +254,7 @@ public:
     }
 
     bool isBoolean() const {
-        return type() == mongo::Bool;
+        return type() == mongol::Bool;
     }
 
     /** @return value of a boolean element.
@@ -337,7 +337,7 @@ public:
 
     /** Retrieve the object ID stored in the object.
         You must ensure the element is of type jstOID first. */
-    mongo::OID __oid() const {
+    mongol::OID __oid() const {
         return OID::from(value());
     }
 
@@ -368,11 +368,11 @@ public:
 
     /** Get the std::string value of the element.  If not a std::string returns "". */
     const char* valuestrsafe() const {
-        return type() == mongo::String ? valuestr() : "";
+        return type() == mongol::String ? valuestr() : "";
     }
     /** Get the std::string value of the element.  If not a std::string returns "". */
     std::string str() const {
-        return type() == mongo::String ? std::string(valuestr(), valuestrsize() - 1)
+        return type() == mongol::String ? std::string(valuestr(), valuestrsize() - 1)
                                        : std::string();
     }
 
@@ -511,7 +511,7 @@ public:
     bool mayEncapsulate() const {
         switch (type()) {
             case Object:
-            case mongo::Array:
+            case mongol::Array:
             case CodeWScope:
                 return true;
             default:
@@ -523,7 +523,7 @@ public:
     bool isABSONObj() const {
         switch (type()) {
             case Object:
-            case mongo::Array:
+            case mongol::Array:
                 return true;
             default:
                 return false;
@@ -531,7 +531,7 @@ public:
     }
 
     Timestamp timestamp() const {
-        if (type() == mongo::Date || type() == bsonTimestamp) {
+        if (type() == mongol::Date || type() == bsonTimestamp) {
             return Timestamp(ConstDataView(value()).read<LittleEndian<unsigned long long>>().value);
         }
         return Timestamp();
@@ -554,11 +554,11 @@ public:
         return value() + 4;
     }
 
-    const mongo::OID dbrefOID() const {
+    const mongol::OID dbrefOID() const {
         uassert(10064, "not a dbref", type() == DBRef);
         const char* start = value();
         start += 4 + ConstDataView(start).read<LittleEndian<int>>();
-        return mongo::OID::from(start);
+        return mongol::OID::from(start);
     }
 
     /** this does not use fieldName in the comparison, just the value */
@@ -650,7 +650,7 @@ inline bool BSONElement::trueValue() const {
             return _numberDecimal().isNotEqual(Decimal128(0));
         case NumberInt:
             return _numberInt() != 0;
-        case mongo::Bool:
+        case mongol::Bool:
             return boolean();
         case EOO:
         case jstNULL:
@@ -682,9 +682,9 @@ inline bool BSONElement::isSimpleType() const {
         case NumberDouble:
         case NumberInt:
         case NumberDecimal:
-        case mongo::String:
-        case mongo::Bool:
-        case mongo::Date:
+        case mongol::String:
+        case mongol::Bool:
+        case mongol::Date:
         case jstOID:
             return true;
         default:

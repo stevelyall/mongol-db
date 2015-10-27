@@ -31,11 +31,11 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/client/connection_string.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 template <typename T>
@@ -50,7 +50,7 @@ public:
      * Constructs a new set shard version request, which is of the "init" type, meaning it has no
      * namespace or version information associated with it and the init flag is set.
      * The constructed request will not contain the "noConnectionVersioning" field, which means that
-     * the entire connection will be marked as "versioned" on the mongod side. DO NOT USE when
+     * the entire connection will be marked as "versioned" on the mongold side. DO NOT USE when
      * sending through the TaskExecutor, which pools connections without consideration for which
      * are marked as sharded.
      */
@@ -76,7 +76,7 @@ public:
      * both initialization data and namespace and version information associated with it.
      *
      * The constructed request will not contain the "noConnectionVersioning" field, which means that
-     * the entire connection will be marked as "versioned" on the mongod side. DO NOT USE when
+     * the entire connection will be marked as "versioned" on the mongold side. DO NOT USE when
      * sending through the TaskExecutor, which pools connections without consideration for which
      * are marked as sharded.
      */
@@ -190,4 +190,4 @@ private:
     boost::optional<ChunkVersion> _version;
 };
 
-}  // namespace mongo
+}  // namespace mongol

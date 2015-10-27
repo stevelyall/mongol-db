@@ -31,11 +31,11 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DurableMappedFile adds some layers atop memory mapped files - specifically our handling of

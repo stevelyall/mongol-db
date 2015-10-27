@@ -28,16 +28,16 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
 /**
- * Contains common functionality shared between the batch write commands in mongos and mongod.
+ * Contains common functionality shared between the batch write commands in mongols and mongold.
  */
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 Status checkAuthForWriteCommand(AuthorizationSession* authzSession,

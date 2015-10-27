@@ -30,11 +30,11 @@
 #include <cstring>
 #include <type_traits>
 
-#include "mongo/base/data_type.h"
-#include "mongo/base/error_codes.h"
-#include "mongo/platform/endian.h"
+#include "mongol/base/data_type.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/platform/endian.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 struct BigEndian {
@@ -165,4 +165,4 @@ struct DataType::Handler<LittleEndian<T>> {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

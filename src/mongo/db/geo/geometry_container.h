@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/geo/shapes.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/geo/shapes.h"
 #include "third_party/s2/s2regionunion.h"
 
-namespace mongo {
+namespace mongol {
 
 class GeometryContainer {
     MONGO_DISALLOW_COPYING(GeometryContainer);
@@ -162,4 +162,4 @@ private:
     std::unique_ptr<R2Region> _r2Region;
 };
 
-}  // namespace mongo
+}  // namespace mongol

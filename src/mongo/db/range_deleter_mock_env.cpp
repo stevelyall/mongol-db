@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/range_deleter_mock_env.h"
+#include "mongol/db/range_deleter_mock_env.h"
 
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;

@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/server_options.h"
+#include "mongol/db/server_options.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This struct represents global configuration data for the server.  These options get set from
@@ -37,4 +37,4 @@ namespace mongo {
  */
 ServerGlobalParams serverGlobalParams;
 
-}  // namespace mongo
+}  // namespace mongol

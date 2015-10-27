@@ -27,15 +27,15 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
 #include "synchronization.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 ThreadIdleCallback threadIdleCallback;
@@ -114,4 +114,4 @@ void NotifyAll::notifyAll(When e) {
     _condition.notify_all();
 }
 
-}  // namespace mongo
+}  // namespace mongol

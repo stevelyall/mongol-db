@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_cursor_cleanup_job.h"
+#include "mongol/s/query/cluster_cursor_cleanup_job.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/client.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 std::atomic<long long> ClusterCursorCleanupJob::cursorTimeoutMillis(  // NOLINT
     durationCount<stdx::chrono::milliseconds>(stdx::chrono::minutes(10)));
@@ -66,4 +66,4 @@ void ClusterCursorCleanupJob::run() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

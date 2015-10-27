@@ -8,10 +8,10 @@ env.Library(
     target='connection_string',
     source=[
         'connection_string.cpp',
-        'mongo_uri.cpp',
+        'mongol_uri.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/net/hostandport',
+        '$BUILD_DIR/mongol/util/net/hostandport',
     ]
 )
 
@@ -19,7 +19,7 @@ env.CppUnitTest(
     target='connection_string_test',
     source=[
         'connection_string_test.cpp',
-        'mongo_uri_test.cpp',
+        'mongol_uri_test.cpp',
     ],
     LIBDEPS=[
         'connection_string',
@@ -34,7 +34,7 @@ env.Library(
         'read_preference.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
     ],
 )
 
@@ -80,14 +80,14 @@ saslClientEnv.Library(
     target='sasl_client',
     source=saslClientSource,
     LIBDEPS=[
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/crypto/scramauth',
-        '$BUILD_DIR/mongo/executor/remote_command',
-        '$BUILD_DIR/mongo/rpc/command_status',
-        '$BUILD_DIR/mongo/rpc/metadata',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/md5',
-        '$BUILD_DIR/mongo/util/net/network',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/crypto/scramauth',
+        '$BUILD_DIR/mongol/executor/remote_command',
+        '$BUILD_DIR/mongol/rpc/command_status',
+        '$BUILD_DIR/mongol/rpc/metadata',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/md5',
+        '$BUILD_DIR/mongol/util/net/network',
     ],
     SYSLIBDEPS=saslLibs
 )
@@ -98,8 +98,8 @@ env.Library(
         'authenticate.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/executor/remote_command',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/executor/remote_command',
         'sasl_client'
     ]
 )
@@ -112,9 +112,9 @@ env.CppUnitTest(
         'authenticate_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/rpc/command_status',
-        '$BUILD_DIR/mongo/util/net/hostandport',
-        '$BUILD_DIR/mongo/util/md5',
+        '$BUILD_DIR/mongol/rpc/command_status',
+        '$BUILD_DIR/mongol/util/net/hostandport',
+        '$BUILD_DIR/mongol/util/md5',
         'authentication',
     ]
 )
@@ -123,7 +123,7 @@ env.Library(
     target='clientdriver',
     source=[
         'connection_string_connect.cpp',
-        'mongo_uri_connect.cpp',
+        'mongol_uri_connect.cpp',
         'connpool.cpp',
         'dbclient.cpp',
         'dbclient_rs.cpp',
@@ -134,18 +134,18 @@ env.Library(
         'syncclusterconnection.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authcommon',
-        '$BUILD_DIR/mongo/db/dbmessage',
-        '$BUILD_DIR/mongo/rpc/command_status',
-        '$BUILD_DIR/mongo/rpc/rpc',
-        '$BUILD_DIR/mongo/util/net/network',
-        '$BUILD_DIR/mongo/util/md5',
+        '$BUILD_DIR/mongol/db/auth/authcommon',
+        '$BUILD_DIR/mongol/db/dbmessage',
+        '$BUILD_DIR/mongol/rpc/command_status',
+        '$BUILD_DIR/mongol/rpc/rpc',
+        '$BUILD_DIR/mongol/util/net/network',
+        '$BUILD_DIR/mongol/util/md5',
         'authentication',
         'connection_string',
         'read_preference',
     ],
     LIBDEPS_TAGS=[
-        # Depends on mongo::inShutdown
+        # Depends on mongol::inShutdown
         'incomplete'
     ],
 
@@ -158,8 +158,8 @@ env.Library(
     ],
     LIBDEPS=[
         'clientdriver',
-        '$BUILD_DIR/mongo/db/auth/authcommon',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_global',
+        '$BUILD_DIR/mongol/db/auth/authcommon',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_global',
     ]
 )
 
@@ -169,11 +169,11 @@ env.Library(
         'remote_command_runner_impl.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/executor/downconvert_find_and_getmore_commands',
-        '$BUILD_DIR/mongo/executor/task_executor_interface',
-        '$BUILD_DIR/mongo/rpc/metadata',
-        '$BUILD_DIR/mongo/util/net/hostandport',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/executor/downconvert_find_and_getmore_commands',
+        '$BUILD_DIR/mongol/executor/task_executor_interface',
+        '$BUILD_DIR/mongol/rpc/metadata',
+        '$BUILD_DIR/mongol/util/net/hostandport',
         'connection_pool',
     ],
     LIBDEPS_TAGS=[
@@ -202,7 +202,7 @@ env.Library(
         'remote_command_targeter_factory_mock.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/net/hostandport',
+        '$BUILD_DIR/mongol/util/net/hostandport',
     ]
 )
 
@@ -220,7 +220,7 @@ env.CppUnitTest(
 
 env.CppUnitTest('dbclient_rs_test',
                 ['dbclient_rs_test.cpp'],
-                LIBDEPS=['clientdriver', '$BUILD_DIR/mongo/dbtests/mocklib'])
+                LIBDEPS=['clientdriver', '$BUILD_DIR/mongol/dbtests/mocklib'])
 
 env.CppUnitTest(
     target='scoped_db_conn_test',
@@ -228,11 +228,11 @@ env.CppUnitTest(
         'scoped_db_conn_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        '$BUILD_DIR/mongo/util/net/message_server_port',
-        '$BUILD_DIR/mongo/s/coreshard',
-        '$BUILD_DIR/mongo/s/mongoscore',
-        '$BUILD_DIR/mongo/util/ntservice_mock',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        '$BUILD_DIR/mongol/util/net/message_server_port',
+        '$BUILD_DIR/mongol/s/coreshard',
+        '$BUILD_DIR/mongol/s/mongolscore',
+        '$BUILD_DIR/mongol/util/ntservice_mock',
     ],
     NO_CRUTCH=True,
 )
@@ -243,9 +243,9 @@ env.Library(
         'parallel.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/s/catalog/catalog_manager',
-        '$BUILD_DIR/mongo/s/coreshard',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/s/catalog/catalog_manager',
+        '$BUILD_DIR/mongol/s/coreshard',
         'clientdriver',
     ],
 )
@@ -257,10 +257,10 @@ env.Library(
         'query_fetcher.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/executor/task_executor_interface',
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/namespace_string',
-        '$BUILD_DIR/mongo/rpc/command_status',
+        '$BUILD_DIR/mongol/executor/task_executor_interface',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/namespace_string',
+        '$BUILD_DIR/mongol/rpc/command_status',
     ],
 )
 
@@ -269,6 +269,6 @@ env.CppUnitTest(
     source='fetcher_test.cpp',
     LIBDEPS=[
         'fetcher',
-        '$BUILD_DIR/mongo/db/repl/replication_executor_test_fixture',
+        '$BUILD_DIR/mongol/db/repl/replication_executor_test_fixture',
     ],
 )

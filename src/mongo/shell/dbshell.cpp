@@ -27,9 +27,9 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
@@ -39,33 +39,33 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "mongo/base/initializer.h"
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/client.h"
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/server_options.h"
-#include "mongo/logger/console_appender.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/shell/linenoise.h"
-#include "mongo/shell/shell_options.h"
-#include "mongo/shell/shell_utils.h"
-#include "mongo/shell/shell_utils_launcher.h"
-#include "mongo/util/exit_code.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/password.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/signal_handlers.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/startup_test.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/text.h"
-#include "mongo/util/version.h"
+#include "mongol/base/initializer.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/client.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/server_options.h"
+#include "mongol/logger/console_appender.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/shell/linenoise.h"
+#include "mongol/shell/shell_options.h"
+#include "mongol/shell/shell_utils.h"
+#include "mongol/shell/shell_utils_launcher.h"
+#include "mongol/util/exit_code.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/password.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/signal_handlers.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/startup_test.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/text.h"
+#include "mongol/util/version.h"
 
 #ifdef _WIN32
 #include <io.h>
@@ -77,14 +77,14 @@
 #endif
 
 using namespace std;
-using namespace mongo;
+using namespace mongol;
 
 string historyFile;
 bool gotInterrupted = false;
 bool inMultiLine = false;
 static volatile bool atPrompt = false;  // can eval before getting to prompt
 
-namespace mongo {
+namespace mongol {
 
 Scope* shellMainScope;
 
@@ -163,7 +163,7 @@ void shellHistoryAdd(const char* line) {
 }
 
 void killOps() {
-    if (mongo::shell_utils::_nokillop)
+    if (mongol::shell_utils::_nokillop)
         return;
 
     if (atPrompt)
@@ -171,18 +171,18 @@ void killOps() {
 
     sleepmillis(10);  // give current op a chance to finish
 
-    mongo::shell_utils::connectionRegistry.killOperationsOnAllConnections(
+    mongol::shell_utils::connectionRegistry.killOperationsOnAllConnections(
         !shellGlobalParams.autoKillOp);
 }
 
 // Stubs for signal_handlers.cpp
-namespace mongo {
+namespace mongol {
 void logProcessDetailsForLogRotate() {}
 
 void exitCleanly(ExitCode code) {
     {
-        stdx::lock_guard<stdx::mutex> lk(mongo::shell_utils::mongoProgramOutputMutex);
-        mongo::dbexitCalled = true;
+        stdx::lock_guard<stdx::mutex> lk(mongol::shell_utils::mongolProgramOutputMutex);
+        mongol::dbexitCalled = true;
     }
 
     ::killOps();
@@ -361,7 +361,7 @@ bool isBalanced(const std::string& code) {
     return curlyBrackets == 0 && squareBrackets == 0 && parens == 0 && !danglingOp;
 }
 
-struct BalancedTest : public mongo::StartupTest {
+struct BalancedTest : public mongol::StartupTest {
 public:
     void run() {
         verify(isBalanced("x = 5"));
@@ -426,7 +426,7 @@ string finishCode(string code) {
     return code;
 }
 
-bool execPrompt(mongo::Scope& scope, const char* promptFunction, string& prompt) {
+bool execPrompt(mongol::Scope& scope, const char* promptFunction, string& prompt) {
     string execStatement = string("__prompt__ = ") + promptFunction + "();";
     scope.exec("delete __prompt__;", "", false, false, false, 0);
     scope.exec(execStatement, "", false, false, false, 0);
@@ -499,12 +499,12 @@ static void edit(const string& whatToEdit) {
 #ifdef _WIN32
         char tempFolder[MAX_PATH];
         GetTempPathA(sizeof tempFolder, tempFolder);
-        sb << tempFolder << "mongo_edit" << time(0) + i << ".js";
+        sb << tempFolder << "mongol_edit" << time(0) + i << ".js";
 #else
-        sb << "/tmp/mongo_edit" << time(0) + i << ".js";
+        sb << "/tmp/mongol_edit" << time(0) + i << ".js";
 #endif
         filename = sb.str();
-        if (!::mongo::shell_utils::fileExists(filename))
+        if (!::mongol::shell_utils::fileExists(filename))
             break;
     }
     if (i == maxAttempts) {
@@ -587,11 +587,11 @@ int _main(int argc, char* argv[], char** envp) {
     setupSignalHandlers(true);
     setupSignals();
 
-    mongo::shell_utils::RecordMyLocation(argv[0]);
+    mongol::shell_utils::RecordMyLocation(argv[0]);
 
     shellGlobalParams.url = "test";
 
-    mongo::runGlobalInitializersOrDie(argc, argv, envp);
+    mongol::runGlobalInitializersOrDie(argc, argv, envp);
 
     // hide password from ps output
     for (int i = 0; i < (argc - 1); ++i) {
@@ -603,10 +603,10 @@ int _main(int argc, char* argv[], char** envp) {
         }
     }
 
-    if (!mongo::serverGlobalParams.quiet)
-        cout << "MongoDB shell version: " << mongo::versionString << endl;
+    if (!mongol::serverGlobalParams.quiet)
+        cout << "MongoDB shell version: " << mongol::versionString << endl;
 
-    mongo::StartupTest::runTests();
+    mongol::StartupTest::runTests();
 
     logger::globalLogManager()
         ->getNamedDomain("javascriptOutput")
@@ -616,16 +616,16 @@ int _main(int argc, char* argv[], char** envp) {
 
     if (!shellGlobalParams.nodb) {  // connect to db
         stringstream ss;
-        if (mongo::serverGlobalParams.quiet)
+        if (mongol::serverGlobalParams.quiet)
             ss << "__quiet = true;";
         ss << "db = connect( \""
            << fixHost(shellGlobalParams.url, shellGlobalParams.dbhost, shellGlobalParams.port)
            << "\")";
 
-        mongo::shell_utils::_dbConnect = ss.str();
+        mongol::shell_utils::_dbConnect = ss.str();
 
         if (shellGlobalParams.usingPassword && shellGlobalParams.password.empty()) {
-            shellGlobalParams.password = mongo::askPassword();
+            shellGlobalParams.password = mongol::askPassword();
         }
     }
 
@@ -676,43 +676,43 @@ int _main(int argc, char* argv[], char** envp) {
         authStringStream << "});" << endl;
     }
     authStringStream << "}())";
-    mongo::shell_utils::_dbAuth = authStringStream.str();
+    mongol::shell_utils::_dbAuth = authStringStream.str();
 
-    mongo::ScriptEngine::setConnectCallback(mongo::shell_utils::onConnect);
-    mongo::ScriptEngine::setup();
-    mongo::globalScriptEngine->setScopeInitCallback(mongo::shell_utils::initScope);
-    unique_ptr<mongo::Scope> scope(mongo::globalScriptEngine->newScope());
+    mongol::ScriptEngine::setConnectCallback(mongol::shell_utils::onConnect);
+    mongol::ScriptEngine::setup();
+    mongol::globalScriptEngine->setScopeInitCallback(mongol::shell_utils::initScope);
+    unique_ptr<mongol::Scope> scope(mongol::globalScriptEngine->newScope());
     shellMainScope = scope.get();
 
     if (shellGlobalParams.runShell)
         cout << "type \"help\" for help" << endl;
 
-    // Load and execute /etc/mongorc.js before starting shell
+    // Load and execute /etc/mongolrc.js before starting shell
     std::string rcGlobalLocation;
 #ifndef _WIN32
-    rcGlobalLocation = "/etc/mongorc.js";
+    rcGlobalLocation = "/etc/mongolrc.js";
 #else
     wchar_t programDataPath[MAX_PATH];
     if (S_OK == SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, programDataPath)) {
         rcGlobalLocation = str::stream() << toUtf8String(programDataPath)
-                                         << "\\MongoDB\\mongorc.js";
+                                         << "\\MongoDB\\mongolrc.js";
     }
 #endif
-    if (!rcGlobalLocation.empty() && ::mongo::shell_utils::fileExists(rcGlobalLocation)) {
+    if (!rcGlobalLocation.empty() && ::mongol::shell_utils::fileExists(rcGlobalLocation)) {
         if (!scope->execFile(rcGlobalLocation, false, true)) {
             cout << "The \"" << rcGlobalLocation << "\" file could not be executed" << endl;
         }
     }
 
     if (!shellGlobalParams.script.empty()) {
-        mongo::shell_utils::MongoProgramScope s;
+        mongol::shell_utils::MongoProgramScope s;
         if (!scope->exec(shellGlobalParams.script, "(shell eval)", false, true, false))
             return -4;
         scope->exec("shellPrintHelper( __lastres__ );", "(shell2 eval)", true, true, false);
     }
 
     for (size_t i = 0; i < shellGlobalParams.files.size(); ++i) {
-        mongo::shell_utils::MongoProgramScope s;
+        mongol::shell_utils::MongoProgramScope s;
 
         if (shellGlobalParams.files.size() > 1)
             cout << "loading file: " << shellGlobalParams.files[i] << endl;
@@ -728,24 +728,24 @@ int _main(int argc, char* argv[], char** envp) {
 
     bool lastLineSuccessful = true;
     if (shellGlobalParams.runShell) {
-        mongo::shell_utils::MongoProgramScope s;
+        mongol::shell_utils::MongoProgramScope s;
         // If they specify norc, assume it's not their first time
         bool hasMongoRC = shellGlobalParams.norc;
         string rcLocation;
         if (!shellGlobalParams.norc) {
 #ifndef _WIN32
             if (getenv("HOME") != NULL)
-                rcLocation = str::stream() << getenv("HOME") << "/.mongorc.js";
+                rcLocation = str::stream() << getenv("HOME") << "/.mongolrc.js";
 #else
             if (getenv("HOMEDRIVE") != NULL && getenv("HOMEPATH") != NULL)
                 rcLocation = str::stream() << toUtf8String(_wgetenv(L"HOMEDRIVE"))
                                            << toUtf8String(_wgetenv(L"HOMEPATH"))
-                                           << "\\.mongorc.js";
+                                           << "\\.mongolrc.js";
 #endif
-            if (!rcLocation.empty() && ::mongo::shell_utils::fileExists(rcLocation)) {
+            if (!rcLocation.empty() && ::mongol::shell_utils::fileExists(rcLocation)) {
                 hasMongoRC = true;
                 if (!scope->execFile(rcLocation, false, true)) {
-                    cout << "The \".mongorc.js\" file located in your home folder could not be "
+                    cout << "The \".mongolrc.js\" file located in your home folder could not be "
                             "executed" << endl;
                     return -5;
                 }
@@ -756,14 +756,14 @@ int _main(int argc, char* argv[], char** envp) {
             cout
                 << "Welcome to the MongoDB shell.\n"
                    "For interactive help, type \"help\".\n"
-                   "For more comprehensive documentation, see\n\thttp://docs.mongodb.org/\n"
-                   "Questions? Try the support group\n\thttp://groups.google.com/group/mongodb-user"
+                   "For more comprehensive documentation, see\n\thttp://docs.mongoldb.org/\n"
+                   "Questions? Try the support group\n\thttp://groups.google.com/group/mongoldb-user"
                 << endl;
             File f;
-            f.open(rcLocation.c_str(), false);  // Create empty .mongorc.js file
+            f.open(rcLocation.c_str(), false);  // Create empty .mongolrc.js file
         }
 
-        if (!shellGlobalParams.nodb && !mongo::serverGlobalParams.quiet && isatty(fileno(stdin))) {
+        if (!shellGlobalParams.nodb && !mongol::serverGlobalParams.quiet && isatty(fileno(stdin))) {
             scope->exec(
                 "shellHelper( 'show', 'startupWarnings' )", "(shellwarnings", false, true, false);
         }
@@ -798,7 +798,7 @@ int _main(int argc, char* argv[], char** envp) {
             }
 
             if (!linePtr || (strlen(linePtr) == 4 && strstr(linePtr, "exit"))) {
-                if (!mongo::serverGlobalParams.quiet)
+                if (!mongol::serverGlobalParams.quiet)
                     cout << "bye" << endl;
                 if (line)
                     free(line);
@@ -900,20 +900,20 @@ int _main(int argc, char* argv[], char** envp) {
     }
 
     {
-        stdx::lock_guard<stdx::mutex> lk(mongo::shell_utils::mongoProgramOutputMutex);
-        mongo::dbexitCalled = true;
+        stdx::lock_guard<stdx::mutex> lk(mongol::shell_utils::mongolProgramOutputMutex);
+        mongol::dbexitCalled = true;
     }
     return (lastLineSuccessful ? 0 : 1);
 }
 
 #ifdef _WIN32
 int wmain(int argc, wchar_t* argvW[], wchar_t* envpW[]) {
-    static mongo::StaticObserver staticObserver;
+    static mongol::StaticObserver staticObserver;
     int returnCode;
     try {
         WindowsCommandLine wcl(argc, argvW, envpW);
         returnCode = _main(argc, wcl.argv(), wcl.envp());
-    } catch (mongo::DBException& e) {
+    } catch (mongol::DBException& e) {
         cerr << "exception: " << e.what() << endl;
         returnCode = 1;
     }
@@ -921,11 +921,11 @@ int wmain(int argc, wchar_t* argvW[], wchar_t* envpW[]) {
 }
 #else   // #ifdef _WIN32
 int main(int argc, char* argv[], char** envp) {
-    static mongo::StaticObserver staticObserver;
+    static mongol::StaticObserver staticObserver;
     int returnCode;
     try {
         returnCode = _main(argc, argv, envp);
-    } catch (mongo::DBException& e) {
+    } catch (mongol::DBException& e) {
         cerr << "exception: " << e.what() << endl;
         returnCode = 1;
     }

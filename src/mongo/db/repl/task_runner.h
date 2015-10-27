@@ -30,12 +30,12 @@
 
 #include <list>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class Status;
@@ -160,4 +160,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

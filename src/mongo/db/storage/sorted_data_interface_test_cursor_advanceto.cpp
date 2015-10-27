@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Insert multiple single-field keys and advance to each of them
 // using a forward cursor by specifying their exact key. When
@@ -653,4 +653,4 @@ TEST(SortedDataInterface, AdvanceToIndirectExclusiveReversed) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

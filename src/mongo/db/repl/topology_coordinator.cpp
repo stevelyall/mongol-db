@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/topology_coordinator.h"
+#include "mongol/db/repl/topology_coordinator.h"
 
 #include <string>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 static const int kLeaderValue = 0;
@@ -69,4 +69,4 @@ std::ostream& operator<<(std::ostream& os, TopologyCoordinator::Role role) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

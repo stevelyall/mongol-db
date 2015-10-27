@@ -25,17 +25,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/concurrency/thread_name.h"
+#include "mongol/util/concurrency/thread_name.h"
 
 #include <boost/thread/tss.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -45,12 +45,12 @@ boost::thread_specific_ptr<std::string> threadName;
 AtomicInt64 nextUnnamedThreadId{1};
 
 // It is unsafe to access threadName before its dynamic initialization has completed. Use
-// the execution of mongo initializers (which only happens once we have entered main, and
+// the execution of mongol initializers (which only happens once we have entered main, and
 // therefore after dynamic initialization is complete) to signal that it is safe to use
 // 'threadName'.
-bool mongoInitializersHaveRun{};
+bool mongolInitializersHaveRun{};
 MONGO_INITIALIZER(ThreadNameInitializer)(InitializerContext*) {
-    mongoInitializersHaveRun = true;
+    mongolInitializersHaveRun = true;
     // The global initializers should only ever be run from main, so setting thread name
     // here makes sense.
     setThreadName("main");
@@ -60,12 +60,12 @@ MONGO_INITIALIZER(ThreadNameInitializer)(InitializerContext*) {
 }  // namespace
 
 void setThreadName(StringData name) {
-    invariant(mongoInitializersHaveRun);
+    invariant(mongolInitializersHaveRun);
     threadName.reset(new string(name.toString()));
 }
 
 const string& getThreadName() {
-    if (MONGO_unlikely(!mongoInitializersHaveRun)) {
+    if (MONGO_unlikely(!mongolInitializersHaveRun)) {
         // 'getThreadName' has been called before dynamic initialization for this
         // translation unit has completed, so return a fallback value rather than accessing
         // the 'threadName' variable, which requires dynamic initialization. We assume that
@@ -81,4 +81,4 @@ const string& getThreadName() {
     return *s;
 }
 
-}  // namespace mongo
+}  // namespace mongol

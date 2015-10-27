@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 class ConnectionString;
 struct ReadPreferenceSetting;
@@ -84,4 +84,4 @@ protected:
     RemoteCommandTargeter() = default;
 };
 
-}  // namespace mongo
+}  // namespace mongol

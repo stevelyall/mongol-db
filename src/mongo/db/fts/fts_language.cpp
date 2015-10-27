@@ -28,22 +28,22 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_language.h"
+#include "mongol/db/fts/fts_language.h"
 
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/db/fts/fts_basic_phrase_matcher.h"
-#include "mongo/db/fts/fts_basic_tokenizer.h"
-#include "mongo/db/fts/fts_unicode_phrase_matcher.h"
-#include "mongo/db/fts/fts_unicode_tokenizer.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/string_map.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/base/init.h"
+#include "mongol/db/fts/fts_basic_phrase_matcher.h"
+#include "mongol/db/fts/fts_basic_tokenizer.h"
+#include "mongol/db/fts/fts_unicode_phrase_matcher.h"
+#include "mongol/db/fts/fts_unicode_tokenizer.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/string_map.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -141,7 +141,7 @@ MONGO_FTS_LANGUAGE_LIST(LANGUAGE_DECLV3);
 MONGO_INITIALIZER_GENERAL(FTSRegisterV2LanguagesAndLater,
                           MONGO_NO_PREREQUISITES,
                           ("FTSAllLanguagesRegistered"))
-(::mongo::InitializerContext* context) {
+(::mongol::InitializerContext* context) {
     FTSLanguage::registerLanguage("none", TEXT_INDEX_VERSION_2, &languageNoneV2);
     MONGO_FTS_LANGUAGE_LIST(LANGUAGE_INITV2);
 
@@ -280,7 +280,7 @@ StatusWithFTSLanguage FTSLanguage::make(StringData langName, TextIndexVersion te
         if (it == languageMap->end()) {
             // TEXT_INDEX_VERSION_2 and above reject unrecognized language strings.
             Status status = Status(ErrorCodes::BadValue,
-                                   mongoutils::str::stream()
+                                   mongolutils::str::stream()
                                        << "unsupported language: \"" << langName
                                        << "\" for text index version " << textIndexVersion);
             return StatusWithFTSLanguage(status);

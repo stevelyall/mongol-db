@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/object_check.h"
+#include "mongol/rpc/object_check.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_options.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_options.h"
 
 
-namespace mongo {
+namespace mongol {
 
 Status Validator<BSONObj>::validateLoad(const char* ptr, size_t length) {
     return serverGlobalParams.objcheck ? validateBSON(ptr, length) : Status::OK();
@@ -46,4 +46,4 @@ Status Validator<BSONObj>::validateStore(const BSONObj& toStore) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

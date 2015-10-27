@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/commands.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Base class for write commands.  Write commands support batch writes and write concern,
@@ -124,4 +124,4 @@ private:
     virtual void help(std::stringstream& help) const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -1,7 +1,7 @@
 //
 // Tests sharding-related batch write protocol functionality
 // NOTE: Basic write functionality is tested via the passthrough tests, this file should contain
-// *only* mongos-specific tests.
+// *only* mongols-specific tests.
 //
 (function() {
 "use strict";
@@ -9,12 +9,12 @@
 // Only reason for using localhost name is to make the test consistent with naming host so it
 // will be easier to check for the host name inside error objects.
 var options = {useHostname: false};
-var st = new ShardingTest({shards: 2, mongos: 1, config: 3, other: options});
+var st = new ShardingTest({shards: 2, mongols: 1, config: 3, other: options});
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var config = mongos.getDB( "config" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var config = mongols.getDB( "config" );
 var shards = config.shards.find().toArray();
 var configConnStr = st._configDB;
 
@@ -29,7 +29,7 @@ var result;
 //
 // Mongos _id autogeneration tests for sharded collections
 
-var coll = mongos.getCollection("foo.bar");
+var coll = mongols.getCollection("foo.bar");
 assert.commandWorked(admin.runCommand({ enableSharding : coll.getDB().toString() }));
 st.ensurePrimaryShard(coll.getDB().getName(), 'shard0001');
 assert.commandWorked(admin.runCommand({ shardCollection : coll.toString(),
@@ -106,10 +106,10 @@ assert.eq(1, adminColl.count());
 //
 // Stale config progress tests
 // Set up a new collection across two shards, then revert the chunks to an earlier state to put
-// mongos and mongod permanently out of sync.
+// mongols and mongold permanently out of sync.
 
 // START SETUP
-var brokenColl = mongos.getCollection( "broken.coll" );
+var brokenColl = mongols.getCollection( "broken.coll" );
 assert.commandWorked(admin.runCommand({ enableSharding : brokenColl.getDB().toString() }));
 printjson(admin.runCommand({ movePrimary : brokenColl.getDB().toString(), to : shards[0]._id }));
 assert.commandWorked(admin.runCommand({ shardCollection : brokenColl.toString(),
@@ -119,7 +119,7 @@ assert.commandWorked(admin.runCommand({ split : brokenColl.toString(),
 
 var oldChunks = config.chunks.find().toArray();
 
-// Start a new mongos and bring it up-to-date with the chunks so far
+// Start a new mongols and bring it up-to-date with the chunks so far
 
 var staleMongos = MongoRunner.runMongos({ configdb : configConnStr });
 brokenColl = staleMongos.getCollection(brokenColl.toString());
@@ -137,7 +137,7 @@ assert.writeOK(config.chunks.remove({}));
 for ( var i = 0; i < oldChunks.length; i++ )
     assert.writeOK(config.chunks.insert(oldChunks[i]));
 
-// Stale mongos can no longer bring itself up-to-date!
+// Stale mongols can no longer bring itself up-to-date!
 // END SETUP
 
 //

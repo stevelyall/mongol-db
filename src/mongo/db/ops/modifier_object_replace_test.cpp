@@ -27,36 +27,36 @@
  */
 
 
-#include "mongo/db/ops/modifier_object_replace.h"
+#include "mongol/db/ops/modifier_object_replace.h"
 
 #include <cstdint>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::fromjson;
-using mongo::LogBuilder;
-using mongo::ModifierInterface;
-using mongo::ModifierObjectReplace;
-using mongo::mutablebson::ConstElement;
-using mongo::mutablebson::countChildren;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
-using mongo::mutablebson::findFirstChildNamed;
-using mongo::NumberInt;
-using mongo::Status;
-using mongo::StringData;
+using mongol::BSONObj;
+using mongol::fromjson;
+using mongol::LogBuilder;
+using mongol::ModifierInterface;
+using mongol::ModifierObjectReplace;
+using mongol::mutablebson::ConstElement;
+using mongol::mutablebson::countChildren;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
+using mongol::mutablebson::findFirstChildNamed;
+using mongol::NumberInt;
+using mongol::Status;
+using mongol::StringData;
 
 /** Helper to build and manipulate a $set mod. */
 class Mod {

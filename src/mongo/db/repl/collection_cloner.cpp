@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/collection_cloner.h"
+#include "mongol/db/repl/collection_cloner.h"
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 CollectionCloner::CollectionCloner(ReplicationExecutor* executor,
@@ -304,4 +304,4 @@ void CollectionCloner::_finishCallback(OperationContext* txn, const Status& stat
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

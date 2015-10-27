@@ -26,18 +26,18 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cctype>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::string;

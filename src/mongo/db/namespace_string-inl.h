@@ -29,7 +29,7 @@
 *    it in the license file.
 */
 
-namespace mongo {
+namespace mongol {
 
 inline StringData NamespaceString::db() const {
     return _dotIndex == std::string::npos ? StringData() : StringData(_ns.c_str(), _dotIndex);

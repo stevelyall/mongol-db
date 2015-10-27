@@ -32,10 +32,10 @@
 #include <memory>
 #include <system_error>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -65,4 +65,4 @@ protected:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

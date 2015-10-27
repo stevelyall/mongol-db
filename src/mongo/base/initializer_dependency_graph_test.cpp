@@ -29,10 +29,10 @@
  * Unit tests of the InitializerDependencyGraph type.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/base/initializer_dependency_graph.h"
-#include "mongo/base/make_string_vector.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/init.h"
+#include "mongol/base/initializer_dependency_graph.h"
+#include "mongol/base/make_string_vector.h"
+#include "mongol/unittest/unittest.h"
 
 #define ADD_INITIALIZER(GRAPH, NAME, FN, PREREQS, DEPS) \
     (GRAPH).addInitializer(                             \
@@ -50,7 +50,7 @@
 #define ASSERT_EXACTLY_ONE_IN_CONTAINER(CONTAINER, THING) \
     ASSERT_EXACTLY_N_IN_CONTAINER(1, CONTAINER, THING)
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 Status doNothing(InitializerContext*) {
@@ -286,4 +286,4 @@ TEST(InitializerDependencyGraphTest, TopSortFailsWhenMissingDependent) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

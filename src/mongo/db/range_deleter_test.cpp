@@ -28,20 +28,20 @@
 
 #include <string>
 
-#include "mongo/db/field_parser.h"
-#include "mongo/db/range_deleter.h"
-#include "mongo/db/range_deleter_mock_env.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator_mock.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/range_deleter.h"
+#include "mongol/db/range_deleter_mock_env.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::string;
@@ -51,17 +51,17 @@ OperationContext* const noTxn = NULL;  // MockEnv doesn't need txn XXX SERVER-13
 // Capped sleep interval is 640 mSec, Nyquist frequency is 1280 mSec => round up to 2 sec.
 const int MAX_IMMEDIATE_DELETE_WAIT_SECS = 2;
 
-const mongo::repl::ReplSettings replSettings = {};
+const mongol::repl::ReplSettings replSettings = {};
 
 // Should not be able to queue deletes if deleter workers were not started.
 TEST(QueueDelete, CantAfterStop) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
     deleter.stopWorkers();
@@ -85,10 +85,10 @@ TEST(QueuedDelete, ShouldWaitCursor) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
 
@@ -130,10 +130,10 @@ TEST(QueuedDelete, StopWhileWaitingCursor) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
 
@@ -161,10 +161,10 @@ TEST(ImmediateDelete, ShouldWaitCursor) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
 
@@ -219,10 +219,10 @@ TEST(ImmediateDelete, StopWhileWaitingCursor) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
 
@@ -272,10 +272,10 @@ TEST(MixedDeletes, MultipleDeletes) {
     RangeDeleterMockEnv* env = new RangeDeleterMockEnv();
     RangeDeleter deleter(env);
 
-    std::unique_ptr<mongo::repl::ReplicationCoordinatorMock> mock(
-        new mongo::repl::ReplicationCoordinatorMock(replSettings));
+    std::unique_ptr<mongol::repl::ReplicationCoordinatorMock> mock(
+        new mongol::repl::ReplicationCoordinatorMock(replSettings));
 
-    mongo::repl::ReplicationCoordinator::set(mongo::getGlobalServiceContext(), std::move(mock));
+    mongol::repl::ReplicationCoordinator::set(mongol::getGlobalServiceContext(), std::move(mock));
 
     deleter.startWorkers();
 
@@ -363,4 +363,4 @@ TEST(MixedDeletes, MultipleDeletes) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

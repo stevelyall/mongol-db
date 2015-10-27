@@ -26,20 +26,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iterator>
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_options.h"
-#include "mongo/rpc/object_check.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_options.h"
+#include "mongol/rpc/object_check.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/scopeguard.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(DataTypeValidated, BSONValidationEnabled) {
     using std::swap;

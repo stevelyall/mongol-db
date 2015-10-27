@@ -26,36 +26,36 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
 
 #include <utility>
 
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/index/2d_access_method.h"
-#include "mongo/db/index/btree_access_method.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/fts_access_method.h"
-#include "mongo/db/index/hash_access_method.h"
-#include "mongo/db/index/haystack_access_method.h"
-#include "mongo/db/index/s2_access_method.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_interface.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
-#include "mongo/db/storage/mmap_v1/data_file.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/index/2d_access_method.h"
+#include "mongol/db/index/btree_access_method.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/fts_access_method.h"
+#include "mongol/db/index/hash_access_method.h"
+#include "mongol/db/index/haystack_access_method.h"
+#include "mongol/db/index/s2_access_method.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_interface.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
+#include "mongol/db/storage/mmap_v1/data_file.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 
@@ -827,4 +827,4 @@ CollectionOptions MMAPV1DatabaseCatalogEntry::getCollectionOptions(OperationCont
     }
     return options;
 }
-}  // namespace mongo
+}  // namespace mongol

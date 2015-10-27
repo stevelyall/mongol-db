@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/sasl_plain_client_conversation.h"
+#include "mongol/client/sasl_plain_client_conversation.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/sasl_client_session.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/sasl_client_session.h"
+#include "mongol/util/password_digest.h"
 
-namespace mongo {
+namespace mongol {
 
 SaslPLAINClientConversation::SaslPLAINClientConversation(SaslClientSession* saslClientSession)
     : SaslClientConversation(saslClientSession) {}
@@ -55,4 +55,4 @@ StatusWith<bool> SaslPLAINClientConversation::step(StringData inputData, std::st
     return StatusWith<bool>(true);
 }
 
-}  // namespace mongo
+}  // namespace mongol

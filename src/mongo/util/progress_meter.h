@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "mongo/util/thread_safe_string.h"
+#include "mongol/util/thread_safe_string.h"
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class ProgressMeter {
     MONGO_DISALLOW_COPYING(ProgressMeter);

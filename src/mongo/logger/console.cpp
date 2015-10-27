@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/console.h"
+#include "mongol/logger/console.h"
 
 #include <iostream>
 
@@ -35,7 +35,7 @@
 #include <io.h>
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /*
@@ -247,4 +247,4 @@ std::ostream& Console::out() {
     return std::cout;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/idhack.h"
+#include "mongol/db/exec/idhack.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/projection.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/index/btree_access_method.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/s/d_state.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/projection.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/index/btree_access_method.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/s/d_state.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -253,4 +253,4 @@ const SpecificStats* IDHackStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

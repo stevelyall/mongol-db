@@ -32,14 +32,14 @@
 #include <set>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A graph of role and privilege relationships.
@@ -308,4 +308,4 @@ private:
 
 void swap(RoleGraph& lhs, RoleGraph& rhs);
 
-}  // namespace mongo
+}  // namespace mongol

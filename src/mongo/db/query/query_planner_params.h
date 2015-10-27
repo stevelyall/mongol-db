@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/query_knobs.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/query_knobs.h"
 
-namespace mongo {
+namespace mongol {
 
 struct QueryPlannerParams {
     QueryPlannerParams()
@@ -47,7 +47,7 @@ struct QueryPlannerParams {
         DEFAULT = 0,
 
         // Set this if you don't want a table scan.
-        // See http://docs.mongodb.org/manual/reference/parameters/
+        // See http://docs.mongoldb.org/manual/reference/parameters/
         NO_TABLE_SCAN = 1,
 
         // Set this if you *always* want a collscan outputted, even if there's an ixscan.  This
@@ -117,4 +117,4 @@ struct QueryPlannerParams {
     size_t maxIndexedSolutions;
 };
 
-}  // namespace mongo
+}  // namespace mongol

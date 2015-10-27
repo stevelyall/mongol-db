@@ -1,6 +1,6 @@
 /**
  * Performs basic checks on the failpoint command. Also check
- * mongo/util/fail_point_test.cpp for unit tests.
+ * mongol/util/fail_point_test.cpp for unit tests.
  *
  * @param adminDB {DB} the admin database database object
  */
@@ -64,7 +64,7 @@ runTest(conn.getDB('admin'));
 MongoRunner.stopMongod(conn.port);
 
 ///////////////////////////////////////////////////////////
-// Test mongos
+// Test mongols
 var st = new ShardingTest({ shards: 1 });
 runTest(st.s.getDB('admin'));
 st.stop();

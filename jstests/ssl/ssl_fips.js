@@ -1,4 +1,4 @@
-// Test mongod start with FIPS mode enabled
+// Test mongold start with FIPS mode enabled
 var port = allocatePort();
 var md = MongoRunner.runMongod({port: port,
                                 sslMode: "requireSSL",
@@ -6,7 +6,7 @@ var md = MongoRunner.runMongod({port: port,
                                 sslCAFile: "jstests/libs/ca.pem",
                                 sslFIPSMode: ""});
 
-var mongo = runMongoProgram("mongo",
+var mongol = runMongoProgram("mongol",
                             "--port", port,
                             "--ssl",
                             "--sslAllowInvalidCertificates",
@@ -14,18 +14,18 @@ var mongo = runMongoProgram("mongo",
                             "--sslFIPSMode",
                             "--eval", ";");
 
-// if mongo shell didn't start/connect properly
-if (mongo != 0) {
-    print("mongod failed to start, checking for FIPS support");
-    mongoOutput = rawMongoProgramOutput()
-    assert(mongoOutput.match(/this version of mongodb was not compiled with FIPS support/) ||
-        mongoOutput.match(/FIPS_mode_set:fips mode not supported/))
+// if mongol shell didn't start/connect properly
+if (mongol != 0) {
+    print("mongold failed to start, checking for FIPS support");
+    mongolOutput = rawMongoProgramOutput()
+    assert(mongolOutput.match(/this version of mongoldb was not compiled with FIPS support/) ||
+        mongolOutput.match(/FIPS_mode_set:fips mode not supported/))
 }
 else {
     // verify that auth works, SERVER-18051
     md.getDB("admin").createUser({user: "root", pwd: "root", roles: ["root"]});
     assert(md.getDB("admin").auth("root", "root"), "auth failed");
 
-    // kill mongod
+    // kill mongold
     MongoRunner.stopMongod(md);
 }

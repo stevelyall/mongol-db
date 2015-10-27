@@ -26,31 +26,31 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repair_database.h"
+#include "mongol/db/repair_database.h"
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/catalog/index_key_validate.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/catalog/index_key_validate.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -78,7 +78,7 @@ Status rebuildIndexesOnCollection(OperationContext* txn,
                     ErrorCodes::CannotCreateIndex,
                     str::stream()
                         << "Cannot rebuild index " << spec << ": " << keyStatus.reason()
-                        << " For more info see http://dochub.mongodb.org/core/index-validation");
+                        << " For more info see http://dochub.mongoldb.org/core/index-validation");
             }
         }
     }

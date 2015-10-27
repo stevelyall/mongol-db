@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/client/connection_string.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/catalog/catalog_manager_common.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/catalog/catalog_manager_common.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Implements the catalog manager using the legacy 3-config server protocol.
@@ -216,4 +216,4 @@ private:
     stdx::condition_variable _consistencyCheckerCV;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -34,18 +34,18 @@
 #include <memory>
 #include <unordered_map>
 
-#include "mongo/executor/async_stream_factory_interface.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/executor/async_stream_factory_interface.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class AsyncStreamInterface;
@@ -162,4 +162,4 @@ using ConnectEvent =
     StreamEvent<AsyncMockStreamFactory::MockStream::StreamState::kBlockedBeforeConnect>;
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

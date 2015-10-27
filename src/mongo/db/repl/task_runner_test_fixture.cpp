@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/task_runner_test_fixture.h"
+#include "mongol/db/repl/task_runner_test_fixture.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/repl/task_runner.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/repl/task_runner.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 namespace {
 
@@ -111,4 +111,4 @@ void TaskRunnerTest::tearDown() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

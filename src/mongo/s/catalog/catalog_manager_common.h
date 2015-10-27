@@ -33,13 +33,13 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/optime_pair.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/optime_pair.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Common implementation shared by concrete catalog manager classes.
@@ -96,4 +96,4 @@ private:
     virtual StatusWith<std::string> _generateNewShardName(OperationContext* txn) = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

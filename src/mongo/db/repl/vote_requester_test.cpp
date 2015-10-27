@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/vote_requester.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/vote_requester.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -54,7 +54,7 @@ bool stringContains(const std::string& haystack, const std::string& needle) {
 }
 
 
-class VoteRequesterTest : public mongo::unittest::Test {
+class VoteRequesterTest : public mongol::unittest::Test {
 public:
     virtual void setUp() {
         ReplicaSetConfig config;
@@ -411,4 +411,4 @@ TEST_F(VoteRequesterDryRunTest, NotEnoughVotesLoseElection) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

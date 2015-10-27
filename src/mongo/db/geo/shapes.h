@@ -32,10 +32,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/geo/big_polygon.h"
-#include "mongo/db/geo/s2.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/geo/big_polygon.h"
+#include "mongol/db/geo/s2.h"
 #include "third_party/s2/s2cap.h"
 #include "third_party/s2/s2cell.h"
 #include "third_party/s2/s2latlng.h"
@@ -46,7 +46,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-namespace mongo {
+namespace mongol {
 
 struct Point;
 struct Circle;
@@ -351,4 +351,4 @@ struct ShapeProjection {
     static void projectInto(PolygonWithCRS* point, CRS crs);
 };
 
-}  // namespace mongo
+}  // namespace mongol

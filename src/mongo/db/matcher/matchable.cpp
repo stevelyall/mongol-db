@@ -28,11 +28,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matchable.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matchable.h"
 
-namespace mongo {
+namespace mongol {
 
 BSONMatchableDocument::BSONMatchableDocument(const BSONObj& obj) : _obj(obj) {
     _iteratorUsed = false;

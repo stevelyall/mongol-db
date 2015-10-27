@@ -26,7 +26,7 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cstdarg>
 #include <cstdlib>
@@ -35,12 +35,12 @@
 #include <vector>
 
 
-#include "mongo/db/client.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/ntservice.h"
-#include "mongo/util/text.h"
+#include "mongol/db/client.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/ntservice.h"
+#include "mongol/util/text.h"
 
-using namespace mongo;
+using namespace mongol;
 
 static std::vector<std::string> svec(const char* first, ...) {
     std::vector<std::string> result;
@@ -95,13 +95,13 @@ TEST(NtService, RegressionSERVER_7252) {
     // in ticket SERVER-7252.
 
     const wchar_t inputCommandLine[] =
-        L"mongod --install --serviceName=\"My Service\" --serviceDescription \"My Service\" "
-        L"--serviceDisplayName \"My Service\" --dbpath C:\\mongo\\data\\config --port 20001 "
-        L"--logpath C:\\mongo\\logs\\mongo_config.log.txt --configsvr";
+        L"mongold --install --serviceName=\"My Service\" --serviceDescription \"My Service\" "
+        L"--serviceDisplayName \"My Service\" --dbpath C:\\mongol\\data\\config --port 20001 "
+        L"--logpath C:\\mongol\\logs\\mongol_config.log.txt --configsvr";
 
     const char expectedServiceCommandLine[] =
-        "mongod --dbpath C:\\mongo\\data\\config --port 20001 "
-        "--logpath C:\\mongo\\logs\\mongo_config.log.txt --configsvr --service";
+        "mongold --dbpath C:\\mongol\\data\\config --port 20001 "
+        "--logpath C:\\mongol\\logs\\mongol_config.log.txt --configsvr --service";
 
     // Convert the input wide-character command line into a UTF-8 vector of std::string.
     int inputArgc;
@@ -121,7 +121,7 @@ TEST(NtService, RegressionSERVER_7252) {
 }
 
 // CRUTCHES!
-namespace mongo {
+namespace mongol {
 void Client::initThread(const char* desc, AbstractMessagingPort* mp) {}
 void removeControlCHandler() {}
 void signalShutdown() {}
@@ -129,4 +129,4 @@ bool inShutdown() {
     return false;
 }
 void exitCleanly(ExitCode code) {}
-}  // namespace mongo
+}  // namespace mongol

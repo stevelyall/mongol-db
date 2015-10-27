@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/hasher.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/hasher.h"
 
-namespace mongo {
+namespace mongol {
 
 struct TwoDIndexingParams;
 struct S2IndexingParams;
@@ -84,7 +84,7 @@ public:
     /**
      * Hashing function used by both getHashKeys and the cursors we create.
      * Exposed for testing in dbtests/namespacetests.cpp and
-     * so mongo/db/index_legacy.cpp can use it.
+     * so mongol/db/index_legacy.cpp can use it.
      */
     static long long int makeSingleHashKey(const BSONElement& e, HashSeed seed, int v);
 
@@ -126,4 +126,4 @@ public:
                           BSONObjSet* keys);
 };
 
-}  // namespace mongo
+}  // namespace mongol

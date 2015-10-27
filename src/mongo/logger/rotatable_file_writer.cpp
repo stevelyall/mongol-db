@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/rotatable_file_writer.h"
+#include "mongol/logger/rotatable_file_writer.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <cstdio>
 #include <fstream>
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 namespace {
@@ -248,13 +248,13 @@ Status RotatableFileWriter::Use::rotate(bool renameOnRotate, const std::string& 
             try {
                 if (boost::filesystem::exists(renameTarget)) {
                     return Status(ErrorCodes::FileRenameFailed,
-                                  mongoutils::str::stream()
+                                  mongolutils::str::stream()
                                       << "Renaming file " << _writer->_fileName << " to "
                                       << renameTarget << " failed; destination already exists");
                 }
             } catch (const std::exception& e) {
                 return Status(ErrorCodes::FileRenameFailed,
-                              mongoutils::str::stream()
+                              mongolutils::str::stream()
                                   << "Renaming file " << _writer->_fileName << " to "
                                   << renameTarget << " failed; Cannot verify whether destination "
                                                      "already exists: " << e.what());
@@ -262,7 +262,7 @@ Status RotatableFileWriter::Use::rotate(bool renameOnRotate, const std::string& 
 
             if (0 != renameFile(_writer->_fileName, renameTarget)) {
                 return Status(ErrorCodes::FileRenameFailed,
-                              mongoutils::str::stream()
+                              mongolutils::str::stream()
                                   << "Failed  to rename \"" << _writer->_fileName << "\" to \""
                                   << renameTarget << "\": " << strerror(errno) << " (" << errno
                                   << ')');
@@ -277,12 +277,12 @@ Status RotatableFileWriter::Use::rotate(bool renameOnRotate, const std::string& 
 Status RotatableFileWriter::Use::status() {
     if (!_writer->_stream) {
         return Status(ErrorCodes::FileNotOpen,
-                      mongoutils::str::stream() << "File \"" << _writer->_fileName
+                      mongolutils::str::stream() << "File \"" << _writer->_fileName
                                                 << "\" not open");
     }
     if (_writer->_stream->fail()) {
         return Status(ErrorCodes::FileStreamFailed,
-                      mongoutils::str::stream() << "File \"" << _writer->_fileName
+                      mongolutils::str::stream() << "File \"" << _writer->_fileName
                                                 << "\" in failed state");
     }
     return Status::OK();
@@ -311,4 +311,4 @@ Status RotatableFileWriter::Use::_openFileStream(bool append) {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

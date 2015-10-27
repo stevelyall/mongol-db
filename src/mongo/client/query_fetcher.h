@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/client/fetcher.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/client/fetcher.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 struct HostAndPort;
 class NamespaceString;
@@ -97,4 +97,4 @@ private:
     const QueryFetcher::CallbackFn _work;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -363,7 +363,7 @@ replSetMemberStatePrompt = function() {
                                           state = member.stateStr;
                                       }
                                   } );
-        // Otherwise fall back to reporting the numeric myState field (mongodb 1.6).
+        // Otherwise fall back to reporting the numeric myState field (mongoldb 1.6).
         if ( !state ) {
             state = stateInfo.myState;
         }
@@ -371,7 +371,7 @@ replSetMemberStatePrompt = function() {
     } else {
          var info = stateInfo.info;
          if ( info && info.length < 20 ) {
-             state = info; // "mongos", "configsvr"
+             state = info; // "mongols", "configsvr"
          } else {
              throw _getErrorWithCode(stateInfo, "Failed:" + info);
          }
@@ -386,7 +386,7 @@ isMasterStatePrompt = function() {
         var role = "";
 
         if (isMaster.msg == "isdbgrid") {
-            role = "mongos";
+            role = "mongols";
         }
 
         if (isMaster.setName) {
@@ -409,17 +409,17 @@ isMasterStatePrompt = function() {
 }
 
 if (typeof(_useWriteCommandsDefault) == 'undefined') {
-    // This is for cases when the v8 engine is used other than the mongo shell, like map reduce.
+    // This is for cases when the v8 engine is used other than the mongol shell, like map reduce.
     _useWriteCommandsDefault = function() { return false; };
 };
 
 if (typeof(_writeMode) == 'undefined') {
-    // This is for cases when the v8 engine is used other than the mongo shell, like map reduce.
+    // This is for cases when the v8 engine is used other than the mongol shell, like map reduce.
     _writeMode = function() { return "commands"; };
 };
 
 if (typeof(_readMode) == 'undefined') {
-    // This is for cases when the v8 engine is used other than the mongo shell, like map reduce.
+    // This is for cases when the v8 engine is used other than the mongol shell, like map reduce.
     _readMode = function() { return "legacy"; };
 };
 
@@ -1144,7 +1144,7 @@ rs.debug.getLastOpWritten = function(server) {
 
 help = shellHelper.help = function (x) {
     if (x == "mr") {
-        print("\nSee also http://dochub.mongodb.org/core/mapreduce");
+        print("\nSee also http://dochub.mongoldb.org/core/mapreduce");
         print("\nfunction mapf() {");
         print("  // 'this' holds current document to inspect");
         print("  emit(key, value);");
@@ -1164,7 +1164,7 @@ help = shellHelper.help = function (x) {
         print(" [, verbose : true]}\n");
         return;
     } else if (x == "connect") {
-        print("\nNormally one specifies the server on the mongo shell command line.  Run mongo --help to see those options.");
+        print("\nNormally one specifies the server on the mongol shell command line.  Run mongol --help to see those options.");
         print("Additional connections may be opened:\n");
         print("    var x = new Mongo('host[:port]');");
         print("    var mydb = x.getDB('mydb');");
@@ -1222,7 +1222,7 @@ help = shellHelper.help = function (x) {
         return;
     }
     else if (x == "test") {
-        print("\tMongoRunner.runMongod(args)   DELETES DATA DIR and then starts mongod");
+        print("\tMongoRunner.runMongod(args)   DELETES DATA DIR and then starts mongold");
         print("\t                              returns a connection to the new server");
         return;
     }
@@ -1248,7 +1248,7 @@ help = shellHelper.help = function (x) {
         print("\t" + "db.foo.find( { a : 1 } )     list objects in foo where a == 1");
         print("\t" + "it                           result of the last line evaluated; use to further iterate");
         print("\t" + "DBQuery.shellBatchSize = x   set default number of items to display on shell");
-        print("\t" + "exit                         quit the mongo shell");
+        print("\t" + "exit                         quit the mongol shell");
     }
     else
         print("unknown help option");

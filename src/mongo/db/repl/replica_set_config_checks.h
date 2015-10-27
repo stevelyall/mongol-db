@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/base/status_with.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class ReplicationCoordinatorExternalState;
@@ -86,4 +86,4 @@ StatusWith<int> validateConfigForReconfig(ReplicationCoordinatorExternalState* e
 StatusWith<int> validateConfigForHeartbeatReconfig(
     ReplicationCoordinatorExternalState* externalState, const ReplicaSetConfig& newConfig);
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

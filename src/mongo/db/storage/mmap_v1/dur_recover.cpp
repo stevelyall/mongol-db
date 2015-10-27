@@ -28,36 +28,36 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kJournal
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kJournal
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur_recover.h"
+#include "mongol/db/storage/mmap_v1/dur_recover.h"
 
 #include <fcntl.h>
 #include <iomanip>
 #include <iostream>
 #include <sys/stat.h>
 
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/mmap_v1/compress.h"
-#include "mongo/db/storage/mmap_v1/dur_commitjob.h"
-#include "mongo/db/storage/mmap_v1/dur_journal.h"
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/db/storage/mmap_v1/durop.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/platform/strnlen.h"
-#include "mongo/util/bufreader.h"
-#include "mongo/util/checksum.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/mmap_v1/compress.h"
+#include "mongol/db/storage/mmap_v1/dur_commitjob.h"
+#include "mongol/db/storage/mmap_v1/dur_journal.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/db/storage/mmap_v1/durop.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/platform/strnlen.h"
+#include "mongol/util/bufreader.h"
+#include "mongol/util/checksum.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -461,7 +461,7 @@ bool RecoveryJob::processFileBuffer(const void* p, unsigned len) {
             if (!h.versionOk()) {
                 log() << "journal file version number mismatch got:" << hex << h._version
                       << " expected:" << hex << (unsigned)JHeader::CurrentVersion
-                      << ". if you have just upgraded, recover with old version of mongod, "
+                      << ". if you have just upgraded, recover with old version of mongold, "
                          "terminate cleanly, then upgrade." << endl;
                 // Not using JournalSectionCurruptException as we don't want to ignore
                 // journal files on upgrade.
@@ -621,4 +621,4 @@ public:
 } brunittest;
 
 }  // namespace dur
-}  // namespace mongo
+}  // namespace mongol

@@ -26,27 +26,27 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/authz_manager_external_state_s.h"
+#include "mongol/db/auth/authz_manager_external_state_s.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authz_session_external_state_s.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/grid.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authz_session_external_state_s.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/grid.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 AuthzManagerExternalStateMongos::AuthzManagerExternalStateMongos() = default;
 
@@ -65,7 +65,7 @@ Status AuthzManagerExternalStateMongos::getStoredAuthorizationVersion(OperationC
                                                                       int* outVersion) {
     // Note: we are treating
     // { 'getParameter' : 1, <authSchemaVersionServerParameter> : 1 }
-    // as a user management command since this is the *only* part of mongos
+    // as a user management command since this is the *only* part of mongols
     // that runs this command
     BSONObj getParameterCmd = BSON("getParameter" << 1 << authSchemaVersionServerParameter << 1);
     BSONObjBuilder builder;
@@ -185,4 +185,4 @@ bool AuthzManagerExternalStateMongos::hasAnyPrivilegeDocuments(OperationContext*
     return foundUsers.size() > 0;
 }
 
-}  // namespace mongo
+}  // namespace mongol

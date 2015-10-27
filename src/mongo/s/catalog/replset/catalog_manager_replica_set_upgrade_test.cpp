@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/bson/json.h"
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/config_server_version.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/batched_update_request.h"
+#include "mongol/bson/json.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/config_server_version.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batched_update_request.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using executor::RemoteCommandRequest;
@@ -669,4 +669,4 @@ TEST_F(CatalogManagerReplSetTestFixture, InitVersionUpsertNoMatchNoConfigVersion
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

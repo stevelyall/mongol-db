@@ -39,23 +39,23 @@ var master = replTest.getMaster();
     var conn = MongoRunner.runMongod({});
 }
 
-step("try mongodump with $timestamp");
+step("try mongoldump with $timestamp");
 
 var data = MongoRunner.dataDir + "/dumprestore7-dump1/";
 var query = "{\"ts\":{\"$gt\":{\"$timestamp\":{\"t\":"+ time.ts.t + ",\"i\":" + time.ts.i +"}}}}";
 
-MongoRunner.runMongoTool( "mongodump",
+MongoRunner.runMongoTool( "mongoldump",
     { "host": "127.0.0.1:"+replTest.ports[0],
       "db": "local", "collection": "oplog.rs",
       "query": query, "out": data });
 
-step("try mongorestore from $timestamp");
+step("try mongolrestore from $timestamp");
 
-runMongoProgram( "mongorestore", "--host", "127.0.0.1:"+conn.port, "--dir", data, "--writeConcern", 1);
+runMongoProgram( "mongolrestore", "--host", "127.0.0.1:"+conn.port, "--dir", data, "--writeConcern", 1);
 var x = 9;
 x = conn.getDB("local").getCollection("oplog.rs").count();
 
-assert.eq(x, 20, "mongorestore should only have the latter 20 entries");
+assert.eq(x, 20, "mongolrestore should only have the latter 20 entries");
 
 step("stopSet");
 replTest.stopSet();

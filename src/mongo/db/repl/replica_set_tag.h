@@ -34,10 +34,10 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObjBuilder;
 
 namespace repl {
@@ -316,4 +316,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur_recovery_unit.h"
+#include "mongol/db/storage/mmap_v1/dur_recovery_unit.h"
 
 #include <algorithm>
 #include <limits>
@@ -38,12 +38,12 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 DurRecoveryUnit::DurRecoveryUnit()
     : _writeCount(0), _writeBytes(0), _inUnitOfWork(false), _rollbackWritesDisabled(false) {}
@@ -313,4 +313,4 @@ void DurRecoveryUnit::registerChange(Change* change) {
     _changes.push_back(change);
 }
 
-}  // namespace mongo
+}  // namespace mongol

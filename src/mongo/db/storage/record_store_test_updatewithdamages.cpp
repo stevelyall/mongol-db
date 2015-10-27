@@ -28,18 +28,18 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::string;
 
-namespace mongo {
+namespace mongol {
 
 // Insert a record and try to perform an in-place update on it.
 TEST(RecordStoreTestHarness, UpdateWithDamages) {
@@ -284,4 +284,4 @@ TEST(RecordStoreTestHarness, UpdateWithNoDamages) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

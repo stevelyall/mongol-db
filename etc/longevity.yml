@@ -44,7 +44,7 @@ functions:
         script: |
           cd ./clusters/${cluster}
           # stage aws credential for terraform
-          ../../bin/make_terraform_env.sh ${terraform_key} ${terraform_secret} https://s3.amazonaws.com/mciuploads/longevity/${build_variant}/${revision}/mongodb-${build_id}.tar.gz
+          ../../bin/make_terraform_env.sh ${terraform_key} ${terraform_secret} https://s3.amazonaws.com/mciuploads/longevity/${build_variant}/${revision}/mongoldb-${build_id}.tar.gz
           # generate aws private key file
           echo "${ec2_pem}" > ../../keys/aws.pem
           chmod 400 ../../keys/aws.pem
@@ -56,24 +56,24 @@ functions:
         working_dir: dsi
         silent: true
         script: |
-          # to create a mongod EC2 cluster
+          # to create a mongold EC2 cluster
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
           ./setup-cluster.sh
           echo "EC2 Cluster CREATED."
 
-  "configure mongodb cluster":
+  "configure mongoldb cluster":
     - command: shell.exec
-      # bring up the mongod
+      # bring up the mongold
       params:
         working_dir: dsi
         script: |
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
-          # configure mongodb cluster with wiredTiger
-          ../../bin/config-${setup}.sh mongodb ${storageEngine} ${numShard}
+          # configure mongoldb cluster with wiredTiger
+          ../../bin/config-${setup}.sh mongoldb ${storageEngine} ${numShard}
           echo "${cluster} MongoDB Cluster STARTED."
           
   "run test":
@@ -178,7 +178,7 @@ functions:
         script: |
           set -o errexit
           set -o verbose
-          python ../dsi/bin/post_run_check.py --rev ${revision} -f longevity_history -t longevity_tag --refTag 3.0.6-Baseline --overrideFile ../dsi/bin/override.json --project_id mongo-longevity --task_name ${task_name} --variant ${build_variant}
+          python ../dsi/bin/post_run_check.py --rev ${revision} -f longevity_history -t longevity_tag --refTag 3.0.6-Baseline --overrideFile ../dsi/bin/override.json --project_id mongol-longevity --task_name ${task_name} --variant ${build_variant}
 
 
 tasks:
@@ -196,27 +196,27 @@ tasks:
         script: |
           set -o errexit
           set -o verbose
-          ${scons|scons} ${compile_flags|} mongo mongod mongos
+          ${scons|scons} ${compile_flags|} mongol mongold mongols
           # strip binaries here
-          strip mongo
-          strip mongos
-          strip mongod
-          mkdir -p mongodb/bin
-          mv mongo mongodb/bin
-          mv mongod mongodb/bin
-          mv mongos mongodb/bin
-          tar cvf mongodb.tar mongodb
-          gzip mongodb.tar
+          strip mongol
+          strip mongols
+          strip mongold
+          mkdir -p mongoldb/bin
+          mv mongol mongoldb/bin
+          mv mongold mongoldb/bin
+          mv mongols mongoldb/bin
+          tar cvf mongoldb.tar mongoldb
+          gzip mongoldb.tar
     - command: s3.put
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        local_file: src/mongodb.tar.gz
-        remote_file: longevity/${build_variant}/${revision}/mongodb-${build_id}.tar.gz
+        local_file: src/mongoldb.tar.gz
+        remote_file: longevity/${build_variant}/${revision}/mongoldb-${build_id}.tar.gz
         bucket: mciuploads
         permissions: public-read
         content_type: ${content_type|application/x-gzip}
-        display_name: mongodb.tar.gz
+        display_name: mongoldb.tar.gz
 
 - name: shard_cluster_test
   depends_on:
@@ -224,7 +224,7 @@ tasks:
   commands:
     - func: "prepare environment"
     - func: "bring up 3 shard cluster"
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
     - func: "run test"
       vars:
         test: "ycsb"
@@ -240,7 +240,7 @@ buildvariants:
   display_name: Linux WT Shard
   batchtime: 10080 # 1 week
   expansions:
-    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongodbtoolchain/bin/gcc CXX=/opt/mongodbtoolchain/bin/g++ --release
+    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongoldbtoolchain/bin/gcc CXX=/opt/mongoldbtoolchain/bin/g++ --release
     setup: shard
     cluster: longevity
     numShard: 3

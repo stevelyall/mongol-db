@@ -28,12 +28,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression.h"
+#include "mongol/db/matcher/expression.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

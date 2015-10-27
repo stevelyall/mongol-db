@@ -30,15 +30,15 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/batched_delete_document.h"
-#include "mongo/s/write_ops/batched_update_document.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
+#include "mongol/s/write_ops/batched_update_document.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class CurOp;
@@ -183,4 +183,4 @@ public:
     int numDeleted;
 };
 
-}  // namespace mongo
+}  // namespace mongol

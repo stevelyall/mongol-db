@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/repl_set_html_summary.h"
+#include "mongol/db/repl/repl_set_html_summary.h"
 
 #include <string>
 #include <sstream>
 
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/mongolutils/str.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ReplSetHtmlSummary::ReplSetHtmlSummary() : _selfIndex(-1), _primaryIndex(-1), _selfUptime(0) {}
@@ -213,4 +213,4 @@ const std::string ReplSetHtmlSummary::toHtmlString() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

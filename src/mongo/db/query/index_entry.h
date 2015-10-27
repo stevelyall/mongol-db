@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class MatchExpression;
 
@@ -119,4 +119,4 @@ struct IndexEntry {
     std::string toString() const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replica_set_config_checks.h"
-#include "mongo/db/repl/replication_coordinator_external_state.h"
-#include "mongo/db/repl/replication_coordinator_external_state_mock.h"
-#include "mongo/db/server_options.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replica_set_config_checks.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
+#include "mongol/db/repl/replication_coordinator_external_state_mock.h"
+#include "mongol/db/server_options.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -717,4 +717,4 @@ TEST(ValidateForReconfig, ForceStillNeedsSelfPresent) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

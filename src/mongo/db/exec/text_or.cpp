@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/text_or.h"
+#include "mongol/db/exec/text_or.h"
 
 #include <map>
 #include <vector>
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matchable.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/record_id.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matchable.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/record_id.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -232,7 +232,7 @@ PlanStage::StageState TextOrStage::readFromChildren(WorkingSetID* out) {
         // failed, in which case 'id' is valid.  If ID is invalid, we
         // create our own error message.
         if (WorkingSet::INVALID_ID == id) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "TEXT_OR stage failed to read in results from child";
             Status status(ErrorCodes::InternalError, ss);
             *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -429,4 +429,4 @@ PlanStage::StageState TextOrStage::addTerm(WorkingSetID wsid, WorkingSetID* out)
     return NEED_TIME;
 }
 
-}  // namespace mongo
+}  // namespace mongol

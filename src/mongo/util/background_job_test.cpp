@@ -25,39 +25,39 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/server_options.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/background.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/server_options.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/background.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/time_support.h"
 
 namespace {
 
-using mongo::BackgroundJob;
-using mongo::MsgAssertionException;
-using mongo::stdx::mutex;
-using mongo::Notification;
+using mongol::BackgroundJob;
+using mongol::MsgAssertionException;
+using mongol::stdx::mutex;
+using mongol::Notification;
 
-namespace stdx = mongo::stdx;
+namespace stdx = mongol::stdx;
 
 // a global variable that can be accessed independent of the IncTester object below
 // IncTester keeps it up-to-date
 int GLOBAL_val;
 
-class IncTester : public mongo::BackgroundJob {
+class IncTester : public mongol::BackgroundJob {
 public:
     explicit IncTester(long long millis, bool selfDelete = false)
-        : mongo::BackgroundJob(selfDelete), _val(0), _millis(millis) {
+        : mongol::BackgroundJob(selfDelete), _val(0), _millis(millis) {
         GLOBAL_val = 0;
     }
 
     void waitAndInc(long long millis) {
         if (millis)
-            mongo::sleepmillis(millis);
+            mongol::sleepmillis(millis);
         ++_val;
         ++GLOBAL_val;
     }
@@ -100,12 +100,12 @@ TEST(BackgroundJobBasic, TimeOutCase) {
 }
 
 TEST(BackgroundJobBasic, SelfDeletingCase) {
-    mongo::BackgroundJob* j = new IncTester(0 /* inc without wait */, true /* self delete */);
+    mongol::BackgroundJob* j = new IncTester(0 /* inc without wait */, true /* self delete */);
     j->go();
 
     // the background thread should have continued running and this test should pass the
     // heap-checker as well
-    mongo::sleepmillis(1000);
+    mongol::sleepmillis(1000);
     ASSERT_EQUALS(GLOBAL_val, 1);
 }
 

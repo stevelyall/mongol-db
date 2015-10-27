@@ -31,17 +31,17 @@
  */
 
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/exec/limit.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/queued_data_stage.h"
-#include "mongo/db/exec/skip.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/json.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/exec/limit.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/queued_data_stage.h"
+#include "mongol/db/exec/skip.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/json.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/stdx/memory.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

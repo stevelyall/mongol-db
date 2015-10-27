@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/accumulator.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/pipeline/accumulator.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace AccumulatorTests {
 

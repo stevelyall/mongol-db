@@ -31,10 +31,10 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Status;
@@ -142,4 +142,4 @@ private:
     boost::optional<bool> _jumbo;
 };
 
-}  // namespace mongo
+}  // namespace mongol

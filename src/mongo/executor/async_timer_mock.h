@@ -31,10 +31,10 @@
 #include <unordered_set>
 #include <vector>
 
-#include "mongo/executor/async_timer_interface.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/executor/async_timer_interface.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -133,4 +133,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

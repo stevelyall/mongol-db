@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationManager;
 class AuthorizationSession;
@@ -144,4 +144,4 @@ Status checkAuthForMergeAuthzCollectionsCommand(ClientBasic* client, const BSONO
 Status checkAuthForAuthSchemaUpgradeCommand(ClientBasic* client);
 
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

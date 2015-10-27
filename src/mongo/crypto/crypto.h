@@ -30,7 +30,7 @@
 
 #include <cstddef>
 
-namespace mongo {
+namespace mongol {
 namespace crypto {
 /*
  * Computes a SHA-1 hash of 'input'.
@@ -48,4 +48,4 @@ bool hmacSha1(const unsigned char* key,
               unsigned int* outputLen);
 
 }  // namespace crypto
-}  // namespace mongo
+}  // namespace mongol

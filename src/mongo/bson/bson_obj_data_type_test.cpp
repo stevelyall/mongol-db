@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_range.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_range.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(BSONObjDataType, ConstDataTypeRangeBSON) {
     char buf[1000] = {0};
@@ -65,4 +65,4 @@ TEST(BSONObjDataType, ConstDataTypeRangeBSON) {
     ASSERT_EQUALS(3, cdrc.readAndAdvance<BSONObj>().getValue().getField("c").numberInt());
 }
 
-}  // namespace mongo
+}  // namespace mongol

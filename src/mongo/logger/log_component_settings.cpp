@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_component_settings.h"
+#include "mongol/logger/log_component_settings.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 LogComponentSettings::LogComponentSettings() {
@@ -101,4 +101,4 @@ bool LogComponentSettings::shouldLog(LogComponent component, LogSeverity severit
 }
 
 }  // logger
-}  // mongo
+}  // mongol

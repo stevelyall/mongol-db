@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class SnapshotId {
     static const uint64_t kNullId = 0;

@@ -31,14 +31,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Context of an initialization process.  Passed as a parameter to initialization functions.
  *
- * See mongo/base/initializer.h and mongo/base/initializer_dependency_graph.h for more details.
+ * See mongol/base/initializer.h and mongol/base/initializer_dependency_graph.h for more details.
  */
 class InitializerContext {
     MONGO_DISALLOW_COPYING(InitializerContext);
@@ -61,4 +61,4 @@ private:
     EnvironmentMap _env;
 };
 
-}  // namespace mongo
+}  // namespace mongol

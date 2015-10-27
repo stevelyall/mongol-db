@@ -27,30 +27,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/background.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/background.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -156,4 +156,4 @@ bool WiredTigerKVEngine::initRsOplogBackgroundThread(StringData ns) {
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

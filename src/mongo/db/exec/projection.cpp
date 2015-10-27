@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/exec/projection.h"
+#include "mongol/db/exec/projection.h"
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::unique_ptr;
@@ -114,7 +114,7 @@ void ProjectionStage::getSimpleInclusionFields(const BSONObj& projObj, FieldSet*
         BSONElement elt = projObjIt.next();
         // Must deal with the _id case separately as there is an implicit _id: 1 in the
         // projection.
-        if (mongoutils::str::equals(elt.fieldName(), kIdField) && !elt.trueValue()) {
+        if (mongolutils::str::equals(elt.fieldName(), kIdField) && !elt.trueValue()) {
             includeId = false;
             continue;
         }
@@ -221,7 +221,7 @@ PlanStage::StageState ProjectionStage::work(WorkingSetID* out) {
         // failed, in which case 'id' is valid.  If ID is invalid, we
         // create our own error message.
         if (WorkingSet::INVALID_ID == id) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "projection stage failed to read in results from child";
             Status status(ErrorCodes::InternalError, ss);
             *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -252,4 +252,4 @@ const SpecificStats* ProjectionStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

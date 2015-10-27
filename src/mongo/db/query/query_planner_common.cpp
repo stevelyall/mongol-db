@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 void QueryPlannerCommon::reverseScans(QuerySolutionNode* node) {
     StageType type = node->getType();
@@ -81,4 +81,4 @@ void QueryPlannerCommon::reverseScans(QuerySolutionNode* node) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

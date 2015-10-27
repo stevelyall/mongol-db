@@ -27,15 +27,15 @@
 
 // stacktrace_${TARGET_OS_FAMILY}.cpp sets default log component to kControl.
 // Setting kDefault to preserve previous behavior in (defunct) getStacktraceLogger().
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/stacktrace.h"
+#include "mongol/util/stacktrace.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 void printStackTrace() {
     printStackTrace(log().stream());
@@ -49,4 +49,4 @@ void printWindowsStackTrace(CONTEXT& context) {
 
 #endif  // defined(_WIN32)
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 /* Details about a particular index. There is one of these effectively for each object in
    system.namespaces (although this also includes the head pointer, which is not in that
@@ -67,4 +67,4 @@ struct IndexDetails {
 };
 #pragma pack()
 
-}  // namespace mongo
+}  // namespace mongol

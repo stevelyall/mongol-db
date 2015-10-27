@@ -30,11 +30,11 @@
 
 #include <thread>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 using thread = ::std::thread;                // NOLINT
 namespace this_thread = ::std::this_thread;  // NOLINT
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

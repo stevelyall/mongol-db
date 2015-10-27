@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/data_type_validated.h"
+#include "mongol/base/data_type_validated.h"
 
 // We do not use the rpc namespace here so we can specialize Validator.
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Status;
 
@@ -45,4 +45,4 @@ struct Validator<BSONObj> {
     static Status validateStore(const BSONObj& toStore);
 };
 
-}  // namespace mongo
+}  // namespace mongol

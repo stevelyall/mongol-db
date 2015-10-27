@@ -26,22 +26,22 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iterator>
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/command_request.h"
-#include "mongo/rpc/command_request_builder.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/command_request.h"
+#include "mongol/rpc/command_request_builder.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/assert_util.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(CommandRequest, ParseAllFields) {
     std::vector<char> opCommandData;

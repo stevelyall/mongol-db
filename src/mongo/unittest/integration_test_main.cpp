@@ -26,27 +26,27 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
 
-#include "mongo/base/initializer.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_section.h"
-#include "mongo/util/options_parser/options_parser.h"
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/base/initializer.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_section.h"
+#include "mongol/util/options_parser/options_parser.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -56,7 +56,7 @@ const char kConnectionStringFlag[] = "connectionString";
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 ConnectionString getFixtureConnectionString() {
@@ -64,7 +64,7 @@ ConnectionString getFixtureConnectionString() {
 }
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol
 
 int main(int argc, char** argv, char** envp) {
     setupSynchronousSignalHandlers();
@@ -73,7 +73,7 @@ int main(int argc, char** argv, char** envp) {
     return unittest::Suite::run(std::vector<std::string>(), "", 1);
 }
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 MONGO_GENERAL_STARTUP_OPTIONS_REGISTER(IntegrationTestOptions)(InitializerContext*) {
     auto& opts = moe::startupOptions;

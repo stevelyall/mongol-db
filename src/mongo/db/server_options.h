@@ -27,12 +27,12 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/util/net/listen.h"  // For DEFAULT_MAX_CONN
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/util/net/listen.h"  // For DEFAULT_MAX_CONN
 
-namespace mongo {
+namespace mongol {
 
 const int DEFAULT_UNIX_PERMS = 0700;
 
@@ -63,7 +63,7 @@ struct ServerGlobalParams {
         started = time(0);
     }
 
-    std::string binaryName;  // mongod or mongos
+    std::string binaryName;  // mongold or mongols
     std::string cwd;         // cwd of when process started
 
     int port;  // --port

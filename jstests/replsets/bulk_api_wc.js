@@ -9,8 +9,8 @@ jsTest.log("Starting bulk api write concern tests...");
 var rst = new ReplSetTest({ nodes : 2 });
 rst.startSet({ nojournal : "" });
 rst.initiate();
-var mongod = rst.getPrimary();
-var coll = mongod.getCollection("test.bulk_api_wc");
+var mongold = rst.getPrimary();
+var coll = mongold.getCollection("test.bulk_api_wc");
 
 var executeTests = function() {
 

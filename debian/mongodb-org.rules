@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-TOOLS=bsondump mongodump mongoexport mongofiles mongoimport mongooplog mongoperf mongorestore mongostat mongotop
+TOOLS=bsondump mongoldump mongolexport mongolfiles mongolimport mongoloplog mongolperf mongolrestore mongolstat mongoltop
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
@@ -20,16 +20,16 @@ build-stamp: configure-stamp
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED. 
 	# scons 
-	#docbook-to-man debian/mongodb.sgml > mongodb.1
-	echo -n > debian/mongodb-org-tools.manpages
+	#docbook-to-man debian/mongoldb.sgml > mongoldb.1
+	echo -n > debian/mongoldb-org-tools.manpages
 	for binary in ${TOOLS} ; \
 	do \
-	  echo debian/$$binary.1 >> debian/mongodb-org-tools.manpages ; \
+	  echo debian/$$binary.1 >> debian/mongoldb-org-tools.manpages ; \
 	done
 
-	echo debian/mongo.1 > debian/mongodb-org-shell.manpages
-	echo debian/mongod.1 > debian/mongodb-org-server.manpages
-	echo debian/mongos.1 > debian/mongodb-org-mongos.manpages
+	echo debian/mongol.1 > debian/mongoldb-org-shell.manpages
+	echo debian/mongold.1 > debian/mongoldb-org-server.manpages
+	echo debian/mongols.1 > debian/mongoldb-org-mongols.manpages
 
 	touch $@
 
@@ -39,26 +39,26 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# FIXME: scons freaks out at the presence of target files
-	# under debian/mongodb.
+	# under debian/mongoldb.
 	#scons -c
 
 	rm -f debian/*.manpages
 
-	rm -rf $(CURDIR)/debian/mongodb-org
-	rm -rf $(CURDIR)/debian/mongodb-org-shell
-	rm -rf $(CURDIR)/debian/mongodb-org-server
-	rm -rf $(CURDIR)/debian/mongodb-org-mongos
-	rm -rf $(CURDIR)/debian/mongodb-org-tools
+	rm -rf $(CURDIR)/debian/mongoldb-org
+	rm -rf $(CURDIR)/debian/mongoldb-org-shell
+	rm -rf $(CURDIR)/debian/mongoldb-org-server
+	rm -rf $(CURDIR)/debian/mongoldb-org-mongols
+	rm -rf $(CURDIR)/debian/mongoldb-org-tools
 	rm -f config.log
-	rm -f mongo
-	rm -f mongod
-	rm -f mongoimportjson
-	rm -f mongoexport
-	rm -f mongorestore
-	rm -f mongodump
-	rm -f mongofiles
+	rm -f mongol
+	rm -f mongold
+	rm -f mongolimportjson
+	rm -f mongolexport
+	rm -f mongolrestore
+	rm -f mongoldump
+	rm -f mongolfiles
 	rm -f .sconsign.dblite
-	rm -f libmongoclient.a
+	rm -f libmongolclient.a
 	rm -rf client/*.o
 	rm -rf tools/*.o
 	rm -rf shell/*.o
@@ -75,31 +75,31 @@ install: build
 	dh_installdirs
 
 	# THE FOLLOWING LINE IS INTENTIONALLY COMMENTED.
-	# scons --prefix=$(CURDIR)/debian/mongodb/usr install
-	mkdir -p $(CURDIR)/debian/mongodb-org-shell/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-org-server/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-org-mongos/usr/bin
-	mkdir -p $(CURDIR)/debian/mongodb-org-tools/usr/bin
-	cp -v $(CURDIR)/bin/mongo $(CURDIR)/debian/mongodb-org-shell/usr/bin
-	cp -v $(CURDIR)/bin/mongod $(CURDIR)/debian/mongodb-org-server/usr/bin
-	cp -v $(CURDIR)/bin/mongos $(CURDIR)/debian/mongodb-org-mongos/usr/bin
+	# scons --prefix=$(CURDIR)/debian/mongoldb/usr install
+	mkdir -p $(CURDIR)/debian/mongoldb-org-shell/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-org-server/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-org-mongols/usr/bin
+	mkdir -p $(CURDIR)/debian/mongoldb-org-tools/usr/bin
+	cp -v $(CURDIR)/bin/mongol $(CURDIR)/debian/mongoldb-org-shell/usr/bin
+	cp -v $(CURDIR)/bin/mongold $(CURDIR)/debian/mongoldb-org-server/usr/bin
+	cp -v $(CURDIR)/bin/mongols $(CURDIR)/debian/mongoldb-org-mongols/usr/bin
 
 	for binary in ${TOOLS} ; \
 	do \
-	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongodb-org-tools/usr/bin ; \
+	  cp -v $(CURDIR)/bin/$$binary $(CURDIR)/debian/mongoldb-org-tools/usr/bin ; \
 	done
 
-	mkdir -p $(CURDIR)/debian/mongodb-org-server/etc
-	cp $(CURDIR)/debian/mongod.conf $(CURDIR)/debian/mongodb-org-server/etc/mongod.conf 
+	mkdir -p $(CURDIR)/debian/mongoldb-org-server/etc
+	cp $(CURDIR)/debian/mongold.conf $(CURDIR)/debian/mongoldb-org-server/etc/mongold.conf 
 
-	mkdir -p $(CURDIR)/debian/mongodb-org-shell/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-org-server/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-org-mongos/usr/share/lintian/overrides/
-	mkdir -p $(CURDIR)/debian/mongodb-org-tools/usr/share/lintian/overrides/
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-org-shell/usr/share/lintian/overrides/mongodb-org-shell
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-org-server/usr/share/lintian/overrides/mongodb-org-server
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-org-mongos/usr/share/lintian/overrides/mongodb-org-mongos
-	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongodb-org-tools/usr/share/lintian/overrides/mongodb-org-tools
+	mkdir -p $(CURDIR)/debian/mongoldb-org-shell/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-org-server/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-org-mongols/usr/share/lintian/overrides/
+	mkdir -p $(CURDIR)/debian/mongoldb-org-tools/usr/share/lintian/overrides/
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-org-shell/usr/share/lintian/overrides/mongoldb-org-shell
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-org-server/usr/share/lintian/overrides/mongoldb-org-server
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-org-mongols/usr/share/lintian/overrides/mongoldb-org-mongols
+	install -m 644 $(CURDIR)/debian/lintian-overrides 		$(CURDIR)/debian/mongoldb-org-tools/usr/share/lintian/overrides/mongoldb-org-tools
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -119,7 +119,7 @@ binary-arch: build install
 #	dh_installemacsen
 #	dh_installpam
 #	dh_installmime
-	dh_installinit -pmongodb-org-server --name=mongod
+	dh_installinit -pmongoldb-org-server --name=mongold
 #	dh_installinfo
 	dh_installman
 	dh_link

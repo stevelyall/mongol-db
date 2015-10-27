@@ -28,28 +28,28 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/log_process_details.h"
+#include "mongol/db/log_process_details.h"
 
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_options_helpers.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/version.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_options_helpers.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 bool is32bit() {
     return (sizeof(int*) == 4);
 }
 
 void logProcessDetails() {
-    log() << mongodVersion();
+    log() << mongoldVersion();
     printBuildInfo();
     printCommandLineOpts();
 }
@@ -62,4 +62,4 @@ void logProcessDetailsForLogRotate() {
     logProcessDetails();
 }
 
-}  // mongo
+}  // mongol

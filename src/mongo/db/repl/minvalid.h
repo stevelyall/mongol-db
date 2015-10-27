@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class OperationContext;
 

@@ -31,12 +31,12 @@
 #include <set>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class ReplicaSetMonitor;
@@ -344,4 +344,4 @@ private:
     bool _startedNewScan;
 };
 
-}  // namespace mongo
+}  // namespace mongol

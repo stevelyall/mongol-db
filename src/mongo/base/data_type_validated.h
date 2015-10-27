@@ -29,9 +29,9 @@
 
 #include <utility>
 
-#include "mongo/base/data_type.h"
+#include "mongol/base/data_type.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Allows for specializations of load/store that run validation logic.
@@ -148,4 +148,4 @@ struct DataType::Handler<Validated<T>> {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

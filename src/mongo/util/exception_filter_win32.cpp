@@ -26,24 +26,24 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
 #ifdef _WIN32
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <ostream>
 #include <DbgHelp.h>
 
-#include "mongo/config.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/exit_code.h"
-#include "mongo/util/log.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/text.h"
+#include "mongol/config.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/exit_code.h"
+#include "mongol/util/log.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 /* create a process dump.
@@ -60,7 +60,7 @@ void doMinidumpWithException(struct _EXCEPTION_POINTERS* exceptionInfo) {
         log() << "GetModuleFileName failed " << errnoWithDescription(gle);
 
         // Fallback name
-        wcscpy_s(moduleFileName, L"mongo");
+        wcscpy_s(moduleFileName, L"mongol");
     } else {
         WCHAR* dotStr = wcschr(&moduleFileName[0], L'.');
         if (dotStr != NULL) {
@@ -183,11 +183,11 @@ void setWindowsUnhandledExceptionFilter() {
     filtLast = SetUnhandledExceptionFilter(exceptionFilter);
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #else
 
-namespace mongo {
+namespace mongol {
 void setWindowsUnhandledExceptionFilter() {}
 }
 

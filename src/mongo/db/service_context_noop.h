@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/service_context.h"
+#include "mongol/db/service_context.h"
 
-#include "mongo/platform/atomic_word.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServiceContextNoop final : public ServiceContext {
 public:
@@ -69,4 +69,4 @@ private:
     AtomicUInt32 _nextOpId{1};
 };
 
-}  // namespace mongo
+}  // namespace mongol

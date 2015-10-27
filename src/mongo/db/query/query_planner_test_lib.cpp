@@ -27,23 +27,23 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/query_planner.cpp
+ * This file contains tests for mongol/db/query/query_planner.cpp
  */
 
-#include "mongo/db/query/query_planner_test_lib.h"
+#include "mongol/db/query/query_planner_test_lib.h"
 
 #include <ostream>
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::string;
 
@@ -154,7 +154,7 @@ bool boundsMatch(const BSONObj& testBounds, const IndexBounds trueBounds) {
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Looks in the children stored in the 'nodes' field of 'testSoln'
@@ -580,4 +580,4 @@ bool QueryPlannerTestLib::solutionMatches(const BSONObj& testSoln,
     return false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

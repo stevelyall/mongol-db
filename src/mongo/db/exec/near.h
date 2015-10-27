@@ -30,17 +30,17 @@
 
 #include <queue>
 
-#include "mongo/base/string_data.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/base/string_data.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * An abstract stage which uses a progressive sort to return results sorted by distance.  This
@@ -224,4 +224,4 @@ struct NearStage::CoveredInterval {
     const bool inclusiveMax;
 };
 
-}  // namespace mongo
+}  // namespace mongol

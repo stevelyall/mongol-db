@@ -28,30 +28,30 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
 
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
 
-#include "mongo/db/mongod_options.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/mmap_v1/data_file_sync.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/dur_journal.h"
-#include "mongo/db/storage/mmap_v1/dur_recover.h"
-#include "mongo/db/storage/mmap_v1/dur_recovery_unit.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/storage_engine_lock_file.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/util/log.h"
+#include "mongol/db/mongold_options.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/data_file_sync.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/dur_journal.h"
+#include "mongol/db/storage/mmap_v1/dur_recover.h"
+#include "mongol/db/storage/mmap_v1/dur_recovery_unit.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/storage_engine_lock_file.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/util/log.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::ifstream;
@@ -73,7 +73,7 @@ void acquirePathLock(MMAPV1Engine* storageEngine,
 
     if (oldFile) {
         // we check this here because we want to see if we can get the lock
-        // if we can't, then its probably just another mongod running
+        // if we can't, then its probably just another mongold running
 
         string errmsg;
         if (doingRepair && dur::haveJournalFiles()) {
@@ -96,7 +96,7 @@ void acquirePathLock(MMAPV1Engine* storageEngine,
                 storageEngine->listDatabases(&dbnames);
 
                 if (dbnames.size() == 0) {
-                    // this means that mongod crashed
+                    // this means that mongold crashed
                     // between initial startup and when journaling was initialized
                     // it is safe to continue
                 } else {
@@ -107,7 +107,7 @@ void acquirePathLock(MMAPV1Engine* storageEngine,
                         << "this is likely human error or filesystem corruption.\n"
                         << "please make sure that your journal directory is mounted.\n"
                         << "found " << dbnames.size() << " dbs.\n"
-                        << "see: http://dochub.mongodb.org/core/repair for more information\n"
+                        << "see: http://dochub.mongoldb.org/core/repair for more information\n"
                         << "*************";
                 }
             }
@@ -115,7 +115,7 @@ void acquirePathLock(MMAPV1Engine* storageEngine,
             if (!dur::haveJournalFiles() && !doingRepair) {
                 errmsg = str::stream() << "************** \n"
                                        << "Unclean shutdown detected.\n"
-                                       << "Please visit http://dochub.mongodb.org/core/repair for "
+                                       << "Please visit http://dochub.mongoldb.org/core/repair for "
                                           "recovery instructions.\n"
                                        << "*************";
             }
@@ -193,7 +193,7 @@ void checkReadAhead(const string& dir) {
                     log() << "**          We suggest setting it to 256KB (512 sectors) or less"
                           << startupWarningsLog;
 
-                    log() << "**          http://dochub.mongodb.org/core/readahead"
+                    log() << "**          http://dochub.mongoldb.org/core/readahead"
                           << startupWarningsLog;
                 }
             }
@@ -201,7 +201,7 @@ void checkReadAhead(const string& dir) {
     } catch (const std::exception& e) {
         log() << "unable to validate readahead settings due to error: " << e.what()
               << startupWarningsLog;
-        log() << "for more information, see http://dochub.mongodb.org/core/readahead"
+        log() << "for more information, see http://dochub.mongoldb.org/core/readahead"
               << startupWarningsLog;
     }
 #endif  // __linux__

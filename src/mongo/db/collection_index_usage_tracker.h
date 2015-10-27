@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/string_map.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/string_map.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClockSource;
 
@@ -121,4 +121,4 @@ private:
 
 typedef StringMap<CollectionIndexUsageTracker::IndexUsageStats> CollectionIndexUsageMap;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/repl/sync_tail.h"
+#include "mongol/db/repl/sync_tail.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class BackgroundSyncInterface;
@@ -68,4 +68,4 @@ private:
 extern unsigned replSetForceInitialSyncFailure;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

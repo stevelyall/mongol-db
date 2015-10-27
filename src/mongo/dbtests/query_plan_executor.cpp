@@ -27,26 +27,26 @@
  */
 
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/pipeline_proxy.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/pipeline_proxy.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/stdx/memory.h"
 
 namespace QueryPlanExecutor {
 
@@ -401,7 +401,7 @@ public:
 
 namespace ClientCursor {
 
-using mongo::ClientCursor;
+using mongol::ClientCursor;
 
 /**
  * Test invalidation of ClientCursor.

@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

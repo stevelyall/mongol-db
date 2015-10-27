@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/executor/network_connection_hook.h"
+#include "mongol/executor/network_connection_hook.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * An implementation of NetworkConnectionHook for handling sharding-specific operations such
@@ -70,4 +70,4 @@ public:
                        executor::RemoteCommandResponse&& response) override;
 };
 
-}  // namespace mongo
+}  // namespace mongol

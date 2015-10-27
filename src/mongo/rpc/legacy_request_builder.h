@@ -30,13 +30,13 @@
 
 #include <memory>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 class LegacyRequestBuilder : public RequestBuilderInterface {
@@ -74,4 +74,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

@@ -32,14 +32,14 @@
 #include <type_traits>
 #include <vector>
 
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class CatalogManagerReplicaSet;
@@ -163,4 +163,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

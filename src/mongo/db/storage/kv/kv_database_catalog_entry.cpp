@@ -28,15 +28,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/kv/kv_database_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_database_catalog_entry.h"
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/kv/kv_collection_catalog_entry.h"
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/db/storage/recovery_unit.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/kv/kv_collection_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/db/storage/recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;

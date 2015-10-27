@@ -33,9 +33,9 @@
 #include <map>
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServerStatusMetric;
 

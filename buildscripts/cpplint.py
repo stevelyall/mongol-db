@@ -190,7 +190,7 @@ _ERROR_CATEGORIES = [
   'build/printf_format',
   'build/storage_class',
   'legal/copyright',
-  'mongo/polyfill',
+  'mongol/polyfill',
   'readability/alt_tokens',
   'readability/braces',
   'readability/casting',
@@ -1654,15 +1654,15 @@ _RE_PATTERN_MONGO_POLYFILL=make_polyfill_regex()
 def CheckForMongoPolyfill(filename, clean_lines, linenum, error):
   line = clean_lines.elided[linenum]
   if re.search(_RE_PATTERN_MONGO_POLYFILL, line):
-    error(filename, linenum, 'mongodb/polyfill', 5,
-          'Illegal use of banned name from std::/boost::, use mongo::stdx:: variant instead')
+    error(filename, linenum, 'mongoldb/polyfill', 5,
+          'Illegal use of banned name from std::/boost::, use mongol::stdx:: variant instead')
 
 def CheckForMongoAtomic(filename, clean_lines, linenum, error):
   line = clean_lines.elided[linenum]
   if re.search('std::atomic', line):
-    error(filename, linenum, 'mongodb/stdatomic', 5,
+    error(filename, linenum, 'mongoldb/stdatomic', 5,
           'Illegal use of prohibited std::atomic<T>, use AtomicWord<T> or other types '
-          'from "mongo/platform/atomic_word.h"')
+          'from "mongol/platform/atomic_word.h"')
 
 def CheckForCopyright(filename, lines, error):
   """Logs an error if no Copyright message appears at the top of the file."""

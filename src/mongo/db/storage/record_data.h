@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/util/shared_buffer.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/util/shared_buffer.h"
 
-namespace mongo {
+namespace mongol {
 
 // TODO: Does this need to have move support?
 /**
@@ -100,4 +100,4 @@ private:
     SharedBuffer _ownedData;
 };
 
-}  // namespace mongo
+}  // namespace mongol

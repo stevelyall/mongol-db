@@ -3,7 +3,7 @@ selector:
     roots:
     - jstests/auth/*.js
 
-# Auth tests start their own mongod's.
+# Auth tests start their own mongold's.
 executor:
   js_test:
     config:

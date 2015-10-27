@@ -27,19 +27,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/httpclient.h"
+#include "mongol/util/net/httpclient.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/config.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_port.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/config.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_port.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/net/ssl_manager.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -98,7 +98,7 @@ int HttpClient::_go(const char* command, string url, const char* body, Result* r
         ss << command << " " << path << " HTTP/1.1\r\n";
         ss << "Host: " << host << "\r\n";
         ss << "Connection: Close\r\n";
-        ss << "User-Agent: mongodb http client\r\n";
+        ss << "User-Agent: mongoldb http client\r\n";
         if (body) {
             ss << "Content-Length: " << strlen(body) << "\r\n";
         }

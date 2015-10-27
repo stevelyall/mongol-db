@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/parse_number.h"
+#include "mongol/base/parse_number.h"
 
 #include <algorithm>
 #include <cerrno>
@@ -36,7 +36,7 @@
 #include <limits>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Returns the value of the digit "c", with the same conversion behavior as strtol.
@@ -260,4 +260,4 @@ Status parseNumberFromStringWithBase<double>(StringData stringValue, int base, d
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/canonical_query.h"
+#include "mongol/db/query/canonical_query.h"
 
-#include "mongo/db/json.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::string;
@@ -48,7 +48,7 @@ static const NamespaceString nss("testdb.testcoll");
 MatchExpression* parseMatchExpression(const BSONObj& obj) {
     StatusWithMatchExpression status = MatchExpressionParser::parse(obj);
     if (!status.isOK()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "failed to parse query: " << obj.toString()
            << ". Reason: " << status.getStatus().toString();
         FAIL(ss);
@@ -74,7 +74,7 @@ void assertEquivalent(const char* queryStr,
     if (actual->equivalent(expected)) {
         return;
     }
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "Match expressions are not equivalent."
        << "\nOriginal query: " << queryStr << "\nExpected: " << expected->toString()
        << "\nActual: " << actual->toString();
@@ -87,7 +87,7 @@ void assertNotEquivalent(const char* queryStr,
     if (!actual->equivalent(expected)) {
         return;
     }
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "Match expressions are equivalent."
        << "\nOriginal query: " << queryStr << "\nExpected: " << expected->toString()
        << "\nActual: " << actual->toString();
@@ -551,4 +551,4 @@ TEST(CanonicalQueryTest, CanonicalizeFromBaseQuery) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

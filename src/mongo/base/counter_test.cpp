@@ -26,15 +26,15 @@
  */
 
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <climits>
 #include <iostream>
 
-#include "mongo/base/counter.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/counter.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 TEST(CounterTest, Test1) {
     Counter64 c;
@@ -54,4 +54,4 @@ TEST(CounterTest, Test1) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

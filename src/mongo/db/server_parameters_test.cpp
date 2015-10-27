@@ -28,12 +28,12 @@
 *    it in the license file.
 */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/server_parameters.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/server_parameters.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;

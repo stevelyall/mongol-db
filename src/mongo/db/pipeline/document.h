@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "mongo/db/pipeline/document_internal.h"
+#include "mongol/db/pipeline/document_internal.h"
 
 #include <boost/functional/hash.hpp>
 #include <boost/intrusive_ptr.hpp>
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class FieldIterator;
 class FieldPath;
@@ -623,7 +623,7 @@ private:
     std::vector<Value> _array;
 };
 
-inline void swap(mongo::Document& lhs, mongo::Document& rhs) {
+inline void swap(mongol::Document& lhs, mongol::Document& rhs) {
     lhs.swap(rhs);
 }
 

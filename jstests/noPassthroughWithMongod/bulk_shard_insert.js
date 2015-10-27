@@ -14,8 +14,8 @@ var st = new ShardingTest({ name : jsTestName(), shards : 4, chunkSize: 1 })
 st.setBalancer( false )
 
 // Setup sharded collection
-var mongos = st.s0
-var db = mongos.getDB( jsTestName() )
+var mongols = st.s0
+var db = mongols.getDB( jsTestName() )
 var coll = db.coll
 st.shardColl( coll, { _id : 1 }, false )
 

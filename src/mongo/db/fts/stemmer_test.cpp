@@ -29,12 +29,12 @@
 */
 
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/stemmer.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/stemmer.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 TEST(English, Stemmer1) {

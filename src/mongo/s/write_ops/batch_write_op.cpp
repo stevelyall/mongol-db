@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batch_write_op.h"
+#include "mongol/s/write_ops/batch_write_op.h"
 
-#include "mongo/base/error_codes.h"
+#include "mongol/base/error_codes.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::make_pair;

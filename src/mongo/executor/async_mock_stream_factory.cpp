@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_mock_stream_factory.h"
+#include "mongol/executor/async_mock_stream_factory.h"
 
 #include <exception>
 #include <iterator>
 #include <system_error>
 
-#include "mongo/base/system_error.h"
-#include "mongo/rpc/command_reply_builder.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/legacy_reply_builder.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/system_error.h"
+#include "mongol/rpc/command_reply_builder.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/legacy_reply_builder.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 namespace {
@@ -333,4 +333,4 @@ void AsyncMockStreamFactory::MockStream::simulateServer(
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

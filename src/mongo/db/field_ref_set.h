@@ -31,12 +31,12 @@
 #include <set>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/db/field_ref.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/db/field_ref.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A FieldRefSet holds a number of unique FieldRefs - a set of dotted paths into a document.
@@ -132,4 +132,4 @@ private:
     FieldSet _fieldSet;
 };
 
-}  // namespace mongo
+}  // namespace mongol

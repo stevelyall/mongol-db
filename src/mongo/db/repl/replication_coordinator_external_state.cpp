@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_external_state.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ReplicationCoordinatorExternalState::ReplicationCoordinatorExternalState() {}
 ReplicationCoordinatorExternalState::~ReplicationCoordinatorExternalState() {}
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

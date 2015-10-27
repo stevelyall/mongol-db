@@ -28,9 +28,9 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/path_internal.h"
+#include "mongol/db/matcher/path_internal.h"
 
-namespace mongo {
+namespace mongol {
 
 bool isAllDigits(StringData str) {
     for (unsigned i = 0; i < str.size(); i++) {
@@ -79,4 +79,4 @@ BSONElement getFieldDottedOrArray(const BSONObj& doc, const FieldRef& path, size
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

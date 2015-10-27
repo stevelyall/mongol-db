@@ -28,16 +28,16 @@
  *    it in the license file.
  */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_parser.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_text.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_text.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(MatchExpressionParserText, Basic) {
     BSONObj query = fromjson("{$text: {$search:\"awesome\", $language:\"english\"}}");

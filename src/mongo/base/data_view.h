@@ -30,11 +30,11 @@
 #include <cstring>
 #include <type_traits>
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
-#include "mongo/base/data_type.h"
+#include "mongol/base/data_type.h"
 
-namespace mongo {
+namespace mongol {
 
 class ConstDataView {
 public:
@@ -86,4 +86,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

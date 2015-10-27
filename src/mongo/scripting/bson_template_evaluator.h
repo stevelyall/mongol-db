@@ -46,11 +46,11 @@
 #include <map>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/platform/random.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/platform/random.h"
 
-namespace mongo {
+namespace mongol {
 
 /*
  * BsonTemplateEvaluator Object for evaluating the templates. The Object exposes

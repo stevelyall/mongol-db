@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Similar to static_cast, but in debug builds uses RTTI to confirm that the cast
@@ -73,4 +73,4 @@ T checked_cast(const U& u) {
     return checked_cast_impl<kDebugBuild>::cast<T>(u);
 };
 
-}  // namespace mongo
+}  // namespace mongol

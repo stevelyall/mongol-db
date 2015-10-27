@@ -29,12 +29,12 @@
 #include <algorithm>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/member_config.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/member_config.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -453,4 +453,4 @@ TEST(MemberConfig, ValidateArbiterVotesRelationship) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

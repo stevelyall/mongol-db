@@ -30,16 +30,16 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * A decoration on OperationContext representing per-operation shard version metadata sent to mongod
- * from mongos as a command parameter.
+ * A decoration on OperationContext representing per-operation shard version metadata sent to mongold
+ * from mongols as a command parameter.
  *
  * The metadata for a particular operation can be retrieved using the get() method.
  *
@@ -120,4 +120,4 @@ private:
     bool _hadOriginalVersion;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -17,7 +17,7 @@ executor:
     - class: CheckReplDBHash
     fixture:
       class: MasterSlaveFixture
-      mongod_options:
+      mongold_options:
         oplogSize: 511
         set_parameters:
           enableTestCommands: 1

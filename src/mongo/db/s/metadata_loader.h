@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class CatalogManager;
 class CollectionMetadata;
@@ -160,4 +160,4 @@ private:
                       CollectionMetadata* metadata) const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

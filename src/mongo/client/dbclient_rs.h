@@ -31,10 +31,10 @@
 
 #include <utility>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class ReplicaSetMonitor;
 class TagSet;
@@ -74,7 +74,7 @@ public:
      *
      * @param dbname the database to logout from.
      * @param info the result object for the logout command (provided for backwards
-     *     compatibility with mongo shell)
+     *     compatibility with mongol shell)
      */
     virtual void logout(const std::string& dbname, BSONObj& info);
 
@@ -291,7 +291,7 @@ private:
      */
     static const size_t MAX_RETRY;
 
-    // TODO: remove this when processes other than mongos uses the driver version.
+    // TODO: remove this when processes other than mongols uses the driver version.
     static bool _authPooledSecondaryConn;
 
     // Throws a DBException if the monitor doesn't exist and there isn't a cached seed to use.

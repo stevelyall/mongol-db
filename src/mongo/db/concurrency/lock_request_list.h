@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Simple intrusive list implementation for the lock's granted and conflicting lists. Does not
@@ -105,4 +105,4 @@ public:
     LockRequest* _back;
 };
 
-}  // namespace mongo
+}  // namespace mongol

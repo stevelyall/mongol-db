@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 // Use this for blocking during an fsync-and-lock
 extern SimpleMutex filesLockedFsync;
 bool lockedForWriting();
-}  // namespace mongo
+}  // namespace mongol

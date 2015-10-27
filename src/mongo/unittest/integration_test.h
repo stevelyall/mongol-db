@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class ConnectionString;
 
@@ -41,4 +41,4 @@ namespace unittest {
 ConnectionString getFixtureConnectionString();
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

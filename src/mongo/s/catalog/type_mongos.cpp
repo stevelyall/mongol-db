@@ -25,23 +25,23 @@
  *    delete this exception statement from all source files in the program,
  *    then also delete it in the license file.
  */
-#include "mongo/s/catalog/type_mongos.h"
+#include "mongol/s/catalog/type_mongols.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
-const std::string MongosType::ConfigNS = "config.mongos";
+namespace mongol {
+const std::string MongosType::ConfigNS = "config.mongols";
 
 const BSONField<std::string> MongosType::name("_id");
 const BSONField<Date_t> MongosType::ping("ping");
 const BSONField<long long> MongosType::uptime("up");
 const BSONField<bool> MongosType::waiting("waiting");
-const BSONField<std::string> MongosType::mongoVersion("mongoVersion");
+const BSONField<std::string> MongosType::mongolVersion("mongolVersion");
 const BSONField<long long> MongosType::configVersion("configVersion");
 
 StatusWith<MongosType> MongosType::fromBSON(const BSONObj& source) {
@@ -79,12 +79,12 @@ StatusWith<MongosType> MongosType::fromBSON(const BSONObj& source) {
         mt._waiting = mtWaiting;
     }
 
-    if (source.hasField(mongoVersion.name())) {
+    if (source.hasField(mongolVersion.name())) {
         std::string mtMongoVersion;
-        Status status = bsonExtractStringField(source, mongoVersion.name(), &mtMongoVersion);
+        Status status = bsonExtractStringField(source, mongolVersion.name(), &mtMongoVersion);
         if (!status.isOK())
             return status;
-        mt._mongoVersion = mtMongoVersion;
+        mt._mongolVersion = mtMongoVersion;
     }
 
     if (source.hasField(configVersion.name())) {
@@ -129,8 +129,8 @@ BSONObj MongosType::toBSON() const {
         builder.append(uptime.name(), getUptime());
     if (_waiting)
         builder.append(waiting.name(), getWaiting());
-    if (_mongoVersion)
-        builder.append(mongoVersion.name(), getMongoVersion());
+    if (_mongolVersion)
+        builder.append(mongolVersion.name(), getMongoVersion());
     if (_configVersion)
         builder.append(configVersion.name(), getConfigVersion());
 
@@ -154,9 +154,9 @@ void MongosType::setWaiting(bool waiting) {
     _waiting = waiting;
 }
 
-void MongosType::setMongoVersion(const std::string& mongoVersion) {
-    invariant(!mongoVersion.empty());
-    _mongoVersion = mongoVersion;
+void MongosType::setMongoVersion(const std::string& mongolVersion) {
+    invariant(!mongolVersion.empty());
+    _mongolVersion = mongolVersion;
 }
 
 void MongosType::setConfigVersion(const long long configVersion) {
@@ -167,4 +167,4 @@ std::string MongosType::toString() const {
     return toBSON().toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

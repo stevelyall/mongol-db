@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/db/auth/user_document_parser.h"
+#include "mongol/db/auth/user_document_parser.h"
 
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const std::string ADMIN_DBNAME = "admin";
@@ -238,7 +238,7 @@ Status V2UserDocumentParser::checkValidUserDocument(const BSONObj& doc) const {
     }
     StringData userDBStr = userDBElement.valueStringData();
     if (!NamespaceString::validDBName(userDBStr) && userDBStr != "$external") {
-        return _badValue(mongoutils::str::stream() << "'" << userDBStr
+        return _badValue(mongolutils::str::stream() << "'" << userDBStr
                                                    << "' is not a valid value for the db field.",
                          0);
     }
@@ -265,10 +265,10 @@ Status V2UserDocumentParser::checkValidUserDocument(const BSONObj& doc) const {
         }
     } else {
         BSONElement scramElement = credentialsObj[SCRAM_CREDENTIAL_FIELD_NAME];
-        BSONElement mongoCRElement = credentialsObj[MONGODB_CR_CREDENTIAL_FIELD_NAME];
+        BSONElement mongolCRElement = credentialsObj[MONGODB_CR_CREDENTIAL_FIELD_NAME];
 
-        if (!mongoCRElement.eoo()) {
-            if (mongoCRElement.type() != String || mongoCRElement.valueStringData().empty()) {
+        if (!mongolCRElement.eoo()) {
+            if (mongolCRElement.type() != String || mongolCRElement.valueStringData().empty()) {
                 return _badValue(
                     "MONGODB-CR credential must to be a non-empty string"
                     ", if present",
@@ -325,10 +325,10 @@ Status V2UserDocumentParser::initializeUserCredentialsFromUserDocument(
             }
         } else {
             BSONElement scramElement = credentialsElement.Obj()[SCRAM_CREDENTIAL_FIELD_NAME];
-            BSONElement mongoCRCredentialElement =
+            BSONElement mongolCRCredentialElement =
                 credentialsElement.Obj()[MONGODB_CR_CREDENTIAL_FIELD_NAME];
 
-            if (scramElement.eoo() && mongoCRCredentialElement.eoo()) {
+            if (scramElement.eoo() && mongolCRCredentialElement.eoo()) {
                 return Status(ErrorCodes::UnsupportedFormat,
                               "User documents must provide credentials for SCRAM-SHA-1 "
                               "or MONGODB-CR authentication");
@@ -352,13 +352,13 @@ Status V2UserDocumentParser::initializeUserCredentialsFromUserDocument(
                 uassert(17504, "Missing SCRAM storedKey", !credentials.scram.storedKey.empty());
             }
 
-            if (!mongoCRCredentialElement.eoo()) {
-                if (mongoCRCredentialElement.type() != String ||
-                    mongoCRCredentialElement.valueStringData().empty()) {
+            if (!mongolCRCredentialElement.eoo()) {
+                if (mongolCRCredentialElement.type() != String ||
+                    mongolCRCredentialElement.valueStringData().empty()) {
                     return Status(ErrorCodes::UnsupportedFormat,
                                   "MONGODB-CR credentials must be non-empty strings");
                 } else {
-                    credentials.password = mongoCRCredentialElement.String();
+                    credentials.password = mongolCRCredentialElement.String();
                     if (credentials.password.empty()) {
                         return Status(ErrorCodes::UnsupportedFormat,
                                       "User documents must provide authentication credentials");
@@ -514,4 +514,4 @@ Status V2UserDocumentParser::initializeUserPrivilegesFromUserDocument(const BSON
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

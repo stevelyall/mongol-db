@@ -26,32 +26,32 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio.h"
 
 #include <type_traits>
 #include <utility>
 
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/connection_pool_asio.h"
-#include "mongo/executor/downconvert_find_and_getmore_commands.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/metadata/metadata_hook.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/connection_pool_asio.h"
+#include "mongol/executor/downconvert_find_and_getmore_commands.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/metadata/metadata_hook.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -116,7 +116,7 @@ void asyncRecvMessageBody(AsyncStreamInterface& stream,
 
     int z = (len + 1023) & 0xfffffc00;
     invariant(z >= len);
-    m->setData(reinterpret_cast<char*>(mongoMalloc(z)), true);
+    m->setData(reinterpret_cast<char*>(mongolMalloc(z)), true);
     MsgData::View mdView = m->buf();
 
     // copy header data into master buffer
@@ -262,7 +262,7 @@ void NetworkInterfaceASIO::_completedOpCallback(AsyncOp* op) {
 }
 
 void NetworkInterfaceASIO::_networkErrorCallback(AsyncOp* op, const std::error_code& ec) {
-    if (ec.category() == mongoErrorCategory()) {
+    if (ec.category() == mongolErrorCategory()) {
         // If we get a Mongo error code, we can preserve it.
         _completeOperation(op, Status(ErrorCodes::fromInt(ec.value()), ec.message()));
     } else {
@@ -446,4 +446,4 @@ void NetworkInterfaceASIO::_runConnectionHook(AsyncOp* op) {
 
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

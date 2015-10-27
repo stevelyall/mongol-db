@@ -29,7 +29,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * checks up call tree

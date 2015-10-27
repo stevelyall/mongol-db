@@ -26,27 +26,27 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/copydb_start_commands.h"
+#include "mongol/db/commands/copydb_start_commands.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/copydb.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/copydb.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -62,7 +62,7 @@ std::unique_ptr<DBClientBase>& CopyDbAuthConnection::forClient(Client* client) {
 /* Usage:
  * admindb.$cmd.findOne( { copydbgetnonce: 1, fromhost: <connection string> } );
  *
- * Run against the mongod that is the intended target for the "copydb" command.  Used to get a
+ * Run against the mongold that is the intended target for the "copydb" command.  Used to get a
  * nonce from the source of a "copydb" operation for authentication purposes.  See the
  * description of the "copydb" command below.
  */
@@ -135,7 +135,7 @@ public:
  *                         mechanism: <String>,
  *                         payload: <BinaryOrString> } );
  *
- * Run against the mongod that is the intended target for the "copydb" command.  Used to
+ * Run against the mongold that is the intended target for the "copydb" command.  Used to
  * initialize a SASL auth session for a "copydb" operation for authentication purposes.
  */
 class CmdCopyDbSaslStart : public Command {
@@ -216,4 +216,4 @@ public:
 
 } cmdCopyDBSaslStart;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/concurrency/lock_state.h"
+#include "mongol/db/concurrency/lock_state.h"
 
 #include <vector>
 
-#include "mongo/db/service_context.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/platform/compiler.h"
-#include "mongo/util/background.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/util/background.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
@@ -917,4 +917,4 @@ const ResourceId resourceCappedInFlightForLocalDb =
 const ResourceId resourceCappedInFlightForOtherDb =
     ResourceId(RESOURCE_METADATA, ResourceId::SINGLETON_CAPPED_IN_FLIGHT_OTHER_DB);
 
-}  // namespace mongo
+}  // namespace mongol

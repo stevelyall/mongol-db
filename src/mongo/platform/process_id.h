@@ -35,9 +35,9 @@
 #include <unistd.h>
 #endif
 
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/platform/hash_namespace.h"
 
-namespace mongo {
+namespace mongol {
 
 #ifdef _WIN32
 typedef DWORD NativeProcessId;
@@ -131,12 +131,12 @@ private:
 
 std::ostream& operator<<(std::ostream& os, ProcessId pid);
 
-}  // namespace mongo
+}  // namespace mongol
 
 MONGO_HASH_NAMESPACE_START
 template <>
-struct hash<::mongo::ProcessId> {
-    size_t operator()(const ::mongo::ProcessId pid) const {
+struct hash<::mongol::ProcessId> {
+    size_t operator()(const ::mongol::ProcessId pid) const {
         return hash<::std::uint32_t>()(pid.asUInt32());
     }
 };

@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/oplog_interface_mock.h"
+#include "mongol/db/repl/oplog_interface_mock.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -74,4 +74,4 @@ std::unique_ptr<OplogInterface::Iterator> OplogInterfaceMock::makeIterator() con
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

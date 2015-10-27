@@ -26,16 +26,16 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/pipeline/accumulator.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/util/string_map.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/pipeline/accumulator.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/util/string_map.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using Factory = Accumulator::Factory;
 
@@ -59,4 +59,4 @@ Factory Accumulator::getFactory(StringData name) {
     return it->second;
 }
 
-}  // namespace mongo
+}  // namespace mongol

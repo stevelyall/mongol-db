@@ -28,21 +28,21 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_parser.h"
 
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/matcher/expression_array.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/db/matcher/expression_tree.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/db/matcher/expression_tree.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 /**
  * Returns true if subtree contains MatchExpression 'type'.
@@ -61,7 +61,7 @@ bool hasNode(const MatchExpression* root, MatchExpression::MatchType type) {
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using stdx::make_unique;
@@ -74,7 +74,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseComparison(const char* na
     // Non-equality comparison match expressions cannot have
     // a regular expression as the argument (e.g. {a: {$gt: /b/}} is illegal).
     if (MatchExpression::EQ != cmp->matchType() && RegEx == e.type()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Can't have RegEx as arg to predicate over field '" << name << "'.";
         return {Status(ErrorCodes::BadValue, ss)};
     }
@@ -93,10 +93,10 @@ StatusWithMatchExpression MatchExpressionParser::_parseSubField(const BSONObj& c
                                                                 int level) {
     // TODO: these should move to getGtLtOp, or its replacement
 
-    if (mongoutils::str::equals("$eq", e.fieldName()))
+    if (mongolutils::str::equals("$eq", e.fieldName()))
         return _parseComparison(name, new EqualityMatchExpression(), e);
 
-    if (mongoutils::str::equals("$not", e.fieldName())) {
+    if (mongolutils::str::equals("$not", e.fieldName())) {
         return _parseNot(name, e, level);
     }
 
@@ -104,12 +104,12 @@ StatusWithMatchExpression MatchExpressionParser::_parseSubField(const BSONObj& c
     switch (x) {
         case -1:
             // $where cannot be a sub-expression because it works on top-level documents only.
-            if (mongoutils::str::equals("$where", e.fieldName())) {
+            if (mongolutils::str::equals("$where", e.fieldName())) {
                 return {Status(ErrorCodes::BadValue, "$where cannot be applied to a field")};
             }
 
             return {Status(ErrorCodes::BadValue,
-                           mongoutils::str::stream() << "unknown operator: " << e.fieldName())};
+                           mongolutils::str::stream() << "unknown operator: " << e.fieldName())};
         case BSONObj::LT:
             return _parseComparison(name, new LTMatchExpression(), e);
         case BSONObj::LTE:
@@ -271,12 +271,12 @@ StatusWithMatchExpression MatchExpressionParser::_parseSubField(const BSONObj& c
     }
 
     return {Status(ErrorCodes::BadValue,
-                   mongoutils::str::stream() << "not handled: " << e.fieldName())};
+                   mongolutils::str::stream() << "not handled: " << e.fieldName())};
 }
 
 StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int level) {
     if (level > kMaximumTreeDepth) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "exceeded maximum query tree depth of " << kMaximumTreeDepth << " at "
            << obj.toString();
         return {Status(ErrorCodes::BadValue, ss)};
@@ -294,7 +294,7 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
             const char* rest = e.fieldName() + 1;
 
             // TODO: optimize if block?
-            if (mongoutils::str::equals("or", rest)) {
+            if (mongolutils::str::equals("or", rest)) {
                 if (e.type() != Array)
                     return {Status(ErrorCodes::BadValue, "$or needs an array")};
                 std::unique_ptr<OrMatchExpression> temp = stdx::make_unique<OrMatchExpression>();
@@ -302,7 +302,7 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
                 if (!s.isOK())
                     return s;
                 root->add(temp.release());
-            } else if (mongoutils::str::equals("and", rest)) {
+            } else if (mongolutils::str::equals("and", rest)) {
                 if (e.type() != Array)
                     return {Status(ErrorCodes::BadValue, "and needs an array")};
                 std::unique_ptr<AndMatchExpression> temp = stdx::make_unique<AndMatchExpression>();
@@ -310,7 +310,7 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
                 if (!s.isOK())
                     return s;
                 root->add(temp.release());
-            } else if (mongoutils::str::equals("nor", rest)) {
+            } else if (mongolutils::str::equals("nor", rest)) {
                 if (e.type() != Array)
                     return {Status(ErrorCodes::BadValue, "and needs an array")};
                 std::unique_ptr<NorMatchExpression> temp = stdx::make_unique<NorMatchExpression>();
@@ -318,19 +318,19 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
                 if (!s.isOK())
                     return s;
                 root->add(temp.release());
-            } else if (mongoutils::str::equals("atomic", rest) ||
-                       mongoutils::str::equals("isolated", rest)) {
+            } else if (mongolutils::str::equals("atomic", rest) ||
+                       mongolutils::str::equals("isolated", rest)) {
                 if (!topLevel)
                     return {Status(ErrorCodes::BadValue,
                                    "$atomic/$isolated has to be at the top level")};
                 if (e.trueValue())
                     root->add(new AtomicMatchExpression());
-            } else if (mongoutils::str::equals("where", rest)) {
+            } else if (mongolutils::str::equals("where", rest)) {
                 StatusWithMatchExpression s = _whereCallback->parseWhere(e);
                 if (!s.isOK())
                     return s;
                 root->add(s.getValue().release());
-            } else if (mongoutils::str::equals("text", rest)) {
+            } else if (mongolutils::str::equals("text", rest)) {
                 if (e.type() != Object) {
                     return {Status(ErrorCodes::BadValue, "$text expects an object")};
                 }
@@ -339,9 +339,9 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
                     return s;
                 }
                 root->add(s.getValue().release());
-            } else if (mongoutils::str::equals("comment", rest)) {
-            } else if (mongoutils::str::equals("ref", rest) ||
-                       mongoutils::str::equals("id", rest) || mongoutils::str::equals("db", rest)) {
+            } else if (mongolutils::str::equals("comment", rest)) {
+            } else if (mongolutils::str::equals("ref", rest) ||
+                       mongolutils::str::equals("id", rest) || mongolutils::str::equals("db", rest)) {
                 // DBRef fields.
                 std::unique_ptr<ComparisonMatchExpression> eq =
                     stdx::make_unique<EqualityMatchExpression>();
@@ -352,7 +352,7 @@ StatusWithMatchExpression MatchExpressionParser::_parse(const BSONObj& obj, int 
                 root->add(eq.release());
             } else {
                 return {Status(ErrorCodes::BadValue,
-                               mongoutils::str::stream()
+                               mongolutils::str::stream()
                                    << "unknown top level operator: " << e.fieldName())};
             }
 
@@ -403,7 +403,7 @@ Status MatchExpressionParser::_parseSub(const char* name,
     // we hand the entire object over to the geo parsing routines.
 
     if (level > kMaximumTreeDepth) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "exceeded maximum query tree depth of " << kMaximumTreeDepth << " at "
            << sub.toString();
         return Status(ErrorCodes::BadValue, ss);
@@ -421,9 +421,9 @@ Status MatchExpressionParser::_parseSub(const char* name,
             const char* fieldName = firstElt.fieldName();
             // TODO: Having these $fields here isn't ideal but we don't want to pull in anything
             // from db/geo at this point, since it may not actually be linked in...
-            if (mongoutils::str::equals(fieldName, "$near") ||
-                mongoutils::str::equals(fieldName, "$nearSphere") ||
-                mongoutils::str::equals(fieldName, "$geoNear")) {
+            if (mongolutils::str::equals(fieldName, "$near") ||
+                mongolutils::str::equals(fieldName, "$nearSphere") ||
+                mongolutils::str::equals(fieldName, "$geoNear")) {
                 StatusWithMatchExpression s =
                     expressionParserGeoCallback(name, firstElt.getGtLtOp(), sub);
                 if (s.isOK()) {
@@ -491,15 +491,15 @@ bool MatchExpressionParser::_isDBRefDocument(const BSONObj& obj, bool allowIncom
         BSONElement element = i.next();
         const char* fieldName = element.fieldName();
         // $ref
-        if (!hasRef && mongoutils::str::equals("$ref", fieldName)) {
+        if (!hasRef && mongolutils::str::equals("$ref", fieldName)) {
             hasRef = true;
         }
         // $id
-        else if (!hasID && mongoutils::str::equals("$id", fieldName)) {
+        else if (!hasID && mongolutils::str::equals("$id", fieldName)) {
             hasID = true;
         }
         // $db
-        else if (!hasDB && mongoutils::str::equals("$db", fieldName)) {
+        else if (!hasDB && mongolutils::str::equals("$db", fieldName)) {
             hasDB = true;
         }
     }
@@ -687,10 +687,10 @@ StatusWithMatchExpression MatchExpressionParser::_parseElemMatch(const char* nam
         BSONElement elt = o.firstElement();
         invariant(!elt.eoo());
 
-        isElemMatchValue = !mongoutils::str::equals("$and", elt.fieldName()) &&
-            !mongoutils::str::equals("$nor", elt.fieldName()) &&
-            !mongoutils::str::equals("$or", elt.fieldName()) &&
-            !mongoutils::str::equals("$where", elt.fieldName());
+        isElemMatchValue = !mongolutils::str::equals("$and", elt.fieldName()) &&
+            !mongolutils::str::equals("$nor", elt.fieldName()) &&
+            !mongolutils::str::equals("$or", elt.fieldName()) &&
+            !mongolutils::str::equals("$where", elt.fieldName());
     }
 
     if (isElemMatchValue) {
@@ -752,7 +752,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseAll(const char* name,
     BSONObjIterator i(arr);
 
     if (arr.firstElement().type() == Object &&
-        mongoutils::str::equals("$elemMatch",
+        mongolutils::str::equals("$elemMatch",
                                 arr.firstElement().Obj().firstElement().fieldName())) {
         // $all : [ { $elemMatch : {} } ... ]
 
@@ -765,7 +765,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseAll(const char* name,
             }
 
             BSONObj hopefullyElemMatchObj = hopefullyElemMatchElement.Obj();
-            if (!mongoutils::str::equals("$elemMatch",
+            if (!mongolutils::str::equals("$elemMatch",
                                          hopefullyElemMatchObj.firstElement().fieldName())) {
                 // $all : [ { $elemMatch : ... }, { x : 5 } ]
                 return {Status(ErrorCodes::BadValue, "$all/$elemMatch has to be consistent")};
@@ -834,7 +834,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseBitTest(const char* name,
 
             // NaN doubles are rejected.
             if (std::isnan(eDouble)) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << name << " cannot take a NaN";
                 return Status(ErrorCodes::BadValue, ss);
             }
@@ -844,14 +844,14 @@ StatusWithMatchExpression MatchExpressionParser::_parseBitTest(const char* name,
             // compared against 2^63. eDouble=2^63 would not get caught that way.
             if (eDouble >= BitTestMatchExpression::kLongLongMaxPlusOneAsDouble ||
                 eDouble < std::numeric_limits<long long>::min()) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << name << " cannot be represented as a 64-bit integer: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
 
             // This checks if e is an integral double.
             if (eDouble != static_cast<double>(static_cast<long long>(eDouble))) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << name << " cannot have a fractional part but received: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
@@ -861,7 +861,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseBitTest(const char* name,
 
         // No negatives.
         if (bitMask < 0) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << name << " cannot take a negative number: " << e;
             return Status(ErrorCodes::BadValue, ss);
         }
@@ -881,7 +881,7 @@ StatusWithMatchExpression MatchExpressionParser::_parseBitTest(const char* name,
             return s;
         }
     } else {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << name << " takes an Array, a number, or a BinData but received: " << e;
         return Status(ErrorCodes::BadValue, ss);
     }
@@ -896,7 +896,7 @@ StatusWith<std::vector<uint32_t>> MatchExpressionParser::_parseBitPositionsArray
     // Fill temporary bit position array with integers read from the BSON array.
     for (const BSONElement& e : theArray) {
         if (!e.isNumber()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "bit positions must be an integer but got: " << e;
             return Status(ErrorCodes::BadValue, ss);
         }
@@ -906,7 +906,7 @@ StatusWith<std::vector<uint32_t>> MatchExpressionParser::_parseBitPositionsArray
 
             // NaN doubles are rejected.
             if (std::isnan(eDouble)) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "bit positions cannot take a NaN: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
@@ -914,14 +914,14 @@ StatusWith<std::vector<uint32_t>> MatchExpressionParser::_parseBitPositionsArray
             // This makes sure e does not overflow a 32-bit integer container.
             if (eDouble > std::numeric_limits<int>::max() ||
                 eDouble < std::numeric_limits<int>::min()) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "bit positions cannot be represented as a 32-bit signed integer: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
 
             // This checks if e is integral.
             if (eDouble != static_cast<double>(static_cast<long long>(eDouble))) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "bit positions must be an integer but got: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
@@ -933,7 +933,7 @@ StatusWith<std::vector<uint32_t>> MatchExpressionParser::_parseBitPositionsArray
             // This makes sure e does not overflow a 32-bit integer container.
             if (eLong > std::numeric_limits<int>::max() ||
                 eLong < std::numeric_limits<int>::min()) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "bit positions cannot be represented as a 32-bit signed integer: " << e;
                 return Status(ErrorCodes::BadValue, ss);
             }
@@ -943,7 +943,7 @@ StatusWith<std::vector<uint32_t>> MatchExpressionParser::_parseBitPositionsArray
 
         // No negatives.
         if (eValue < 0) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "bit positions must be >= 0 but got: " << e;
             return Status(ErrorCodes::BadValue, ss);
         }

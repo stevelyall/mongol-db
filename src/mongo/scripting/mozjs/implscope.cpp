@@ -26,29 +26,29 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/implscope.h"
 
 #include <jscustomallocator.h>
 #include <jsfriendapi.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-using namespace mongoutils;
+using namespace mongolutils;
 
-namespace mongo {
+namespace mongol {
 
 // Generated symbols for JS files
 namespace JSFiles {
@@ -197,15 +197,15 @@ void MozJSImplScope::_gcCallback(JSRuntime* rt, JSGCStatus status, void* data) {
     }
 
     log() << "MozJS GC " << (status == JSGC_BEGIN ? "prologue" : "epilogue") << " heap stats - "
-          << " total: " << mongo::sm::get_total_bytes() << " limit: " << mongo::sm::get_max_bytes()
+          << " total: " << mongol::sm::get_total_bytes() << " limit: " << mongol::sm::get_max_bytes()
           << std::endl;
 }
 
 MozJSImplScope::MozRuntime::MozRuntime() {
-    mongo::sm::reset(kMallocMemoryLimit);
+    mongol::sm::reset(kMallocMemoryLimit);
 
     // If this runtime isn't running on an NSPR thread, then it is
-    // running on a mongo thread. In that case, we need to insert a
+    // running on a mongol thread. In that case, we need to insert a
     // fake NSPR thread so that the SM runtime can call PR functions
     // without falling over.
     auto thread = PR_GetCurrentThread();
@@ -284,9 +284,9 @@ MozJSImplScope::MozJSImplScope(MozJSScriptEngine* engine)
       _jsThreadProto(_context),
       _maxKeyProto(_context),
       _minKeyProto(_context),
-      _mongoExternalProto(_context),
-      _mongoHelpersProto(_context),
-      _mongoLocalProto(_context),
+      _mongolExternalProto(_context),
+      _mongolHelpersProto(_context),
+      _mongolLocalProto(_context),
       _nativeFunctionProto(_context),
       _numberIntProto(_context),
       _numberLongProto(_context),
@@ -326,7 +326,7 @@ MozJSImplScope::MozJSImplScope(MozJSScriptEngine* engine)
 
     // install global utility functions
     installGlobalUtils(*this);
-    _mongoHelpersProto.install(_global);
+    _mongolHelpersProto.install(_global);
 }
 
 MozJSImplScope::~MozJSImplScope() {
@@ -663,13 +663,13 @@ void MozJSImplScope::localConnectForDbEval(OperationContext* txn, const char* db
     installDBAccess();
 
     // install the Mongo function object and instantiate the 'db' global
-    _mongoLocalProto.install(_global);
+    _mongolLocalProto.install(_global);
     execCoreFiles();
 
-    const char* const makeMongo = "_mongo = new Mongo()";
+    const char* const makeMongo = "_mongol = new Mongo()";
     exec(makeMongo, "local connect 2", false, true, true, 0);
 
-    std::string makeDB = str::stream() << "db = _mongo.getDB(\"" << dbName << "\");";
+    std::string makeDB = str::stream() << "db = _mongol.getDB(\"" << dbName << "\");";
     exec(makeDB, "local connect 3", false, true, true, 0);
 
     _connectState = ConnectState::Local;
@@ -686,7 +686,7 @@ void MozJSImplScope::externalSetup() {
     if (_connectState == ConnectState::Local)
         uasserted(12512, "localConnect already called, can't call externalSetup");
 
-    mongo::sm::reset(0);
+    mongol::sm::reset(0);
 
     // install db access functions in the global object
     installDBAccess();
@@ -695,7 +695,7 @@ void MozJSImplScope::externalSetup() {
     installFork();
 
     // install the Mongo function object
-    _mongoExternalProto.install(_global);
+    _mongolExternalProto.install(_global);
     execCoreFiles();
     _connectState = ConnectState::External;
 }
@@ -827,4 +827,4 @@ const std::string& MozJSImplScope::getParentStack() const {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

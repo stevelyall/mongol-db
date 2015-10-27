@@ -30,9 +30,9 @@
 
 #include <memory>
 
-#include "mongo/executor/async_stream_factory_interface.h"
+#include "mongol/executor/async_stream_factory_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class AsyncStreamInterface;
@@ -46,4 +46,4 @@ public:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

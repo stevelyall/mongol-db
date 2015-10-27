@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/s/grid.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 //
@@ -55,4 +55,4 @@ public:
 } clusterCursorStats;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 #include <string>
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/cluster_last_error_info.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/cluster_last_error_info.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class CmdShardingResetError : public Command {
@@ -86,4 +86,4 @@ public:
 } cmdShardingResetError;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

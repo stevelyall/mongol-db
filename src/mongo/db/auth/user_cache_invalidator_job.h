@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/bson/oid.h"
-#include "mongo/util/background.h"
+#include "mongol/bson/oid.h"
+#include "mongol/util/background.h"
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationManager;
 class OperationContext;
 
 /**
- * Background job that runs only in mongos and periodically checks in with the config servers
+ * Background job that runs only in mongols and periodically checks in with the config servers
  * to determine whether any authorization information has changed, and if so causes the
  * AuthorizationManager to throw out its in-memory cache of User objects (which contains the
  * users' credentials, roles, privileges, etc).
@@ -56,4 +56,4 @@ private:
     OID _previousCacheGeneration;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/keep_mutations.h"
+#include "mongol/db/exec/keep_mutations.h"
 
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -133,4 +133,4 @@ const SpecificStats* KeepMutationsStage::getSpecificStats() const {
     return NULL;
 }
 
-}  // namespace mongo
+}  // namespace mongol

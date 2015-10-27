@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <utility>
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-using namespace mongo;
-using namespace mongo::rpc;
-using mongo::unittest::assertGet;
+using namespace mongol;
+using namespace mongol::rpc;
+using mongol::unittest::assertGet;
 
 ServerSelectionMetadata checkParse(const BSONObj& metadata) {
     return assertGet(ServerSelectionMetadata::readFromMetadata(metadata));
@@ -105,7 +105,7 @@ TEST(ServerSelectionMetadata, UpconvertValidMetadata) {
     checkUpconvert(
         BSON("$query" << BSON("ping" << 1) << "$readPreference" << BSON("mode"
                                                                         << "secondary")),
-        mongo::QueryOption_SlaveOk,
+        mongol::QueryOption_SlaveOk,
         BSON("ping" << 1),
         BSON("$ssm" << BSON("$secondaryOk" << 1 << "$readPreference" << BSON("mode"
                                                                              << "secondary"))));

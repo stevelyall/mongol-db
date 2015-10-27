@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/audit.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -99,7 +99,7 @@ public:
                 return false;
             }
 
-            // it's fine if mongods of a set all use default port
+            // it's fine if mongolds of a set all use default port
             if (!serverAddrs[i].hasPort()) {
                 serverAddrs[i] =
                     HostAndPort(serverAddrs[i].host(), ServerGlobalParams::ShardServerPort);
@@ -137,4 +137,4 @@ public:
 
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

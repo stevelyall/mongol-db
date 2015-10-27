@@ -29,7 +29,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace mongo {
+namespace mongol {
 
 class Message;
 
@@ -77,5 +77,5 @@ StatusWith<RemoteCommandResponse> upconvertLegacyGetMoreResponse(std::uint32_t r
                                                                  StringData cursorNamespace,
                                                                  const Message& response);
 
-}  // namespace mongo
+}  // namespace mongol
 }  // namespace executor

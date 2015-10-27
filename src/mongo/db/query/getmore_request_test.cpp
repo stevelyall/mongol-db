@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/jsobj.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(GetMoreRequestTest, parseFromBSONEmptyCommandObject) {
     StatusWith<GetMoreRequest> result = GetMoreRequest::parseFromBSON("db", BSONObj());

@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <ostream>
 
-#include "mongo/util/thread_safe_string.h"
+#include "mongol/util/thread_safe_string.h"
 
-namespace mongo {
+namespace mongol {
 
 std::ostream& operator<<(std::ostream& s, const ThreadSafeString& o) {
     return s << o.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

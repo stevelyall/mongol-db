@@ -31,9 +31,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/bson/oid.h"
+#include "mongol/bson/oid.h"
 
-namespace mongo {
+namespace mongol {
 struct HostAndPort;
 
 namespace repl {
@@ -60,4 +60,4 @@ bool isSelf(const HostAndPort& hostAndPort);
 std::vector<std::string> getBoundAddrs(const bool ipv6enabled);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

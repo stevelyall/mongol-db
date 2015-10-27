@@ -31,11 +31,11 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/storage/sorted_data_interface.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/storage/sorted_data_interface.h"
 
-namespace mongo {
+namespace mongol {
 class Collection;
 
 /**
@@ -90,4 +90,4 @@ private:
     const BSONObj _keyPattern;
 };
 
-}  // namespace mongo
+}  // namespace mongol

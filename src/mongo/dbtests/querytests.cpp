@@ -28,26 +28,26 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/json.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/find.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/timer.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/json.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/find.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/timer.h"
 
 namespace QueryTests {
 
@@ -215,10 +215,10 @@ public:
 class ClientBase {
 public:
     ClientBase() : _client(&_txn) {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
     virtual ~ClientBase() {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
 
 protected:
@@ -915,7 +915,7 @@ public:
         const char* ns = "unittests.querytests.Size";
         _client.insert(ns, fromjson("{a:[1,2,3]}"));
         ASSERT_OK(dbtests::createIndex(&_txn, ns, BSON("a" << 1)));
-        ASSERT(_client.query(ns, QUERY("a" << mongo::BSIZE << 3).hint(BSON("a" << 1)))->more());
+        ASSERT(_client.query(ns, QUERY("a" << mongol::BSIZE << 3).hint(BSON("a" << 1)))->more());
     }
 };
 

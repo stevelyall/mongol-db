@@ -27,18 +27,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/ramlog.h"
+#include "mongol/logger/ramlog.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

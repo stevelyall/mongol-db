@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/db_raii.h"
+#include "mongol/db/db_raii.h"
 
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/stats/top.h"
-#include "mongo/s/d_state.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/s/d_state.h"
 
-namespace mongo {
+namespace mongol {
 
 AutoGetDb::AutoGetDb(OperationContext* txn, StringData ns, LockMode mode)
     : _dbLock(txn->lockState(), ns, mode), _db(dbHolder().get(txn, ns)) {}
@@ -219,4 +219,4 @@ OldClientWriteContext::OldClientWriteContext(OperationContext* opCtx, const std:
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

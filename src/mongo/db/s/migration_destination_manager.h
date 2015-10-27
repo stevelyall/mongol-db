@@ -30,16 +30,16 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/oid.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/oid.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class Status;
@@ -179,4 +179,4 @@ private:
     BSONObjBuilder _b;
 };
 
-}  // namespace mongo
+}  // namespace mongol

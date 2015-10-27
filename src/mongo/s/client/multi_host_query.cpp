@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/multi_host_query.h"
+#include "mongol/s/client/multi_host_query.h"
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::make_pair;

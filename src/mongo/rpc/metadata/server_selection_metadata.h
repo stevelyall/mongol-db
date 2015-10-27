@@ -30,11 +30,11 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/operation_context.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class Status;
@@ -106,7 +106,7 @@ public:
 
     /**
      * Returns the ReadPreference associated with this operation. See
-     * mongo/client/read_preference.h for further details.
+     * mongol/client/read_preference.h for further details.
      */
     const boost::optional<ReadPreferenceSetting>& getReadPreference() const;
 
@@ -128,4 +128,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

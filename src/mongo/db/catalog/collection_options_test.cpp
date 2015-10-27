@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/collection_options.h"
+#include "mongol/db/catalog/collection_options.h"
 
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 void checkRoundTrip(const CollectionOptions& options1) {
     CollectionOptions options2;

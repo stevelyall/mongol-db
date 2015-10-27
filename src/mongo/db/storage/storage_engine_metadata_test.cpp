@@ -26,7 +26,7 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/optional.hpp>
@@ -35,18 +35,18 @@
 #include <ios>
 #include <ostream>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/storage/storage_engine_metadata.h"
-#include "mongo/db/json.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
 using std::string;
-using mongo::unittest::TempDir;
+using mongol::unittest::TempDir;
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(StorageEngineMetadataTest, ReadNonExistentMetadataFile) {
     StorageEngineMetadata metadata("no_such_directory");

@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/s/query/cluster_find.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/s/query/cluster_find.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
- * Implements the getMore command on mongos. Retrieves more from an existing mongos cursor
+ * Implements the getMore command on mongols. Retrieves more from an existing mongols cursor
  * corresponding to the cursor id passed from the application. In order to generate these results,
  * may issue getMore commands to remote nodes in one or more shards.
  */
@@ -117,4 +117,4 @@ public:
 } cmdGetMoreCluster;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

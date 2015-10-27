@@ -28,22 +28,22 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/stats/snapshots.h"
+#include "mongol/db/stats/snapshots.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
 /**
    handles snapshotting performance metrics and other such things
  */
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;

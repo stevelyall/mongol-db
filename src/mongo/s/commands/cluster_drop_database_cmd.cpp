@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/base/status.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 
@@ -74,7 +74,7 @@ public:
                      int options,
                      std::string& errmsg,
                      BSONObjBuilder& result) {
-        // Disallow dropping the config database from mongos
+        // Disallow dropping the config database from mongols
         if (dbname == "config") {
             return appendCommandStatus(
                 result, Status(ErrorCodes::IllegalOperation, "Cannot drop the config database"));
@@ -119,4 +119,4 @@ public:
 } clusterDropDatabaseCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

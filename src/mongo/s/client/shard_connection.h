@@ -30,9 +30,9 @@
 
 #include <string>
 
-#include "mongo/client/connpool.h"
+#include "mongol/client/connpool.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkManager;
 
@@ -152,4 +152,4 @@ typedef std::shared_ptr<ShardConnection> ShardConnectionPtr;
 
 extern DBConnectionPool shardConnectionPool;
 
-}  // namespace mongo
+}  // namespace mongol

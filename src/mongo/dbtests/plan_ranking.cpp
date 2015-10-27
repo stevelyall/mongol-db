@@ -32,31 +32,31 @@
 
 #include <iostream>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/exec/multi_plan.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_test_lib.h"
-#include "mongo/db/query/stage_builder.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/exec/multi_plan.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_test_lib.h"
+#include "mongol/db/query/stage_builder.h"
+#include "mongol/dbtests/dbtests.h"
 
 
-namespace mongo {
+namespace mongol {
 
 // How we access the external setParameter testing bool.
 extern std::atomic<bool> internalQueryForceIntersectionPlans;  // NOLINT
 
 extern std::atomic<bool> internalQueryPlannerEnableHashIntersection;  // NOLINT
 
-}  // namespace mongo
+}  // namespace mongol
 
 namespace PlanRankingTests {
 

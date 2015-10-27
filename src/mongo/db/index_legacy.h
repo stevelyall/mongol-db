@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class IndexDescriptor;
@@ -72,4 +72,4 @@ public:
                                    const BSONObj& infoObj);
 };
 
-}  // namespace mongo
+}  // namespace mongol

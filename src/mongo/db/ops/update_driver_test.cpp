@@ -26,33 +26,33 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/update_driver.h"
+#include "mongol/db/ops/update_driver.h"
 
 
 #include <map>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/json.h"
-#include "mongo/db/update_index_data.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/json.h"
+#include "mongol/db/update_index_data.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::BSONElement;
-using mongo::BSONObjIterator;
-using mongo::FieldRef;
-using mongo::fromjson;
-using mongo::OwnedPointerVector;
-using mongo::UpdateIndexData;
-using mongo::mutablebson::Document;
-using mongo::StringData;
-using mongo::UpdateDriver;
-using mongoutils::str::stream;
+using mongol::BSONObj;
+using mongol::BSONElement;
+using mongol::BSONObjIterator;
+using mongol::FieldRef;
+using mongol::fromjson;
+using mongol::OwnedPointerVector;
+using mongol::UpdateIndexData;
+using mongol::mutablebson::Document;
+using mongol::StringData;
+using mongol::UpdateDriver;
+using mongolutils::str::stream;
 
 TEST(Parse, Normal) {
     UpdateDriver::Options opts;
@@ -132,7 +132,7 @@ TEST(Parse, SetOnInsert) {
 // NONGOAL: Testing all query parsing and nesting combinations
 //
 
-class CreateFromQueryFixture : public mongo::unittest::Test {
+class CreateFromQueryFixture : public mongol::unittest::Test {
 public:
     CreateFromQueryFixture()
         : _driverOps(new UpdateDriver(UpdateDriver::Options())),
@@ -171,7 +171,7 @@ static void assertSameFields(const BSONObj& docA, const BSONObj& docB);
 static void assertSameElements(const BSONElement& elA, const BSONElement& elB) {
     if (elA.type() != elB.type() || (!elA.isABSONObj() && !elA.valuesEqual(elB))) {
         FAIL(stream() << "element " << elA << " not equal to " << elB);
-    } else if (elA.type() == mongo::Array) {
+    } else if (elA.type() == mongol::Array) {
         std::vector<BSONElement> elsA = elA.Array();
         std::vector<BSONElement> elsB = elB.Array();
         if (elsA.size() != elsB.size())
@@ -182,7 +182,7 @@ static void assertSameElements(const BSONElement& elA, const BSONElement& elB) {
         for (; arrItA != elsA.end(); ++arrItA, ++arrItB) {
             assertSameElements(*arrItA, *arrItB);
         }
-    } else if (elA.type() == mongo::Object) {
+    } else if (elA.type() == mongol::Object) {
         assertSameFields(elA.Obj(), elB.Obj());
     }
 }

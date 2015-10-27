@@ -30,10 +30,10 @@
 
 #include <tuple>
 
-#include "mongo/base/status_with.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/status_with.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class OperationContext;
@@ -119,4 +119,4 @@ using RequestMetadataWriter = stdx::function<Status(BSONObjBuilder*, StringData)
 using ReplyMetadataReader = stdx::function<Status(const BSONObj&, StringData)>;
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

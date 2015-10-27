@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/message_port_mock.h"
+#include "mongol/util/net/message_port_mock.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -64,4 +64,4 @@ void MessagingPortMock::setRemote(const HostAndPort& remote) {
     _remote = remote;
 }
 
-}  // namespace mongo
+}  // namespace mongol

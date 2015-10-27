@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Insert a key and try to locate it using a forward cursor
 // by specifying its exact key and RecordId.
@@ -641,4 +641,4 @@ TEST(SortedDataInterface, LocateEmptyReversed) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,7 +30,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class AlignedBuilder;
 class JSectHeader;
@@ -84,4 +84,4 @@ void WRITETOJOURNAL(const JSectHeader& h, const AlignedBuilder& uncompressed);
 // in case disk controller buffers writes
 const long long ExtraKeepTimeMs = 10000;
 }  // namespace dur
-}  // namespace mongo
+}  // namespace mongol

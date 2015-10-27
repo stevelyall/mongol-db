@@ -31,15 +31,15 @@
  */
 
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/exec/near.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/exec/near.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::shared_ptr;
 using std::unique_ptr;
 using std::vector;

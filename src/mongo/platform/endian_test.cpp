@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/endian.h"
+#include "mongol/platform/endian.h"
 
 #include <cstring>
 
-#include "mongo/config.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/config.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using namespace endian;
 
@@ -552,4 +552,4 @@ TEST(EndianTest, BigToNative_double) {
 #endif
 }
 
-}  // namespace mongo
+}  // namespace mongol

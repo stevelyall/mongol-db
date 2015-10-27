@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/db/field_parser.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/geo/shapes.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/util/mongolutils/str.h"
 
 #include <algorithm>  // for max()
 #include <iostream>
 
 // So we can get at the str namespace.
-using namespace mongoutils;
+using namespace mongolutils;
 
-namespace mongo {
+namespace mongol {
 
 using std::stringstream;
 
@@ -824,4 +824,4 @@ unsigned GeoHashConverter::convertToHashScale(double in) const {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,9 +30,9 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mutablebson {
 class Element;
@@ -236,6 +236,6 @@ private:
 // Convenience method for unittest code. Please use accessors otherwise.
 std::ostream& operator<<(std::ostream& os, const SafeNum& snum);
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/util/safe_num-inl.h"
+#include "mongol/util/safe_num-inl.h"

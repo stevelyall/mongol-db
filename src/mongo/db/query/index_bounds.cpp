@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/index_bounds.h"
+#include "mongol/db/query/index_bounds.h"
 
 #include <algorithm>
 #include <tuple>
 #include <utility>
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -122,7 +122,7 @@ bool IndexBounds::operator!=(const IndexBounds& other) const {
 }
 
 string OrderedIntervalList::toString() const {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "['" << name << "']: ";
     for (size_t j = 0; j < intervals.size(); ++j) {
         ss << intervals[j].toString();
@@ -211,7 +211,7 @@ void OrderedIntervalList::complement() {
 }
 
 string IndexBounds::toString() const {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     if (isSimpleRange) {
         ss << "[" << startKey.toString() << ", ";
         if (endKey.isEmpty()) {
@@ -608,4 +608,4 @@ IndexBoundsChecker::Location IndexBoundsChecker::findIntervalForField(
     return where;
 }
 
-}  // namespace mongo
+}  // namespace mongol

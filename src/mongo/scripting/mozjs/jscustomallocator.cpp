@@ -26,15 +26,15 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cstddef>
 #include <type_traits>
 #include <jscustomallocator.h>
 
-#include "mongo/config.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/scripting/mozjs/implscope.h"
+#include "mongol/config.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/scripting/mozjs/implscope.h"
 
 #ifdef __linux__
 #include <malloc.h>
@@ -48,7 +48,7 @@
 
 /**
  * This shim interface (which controls dynamic allocation within SpiderMonkey),
- * consciously uses std::malloc and friends over mongoMalloc. It does this
+ * consciously uses std::malloc and friends over mongolMalloc. It does this
  * because SpiderMonkey has some plausible options in the event of OOM,
  * specifically it can begin aggressive garbage collection. It would also be
  * reasonable to go the other route and fail, but for the moment I erred on the
@@ -59,7 +59,7 @@
  * waiting for the OS to OOM us.
  */
 
-namespace mongo {
+namespace mongol {
 namespace sm {
 
 namespace {
@@ -113,7 +113,7 @@ void* wrap_alloc(T&& func, void* ptr, size_t bytes) {
     size_t tb = get_total_bytes();
 
     if (mb && (tb + bytes > mb)) {
-        auto scope = mongo::mozjs::MozJSImplScope::getThreadScope();
+        auto scope = mongol::mozjs::MozJSImplScope::getThreadScope();
         invariant(scope);
 
         scope->setOOM();
@@ -159,20 +159,20 @@ size_t get_current(void* ptr) {
 }
 
 }  // namespace sm
-}  // namespace mongo
+}  // namespace mongol
 
 void* js_malloc(size_t bytes) {
-    return mongo::sm::wrap_alloc(
+    return mongol::sm::wrap_alloc(
         [](void* ptr, size_t b) { return std::malloc(b); }, nullptr, bytes);
 }
 
 void* js_calloc(size_t bytes) {
-    return mongo::sm::wrap_alloc(
+    return mongol::sm::wrap_alloc(
         [](void* ptr, size_t b) { return std::calloc(b, 1); }, nullptr, bytes);
 }
 
 void* js_calloc(size_t nmemb, size_t size) {
-    return mongo::sm::wrap_alloc(
+    return mongol::sm::wrap_alloc(
         [](void* ptr, size_t b) { return std::calloc(b, 1); }, nullptr, nmemb * size);
 }
 
@@ -180,14 +180,14 @@ void js_free(void* p) {
     if (!p)
         return;
 
-    size_t current = mongo::sm::get_current(p);
-    size_t tb = mongo::sm::get_total_bytes();
+    size_t current = mongol::sm::get_current(p);
+    size_t tb = mongol::sm::get_total_bytes();
 
     if (tb >= current) {
-        mongo::sm::total_bytes = tb - current;
+        mongol::sm::total_bytes = tb - current;
     }
 
-    mongo::sm::wrap_alloc([](void* ptr, size_t b) {
+    mongol::sm::wrap_alloc([](void* ptr, size_t b) {
         std::free(ptr);
         return nullptr;
     }, p, 0);
@@ -203,19 +203,19 @@ void* js_realloc(void* p, size_t bytes) {
         return nullptr;
     }
 
-    size_t current = mongo::sm::get_current(p);
+    size_t current = mongol::sm::get_current(p);
 
     if (current >= bytes) {
         return p;
     }
 
-    size_t tb = mongo::sm::total_bytes;
+    size_t tb = mongol::sm::total_bytes;
 
     if (tb >= current) {
-        mongo::sm::total_bytes = tb - current;
+        mongol::sm::total_bytes = tb - current;
     }
 
-    return mongo::sm::wrap_alloc(
+    return mongol::sm::wrap_alloc(
         [](void* ptr, size_t b) { return std::realloc(ptr, b); }, p, bytes);
 }
 

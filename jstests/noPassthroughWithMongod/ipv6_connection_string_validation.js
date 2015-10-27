@@ -2,30 +2,30 @@
 // Related to SERVER-8030.
 
 // This file runs in two modes: outer and inner.  This is to enable testing with --ipv6.
-// The outer mode test starts a mongod with --ipv6 and then starts a mongo shell with --ipv6
+// The outer mode test starts a mongold with --ipv6 and then starts a mongol shell with --ipv6
 // and a command line to run the test in inner_mode.  The inner mode test is the actual test.
 
 if ("undefined" == typeof inner_mode) {
-    // Start a mongod with --ipv6
-    jsTest.log("Outer mode test starting mongod with --ipv6");
+    // Start a mongold with --ipv6
+    jsTest.log("Outer mode test starting mongold with --ipv6");
     // NOTE: bind_ip arg is present to test if it can parse ipv6 addresses (::1 in this case).
     // Unfortunately, having bind_ip = ::1 won't work in the test framework (But does work when
-    // tested manually), so 127.0.0.1 is also present so the test mongo shell can connect
+    // tested manually), so 127.0.0.1 is also present so the test mongol shell can connect
     // with that address.
-    var mongod = MongoRunner.runMongod({ipv6: "", bind_ip: "::1,127.0.0.1"});
-    var args = ["mongo",
+    var mongold = MongoRunner.runMongod({ipv6: "", bind_ip: "::1,127.0.0.1"});
+    var args = ["mongol",
                 "--nodb",
                 "--ipv6",
                 "--host", "::1",
-                "--port", mongod.port,
-                "--eval", "inner_mode=true;port=" + mongod.port + ";",
+                "--port", mongold.port,
+                "--eval", "inner_mode=true;port=" + mongold.port + ";",
                 "jstests/noPassthroughWithMongod/ipv6_connection_string_validation.js" ];
     var exitCode = _runMongoProgram.apply(null, args);
     jsTest.log("Inner mode test finished, exit code was " + exitCode);
 
     // Stop the server we started
     jsTest.log("Outer mode test stopping server");
-    MongoRunner.stopMongod(mongod.port, 15);
+    MongoRunner.stopMongod(mongold.port, 15);
 
     // Pass the inner test's exit code back as the outer test's exit code
     quit(exitCode);

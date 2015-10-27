@@ -1,9 +1,9 @@
 // query.js
 
 if ( typeof DBQuery == "undefined" ){
-    DBQuery = function( mongo , db , collection , ns , query , fields , limit , skip , batchSize , options ){
+    DBQuery = function( mongol , db , collection , ns , query , fields , limit , skip , batchSize , options ){
 
-        this._mongo = mongo; // 0
+        this._mongol = mongol; // 0
         this._db = db; // 1
         this._collection = collection; // 2
         this._ns = ns; // 3
@@ -61,7 +61,7 @@ DBQuery.prototype.help = function () {
 }
 
 DBQuery.prototype.clone = function(){
-    var q =  new DBQuery( this._mongo , this._db , this._collection , this._ns ,
+    var q =  new DBQuery( this._mongol , this._db , this._collection , this._ns ,
         this._query , this._fields ,
         this._limit , this._skip , this._batchSize , this._options );
     q._special = this._special;
@@ -97,14 +97,14 @@ DBQuery.prototype._exec = function(){
         assert.eq( 0 , this._numReturned );
         this._cursorSeen = 0;
 
-        if (this._mongo.useReadCommands() && this._canUseFindCommand()) {
+        if (this._mongol.useReadCommands() && this._canUseFindCommand()) {
             var canAttachReadPref = true;
             var findCmd = this._convertToCommand(canAttachReadPref);
             var cmdRes = this._db.runReadCommand(findCmd, null, this._options);
-            this._cursor = new DBCommandCursor(this._mongo, cmdRes, this._batchSize);
+            this._cursor = new DBCommandCursor(this._mongol, cmdRes, this._batchSize);
         }
         else {
-            this._cursor = this._mongo.find(this._ns,
+            this._cursor = this._mongol.find(this._ns,
                                             this._query,
                                             this._fields,
                                             this._limit,
@@ -537,10 +537,10 @@ DBQuery.prototype.toString = function(){
 //
 
 /**
-* Get partial results from a mongos if some shards are down (instead of throwing an error).
+* Get partial results from a mongols if some shards are down (instead of throwing an error).
 *
 * @method
-* @see http://docs.mongodb.org/meta-driver/latest/legacy/mongodb-wire-protocol/#op-query
+* @see http://docs.mongoldb.org/meta-driver/latest/legacy/mongoldb-wire-protocol/#op-query
 * @return {DBQuery}
 */
 DBQuery.prototype.allowPartialResults = function() {
@@ -554,7 +554,7 @@ DBQuery.prototype.allowPartialResults = function() {
 * to prevent excess memory use. Set this option to prevent that.
 *
 * @method
-* @see http://docs.mongodb.org/meta-driver/latest/legacy/mongodb-wire-protocol/#op-query
+* @see http://docs.mongoldb.org/meta-driver/latest/legacy/mongoldb-wire-protocol/#op-query
 * @return {DBQuery}
 */
 DBQuery.prototype.noCursorTimeout = function() {
@@ -567,7 +567,7 @@ DBQuery.prototype.noCursorTimeout = function() {
 * Internal replication use only - driver should not set
 *
 * @method
-* @see http://docs.mongodb.org/meta-driver/latest/legacy/mongodb-wire-protocol/#op-query
+* @see http://docs.mongoldb.org/meta-driver/latest/legacy/mongoldb-wire-protocol/#op-query
 * @return {DBQuery}
 */
 DBQuery.prototype.oplogReplay = function() {
@@ -580,7 +580,7 @@ DBQuery.prototype.oplogReplay = function() {
 * Limits the fields to return for all matching documents.
 *
 * @method
-* @see http://docs.mongodb.org/manual/tutorial/project-fields-from-query-results/
+* @see http://docs.mongoldb.org/manual/tutorial/project-fields-from-query-results/
 * @param {object} document Document specifying the projection of the resulting documents.
 * @return {DBQuery}
 */
@@ -594,7 +594,7 @@ DBQuery.prototype.projection = function(document) {
 * Specify cursor as a tailable cursor, allowing to specify if it will use awaitData
 *
 * @method
-* @see http://docs.mongodb.org/manual/tutorial/create-tailable-cursor/
+* @see http://docs.mongoldb.org/manual/tutorial/create-tailable-cursor/
 * @param {boolean} [awaitData=true] cursor blocks for a few seconds to wait for data if no documents found.
 * @return {DBQuery}
 */
@@ -614,7 +614,7 @@ DBQuery.prototype.tailable = function(awaitData) {
 * Specify a document containing modifiers for the query.
 *
 * @method
-* @see http://docs.mongodb.org/manual/reference/operator/query-modifier/
+* @see http://docs.mongoldb.org/manual/reference/operator/query-modifier/
 * @param {object} document A document containing modifers to apply to the cursor.
 * @return {DBQuery}
 */
@@ -642,7 +642,7 @@ DBQuery.shellBatchSize = 20;
 
 /**
  * Query option flag bit constants.
- * @see http://dochub.mongodb.org/core/mongowireprotocol#MongoWireProtocol-OPQUERY
+ * @see http://dochub.mongoldb.org/core/mongolwireprotocol#MongoWireProtocol-OPQUERY
  */
 DBQuery.Option = {
     tailable: 0x2,
@@ -654,29 +654,29 @@ DBQuery.Option = {
     partial: 0x80
 };
 
-function DBCommandCursor(mongo, cmdResult, batchSize) {
+function DBCommandCursor(mongol, cmdResult, batchSize) {
     if (cmdResult.ok != 1) {
         throw _getErrorWithCode(cmdResult, "error: " + tojson(cmdResult));
     }
 
     this._batch = cmdResult.cursor.firstBatch.reverse(); // modifies input to allow popping
 
-    if (mongo.useReadCommands()) {
+    if (mongol.useReadCommands()) {
         this._useReadCommands = true;
         this._cursorid = cmdResult.cursor.id;
         this._batchSize = batchSize;
 
         this._ns = cmdResult.cursor.ns;
-        this._db = mongo.getDB(this._ns.substr(0, this._ns.indexOf(".")));
+        this._db = mongol.getDB(this._ns.substr(0, this._ns.indexOf(".")));
         this._collName = this._ns.substr(this._ns.indexOf(".") + 1);
 
         if (cmdResult.cursor.id) {
             // Note that setting this._cursorid to 0 should be accompanied by
             // this._cursorHandle.zeroCursorId().
-            this._cursorHandle = mongo.cursorHandleFromId(cmdResult.cursor.id);
+            this._cursorHandle = mongol.cursorHandleFromId(cmdResult.cursor.id);
         }
     } else {
-        this._cursor = mongo.cursorFromId(cmdResult.cursor.ns, cmdResult.cursor.id, batchSize);
+        this._cursor = mongol.cursorFromId(cmdResult.cursor.ns, cmdResult.cursor.id, batchSize);
     }
 }
 

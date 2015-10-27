@@ -4,12 +4,12 @@ var httpPort = conn.port + 1000;
 
 tryHttp = function() {
     try {
-        var mongo = new Mongo('localhost:' + httpPort) ;
+        var mongol = new Mongo('localhost:' + httpPort) ;
     }
     catch (e) {
         return false;
     }
-    // if we managed to start and connect a new mongo then the web interface is working
+    // if we managed to start and connect a new mongol then the web interface is working
     return true;
 }
 

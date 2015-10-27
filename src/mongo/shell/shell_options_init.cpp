@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/shell/shell_options.h"
+#include "mongol/shell/shell_options.h"
 
 #include <iostream>
 
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 MONGO_GENERAL_STARTUP_OPTIONS_REGISTER(MongoShellOptions)(InitializerContext* context) {
     return addMongoShellOptions(&moe::startupOptions);
 }

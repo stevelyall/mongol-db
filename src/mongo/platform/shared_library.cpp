@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/platform/shared_library.h"
+#include "mongol/platform/shared_library.h"
 
-namespace mongo {
+namespace mongol {
 
 typedef StatusWith<void (*)()> StatusWithFunc;
 
@@ -46,4 +46,4 @@ StatusWithFunc SharedLibrary::getFunction(StringData name) {
     return StatusWithFunc(reinterpret_cast<void (*)()>(s.getValue()));
 }
 
-}  // namespace mongo
+}  // namespace mongol

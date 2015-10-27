@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class LogBuilder;
 
@@ -199,4 +199,4 @@ struct ModifierInterface::ExecInfo {
     UpdateContext context;
 };
 
-}  // namespace mongo
+}  // namespace mongol

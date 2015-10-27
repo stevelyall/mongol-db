@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -95,4 +95,4 @@ struct RemoteCommandRequest {
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

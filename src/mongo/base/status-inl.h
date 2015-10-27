@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 inline Status Status::OK() {
     return Status();
@@ -108,4 +108,4 @@ inline bool operator!=(const ErrorCodes::Error lhs, const Status& rhs) {
     return rhs != lhs;
 }
 
-}  // namespace mongo
+}  // namespace mongol

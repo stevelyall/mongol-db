@@ -24,22 +24,22 @@ ShardingTest.prototype.upgradeCluster = function( binVersion, options ){
     
     if( options.upgradeMongos ){
         
-        // Upgrade all mongos hosts if specified
+        // Upgrade all mongols hosts if specified
         
-        var numMongoses = this._mongos.length
+        var numMongoses = this._mongols.length
         
         for( var i = 0; i < numMongoses; i++ ){
             
-            var mongos = this._mongos[i]
+            var mongols = this._mongols[i]
             
-            MongoRunner.stopMongos( mongos )
+            MongoRunner.stopMongos( mongols )
             
-            mongos = MongoRunner.runMongos({ restart : mongos,
+            mongols = MongoRunner.runMongos({ restart : mongols,
                                              binVersion : binVersion,
                                              appendOptions : true })
             
-            this[ "s" + i ] = this._mongos[i] = mongos
-            if( i == 0 ) this.s = mongos
+            this[ "s" + i ] = this._mongols[i] = mongols
+            if( i == 0 ) this.s = mongols
         }
         
         this.config = this.s.getDB( "config" )
@@ -110,17 +110,17 @@ ShardingTest.prototype.upgradeCluster = function( binVersion, options ){
 
 ShardingTest.prototype.restartMongoses = function() {
     
-    var numMongoses = this._mongos.length;
+    var numMongoses = this._mongols.length;
     
     for (var i = 0; i < numMongoses; i++) {
         
-        var mongos = this._mongos[i];
+        var mongols = this._mongols[i];
         
-        MongoRunner.stopMongos(mongos);
-        mongos = MongoRunner.runMongos({ restart : mongos })
+        MongoRunner.stopMongos(mongols);
+        mongols = MongoRunner.runMongos({ restart : mongols })
         
-        this[ "s" + i ] = this._mongos[i] = mongos;
-        if( i == 0 ) this.s = mongos;
+        this[ "s" + i ] = this._mongols[i] = mongols;
+        if( i == 0 ) this.s = mongols;
     }
     
     this.config = this.s.getDB( "config" )
@@ -128,17 +128,17 @@ ShardingTest.prototype.restartMongoses = function() {
 }
 
 ShardingTest.prototype.getMongosAtVersion = function(binVersion) {
-    var mongoses = this._mongos;
-    for (var i = 0; i < mongoses.length; i++) {
+    var mongolses = this._mongols;
+    for (var i = 0; i < mongolses.length; i++) {
         try {
-            var version = mongoses[i].getDB("admin").runCommand("serverStatus").version;
+            var version = mongolses[i].getDB("admin").runCommand("serverStatus").version;
             if (version.indexOf(binVersion) == 0) {
-                return mongoses[i];
+                return mongolses[i];
             }
         }
         catch (e) {
             printjson(e);
-            print(mongoses[i]);
+            print(mongolses[i]);
         }
     }
 }

@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/grid.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 
@@ -202,14 +202,14 @@ const char* ClusterExplain::getStageNameForReadOp(
 // static
 void ClusterExplain::buildPlannerInfo(OperationContext* txn,
                                       const vector<Strategy::CommandResult>& shardResults,
-                                      const char* mongosStageName,
+                                      const char* mongolsStageName,
                                       BSONObjBuilder* out) {
     BSONObjBuilder queryPlannerBob(out->subobjStart("queryPlanner"));
 
-    queryPlannerBob.appendNumber("mongosPlannerVersion", 1);
+    queryPlannerBob.appendNumber("mongolsPlannerVersion", 1);
     BSONObjBuilder winningPlanBob(queryPlannerBob.subobjStart("winningPlan"));
 
-    winningPlanBob.append("stage", mongosStageName);
+    winningPlanBob.append("stage", mongolsStageName);
     BSONArrayBuilder shardsBuilder(winningPlanBob.subarrayStart("shards"));
     for (size_t i = 0; i < shardResults.size(); i++) {
         BSONObjBuilder singleShardBob(shardsBuilder.subobjStart());
@@ -234,7 +234,7 @@ void ClusterExplain::buildPlannerInfo(OperationContext* txn,
 
 // static
 void ClusterExplain::buildExecStats(const vector<Strategy::CommandResult>& shardResults,
-                                    const char* mongosStageName,
+                                    const char* mongolsStageName,
                                     long long millisElapsed,
                                     BSONObjBuilder* out) {
     if (!shardResults[0].result.hasField("executionStats")) {
@@ -275,8 +275,8 @@ void ClusterExplain::buildExecStats(const vector<Strategy::CommandResult>& shard
     // Fill in the tree of stages.
     BSONObjBuilder executionStagesBob(executionStatsBob.subobjStart("executionStages"));
 
-    // Info for the root mongos stage.
-    executionStagesBob.append("stage", mongosStageName);
+    // Info for the root mongols stage.
+    executionStagesBob.append("stage", mongolsStageName);
     executionStatsBob.appendNumber("nReturned", nReturned);
     executionStatsBob.appendNumber("executionTimeMillis", millisElapsed);
     executionStatsBob.appendNumber("totalKeysExamined", keysExamined);
@@ -343,7 +343,7 @@ void ClusterExplain::buildExecStats(const vector<Strategy::CommandResult>& shard
 // static
 Status ClusterExplain::buildExplainResult(OperationContext* txn,
                                           const vector<Strategy::CommandResult>& shardResults,
-                                          const char* mongosStageName,
+                                          const char* mongolsStageName,
                                           long long millisElapsed,
                                           BSONObjBuilder* out) {
     // Explain only succeeds if all shards support the explain command.
@@ -352,10 +352,10 @@ Status ClusterExplain::buildExplainResult(OperationContext* txn,
         return validateStatus;
     }
 
-    buildPlannerInfo(txn, shardResults, mongosStageName, out);
-    buildExecStats(shardResults, mongosStageName, millisElapsed, out);
+    buildPlannerInfo(txn, shardResults, mongolsStageName, out);
+    buildExecStats(shardResults, mongolsStageName, millisElapsed, out);
 
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

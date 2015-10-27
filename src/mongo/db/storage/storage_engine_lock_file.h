@@ -31,10 +31,10 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 class StorageEngineLockFile {
     MONGO_DISALLOW_COPYING(StorageEngineLockFile);
@@ -63,7 +63,7 @@ public:
     bool createdByUncleanShutdown() const;
 
     /**
-     * Opens and locks 'mongod.lock' in 'dbpath' directory.
+     * Opens and locks 'mongold.lock' in 'dbpath' directory.
      */
     Status open();
 
@@ -92,4 +92,4 @@ private:
     std::unique_ptr<LockFileHandle> _lockFileHandle;
 };
 
-}  // namespace mongo
+}  // namespace mongol

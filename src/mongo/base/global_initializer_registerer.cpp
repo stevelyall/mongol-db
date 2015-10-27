@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/global_initializer_registerer.h"
+#include "mongol/base/global_initializer_registerer.h"
 
 #include <cstdlib>
 #include <iostream>
 
-#include "mongo/base/global_initializer.h"
-#include "mongo/base/initializer.h"
+#include "mongol/base/global_initializer.h"
+#include "mongol/base/initializer.h"
 
-namespace mongo {
+namespace mongol {
 
 GlobalInitializerRegisterer::GlobalInitializerRegisterer(
     const std::string& name,
@@ -50,4 +50,4 @@ GlobalInitializerRegisterer::GlobalInitializerRegisterer(
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

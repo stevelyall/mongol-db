@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/privilege.h"
+#include "mongol/db/auth/privilege.h"
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
 
-namespace mongo {
+namespace mongol {
 
 void Privilege::addPrivilegeToPrivilegeVector(PrivilegeVector* privileges,
                                               const Privilege& privilegeToAdd) {
@@ -74,4 +74,4 @@ BSONObj Privilege::toBSON() const {
     return pp.toBSON();
 }
 
-}  // namespace mongo
+}  // namespace mongol

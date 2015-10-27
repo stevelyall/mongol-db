@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <queue>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/password_digest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using executor::RemoteCommandRequest;
 using executor::RemoteCommandResponse;
 
@@ -52,7 +52,7 @@ using auth::RunCommandResultHandler;
  * Utility class to support tests in this file.  Allows caller to load
  * with pre-made responses and requests to interject into authentication methods.
  */
-class AuthClientTest : public mongo::unittest::Test {
+class AuthClientTest : public mongol::unittest::Test {
 public:
     AuthClientTest()
         : _mockHost(),

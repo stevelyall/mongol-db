@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/replica_set_monitor_manager.h"
+#include "mongol/client/replica_set_monitor_manager.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/map_util.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/map_util.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::set;
@@ -119,4 +119,4 @@ void ReplicaSetMonitorManager::report(BSONObjBuilder* builder) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

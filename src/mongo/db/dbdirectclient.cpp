@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/db/dbdirectclient.h"
+#include "mongol/db/dbdirectclient.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -176,4 +176,4 @@ unsigned long long DBDirectClient::count(
     return static_cast<unsigned long long>(resultObj["n"].numberLong());
 }
 
-}  // namespace mongo
+}  // namespace mongol

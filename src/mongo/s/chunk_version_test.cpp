@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
@@ -120,4 +120,4 @@ TEST(Comparison, OlderThan) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

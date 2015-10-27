@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/util/exit_code.h"
+#include "mongol/util/exit_code.h"
 
-namespace mongo {
+namespace mongol {
 
 // Note: whyMsg can never be NULL.
 void dbexit(ExitCode returnCode, const char* whyMsg = "");

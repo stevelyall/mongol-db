@@ -28,18 +28,18 @@
  *    it in the license file.
  */
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_test_help.h"
-#include "mongo/db/storage/record_store_test_harness.h"
-#include "mongo/db/storage/recovery_unit_noop.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_test_help.h"
+#include "mongol/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/recovery_unit_noop.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class MyHarnessHelper : public HarnessHelper {
 public:

@@ -1,5 +1,5 @@
 /**
- *    Copyright (C) 2013 mongoDB Inc.
+ *    Copyright (C) 2013 mongolDB Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
  *    it under the terms of the GNU Affero General Public License, version 3,
@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/bson_serializable.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/bson_serializable.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and content of the error that occurs while trying
@@ -108,4 +108,4 @@ private:
     bool _isErrMessageSet;
 };
 
-}  // namespace mongo
+}  // namespace mongol

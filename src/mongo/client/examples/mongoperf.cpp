@@ -28,36 +28,36 @@
 /*
    How to build and run:
 
-   scons mongoperf
-   ./mongoperf -h
+   scons mongolperf
+   ./mongolperf -h
 */
 
 
-// note: mongoperf is an internal mongodb utility
+// note: mongolperf is an internal mongoldb utility
 // so we define the following macro
 #define MONGO_EXPOSE_MACROS 1
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/storage/mmap_v1/logfile.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/storage/mmap_v1/logfile.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
 using namespace std;
-using namespace mongo;
-using namespace mongoutils::str;
+using namespace mongol;
+using namespace mongolutils::str;
 
 int dummy;
 unsigned recSizeKB;
@@ -79,7 +79,7 @@ int syncDelaySecs = 0;
 
 void syncThread() {
     while (1) {
-        mongo::Timer t;
+        mongol::Timer t;
         mmfFile->flush(true);
         cout << "                                                     mmf sync took " << t.millis()
              << "ms" << endl;
@@ -185,7 +185,7 @@ void go() {
         return;
     }
     len *= 1024 * 1024;
-    const char* fname = "./mongoperf__testfile__tmp";
+    const char* fname = "./mongolperf__testfile__tmp";
     try {
         boost::filesystem::remove(fname);
     } catch (...) {
@@ -196,7 +196,7 @@ void go() {
     // needs to be big as we are using synchronousAppend.  if we used a regular MongoFile it
     // wouldn't have to be
     const unsigned sz = 1024 * 1024 * 32;
-    char* buf = (char*)mongoMalloc(sz + 4096);
+    char* buf = (char*)mongolMalloc(sz + 4096);
     const char* p = round(buf);
     for (unsigned long long i = 0; i < len; i += sz) {
         lf->synchronousAppend(p, sz);
@@ -262,7 +262,7 @@ void go() {
 
 int main(int argc, char* argv[]) {
     try {
-        cout << "mongoperf" << endl;
+        cout << "mongolperf" << endl;
 
         if (argc > 1) {
             cout <<
@@ -270,7 +270,7 @@ int main(int argc, char* argv[]) {
                 "\n"
                 "usage:\n"
                 "\n"
-                "  mongoperf < myjsonconfigfile\n"
+                "  mongolperf < myjsonconfigfile\n"
                 "\n"
                 "  {\n"
                 "    nThreads:<n>,     // number of threads (default 1)\n"
@@ -282,13 +282,13 @@ int main(int argc, char* argv[]) {
                 "    r:<bool>,         // do reads (default false)\n"
                 "    w:<bool>,         // do writes (default false)\n"
                 "    recSizeKB:<n>,    // size of each write (default 4KB)\n"
-                "    syncDelay:<n>     // secs between fsyncs, like --syncdelay in mongod. "
+                "    syncDelay:<n>     // secs between fsyncs, like --syncdelay in mongold. "
                 "(default 0/never)\n"
                 "  }\n"
                 "\n"
-                "mongoperf is a performance testing tool. the initial tests are of disk subsystem "
+                "mongolperf is a performance testing tool. the initial tests are of disk subsystem "
                 "performance; \n"
-                "  tests of mongos and mongod will be added later.\n"
+                "  tests of mongols and mongold will be added later.\n"
                 "most fields are optional.\n"
                 "non-mmf io is direct io (no caching). use a large file size to test making the "
                 "heads\n"
@@ -306,7 +306,7 @@ int main(int argc, char* argv[]) {
         memset(input, 0, sizeof(input));
         cin.read(input, 1000);
         if (*input == 0) {
-            cout << "error no options found on stdin for mongoperf" << endl;
+            cout << "error no options found on stdin for mongolperf" << endl;
             return EXIT_FAILURE;
         }
 

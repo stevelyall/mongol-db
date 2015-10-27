@@ -29,19 +29,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/db.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/json.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/db.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/json.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace UpdateTests {
 
@@ -54,10 +54,10 @@ using std::vector;
 class ClientBase {
 public:
     ClientBase() : _client(&_txn) {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
     virtual ~ClientBase() {
-        mongo::LastError::get(_txn.getClient()).reset();
+        mongol::LastError::get(_txn.getClient()).reset();
     }
 
 protected:

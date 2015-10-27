@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_table.h"
+#include "mongol/db/ops/modifier_table.h"
 
 #include <memory>
 
-#include "mongo/db/ops/modifier_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/ops/modifier_interface.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo::modifiertable;
+using namespace mongol::modifiertable;
 
-using mongo::ModifierInterface;
+using mongol::ModifierInterface;
 using std::unique_ptr;
 
 TEST(getType, Normal) {

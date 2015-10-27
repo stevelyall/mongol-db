@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/service_context.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/service_context.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 
@@ -68,4 +68,4 @@ void ReplicationCoordinator::set(ServiceContext* service,
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

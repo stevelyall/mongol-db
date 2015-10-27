@@ -31,15 +31,15 @@
 #include <vector>
 #include <set>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/sort_key_generator.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/index_bounds.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/sort_key_generator.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/index_bounds.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class BtreeKeyGenerator;
 
@@ -178,4 +178,4 @@ private:
     size_t _memUsage;
 };
 
-}  // namespace mongo
+}  // namespace mongol

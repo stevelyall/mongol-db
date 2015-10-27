@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/pipeline/dependencies.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/pipeline/dependencies.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/unittest/temp_dir.h"
 
-namespace mongo {
+namespace mongol {
 bool isMongos() {
     return false;
 }
@@ -66,7 +66,7 @@ BSONObj toBson(const intrusive_ptr<DocumentSource>& source) {
 
 
 namespace DocumentSourceClass {
-using mongo::DocumentSource;
+using mongol::DocumentSource;
 
 template <size_t ArrayLen>
 set<string> arrayToSet(const char*(&array)[ArrayLen]) {
@@ -150,7 +150,7 @@ public:
 }
 
 namespace Mock {
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceMock;
 
 class Base {
 public:
@@ -209,8 +209,8 @@ TEST(Mock, Empty) {
 
 namespace DocumentSourceLimit {
 
-using mongo::DocumentSourceLimit;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceLimit;
+using mongol::DocumentSourceMock;
 
 class Base : public Mock::Base {
 protected:
@@ -283,8 +283,8 @@ public:
 
 namespace DocumentSourceGroup {
 
-using mongo::DocumentSourceGroup;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceGroup;
+using mongol::DocumentSourceMock;
 
 class Base : public Mock::Base {
 public:
@@ -881,8 +881,8 @@ public:
 
 namespace DocumentSourceProject {
 
-using mongo::DocumentSourceProject;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceProject;
+using mongol::DocumentSourceMock;
 
 class Base : public Mock::Base {
 protected:
@@ -1029,8 +1029,8 @@ public:
 
 namespace DocumentSourceSample {
 
-using mongo::DocumentSourceSample;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceSample;
+using mongol::DocumentSourceMock;
 
 class SampleBasics : public Mock::Base, public unittest::Test {
 public:
@@ -1194,7 +1194,7 @@ TEST_F(InvalidSampleSpec, MissingSize) {
 }
 
 namespace DocumentSourceSampleFromRandomCursor {
-using mongo::DocumentSourceSampleFromRandomCursor;
+using mongol::DocumentSourceSampleFromRandomCursor;
 
 class SampleFromRandomCursorBasics : public SampleBasics {
 public:
@@ -1353,8 +1353,8 @@ TEST_F(SampleFromRandomCursorBasics, MimicNonOptimized) {
 
 namespace DocumentSourceSort {
 
-using mongo::DocumentSourceSort;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceSort;
+using mongol::DocumentSourceMock;
 
 class Base : public Mock::Base {
 protected:
@@ -1423,7 +1423,7 @@ public:
     intrusive_ptr<DocumentSource> mkLimit(int limit) {
         BSONObj obj = BSON("$limit" << limit);
         BSONElement e = obj.firstElement();
-        return mongo::DocumentSourceLimit::createFromBson(e, ctx());
+        return mongol::DocumentSourceLimit::createFromBson(e, ctx());
     }
 };
 
@@ -1769,8 +1769,8 @@ public:
 
 namespace DocumentSourceUnwind {
 
-using mongo::DocumentSourceUnwind;
-using mongo::DocumentSourceMock;
+using mongol::DocumentSourceUnwind;
+using mongol::DocumentSourceMock;
 
 class CheckResultsBase : public Mock::Base {
 public:
@@ -2461,8 +2461,8 @@ TEST_F(InvalidUnwindSpec, UnrecognizedOption) {
 }  // namespace DocumentSourceUnwind
 
 namespace DocumentSourceGeoNear {
-using mongo::DocumentSourceGeoNear;
-using mongo::DocumentSourceLimit;
+using mongol::DocumentSourceGeoNear;
+using mongol::DocumentSourceLimit;
 
 class LimitCoalesce : public Mock::Base {
 public:
@@ -2484,7 +2484,7 @@ public:
 }  // namespace DocumentSourceGeoNear
 
 namespace DocumentSourceMatch {
-using mongo::DocumentSourceMatch;
+using mongol::DocumentSourceMatch;
 
 // Helpers to make a DocumentSourceMatch from a query object or json string
 intrusive_ptr<DocumentSourceMatch> makeMatch(const BSONObj& query) {

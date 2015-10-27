@@ -1,13 +1,13 @@
-// Tests the copydb command on mongos with auth
+// Tests the copydb command on mongols with auth
 var runTest = function() {
 
 
 var st = new ShardingTest({ shards : 1,
-                            mongos : 1,
+                            mongols : 1,
                             keyFile : "jstests/libs/key1"});
-var mongos = st.s0;
-var destAdminDB = mongos.getDB('admin');
-var destTestDB = mongos.getDB('test');
+var mongols = st.s0;
+var destAdminDB = mongols.getDB('admin');
+var destTestDB = mongols.getDB('test');
 
 var sourceMongodConn = MongoRunner.runMongod({});
 var sourceTestDB = sourceMongodConn.getDB('test');

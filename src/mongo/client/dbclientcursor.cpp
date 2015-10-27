@@ -27,27 +27,27 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/dbclientcursor.h"
+#include "mongol/client/dbclientcursor.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -114,7 +114,7 @@ void DBClientCursor::_assembleInit(Message& toSend) {
         // through assembleQueryRequest if the options are invalid.
 
         bool hasValidNToReturnForCommand = (nToReturn == 1 || nToReturn == -1);
-        bool hasValidFlagsForCommand = !(opts & mongo::QueryOption_Exhaust);
+        bool hasValidFlagsForCommand = !(opts & mongol::QueryOption_Exhaust);
 
         if (_isCommand && hasValidNToReturnForCommand && hasValidFlagsForCommand) {
             toSend =
@@ -526,4 +526,4 @@ void DBClientCursor::kill() {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

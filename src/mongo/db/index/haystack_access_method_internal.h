@@ -30,10 +30,10 @@
 
 #include <vector>
 
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class GeoHaystackSearchHopper {
 public:
@@ -91,4 +91,4 @@ private:
     std::vector<RecordId> _locs;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -1,9 +1,9 @@
-// Tests whether new sharding is detected on insert by mongos
+// Tests whether new sharding is detected on insert by mongols
 
-var st = new ShardingTest( name = "test", shards = 1, verbose = 2, mongos = 2 );
+var st = new ShardingTest( name = "test", shards = 1, verbose = 2, mongols = 2 );
 
-var mongos = st.s
-var config = mongos.getDB("config")
+var mongols = st.s
+var config = mongols.getDB("config")
 
 config.settings.update({ _id : "balancer" }, { $set : { stopped : true } }, true )
 
@@ -11,14 +11,14 @@ config.settings.update({ _id : "balancer" }, { $set : { stopped : true } }, true
 print( "Creating unsharded connection..." )
 
 
-var mongos2 = st._mongos[1]
+var mongols2 = st._mongols[1]
 
-var coll = mongos2.getCollection( "test.foo" )
+var coll = mongols2.getCollection( "test.foo" )
 coll.insert({ i : 0 })
 
 print( "Sharding collection..." )
 
-var admin = mongos.getDB("admin")
+var admin = mongols.getDB("admin")
 
 assert.eq( coll.getShardVersion().ok, 0 )
 

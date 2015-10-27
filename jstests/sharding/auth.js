@@ -45,7 +45,7 @@ function getShardName(rsTest) {
 }
 
 var s = new ShardingTest({ name: "auth",
-                           mongos: 1,
+                           mongols: 1,
                            shards: 0,
                            verbose: 0,
                            other: {
@@ -76,7 +76,7 @@ assert.writeOK(s.getDB( "config" ).settings.update(
 
 printjson(s.getDB("config").settings.find().toArray());
 
-print("Restart mongos with different auth options");
+print("Restart mongols with different auth options");
 s.restartMongos(0, { port: s.port,
                      v: 2,
                      configdb: s._configDB,
@@ -272,7 +272,7 @@ login(testUser);
 print( "testing map reduce" );
 
 // Sharded map reduce can be tricky since all components talk to each other. For example
-// SERVER-4114 is triggered when 1 mongod connects to another for final reduce it's not
+// SERVER-4114 is triggered when 1 mongold connects to another for final reduce it's not
 // properly tested here since addresses are localhost, which is more permissive.
 var res = s.getDB("test").runCommand(
     {mapreduce : "foo",
@@ -284,7 +284,7 @@ printjson(res);
 assert.commandWorked(res);
 
 // Check that dump doesn't get stuck with auth
-var x = runMongoProgram("mongodump",
+var x = runMongoProgram("mongoldump",
                         "--host", s.s.host,
                         "-d", testUser.db,
                         "-u", testUser.username,
@@ -317,7 +317,7 @@ print("make sure currentOp/killOp fail");
 assert.commandFailed(readOnlyDB.currentOp());
 assert.commandFailed(readOnlyDB.killOp(123));
 
-// fsyncUnlock doesn't work in mongos anyway, so no need check authorization for it
+// fsyncUnlock doesn't work in mongols anyway, so no need check authorization for it
 /*
 broken because of SERVER-4156
 print( "   testing write command (should fail)" );

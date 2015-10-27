@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/field_ref_set.h"
+#include "mongol/db/field_ref_set.h"
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 using std::string;
@@ -155,4 +155,4 @@ const std::string FieldRefSet::toString() const {
     return res;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,9 +30,9 @@
 
 #include <vector>
 #include <set>
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Internal class used by BtreeAccessMethod to generate keys for indexed documents.
@@ -224,4 +224,4 @@ private:
     const std::vector<PositionalPathInfo> _emptyPositionalInfo;
 };
 
-}  // namespace mongo
+}  // namespace mongol

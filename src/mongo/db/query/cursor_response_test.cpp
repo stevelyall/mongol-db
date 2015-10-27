@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/cursor_response.h"
+#include "mongol/db/query/cursor_response.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -240,4 +240,4 @@ TEST(CursorResponseTest, addToBSONSubsequentResponse) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

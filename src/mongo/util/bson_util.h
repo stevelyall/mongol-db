@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 void bsonArrToNumVector(BSONElement el, std::vector<T>& results) {

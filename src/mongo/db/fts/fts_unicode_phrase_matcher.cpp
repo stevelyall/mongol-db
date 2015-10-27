@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_unicode_phrase_matcher.h"
+#include "mongol/db/fts/fts_unicode_phrase_matcher.h"
 
-#include "mongo/db/fts/fts_language.h"
-#include "mongo/db/fts/unicode/string.h"
+#include "mongol/db/fts/fts_language.h"
+#include "mongol/db/fts/unicode/string.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 using std::string;
@@ -62,4 +62,4 @@ bool UnicodeFTSPhraseMatcher::phraseMatches(const string& phrase,
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

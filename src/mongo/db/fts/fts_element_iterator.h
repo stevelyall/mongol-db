@@ -30,15 +30,15 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/fts/fts_language.h"
-#include "mongo/db/fts/fts_spec.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/fts/fts_language.h"
+#include "mongol/db/fts/fts_spec.h"
 
 #include <map>
 #include <stack>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -157,4 +157,4 @@ private:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

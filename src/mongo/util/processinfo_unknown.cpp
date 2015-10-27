@@ -27,15 +27,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/util/processinfo.h"
+#include "mongol/util/processinfo.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 ProcessInfo::ProcessInfo(ProcessId pid) {}
 

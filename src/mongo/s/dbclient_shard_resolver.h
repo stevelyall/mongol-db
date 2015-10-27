@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/s/shard_resolver.h"
+#include "mongol/s/shard_resolver.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * ShardResolver based on the Shard and ReplicaSetMonitor caches.
@@ -67,4 +67,4 @@ public:
     static Status findMaster(const ConnectionString& connString, ConnectionString* resolvedHost);
 };
 
-}  // namespace mongo
+}  // namespace mongol

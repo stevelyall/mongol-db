@@ -32,13 +32,13 @@
 
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
-namespace mongo {
+namespace mongol {
 
 class ArrayMatchingMatchExpression : public MatchExpression {
 public:

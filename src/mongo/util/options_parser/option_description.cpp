@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/option_description.h"
+#include "mongol/util/options_parser/option_description.h"
 
 #include <algorithm>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 using std::shared_ptr;
@@ -305,4 +305,4 @@ OptionDescription& OptionDescription::format(const std::string& regexFormat,
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

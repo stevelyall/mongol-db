@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_parser.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -611,12 +611,12 @@ TEST(MatchExpressionParserLeafTest, TypeDoubleOperator) {
 
 TEST(MatchExpressionParserLeafTest, TypeDecimalOperator) {
     if (Decimal128::enabled) {
-        BSONObj query = BSON("x" << BSON("$type" << mongo::NumberDecimal));
+        BSONObj query = BSON("x" << BSON("$type" << mongol::NumberDecimal));
         StatusWithMatchExpression result = MatchExpressionParser::parse(query);
         ASSERT_TRUE(result.isOK());
 
         ASSERT_FALSE(result.getValue()->matchesBSON(BSON("x" << 5.3)));
-        ASSERT_TRUE(result.getValue()->matchesBSON(BSON("x" << mongo::Decimal128("1"))));
+        ASSERT_TRUE(result.getValue()->matchesBSON(BSON("x" << mongol::Decimal128("1"))));
     }
 }
 
@@ -677,7 +677,7 @@ TEST(MatchExpressionParserLeafTest, TypeStringNameNumberDecimal) {
         TypeMatchExpression* tmeNumberDecimal =
             static_cast<TypeMatchExpression*>(typeNumberDecimal.getValue().get());
         ASSERT(tmeNumberDecimal->getType() == NumberDecimal);
-        ASSERT_TRUE(tmeNumberDecimal->matchesBSON(BSON("a" << mongo::Decimal128("1"))));
+        ASSERT_TRUE(tmeNumberDecimal->matchesBSON(BSON("a" << mongol::Decimal128("1"))));
         ASSERT_FALSE(tmeNumberDecimal->matchesBSON(fromjson("{a: true}")));
     }
 }

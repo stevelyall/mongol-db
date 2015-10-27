@@ -33,12 +33,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/optime_pair.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/optime_pair.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class ActionLogType;
 class BatchedCommandRequest;
@@ -146,7 +146,7 @@ public:
 
     /**
      *
-     * Adds a new shard. It expects a standalone mongod process or replica set to be running
+     * Adds a new shard. It expects a standalone mongold process or replica set to be running
      * on the provided address.
      *
      * @param  shardProposedName is an optional string with the proposed name of the shard.
@@ -462,4 +462,4 @@ protected:
     virtual DistLockManager* getDistLockManager() = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

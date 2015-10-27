@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/record_id.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Collection;
@@ -116,4 +116,4 @@ private:
                                                  int options = IXSCAN_DEFAULT);
 };
 
-}  // namespace mongo
+}  // namespace mongol

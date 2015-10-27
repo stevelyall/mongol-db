@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/connection_string.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/connection_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class RemoteCommandTargeter;
@@ -99,4 +99,4 @@ private:
     const std::shared_ptr<RemoteCommandTargeter> _targeter;
 };
 
-}  // namespace mongo
+}  // namespace mongol

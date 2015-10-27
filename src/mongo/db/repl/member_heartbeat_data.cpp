@@ -26,17 +26,17 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <climits>
 
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/rslog.h"
-#include "mongo/util/log.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/rslog.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 MemberHeartbeatData::MemberHeartbeatData() : _health(-1), _authIssue(false) {
@@ -102,4 +102,4 @@ void MemberHeartbeatData::setAuthIssue(Date_t now) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

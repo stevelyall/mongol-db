@@ -32,12 +32,12 @@
 #include <cstdint>
 #include <stack>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/background.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/background.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class DBConnectionPool;
@@ -394,4 +394,4 @@ private:
     const double _socketTimeout;
 };
 
-}  // namespace mongo
+}  // namespace mongol

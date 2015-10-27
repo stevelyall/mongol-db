@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/version_manager.h"
+#include "mongol/s/version_manager.h"
 
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/mongos_options.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/log.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/mongols_options.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::map;
@@ -182,7 +182,7 @@ DBClientBase* getVersionable(DBClientBase* conn) {
  * shards.
  *
  * Eventually this should go completely away, but for now many commands rely on unversioned but
- * mongos-specific behavior on mongod (auditing and replication information in commands)
+ * mongols-specific behavior on mongold (auditing and replication information in commands)
  */
 bool initShardVersionEmptyNS(OperationContext* txn, DBClientBase* conn_in) {
     bool ok;
@@ -239,7 +239,7 @@ bool initShardVersionEmptyNS(OperationContext* txn, DBClientBase* conn_in) {
     }
 
     // Record the connection wire version if sent in the response, initShardVersion is a
-    // handshake for mongos->mongod connections.
+    // handshake for mongols->mongold connections.
     if (!result["minWireVersion"].eoo()) {
         int minWireVersion = result["minWireVersion"].numberInt();
         int maxWireVersion = result["maxWireVersion"].numberInt();
@@ -260,7 +260,7 @@ bool initShardVersionEmptyNS(OperationContext* txn, DBClientBase* conn_in) {
  * If no remote cached version has ever been set, an initial shard version is sent.
  *
  * If the namespace is empty and no version has ever been sent, the config server + shard name
- * is sent to the remote shard host to initialize the connection as coming from mongos.
+ * is sent to the remote shard host to initialize the connection as coming from mongols.
  * NOTE: This initialization is *best-effort only*.  Operations which wish to correctly version
  * must send the namespace.
  *
@@ -432,7 +432,7 @@ void VersionManager::resetShardVersionCB(DBClientBase* conn) {
 }
 
 bool VersionManager::isVersionableCB(DBClientBase* conn) {
-    // We do not version shard connections when issued from mongod
+    // We do not version shard connections when issued from mongold
     if (!isMongos()) {
         return false;
     }
@@ -482,4 +482,4 @@ bool VersionManager::checkShardVersionCB(OperationContext* txn,
         txn, conn_in->get(), conn_in->getNS(), conn_in->getManager(), authoritative, tryNumber);
 }
 
-}  // namespace mongo
+}  // namespace mongol

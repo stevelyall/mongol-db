@@ -2,7 +2,7 @@
 
 Import("env")
 
-env.Library('serverauth', ['mongo_authentication_session.cpp'])
+env.Library('serverauth', ['mongol_authentication_session.cpp'])
 
 generateActionTypes = env.Command(
     target=['action_type.h', 'action_type.cpp'],
@@ -31,21 +31,21 @@ env.Library('authcore', ['action_set.cpp',
                          'user_name.cpp',
                          'user_set.cpp'],
             LIBDEPS=['sasl_options',
-                     '$BUILD_DIR/mongo/base',
-                     '$BUILD_DIR/mongo/bson/mutable/mutable_bson',
-                     '$BUILD_DIR/mongo/bson/util/bson_extract',
-                     '$BUILD_DIR/mongo/crypto/scramauth',
-                     '$BUILD_DIR/mongo/db/common',
-                     '$BUILD_DIR/mongo/db/ops/update_driver',
-                     '$BUILD_DIR/mongo/db/namespace_string',
-                     '$BUILD_DIR/mongo/util/md5'])
+                     '$BUILD_DIR/mongol/base',
+                     '$BUILD_DIR/mongol/bson/mutable/mutable_bson',
+                     '$BUILD_DIR/mongol/bson/util/bson_extract',
+                     '$BUILD_DIR/mongol/crypto/scramauth',
+                     '$BUILD_DIR/mongol/db/common',
+                     '$BUILD_DIR/mongol/db/ops/update_driver',
+                     '$BUILD_DIR/mongol/db/namespace_string',
+                     '$BUILD_DIR/mongol/util/md5'])
 
 env.Library('authcommon',
             ['internal_user_auth.cpp'],
             LIBDEPS=[
-                '$BUILD_DIR/mongo/base',
-                '$BUILD_DIR/mongo/bson/mutable/mutable_bson',
-                '$BUILD_DIR/mongo/bson/util/bson_extract',
+                '$BUILD_DIR/mongol/base',
+                '$BUILD_DIR/mongol/bson/mutable/mutable_bson',
+                '$BUILD_DIR/mongol/bson/util/bson_extract',
             ])
 
 env.Library('authorization_manager_global',
@@ -55,8 +55,8 @@ env.Library('authorization_manager_global',
             ],
             LIBDEPS=[
                 'authcore',
-                '$BUILD_DIR/mongo/db/server_options_core',
-                '$BUILD_DIR/mongo/db/service_context',
+                '$BUILD_DIR/mongol/db/server_options_core',
+                '$BUILD_DIR/mongol/db/service_context',
             ])
 
 env.Library('authorization_manager_mock_init',
@@ -66,7 +66,7 @@ env.Library('authorization_manager_mock_init',
             LIBDEPS=[
                 'authcore',
                 'authmocks',
-                '$BUILD_DIR/mongo/db/service_context',
+                '$BUILD_DIR/mongol/db/service_context',
             ])
 
 env.Library('authservercommon',
@@ -76,7 +76,7 @@ env.Library('authservercommon',
                 'security_key.cpp',
             ],
             LIBDEPS=[
-                '$BUILD_DIR/mongo/db/commands/core',
+                '$BUILD_DIR/mongol/db/commands/core',
                 'authcommon',
                 'authcore',
                 'authmocks',
@@ -88,16 +88,16 @@ env.Library('authservercommon',
 env.Library('security_file',
             ['security_file.cpp'],
             LIBDEPS=[
-                '$BUILD_DIR/mongo/base',
+                '$BUILD_DIR/mongol/base',
             ],
 )
 
 env.Library('sasl_options',
             ['sasl_options.cpp'],
             LIBDEPS=[
-                '$BUILD_DIR/mongo/base',
-                '$BUILD_DIR/mongo/db/server_parameters',
-                '$BUILD_DIR/mongo/util/options_parser/options_parser',
+                '$BUILD_DIR/mongol/base',
+                '$BUILD_DIR/mongol/db/server_parameters',
+                '$BUILD_DIR/mongol/util/options_parser/options_parser',
             ],
 )
 
@@ -111,13 +111,13 @@ env.Library('saslauth',
                 'authcore',
                 'authmocks', # Wat?
                 'sasl_options',
-                '$BUILD_DIR/mongo/crypto/scramauth',
-                '$BUILD_DIR/mongo/db/commands/test_commands_enabled',
-                '$BUILD_DIR/mongo/util/net/network',
+                '$BUILD_DIR/mongol/crypto/scramauth',
+                '$BUILD_DIR/mongol/db/commands/test_commands_enabled',
+                '$BUILD_DIR/mongol/util/net/network',
              ],
 )
 
-env.Library('authmongod',
+env.Library('authmongold',
             ['authz_manager_external_state_d.cpp',
              'authz_session_external_state_d.cpp',
              'auth_index_d.cpp',
@@ -125,8 +125,8 @@ env.Library('authmongod',
             ],
             LIBDEPS=[
                 'authservercommon',
-                '$BUILD_DIR/mongo/db/repl/repl_coordinator_global',
-                '$BUILD_DIR/mongo/db/server_parameters',
+                '$BUILD_DIR/mongol/db/repl/repl_coordinator_global',
+                '$BUILD_DIR/mongol/db/server_parameters',
             ],
             LIBDEPS_TAGS=[
                 # Depends on files db_raii.cpp and catalog support files from serverOnlyFiles
@@ -134,14 +134,14 @@ env.Library('authmongod',
             ],
 )
 
-env.Library('authmongos',
+env.Library('authmongols',
             ['authz_manager_external_state_s.cpp',
              'authz_session_external_state_s.cpp',
              'user_cache_invalidator_job.cpp'],
             LIBDEPS=[
                 'authservercommon',
-                '$BUILD_DIR/mongo/s/catalog/dist_lock_manager',
-                '$BUILD_DIR/mongo/s/coreshard',
+                '$BUILD_DIR/mongol/s/catalog/dist_lock_manager',
+                '$BUILD_DIR/mongol/s/coreshard',
             ],
             LIBDEPS_TAGS=[
                 # Depends on inShutdown
@@ -155,9 +155,9 @@ env.Library(
         'authz_manager_external_state_mock.cpp'
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/matcher/expressions',
-        '$BUILD_DIR/mongo/db/ops/update_driver',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/matcher/expressions',
+        '$BUILD_DIR/mongol/db/ops/update_driver',
+        '$BUILD_DIR/mongol/db/service_context',
         'authcore'
     ]
 )

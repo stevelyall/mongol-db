@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_current_date.h"
+#include "mongol/db/ops/modifier_current_date.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 namespace {
 const char kType[] = "$type";
@@ -217,7 +217,7 @@ Status ModifierCurrentDate::apply() const {
 
     // By the time we are here the element is in place and we just need to update the value
     if (_typeIsDate) {
-        const mongo::Date_t now = mongo::jsTime();
+        const mongol::Date_t now = mongol::jsTime();
         Status s = elemToSet.setValueDate(now);
         if (!s.isOK())
             return s;
@@ -249,4 +249,4 @@ Status ModifierCurrentDate::log(LogBuilder* logBuilder) const {
                                                  _preparedState->elemFound);
 }
 
-}  // namespace mongo
+}  // namespace mongol

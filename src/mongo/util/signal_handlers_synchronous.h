@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Sets up handlers for synchronous events, like segv, abort, terminate and malloc-failure.
@@ -45,9 +45,9 @@ void setupSynchronousSignalHandlers();
  *
  * Called when any of the following functions fails to allocate memory:
  *     operator new
- *     mongoMalloc
- *     mongoRealloc
+ *     mongolMalloc
+ *     mongolRealloc
  */
 void reportOutOfMemoryErrorAndExit();
 
-}  // namespace mongo
+}  // namespace mongol

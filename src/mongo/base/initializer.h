@@ -30,12 +30,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/initializer_context.h"
-#include "mongo/base/initializer_dependency_graph.h"
-#include "mongo/base/status.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/initializer_context.h"
+#include "mongol/base/initializer_dependency_graph.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Class representing an initialization process.
@@ -92,4 +92,4 @@ Status runGlobalInitializers(int argc, const char* const* argv, const char* cons
  */
 void runGlobalInitializersOrDie(int argc, const char* const* argv, const char* const* envp);
 
-}  // namespace mongo
+}  // namespace mongol

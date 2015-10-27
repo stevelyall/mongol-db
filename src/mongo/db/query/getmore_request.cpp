@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/getmore_request.h"
+#include "mongol/db/query/getmore_request.h"
 
 #include <boost/optional.hpp>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -196,4 +196,4 @@ BSONObj GetMoreRequest::toBSON() const {
     return builder.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

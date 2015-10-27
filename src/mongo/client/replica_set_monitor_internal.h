@@ -39,15 +39,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/random.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/random.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 struct ReplicaSetMonitor::IsMasterReply {
     IsMasterReply() : ok(false) {}
@@ -207,4 +207,4 @@ public:
     UnconfirmedReplies unconfirmedReplies;
 };
 
-}  // namespace mongo
+}  // namespace mongol

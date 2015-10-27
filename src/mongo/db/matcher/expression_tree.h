@@ -30,14 +30,14 @@
 
 #pragma once
 
-#include "mongo/db/matcher/expression.h"
+#include "mongol/db/matcher/expression.h"
 
 
 /**
  * this contains all Expessions that define the structure of the tree
  * they do not look at the structure of the documents themselves, just combine other things
  */
-namespace mongo {
+namespace mongol {
 
 class ListOfMatchExpression : public MatchExpression {
 public:

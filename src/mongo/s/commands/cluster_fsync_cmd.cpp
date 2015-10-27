@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class FsyncCommand : public Command {
@@ -73,7 +73,7 @@ public:
                      std::string& errmsg,
                      BSONObjBuilder& result) {
         if (cmdObj["lock"].trueValue()) {
-            errmsg = "can't do lock through mongos";
+            errmsg = "can't do lock through mongols";
             return false;
         }
 
@@ -116,4 +116,4 @@ public:
 } clusterFsyncCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

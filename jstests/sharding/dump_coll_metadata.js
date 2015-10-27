@@ -2,13 +2,13 @@
 // Tests that we can dump collection metadata via getShardVersion()
 //
 
-var st = new ShardingTest({ shards : 2, mongos : 1 });
+var st = new ShardingTest({ shards : 2, mongols : 1 });
 st.stopBalancer();
 
-var mongos = st.s0;
-var coll = mongos.getCollection( "foo.bar" );
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
+var mongols = st.s0;
+var coll = mongols.getCollection( "foo.bar" );
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
 var shardAdmin = st.shard0.getDB( "admin" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );

@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 using repl::OpTime;
@@ -125,4 +125,4 @@ Status ReplSetMetadata::writeToMetadata(BSONObjBuilder* builder) const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

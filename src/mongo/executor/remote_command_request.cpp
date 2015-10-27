@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_request.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 const Milliseconds RemoteCommandRequest::kNoTimeout{-1};
@@ -51,4 +51,4 @@ std::string RemoteCommandRequest::toString() const {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

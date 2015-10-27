@@ -17,17 +17,17 @@
 
     var shardTest = new ShardingTest('listShardsTest', 1, 0, 1, { useHostname: true });
 
-    var mongos = shardTest.s0;
-    var res = mongos.adminCommand('listShards');
+    var mongols = shardTest.s0;
+    var res = mongols.adminCommand('listShards');
     assert.commandWorked(res, 'listShards command failed');
     var shardsArray = res.shards;
     assert.eq(shardsArray.length, 1);
 
-    // add standalone mongod
+    // add standalone mongold
     var standaloneShard = MongoRunner.runMongod({useHostName: true});
     res = shardTest.admin.runCommand({ addShard: standaloneShard.host, name: 'standalone' });
     assert.commandWorked(res, 'addShard command failed');
-    res = mongos.adminCommand('listShards');
+    res = mongols.adminCommand('listShards');
     assert.commandWorked(res, 'listShards command failed');
     shardsArray = res.shards;
     assert.eq(shardsArray.length, 2);
@@ -40,7 +40,7 @@
     rs1.initiate();
     res = shardTest.admin.runCommand({ addShard: rs1.getURL()});
     assert.commandWorked(res, 'addShard command failed');
-    res = mongos.adminCommand('listShards');
+    res = mongols.adminCommand('listShards');
     assert.commandWorked(res, 'listShards command failed');
     shardsArray = res.shards;
     assert.eq(shardsArray.length, 3);
@@ -54,7 +54,7 @@
         return res.state === 'completed';
     }, 'failed to remove the replica set shard');
 
-    res = mongos.adminCommand('listShards');
+    res = mongols.adminCommand('listShards');
     assert.commandWorked(res, 'listShards command failed');
     shardsArray = res.shards;
     assert.eq(shardsArray.length, 2);

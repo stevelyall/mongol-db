@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#include "mongo/db/commands/write_commands/write_commands.h"
+#include "mongol/db/commands/write_commands/write_commands.h"
 
-#include "mongo/base/init.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/write_commands/batch_executor.h"
-#include "mongo/db/commands/write_commands/write_commands_common.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/json.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/ops/parsed_delete.h"
-#include "mongo/db/ops/parsed_update.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/db/write_concern.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/write_commands/batch_executor.h"
+#include "mongol/db/commands/write_commands/write_commands_common.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/json.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/ops/parsed_delete.h"
+#include "mongol/db/ops/parsed_update.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/db/write_concern.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -292,4 +292,4 @@ void CmdDelete::help(stringstream& help) const {
     help << "delete documents";
 }
 
-}  // namespace mongo
+}  // namespace mongol

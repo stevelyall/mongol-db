@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/collection_index_usage_tracker.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/clock_source_mock.h"
+#include "mongol/db/collection_index_usage_tracker.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/clock_source_mock.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class CollectionIndexUsageTrackerTest : public unittest::Test {
@@ -149,4 +149,4 @@ TEST_F(CollectionIndexUsageTrackerTest, DateTimeAfterDeregister) {
     ASSERT_EQUALS(statsMap["foo"].trackerStartTime, getClockSource()->now());
 }
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

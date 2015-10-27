@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_secure_stream_factory.h"
+#include "mongol/executor/async_secure_stream_factory.h"
 
-#include "mongo/config.h"
-#include "mongo/executor/async_secure_stream.h"
-#include "mongo/executor/async_stream.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/ssl_options.h"
+#include "mongol/config.h"
+#include "mongol/executor/async_secure_stream.h"
+#include "mongol/executor/async_stream.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_options.h"
 
 #ifdef MONGO_CONFIG_SSL
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 AsyncSecureStreamFactory::AsyncSecureStreamFactory(SSLManagerInterface* sslManager)
@@ -61,6 +61,6 @@ std::unique_ptr<AsyncStreamInterface> AsyncSecureStreamFactory::makeStream(
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol
 
 #endif

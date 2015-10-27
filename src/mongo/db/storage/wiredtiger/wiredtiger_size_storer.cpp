@@ -29,23 +29,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
 #include <wiredtiger.h>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_size_storer.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_size_storer.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

@@ -6,15 +6,15 @@ function debug( str ) {
 var name = "badNonUpdate";
 debug("Starting sharded cluster test stuff");
 
-s = new ShardingTest( {name: name, shards : 2, mongos : 2, verbose:5, nopreallocj : true });
+s = new ShardingTest( {name: name, shards : 2, mongols : 2, verbose:5, nopreallocj : true });
 
-var mongosA=s.s0;
-var mongosB=s.s1;
+var mongolsA=s.s0;
+var mongolsB=s.s1;
 
 ns = "test.coll";
 ns2 = "test.coll2";
 
-adminSA = mongosA.getDB( "admin" );
+adminSA = mongolsA.getDB( "admin" );
 adminSA.runCommand({ enableSharding : "test"});
 
 adminSA.runCommand( { moveprimary : "test", to : "shard0000" } );
@@ -30,7 +30,7 @@ try {
 
 adminSA.settings.update({ _id: 'balancer' }, { $set: { stopped: true }});
 
-var db = mongosA.getDB( "test" );
+var db = mongolsA.getDB( "test" );
 var coll = db.coll;
 var coll2 = db.coll2;
 
@@ -47,11 +47,11 @@ adminSA.runCommand( { movechunk: ns, find : { _id : 10}, to: "shard0001" });
 
 var command = 'printjson(db.coll.update({ _id: 9 }, { $set: { a: "9" }}, true));';
 
-// without this first query through mongo, the second time doesn't "fail"
+// without this first query through mongol, the second time doesn't "fail"
 debug("Try query first time");
-runMongoProgram( "mongo", "--quiet", "--port", "" + s._mongos[1].port, "--eval", command );
+runMongoProgram( "mongol", "--quiet", "--port", "" + s._mongols[1].port, "--eval", command );
 
-var res = mongosB.getDB("test").coll2.update({ _id: 0 }, { $set: { c: "333" }});
+var res = mongolsB.getDB("test").coll2.update({ _id: 0 }, { $set: { c: "333" }});
 assert.eq( 0, res.nModified );
 
 s.stop();

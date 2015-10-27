@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/s/client/dbclient_multi_command.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/dbclient_shard_resolver.h"
-#include "mongo/s/write_ops/batch_downconvert.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/client/dbclient_multi_command.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/dbclient_shard_resolver.h"
+#include "mongol/s/write_ops/batch_downconvert.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class GetLastErrorCmd : public Command {
@@ -71,7 +71,7 @@ public:
                      BSONObjBuilder& result) {
         // Mongos GLE - finicky.
         //
-        // To emulate mongod, we first append any write errors we had, then try to append
+        // To emulate mongold, we first append any write errors we had, then try to append
         // write concern error if there was no write error.  We need to contact the previous
         // shards regardless to maintain 2.4 behavior.
         //
@@ -90,7 +90,7 @@ public:
         le->disable();
 
 
-        // Write commands always have the error stored in the mongos last error
+        // Write commands always have the error stored in the mongols last error
         bool errorOccurred = false;
         if (le->getNPrev() == 1) {
             errorOccurred = le->appendSelf(result, false);
@@ -168,7 +168,7 @@ public:
             result.append("shardRawGLE", shardRawGLE.obj());
         }
 
-        // Suppress write concern errors if a write error occurred, to match mongod behavior
+        // Suppress write concern errors if a write error occurred, to match mongold behavior
         if (errorOccurred || numWCErrors == 0) {
             // Still need to return err
             if (!errorOccurred) {
@@ -200,4 +200,4 @@ public:
 } cmdGetLastError;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

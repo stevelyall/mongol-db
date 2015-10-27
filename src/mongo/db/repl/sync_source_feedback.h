@@ -29,13 +29,13 @@
 
 #pragma once
 
-#include "mongo/client/constants.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/client/constants.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 class OperationContext;
 
 namespace repl {
@@ -94,4 +94,4 @@ private:
     bool _shutdownSignaled = false;
 };
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

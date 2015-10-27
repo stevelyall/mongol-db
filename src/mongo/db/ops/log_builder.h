@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include <mongo/base/status.h>
-#include <mongo/bson/mutable/document.h>
+#include <mongol/base/status.h>
+#include <mongol/bson/mutable/document.h>
 
-namespace mongo {
+namespace mongol {
 
 /** LogBuilder abstracts away some of the details of producing a properly constructed oplog
  *  update entry. It manages separate regions into which it accumulates $set and $unset
@@ -41,14 +41,14 @@ namespace mongo {
 class LogBuilder {
 public:
     /** Construct a new LogBuilder. Log entries will be recorded as new children under the
-     *  'logRoot' Element, which must be of type mongo::Object and have no children.
+     *  'logRoot' Element, which must be of type mongol::Object and have no children.
      */
     inline LogBuilder(mutablebson::Element logRoot)
         : _logRoot(logRoot),
           _objectReplacementAccumulator(_logRoot),
           _setAccumulator(_logRoot.getDocument().end()),
           _unsetAccumulator(_setAccumulator) {
-        dassert(logRoot.isType(mongo::Object));
+        dassert(logRoot.isType(mongol::Object));
         dassert(!logRoot.hasChildren());
     }
 
@@ -95,7 +95,7 @@ public:
      */
     Status addToUnsets(StringData path);
 
-    /** Obtain, via the out parameter 'outElt', a pointer to the mongo::Object type Element
+    /** Obtain, via the out parameter 'outElt', a pointer to the mongol::Object type Element
      *  to which the components of an object replacement should be recorded. It is an error
      *  to call this if any Elements have been added by calling either addToSets or
      *  addToUnsets, and attempts to do so will return a non-OK Status. Similarly, if there
@@ -118,4 +118,4 @@ private:
     mutablebson::Element _unsetAccumulator;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,15 +31,15 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/repl/member_config.h"
-#include "mongo/db/repl/replica_set_tag.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/util/string_map.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/repl/member_config.h"
+#include "mongol/db/repl/replica_set_tag.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/util/string_map.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -326,4 +326,4 @@ private:
 
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

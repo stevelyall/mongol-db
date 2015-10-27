@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "auto1",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            verbose: 1,
                            other: { enableBalancer : 1 } });
 

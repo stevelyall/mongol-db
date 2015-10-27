@@ -28,15 +28,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_test_help.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_test_help.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

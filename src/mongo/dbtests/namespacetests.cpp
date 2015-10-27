@@ -29,32 +29,32 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index_legacy.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_simple.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index_legacy.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_simple.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/log.h"
 
 namespace NamespaceTests {
 

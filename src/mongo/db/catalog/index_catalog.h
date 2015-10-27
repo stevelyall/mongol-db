@@ -32,14 +32,14 @@
 
 #include <vector>
 
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 class Collection;
@@ -344,7 +344,7 @@ private:
     IndexCatalogEntryContainer _entries;
 
     // These are the index specs of indexes that were "leftover".
-    // "Leftover" means they were unfinished when a mongod shut down.
+    // "Leftover" means they were unfinished when a mongold shut down.
     // Certain operations are prohibited until someone fixes.
     // Retrieve by calling getAndClearUnfinishedIndexes().
     std::vector<BSONObj> _unfinishedIndexes;

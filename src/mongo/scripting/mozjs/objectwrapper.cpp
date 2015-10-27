@@ -26,21 +26,21 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
 
 #include <js/Conversions.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/idwrapper.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/idwrapper.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 #ifndef _MSC_EXTENSIONS
@@ -572,4 +572,4 @@ std::string ObjectWrapper::getClassName() {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

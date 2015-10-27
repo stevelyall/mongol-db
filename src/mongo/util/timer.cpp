@@ -1,4 +1,4 @@
-// @file mongo/util/timer.cpp
+// @file mongol/util/timer.cpp
 
 /*    Copyright 2009 10gen Inc.
  *
@@ -27,14 +27,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/timer.h"
+#include "mongol/util/timer.h"
 
-#include "mongo/util/system_tick_source.h"
-#include "mongo/util/tick_source.h"
+#include "mongol/util/system_tick_source.h"
+#include "mongol/util/tick_source.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -54,4 +54,4 @@ long long Timer::now() const {
     return _tickSource->getTicks();
 }
 
-}  // namespace mongo
+}  // namespace mongol

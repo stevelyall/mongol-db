@@ -26,30 +26,30 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 #include <iostream>
 #include <map>
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/base/init.h"
-#include "mongo/logger/console_appender.h"
-#include "mongo/logger/log_manager.h"
-#include "mongo/logger/logger.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/base/init.h"
+#include "mongol/logger/console_appender.h"
+#include "mongol/logger/log_manager.h"
+#include "mongol/logger/logger.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -450,4 +450,4 @@ std::vector<std::string> getAllSuiteNames() {
 }
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for mongodb
+# postinst script for mongoldb
 #
 # see: dh_installdeb(1)
 
@@ -20,20 +20,20 @@ set -e
 
 case "$1" in
     configure)
-	# create a mongodb group and user
-        if ! getent passwd mongodb >/dev/null 2>&1; then
-		adduser --system --no-create-home mongodb
-		addgroup --system mongodb
-		adduser mongodb mongodb
+	# create a mongoldb group and user
+        if ! getent passwd mongoldb >/dev/null 2>&1; then
+		adduser --system --no-create-home mongoldb
+		addgroup --system mongoldb
+		adduser mongoldb mongoldb
         fi
 
-	# create db -- note: this should agree with dbpath in mongod.conf
-	mkdir -p /var/lib/mongodb
-	chown -R mongodb:mongodb /var/lib/mongodb
+	# create db -- note: this should agree with dbpath in mongold.conf
+	mkdir -p /var/lib/mongoldb
+	chown -R mongoldb:mongoldb /var/lib/mongoldb
 
-	# create logdir -- note: this should agree with logpath in mongod.conf
-	mkdir -p /var/log/mongodb
-	chown -R mongodb:mongodb /var/log/mongodb
+	# create logdir -- note: this should agree with logpath in mongold.conf
+	mkdir -p /var/log/mongoldb
+	chown -R mongoldb:mongoldb /var/log/mongoldb
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

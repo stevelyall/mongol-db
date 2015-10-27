@@ -28,32 +28,32 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_index.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_index.h"
 
 #include <set>
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/db/json.h"
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/key_string.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/fail_point.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/db/json.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/key_string.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/fail_point.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
 #define TRACING_ENABLED 0
 
@@ -69,7 +69,7 @@
     log()
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::string;
@@ -108,7 +108,7 @@ BSONObj stripFieldNames(const BSONObj& query) {
 
 Status checkKeySize(const BSONObj& key) {
     if (key.objsize() >= TempKeyMaxSize) {
-        string msg = mongoutils::str::stream()
+        string msg = mongolutils::str::stream()
             << "WiredTigerIndex::insert: key too large to index, failing " << ' ' << key.objsize()
             << ' ' << key;
         return Status(ErrorCodes::KeyTooLong, msg);
@@ -1160,7 +1160,7 @@ extern "C" MONGO_COMPILER_API_EXPORT int index_collator_extension(WT_CONNECTION*
     static WT_COLLATOR idx_static;
 
     idx_static.customize = index_collator_customize;
-    return conn->add_collator(conn, "mongo_index", &idx_static, NULL);
+    return conn->add_collator(conn, "mongol_index", &idx_static, NULL);
 }
 
-}  // namespace mongo
+}  // namespace mongol

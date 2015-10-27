@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/field_checker.h"
+#include "mongol/db/ops/field_checker.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 namespace fieldchecker {
 
@@ -50,7 +50,7 @@ Status isUpdatable(const FieldRef& field) {
 
         if (part.empty()) {
             return Status(ErrorCodes::EmptyFieldName,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "The update path '" << field.dottedField()
                               << "' contains an empty field name, which is not allowed.");
         }
@@ -80,4 +80,4 @@ bool isPositional(const FieldRef& fieldRef, size_t* pos, size_t* count) {
 }
 
 }  // namespace fieldchecker
-}  // namespace mongo
+}  // namespace mongol

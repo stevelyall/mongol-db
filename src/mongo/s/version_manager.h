@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 class OperationContext;
@@ -50,4 +50,4 @@ public:
 
 extern VersionManager versionManager;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -29,17 +29,17 @@
 #pragma once
 
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/plan_yield_policy.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/plan_yield_policy.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This stage outputs its mainChild, and possibly it's backup child
@@ -231,4 +231,4 @@ private:
     MultiPlanStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

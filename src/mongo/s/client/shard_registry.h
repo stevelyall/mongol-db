@@ -33,14 +33,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class CatalogManager;
@@ -350,4 +350,4 @@ private:
     ShardMap _rsLookup;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,7 +30,7 @@
 
 #include <functional>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 using ::std::bind;                             // NOLINT
@@ -40,4 +40,4 @@ using ::std::ref;                              // NOLINT
 namespace placeholders = ::std::placeholders;  // NOLINT
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

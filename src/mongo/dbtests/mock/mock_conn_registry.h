@@ -29,14 +29,14 @@
 #pragma once
 
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/dbtests/mock/mock_dbclient_connection.h"
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/dbtests/mock/mock_dbclient_connection.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * Registry for storing mock servers and can create mock connections to these
  * servers.
@@ -100,7 +100,7 @@ private:
         MockConnHook(MockConnRegistry* registry);
         ~MockConnHook();
 
-        mongo::DBClientBase* connect(const mongo::ConnectionString& connString,
+        mongol::DBClientBase* connect(const mongol::ConnectionString& connString,
                                      std::string& errmsg,
                                      double socketTimeout);
 

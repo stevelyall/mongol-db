@@ -73,7 +73,7 @@
         // This test depends on all the collections in the configCollList being in the config
         // database.
         var configCollList = ["changelog", "chunks", "collections", "databases", "lockpings",
-                              "locks", "mongos", "settings", "shards", "tags", "version"];
+                              "locks", "mongols", "settings", "shards", "tags", "version"];
         var configDB = st.s.getDB("config");
         var userAddedColl = configDB.userAddedColl;
         var cursor;
@@ -334,7 +334,7 @@
         assert(userColl.drop());
     }
 
-    var st = new ShardingTest({shards: 2, mongos: 1});
+    var st = new ShardingTest({shards: 2, mongols: 1});
     var testNamespaces = setupTestCollections(st);
     var configDB = st.s.getDB("config");
     var adminDB = st.s.getDB("admin");

@@ -29,14 +29,14 @@
  *    it in the license file.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/devnull/devnull_kv_engine.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/base/init.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/devnull/devnull_kv_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 class DevNullStorageEngineFactory : public StorageEngine::Factory {

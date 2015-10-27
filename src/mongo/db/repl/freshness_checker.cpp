@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/freshness_checker.h"
+#include "mongol/db/repl/freshness_checker.h"
 
-#include "mongo/base/status.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_runner.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_runner.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -154,7 +154,7 @@ void FreshnessChecker::Algorithm::processResponse(const RemoteCommandRequest& re
         return;
     }
 
-    if (res["opTime"].type() != mongo::Date) {
+    if (res["opTime"].type() != mongol::Date) {
         error() << "wrong type for opTime argument in replSetFresh response: "
                 << typeName(res["opTime"].type());
         _abortReason = FresherNodeFound;
@@ -222,4 +222,4 @@ void FreshnessChecker::cancel(ReplicationExecutor* executor) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

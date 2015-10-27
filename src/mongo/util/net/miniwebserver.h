@@ -29,15 +29,15 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_port.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_port.h"
 
-namespace mongo {
+namespace mongol {
 
 class MiniWebServer : public Listener {
 public:
@@ -72,4 +72,4 @@ private:
     static bool fullReceive(const char* buf);
 };
 
-}  // namespace mongo
+}  // namespace mongol

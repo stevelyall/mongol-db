@@ -26,32 +26,32 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/migration_source_manager.h"
+#include "mongol/db/s/migration_source_manager.h"
 
 #include <set>
 #include <vector>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/record_id.h"
-#include "mongo/logger/ramlog.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/d_state.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/util/elapsed_tracker.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/record_id.h"
+#include "mongol/logger/ramlog.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/d_state.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/util/elapsed_tracker.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::list;
 using std::string;
@@ -605,4 +605,4 @@ NamespaceString MigrationSourceManager::_getNS() const {
     return _nss;
 }
 
-}  // namespace mongo
+}  // namespace mongol

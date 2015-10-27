@@ -32,9 +32,9 @@
 #include <cstdint>
 #include <string>
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-namespace mongo {
+namespace mongol {
 
 typedef uint64_t fileofs;
 

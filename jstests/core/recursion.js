@@ -3,7 +3,7 @@
 
 // TODO: Re-enable this test once SERVER-19614 has been resolved in a
 // way that does not conflict with SERVER-20678. See the similar
-// comment in src/mongo/scripting/mozjs/implscope.cpp for additional
+// comment in src/mongol/scripting/mozjs/implscope.cpp for additional
 // details.
 //
 // (function () {

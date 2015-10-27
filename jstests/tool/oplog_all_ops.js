@@ -1,5 +1,5 @@
 /**
- * Performs a simple test on mongooplog by doing different types of operations
+ * Performs a simple test on mongoloplog by doing different types of operations
  * that will show up in the oplog then replaying it on another replica set.
  * Correctness is verified using the dbhash command.
  */
@@ -50,7 +50,7 @@ repl2.initiate();
 repl2.awaitSecondaryNodes();
 
 var srcConn = repl1.getPrimary();
-runMongoProgram('mongooplog', '--from', repl1.getPrimary().host,
+runMongoProgram('mongoloplog', '--from', repl1.getPrimary().host,
     '--host', repl2.getPrimary().host);
 
 var repl1Hash = testDB.runCommand({ dbhash: 1 });

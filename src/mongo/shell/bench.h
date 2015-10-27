@@ -30,18 +30,18 @@
 
 #include <string>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/timer.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/timer.h"
 
 namespace pcrecpp {
 class RE;
 }  // namespace pcrecpp;
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Configuration object describing a bench run activity.
@@ -62,7 +62,7 @@ public:
 
     void initializeFromBson(const BSONObj& args);
 
-    // Create a new connection to the mongo instance specified by this configuration.
+    // Create a new connection to the mongol instance specified by this configuration.
     DBClientBase* createConnection() const;
 
     /**
@@ -321,13 +321,13 @@ public:
 
     /**
      * Called by each BenchRunWorker from within its thread context, immediately before it
-     * starts sending requests to the configured mongo instance.
+     * starts sending requests to the configured mongol instance.
      */
     void onWorkerStarted();
 
     /**
      * Called by each BenchRunWorker from within its thread context, shortly after it finishes
-     * sending requests to the configured mongo instance.
+     * sending requests to the configured mongol instance.
      */
     void onWorkerFinished();
 
@@ -480,4 +480,4 @@ private:
     std::vector<BenchRunWorker*> _workers;
 };
 
-}  // namespace mongo
+}  // namespace mongol

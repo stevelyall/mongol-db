@@ -32,10 +32,10 @@
 
 #include <vector>
 
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
 
-namespace mongo {
+namespace mongol {
 
 class DummyRecordStoreV1MetaData : public RecordStoreV1MetaData {
 public:
@@ -195,4 +195,4 @@ void assertStateV1RS(OperationContext* txn,
                      const ExtentManager* em,
                      const DummyRecordStoreV1MetaData* md);
 
-}  // namespace mongo
+}  // namespace mongol

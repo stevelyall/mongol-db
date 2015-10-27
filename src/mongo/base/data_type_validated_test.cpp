@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_type_validated.h"
+#include "mongol/base/data_type_validated.h"
 
 #include <algorithm>
 #include <iterator>
 
-#include "mongo/base/data_range.h"
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_type_endian.h"
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_range.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 template <>
 struct Validator<char> {
     static Status validateLoad(const char* ptr, size_t length) {
@@ -55,11 +55,11 @@ struct Validator<char> {
         return Status(ErrorCodes::BadValue, "bad");
     }
 };
-}  // namespace mongo
+}  // namespace mongol
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::end;
 using std::begin;
 

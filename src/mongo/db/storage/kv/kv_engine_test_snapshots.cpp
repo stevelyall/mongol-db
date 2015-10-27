@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/kv/kv_engine_test_harness.h"
+#include "mongol/db/storage/kv/kv_engine_test_harness.h"
 
 #include <memory>
 #include <string>
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/snapshot_manager.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/snapshot_manager.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class SnapshotManagerTests : public unittest::Test {
@@ -362,4 +362,4 @@ TEST_F(SnapshotManagerTests, UpdateAndDelete) {
     ASSERT(!readRecordCommitted(id));
 }
 
-}  // namespace mongo
+}  // namespace mongol

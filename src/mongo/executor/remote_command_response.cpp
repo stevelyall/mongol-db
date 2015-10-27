@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/remote_command_response.h"
+#include "mongol/executor/remote_command_response.h"
 
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 // TODO(amidvidy): we currently discard output docs when we use this constructor. We should
@@ -49,4 +49,4 @@ std::string RemoteCommandResponse::toString() const {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

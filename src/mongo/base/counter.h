@@ -32,9 +32,9 @@
 
 #include <cstdint>
 
-#include "mongo/platform/atomic_word.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * A 64bit (atomic) counter.
  *

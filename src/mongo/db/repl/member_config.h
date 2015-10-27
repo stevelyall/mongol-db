@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/replica_set_tag.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/replica_set_tag.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -202,4 +202,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

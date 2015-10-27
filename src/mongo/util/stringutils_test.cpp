@@ -27,12 +27,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/util/stringutils.h"
-#include "mongo/util/hex.h"
+#include "mongol/util/stringutils.h"
+#include "mongol/util/hex.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -63,7 +63,7 @@ TEST(LexNumCmp, Simple1) {
 }
 
 void assertCmp(int expected, StringData s1, StringData s2, bool lexOnly = false) {
-    mongo::LexNumCmp cmp(lexOnly);
+    mongol::LexNumCmp cmp(lexOnly);
     ASSERT_EQUALS(expected, cmp.cmp(s1, s2, lexOnly));
     ASSERT_EQUALS(expected, cmp.cmp(s1, s2));
     ASSERT_EQUALS(expected < 0, cmp(s1, s2));

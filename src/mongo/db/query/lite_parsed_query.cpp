@@ -26,20 +26,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/lite_parsed_query.h"
+#include "mongol/db/query/lite_parsed_query.h"
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -689,7 +689,7 @@ StatusWith<int> LiteParsedQuery::parseMaxTimeMS(const BSONElement& maxTimeMSElt)
             (StringBuilder() << maxTimeMSElt.fieldNameStringData() << " is out of range").str());
     }
     double maxTimeMSDouble = maxTimeMSElt.numberDouble();
-    if (maxTimeMSElt.type() == mongo::NumberDouble && floor(maxTimeMSDouble) != maxTimeMSDouble) {
+    if (maxTimeMSElt.type() == mongol::NumberDouble && floor(maxTimeMSDouble) != maxTimeMSDouble) {
         return StatusWith<int>(ErrorCodes::BadValue,
                                (StringBuilder() << maxTimeMSElt.fieldNameStringData()
                                                 << " has non-integral value").str());
@@ -700,7 +700,7 @@ StatusWith<int> LiteParsedQuery::parseMaxTimeMS(const BSONElement& maxTimeMSElt)
 // static
 bool LiteParsedQuery::isTextScoreMeta(BSONElement elt) {
     // elt must be foo: {$meta: "textScore"}
-    if (mongo::Object != elt.type()) {
+    if (mongol::Object != elt.type()) {
         return false;
     }
     BSONObj metaObj = elt.Obj();
@@ -713,7 +713,7 @@ bool LiteParsedQuery::isTextScoreMeta(BSONElement elt) {
     if (!str::equals("$meta", metaElt.fieldName())) {
         return false;
     }
-    if (mongo::String != metaElt.type()) {
+    if (mongol::String != metaElt.type()) {
         return false;
     }
     if (LiteParsedQuery::metaTextScore != metaElt.valuestr()) {
@@ -997,4 +997,4 @@ boost::optional<long long> LiteParsedQuery::getEffectiveBatchSize() const {
     return _batchSize ? _batchSize : _ntoreturn;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kJournal
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kJournal
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur_journal_writer.h"
+#include "mongol/db/storage/mmap_v1/dur_journal_writer.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/storage/mmap_v1/dur_journal.h"
-#include "mongo/db/storage/mmap_v1/dur_recover.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/storage/mmap_v1/dur_journal.h"
+#include "mongol/db/storage/mmap_v1/dur_recover.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace dur {
 
 namespace {
@@ -292,4 +292,4 @@ void JournalWriter::Buffer::_reset() {
 }
 
 }  // namespace dur
-}  // namespace mongo
+}  // namespace mongol

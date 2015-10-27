@@ -6,10 +6,10 @@
 (function () {
 
 
-var st = new ShardingTest({ shards: 1, mongos: 2, config: 1, other: { smallfiles: true } });
+var st = new ShardingTest({ shards: 1, mongols: 2, config: 1, other: { smallfiles: true } });
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
 
 
 function grabStatusOutput(configdb, verbose) {
@@ -52,8 +52,8 @@ function testBasic(output) {
     assertPresentInOutput(output, "shards:", "section header");
     assertPresentInOutput(output, "databases:", "section header");
     assertPresentInOutput(output, "balancer:", "section header");
-    assertPresentInOutput(output, "active mongoses:", "section header");
-    assertNotPresentInOutput(output, "most recently active mongoses:", "section header");
+    assertPresentInOutput(output, "active mongolses:", "section header");
+    assertNotPresentInOutput(output, "most recently active mongolses:", "section header");
 
     assertPresentInOutput(output, dbName, "database");
     assertPresentInOutput(output, collName, "collection");
@@ -61,24 +61,24 @@ function testBasic(output) {
 }
 
 function testBasicNormalOnly(output) {
-    assertPresentInOutput(output, tojson(version) + " : 2\n", "active mongos version");
+    assertPresentInOutput(output, tojson(version) + " : 2\n", "active mongols version");
 }
 
 function testBasicVerboseOnly(output) {
-    assertPresentInOutput(output, '"mongoVersion" : ' + tojson(version), "active mongos version");
-    assertPresentInOutput(output, '"_id" : ' + tojson(s1Host), "active mongos hostname");
-    assertPresentInOutput(output, '"_id" : ' + tojson(s2Host), "active mongos hostname");
+    assertPresentInOutput(output, '"mongolVersion" : ' + tojson(version), "active mongols version");
+    assertPresentInOutput(output, '"_id" : ' + tojson(s1Host), "active mongols hostname");
+    assertPresentInOutput(output, '"_id" : ' + tojson(s2Host), "active mongols hostname");
 }
 
-var buildinfo = assert.commandWorked( mongos.adminCommand("buildinfo") );
-var serverStatus1 = assert.commandWorked( mongos.adminCommand("serverStatus") );
+var buildinfo = assert.commandWorked( mongols.adminCommand("buildinfo") );
+var serverStatus1 = assert.commandWorked( mongols.adminCommand("serverStatus") );
 var serverStatus2 = assert.commandWorked( st.s1.adminCommand("serverStatus") );
 var version = buildinfo.version;
 var s1Host = serverStatus1.host;
 var s2Host = serverStatus2.host;
 
 
-// Normal, active mongoses
+// Normal, active mongolses
 var outputNormal = grabStatusOutput(st.config, false);
 testBasic(outputNormal);
 testBasicNormalOnly(outputNormal);
@@ -90,8 +90,8 @@ testBasicVerboseOnly(outputVerbose);
 
 // Take a copy of the config db, in order to test the harder-to-setup cases below.
 // TODO: Replace this manual copy with copydb once SERVER-13080 is fixed.
-var config = mongos.getDB("config");
-var configCopy = mongos.getDB("configCopy");
+var config = mongols.getDB("config");
+var configCopy = mongols.getDB("configCopy");
 config.getCollectionInfos().forEach( function (c) {
     // Create collection with options.
     assert.commandWorked( configCopy.createCollection(c.name, c.options) );
@@ -110,50 +110,50 @@ config.getCollectionInfos().forEach( function (c) {
 } );
 
 
-// Inactive mongoses
+// Inactive mongolses
 // Make the first ping be older than now by 1 second more than the threshold
 // Make the second ping be older still by the same amount again
 var pingAdjustMs = 60000 + 1000;
 var then = new Date();
 then.setTime(then.getTime() - pingAdjustMs);
-configCopy.mongos.update( { _id: s1Host }, { $set: { ping: then } } );
+configCopy.mongols.update( { _id: s1Host }, { $set: { ping: then } } );
 then.setTime(then.getTime() - pingAdjustMs);
-configCopy.mongos.update( { _id: s2Host }, { $set: { ping: then } } );
+configCopy.mongols.update( { _id: s2Host }, { $set: { ping: then } } );
 
 var output = grabStatusOutput(configCopy, false);
-assertPresentInOutput(output, "most recently active mongoses:", "section header");
-assertPresentInOutput(output, tojson(version) + " : 1\n", "recent mongos version");
+assertPresentInOutput(output, "most recently active mongolses:", "section header");
+assertPresentInOutput(output, tojson(version) + " : 1\n", "recent mongols version");
 
 var output = grabStatusOutput(configCopy, true);
-assertPresentInOutput(output, "most recently active mongoses:", "section header");
-assertPresentInOutput(output, '"_id" : ' + tojson(s1Host), "recent mongos hostname");
-assertNotPresentInOutput(output, '"_id" : ' + tojson(s2Host), "old mongos hostname");
+assertPresentInOutput(output, "most recently active mongolses:", "section header");
+assertPresentInOutput(output, '"_id" : ' + tojson(s1Host), "recent mongols hostname");
+assertNotPresentInOutput(output, '"_id" : ' + tojson(s2Host), "old mongols hostname");
 
 
-// Older mongoses
-configCopy.mongos.remove( { _id: s1Host } );
+// Older mongolses
+configCopy.mongols.remove( { _id: s1Host } );
 
 var output = grabStatusOutput(configCopy, false);
-assertPresentInOutput(output, "most recently active mongoses:", "section header");
-assertPresentInOutput(output, tojson(version) + " : 1\n", "recent mongos version");
+assertPresentInOutput(output, "most recently active mongolses:", "section header");
+assertPresentInOutput(output, tojson(version) + " : 1\n", "recent mongols version");
 
 var output = grabStatusOutput(configCopy, true);
-assertPresentInOutput(output, "most recently active mongoses:", "section header");
-assertNotPresentInOutput(output, '"_id" : ' + tojson(s1Host), "removed mongos hostname");
-assertPresentInOutput(output, '"_id" : ' + tojson(s2Host), "recent mongos hostname");
+assertPresentInOutput(output, "most recently active mongolses:", "section header");
+assertNotPresentInOutput(output, '"_id" : ' + tojson(s1Host), "removed mongols hostname");
+assertPresentInOutput(output, '"_id" : ' + tojson(s2Host), "recent mongols hostname");
 
 
-// No mongoses at all
-configCopy.mongos.remove({});
+// No mongolses at all
+configCopy.mongols.remove({});
 
 var output = grabStatusOutput(configCopy, false);
-assertPresentInOutput(output, "most recently active mongoses:\n\tnone", "no mongoses");
+assertPresentInOutput(output, "most recently active mongolses:\n\tnone", "no mongolses");
 
 var output = grabStatusOutput(configCopy, true);
-assertPresentInOutput(output, "most recently active mongoses:\n\tnone", "no mongoses (verbose)");
+assertPresentInOutput(output, "most recently active mongolses:\n\tnone", "no mongolses (verbose)");
 
 
-assert( mongos.getDB(dbName).dropDatabase() );
+assert( mongols.getDB(dbName).dropDatabase() );
 
 
 
@@ -177,11 +177,11 @@ function testCollDetails(args) {
     assert.commandWorked( admin.runCommand(cmdObj) );
 
     if (args.hasOwnProperty("unique")) {
-        assert.writeOK( mongos.getDB("config").collections.update({ _id : collName },
+        assert.writeOK( mongols.getDB("config").collections.update({ _id : collName },
                 { $set : { "unique" : args.unique } }) );
     }
     if (args.hasOwnProperty("noBalance")) {
-        assert.writeOK( mongos.getDB("config").collections.update({ _id : collName },
+        assert.writeOK( mongols.getDB("config").collections.update({ _id : collName },
                 { $set : { "noBalance" : args.noBalance } }) );
     }
 
@@ -210,7 +210,7 @@ function testCollDetails(args) {
         assertPresentInOutput(output, tojson(args.noBalance), "noBalance indicator (non bool)");
     }
 
-    assert( mongos.getCollection(collName).drop() );
+    assert( mongols.getCollection(collName).drop() );
 
     testCollDetailsNum++;
 }
@@ -234,7 +234,7 @@ testCollDetails({ unique: {},                      noBalance: {} });
 testCollDetails({ unique: "",                      noBalance: "" });
 testCollDetails({ unique: 0,                       noBalance: 0 });
 
-assert( mongos.getDB("test").dropDatabase() );
+assert( mongols.getDB("test").dropDatabase() );
 
 
 

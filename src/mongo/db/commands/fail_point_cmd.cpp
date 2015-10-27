@@ -28,14 +28,14 @@
 
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/util/fail_point_service.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/util/fail_point_service.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;

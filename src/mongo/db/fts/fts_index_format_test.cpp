@@ -28,19 +28,19 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 
-#include "mongo/db/fts/fts_index_format.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_index_format.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -156,7 +156,7 @@ void assertEqualsIndexKeys(std::set<std::string>& expectedKeys, const BSONObjSet
         string s = key.firstElement().String();
         std::set<string>::const_iterator j = expectedKeys.find(s);
         if (j == expectedKeys.end()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "unexpected key " << s << " in FTSIndexFormat::getKeys result. "
                << "expected keys:";
             for (std::set<string>::const_iterator k = expectedKeys.begin(); k != expectedKeys.end();
@@ -181,7 +181,7 @@ TEST(FTSIndexFormat, LongWordsTextIndexVersion1) {
     string longWordCat = longPrefix + "cat";
     // "aaa...aaasat"
     string longWordSat = longPrefix + "sat";
-    string text = mongoutils::str::stream() << longWordCat << " " << longWordSat;
+    string text = mongolutils::str::stream() << longWordCat << " " << longWordSat;
     FTSIndexFormat::getKeys(spec, BSON("data" << text), &keys);
 
     // Hard-coded expected computed keys for future-proofing.
@@ -209,7 +209,7 @@ TEST(FTSIndexFormat, LongWordTextIndexVersion2) {
     string longWordCat = longPrefix + "cat";
     // "aaa...aaasat"
     string longWordSat = longPrefix + "sat";
-    string text = mongoutils::str::stream() << longWordCat << " " << longWordSat;
+    string text = mongolutils::str::stream() << longWordCat << " " << longWordSat;
     FTSIndexFormat::getKeys(spec, BSON("data" << text), &keys);
 
     // Hard-coded expected computed keys for future-proofing.
@@ -237,7 +237,7 @@ TEST(FTSIndexFormat, LongWordTextIndexVersion3) {
     string longWordCat = longPrefix + "cat";
     // "aaa...aaasat"
     string longWordSat = longPrefix + "sat";
-    string text = mongoutils::str::stream() << longWordCat << " " << longWordSat;
+    string text = mongolutils::str::stream() << longWordCat << " " << longWordSat;
     FTSIndexFormat::getKeys(spec, BSON("data" << text), &keys);
 
     // Hard-coded expected computed keys for future-proofing.

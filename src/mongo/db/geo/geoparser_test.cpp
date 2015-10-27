@@ -27,23 +27,23 @@
  */
 
 /**
- * This file contains tests for mongo/db/geo/geoparser.cpp.
+ * This file contains tests for mongol/db/geo/geoparser.cpp.
  */
 
 #include <string>
 #include <sstream>
 
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/json.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/json.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
 // Wrap a BSON object to a BSON element.
 #define BSON_ELT(bson) BSON("" << (bson)).firstElement()
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -296,7 +296,7 @@ TEST(GeoParser, parseLegacyPolygon) {
 }
 
 TEST(GeoParser, parseMultiPoint) {
-    mongo::MultiPointWithCRS mp;
+    mongol::MultiPointWithCRS mp;
 
     ASSERT_OK(GeoParser::parseMultiPoint(
         fromjson("{'type':'MultiPoint','coordinates':[[1,2],[3,4]]}"), &mp));
@@ -321,7 +321,7 @@ TEST(GeoParser, parseMultiPoint) {
 }
 
 TEST(GeoParser, parseMultiLine) {
-    mongo::MultiLineWithCRS ml;
+    mongol::MultiLineWithCRS ml;
 
     ASSERT_OK(GeoParser::parseMultiLine(
         fromjson(
@@ -362,7 +362,7 @@ TEST(GeoParser, parseMultiLine) {
 }
 
 TEST(GeoParser, parseMultiPolygon) {
-    mongo::MultiPolygonWithCRS mp;
+    mongol::MultiPolygonWithCRS mp;
 
     ASSERT_OK(GeoParser::parseMultiPolygon(
         fromjson(
@@ -388,7 +388,7 @@ TEST(GeoParser, parseMultiPolygon) {
 
 TEST(GeoParser, parseGeometryCollection) {
     {
-        mongo::GeometryCollection gc;
+        mongol::GeometryCollection gc;
         BSONObj obj = fromjson(
             "{ 'type': 'GeometryCollection', 'geometries': ["
             "{ 'type': 'Point','coordinates': [100.0,0.0]},"
@@ -408,7 +408,7 @@ TEST(GeoParser, parseGeometryCollection) {
             "]}"
             "]}");
 
-        mongo::GeometryCollection gc;
+        mongol::GeometryCollection gc;
         ASSERT_OK(GeoParser::parseGeometryCollection(obj, false, &gc));
         ASSERT_TRUE(gc.supportsContains());
     }
@@ -423,7 +423,7 @@ TEST(GeoParser, parseGeometryCollection) {
             "[[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]"
             "]}"
             "]}");
-        mongo::GeometryCollection gc;
+        mongol::GeometryCollection gc;
         ASSERT_NOT_OK(GeoParser::parseGeometryCollection(obj, false, &gc));
     }
 
@@ -438,7 +438,7 @@ TEST(GeoParser, parseGeometryCollection) {
             "]}"
             "]}");
 
-        mongo::GeometryCollection gc;
+        mongol::GeometryCollection gc;
         ASSERT_OK(GeoParser::parseGeometryCollection(obj, false, &gc));
         ASSERT_TRUE(gc.supportsContains());
     }

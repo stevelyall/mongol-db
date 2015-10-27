@@ -16,19 +16,19 @@
  * the cross platform abstractions that we rely upon.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <array>
 #include <js/Utility.h>
 #include <vm/PosixNSPR.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/concurrency/threadlocal.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/concurrency/threadlocal.h"
 
 namespace {
 MONGO_TRIVIALLY_CONSTRUCTIBLE_THREAD_LOCAL nspr::Thread* kCurrentThread;
@@ -56,19 +56,19 @@ public:
         thread_ = CreateThread(nullptr, stackSize, ThreadRoutine, this, 0, nullptr);
 
         if (thread_ == nullptr) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in CreateThread");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in CreateThread");
         }
     }
 
     void detach() {
         if (CloseHandle(thread_) == 0) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in CloseHandle");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in CloseHandle");
         }
     }
 
     void join() {
         if (WaitForSingleObject(thread_, INFINITE) == WAIT_FAILED) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in WaitForSingleObject");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in WaitForSingleObject");
         }
     }
 
@@ -97,30 +97,30 @@ public:
         pthread_attr_t attrs;
 
         if (pthread_attr_init(&attrs) != 0) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in pthread_attr_init");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in pthread_attr_init");
         }
 
         if (stackSize) {
             if (pthread_attr_setstacksize(&attrs, stackSize) != 0) {
-                mongo::uasserted(mongo::ErrorCodes::InternalError,
+                mongol::uasserted(mongol::ErrorCodes::InternalError,
                                  "Failed in pthread_attr_setstacksize");
             }
         }
 
         if (pthread_create(&thread_, &attrs, ThreadRoutine, this) != 0) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in pthread_create");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in pthread_create");
         }
     }
 
     void detach() {
         if (pthread_detach(thread_) != 0) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in pthread_detach");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in pthread_detach");
         }
     }
 
     void join() {
         if (pthread_join(thread_, nullptr) != 0) {
-            mongo::uasserted(mongo::ErrorCodes::InternalError, "Failed in pthread_join");
+            mongol::uasserted(mongol::ErrorCodes::InternalError, "Failed in pthread_join");
         }
     }
 
@@ -136,7 +136,7 @@ private:
 };
 #endif
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 void PR_BindThread(PRThread* thread) {
@@ -151,7 +151,7 @@ void PR_DestroyFakeThread(PRThread* thread) {
     delete thread;
 }
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol
 
 
 PRThread* PR_CreateThread(PRThreadType type,
@@ -196,7 +196,7 @@ PRThread* PR_GetCurrentThread() {
 }
 
 PRStatus PR_SetCurrentThreadName(const char* name) {
-    mongo::setThreadName(name);
+    mongol::setThreadName(name);
 
     return PR_SUCCESS;
 }
@@ -246,11 +246,11 @@ PRStatus PR_CallOnceWithArg(PRCallOnceType* once, PRCallOnceWithArgFN func, void
 }
 
 class nspr::Lock {
-    mongo::stdx::mutex mutex_;
+    mongol::stdx::mutex mutex_;
 
 public:
     Lock() {}
-    mongo::stdx::mutex& mutex() {
+    mongol::stdx::mutex& mutex() {
         return mutex_;
     }
 };
@@ -274,12 +274,12 @@ PRStatus PR_Unlock(PRLock* lock) {
 }
 
 class nspr::CondVar {
-    mongo::stdx::condition_variable cond_;
+    mongol::stdx::condition_variable cond_;
     nspr::Lock* lock_;
 
 public:
     CondVar(nspr::Lock* lock) : lock_(lock) {}
-    mongo::stdx::condition_variable& cond() {
+    mongol::stdx::condition_variable& cond() {
         return cond_;
     }
     nspr::Lock* lock() {
@@ -326,8 +326,8 @@ uint32_t PR_TicksPerSecond() {
 PRStatus PR_WaitCondVar(PRCondVar* cvar, uint32_t timeout) {
     if (timeout == PR_INTERVAL_NO_TIMEOUT) {
         try {
-            mongo::stdx::unique_lock<mongo::stdx::mutex> lk(cvar->lock()->mutex(),
-                                                            mongo::stdx::adopt_lock_t());
+            mongol::stdx::unique_lock<mongol::stdx::mutex> lk(cvar->lock()->mutex(),
+                                                            mongol::stdx::adopt_lock_t());
 
             cvar->cond().wait(lk);
             lk.release();
@@ -338,10 +338,10 @@ PRStatus PR_WaitCondVar(PRCondVar* cvar, uint32_t timeout) {
         }
     } else {
         try {
-            mongo::stdx::unique_lock<mongo::stdx::mutex> lk(cvar->lock()->mutex(),
-                                                            mongo::stdx::adopt_lock_t());
+            mongol::stdx::unique_lock<mongol::stdx::mutex> lk(cvar->lock()->mutex(),
+                                                            mongol::stdx::adopt_lock_t());
 
-            cvar->cond().wait_for(lk, mongo::stdx::chrono::microseconds(timeout));
+            cvar->cond().wait_for(lk, mongol::stdx::chrono::microseconds(timeout));
             lk.release();
 
             return PR_SUCCESS;

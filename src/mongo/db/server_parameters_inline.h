@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#include "mongo/util/stringutils.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T, ServerParameterType paramType>
 inline Status ExportedServerParameter<T, paramType>::set(const BSONElement& newValueElement) {
@@ -52,4 +52,4 @@ inline Status ExportedServerParameter<T, paramType>::set(const T& newValue) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

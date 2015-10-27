@@ -32,14 +32,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/auth/authentication_session.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/auth/authentication_session.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationSession;
 class OperationContext;
@@ -177,4 +177,4 @@ protected:
     bool _done;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,7 +30,7 @@
  *
  * Should NOT be included by other header files.  Include only in source files.
  *
- * Initializer functions take a parameter of type ::mongo::InitializerContext*, and return
+ * Initializer functions take a parameter of type ::mongol::InitializerContext*, and return
  * a Status.  Any status other than Status::OK() is considered a failure that will stop further
  * intializer processing.
  *
@@ -42,7 +42,7 @@
 
 #pragma once
 
-#include "mongo/base/init.h"
+#include "mongol/base/init.h"
 
 /**
  * Helper macros to use when handling startup options

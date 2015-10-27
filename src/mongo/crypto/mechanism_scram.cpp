@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/crypto/mechanism_scram.h"
+#include "mongol/crypto/mechanism_scram.h"
 
 #include <vector>
 
-#include "mongo/crypto/crypto.h"
-#include "mongo/platform/random.h"
-#include "mongo/util/base64.h"
+#include "mongol/crypto/crypto.h"
+#include "mongol/platform/random.h"
+#include "mongol/util/base64.h"
 
-namespace mongo {
+namespace mongol {
 namespace scram {
 
 using std::unique_ptr;
@@ -226,4 +226,4 @@ bool verifyServerSignature(const unsigned char saltedPassword[hashSize],
 }
 
 }  // namespace scram
-}  // namespace mongo
+}  // namespace mongol

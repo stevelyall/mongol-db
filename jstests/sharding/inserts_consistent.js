@@ -1,30 +1,30 @@
 // Test write re-routing on version mismatch.
 
-var st = new ShardingTest({ shards : 2, mongos : 2, verbose : 2 })
+var st = new ShardingTest({ shards : 2, mongols : 2, verbose : 2 })
 
 jsTest.log( "Doing test setup..." )
 
 // Stop balancer, since it'll just get in the way of this
 st.stopBalancer()
 
-var mongos = st.s
-var admin = mongos.getDB("admin")
-var config = mongos.getDB("config")
+var mongols = st.s
+var admin = mongols.getDB("admin")
+var config = mongols.getDB("config")
 var coll = st.s.getCollection( jsTest.name() + ".coll" )
 
 st.shardColl( coll, { _id : 1 }, { _id : 0 }, false )
 
-jsTest.log( "Refreshing second mongos..." )
+jsTest.log( "Refreshing second mongols..." )
 
-var mongosB = st.s1
-var adminB = mongosB.getDB("admin")
-var collB = mongosB.getCollection( coll + "" )
+var mongolsB = st.s1
+var adminB = mongolsB.getDB("admin")
+var collB = mongolsB.getCollection( coll + "" )
 
-// Make sure mongosB knows about the coll
+// Make sure mongolsB knows about the coll
 assert.eq( 0, collB.find().itcount() )
 // printjson( adminB.runCommand({ flushRouterConfig : 1 }) )
 
-jsTest.log( "Moving chunk to create stale mongos..." )
+jsTest.log( "Moving chunk to create stale mongols..." )
 
 var otherShard = config.chunks.findOne({ _id : sh._collRE( coll ) }).shard
 for( var i = 0; i < st._shardNames.length; i++ ){

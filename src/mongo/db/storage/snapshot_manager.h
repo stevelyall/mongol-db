@@ -31,13 +31,13 @@
 #include <limits>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/snapshot_name.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/snapshot_name.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecoveryUnit;
 
@@ -104,4 +104,4 @@ protected:
     virtual ~SnapshotManager() = default;
 };
 
-}  // namespace mongo
+}  // namespace mongol

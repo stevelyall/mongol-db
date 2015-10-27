@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/query/plan_enumerator.h"
+#include "mongol/db/query/plan_enumerator.h"
 
 #include <set>
 
-#include "mongo/db/query/indexability.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/util/log.h"
+#include "mongol/db/query/indexability.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/util/log.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::unique_ptr;
 using std::endl;
 using std::set;
@@ -46,8 +46,8 @@ using std::string;
 using std::vector;
 
 std::string getPathPrefix(std::string path) {
-    if (mongoutils::str::contains(path, '.')) {
-        return mongoutils::str::before(path, '.');
+    if (mongolutils::str::contains(path, '.')) {
+        return mongolutils::str::before(path, '.');
     } else {
         return path;
     }
@@ -65,7 +65,7 @@ bool expressionRequiresIndex(const MatchExpression* node) {
 }  // namespace
 
 
-namespace mongo {
+namespace mongol {
 
 PlanEnumerator::PlanEnumerator(const PlanEnumeratorParams& params)
     : _root(params.root),
@@ -92,7 +92,7 @@ Status PlanEnumerator::init() {
 }
 
 std::string PlanEnumerator::dumpMemo() {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
 
     // Note that this needs to be kept in sync with allocateAssignment which assigns memo IDs.
     for (size_t i = 1; i < _memo.size(); ++i) {
@@ -103,7 +103,7 @@ std::string PlanEnumerator::dumpMemo() {
 
 string PlanEnumerator::NodeAssignment::toString() const {
     if (NULL != pred) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "predicate\n";
         ss << "\tfirst indices: [";
         for (size_t i = 0; i < pred->first.size(); ++i) {
@@ -116,7 +116,7 @@ string PlanEnumerator::NodeAssignment::toString() const {
         ss << "\tindexToAssign: " << pred->indexToAssign;
         return ss;
     } else if (NULL != andAssignment) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "AND enumstate counter " << andAssignment->counter;
         for (size_t i = 0; i < andAssignment->choices.size(); ++i) {
             ss << "\n\tchoice " << i << ":\n";
@@ -137,7 +137,7 @@ string PlanEnumerator::NodeAssignment::toString() const {
         }
         return ss;
     } else if (NULL != arrayAssignment) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "ARRAY SUBNODES enumstate " << arrayAssignment->counter << "/ ONE OF: [ ";
         for (size_t i = 0; i < arrayAssignment->subnodes.size(); ++i) {
             ss << arrayAssignment->subnodes[i] << " ";
@@ -146,7 +146,7 @@ string PlanEnumerator::NodeAssignment::toString() const {
         return ss;
     } else {
         verify(NULL != orAssignment);
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "ALL OF: [ ";
         for (size_t i = 0; i < orAssignment->subnodes.size(); ++i) {
             ss << orAssignment->subnodes[i] << " ";
@@ -1251,4 +1251,4 @@ bool PlanEnumerator::nextMemo(size_t id) {
     return false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

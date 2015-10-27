@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/commands.h"
-#include "mongo/db/cursor_id.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/cursor_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Base class for the killCursors command, which attempts to kill all given cursors.  Contains code
- * common to mongos and mongod implementations.
+ * common to mongols and mongold implementations.
  */
 class KillCursorsCmdBase : public Command {
 public:
@@ -88,4 +88,4 @@ private:
                                CursorId cursorId) = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

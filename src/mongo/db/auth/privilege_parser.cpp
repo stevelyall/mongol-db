@@ -26,21 +26,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/auth/privilege_parser.h"
+#include "mongol/db/auth/privilege_parser.h"
 
 #include <string>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const BSONField<bool> ParsedResource::anyResource("anyResource");
 const BSONField<bool> ParsedResource::cluster("cluster");
@@ -462,4 +462,4 @@ bool ParsedPrivilege::privilegeToParsedPrivilege(const Privilege& privilege,
     result->setActions(privilege.getActions().getActionsAsStrings());
     return result->isValid(errmsg);
 }
-}  // namespace mongo
+}  // namespace mongol

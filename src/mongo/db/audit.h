@@ -33,11 +33,11 @@
 
 #pragma once
 
-#include "mongo/base/error_codes.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/user.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/user.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationSession;
 class BSONObj;
@@ -307,11 +307,11 @@ void logShardCollection(ClientBasic* client, StringData ns, const BSONObj& keyPa
 void writeImpersonatedUsersToMetadata(BSONObjBuilder* metadataBob);
 
 /*
- * Looks for an 'impersonatedUsers' field.  This field is used by mongos to
+ * Looks for an 'impersonatedUsers' field.  This field is used by mongols to
  * transmit the usernames of the currently authenticated user when it runs commands
  * on a shard using internal user authentication.  Auditing uses this information
  * to properly ascribe users to actions.  This is necessary only for implicit actions that
- * mongos cannot properly audit itself; examples are implicit collection and database creation.
+ * mongols cannot properly audit itself; examples are implicit collection and database creation.
  * This function requires that the field is the last field in the bson object; it edits the
  * command BSON to efficiently remove the field before returning.
  *
@@ -324,11 +324,11 @@ void parseAndRemoveImpersonatedUsersField(BSONObj cmdObj,
                                           bool* fieldIsPresent);
 
 /*
- * Looks for an 'impersonatedRoles' field.  This field is used by mongos to
+ * Looks for an 'impersonatedRoles' field.  This field is used by mongols to
  * transmit the roles of the currently authenticated user when it runs commands
  * on a shard using internal user authentication.  Auditing uses this information
  * to properly ascribe user roles to actions.  This is necessary only for implicit actions that
- * mongos cannot properly audit itself; examples are implicit collection and database creation.
+ * mongols cannot properly audit itself; examples are implicit collection and database creation.
  * This function requires that the field is the last field in the bson object; it edits the
  * command BSON to efficiently remove the field before returning.
  *
@@ -341,4 +341,4 @@ void parseAndRemoveImpersonatedRolesField(BSONObj cmdObj,
                                           bool* fieldIsPresent);
 
 }  // namespace audit
-}  // namespace mongo
+}  // namespace mongol

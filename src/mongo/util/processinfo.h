@@ -32,11 +32,11 @@
 #include <cstdint>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class ProcessInfo {
 public:
@@ -199,7 +199,7 @@ private:
 
         // On non-Solaris (ie, Linux, Darwin, *BSD) kernels, prefer msync.
         // Illumos kernels do O(N) scans in memory of the page table during msync which
-        // causes high CPU, Oracle Solaris 11.2 and later modified ZFS to workaround mongodb
+        // causes high CPU, Oracle Solaris 11.2 and later modified ZFS to workaround mongoldb
         // Oracle Solaris Bug:
         //  18658199 Speed up msync() on ZFS by 90000x with this one weird trick
         bool preferMsyncOverFSync;

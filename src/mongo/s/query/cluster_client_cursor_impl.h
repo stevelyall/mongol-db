@@ -31,13 +31,13 @@
 #include <memory>
 #include <queue>
 
-#include "mongo/executor/task_executor.h"
-#include "mongo/s/query/cluster_client_cursor.h"
-#include "mongo/s/query/cluster_client_cursor_params.h"
-#include "mongo/s/query/router_exec_stage.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/s/query/cluster_client_cursor.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
+#include "mongol/s/query/router_exec_stage.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class RouterStageMock;
 
@@ -86,4 +86,4 @@ private:
     std::queue<BSONObj> _stash;
 };
 
-}  // namespace mongo
+}  // namespace mongol

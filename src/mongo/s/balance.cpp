@@ -26,43 +26,43 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/balance.h"
+#include "mongol/s/balance.h"
 
 #include <algorithm>
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/balancer_policy.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_actionlog.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_mongos.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
-#include "mongo/util/version.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/balancer_policy.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_actionlog.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_mongols.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::map;
 using std::set;
@@ -621,4 +621,4 @@ void Balancer::run() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

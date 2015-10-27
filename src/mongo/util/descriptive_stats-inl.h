@@ -35,9 +35,9 @@
 #include <algorithm>
 #include <limits>
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 template <class Sample>
 BasicEstimators<Sample>::BasicEstimators()
@@ -193,7 +193,7 @@ BSONObj SummaryEstimators<Sample, NumQuantiles>::statisticSummaryToBSONObj() con
         for (size_t i = 1; i <= NumQuantiles; i++) {
             const double probability = this->DistributionEstimators<NumQuantiles>::probability(i);
             const double quantile = this->DistributionEstimators<NumQuantiles>::quantile(i);
-            quantilesBuilder.append(std::string(mongoutils::str::stream() << probability),
+            quantilesBuilder.append(std::string(mongolutils::str::stream() << probability),
                                     quantile);
         }
         quantilesBuilder.doneFast();
@@ -201,4 +201,4 @@ BSONObj SummaryEstimators<Sample, NumQuantiles>::statisticSummaryToBSONObj() con
     return b.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

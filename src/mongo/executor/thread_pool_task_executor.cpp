@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/thread_pool_task_executor.h"
+#include "mongol/executor/thread_pool_task_executor.h"
 
 #include <iterator>
 
-#include "mongo/base/checked_cast.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status_with.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/concurrency/thread_pool_interface.h"
-#include "mongo/util/log.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status_with.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/concurrency/thread_pool_interface.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class ThreadPoolTaskExecutor::CallbackState : public TaskExecutor::CallbackState {
@@ -425,4 +425,4 @@ void ThreadPoolTaskExecutor::runCallback(std::shared_ptr<CallbackState> cbStateA
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

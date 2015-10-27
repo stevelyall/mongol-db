@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batched_command_response.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const BSONField<int> BatchedCommandResponse::ok("ok");
 const BSONField<int> BatchedCommandResponse::errCode("code", ErrorCodes::UnknownError);
@@ -583,4 +583,4 @@ const WCErrorDetail* BatchedCommandResponse::getWriteConcernError() const {
     return _wcErrDetails.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/base/counter.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/commands/server_status_metric.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/commands/server_status_metric.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 Counter64 returnedCounter;
 Counter64 insertedCounter;
@@ -87,4 +87,4 @@ void recordCurOpMetrics(OperationContext* opCtx) {
         writeConflictsCounter.increment(debug.writeConflicts);
 }
 
-}  // namespace mongo
+}  // namespace mongol

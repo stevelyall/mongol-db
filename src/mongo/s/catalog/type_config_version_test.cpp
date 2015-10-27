@@ -26,10 +26,10 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/unittest/unittest.h"
 
 /**
  * Basic tests for config version parsing.
@@ -37,7 +37,7 @@
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(Validity, Empty) {
     //

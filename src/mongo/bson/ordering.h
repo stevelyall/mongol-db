@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 
 // todo: ideally move to db/ instead of bson/, but elim any dependencies first
 

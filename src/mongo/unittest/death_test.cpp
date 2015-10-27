@@ -25,11 +25,11 @@
  *    exception statement from all source files in the program, then also delete
  *    it in the license file.
  */
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/death_test.h"
+#include "mongol/unittest/death_test.h"
 
 #ifndef _WIN32
 #include <cstdio>
@@ -39,9 +39,9 @@
 
 #include <sstream>
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/quick_exit.h"
 
 #define checkSyscall(EXPR)                                              \
     do {                                                                \
@@ -52,7 +52,7 @@
         }                                                               \
     } while (false)
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 DeathTestImpl::DeathTestImpl(std::unique_ptr<Test> test) : _test(std::move(test)) {}
@@ -118,4 +118,4 @@ void DeathTestImpl::_doTest() {
 }
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

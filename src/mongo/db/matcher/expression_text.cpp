@@ -28,11 +28,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
-#include "mongo/db/matcher/expression_text.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/platform/basic.h"
+#include "mongol/db/matcher/expression_text.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;

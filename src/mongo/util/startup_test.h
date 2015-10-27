@@ -1,4 +1,4 @@
-// mongo/util/startup_test.h
+// mongol/util/startup_test.h
 
 /*    Copyright 2009 10gen Inc.
  *
@@ -31,7 +31,7 @@
 
 #include <vector>
 
-namespace mongo {
+namespace mongol {
 
 /*
    The idea here is to let all initialization of global variables (classes inheriting from
@@ -41,7 +41,7 @@ namespace mongo {
    To define a unit test, inherit from this and implement run. instantiate one object for the new
    class as a global.
 
-   These tests are ran on *every* startup of mongod, so they have to be very lightweight.  But it is
+   These tests are ran on *every* startup of mongold, so they have to be very lightweight.  But it is
    a good quick check for a bad build.
 */
 class StartupTest {
@@ -67,4 +67,4 @@ private:
 };
 
 
-}  // namespace mongo
+}  // namespace mongol

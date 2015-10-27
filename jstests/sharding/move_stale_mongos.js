@@ -1,8 +1,8 @@
 //
-// Tests that stale mongoses can properly move chunks.
+// Tests that stale mongolses can properly move chunks.
 //
 
-var st = new ShardingTest({shards: 2, mongos: 2});
+var st = new ShardingTest({shards: 2, mongols: 2});
 var admin = st.s0.getDB('admin');
 var testDb = 'test';
 var testNs = 'test.foo';

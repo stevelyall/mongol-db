@@ -32,14 +32,14 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/bson/mutable/damage_vector.h"
-#include "mongo/db/exec/collection_scan_common.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_fetcher.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/bson/mutable/damage_vector.h"
+#include "mongol/db/exec/collection_scan_common.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_fetcher.h"
 
-namespace mongo {
+namespace mongol {
 
 class CappedCallback;
 class Collection;

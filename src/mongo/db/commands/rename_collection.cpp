@@ -28,29 +28,29 @@
 *    it in the license file.
 */
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/rename_collection.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/rename_collection.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/rename_collection.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/rename_collection.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::min;
 using std::string;
@@ -147,4 +147,4 @@ public:
     }
 } cmdrenamecollection;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -27,12 +27,12 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/log.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/platform/basic.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/log.h"
+#include "mongol/db/jsobj.h"
 
 #include <mach/vm_statistics.h>
 #include <mach/task_info.h>
@@ -50,7 +50,7 @@
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 ProcessInfo::ProcessInfo(ProcessId pid) : _pid(pid) {}
 

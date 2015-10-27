@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/chunk_diff.h"
+#include "mongol/s/chunk_diff.h"
 
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 template <class ValType>
 ConfigDiffTracker<ValType>::ConfigDiffTracker() {
@@ -118,8 +118,8 @@ int ConfigDiffTracker<ValType>::calculateConfigDiff(OperationContext* txn,
     // Overall idea here is to work in two steps :
     // 1. For all the new chunks we find, increment the maximum version per-shard and
     //      per-collection, and remove any conflicting chunks from the ranges.
-    // 2. For all the new chunks we're interested in (all of them for mongos, just chunks on
-    //      the shard for mongod) add them to the ranges.
+    // 2. For all the new chunks we're interested in (all of them for mongols, just chunks on
+    //      the shard for mongold) add them to the ranges.
 
     std::vector<ChunkType> newTracked;
 
@@ -235,4 +235,4 @@ class Chunk;
 template class ConfigDiffTracker<BSONObj>;
 template class ConfigDiffTracker<std::shared_ptr<Chunk>>;
 
-}  // namespace mongo
+}  // namespace mongol

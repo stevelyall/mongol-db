@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/service_context_d.h"
+#include "mongol/db/service_context_d.h"
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/base/initializer.h"
-#include "mongo/db/client.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/db/storage/storage_engine_lock_file.h"
-#include "mongo/db/storage/storage_engine_metadata.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/system_clock_source.h"
-#include "mongo/util/system_tick_source.h"
+#include "mongol/base/init.h"
+#include "mongol/base/initializer.h"
+#include "mongol/db/client.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/db/storage/storage_engine_lock_file.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/system_clock_source.h"
+#include "mongol/util/system_tick_source.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_INITIALIZER(SetGlobalEnvironment)(InitializerContext* context) {
     setGlobalServiceContext(stdx::make_unique<ServiceContextMongoD>());
@@ -107,12 +107,12 @@ void ServiceContextMongoD::initializeGlobalStorageEngine() {
             storageGlobalParams.engine = *existingStorageEngine;
         }
     } else if (!storageGlobalParams.engineSetByUser) {
-        // Ensure the default storage engine is available with this build of mongod.
+        // Ensure the default storage engine is available with this build of mongold.
         uassert(28663,
                 str::stream()
                     << "Cannot start server. The default storage engine '"
                     << storageGlobalParams.engine
-                    << "' is not available with this build of mongod. Please specify a different"
+                    << "' is not available with this build of mongold. Please specify a different"
                     << " storage engine explicitly, e.g. --storageEngine=mmapv1.",
                 isRegisteredStorageEngine(storageGlobalParams.engine));
     }
@@ -301,4 +301,4 @@ OpObserver* ServiceContextMongoD::getOpObserver() {
     return _opObserver.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

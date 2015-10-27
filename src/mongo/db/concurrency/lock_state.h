@@ -30,11 +30,11 @@
 
 #include <queue>
 
-#include "mongo/db/concurrency/fast_map_noalloc.h"
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/util/concurrency/spin_lock.h"
+#include "mongol/db/concurrency/fast_map_noalloc.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/util/concurrency/spin_lock.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Notfication callback, which stores the last notification result and signals a condition
@@ -325,4 +325,4 @@ private:
  */
 LockManager* getGlobalLockManager();
 
-}  // namespace mongo
+}  // namespace mongol

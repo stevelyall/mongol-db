@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/system_clock_source.h"
+#include "mongol/util/system_clock_source.h"
 
-#include "mongo/stdx/memory.h"
-#include "mongo/util/time_support.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 Date_t SystemClockSource::now() {
     return Date_t::now();
@@ -44,4 +44,4 @@ SystemClockSource* SystemClockSource::get() {
     return globalSystemClockSource.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

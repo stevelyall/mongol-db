@@ -82,7 +82,7 @@ var DBExplainQuery = (function() {
 
         this._query = query;
         this._verbosity = Explainable.parseVerbosity(verbosity);
-        this._mongo = query._mongo;
+        this._mongol = query._mongol;
         this._finished = false;
 
         // Used if this query is a count, not a find.
@@ -140,7 +140,7 @@ var DBExplainQuery = (function() {
             // Explain always passes a negative value for limit.
             this._query._limit = Math.abs(this._query._limit) * -1;
 
-            if (this._mongo.hasExplainCommand()) {
+            if (this._mongol.hasExplainCommand()) {
                 // The wire protocol version indicates that the server has the explain command.
                 // Convert this explain query into an explain command, and send the command to
                 // the server.

@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/death_test.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/concurrency/thread_pool.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/death_test.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/concurrency/thread_pool.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
 namespace {
-using namespace mongo;
+using namespace mongol;
 
 class ThreadPoolTest : public unittest::Test {
 protected:

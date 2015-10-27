@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/query/index_tag.h"
+#include "mongol/db/query/index_tag.h"
 
-#include "mongo/db/query/indexability.h"
+#include "mongol/db/query/indexability.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace mongo {
+namespace mongol {
 
 // TODO: Move out of the enumerator and into the planner.
 
@@ -110,4 +110,4 @@ void sortUsingTags(MatchExpression* tree) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

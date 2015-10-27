@@ -27,11 +27,11 @@
 
 #pragma once
 
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/logger/log_manager.h"
-#include "mongo/logger/rotatable_file_manager.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/logger/log_manager.h"
+#include "mongol/logger/rotatable_file_manager.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -52,4 +52,4 @@ inline ComponentMessageLogDomain* globalLogDomain() {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

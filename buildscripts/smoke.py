@@ -1,28 +1,28 @@
 #!/usr/bin/env python
 
-# smoke.py: run some mongo tests.
+# smoke.py: run some mongol tests.
 
 # Bugs, TODOs:
 
-# 0 Some tests hard-code pathnames relative to the mongo repository,
+# 0 Some tests hard-code pathnames relative to the mongol repository,
 #   so the smoke.py process and all its children must be run with the
-#   mongo repo as current working directory.  That's kinda icky.
+#   mongol repo as current working directory.  That's kinda icky.
 
 # 1 The tests that are implemented as standalone executables ("test"),
 #   don't take arguments for the dbpath, but unconditionally use
 #   "/tmp/unittest".
 
-# 2 mongod output gets intermingled with mongo output, and it's often
+# 2 mongold output gets intermingled with mongol output, and it's often
 #   hard to find error messages in the slop.  Maybe have smoke.py do
 #   some fancier wrangling of child process output?
 
-# 3 Some test suites run their own mongods, and so don't need us to
-#   run any mongods around their execution.  (It's harmless to do so,
+# 3 Some test suites run their own mongolds, and so don't need us to
+#   run any mongolds around their execution.  (It's harmless to do so,
 #   but adds noise in the output.)
 
-# 4 Running a separate mongo shell for each js file is slower than
-#   loading js files into one mongo shell process.  Maybe have runTest
-#   queue up all filenames ending in ".js" and run them in one mongo
+# 4 Running a separate mongol shell for each js file is slower than
+#   loading js files into one mongol shell process.  Maybe have runTest
+#   queue up all filenames ending in ".js" and run them in one mongol
 #   shell at the "end" of testing?
 
 # 5 Right now small-oplog implies master/slave replication.  Maybe
@@ -30,7 +30,7 @@
 #   maybe test replica set replication, too.)
 
 # 6 We use cleanbb.py to clear out the dbpath, but cleanbb.py kills
-#   off all mongods on a box, which means you can't run two smoke.py
+#   off all mongolds on a box, which means you can't run two smoke.py
 #   jobs on the same host at once.  So something's gotta change.
 
 from datetime import datetime
@@ -50,9 +50,9 @@ import time
 import threading
 import traceback
 
-from pymongo import MongoClient
-from pymongo.errors import OperationFailure
-from pymongo import ReadPreference
+from pymongol import MongoClient
+from pymongol.errors import OperationFailure
+from pymongol import ReadPreference
 
 import cleanbb
 import utils
@@ -77,15 +77,15 @@ except:
 
 
 # TODO clean this up so we don't need globals...
-mongo_repo = os.getcwd() #'./'
-failfile = os.path.join(mongo_repo, 'failfile.smoke')
+mongol_repo = os.getcwd() #'./'
+failfile = os.path.join(mongol_repo, 'failfile.smoke')
 test_path = None
-mongod_executable = None
-mongod_port = None
+mongold_executable = None
+mongold_port = None
 shell_executable = None
 continue_on_failure = None
 file_of_commands_mode = False
-start_mongod = True
+start_mongold = True
 temp_path = None
 clean_every_n_tests = 1
 clean_whole_dbroot = False
@@ -161,7 +161,7 @@ def clean_dbroot(dbroot="", nokill=False):
         cleanbb.cleanup(dbroot, nokill)
 
 
-class mongod(NullMongod):
+class mongold(NullMongod):
     def __init__(self, **kwargs):
         self.kwargs = kwargs
         self.proc = None
@@ -172,53 +172,53 @@ class mongod(NullMongod):
         utils.ensureDir(smoke_db_prefix + "/data/")
         utils.ensureDir(smoke_db_prefix + "/data/db/")
 
-    def check_mongo_port(self, port=27017):
+    def check_mongol_port(self, port=27017):
         sock = socket.socket()
         sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         sock.settimeout(1)
         sock.connect(("localhost", int(port)))
         sock.close()
         
-    def is_mongod_up(self, port=mongod_port):
-        if not start_mongod:
+    def is_mongold_up(self, port=mongold_port):
+        if not start_mongold:
             return False
         try:
-            self.check_mongo_port(int(port))
+            self.check_mongol_port(int(port))
             return True
         except Exception,e:
             print >> sys.stderr, e
             return False
         
-    def did_mongod_start(self, port=mongod_port, timeout=300):
+    def did_mongold_start(self, port=mongold_port, timeout=300):
         while timeout > 0:
             time.sleep(1)
-            is_up = self.is_mongod_up(port)
+            is_up = self.is_mongold_up(port)
             if is_up:
                 return True
             timeout = timeout - 1
-        print >> sys.stderr, "timeout starting mongod"
+        print >> sys.stderr, "timeout starting mongold"
         return False
 
     def start(self):
-        global mongod_port
-        global mongod
+        global mongold_port
+        global mongold
         if self.proc:
             print >> sys.stderr, "probable bug: self.proc already set in start()"
             return
         self.ensure_test_dirs()
         dir_name = smoke_db_prefix + "/data/db/sconsTests/"
-        self.port = int(mongod_port)
+        self.port = int(mongold_port)
         self.slave = False
         if 'slave' in self.kwargs:
             dir_name = smoke_db_prefix + '/data/db/sconsTestsSlave/'
-            srcport = mongod_port
+            srcport = mongold_port
             self.port += 1
             self.slave = True
 
         clean_dbroot(dbroot=dir_name, nokill=self.slave)
         utils.ensureDir(dir_name)
 
-        argv = [mongod_executable, "--port", str(self.port), "--dbpath", dir_name]
+        argv = [mongold_executable, "--port", str(self.port), "--dbpath", dir_name]
         # These parameters are always set for tests
         # SERVER-9137 Added httpinterface parameter to keep previous behavior
         argv += ['--setParameter', 'enableTestCommands=1', '--httpinterface']
@@ -262,8 +262,8 @@ class mongod(NullMongod):
         print "running " + " ".join(argv)
         self.proc = self._start(buildlogger(argv, is_global=True))
 
-        if not self.did_mongod_start(self.port):
-            raise Exception("Failed to start mongod")
+        if not self.did_mongold_start(self.port):
+            raise Exception("Failed to start mongold")
 
         if self.slave:
             local = MongoClient(port=self.port,
@@ -284,9 +284,9 @@ class mongod(NullMongod):
         if os.sys.platform == "win32":
             # Create a job object with the "kill on job close"
             # flag; this is inherited by child processes (ie
-            # the mongod started on our behalf by buildlogger)
+            # the mongold started on our behalf by buildlogger)
             # and lets us terminate the whole tree of processes
-            # rather than orphaning the mongod.
+            # rather than orphaning the mongold.
             import win32job
 
             # Magic number needed to allow job reassignment in Windows 7
@@ -328,19 +328,19 @@ class mongod(NullMongod):
             else:
                 os.kill(self.proc.pid, 15)
         except Exception, e:
-            print >> sys.stderr, "error shutting down mongod"
+            print >> sys.stderr, "error shutting down mongold"
             print >> sys.stderr, e
         self.proc.wait()
         sys.stderr.flush()
         sys.stdout.flush()
 
-        # Fail hard if mongod terminates with an error. That might indicate that an
+        # Fail hard if mongold terminates with an error. That might indicate that an
         # instrumented build (e.g. LSAN) has detected an error. For now we aren't doing this on
         # windows because the exit code seems to be unpredictable. We don't have LSAN there
         # anyway.
         retcode = self.proc.returncode
         if os.sys.platform != "win32" and retcode != 0:
-            raise(Exception('mongod process exited with non-zero code %d' % retcode))
+            raise(Exception('mongold process exited with non-zero code %d' % retcode))
 
     def wait_for_repl(self):
         print "Awaiting replicated (w:2, wtimeout:5min) insert (port:" + str(self.port) + ")"
@@ -368,7 +368,7 @@ class TestServerFailure(TestFailure):
         self.status = -1 # this is meaningless as an exit code, but
                          # that's the point.
     def __str__(self):
-        return 'mongod not running after executing test %s' % self.path
+        return 'mongold not running after executing test %s' % self.path
 
 def check_db_hashes(master, slave):
     # Need to pause a bit so a slave might catch up...
@@ -378,10 +378,10 @@ def check_db_hashes(master, slave):
     master.wait_for_repl()
 
     # FIXME: maybe make this run dbhash on all databases?
-    for mongod in [master, slave]:
-        client = MongoClient(port=mongod.port, read_preference=ReadPreference.SECONDARY_PREFERRED)
-        mongod.dbhash = client.test.command("dbhash")
-        mongod.dict = mongod.dbhash["collections"]
+    for mongold in [master, slave]:
+        client = MongoClient(port=mongold.port, read_preference=ReadPreference.SECONDARY_PREFERRED)
+        mongold.dbhash = client.test.command("dbhash")
+        mongold.dict = mongold.dbhash["collections"]
 
     global lost_in_slave, lost_in_master, screwy_in_slave, replicated_collections
 
@@ -461,7 +461,7 @@ def skipTest(path):
         # Skip any tests that run with auth explicitly
         if parentDir.lower() == "auth" or "auth" in basename.lower():
             return True
-        if parentPath == mongo_repo: # Skip client tests
+        if parentPath == mongol_repo: # Skip client tests
             return True
         if parentDir == "tool": # SERVER-6368
             return True
@@ -475,7 +475,7 @@ def skipTest(path):
                            ("sharding", "sync3.js"), # SERVER-6388 for this and those below
                            ("sharding", "sync6.js"),
                            ("sharding", "parallel.js"),
-                           ("sharding", "copydb_from_mongos.js"), # SERVER-13080
+                           ("sharding", "copydb_from_mongols.js"), # SERVER-13080
                            ("jstests", "bench_test1.js"),
                            ("jstests", "bench_test2.js"),
                            ("jstests", "bench_test3.js"),
@@ -501,13 +501,13 @@ def runTest(test, result):
 
     # test is a tuple of ( filename , usedb<bool> )
     # filename should be a js file to run
-    # usedb is true if the test expects a mongod to be running
+    # usedb is true if the test expects a mongold to be running
 
     (path, usedb) = test
     (ignore, ext) = os.path.splitext(path)
-    test_mongod = mongod()
-    mongod_is_up = test_mongod.is_mongod_up(mongod_port)
-    result["mongod_running_at_start"] = mongod_is_up;
+    test_mongold = mongold()
+    mongold_is_up = test_mongold.is_mongold_up(mongold_port)
+    result["mongold_running_at_start"] = mongold_is_up;
 
     if file_of_commands_mode:
         # smoke.py was invoked like "--mode files --from-file foo",
@@ -521,7 +521,7 @@ def runTest(test, result):
         if os.path.basename(path) in ('python', 'python.exe'):
             path = argv[1]
     elif ext == ".js":
-        argv = [shell_executable, "--port", mongod_port]
+        argv = [shell_executable, "--port", mongold_port]
         
         setShellWriteModeForTest(path, argv)
         
@@ -554,25 +554,25 @@ def runTest(test, result):
                 argv.extend(["--wiredTigerIndexConfigString", wiredtiger_index_config_string])
 
         # more blech
-        elif os.path.basename(path) in ['mongos', 'mongos.exe']:
+        elif os.path.basename(path) in ['mongols', 'mongols.exe']:
             argv = [path, "--test"]
         else:
             argv = [test_path and os.path.abspath(os.path.join(test_path, path)) or path,
-                    "--port", mongod_port]
+                    "--port", mongold_port]
     else:
         raise Bug("fell off in extension case: %s" % path)
 
-    mongo_test_filename = os.path.basename(path)
+    mongol_test_filename = os.path.basename(path)
 
     # sys.stdout.write() is more atomic than print, so using it prevents
     # lines being interrupted by, e.g., child processes
     sys.stdout.write(" *******************************************\n")
-    sys.stdout.write("         Test : %s ...\n" % mongo_test_filename)
+    sys.stdout.write("         Test : %s ...\n" % mongol_test_filename)
     sys.stdout.flush()
 
     # FIXME: we don't handle the case where the subprocess
     # hangs... that's bad.
-    if ( argv[0].endswith( 'mongo' ) or argv[0].endswith( 'mongo.exe' ) ) and not '--eval' in argv :
+    if ( argv[0].endswith( 'mongol' ) or argv[0].endswith( 'mongol.exe' ) ) and not '--eval' in argv :
         evalString = 'TestData = new Object();' + \
                      'TestData.storageEngine = "' + ternary( storage_engine, storage_engine, "" ) + '";' + \
                      'TestData.wiredTigerEngineConfigString = "' + ternary( wiredtiger_engine_config_string, wiredtiger_engine_config_string, "" ) + '";' + \
@@ -582,7 +582,7 @@ def runTest(test, result):
                      'TestData.testFile = "' + os.path.basename( path ) + '";' + \
                      'TestData.testName = "' + re.sub( ".js$", "", os.path.basename( path ) ) + '";' + \
                      'TestData.setParameters = "' + ternary( set_parameters, set_parameters, "" )  + '";' + \
-                     'TestData.setParametersMongos = "' + ternary( set_parameters_mongos, set_parameters_mongos, "" )  + '";' + \
+                     'TestData.setParametersMongos = "' + ternary( set_parameters_mongols, set_parameters_mongols, "" )  + '";' + \
                      'TestData.noJournal = ' + ternary( no_journal )  + ";" + \
                      'TestData.noJournalPrealloc = ' + ternary( no_preallocj )  + ";" + \
                      'TestData.auth = ' + ternary( auth ) + ";" + \
@@ -590,7 +590,7 @@ def runTest(test, result):
                      'TestData.keyFileData = ' + ternary( keyFile , '"' + str(keyFileData) + '"' , 'null' ) + ";" + \
                      'TestData.authMechanism = ' + ternary( authMechanism,
                                                '"' + str(authMechanism) + '"', 'null') + ";"
-        # this updates the default data directory for mongod processes started through shell (src/mongo/shell/servers.js)
+        # this updates the default data directory for mongold processes started through shell (src/mongol/shell/servers.js)
         evalString += 'MongoRunner.dataDir = "' + os.path.abspath(smoke_db_prefix + '/data/db') + '";'
         evalString += 'MongoRunner.dataPath = MongoRunner.dataDir + "/";'
         if temp_path:
@@ -618,7 +618,7 @@ def runTest(test, result):
     sys.stdout.write("         Date : %s\n" % datetime.now().ctime())
     sys.stdout.flush()
 
-    os.environ['MONGO_TEST_FILENAME'] = mongo_test_filename
+    os.environ['MONGO_TEST_FILENAME'] = mongol_test_filename
     t1 = time.time()
 
     proc = Popen(buildlogger(argv), cwd=test_path, stdout=PIPE, stderr=STDOUT, bufsize=0)
@@ -662,13 +662,13 @@ def runTest(test, result):
     result["exit_code"] = r
 
 
-    is_mongod_still_up = test_mongod.is_mongod_up(mongod_port)
-    if start_mongod and not is_mongod_still_up:
-        print "mongod is not running after test"
-        result["mongod_running_at_end"] = is_mongod_still_up;
+    is_mongold_still_up = test_mongold.is_mongold_up(mongold_port)
+    if start_mongold and not is_mongold_still_up:
+        print "mongold is not running after test"
+        result["mongold_running_at_end"] = is_mongold_still_up;
         raise TestServerFailure(path)
 
-    result["mongod_running_at_end"] = is_mongod_still_up;
+    result["mongold_running_at_end"] = is_mongold_still_up;
 
     if r != 0:
         raise TestExitFailure(path, r)
@@ -676,10 +676,10 @@ def runTest(test, result):
     print ""
 
 def run_tests(tests):
-    # FIXME: some suites of tests start their own mongod, so don't
+    # FIXME: some suites of tests start their own mongold, so don't
     # need this.  (So long as there are no conflicts with port,
     # dbpath, etc., and so long as we shut ours down properly,
-    # starting this mongod shouldn't break anything, though.)
+    # starting this mongold shouldn't break anything, though.)
 
     # The reason we want to use "with" is so that we get __exit__ semantics
     # but "with" is only supported on Python 2.5+
@@ -688,8 +688,8 @@ def run_tests(tests):
     slave = NullMongod()
 
     try:
-        if start_mongod:
-            master = mongod(small_oplog_rs=small_oplog_rs,
+        if start_mongold:
+            master = mongold(small_oplog_rs=small_oplog_rs,
                             small_oplog=small_oplog,
                             no_journal=no_journal,
                             storage_engine=storage_engine,
@@ -706,7 +706,7 @@ def run_tests(tests):
             master.start()
 
         if small_oplog:
-            slave = mongod(slave=True,
+            slave = mongold(slave=True,
                            small_oplog=True,
                            small_oplog_rs=False,
                            storage_engine=storage_engine,
@@ -716,7 +716,7 @@ def run_tests(tests):
                            set_parameters=set_parameters)
             slave.start()
         elif small_oplog_rs:
-            slave = mongod(slave=True,
+            slave = mongold(slave=True,
                            small_oplog_rs=True,
                            small_oplog=False,
                            no_journal=no_journal,
@@ -766,8 +766,8 @@ def run_tests(tests):
 
             (test_path, use_db) = test
 
-            if test_path.startswith(mongo_repo + os.path.sep):
-                test_result["test_file"] = test_path[len(mongo_repo)+1:]
+            if test_path.startswith(mongol_repo + os.path.sep):
+                test_result["test_file"] = test_path[len(mongol_repo)+1:]
             else:
                 # user could specify a file not in repo. leave it alone.
                 test_result["test_file"] = test_path
@@ -791,16 +791,16 @@ def run_tests(tests):
                 if small_oplog or small_oplog_rs:
                     master.wait_for_repl()
                     # check the db_hashes
-                    if isinstance(slave, mongod):
+                    if isinstance(slave, mongold):
                         check_db_hashes(master, slave)
                         check_and_report_replication_dbhashes()
 
                 elif use_db: # reach inside test and see if "usedb" is true
                     if clean_every_n_tests and (tests_run % clean_every_n_tests) == 0:
-                        # Restart mongod periodically to clean accumulated test data
-                        # clean_dbroot() is invoked by mongod.start()
+                        # Restart mongold periodically to clean accumulated test data
+                        # clean_dbroot() is invoked by mongold.start()
                         master.stop()
-                        master = mongod(small_oplog_rs=small_oplog_rs,
+                        master = mongold(small_oplog_rs=small_oplog_rs,
                                         small_oplog=small_oplog,
                                         no_journal=no_journal,
                                         storage_engine=storage_engine,
@@ -832,7 +832,7 @@ def run_tests(tests):
                 except TestFailure, f:
                     if not continue_on_failure:
                         return 1
-        if isinstance(slave, mongod):
+        if isinstance(slave, mongold):
             check_db_hashes(master, slave)
 
     finally:
@@ -908,7 +908,7 @@ def report():
         raise Exception("Test failures")
 
 # Keys are the suite names (passed on the command line to smoke.py)
-# Values are pairs: (filenames, <start mongod before running tests>)
+# Values are pairs: (filenames, <start mongold before running tests>)
 suiteGlobalConfig = {"js": ("core/*.js", True),
                      "quota": ("quota/*.js", True),
                      "jsPerf": ("perf/*.js", True),
@@ -950,11 +950,11 @@ def get_module_suites():
     This means the values of this dictionary can be used as "glob"s to match all jstests in the
     suite directory that don't start with an underscore
 
-    The module tests should be put in 'src/mongo/db/modules/<module_name>/<suite_name>/*.js'
+    The module tests should be put in 'src/mongol/db/modules/<module_name>/<suite_name>/*.js'
 
     NOTE: This assumes that if we have more than one module the suite names don't conflict
     """
-    modules_directory = 'src/mongo/db/modules'
+    modules_directory = 'src/mongol/db/modules'
     test_suites = {}
 
     # Return no suites if we have no modules
@@ -988,7 +988,7 @@ def expand_suites(suites,expandUseDB=True):
     "all"), detection of suites in the "modules" directory, and enumerating the test files in a
     given suite.  It returns a list of tests of the form (path_to_test, usedb), where the second
     part of the tuple specifies whether the test is run against the database (see --nodb in the
-    mongo shell)
+    mongol shell)
 
     """
     globstr = None
@@ -1018,19 +1018,19 @@ def expand_suites(suites,expandUseDB=True):
             else:
                 program = 'dbtest'
             (globstr, usedb) = (program, False)
-        elif suite == 'mongosTest':
+        elif suite == 'mongolsTest':
             if os.sys.platform == "win32":
-                program = 'mongos.exe'
+                program = 'mongols.exe'
             else:
-                program = 'mongos'
-            tests += [(os.path.join(mongo_repo, program), False)]
+                program = 'mongols'
+            tests += [(os.path.join(mongol_repo, program), False)]
         elif os.path.exists( suite ):
             usedb = True
             for name in suiteGlobalConfig:
                 if suite in glob.glob( "jstests/" + suiteGlobalConfig[name][0] ):
                     usedb = suiteGlobalConfig[name][1]
                     break
-            tests += [ ( os.path.join( mongo_repo , suite ) , usedb ) ]
+            tests += [ ( os.path.join( mongol_repo , suite ) , usedb ) ]
         elif suite in module_suites:
             # Currently we connect to a database in all module tests since there's no mechanism yet
             # to configure it independently
@@ -1052,7 +1052,7 @@ def expand_suites(suites,expandUseDB=True):
                     loc = 'jstests/'
                 else:
                     loc = ''
-                globstr = os.path.join(mongo_repo, (os.path.join(loc, globstr)))
+                globstr = os.path.join(mongol_repo, (os.path.join(loc, globstr)))
                 globstr = os.path.normpath(globstr)
                 paths = glob.glob(globstr)
                 paths.sort()
@@ -1068,10 +1068,10 @@ def add_exe(e):
 
 
 def set_globals(options, tests):
-    global mongod_executable, mongod_port, shell_executable, continue_on_failure
+    global mongold_executable, mongold_port, shell_executable, continue_on_failure
     global small_oplog, small_oplog_rs
-    global no_journal, set_parameters, set_parameters_mongos, no_preallocj, storage_engine, wiredtiger_engine_config_string, wiredtiger_collection_config_string, wiredtiger_index_config_string
-    global auth, authMechanism, keyFile, keyFileData, smoke_db_prefix, test_path, start_mongod
+    global no_journal, set_parameters, set_parameters_mongols, no_preallocj, storage_engine, wiredtiger_engine_config_string, wiredtiger_collection_config_string, wiredtiger_index_config_string
+    global auth, authMechanism, keyFile, keyFileData, smoke_db_prefix, test_path, start_mongold
     global rlp_path
     global use_ssl
     global file_of_commands_mode
@@ -1080,21 +1080,21 @@ def set_globals(options, tests):
     global clean_every_n_tests
     global clean_whole_dbroot
 
-    start_mongod = options.start_mongod
+    start_mongold = options.start_mongold
     if hasattr(options, 'use_ssl'):
         use_ssl = options.use_ssl
     #Careful, this can be called multiple times
     test_path = options.test_path
 
-    mongod_executable = add_exe(options.mongod_executable)
-    if not os.path.exists(mongod_executable):
-        raise Exception("no mongod found in this directory.")
+    mongold_executable = add_exe(options.mongold_executable)
+    if not os.path.exists(mongold_executable):
+        raise Exception("no mongold found in this directory.")
 
-    mongod_port = options.mongod_port
+    mongold_port = options.mongold_port
 
     shell_executable = add_exe( options.shell_executable )
     if not os.path.exists(shell_executable):
-        raise Exception("no mongo shell found in this directory.")
+        raise Exception("no mongol shell found in this directory.")
 
     continue_on_failure = options.continue_on_failure
     smoke_db_prefix = options.smoke_db_prefix
@@ -1107,7 +1107,7 @@ def set_globals(options, tests):
     wiredtiger_collection_config_string = options.wiredtiger_collection_config_string
     wiredtiger_index_config_string = options.wiredtiger_index_config_string
     set_parameters = options.set_parameters
-    set_parameters_mongos = options.set_parameters_mongos
+    set_parameters_mongols = options.set_parameters_mongols
     no_preallocj = options.no_preallocj
     auth = options.auth
     authMechanism = options.authMechanism
@@ -1120,7 +1120,7 @@ def set_globals(options, tests):
     if auth and not keyFile:
         # if only --auth was given to smoke.py, load the
         # default keyFile from jstests/libs/authTestsKey
-        keyFile = os.path.join(mongo_repo, 'jstests', 'libs', 'authTestsKey')
+        keyFile = os.path.join(mongol_repo, 'jstests', 'libs', 'authTestsKey')
 
     if keyFile:
         f = open(keyFile, 'r')
@@ -1220,8 +1220,8 @@ def add_to_failfile(tests, options):
 
 
 def main():
-    global mongod_executable, mongod_port, shell_executable, continue_on_failure, small_oplog
-    global no_journal, set_parameters, set_parameters_mongos, no_preallocj, auth, storage_engine, wiredtiger_engine_config_string, wiredtiger_collection_config_string, wiredtiger_index_config_string
+    global mongold_executable, mongold_port, shell_executable, continue_on_failure, small_oplog
+    global no_journal, set_parameters, set_parameters_mongols, no_preallocj, auth, storage_engine, wiredtiger_engine_config_string, wiredtiger_collection_config_string, wiredtiger_index_config_string
     global keyFile, smoke_db_prefix, test_path, use_write_commands, rlp_path
 
     try:
@@ -1234,23 +1234,23 @@ def main():
                       help='If "files", ARGS are filenames; if "suite", ARGS are sets of tests (%default)')
     # Some of our tests hard-code pathnames e.g., to execute, so until
     # that changes we don't have the freedom to run from anyplace.
-    # parser.add_option('--mongo-repo', dest='mongo_repo', default=None,
+    # parser.add_option('--mongol-repo', dest='mongol_repo', default=None,
     parser.add_option('--test-path', dest='test_path', default=None,
                       help="Path to the test executables to run, "
                       "currently only used for 'client' (%default)")
-    parser.add_option('--mongod', dest='mongod_executable', default=os.path.join(mongo_repo, 'mongod'),
-                      help='Path to mongod to run (%default)')
-    parser.add_option('--port', dest='mongod_port', default="27999",
-                      help='Port the mongod will bind to (%default)')
-    parser.add_option('--mongo', dest='shell_executable', default=os.path.join(mongo_repo, 'mongo'),
-                      help='Path to mongo, for .js test files (%default)')
+    parser.add_option('--mongold', dest='mongold_executable', default=os.path.join(mongol_repo, 'mongold'),
+                      help='Path to mongold to run (%default)')
+    parser.add_option('--port', dest='mongold_port', default="27999",
+                      help='Port the mongold will bind to (%default)')
+    parser.add_option('--mongol', dest='shell_executable', default=os.path.join(mongol_repo, 'mongol'),
+                      help='Path to mongol, for .js test files (%default)')
     parser.add_option('--continue-on-failure', dest='continue_on_failure',
                       action="store_true", default=False,
                       help='If supplied, continue testing even after a test fails')
     parser.add_option('--from-file', dest='File',
                       help="Run tests/suites named in FILE, one test per line, '-' means stdin")
     parser.add_option('--smoke-db-prefix', dest='smoke_db_prefix', default=smoke_db_prefix,
-                      help="Prefix to use for the mongods' dbpaths ('%default')")
+                      help="Prefix to use for the mongolds' dbpaths ('%default')")
     parser.add_option('--small-oplog', dest='small_oplog', default=False,
                       action="store_true",
                       help='Run tests with master/slave replication & use a small oplog')
@@ -1258,13 +1258,13 @@ def main():
                       action="store_true",
                       help='Run tests with replica set replication & use a small oplog')
     parser.add_option('--storageEngine', dest='storage_engine', default=None,
-                      help='What storage engine to start mongod with')
+                      help='What storage engine to start mongold with')
     parser.add_option('--wiredTigerEngineConfig', dest='wiredtiger_engine_config_string', default=None,
-                      help='Wired Tiger configuration to pass through to mongod')
+                      help='Wired Tiger configuration to pass through to mongold')
     parser.add_option('--wiredTigerCollectionConfig', dest='wiredtiger_collection_config_string', default=None,
-                      help='Wired Tiger collection configuration to pass through to mongod')
+                      help='Wired Tiger collection configuration to pass through to mongold')
     parser.add_option('--wiredTigerIndexConfig', dest='wiredtiger_index_config_string', default=None,
-                      help='Wired Tiger index configuration to pass through to mongod')
+                      help='Wired Tiger index configuration to pass through to mongold')
     parser.add_option('--nojournal', dest='no_journal', default=False,
                       action="store_true",
                       help='Do not turn on journaling in tests')
@@ -1273,7 +1273,7 @@ def main():
                       help='Do not preallocate journal files in tests')
     parser.add_option('--auth', dest='auth', default=False,
                       action="store_true",
-                      help='Run standalone mongods in tests with authentication enabled')
+                      help='Run standalone mongolds in tests with authentication enabled')
     parser.add_option('--authMechanism', dest='authMechanism', default='SCRAM-SHA-1',
                       help='Use the given authentication mechanism, when --auth is used.')
     parser.add_option('--keyFile', dest='keyFile', default=None,
@@ -1292,18 +1292,18 @@ def main():
     parser.add_option('--clean-every', dest='clean_every_n_tests', type='int',
                       default=(1 if 'detect_leaks=1' in os.getenv("ASAN_OPTIONS", "") else 20),
                       help='Clear database files every N tests [default %default]')
-    parser.add_option('--dont-start-mongod', dest='start_mongod', default=True,
+    parser.add_option('--dont-start-mongold', dest='start_mongold', default=True,
                       action='store_false',
-                      help='Do not start mongod before commencing test running')
+                      help='Do not start mongold before commencing test running')
     parser.add_option('--use-ssl', dest='use_ssl', default=False,
                       action='store_true',
-                      help='Run mongo shell and mongod instances with SSL encryption')
+                      help='Run mongol shell and mongold instances with SSL encryption')
     parser.add_option('--set-parameters', dest='set_parameters', default="",
-                      help='Adds --setParameter to mongod for each passed in item in the csv list - ex. "param1=1,param2=foo" ')
-    parser.add_option('--set-parameters-mongos', dest='set_parameters_mongos', default="",
-                      help='Adds --setParameter to mongos for each passed in item in the csv list - ex. "param1=1,param2=foo" ')
+                      help='Adds --setParameter to mongold for each passed in item in the csv list - ex. "param1=1,param2=foo" ')
+    parser.add_option('--set-parameters-mongols', dest='set_parameters_mongols', default="",
+                      help='Adds --setParameter to mongols for each passed in item in the csv list - ex. "param1=1,param2=foo" ')
     parser.add_option('--temp-path', dest='temp_path', default=None,
-                      help='If present, passed as --tempPath to unittests and dbtests or TestData.tmpPath to mongo')
+                      help='If present, passed as --tempPath to unittests and dbtests or TestData.tmpPath to mongol')
     # Buildlogger invocation from command line
     parser.add_option('--buildlogger-builder', dest='buildlogger_builder', default=os.getenv("BUILDLOGGER_BUILDER"),
                       action="store", help='Set the "builder name" for buildlogger')
@@ -1365,7 +1365,7 @@ def main():
     if options.mode == 'suite':
         tests = expand_suites(tests)
     elif options.mode == 'files':
-        tests = [(os.path.abspath(test), start_mongod) for test in tests]
+        tests = [(os.path.abspath(test), start_mongold) for test in tests]
 
     if options.ignore_files != None :
         ignore_patt = re.compile( options.ignore_files )
@@ -1388,7 +1388,7 @@ def main():
         clean_dbroot(nokill=True)
 
     test_report["start"] = time.time()
-    test_report["mongod_running_at_start"] = mongod().is_mongod_up(mongod_port)
+    test_report["mongold_running_at_start"] = mongold().is_mongold_up(mongold_port)
     try:
         run_tests(tests)
     finally:
@@ -1397,7 +1397,7 @@ def main():
         test_report["end"] = time.time()
         test_report["elapsed"] = test_report["end"] - test_report["start"]
         test_report["failures"] = len(losers.keys())
-        test_report["mongod_running_at_end"] = mongod().is_mongod_up(mongod_port)
+        test_report["mongold_running_at_end"] = mongold().is_mongold_up(mongold_port)
         if report_file:
             f = open( report_file, "wb" )
             f.write( json.dumps( test_report, indent=4, separators=(',', ': ')) )

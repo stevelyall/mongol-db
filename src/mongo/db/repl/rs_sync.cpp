@@ -26,40 +26,40 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/rs_sync.h"
+#include "mongol/db/repl/rs_sync.h"
 
 #include <vector>
 
 #include "third_party/murmurhash3/MurmurHash3.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/fsync.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/rs_initialsync.h"
-#include "mongo/db/repl/sync_tail.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/fsync.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/rs_initialsync.h"
+#include "mongol/db/repl/sync_tail.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 void runSyncThread() {
@@ -142,4 +142,4 @@ void runSyncThread() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

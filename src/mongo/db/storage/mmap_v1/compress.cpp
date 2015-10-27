@@ -28,13 +28,13 @@
 *    then also delete it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/compress.h"
+#include "mongol/db/storage/mmap_v1/compress.h"
 
 #include <snappy.h>
 
-namespace mongo {
+namespace mongol {
 
 void rawCompress(const char* input,
                  size_t input_length,

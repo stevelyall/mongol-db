@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#include "mongo/db/storage/mmap_v1/catalog/index_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/index_details.h"
 
-namespace mongo {
+namespace mongol {
 
 void IndexDetails::_reset() {
     head.setInvalid();

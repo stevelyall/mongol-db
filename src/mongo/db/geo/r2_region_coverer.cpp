@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
 #include <algorithm>
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/geo/r2_region_coverer.h"
-#include "mongo/util/log.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/geo/r2_region_coverer.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::less;
 
@@ -341,4 +341,4 @@ void R2CellUnion::getDifference(const R2CellUnion& cellUnion) {
     _cellIds.swap(diffCellIds);
 }
 
-} /* namespace mongo */
+} /* namespace mongol */

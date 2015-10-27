@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sstream>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -90,7 +90,7 @@ private:
     WiredTigerSessionCache _sessionCache;
 };
 
-class WiredTigerUtilMetadataTest : public mongo::unittest::Test {
+class WiredTigerUtilMetadataTest : public mongol::unittest::Test {
 public:
     virtual void setUp() {
         _harnessHelper.reset(new WiredTigerUtilHarnessHelper(""));
@@ -191,7 +191,7 @@ TEST_F(WiredTigerUtilMetadataTest, GetApplicationMetadataTypes) {
     const BSONObj& obj = result.getValue();
 
     BSONElement stringElement = obj.getField("stringkey");
-    ASSERT_EQUALS(mongo::String, stringElement.type());
+    ASSERT_EQUALS(mongol::String, stringElement.type());
     ASSERT_EQUALS("abc", stringElement.String());
 
     BSONElement boolElement1 = obj.getField("boolkey1");
@@ -203,7 +203,7 @@ TEST_F(WiredTigerUtilMetadataTest, GetApplicationMetadataTypes) {
     ASSERT_FALSE(boolElement2.boolean());
 
     BSONElement identifierElement = obj.getField("idkey");
-    ASSERT_EQUALS(mongo::String, identifierElement.type());
+    ASSERT_EQUALS(mongol::String, identifierElement.type());
     ASSERT_EQUALS("def", identifierElement.String());
 
     BSONElement numberElement = obj.getField("numkey");
@@ -211,7 +211,7 @@ TEST_F(WiredTigerUtilMetadataTest, GetApplicationMetadataTypes) {
     ASSERT_EQUALS(123, numberElement.numberInt());
 
     BSONElement structElement = obj.getField("structkey");
-    ASSERT_EQUALS(mongo::String, structElement.type());
+    ASSERT_EQUALS(mongol::String, structElement.type());
     ASSERT_EQUALS("(k1=v2,k2=v2)", structElement.String());
 }
 
@@ -336,4 +336,4 @@ TEST(WiredTigerUtilTest, GetStatisticsValueAsUInt8) {
     ASSERT_EQUALS(static_cast<uint8_t>(100), resultInt16.getValue());
 }
 
-}  // namespace mongo
+}  // namespace mongol

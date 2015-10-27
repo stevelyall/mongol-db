@@ -30,12 +30,12 @@
 
 #include <memory>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexAccessMethod;
 class RecordCursor;
@@ -122,4 +122,4 @@ private:
     IDHackStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>
 #include <ostream>
 
-#include "mongo/db/storage/storage_engine_lock_file.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/storage_engine_lock_file.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
 using std::string;
-using mongo::unittest::TempDir;
+using mongol::unittest::TempDir;
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(StorageEngineLockFileTest, UncleanShutdownNoExistingFile) {
     TempDir tempDir("StorageEngineLockFileTest_UncleanShutdownNoExistingFile");
@@ -53,7 +53,7 @@ TEST(StorageEngineLockFileTest, UncleanShutdownNoExistingFile) {
 TEST(StorageEngineLockFileTest, UncleanShutdownEmptyExistingFile) {
     TempDir tempDir("StorageEngineLockFileTest_UncleanShutdownEmptyExistingFile");
     {
-        std::string filename(tempDir.path() + "/mongod.lock");
+        std::string filename(tempDir.path() + "/mongold.lock");
         std::ofstream(filename.c_str());
     }
     StorageEngineLockFile lockFile(tempDir.path());
@@ -63,7 +63,7 @@ TEST(StorageEngineLockFileTest, UncleanShutdownEmptyExistingFile) {
 TEST(StorageEngineLockFileTest, UncleanShutdownNonEmptyExistingFile) {
     TempDir tempDir("StorageEngineLockFileTest_UncleanShutdownNonEmptyExistingFile");
     {
-        std::string filename(tempDir.path() + "/mongod.lock");
+        std::string filename(tempDir.path() + "/mongold.lock");
         std::ofstream ofs(filename.c_str());
         ofs << 12345 << std::endl;
     }
@@ -73,7 +73,7 @@ TEST(StorageEngineLockFileTest, UncleanShutdownNonEmptyExistingFile) {
 
 TEST(StorageEngineLockFileTest, OpenInvalidDirectory) {
     StorageEngineLockFile lockFile("no_such_directory");
-    ASSERT_EQUALS((boost::filesystem::path("no_such_directory") / "mongod.lock").string(),
+    ASSERT_EQUALS((boost::filesystem::path("no_such_directory") / "mongold.lock").string(),
                   lockFile.getFilespec());
     Status status = lockFile.open();
     ASSERT_NOT_OK(status);
@@ -135,7 +135,7 @@ TEST(StorageEngineLockFileTest, WritePidTruncateExistingFile) {
     TempDir tempDir("StorageEngineLockFileTest_WritePidTruncateExistingFile");
     StorageEngineLockFile lockFile(tempDir.path());
     {
-        std::string filename(tempDir.path() + "/mongod.lock");
+        std::string filename(tempDir.path() + "/mongold.lock");
         std::ofstream ofs(filename.c_str());
         std::string currentPidStr = ProcessId::getCurrent().toString();
         ASSERT_FALSE(currentPidStr.empty());

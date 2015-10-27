@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/utility.hpp>
 
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/decorable.h"
-#include "mongo/util/decoration_container.h"
-#include "mongo/util/decoration_registry.h"
-#include "mongo/util/log.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/decorable.h"
+#include "mongol/util/decoration_container.h"
+#include "mongol/util/decoration_registry.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 static int numConstructedAs;
@@ -174,4 +174,4 @@ TEST(DecorableTest, Alignment) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

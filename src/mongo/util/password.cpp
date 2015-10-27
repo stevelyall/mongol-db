@@ -26,11 +26,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/password.h"
+#include "mongol/util/password.h"
 
 #include <iostream>
 
@@ -38,11 +38,11 @@
 #include <termios.h>
 #endif
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 string askPassword() {
     std::string password;

@@ -26,30 +26,30 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/cluster_write.h"
+#include "mongol/s/cluster_write.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/chunk_manager_targeter.h"
-#include "mongo/s/client/dbclient_multi_command.h"
-#include "mongo/s/config.h"
-#include "mongo/s/dbclient_shard_resolver.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/write_ops/batch_write_exec.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/chunk_manager_targeter.h"
+#include "mongol/s/client/dbclient_multi_command.h"
+#include "mongol/s/config.h"
+#include "mongol/s/dbclient_shard_resolver.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::unique_ptr;
@@ -324,4 +324,4 @@ const BatchWriteExecStats& ClusterWriterStats::getShardStats() const {
     return *_shardStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

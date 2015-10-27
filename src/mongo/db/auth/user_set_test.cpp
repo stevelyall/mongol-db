@@ -29,14 +29,14 @@
  * Unit tests of the UserSet type.
  */
 
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/user_set.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/user_set.h"
+#include "mongol/unittest/unittest.h"
 
 #define ASSERT_NULL(EXPR) ASSERT_FALSE((EXPR))
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(UserSetTest, BasicTest) {
@@ -113,4 +113,4 @@ TEST(UserSetTest, IterateNames) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

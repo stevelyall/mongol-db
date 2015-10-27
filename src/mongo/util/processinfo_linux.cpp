@@ -27,7 +27,7 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
 #include <malloc.h>
 #include <iostream>
@@ -43,15 +43,15 @@
 
 #include "processinfo.h"
 #include "boost/filesystem.hpp"
-#include <mongo/util/file.h>
-#include "mongo/util/log.h"
+#include <mongol/util/file.h>
+#include "mongol/util/log.h"
 
 using namespace std;
 
 #define KLONG long
 #define KLF "l"
 
-namespace mongo {
+namespace mongol {
 
 class LinuxProc {
 public:
@@ -391,7 +391,7 @@ public:
             meminfo = meminfo.substr(lineOff);
 
             unsigned long long systemMem = 0;
-            if (mongo::parseNumberFromString(meminfo, &systemMem).isOK()) {
+            if (mongol::parseNumberFromString(meminfo, &systemMem).isOK()) {
                 return systemMem * 1024;  // convert from kB to bytes
             } else
                 log() << "Unable to collect system memory information" << endl;

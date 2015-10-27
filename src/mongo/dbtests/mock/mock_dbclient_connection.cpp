@@ -25,23 +25,23 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/dbtests/mock/mock_dbclient_connection.h"
+#include "mongol/dbtests/mock/mock_dbclient_connection.h"
 
-#include "mongo/dbtests/mock/mock_dbclient_cursor.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/time_support.h"
+#include "mongol/dbtests/mock/mock_dbclient_cursor.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/time_support.h"
 
-using mongo::BSONObj;
+using mongol::BSONObj;
 
 using std::string;
 using std::vector;
 
-namespace mongo {
+namespace mongol {
 MockDBClientConnection::MockDBClientConnection(MockRemoteDBServer* remoteServer, bool autoReconnect)
     : _remoteServerInstanceID(remoteServer->getInstanceID()),
       _remoteServer(remoteServer),
       _isFailed(false),
-      _sockCreationTime(mongo::curTimeMicros64()),
+      _sockCreationTime(mongol::curTimeMicros64()),
       _autoReconnect(autoReconnect) {}
 
 MockDBClientConnection::~MockDBClientConnection() {}
@@ -64,7 +64,7 @@ bool MockDBClientConnection::runCommand(const string& dbname,
 
     try {
         return _remoteServer->runCommand(_remoteServerInstanceID, dbname, cmdObj, info, options);
-    } catch (const mongo::SocketException&) {
+    } catch (const mongol::SocketException&) {
         _isFailed = true;
         throw;
     }
@@ -81,7 +81,7 @@ rpc::UniqueReply MockDBClientConnection::runCommandWithMetadata(StringData datab
     try {
         return _remoteServer->runCommandWithMetadata(
             _remoteServerInstanceID, database, command, metadata, commandArgs);
-    } catch (const mongo::SocketException&) {
+    } catch (const mongol::SocketException&) {
         _isFailed = true;
         throw;
     }
@@ -89,8 +89,8 @@ rpc::UniqueReply MockDBClientConnection::runCommandWithMetadata(StringData datab
     MONGO_UNREACHABLE;
 }
 
-std::unique_ptr<mongo::DBClientCursor> MockDBClientConnection::query(const string& ns,
-                                                                     mongo::Query query,
+std::unique_ptr<mongol::DBClientCursor> MockDBClientConnection::query(const string& ns,
+                                                                     mongol::Query query,
                                                                      int nToReturn,
                                                                      int nToSkip,
                                                                      const BSONObj* fieldsToReturn,
@@ -99,7 +99,7 @@ std::unique_ptr<mongo::DBClientCursor> MockDBClientConnection::query(const strin
     checkConnection();
 
     try {
-        mongo::BSONArray result(_remoteServer->query(_remoteServerInstanceID,
+        mongol::BSONArray result(_remoteServer->query(_remoteServerInstanceID,
                                                      ns,
                                                      query,
                                                      nToReturn,
@@ -108,20 +108,20 @@ std::unique_ptr<mongo::DBClientCursor> MockDBClientConnection::query(const strin
                                                      queryOptions,
                                                      batchSize));
 
-        std::unique_ptr<mongo::DBClientCursor> cursor;
+        std::unique_ptr<mongol::DBClientCursor> cursor;
         cursor.reset(new MockDBClientCursor(this, result));
         return cursor;
-    } catch (const mongo::SocketException&) {
+    } catch (const mongol::SocketException&) {
         _isFailed = true;
         throw;
     }
 
-    std::unique_ptr<mongo::DBClientCursor> nullPtr;
+    std::unique_ptr<mongol::DBClientCursor> nullPtr;
     return nullPtr;
 }
 
-mongo::ConnectionString::ConnectionType MockDBClientConnection::type() const {
-    return mongo::ConnectionString::CUSTOM;
+mongol::ConnectionString::ConnectionType MockDBClientConnection::type() const {
+    return mongol::ConnectionString::CUSTOM;
 }
 
 bool MockDBClientConnection::isFailed() const {
@@ -138,7 +138,7 @@ string MockDBClientConnection::toString() const {
 
 unsigned long long MockDBClientConnection::query(stdx::function<void(const BSONObj&)> f,
                                                  const string& ns,
-                                                 mongo::Query query,
+                                                 mongol::Query query,
                                                  const BSONObj* fieldsToReturn,
                                                  int queryOptions) {
     verify(false);
@@ -146,10 +146,10 @@ unsigned long long MockDBClientConnection::query(stdx::function<void(const BSONO
 }
 
 unsigned long long MockDBClientConnection::query(
-    stdx::function<void(mongo::DBClientCursorBatchIterator&)> f,
+    stdx::function<void(mongol::DBClientCursorBatchIterator&)> f,
     const std::string& ns,
-    mongo::Query query,
-    const mongo::BSONObj* fieldsToReturn,
+    mongol::Query query,
+    const mongol::BSONObj* fieldsToReturn,
     int queryOptions) {
     verify(false);
     return 0;
@@ -181,20 +181,20 @@ void MockDBClientConnection::killCursor(long long cursorID) {
     verify(false);  // unimplemented
 }
 
-bool MockDBClientConnection::callRead(mongo::Message& toSend, mongo::Message& response) {
+bool MockDBClientConnection::callRead(mongol::Message& toSend, mongol::Message& response) {
     verify(false);  // unimplemented
     return false;
 }
 
-bool MockDBClientConnection::call(mongo::Message& toSend,
-                                  mongo::Message& response,
+bool MockDBClientConnection::call(mongol::Message& toSend,
+                                  mongol::Message& response,
                                   bool assertOk,
                                   string* actualServer) {
     verify(false);  // unimplemented
     return false;
 }
 
-void MockDBClientConnection::say(mongo::Message& toSend, bool isRetry, string* actualServer) {
+void MockDBClientConnection::say(mongol::Message& toSend, bool isRetry, string* actualServer) {
     verify(false);  // unimplemented
 }
 

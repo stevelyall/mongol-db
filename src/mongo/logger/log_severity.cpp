@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_severity.h"
+#include "mongol/logger/log_severity.h"
 
 #include <iostream>
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 namespace {
@@ -84,4 +84,4 @@ std::ostream& operator<<(std::ostream& os, LogSeverity severity) {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

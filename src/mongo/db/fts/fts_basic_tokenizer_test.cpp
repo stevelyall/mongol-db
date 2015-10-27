@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 std::vector<std::string> tokenizeString(const char* str, const char* language) {
@@ -81,4 +81,4 @@ TEST(FtsBasicTokenizer, French) {
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

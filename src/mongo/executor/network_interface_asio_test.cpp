@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/executor/async_mock_stream_factory.h"
-#include "mongo/executor/async_timer_mock.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/executor/network_interface_asio_test_utils.h"
-#include "mongo/executor/test_network_connection_hook.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/legacy_reply_builder.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/executor/async_mock_stream_factory.h"
+#include "mongol/executor/async_timer_mock.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio_test_utils.h"
+#include "mongol/executor/test_network_connection_hook.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/legacy_reply_builder.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
@@ -60,12 +60,12 @@ RemoteCommandResponse simulateIsMaster(RemoteCommandRequest request) {
     ASSERT_EQ(request.dbname, "admin");
 
     RemoteCommandResponse response;
-    response.data = BSON("minWireVersion" << mongo::minWireVersion << "maxWireVersion"
-                                          << mongo::maxWireVersion);
+    response.data = BSON("minWireVersion" << mongol::minWireVersion << "maxWireVersion"
+                                          << mongol::maxWireVersion);
     return response;
 }
 
-class NetworkInterfaceASIOTest : public mongo::unittest::Test {
+class NetworkInterfaceASIOTest : public mongol::unittest::Test {
 public:
     void setUp() override {
         NetworkInterfaceASIO::Options options;
@@ -561,8 +561,8 @@ TEST_F(NetworkInterfaceASIOConnectionHookTest, ValidateHostInvalid) {
                            [](RemoteCommandRequest request) -> RemoteCommandResponse {
                                RemoteCommandResponse response;
                                response.data = BSON("minWireVersion"
-                                                    << mongo::minWireVersion << "maxWireVersion"
-                                                    << mongo::maxWireVersion << "TESTKEY"
+                                                    << mongol::minWireVersion << "maxWireVersion"
+                                                    << mongol::maxWireVersion << "TESTKEY"
                                                     << "TESTVALUE");
                                return response;
                            });
@@ -836,4 +836,4 @@ TEST_F(NetworkInterfaceASIOMetadataTest, Metadata) {
 
 }  // namespace
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

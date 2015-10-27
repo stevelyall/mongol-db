@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/remote_command_targeter_factory_mock.h"
+#include "mongol/client/remote_command_targeter_factory_mock.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class TargeterProxy final : public RemoteCommandTargeter {
@@ -93,4 +93,4 @@ void RemoteCommandTargeterFactoryMock::removeTargeterToReturn(const ConnectionSt
     _mockTargeters.erase(it);
 }
 
-}  // namespace mongo
+}  // namespace mongol

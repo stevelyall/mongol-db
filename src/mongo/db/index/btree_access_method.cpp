@@ -26,15 +26,15 @@
 *    it in the license file.
 */
 
-#include "mongo/db/index/btree_access_method.h"
+#include "mongol/db/index/btree_access_method.h"
 
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/keypattern.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/keypattern.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 
@@ -65,4 +65,4 @@ void BtreeAccessMethod::getKeys(const BSONObj& obj, BSONObjSet* keys) const {
     _keyGenerator->getKeys(obj, keys);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils_launcher.h
+// mongol/shell/shell_utils_launcher.h
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -36,18 +36,18 @@
 #include <vector>
 #include <utility>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class Scope;
 
 namespace shell_utils {
 
-// Scoped management of mongo program instances.  Simple implementation:
-// destructor kills all mongod instances created by the shell.
+// Scoped management of mongol program instances.  Simple implementation:
+// destructor kills all mongold instances created by the shell.
 struct MongoProgramScope {
     MongoProgramScope() {}  // Avoid 'unused variable' warning.
     ~MongoProgramScope();

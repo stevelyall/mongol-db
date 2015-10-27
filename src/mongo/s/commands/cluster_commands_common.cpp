@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/commands/cluster_commands_common.h"
+#include "mongol/s/commands/cluster_commands_common.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/s/cursors.h"
-#include "mongo/s/query/cluster_client_cursor_impl.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/version_manager.h"
-#include "mongo/util/log.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/s/cursors.h"
+#include "mongol/s/query/cluster_client_cursor_impl.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/version_manager.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -216,4 +216,4 @@ bool appendEmptyResultSet(BSONObjBuilder& result, Status status, const std::stri
     return Command::appendCommandStatus(result, status);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,30 +26,30 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <sstream>
 
-#include "mongo/base/init.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/index_filter_commands.h"
-#include "mongo/db/commands/plan_cache_commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/base/init.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/index_filter_commands.h"
+#include "mongol/db/commands/plan_cache_commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
 
 
 namespace {
 
 using std::string;
 using std::vector;
-using namespace mongo;
+using namespace mongol;
 
 /**
  * Utility function to extract error code and message from status
@@ -112,7 +112,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SetupIndexFilterCommands,
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -359,7 +359,7 @@ Status SetFilter::set(OperationContext* txn,
     if (indexesElt.eoo()) {
         return Status(ErrorCodes::BadValue, "required field indexes missing");
     }
-    if (indexesElt.type() != mongo::Array) {
+    if (indexesElt.type() != mongol::Array) {
         return Status(ErrorCodes::BadValue, "required field indexes must be an array");
     }
     vector<BSONElement> indexesEltArray = indexesElt.Array();
@@ -397,4 +397,4 @@ Status SetFilter::set(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

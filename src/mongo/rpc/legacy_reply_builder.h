@@ -30,13 +30,13 @@
 
 #include <memory>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/rpc/reply_builder_interface.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/rpc/reply_builder_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 class LegacyReplyBuilder : public ReplyBuilderInterface {
@@ -85,4 +85,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

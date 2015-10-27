@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <system_error>
 
-#include "mongo/base/system_error.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/system_error.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(SystemError, Category) {
-    ASSERT(make_error_code(ErrorCodes::AuthenticationFailed).category() == mongoErrorCategory());
-    ASSERT(std::error_code(ErrorCodes::AlreadyInitialized, mongoErrorCategory()).category() ==
-           mongoErrorCategory());
+    ASSERT(make_error_code(ErrorCodes::AuthenticationFailed).category() == mongolErrorCategory());
+    ASSERT(std::error_code(ErrorCodes::AlreadyInitialized, mongolErrorCategory()).category() ==
+           mongolErrorCategory());
     ASSERT(make_error_condition(ErrorCodes::AuthenticationFailed).category() ==
-           mongoErrorCategory());
+           mongolErrorCategory());
     ASSERT(std::error_condition(ErrorCodes::AuthenticationFailed).category() ==
-           mongoErrorCategory());
+           mongolErrorCategory());
 }
 
 TEST(SystemError, Conversions) {
     ASSERT(make_error_code(ErrorCodes::AlreadyInitialized) == ErrorCodes::AlreadyInitialized);
-    ASSERT(std::error_code(ErrorCodes::AlreadyInitialized, mongoErrorCategory()) ==
+    ASSERT(std::error_code(ErrorCodes::AlreadyInitialized, mongolErrorCategory()) ==
            ErrorCodes::AlreadyInitialized);
     ASSERT(make_error_condition(ErrorCodes::AlreadyInitialized) == ErrorCodes::AlreadyInitialized);
     ASSERT(std::error_condition(ErrorCodes::AlreadyInitialized) == ErrorCodes::AlreadyInitialized);
@@ -60,4 +60,4 @@ TEST(SystemError, Equivalence) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

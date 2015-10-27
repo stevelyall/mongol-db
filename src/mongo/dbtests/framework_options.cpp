@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/dbtests/framework_options.h"
+#include "mongol/dbtests/framework_options.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/query/find.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/password.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/query/find.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/password.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::cout;
 using std::endl;
@@ -120,7 +120,7 @@ bool handlePreValidationTestFrameworkOptions(const moe::Environment& params,
     }
 
     if (params.count("list")) {
-        std::vector<std::string> suiteNames = mongo::unittest::getAllSuiteNames();
+        std::vector<std::string> suiteNames = mongol::unittest::getAllSuiteNames();
         for (std::vector<std::string>::const_iterator i = suiteNames.begin(); i != suiteNames.end();
              ++i) {
             std::cout << *i << std::endl;

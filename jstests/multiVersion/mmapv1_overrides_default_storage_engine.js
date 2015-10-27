@@ -22,7 +22,7 @@
         },
     ];
 
-    // The mongod should start up with mmapv1 when the --storageEngine flag is omitted, or when
+    // The mongold should start up with mmapv1 when the --storageEngine flag is omitted, or when
     // --storageEngine=mmapv1 is explicitly specified.
     testCases.forEach(function(testCase) {
         [null, 'mmapv1'].forEach(function(storageEngine) {
@@ -41,30 +41,30 @@
             };
 
             // Start the old version.
-            var mongodOptions = Object.merge(defaultOptions, testCase);
-            var conn = MongoRunner.runMongod(mongodOptions);
+            var mongoldOptions = Object.merge(defaultOptions, testCase);
+            var conn = MongoRunner.runMongod(mongoldOptions);
             assert.neq(null, conn,
-                       'mongod was unable to start up with options ' + tojson(mongodOptions));
+                       'mongold was unable to start up with options ' + tojson(mongoldOptions));
             assert.commandWorked(conn.getDB('test').runCommand({ping: 1}));
             MongoRunner.stopMongod(conn);
 
             // Start the newest version.
-            mongodOptions = Object.extend({}, defaultOptions);
+            mongoldOptions = Object.extend({}, defaultOptions);
             if (storageEngine) {
-                mongodOptions.storageEngine = storageEngine;
+                mongoldOptions.storageEngine = storageEngine;
             }
             if (testCase.hasOwnProperty('directoryperdb')) {
-                mongodOptions.directoryperdb = testCase.directoryperdb;
+                mongoldOptions.directoryperdb = testCase.directoryperdb;
             }
-            conn = MongoRunner.runMongod(mongodOptions);
+            conn = MongoRunner.runMongod(mongoldOptions);
             assert.neq(null, conn,
-                       'mongod was unable to start up with options ' + tojson(mongodOptions));
+                       'mongold was unable to start up with options ' + tojson(mongoldOptions));
             assert.commandWorked(conn.getDB('test').runCommand({ping: 1}));
             MongoRunner.stopMongod(conn);
         });
     });
 
-    // The mongod should not start up when --storageEngine=wiredTiger is specified.
+    // The mongold should not start up when --storageEngine=wiredTiger is specified.
     testCases.forEach(function(testCase) {
         jsTest.log('Upgrading from a ' + testCase.binVersion + ' instance with options='
                    + tojson(testCase) + ' to the latest version. This should fail when the latest'
@@ -79,18 +79,18 @@
         };
 
         // Start the old version.
-        var mongodOptions = Object.merge(defaultOptions, testCase);
-        var conn = MongoRunner.runMongod(mongodOptions);
+        var mongoldOptions = Object.merge(defaultOptions, testCase);
+        var conn = MongoRunner.runMongod(mongoldOptions);
         assert.neq(null, conn,
-                   'mongod was unable to start up with options ' + tojson(mongodOptions));
+                   'mongold was unable to start up with options ' + tojson(mongoldOptions));
         assert.commandWorked(conn.getDB('test').runCommand({ping: 1}));
         MongoRunner.stopMongod(conn);
 
         // Start the newest version.
-        mongodOptions = Object.extend({storageEngine: 'wiredTiger'}, defaultOptions);
-        conn = MongoRunner.runMongod(mongodOptions);
+        mongoldOptions = Object.extend({storageEngine: 'wiredTiger'}, defaultOptions);
+        conn = MongoRunner.runMongod(mongoldOptions);
         assert.eq(null, conn,
-                  'mongod should not have been able to start up with options '
-                  + tojson(mongodOptions));
+                  'mongold should not have been able to start up with options '
+                  + tojson(mongoldOptions));
     });
 }());

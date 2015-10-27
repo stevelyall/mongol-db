@@ -5,7 +5,7 @@
 'use strict';
 
 var st = new ShardingTest({ name: 'auto_rebalance_rs',
-                            mongos: 1,
+                            mongols: 1,
                             shards: 2,
                             chunksize: 1,
                             rs: {

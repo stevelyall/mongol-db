@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/factory.h"
+#include "mongol/rpc/factory.h"
 
-#include "mongo/rpc/command_reply.h"
-#include "mongo/rpc/command_reply_builder.h"
-#include "mongo/rpc/command_request.h"
-#include "mongo/rpc/command_request_builder.h"
-#include "mongo/rpc/legacy_reply.h"
-#include "mongo/rpc/legacy_reply_builder.h"
-#include "mongo/rpc/legacy_request.h"
-#include "mongo/rpc/legacy_request_builder.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/message.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/rpc/command_reply_builder.h"
+#include "mongol/rpc/command_request.h"
+#include "mongol/rpc/command_request_builder.h"
+#include "mongol/rpc/legacy_reply.h"
+#include "mongol/rpc/legacy_reply_builder.h"
+#include "mongol/rpc/legacy_request.h"
+#include "mongol/rpc/legacy_request_builder.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 std::unique_ptr<RequestBuilderInterface> makeRequestBuilder(ProtocolSet clientProtos,
@@ -65,9 +65,9 @@ std::unique_ptr<RequestBuilderInterface> makeRequestBuilder(Protocol proto) {
 
 std::unique_ptr<ReplyInterface> makeReply(const Message* unownedMessage) {
     switch (unownedMessage->operation()) {
-        case mongo::opReply:
+        case mongol::opReply:
             return stdx::make_unique<LegacyReply>(unownedMessage);
-        case mongo::dbCommandReply:
+        case mongol::dbCommandReply:
             return stdx::make_unique<CommandReply>(unownedMessage);
         default:
             uasserted(ErrorCodes::UnsupportedFormat,
@@ -78,9 +78,9 @@ std::unique_ptr<ReplyInterface> makeReply(const Message* unownedMessage) {
 
 std::unique_ptr<RequestInterface> makeRequest(const Message* unownedMessage) {
     switch (unownedMessage->operation()) {
-        case mongo::dbQuery:
+        case mongol::dbQuery:
             return stdx::make_unique<LegacyRequest>(unownedMessage);
-        case mongo::dbCommand:
+        case mongol::dbCommand:
             return stdx::make_unique<CommandRequest>(unownedMessage);
         default:
             uasserted(ErrorCodes::UnsupportedFormat,
@@ -101,4 +101,4 @@ std::unique_ptr<ReplyBuilderInterface> makeReplyBuilder(Protocol protocol) {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

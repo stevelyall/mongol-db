@@ -25,23 +25,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connection_string.h"
+#include "mongol/client/connection_string.h"
 
 #include <list>
 #include <memory>
 
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 stdx::mutex ConnectionString::_connectHookMutex;
 ConnectionString::ConnectionHook* ConnectionString::_connectHook = NULL;
@@ -105,4 +105,4 @@ DBClientBase* ConnectionString::connect(std::string& errmsg, double socketTimeou
     MONGO_UNREACHABLE;
 }
 
-}  // namepspace mongo
+}  // namepspace mongol

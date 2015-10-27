@@ -1,5 +1,5 @@
 // Test that the replica set member can find itself if on a different port using
-// mongobridge
+// mongolbridge
 load("jstests/replsets/rslib.js");
 
 var rt = new ReplSetTest({ name: 'isselfDifferentPortTest', nodes: 1 });

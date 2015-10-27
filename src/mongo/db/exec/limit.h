@@ -29,11 +29,11 @@
 #pragma once
 
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This stage implements limit functionality.  It only returns 'limit' results before EOF.
@@ -70,4 +70,4 @@ private:
     LimitStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

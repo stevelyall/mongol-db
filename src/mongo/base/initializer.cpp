@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/initializer.h"
+#include "mongol/base/initializer.h"
 
 #include <iostream>
-#include "mongo/util/assert_util.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/base/global_initializer.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/base/global_initializer.h"
 
-namespace mongo {
+namespace mongol {
 
 Initializer::Initializer() {}
 Initializer::~Initializer() {}
@@ -97,4 +97,4 @@ void runGlobalInitializersOrDie(int argc, const char* const* argv, const char* c
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

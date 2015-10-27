@@ -28,12 +28,12 @@
 *    it in the license file.
 */
 
-#include "mongo/db/keypattern.h"
+#include "mongol/db/keypattern.h"
 
-#include "mongo/db/index_names.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/index_names.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 KeyPattern::KeyPattern(const BSONObj& pattern) : _pattern(pattern) {}
 
@@ -98,4 +98,4 @@ BSONObj KeyPattern::globalMax() const {
     return extendRangeBound(BSONObj(), true);
 }
 
-}  // namespace mongo
+}  // namespace mongol

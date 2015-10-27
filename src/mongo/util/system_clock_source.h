@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/util/clock_source.h"
+#include "mongol/util/clock_source.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Clock source based on the system clock.
@@ -45,4 +45,4 @@ public:
     static SystemClockSource* get();
 };
 
-}  // namespace mongo
+}  // namespace mongol

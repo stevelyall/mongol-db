@@ -25,19 +25,19 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <gperftools/malloc_extension.h>
 
-#include "mongo/base/init.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/listen.h"
+#include "mongol/base/init.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/listen.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 // If many clients are used, the per-thread caches become smaller and chances of

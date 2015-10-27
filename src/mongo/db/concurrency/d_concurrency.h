@@ -30,10 +30,10 @@
 
 #include <climits>  // For UINT_MAX
 
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 class StringData;
 class NamespaceString;

@@ -10,7 +10,7 @@ ReplSetBridge = function(rst, from, to, delay) {
 };
 
 ReplSetBridge.prototype.start = function() {
-    var args = ["mongobridge", "--port", this.port, "--dest", this.dest, "--delay", this.delay];
+    var args = ["mongolbridge", "--port", this.port, "--dest", this.dest, "--delay", this.delay];
     print("ReplSetBridge starting: "+tojson(args));
 
     this.bridge = startMongoProgram.apply( null , args );

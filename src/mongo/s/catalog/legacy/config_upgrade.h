@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class CatalogManager;
 class DistLockManager;
@@ -54,4 +54,4 @@ Status checkAndInitConfigVersion(OperationContext* txn,
                                  CatalogManager* catalogManager,
                                  DistLockManager* distLockManager);
 
-}  // namespace mongo
+}  // namespace mongol

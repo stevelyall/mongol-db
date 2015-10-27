@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -277,4 +277,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

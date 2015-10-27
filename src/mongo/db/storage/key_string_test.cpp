@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
 #include <cmath>
 
-#include "mongo/platform/basic.h"
-#include "mongo/config.h"
-#include "mongo/db/storage/key_string.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/base/owned_pointer_vector.h"
+#include "mongol/platform/basic.h"
+#include "mongol/config.h"
+#include "mongol/db/storage/key_string.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/base/owned_pointer_vector.h"
 
 using std::string;
-using namespace mongo;
+using namespace mongol;
 
 BSONObj toBson(const KeyString& ks, Ordering ord) {
     return KeyString::toBson(ks.getBuffer(), ks.getSize(), ord, ks.getTypeBits());

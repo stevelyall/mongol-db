@@ -26,60 +26,60 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/get_executor.h"
+#include "mongol/db/query/get_executor.h"
 
 #include <limits>
 #include <memory>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/parse_number.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/exec/cached_plan.h"
-#include "mongo/db/exec/count.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/exec/eof.h"
-#include "mongo/db/exec/group.h"
-#include "mongo/db/exec/idhack.h"
-#include "mongo/db/exec/multi_plan.h"
-#include "mongo/db/exec/oplogstart.h"
-#include "mongo/db/exec/projection.h"
-#include "mongo/db/exec/shard_filter.h"
-#include "mongo/db/exec/sort_key_generator.h"
-#include "mongo/db/exec/subplan.h"
-#include "mongo/db/exec/update.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/ops/update_lifecycle.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/index_bounds_builder.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/planner_access.h"
-#include "mongo/db/query/planner_analysis.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/query/stage_builder.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/storage/oplog_hack.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/exec/cached_plan.h"
+#include "mongol/db/exec/count.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/exec/eof.h"
+#include "mongol/db/exec/group.h"
+#include "mongol/db/exec/idhack.h"
+#include "mongol/db/exec/multi_plan.h"
+#include "mongol/db/exec/oplogstart.h"
+#include "mongol/db/exec/projection.h"
+#include "mongol/db/exec/shard_filter.h"
+#include "mongol/db/exec/sort_key_generator.h"
+#include "mongol/db/exec/subplan.h"
+#include "mongol/db/exec/update.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/ops/update_lifecycle.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/index_bounds_builder.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/planner_access.h"
+#include "mongol/db/query/planner_analysis.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/query/stage_builder.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/storage/oplog_hack.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -456,18 +456,18 @@ namespace {
  * Returns true if 'me' is a GTE or GE predicate over the "ts" field.
  * Such predicates can be used for the oplog start hack.
  */
-bool isOplogTsPred(const mongo::MatchExpression* me) {
-    if (mongo::MatchExpression::GT != me->matchType() &&
-        mongo::MatchExpression::GTE != me->matchType()) {
+bool isOplogTsPred(const mongol::MatchExpression* me) {
+    if (mongol::MatchExpression::GT != me->matchType() &&
+        mongol::MatchExpression::GTE != me->matchType()) {
         return false;
     }
 
-    return mongoutils::str::equals(me->path().rawData(), "ts");
+    return mongolutils::str::equals(me->path().rawData(), "ts");
 }
 
-mongo::BSONElement extractOplogTsOptime(const mongo::MatchExpression* me) {
+mongol::BSONElement extractOplogTsOptime(const mongol::MatchExpression* me) {
     invariant(isOplogTsPred(me));
-    return static_cast<const mongo::ComparisonMatchExpression*>(me)->getData();
+    return static_cast<const mongol::ComparisonMatchExpression*>(me)->getData();
 }
 
 StatusWith<unique_ptr<PlanExecutor>> getOplogStartHack(OperationContext* txn,
@@ -1073,7 +1073,7 @@ bool getDistinctNodeIndex(const std::vector<IndexEntry>& indices,
 std::string getProjectedDottedField(const std::string& field, bool* isIDOut) {
     // Check if field contains an array index.
     std::vector<std::string> res;
-    mongo::splitStringDelim(field, &res, '.');
+    mongol::splitStringDelim(field, &res, '.');
 
     // Since we could exit early from the loop,
     // we should check _id here and set '*isIDOut' accordingly.
@@ -1083,7 +1083,7 @@ std::string getProjectedDottedField(const std::string& field, bool* isIDOut) {
     // with a number, the number cannot be an array index.
     int arrayIndex = 0;
     for (size_t i = 1; i < res.size(); ++i) {
-        if (mongo::parseNumberFromStringWithBase(res[i], 10, &arrayIndex).isOK()) {
+        if (mongol::parseNumberFromStringWithBase(res[i], 10, &arrayIndex).isOK()) {
             // Array indices cannot be negative numbers (this is not $slice).
             // Negative numbers are allowed as field names.
             if (arrayIndex >= 0) {
@@ -1094,7 +1094,7 @@ std::string getProjectedDottedField(const std::string& field, bool* isIDOut) {
                 // string
                 // to the end of projectedField.
                 std::string projectedField;
-                mongo::joinStringDelim(prefixStrings, &projectedField, '.');
+                mongol::joinStringDelim(prefixStrings, &projectedField, '.');
                 return projectedField;
             }
         }
@@ -1442,4 +1442,4 @@ StatusWith<unique_ptr<PlanExecutor>> getExecutorDistinct(OperationContext* txn,
     return getExecutor(txn, collection, std::move(statusWithCQ.getValue()), yieldPolicy);
 }
 
-}  // namespace mongo
+}  // namespace mongol

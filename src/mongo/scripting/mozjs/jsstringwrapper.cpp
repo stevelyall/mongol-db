@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
 
 #include <js/CharacterEncoding.h>
 #include <jsapi.h>
 #include <utility>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/scripting/mozjs/exception.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/scripting/mozjs/exception.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 JSStringWrapper::JSStringWrapper(std::int32_t value) : _isSet(true) {
@@ -100,4 +100,4 @@ JSStringWrapper::operator bool() const {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

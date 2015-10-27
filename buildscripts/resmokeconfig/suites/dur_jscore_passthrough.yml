@@ -13,7 +13,7 @@ executor:
         readMode: commands
     fixture:
       class: MongoDFixture
-      mongod_options:
+      mongold_options:
         journal: ''
         set_parameters:
           enableTestCommands: 1

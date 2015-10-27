@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/wraptype.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/wraptype.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -60,4 +60,4 @@ struct NumberDecimalInfo : public BaseInfo {
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

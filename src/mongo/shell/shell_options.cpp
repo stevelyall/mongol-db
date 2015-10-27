@@ -26,27 +26,27 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/shell/shell_options.h"
+#include "mongol/shell/shell_options.h"
 
 #include <boost/filesystem/operations.hpp>
 
 #include <iostream>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/mongo_uri.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/shell/shell_utils.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/version.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/mongol_uri.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/shell/shell_utils.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::cout;
 using std::endl;
@@ -62,10 +62,10 @@ Status addMongoShellOptions(moe::OptionSection* options) {
     options->addOptionChaining("nodb",
                                "nodb",
                                moe::Switch,
-                               "don't connect to mongod on startup - no 'db address' arg expected");
+                               "don't connect to mongold on startup - no 'db address' arg expected");
 
     options->addOptionChaining(
-        "norc", "norc", moe::Switch, "will not run the \".mongorc.js\" file on start up");
+        "norc", "norc", moe::Switch, "will not run the \".mongolrc.js\" file on start up");
 
     options->addOptionChaining("quiet", "quiet", moe::Switch, "be less chatty");
 
@@ -135,7 +135,7 @@ Status addMongoShellOptions(moe::OptionSection* options) {
         .hidden()
         .positional(2, -1);
 
-    // for testing, kill op will also be disabled automatically if the tests starts a mongo
+    // for testing, kill op will also be disabled automatically if the tests starts a mongol
     // program
     options->addOptionChaining("nokillop", "nokillop", moe::Switch, "nokillop").hidden();
 
@@ -169,7 +169,7 @@ Status addMongoShellOptions(moe::OptionSection* options) {
 
 std::string getMongoShellHelp(StringData name, const moe::OptionSection& options) {
     StringBuilder sb;
-    sb << "MongoDB shell version: " << mongo::versionString << "\n";
+    sb << "MongoDB shell version: " << mongol::versionString << "\n";
     sb << "usage: " << name << " [options] [db address] [file names (ending in .js)]\n"
        << "db address can be:\n"
        << "  foo                   foo database on local machine\n"
@@ -188,7 +188,7 @@ bool handlePreValidationMongoShellOptions(const moe::Environment& params,
         return false;
     }
     if (params.count("version")) {
-        cout << "MongoDB shell version: " << mongo::versionString << endl;
+        cout << "MongoDB shell version: " << mongol::versionString << endl;
         return false;
     }
     return true;
@@ -197,7 +197,7 @@ bool handlePreValidationMongoShellOptions(const moe::Environment& params,
 Status storeMongoShellOptions(const moe::Environment& params,
                               const std::vector<std::string>& args) {
     if (params.count("quiet")) {
-        mongo::serverGlobalParams.quiet = true;
+        mongol::serverGlobalParams.quiet = true;
     }
 #ifdef MONGO_CONFIG_SSL
     Status ret = storeSSLClientOptions(params);
@@ -206,7 +206,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
     }
 #endif
     if (params.count("ipv6")) {
-        mongo::enableIPv6();
+        mongol::enableIPv6();
     }
     if (params.count("verbose")) {
         logger::globalLogDomain()->setMinimumLoggedSeverity(logger::LogSeverity::Debug(1));
@@ -262,7 +262,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
         shellGlobalParams.files = params["files"].as<vector<string>>();
     }
     if (params.count("nokillop")) {
-        mongo::shell_utils::_nokillop = true;
+        mongol::shell_utils::_nokillop = true;
     }
     if (params.count("autokillop")) {
         shellGlobalParams.autoKillOp = true;
@@ -274,7 +274,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
         std::string mode = params["writeMode"].as<string>();
         if (mode != "commands" && mode != "legacy" && mode != "compatibility") {
             throw MsgAssertionException(
-                17396, mongoutils::str::stream() << "Unknown writeMode option: " << mode);
+                17396, mongolutils::str::stream() << "Unknown writeMode option: " << mode);
         }
         shellGlobalParams.writeMode = mode;
     }
@@ -283,7 +283,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
         if (mode != "commands" && mode != "compatibility" && mode != "legacy") {
             throw MsgAssertionException(
                 17397,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "Unknown readMode option: '" << mode
                     << "'. Valid modes are: {commands, compatibility, legacy}");
         }
@@ -316,7 +316,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
             string basename = dbaddress.substr(dbaddress.find_last_of("/\\") + 1);
             if (basename.find_first_of('.') == string::npos ||
                 (basename.find(".js", basename.size() - 3) == string::npos &&
-                 !::mongo::shell_utils::fileExists(dbaddress))) {
+                 !::mongol::shell_utils::fileExists(dbaddress))) {
                 shellGlobalParams.url = dbaddress;
             } else {
                 shellGlobalParams.files.insert(shellGlobalParams.files.begin(), dbaddress);
@@ -332,7 +332,7 @@ Status storeMongoShellOptions(const moe::Environment& params,
         return Status(ErrorCodes::BadValue, sb.str());
     }
 
-    if (shellGlobalParams.url.find("mongodb://") == 0) {
+    if (shellGlobalParams.url.find("mongoldb://") == 0) {
         auto cs_status = MongoURI::parse(shellGlobalParams.url);
         if (!cs_status.isOK()) {
             return cs_status.getStatus();

@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/shutdown.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/shutdown.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ClusterShutdownCmd : public CmdShutdown {
@@ -55,4 +55,4 @@ public:
 } clusterShutdownCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

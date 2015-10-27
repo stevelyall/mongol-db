@@ -29,13 +29,13 @@
  *    it in the license file.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/base/init.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -73,4 +73,4 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(EphemeralForTestEngineInit, ("SetGlobalEnvi
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

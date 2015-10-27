@@ -30,9 +30,9 @@
 
 #include <map>
 
-#include "mongo/client/remote_command_targeter_factory.h"
+#include "mongol/client/remote_command_targeter_factory.h"
 
-namespace mongo {
+namespace mongol {
 
 class RemoteCommandTargeterMock;
 
@@ -74,4 +74,4 @@ private:
     MockTargetersMap _mockTargeters;
 };
 
-}  // namespace mongo
+}  // namespace mongol

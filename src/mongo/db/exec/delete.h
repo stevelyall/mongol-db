@@ -29,10 +29,10 @@
 #pragma once
 
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class OperationContext;
@@ -125,4 +125,4 @@ private:
     DeleteStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

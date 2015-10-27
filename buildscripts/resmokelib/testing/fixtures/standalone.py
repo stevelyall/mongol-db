@@ -1,5 +1,5 @@
 """
-Standalone mongod fixture for executing JSTests against.
+Standalone mongold fixture for executing JSTests against.
 """
 
 from __future__ import absolute_import
@@ -9,7 +9,7 @@ import os.path
 import shutil
 import time
 
-import pymongo
+import pymongol
 
 from . import interface
 from ... import config
@@ -20,7 +20,7 @@ from ... import utils
 
 class MongoDFixture(interface.Fixture):
     """
-    Fixture which provides JSTests with a standalone mongod to run
+    Fixture which provides JSTests with a standalone mongold to run
     against.
     """
 
@@ -29,34 +29,34 @@ class MongoDFixture(interface.Fixture):
     def __init__(self,
                  logger,
                  job_num,
-                 mongod_executable=None,
-                 mongod_options=None,
+                 mongold_executable=None,
+                 mongold_options=None,
                  dbpath_prefix=None,
                  preserve_dbpath=False):
 
         interface.Fixture.__init__(self, logger, job_num)
 
-        if "dbpath" in mongod_options and dbpath_prefix is not None:
-            raise ValueError("Cannot specify both mongod_options.dbpath and dbpath_prefix")
+        if "dbpath" in mongold_options and dbpath_prefix is not None:
+            raise ValueError("Cannot specify both mongold_options.dbpath and dbpath_prefix")
 
         # Command line options override the YAML configuration.
-        self.mongod_executable = utils.default_if_none(config.MONGOD_EXECUTABLE, mongod_executable)
+        self.mongold_executable = utils.default_if_none(config.MONGOD_EXECUTABLE, mongold_executable)
 
-        self.mongod_options = utils.default_if_none(mongod_options, {}).copy()
+        self.mongold_options = utils.default_if_none(mongold_options, {}).copy()
         self.preserve_dbpath = preserve_dbpath
 
-        # The dbpath in mongod_options takes precedence over other settings to make it easier for
+        # The dbpath in mongold_options takes precedence over other settings to make it easier for
         # users to specify a dbpath containing data to test against.
-        if "dbpath" not in self.mongod_options:
+        if "dbpath" not in self.mongold_options:
             # Command line options override the YAML configuration.
             dbpath_prefix = utils.default_if_none(config.DBPATH_PREFIX, dbpath_prefix)
             dbpath_prefix = utils.default_if_none(dbpath_prefix, config.DEFAULT_DBPATH_PREFIX)
-            self.mongod_options["dbpath"] = os.path.join(dbpath_prefix,
+            self.mongold_options["dbpath"] = os.path.join(dbpath_prefix,
                                                          "job%d" % (self.job_num),
                                                          config.FIXTURE_SUBDIR)
-        self._dbpath = self.mongod_options["dbpath"]
+        self._dbpath = self.mongold_options["dbpath"]
 
-        self.mongod = None
+        self.mongold = None
 
     def setup(self):
         if not self.preserve_dbpath:
@@ -68,72 +68,72 @@ class MongoDFixture(interface.Fixture):
             # Directory already exists.
             pass
 
-        if "port" not in self.mongod_options:
-            self.mongod_options["port"] = core.network.PortAllocator.next_fixture_port(self.job_num)
-        self.port = self.mongod_options["port"]
+        if "port" not in self.mongold_options:
+            self.mongold_options["port"] = core.network.PortAllocator.next_fixture_port(self.job_num)
+        self.port = self.mongold_options["port"]
 
-        mongod = core.programs.mongod_program(self.logger,
-                                              executable=self.mongod_executable,
-                                              **self.mongod_options)
+        mongold = core.programs.mongold_program(self.logger,
+                                              executable=self.mongold_executable,
+                                              **self.mongold_options)
         try:
-            self.logger.info("Starting mongod on port %d...\n%s", self.port, mongod.as_command())
-            mongod.start()
-            self.logger.info("mongod started on port %d with pid %d.", self.port, mongod.pid)
+            self.logger.info("Starting mongold on port %d...\n%s", self.port, mongold.as_command())
+            mongold.start()
+            self.logger.info("mongold started on port %d with pid %d.", self.port, mongold.pid)
         except:
-            self.logger.exception("Failed to start mongod on port %d.", self.port)
+            self.logger.exception("Failed to start mongold on port %d.", self.port)
             raise
 
-        self.mongod = mongod
+        self.mongold = mongold
 
     def await_ready(self):
         deadline = time.time() + MongoDFixture.AWAIT_READY_TIMEOUT_SECS
 
-        # Wait until the mongod is accepting connections. The retry logic is necessary to support
+        # Wait until the mongold is accepting connections. The retry logic is necessary to support
         # versions of PyMongo <3.0 that immediately raise a ConnectionFailure if a connection cannot
         # be established.
         while True:
-            # Check whether the mongod exited for some reason.
-            if self.mongod.poll() is not None:
-                raise errors.ServerFailure("Could not connect to mongod on port %d, process ended"
+            # Check whether the mongold exited for some reason.
+            if self.mongold.poll() is not None:
+                raise errors.ServerFailure("Could not connect to mongold on port %d, process ended"
                                            " unexpectedly." % (self.port))
 
             try:
                 # Use a shorter connection timeout to more closely satisfy the requested deadline.
-                client = utils.new_mongo_client(self.port, timeout_millis=500)
+                client = utils.new_mongol_client(self.port, timeout_millis=500)
                 client.admin.command("ping")
                 break
-            except pymongo.errors.ConnectionFailure:
+            except pymongol.errors.ConnectionFailure:
                 remaining = deadline - time.time()
                 if remaining <= 0.0:
                     raise errors.ServerFailure(
-                        "Failed to connect to mongod on port %d after %d seconds"
+                        "Failed to connect to mongold on port %d after %d seconds"
                         % (self.port, MongoDFixture.AWAIT_READY_TIMEOUT_SECS))
 
-                self.logger.info("Waiting to connect to mongod on port %d.", self.port)
+                self.logger.info("Waiting to connect to mongold on port %d.", self.port)
                 time.sleep(0.1)  # Wait a little bit before trying again.
 
-        self.logger.info("Successfully contacted the mongod on port %d.", self.port)
+        self.logger.info("Successfully contacted the mongold on port %d.", self.port)
 
     def teardown(self):
         running_at_start = self.is_running()
         success = True  # Still a success even if nothing is running.
 
         if not running_at_start and self.port is not None:
-            self.logger.info("mongod on port %d was expected to be running in teardown(), but"
+            self.logger.info("mongold on port %d was expected to be running in teardown(), but"
                              " wasn't." % (self.port))
 
-        if self.mongod is not None:
+        if self.mongold is not None:
             if running_at_start:
-                self.logger.info("Stopping mongod on port %d with pid %d...",
+                self.logger.info("Stopping mongold on port %d with pid %d...",
                                  self.port,
-                                 self.mongod.pid)
-                self.mongod.stop()
+                                 self.mongold.pid)
+                self.mongold.stop()
 
-            exit_code = self.mongod.wait()
+            exit_code = self.mongold.wait()
             success = exit_code == 0
 
             if running_at_start:
-                self.logger.info("Successfully terminated the mongod on port %d, exited with code"
+                self.logger.info("Successfully terminated the mongold on port %d, exited with code"
                                  " %d.",
                                  self.port,
                                  exit_code)
@@ -141,10 +141,10 @@ class MongoDFixture(interface.Fixture):
         return success
 
     def is_running(self):
-        return self.mongod is not None and self.mongod.poll() is None
+        return self.mongold is not None and self.mongold.poll() is None
 
     def get_connection_string(self):
-        if self.mongod is None:
+        if self.mongold is None:
             raise ValueError("Must call setup() before calling get_connection_string()")
 
         return "localhost:%d" % self.port

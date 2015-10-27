@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/interval.h"
-#include "mongo/db/storage/index_entry_comparison.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/interval.h"
+#include "mongol/db/storage/index_entry_comparison.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * An ordered list of intervals for one field.
@@ -242,4 +242,4 @@ private:
     std::vector<int> _expectedDirection;
 };
 
-}  // namespace mongo
+}  // namespace mongol

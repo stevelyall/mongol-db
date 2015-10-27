@@ -27,13 +27,13 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/fts/fts_element_iterator.h"
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_element_iterator.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 using std::string;
@@ -396,4 +396,4 @@ TEST(FTSElementIterator, LanguageOverrideV3) {
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

@@ -29,18 +29,18 @@
 
 #if defined(_WIN32) || defined(__sun)
 
-namespace mongo {
+namespace mongol {
 namespace pal {
 const char* strcasestr(const char* haystack, const char* needle);
 }
-using mongo::pal::strcasestr;
+using mongol::pal::strcasestr;
 }
 
 #else
 
 #include <cstring>
 
-namespace mongo {
+namespace mongol {
 using ::strcasestr;
 }
 

@@ -29,14 +29,14 @@
 #pragma once
 
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 class RecordCursor;
 
@@ -142,4 +142,4 @@ private:
     static int _backwardsScanTime;
 };
 
-}  // namespace mongo
+}  // namespace mongol

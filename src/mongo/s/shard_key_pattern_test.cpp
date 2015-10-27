@@ -25,17 +25,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/shard_key_pattern.h"
+#include "mongol/s/shard_key_pattern.h"
 
-#include "mongo/db/hasher.h"
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
 using std::string;
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(ShardKeyPattern, ValidShardKeyPatternSingle) {
     BSONObj empty;

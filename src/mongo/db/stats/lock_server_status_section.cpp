@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/concurrency/lock_stats.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/concurrency/lock_stats.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class GlobalLockServerStatusSection : public ServerStatusSection {
@@ -136,4 +136,4 @@ public:
 } lockStatsServerStatusSection;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

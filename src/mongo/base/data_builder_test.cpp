@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_builder.h"
+#include "mongol/base/data_builder.h"
 
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 /**
@@ -167,4 +167,4 @@ TEST(DataBuilder, Move) {
     ASSERT(!db.getCursor().data());
 }
 
-}  // namespace mongo
+}  // namespace mongol

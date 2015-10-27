@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/sock.h"
+#include "mongol/util/net/sock.h"
 
 #if !defined(_WIN32)
 #include <sys/socket.h>
@@ -47,21 +47,21 @@
 #endif
 #endif
 
-#include "mongo/config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/background.h"
-#include "mongo/util/concurrency/value.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/socket_poll.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/background.h"
+#include "mongol/util/concurrency/value.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/socket_poll.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::pair;
@@ -190,7 +190,7 @@ SockAddr::SockAddr(const char* _iporhost, int port) {
         target = "127.0.0.1";
     }
 
-    if (mongoutils::str::contains(target, '/')) {
+    if (mongolutils::str::contains(target, '/')) {
 #ifdef _WIN32
         uassert(13080, "no unix socket support on windows", false);
 #endif
@@ -268,7 +268,7 @@ bool SockAddr::isLocalHost() const {
 string SockAddr::toString(bool includePort) const {
     string out = getAddr();
     if (includePort && getType() != AF_UNIX && getType() != AF_UNSPEC)
-        out += mongoutils::str::stream() << ':' << getPort();
+        out += mongolutils::str::stream() << ':' << getPort();
     return out;
 }
 
@@ -300,7 +300,7 @@ std::string SockAddr::getAddr() const {
             char buffer[buflen];
             int ret = getnameinfo(raw(), addressSize, buffer, buflen, NULL, 0, NI_NUMERICHOST);
             massert(13082,
-                    mongoutils::str::stream() << "getnameinfo error " << getAddrInfoStrError(ret),
+                    mongolutils::str::stream() << "getnameinfo error " << getAddrInfoStrError(ret),
                     ret == 0);
             return buffer;
         }
@@ -373,7 +373,7 @@ bool SockAddr::operator<(const SockAddr& r) const {
 }
 
 string makeUnixSockPath(int port) {
-    return mongoutils::str::stream() << serverGlobalParams.socket << "/mongodb-" << port << ".sock";
+    return mongolutils::str::stream() << serverGlobalParams.socket << "/mongoldb-" << port << ".sock";
 }
 
 
@@ -415,7 +415,7 @@ string prettyHostName() {
     StringBuilder s;
     s << getHostNameCached();
     if (serverGlobalParams.port != ServerGlobalParams::DefaultDBPort)
-        s << ':' << mongo::serverGlobalParams.port;
+        s << ':' << mongol::serverGlobalParams.port;
     return s.str();
 }
 
@@ -790,16 +790,16 @@ int Socket::_recv(char* buf, int max) {
 
 void Socket::handleSendError(int ret, const char* context) {
 #if defined(_WIN32)
-    const int mongo_errno = WSAGetLastError();
-    if (mongo_errno == WSAETIMEDOUT && _timeout != 0) {
+    const int mongol_errno = WSAGetLastError();
+    if (mongol_errno == WSAETIMEDOUT && _timeout != 0) {
 #else
-    const int mongo_errno = errno;
-    if ((mongo_errno == EAGAIN || mongo_errno == EWOULDBLOCK) && _timeout != 0) {
+    const int mongol_errno = errno;
+    if ((mongol_errno == EAGAIN || mongol_errno == EWOULDBLOCK) && _timeout != 0) {
 #endif
         LOG(_logLevel) << "Socket " << context << " send() timed out " << remoteString() << endl;
         throw SocketException(SocketException::SEND_TIMEOUT, remoteString());
     } else {
-        LOG(_logLevel) << "Socket " << context << " send() " << errnoWithDescription(mongo_errno)
+        LOG(_logLevel) << "Socket " << context << " send() " << errnoWithDescription(mongol_errno)
                        << ' ' << remoteString() << endl;
         throw SocketException(SocketException::SEND_ERROR, remoteString());
     }
@@ -987,4 +987,4 @@ struct WinsockInit {
 } winsock_init;
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

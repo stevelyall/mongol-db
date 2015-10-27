@@ -27,18 +27,18 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/index_bounds_builder.cpp
+ * This file contains tests for mongol/db/query/index_bounds_builder.cpp
  */
 
-#include "mongo/db/query/index_bounds_builder.h"
+#include "mongol/db/query/index_bounds_builder.h"
 
 #include <limits>
 #include <memory>
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

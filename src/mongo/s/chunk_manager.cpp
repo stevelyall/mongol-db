@@ -26,37 +26,37 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/chunk_manager.h"
+#include "mongol/s/chunk_manager.h"
 
 #include <boost/next_prior.hpp>
 #include <map>
 #include <set>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/index_bounds_builder.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/chunk_diff.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/index_bounds_builder.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/chunk_diff.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::make_pair;
 using std::map;
@@ -71,10 +71,10 @@ using std::vector;
 namespace {
 
 /**
- * This is an adapter so we can use config diffs - mongos and mongod do them slightly
+ * This is an adapter so we can use config diffs - mongols and mongold do them slightly
  * differently
  *
- * The mongos adapter here tracks all shards, and stores ranges by (max, Chunk) in the map.
+ * The mongols adapter here tracks all shards, and stores ranges by (max, Chunk) in the map.
  */
 class CMConfigDiffTracker : public ConfigDiffTracker<shared_ptr<Chunk>> {
 public:
@@ -387,8 +387,8 @@ void ChunkManager::calcInitSplitsAndShards(OperationContext* txn,
         }
 
         if (!initShardIds || !initShardIds->size()) {
-            // If not specified, only use the primary shard (note that it's not safe for mongos
-            // to put initial chunks on other shards without the primary mongod knowing).
+            // If not specified, only use the primary shard (note that it's not safe for mongols
+            // to put initial chunks on other shards without the primary mongold knowing).
             shardIds->push_back(primaryShardId);
         } else {
             std::copy(initShardIds->begin(), initShardIds->end(), std::back_inserter(*shardIds));
@@ -556,7 +556,7 @@ void ChunkManager::getAllShardIds(set<ShardId>* all) const {
 
 IndexBounds ChunkManager::getIndexBoundsForQuery(const BSONObj& key,
                                                  const CanonicalQuery& canonicalQuery) {
-    // $text is not allowed in planning since we don't have text index on mongos.
+    // $text is not allowed in planning since we don't have text index on mongols.
     //
     // TODO: Treat $text query as a no-op in planning. So with shard key {a: 1},
     //       the query { a: 2, $text: { ... } } will only target to {a: 2}.
@@ -830,4 +830,4 @@ repl::OpTime ChunkManager::getConfigOpTime() const {
     return _configOpTime;
 }
 
-}  // namespace mongo
+}  // namespace mongol

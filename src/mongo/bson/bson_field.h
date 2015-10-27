@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A BSONField holds the name and the type intended for a given BSON element. The
@@ -138,4 +138,4 @@ private:
     bool _defaultSet;
 };
 
-}  // namespace mongo
+}  // namespace mongol

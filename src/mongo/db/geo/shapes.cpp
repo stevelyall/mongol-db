@@ -26,16 +26,16 @@
 *    it in the license file.
 */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/geo/shapes.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/util/mongolutils/str.h"
 
 using std::abs;
 
 // So we can get at the str namespace.
-using namespace mongoutils;
+using namespace mongolutils;
 
-namespace mongo {
+namespace mongol {
 
 ////////////// Point
 
@@ -788,4 +788,4 @@ void ShapeProjection::projectInto(PolygonWithCRS* polygon, CRS crs) {
     polygon->crs = SPHERE;
 }
 
-}  // namespace mongo
+}  // namespace mongol

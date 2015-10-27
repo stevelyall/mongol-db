@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/exec/sort.h"
+#include "mongol/db/exec/sort.h"
 
 #include <algorithm>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/index/btree_key_generator.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/index/btree_key_generator.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::unique_ptr;
@@ -109,7 +109,7 @@ PlanStage::StageState SortStage::work(WorkingSetID* out) {
 
     const size_t maxBytes = static_cast<size_t>(internalQueryExecMaxBlockingSortBytes);
     if (_memUsage > maxBytes) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Sort operation used more than the maximum " << maxBytes
            << " bytes of RAM. Add an index, or specify a smaller limit.";
         Status status(ErrorCodes::OperationFailed, ss);
@@ -172,7 +172,7 @@ PlanStage::StageState SortStage::work(WorkingSetID* out) {
             // failed, in which case 'id' is valid.  If ID is invalid, we
             // create our own error message.
             if (WorkingSet::INVALID_ID == id) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "sort stage failed to read in results to sort from child";
                 Status status(ErrorCodes::InternalError, ss);
                 *out = WorkingSetCommon::allocateStatusMember(_ws, status);
@@ -352,4 +352,4 @@ void SortStage::sortBuffer() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

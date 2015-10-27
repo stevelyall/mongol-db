@@ -1,6 +1,6 @@
 (function() {
 
-var s = new ShardingTest({ name: "features1", shards: 2, mongos: 1 });
+var s = new ShardingTest({ name: "features1", shards: 2, mongols: 1 });
 
 s.adminCommand( { enablesharding : "test" } );
 s.ensurePrimaryShard('test', 'shard0001');

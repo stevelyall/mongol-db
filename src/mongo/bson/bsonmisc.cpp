@@ -27,9 +27,9 @@
  *    it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 int getGtLtOp(const BSONElement& e) {
     if (e.type() != Object)
@@ -114,4 +114,4 @@ BSONObjBuilder& Labeler::operator<<(const BSONElement& e) {
     return *s_->_builder;
 }
 
-}  // namespace mongo
+}  // namespace mongol

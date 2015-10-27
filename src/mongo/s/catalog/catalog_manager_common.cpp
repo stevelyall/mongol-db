@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/catalog_manager_common.h"
+#include "mongol/s/catalog/catalog_manager_common.h"
 
 #include <map>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_util.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_util.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -102,16 +102,16 @@ StatusWith<ShardType> validateHostAsShard(OperationContext* txn,
 
     const ReadPreferenceSetting readPref{ReadPreference::PrimaryOnly};
 
-    // Is it mongos?
+    // Is it mongols?
     auto cmdStatus = shardRegistry->runCommandForAddShard(
         txn, shardConn, readPref, "admin", BSON("isdbgrid" << 1));
     if (!cmdStatus.isOK()) {
         return cmdStatus.getStatus();
     }
 
-    // (ok == 1) implies that it is a mongos
+    // (ok == 1) implies that it is a mongols
     if (getStatusFromCommandResult(cmdStatus.getValue()).isOK()) {
-        return {ErrorCodes::BadValue, "can't add a mongos process as a shard"};
+        return {ErrorCodes::BadValue, "can't add a mongols process as a shard"};
     }
 
     // Is it a replica set?
@@ -148,7 +148,7 @@ StatusWith<ShardType> validateHostAsShard(OperationContext* txn,
                               << ") does not match the actual set name " << foundSetName};
     }
 
-    // Is it a mongos config server?
+    // Is it a mongols config server?
     cmdStatus = shardRegistry->runCommandForAddShard(
         txn, shardConn, readPref, "admin", BSON("replSetGetStatus" << 1));
     if (!cmdStatus.isOK()) {
@@ -176,7 +176,7 @@ StatusWith<ShardType> validateHostAsShard(OperationContext* txn,
         }
     } else if ((res["info"].type() == String) && (res["info"].String() == "configsvr")) {
         return {ErrorCodes::BadValue,
-                "the specified mongod is a legacy-style config "
+                "the specified mongold is a legacy-style config "
                 "server and cannot be used as a shard server"};
     }
 
@@ -542,4 +542,4 @@ Status CatalogManagerCommon::enableSharding(OperationContext* txn, const std::st
     return updateDatabase(txn, dbName, db);
 }
 
-}  // namespace mongo
+}  // namespace mongol

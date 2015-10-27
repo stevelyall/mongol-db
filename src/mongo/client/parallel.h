@@ -32,11 +32,11 @@
 #pragma once
 
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_connection.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_connection.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientCursorHolder;
 class OperationContext;
@@ -303,4 +303,4 @@ private:
 
 void throwCursorStale(DBClientCursor* cursor);
 
-}  // namespace mongo
+}  // namespace mongol

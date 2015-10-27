@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/config.h"
-#include "mongo/platform/strnlen.h"
+#include "mongol/config.h"
+#include "mongol/platform/strnlen.h"
 
 #ifndef MONGO_CONFIG_HAVE_STRNLEN
 
-namespace mongo {
+namespace mongol {
 
 size_t strnlen(const char* s, size_t maxlen) {
     for (size_t i = 0; i < maxlen; ++i) {
@@ -41,6 +41,6 @@ size_t strnlen(const char* s, size_t maxlen) {
     return maxlen;
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif

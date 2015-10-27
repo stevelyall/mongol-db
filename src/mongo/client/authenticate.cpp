@@ -25,24 +25,24 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/authenticate.h"
+#include "mongol/client/authenticate.h"
 
-#include "mongo/bson/json.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/config.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/bson/json.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/config.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/password_digest.h"
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 using executor::RemoteCommandRequest;
@@ -346,4 +346,4 @@ StringData getSaslCommandUserFieldName() {
 }
 
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

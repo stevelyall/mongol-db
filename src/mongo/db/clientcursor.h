@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/cursor_id.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/record_id.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/cursor_id.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/record_id.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class CursorManager;
@@ -323,4 +323,4 @@ private:
 
 void startClientCursorMonitor();
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/client/connpool.h"
+#include "mongol/client/connpool.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 
@@ -50,4 +50,4 @@ private:
     bool _shardedConnections;
 };
 
-}  // namespace mongo
+}  // namespace mongol

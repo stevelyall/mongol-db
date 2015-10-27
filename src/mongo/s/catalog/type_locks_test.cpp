@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(Validity, Empty) {
     BSONObj emptyObj = BSONObj();

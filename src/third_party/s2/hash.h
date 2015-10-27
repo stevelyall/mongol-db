@@ -1,13 +1,13 @@
 #ifndef THIRD_PARTY_S2_HASH_H_
 #define THIRD_PARTY_S2_HASH_H_
 
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/platform/hash_namespace.h"
 
-#include "mongo/platform/unordered_map.h"
-#define hash_map mongo::unordered_map
+#include "mongol/platform/unordered_map.h"
+#define hash_map mongol::unordered_map
 
-#include "mongo/platform/unordered_set.h"
-#define hash_set mongo::unordered_set
+#include "mongol/platform/unordered_set.h"
+#define hash_set mongol::unordered_set
 
 #define HASH_NAMESPACE_START MONGO_HASH_NAMESPACE_START
 #define HASH_NAMESPACE_END MONGO_HASH_NAMESPACE_END

@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 class RecordId;
 class Timestamp;
 
@@ -49,4 +49,4 @@ StatusWith<RecordId> keyForOptime(const Timestamp& opTime);
 StatusWith<RecordId> extractKey(const char* data, int len);
 
 }  // namespace oploghack
-}  // namespace mongo
+}  // namespace mongol

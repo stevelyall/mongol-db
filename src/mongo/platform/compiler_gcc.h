@@ -29,7 +29,7 @@
 /**
  * Compiler-specific implementations for gcc.
  *
- * Refer to mongo/platform/compiler.h for usage documentation.
+ * Refer to mongol/platform/compiler.h for usage documentation.
  */
 
 #pragma once

@@ -73,7 +73,7 @@ class MultiVersionDownloader :
         return self._links
 
     def download_links(self):
-        href = "http://dl.mongodb.org/dl/%s/%s" \
+        href = "http://dl.mongoldb.org/dl/%s/%s" \
                % (self.platform.lower(), self.arch)
 
         attempts_remaining = 5
@@ -90,7 +90,7 @@ class MultiVersionDownloader :
 
         links = {}
         for line in html.split():
-            match = re.compile("http:\/\/downloads\.mongodb\.org\/%s/mongodb-%s-%s-([^\"]*)\.tgz" \
+            match = re.compile("http:\/\/downloads\.mongoldb\.org\/%s/mongoldb-%s-%s-([^\"]*)\.tgz" \
                 % (self.platform.lower(), self.platform.lower(), self.arch)).search(line)
 
             if match == None: continue
@@ -192,17 +192,17 @@ class MultiVersionDownloader :
 
 CL_HELP_MESSAGE = \
 """
-Downloads and installs particular mongodb versions (each binary is renamed to include its version) 
+Downloads and installs particular mongoldb versions (each binary is renamed to include its version) 
 into an install directory and symlinks the binaries with versions to another directory.
 
-Usage: setup_multiversion_mongodb.py INSTALL_DIR LINK_DIR PLATFORM_AND_ARCH VERSION1 [VERSION2 VERSION3 ...]
+Usage: setup_multiversion_mongoldb.py INSTALL_DIR LINK_DIR PLATFORM_AND_ARCH VERSION1 [VERSION2 VERSION3 ...]
 
-Ex: setup_multiversion_mongodb.py ./install ./link "Linux/x86_64" "2.0.6" "2.0.3-rc0" "2.0" "2.2" "2.3"
-Ex: setup_multiversion_mongodb.py ./install ./link "OSX/x86_64" "2.4" "2.2"
+Ex: setup_multiversion_mongoldb.py ./install ./link "Linux/x86_64" "2.0.6" "2.0.3-rc0" "2.0" "2.2" "2.3"
+Ex: setup_multiversion_mongoldb.py ./install ./link "OSX/x86_64" "2.4" "2.2"
 
 After running the script you will have a directory structure like this:
-./install/[mongodb-osx-x86_64-2.4.9, mongodb-osx-x86_64-2.2.7]
-./link/[mongod-2.4.9, mongod-2.2.7, mongo-2.4.9...]
+./install/[mongoldb-osx-x86_64-2.4.9, mongoldb-osx-x86_64-2.2.7]
+./link/[mongold-2.4.9, mongold-2.2.7, mongol-2.4.9...]
 
 You should then add ./link/ to your path so multi-version tests will work.
 

@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 namespace unicode {
 
 /**
@@ -83,4 +83,4 @@ char32_t codepointRemoveDiacritics(char32_t codepoint);
 char32_t codepointToLower(char32_t codepoint, CaseFoldMode mode = CaseFoldMode::kNormal);
 
 }  // namespace unicode
-}  // namespace mongo
+}  // namespace mongol

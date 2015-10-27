@@ -10,7 +10,7 @@ var st = new ShardingTest({ shards: 1 });
 var configDB = st.s.getDB('config');
 var shardDoc = configDB.shards.findOne();
 
-// Can't add mongos as shard.
+// Can't add mongols as shard.
 assert.commandFailed(st.admin.runCommand({ addshard: st.s.host }));
 
 // Can't add config servers as shard.

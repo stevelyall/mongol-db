@@ -20,19 +20,19 @@
  * be replayed from for replication.
  */
 
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/dbtests/dbtests.h"
 
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/db.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/exec/oplogstart.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/repl/repl_settings.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/db.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/exec/oplogstart.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/repl/repl_settings.h"
 
 namespace OplogStartTests {
 

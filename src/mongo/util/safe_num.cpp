@@ -27,13 +27,13 @@
 
 #include <sstream>
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 #undef MONGO_PCH_WHITELISTED  // for malloc/realloc/INFINITY pulled from bson
 
-#include "mongo/bson/bsontypes.h"
-#include "mongo/util/safe_num.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/util/safe_num.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::ostringstream;
 
@@ -451,4 +451,4 @@ SafeNum SafeNum::xorInternal(const SafeNum& lhs, const SafeNum& rhs) {
     return SafeNum();
 }
 
-}  // namespace mongo
+}  // namespace mongol

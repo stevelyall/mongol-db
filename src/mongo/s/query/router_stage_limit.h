@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/s/query/router_exec_stage.h"
+#include "mongol/s/query/router_exec_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Passes through the first n results and then returns boost::none.
@@ -51,4 +51,4 @@ private:
     long long _returnedSoFar = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

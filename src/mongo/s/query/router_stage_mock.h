@@ -31,9 +31,9 @@
 #include <boost/optional.hpp>
 #include <queue>
 
-#include "mongo/s/query/router_exec_stage.h"
+#include "mongol/s/query/router_exec_stage.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Initialized by adding results to its results queue, it then passes through the results in its
@@ -75,4 +75,4 @@ private:
     bool _remotesExhausted = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

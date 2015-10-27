@@ -29,9 +29,9 @@
 
 #include <cstring>
 
-#include "mongo/base/data_type.h"
+#include "mongol/base/data_type.h"
 
-namespace mongo {
+namespace mongol {
 
 template <char C, typename T>
 struct Terminated {
@@ -120,4 +120,4 @@ struct DataType::Handler<Terminated<C, T>> {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

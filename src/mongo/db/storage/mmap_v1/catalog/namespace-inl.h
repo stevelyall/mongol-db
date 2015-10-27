@@ -32,9 +32,9 @@
 
 #include <boost/filesystem/path.hpp>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 inline Namespace& Namespace::operator=(StringData ns) {
     // we fill the remaining space with all zeroes here.  as the full Namespace struct is in
@@ -76,4 +76,4 @@ inline int Namespace::hash() const {
     return (x & 0x7fffffff) | 0x8000000;  // must be > 0
 }
 
-}  // namespace mongo
+}  // namespace mongol

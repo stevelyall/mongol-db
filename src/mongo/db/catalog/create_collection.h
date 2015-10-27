@@ -28,9 +28,9 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class OperationContext;
 
@@ -38,4 +38,4 @@ class OperationContext;
  * Creates a collection as described in "cmdObj" on the database "dbName".
  */
 Status createCollection(OperationContext* txn, const std::string& dbName, const BSONObj& cmdObj);
-}  // namespace mongo
+}  // namespace mongol

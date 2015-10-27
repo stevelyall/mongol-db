@@ -25,13 +25,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/make_string_vector.h"
+#include "mongol/base/make_string_vector.h"
 
 #include <cstdlib>
 #include <iostream>
 #include <stdarg.h>
 
-namespace mongo {
+namespace mongol {
 
 std::vector<std::string> _makeStringVector(int ignored, ...) {
     va_list ap;
@@ -44,4 +44,4 @@ std::vector<std::string> _makeStringVector(int ignored, ...) {
     return result;
 }
 
-}  // namespace mongo
+}  // namespace mongol

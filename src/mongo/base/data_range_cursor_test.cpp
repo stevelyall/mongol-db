@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_range_cursor.h"
+#include "mongol/base/data_range_cursor.h"
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(DataRangeCursor, ConstDataRangeCursor) {
     char buf[14];
@@ -109,4 +109,4 @@ TEST(DataRangeCursor, DataRangeCursorType) {
     ASSERT_OK(status);
     ASSERT_EQUALS(std::string("fooZ"), buf2);
 }
-}  // namespace mongo
+}  // namespace mongol

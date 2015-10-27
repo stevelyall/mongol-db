@@ -30,10 +30,10 @@
 #include <map>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 class Constraint;
@@ -178,4 +178,4 @@ T Value::as() const {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

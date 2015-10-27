@@ -26,13 +26,13 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/s/operation_shard_version.h"
+#include "mongol/db/s/operation_shard_version.h"
 
-#include "mongo/bson/util/bson_extract.h"
+#include "mongol/bson/util/bson_extract.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -42,7 +42,7 @@ const OperationContext::Decoration<OperationShardVersion> shardingMetadataDecora
 const char* kShardVersionField = "shardVersion";
 const ChunkVersion kUnshardedVersion(ChunkVersion::UNSHARDED());
 
-}  // namespace mongo
+}  // namespace mongol
 
 OperationShardVersion::OperationShardVersion() = default;
 
@@ -122,4 +122,4 @@ OperationShardVersion::IgnoreVersioningBlock::~IgnoreVersioningBlock() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

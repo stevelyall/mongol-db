@@ -28,27 +28,27 @@
  */
 
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/parallel.h"
+#include "mongol/client/parallel.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/constants.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/constants.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::list;
@@ -124,7 +124,7 @@ void ParallelSortClusteredCursor::explain(BSONObjBuilder& b) {
 
     // Return single shard output if we're versioned but not sharded, or
     // if we specified only a single shard
-    // TODO:  We should really make this simpler - all queries via mongos
+    // TODO:  We should really make this simpler - all queries via mongols
     // *always* get the same explain format
     if (!isSharded()) {
         map<string, list<BSONObj>> out;
@@ -164,7 +164,7 @@ void ParallelSortClusteredCursor::explain(BSONObjBuilder& b) {
                 // If appending the next output from the shard is going to make the BSON
                 // too large, then don't add it. We make sure the BSON doesn't get bigger
                 // than the allowable "user size" for a BSONObj. This leaves a little bit
-                // of extra space which mongos can use to add extra data.
+                // of extra space which mongols can use to add extra data.
                 if ((x.len() + temp.objsize()) > BSONObjMaxUserSize) {
                     y.append(BSON("warning"
                                   << "shard output omitted due to nearing 16 MB limit"));
@@ -241,7 +241,7 @@ void ParallelSortClusteredCursor::explain(BSONObjBuilder& b) {
     if (out.size() == 1) {
         b.append("indexBounds", indexBounds);
         if (!oldPlan.isEmpty()) {
-            // this is to stay in compliance with mongod behavior
+            // this is to stay in compliance with mongold behavior
             // we should make this cleaner, i.e. {} == nothing
             b.append("oldPlan", oldPlan);
         }
@@ -551,7 +551,7 @@ void ParallelSortClusteredCursor::setupVersionAndHandleSlaveOk(OperationContext*
 
         state->conn->donotCheckVersion();
 
-        // A side effect of this short circuiting is the mongos will not be able figure out that
+        // A side effect of this short circuiting is the mongols will not be able figure out that
         // the primary is now up on it's own and has to rely on other threads to refresh node
         // states.
 
@@ -1505,4 +1505,4 @@ void ParallelSortClusteredCursor::_explain(map<string, list<BSONObj>>& out) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

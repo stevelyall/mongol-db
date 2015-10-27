@@ -2,13 +2,13 @@
 // Tests that multi-writes (update/delete) target *all* shards and not just shards in the collection
 //
 
-var st = new ShardingTest({ shards : 3, mongos : 2 });
+var st = new ShardingTest({ shards : 3, mongols : 2 });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var shards = mongos.getCollection( "config.shards" ).find().toArray();
-var coll = mongos.getCollection( "foo.bar" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var shards = mongols.getCollection( "config.shards" ).find().toArray();
+var coll = mongols.getCollection( "foo.bar" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
 printjson( admin.runCommand({ movePrimary : coll.getDB() + "", to : shards[0]._id }) );
@@ -41,7 +41,7 @@ assert.neq(null, st.shard0.getCollection(coll.toString()).findOne({ updated : tr
 assert.neq(null, st.shard1.getCollection(coll.toString()).findOne({ updated : true }));
 assert.neq(null, st.shard2.getCollection(coll.toString()).findOne({ updated : true }));
 
-// _id update works, and goes to all shards even on the stale mongos
+// _id update works, and goes to all shards even on the stale mongols
 var staleColl = st.s1.getCollection('foo.bar');
 assert.writeOK(staleColl.update({ _id : 0 }, { $set : { updatedById : true } }, { multi : false }));
 

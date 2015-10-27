@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/queued_data_stage.h"
+#include "mongol/db/exec/queued_data_stage.h"
 
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -95,4 +95,4 @@ void QueuedDataStage::pushBack(const WorkingSetID& id) {
     _members.push(id);
 }
 
-}  // namespace mongo
+}  // namespace mongol

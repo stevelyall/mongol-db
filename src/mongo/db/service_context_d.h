@@ -30,10 +30,10 @@
 
 #include <vector>
 
-#include "mongo/db/service_context.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/service_context.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 class StorageEngineLockFile;
@@ -126,4 +126,4 @@ private:
     FactoryMapIterator _end;
 };
 
-}  // namespace mongo
+}  // namespace mongol

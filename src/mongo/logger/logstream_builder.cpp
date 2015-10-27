@@ -25,22 +25,22 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/logstream_builder.h"
+#include "mongol/logger/logstream_builder.h"
 
 #include <memory>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/logger/tee.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"  // TODO: remove apple dep for this in threadlocal.h
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/tee.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"  // TODO: remove apple dep for this in threadlocal.h
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -154,4 +154,4 @@ void LogstreamBuilder::makeStream() {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

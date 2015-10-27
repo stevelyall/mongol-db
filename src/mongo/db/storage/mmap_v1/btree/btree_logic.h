@@ -30,16 +30,16 @@
 
 #include <string>
 
-#include "mongo/db/catalog/head_manager.h"
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/index_entry_comparison.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_ondisk.h"
-#include "mongo/db/storage/mmap_v1/btree/key.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/catalog/head_manager.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/index_entry_comparison.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_ondisk.h"
+#include "mongol/db/storage/mmap_v1/btree/key.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 class PseudoRandom;
 class RecordStore;
@@ -573,4 +573,4 @@ private:
     std::string _indexName;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,9 +31,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/geo/hash.h"
+#include "mongol/db/geo/hash.h"
 
-namespace mongo {
+namespace mongol {
 
 struct TwoDIndexingParams {
     std::string geo;
@@ -41,4 +41,4 @@ struct TwoDIndexingParams {
     std::shared_ptr<GeoHashConverter> geoHashConverter;
 };
 
-}  // namespace mongo
+}  // namespace mongol

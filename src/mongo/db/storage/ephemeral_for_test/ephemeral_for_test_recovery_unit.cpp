@@ -28,14 +28,14 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/util/log.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 void EphemeralForTestRecoveryUnit::commitUnitOfWork() {
     try {

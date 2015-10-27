@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "mongo/db/dbmessage.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 class OperationContext;

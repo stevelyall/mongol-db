@@ -28,16 +28,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/update_result.h"
+#include "mongol/db/ops/update_result.h"
 
-#include "mongo/db/lasterror.h"
-#include "mongo/util/log.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 UpdateResult::UpdateResult(bool existing_,
                            bool modifiers_,
@@ -55,4 +55,4 @@ UpdateResult::UpdateResult(bool existing_,
     LOG(4) << "UpdateResult -- " << toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/lock_manager_test_help.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/lock_manager_test_help.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -306,4 +306,4 @@ TEST(DConcurrency, IsCollectionLocked_DB_Locked_IX) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

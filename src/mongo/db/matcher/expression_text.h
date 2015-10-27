@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/db/fts/fts_query.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/db/fts/fts_query.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
-namespace mongo {
+namespace mongol {
 
 class TextMatchExpression : public LeafMatchExpression {
 public:
@@ -76,4 +76,4 @@ private:
     bool _diacriticSensitive;
 };
 
-}  // namespace mongo
+}  // namespace mongol

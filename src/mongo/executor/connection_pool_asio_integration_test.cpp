@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/connection_pool_asio.h"
+#include "mongol/executor/connection_pool_asio.h"
 
-#include "mongo/client/connection_string.h"
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_timer_asio.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/executor/network_interface_asio_test_utils.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/integration_test.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_timer_asio.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/executor/network_interface_asio_test_utils.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/integration_test.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
@@ -122,4 +122,4 @@ TEST(ConnectionPoolASIO, TestPing) {
 
 }  // namespace
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

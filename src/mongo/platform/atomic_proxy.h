@@ -33,9 +33,9 @@
 #include <cstring>
 #include <type_traits>
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
 * Provides a simple version of an atomic version of T

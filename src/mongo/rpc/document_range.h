@@ -31,11 +31,11 @@
 #include <cstddef>
 #include <iterator>
 
-#include "mongo/base/data_range.h"
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/data_range.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 /**
@@ -95,4 +95,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/index_entry.h"
+#include "mongol/db/query/index_entry.h"
 
-#include "mongo/db/matcher/expression.h"
+#include "mongol/db/matcher/expression.h"
 
-namespace mongo {
+namespace mongol {
 
 std::string IndexEntry::toString() const {
     StringBuilder sb;
@@ -63,4 +63,4 @@ std::string IndexEntry::toString() const {
     return sb.str();
 }
 
-}  // namespace mongo
+}  // namespace mongol

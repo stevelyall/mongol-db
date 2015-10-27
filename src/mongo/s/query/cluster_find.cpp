@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_find.h"
+#include "mongol/s/query/cluster_find.h"
 
 #include <set>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/query/cluster_client_cursor_impl.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/s/query/store_possible_cursor.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/query/cluster_client_cursor_impl.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/s/query/store_possible_cursor.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -72,7 +72,7 @@ static const BSONObj kSortKeyMetaProjection = BSON("$meta"
 static const int kPerDocumentOverheadBytesUpperBound = 10;
 
 /**
- * Given the LiteParsedQuery 'lpq' being executed by mongos, returns a copy of the query which is
+ * Given the LiteParsedQuery 'lpq' being executed by mongols, returns a copy of the query which is
  * suitable for forwarding to the targeted hosts.
  */
 std::unique_ptr<LiteParsedQuery> transformQueryForShards(const LiteParsedQuery& lpq) {
@@ -230,7 +230,7 @@ StatusWith<CursorId> runQueryWithoutRetrying(OperationContext* txn,
     }
 
     // $natural sort is actually a hint to use a collection scan, and shouldn't be treated like a
-    // sort on mongos. Including a $natural anywhere in the sort spec results in the whole sort
+    // sort on mongols. Including a $natural anywhere in the sort spec results in the whole sort
     // being considered a hint to use a collection scan.
     if (!query.getParsed().getSort().hasField("$natural")) {
         params.sort = FindCommon::transformSortSpec(query.getParsed().getSort());
@@ -291,7 +291,7 @@ StatusWith<CursorId> runQueryWithoutRetrying(OperationContext* txn,
             // We reached end-of-stream. If the cursor is not tailable, then we mark it as
             // exhausted. If it is tailable, usually we keep it open (i.e. "NotExhausted") even
             // when we reach end-of-stream. However, if all the remote cursors are exhausted, there
-            // is no hope of returning data and thus we need to close the mongos cursor as well.
+            // is no hope of returning data and thus we need to close the mongols cursor as well.
             if (!pinnedCursor.isTailable() || pinnedCursor.remotesExhausted()) {
                 cursorState = ClusterCursorManager::CursorState::Exhausted;
             }
@@ -338,7 +338,7 @@ StatusWith<CursorId> ClusterFind::runQuery(OperationContext* txn,
                                            std::vector<BSONObj>* results) {
     invariant(results);
 
-    // Projection on the reserved sort key field is illegal in mongos.
+    // Projection on the reserved sort key field is illegal in mongols.
     if (query.getParsed().getProj().hasField(ClusterClientCursorParams::kSortKeyField)) {
         return {ErrorCodes::BadValue,
                 str::stream() << "Projection contains illegal field '"
@@ -479,8 +479,8 @@ StatusWith<ReadPreferenceSetting> ClusterFind::extractUnwrappedReadPref(const BS
     // If there is no explicit read preference, the value we use depends on the setting of the slave
     // ok bit.
     ReadPreference pref =
-        isSlaveOk ? mongo::ReadPreference::SecondaryPreferred : mongo::ReadPreference::PrimaryOnly;
+        isSlaveOk ? mongol::ReadPreference::SecondaryPreferred : mongol::ReadPreference::PrimaryOnly;
     return ReadPreferenceSetting(pref, TagSet());
 }
 
-}  // namespace mongo
+}  // namespace mongol

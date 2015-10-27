@@ -37,7 +37,7 @@
 
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #ifdef _WIN32
 #undef min
@@ -61,26 +61,26 @@
 #include <sys/socket.h>
 #endif
 
-#include "mongo/base/initializer.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/rpc/command_reply.h"
-#include "mongo/rpc/command_request.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/text.h"
+#include "mongol/base/initializer.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/rpc/command_request.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/text.h"
 
 using namespace std;
 using std::shared_ptr;
-using mongo::Message;
-using mongo::DbMessage;
-using mongo::BSONObj;
-using mongo::BufBuilder;
-using mongo::DBClientConnection;
-using mongo::MemoryMappedFile;
+using mongol::Message;
+using mongol::DbMessage;
+using mongol::BSONObj;
+using mongol::BufBuilder;
+using mongol::DBClientConnection;
+using mongol::MemoryMappedFile;
 using std::string;
 
 #define SNAP_LEN 65535
@@ -286,20 +286,20 @@ public:
 void processMessage(Connection& c, Message& m) {
     AuditingDbMessage d(m);
 
-    if (m.operation() == mongo::opReply)
+    if (m.operation() == mongol::opReply)
         out() << " - " << (unsigned)m.header().getResponseTo();
     out() << '\n';
 
     try {
         switch (m.operation()) {
-            case mongo::dbCommand: {
-                mongo::rpc::CommandRequest c(&m);
+            case mongol::dbCommand: {
+                mongol::rpc::CommandRequest c(&m);
                 out() << "\tcommand: " << c.getCommandName() << " ";
                 out() << "database: " << c.getDatabase() << " ";
                 out() << "metadata: " << c.getMetadata().toString() << " ";
                 out() << "commandArgs: " << c.getCommandArgs() << " ";
                 out() << "inputDocs: [ ";
-                mongo::rpc::DocumentRange docs = c.getInputDocs();
+                mongol::rpc::DocumentRange docs = c.getInputDocs();
                 if (docs.begin() != docs.end()) {
                     out() << endl;
                 }
@@ -309,12 +309,12 @@ void processMessage(Connection& c, Message& m) {
                 out() << "]" << endl;
                 break;
             }
-            case mongo::dbCommandReply: {
-                mongo::rpc::CommandReply c(&m);
+            case mongol::dbCommandReply: {
+                mongol::rpc::CommandReply c(&m);
                 out() << "\tcommandReply: " << c.getCommandReply() << " ";
                 out() << "metadata: " << c.getMetadata().toString() << " ";
                 out() << "outputDocs: [ ";
-                mongo::rpc::DocumentRange docs = c.getOutputDocs();
+                mongol::rpc::DocumentRange docs = c.getOutputDocs();
                 if (docs.begin() != docs.end()) {
                     out() << endl;
                 }
@@ -324,61 +324,61 @@ void processMessage(Connection& c, Message& m) {
                 out() << "]" << endl;
                 break;
             }
-            case mongo::opReply: {
-                mongo::QueryResult::View r = m.singleData().view2ptr();
+            case mongol::opReply: {
+                mongol::QueryResult::View r = m.singleData().view2ptr();
 
                 out() << "\treply"
                       << " n:" << r.getNReturned() << " cursorId: " << r.getCursorId() << endl;
 
                 if (r.getNReturned()) {
-                    mongo::BSONObj o(r.data());
+                    mongol::BSONObj o(r.data());
                     out() << "\t" << o << endl;
                 }
                 break;
             }
-            case mongo::dbQuery: {
-                mongo::QueryMessage q(d);
+            case mongol::dbQuery: {
+                mongol::QueryMessage q(d);
                 out() << "\tquery: " << q.query << "  ntoreturn: " << q.ntoreturn
                       << " ntoskip: " << q.ntoskip;
                 if (!q.fields.isEmpty())
                     out() << " hasfields";
-                if (q.queryOptions & mongo::QueryOption_SlaveOk)
+                if (q.queryOptions & mongol::QueryOption_SlaveOk)
                     out() << " SlaveOk";
-                if (q.queryOptions & mongo::QueryOption_NoCursorTimeout)
+                if (q.queryOptions & mongol::QueryOption_NoCursorTimeout)
                     out() << " NoCursorTimeout";
                 if (q.queryOptions &
-                    ~(mongo::QueryOption_SlaveOk | mongo::QueryOption_NoCursorTimeout))
+                    ~(mongol::QueryOption_SlaveOk | mongol::QueryOption_NoCursorTimeout))
                     out() << " queryOptions:" << hex << q.queryOptions;
                 out() << endl;
                 break;
             }
-            case mongo::dbUpdate: {
+            case mongol::dbUpdate: {
                 int flags = d.pullInt();
                 BSONObj q = d.nextJsObj("update");
                 BSONObj o = d.nextJsObj("update");
                 out() << "\tupdate  flags:" << flags << " q:" << q << " o:" << o << endl;
                 break;
             }
-            case mongo::dbInsert: {
+            case mongol::dbInsert: {
                 out() << "\tinsert: " << d.nextJsObj("insert") << endl;
                 while (d.moreJSObjs()) {
                     out() << "\t\t" << d.nextJsObj("insert") << endl;
                 }
                 break;
             }
-            case mongo::dbGetMore: {
+            case mongol::dbGetMore: {
                 int nToReturn = d.pullInt();
                 long long cursorId = d.pullInt64();
                 out() << "\tgetMore nToReturn: " << nToReturn << " cursorId: " << cursorId << endl;
                 break;
             }
-            case mongo::dbDelete: {
+            case mongol::dbDelete: {
                 int flags = d.pullInt();
                 BSONObj q = d.nextJsObj("delete");
                 out() << "\tdelete flags: " << flags << " q: " << q << endl;
                 break;
             }
-            case mongo::dbKillCursors: {
+            case mongol::dbKillCursors: {
                 int n = d.pullInt();
                 out() << "\tkillCursors n: " << n << endl;
                 break;
@@ -393,15 +393,15 @@ void processMessage(Connection& c, Message& m) {
 
 
     if (!forwardAddress.empty()) {
-        if (m.operation() != mongo::opReply) {
+        if (m.operation() != mongol::opReply) {
             std::shared_ptr<DBClientConnection> conn = forwarder[c];
             if (!conn) {
                 conn.reset(new DBClientConnection(true));
-                uassertStatusOK(conn->connect(mongo::HostAndPort{forwardAddress}));
+                uassertStatusOK(conn->connect(mongol::HostAndPort{forwardAddress}));
                 forwarder[c] = conn;
             }
-            if (m.operation() == mongo::dbQuery || m.operation() == mongo::dbGetMore) {
-                if (m.operation() == mongo::dbGetMore) {
+            if (m.operation() == mongol::dbQuery || m.operation() == mongol::dbGetMore) {
+                if (m.operation() == mongol::dbGetMore) {
                     DbMessage d(m);
                     d.pullInt();
                     long long cId = d.pullInt64();
@@ -409,8 +409,8 @@ void processMessage(Connection& c, Message& m) {
                 }
                 Message response;
                 conn->port().call(m, response);
-                mongo::QueryResult::View qr = response.singleData().view2ptr();
-                if (!(qr.getResultFlags() & mongo::ResultFlag_CursorNotFound)) {
+                mongol::QueryResult::View qr = response.singleData().view2ptr();
+                if (!(qr.getResultFlags() & mongol::ResultFlag_CursorNotFound)) {
                     if (qr.getCursorId() != 0) {
                         lastCursor[c] = qr.getCursorId();
                         return;
@@ -423,9 +423,9 @@ void processMessage(Connection& c, Message& m) {
         } else {
             Connection r = c.reverse();
             long long myCursor = lastCursor[r];
-            mongo::QueryResult::View qr = m.singleData().view2ptr();
+            mongol::QueryResult::View qr = m.singleData().view2ptr();
             long long yourCursor = qr.getCursorId();
-            if ((qr.getResultFlags() & mongo::ResultFlag_CursorNotFound))
+            if ((qr.getResultFlags() & mongol::ResultFlag_CursorNotFound))
                 yourCursor = 0;
             if (myCursor && !yourCursor)
                 cerr << "Expected valid cursor in sniffed response, found none" << endl;
@@ -469,15 +469,15 @@ void processDiagLog(const char* file) {
 }
 
 void usage() {
-    cout << "Usage: mongosniff [--help] [--forward host:port] [--objcheck] [--source (NET "
+    cout << "Usage: mongolsniff [--help] [--forward host:port] [--objcheck] [--source (NET "
             "<interface> | (FILE | DIAGLOG) <filename>)] [<port0> <port1> ... ]\n"
             "--help          Print this help message.\n"
-            "--forward       Forward all parsed request messages to mongod instance at \n"
+            "--forward       Forward all parsed request messages to mongold instance at \n"
             "                specified host:port\n"
             "--source        Source of traffic to sniff, either a network interface or a\n"
             "                file containing previously captured packets in pcap format,\n"
-            "                or a file containing output from mongod's --diaglog option.\n"
-            "                If no source is specified, mongosniff will attempt to sniff\n"
+            "                or a file containing output from mongold's --diaglog option.\n"
+            "                If no source is specified, mongolsniff will attempt to sniff\n"
             "                from one of the machine's network interfaces.\n"
             "--objcheck      Log hex representation of invalid BSON documents and nothing\n"
             "                else.  Spurious messages about invalid documents may result\n"
@@ -487,7 +487,7 @@ void usage() {
 }
 
 int toolMain(int argc, char** argv, char** envp) {
-    mongo::runGlobalInitializersOrDie(argc, argv, envp);
+    mongol::runGlobalInitializersOrDie(argc, argv, envp);
 
     stringstream nullStream;
     nullStream.clear(ios::failbit);
@@ -614,11 +614,11 @@ int toolMain(int argc, char** argv, char** envp) {
 int wmain(int argc, wchar_t* argvW[], wchar_t* envpW[]) {
     WindowsCommandLine wcl(argc, argvW, envpW);
     int exitCode = toolMain(argc, wcl.argv(), wcl.envp());
-    mongo::quickExit(exitCode);
+    mongol::quickExit(exitCode);
 }
 #else
 int main(int argc, char* argv[], char** envp) {
     int exitCode = toolMain(argc, argv, envp);
-    mongo::quickExit(exitCode);
+    mongol::quickExit(exitCode);
 }
 #endif

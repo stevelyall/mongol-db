@@ -30,11 +30,11 @@
 #include <map>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/options_parser/value.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/options_parser/value.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 class Constraint;
@@ -239,4 +239,4 @@ Status Environment::get(const Key& get_key, T* get_value) const {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

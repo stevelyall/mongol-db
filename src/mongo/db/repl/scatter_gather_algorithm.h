@@ -30,9 +30,9 @@
 
 #include <vector>
 
-#include "mongo/db/repl/replication_executor.h"
+#include "mongol/db/repl/replication_executor.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 class StatusWith;
@@ -77,4 +77,4 @@ protected:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,14 +26,14 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/stats/snapshots.h"
-#include "mongo/util/mongoutils/html.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/stats/snapshots.h"
+#include "mongol/util/mongolutils/html.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using namespace html;
@@ -90,7 +90,7 @@ public:
 
         ss << "<table border=1 cellpadding=2 cellspacing=0>";
         ss << "<tr align='left'><th>";
-        ss << a("http://dochub.mongodb.org/core/whatisanamespace", "namespace")
+        ss << a("http://dochub.mongoldb.org/core/whatisanamespace", "namespace")
            << "NS</a></th>"
               "<th colspan=2>total</th>"
               "<th colspan=2>Reads</th>"
@@ -115,4 +115,4 @@ public:
 } dbtopStatus;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

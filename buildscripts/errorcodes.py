@@ -58,7 +58,7 @@ def parseSourceFiles( callback ):
     bad = [ re.compile( r"^\s*assert *\(" ) ]
 
     for sourceFile in utils.getAllSourceFiles():
-        if not sourceFile.find( "src/mongo/" ) >= 0:
+        if not sourceFile.find( "src/mongol/" ) >= 0:
             # Skip generated sources
             continue
 
@@ -245,7 +245,7 @@ def writeMarkdownReport( codes, outfile ):
         outfile: string path to a file to overwrite
     """
 
-    baseurl = "http://github.com/mongodb/mongo/blob/master"
+    baseurl = "http://github.com/mongoldb/mongol/blob/master"
 
     if os.path.exists(outfile):
         i = open(outfile, "r" )

@@ -27,16 +27,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
-#include "mongo/db/storage/storage_engine_metadata.h"
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -78,4 +78,4 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(MMAPV1EngineInit, ("SetGlobalEnvironment"))
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

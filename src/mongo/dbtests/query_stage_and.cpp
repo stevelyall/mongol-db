@@ -32,23 +32,23 @@
  */
 
 
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/exec/and_hash.h"
-#include "mongo/db/exec/and_sorted.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/queued_data_stage.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/exec/and_hash.h"
+#include "mongol/db/exec/and_sorted.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/queued_data_stage.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
 namespace QueryStageAnd {
 
@@ -72,7 +72,7 @@ public:
     IndexDescriptor* getIndex(const BSONObj& obj, Collection* coll) {
         IndexDescriptor* descriptor = coll->getIndexCatalog()->findIndexByKeyPattern(&_txn, obj);
         if (NULL == descriptor) {
-            FAIL(mongoutils::str::stream() << "Unable to find index with key pattern " << obj);
+            FAIL(mongolutils::str::stream() << "Unable to find index with key pattern " << obj);
         }
         return descriptor;
     }

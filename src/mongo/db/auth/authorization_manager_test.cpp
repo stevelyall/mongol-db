@@ -28,25 +28,25 @@
 /**
  * Unit tests of the AuthorizationManager type.
  */
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authz_session_external_state_mock.h"
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/map_util.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authz_session_external_state_mock.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/map_util.h"
 
 #define ASSERT_NULL(EXPR) ASSERT_FALSE(EXPR)
 #define ASSERT_NON_NULL(EXPR) ASSERT_TRUE(EXPR)
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::vector;
@@ -150,7 +150,7 @@ TEST(RoleParsingTest, BuildRoleBSON) {
     ASSERT_EQUALS(0U, roles.size());
 }
 
-class AuthorizationManagerTest : public ::mongo::unittest::Test {
+class AuthorizationManagerTest : public ::mongol::unittest::Test {
 public:
     virtual ~AuthorizationManagerTest() {
         if (authzManager)
@@ -230,4 +230,4 @@ TEST_F(AuthorizationManagerTest, testAcquireV2User) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

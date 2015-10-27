@@ -3,7 +3,7 @@ load('jstests/libs/analyze_plan.js');
 (function() {
 "use strict";
 
-// This test needs its own mongod since the snapshot names must be in increasing order and once you
+// This test needs its own mongold since the snapshot names must be in increasing order and once you
 // have a majority commit point it is impossible to go back to not having one.
 var testServer = MongoRunner.runMongod({setParameter: 'testingSnapshotBehaviorInIsolation=true'});
 var db = testServer.getDB("test");

@@ -22,9 +22,9 @@ var INTERNAL_USER = "C=US,ST=New York,L=New York City,O=MongoDB,OU=Kernel,CN=int
 var CLIENT_USER = "C=US,ST=New York,L=New York City,O=MongoDB,OU=KernelUser,CN=client"
 var INVALID_CLIENT_USER = "C=US,ST=New York,L=New York City,O=MongoDB,OU=KernelUser,CN=invalid"
 
-function authAndTest(mongo) {
-    external = mongo.getDB("$external")
-    test = mongo.getDB("test");
+function authAndTest(mongol) {
+    external = mongol.getDB("$external")
+    test = mongol.getDB("test");
 
     // It should be impossible to create users with the same name as the server's subject
     assert.throws( function() {
@@ -66,24 +66,24 @@ function authAndTest(mongo) {
     assert.throws( function() { test.foo.findOne()}, {}, "read after logout" )
 }
 
-print("1. Testing x.509 auth to mongod");
+print("1. Testing x.509 auth to mongold");
 var x509_options = {sslMode : "requireSSL",
                     sslPEMKeyFile : SERVER_CERT,
                     sslCAFile : CA_CERT};
 
-var mongo = MongoRunner.runMongod(Object.merge(x509_options, {auth: ""}));
+var mongol = MongoRunner.runMongod(Object.merge(x509_options, {auth: ""}));
 
-authAndTest(mongo);
-MongoRunner.stopMongod(mongo.port);
+authAndTest(mongol);
+MongoRunner.stopMongod(mongol.port);
 
-print("2. Testing x.509 auth to mongos");
+print("2. Testing x.509 auth to mongols");
 
 var st = new ShardingTest({ shards : 1,
-                            mongos : 1,
+                            mongols : 1,
                             other: {
                                 extraOptions : {"keyFile" : "jstests/libs/key1"},
                                 configOptions : x509_options,
-                                mongosOptions : x509_options,
+                                mongolsOptions : x509_options,
                                 shardOptions : x509_options,
                                 useHostname: false,
                             }});

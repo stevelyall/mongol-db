@@ -25,6 +25,6 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/init.h"
+#include "mongol/base/init.h"
 
 MONGO_INITIALIZER_GROUP(default, MONGO_NO_PREREQUISITES, MONGO_NO_DEPENDENTS)

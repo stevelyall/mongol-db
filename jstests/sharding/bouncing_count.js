@@ -1,20 +1,20 @@
-// Tests whether new sharding is detected on insert by mongos
+// Tests whether new sharding is detected on insert by mongols
 (function() {
 
 var st = new ShardingTest({ name: "test",
                             shards: 10,
-                            mongos: 3 });
+                            mongols: 3 });
 
-var mongosA = st.s0
-var mongosB = st.s1
-var mongosC = st.s2
+var mongolsA = st.s0
+var mongolsB = st.s1
+var mongolsC = st.s2
 
-var admin = mongosA.getDB("admin")
-var config = mongosA.getDB("config")
+var admin = mongolsA.getDB("admin")
+var config = mongolsA.getDB("config")
 
-var collA = mongosA.getCollection( "foo.bar" )
-var collB = mongosB.getCollection( "" + collA )
-var collC = mongosB.getCollection( "" + collA )
+var collA = mongolsA.getCollection( "foo.bar" )
+var collB = mongolsB.getCollection( "" + collA )
+var collC = mongolsB.getCollection( "" + collA )
 
 admin.runCommand({ enableSharding : "" + collA.getDB() });
 st.ensurePrimaryShard(collA.getDB().getName(), 'shard0001');
@@ -30,8 +30,8 @@ for( var i = 0; i < shards.length; i++ ){
     printjson( admin.runCommand({ moveChunk : "" + collA, find : { _id : i }, to : shards[i]._id }) )
 }
 
-mongosB.getDB("admin").runCommand({ flushRouterConfig : 1 })
-mongosC.getDB("admin").runCommand({ flushRouterConfig : 1 })
+mongolsB.getDB("admin").runCommand({ flushRouterConfig : 1 })
+mongolsC.getDB("admin").runCommand({ flushRouterConfig : 1 })
 printjson( collB.count() )
 printjson( collC.count() )
 
@@ -40,8 +40,8 @@ for( var i = 0; i < shards.length; i++ ){
     printjson( admin.runCommand({ moveChunk : "" + collA, find : { _id : i }, to : shards[ (i + 1) % shards.length ]._id }) )
 }
 
-// Make sure mongos A is up-to-date
-mongosA.getDB("admin").runCommand({ flushRouterConfig : 1 })
+// Make sure mongols A is up-to-date
+mongolsA.getDB("admin").runCommand({ flushRouterConfig : 1 })
 
 config.printShardingStatus( true )
 

@@ -30,15 +30,15 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/sorter/sorter.h"
-#include "mongo/db/storage/sorted_data_interface.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/sorter/sorter.h"
+#include "mongol/db/storage/sorted_data_interface.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class MatchExpression;
@@ -200,7 +200,7 @@ public:
     private:
         friend class IndexAccessMethod;
 
-        using Sorter = mongo::Sorter<BSONObj, RecordId>;
+        using Sorter = mongol::Sorter<BSONObj, RecordId>;
 
         BulkBuilder(const IndexAccessMethod* index, const IndexDescriptor* descriptor);
 
@@ -290,4 +290,4 @@ struct InsertDeleteOptions {
     bool dupsAllowed;
 };
 
-}  // namespace mongo
+}  // namespace mongol

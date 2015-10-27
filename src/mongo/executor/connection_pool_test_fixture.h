@@ -29,9 +29,9 @@
 #include <memory>
 #include <set>
 
-#include "mongo/executor/connection_pool.h"
+#include "mongol/executor/connection_pool.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace connection_pool_test_details {
 
@@ -160,4 +160,4 @@ private:
 
 }  // namespace connection_pool_test_details
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

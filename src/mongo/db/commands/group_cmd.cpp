@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/group.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/query/get_executor.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/group.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/query/get_executor.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -72,7 +72,7 @@ private:
     }
 
     virtual void help(std::stringstream& help) const {
-        help << "http://dochub.mongodb.org/core/aggregation";
+        help << "http://dochub.mongoldb.org/core/aggregation";
     }
 
     virtual Status checkAuthForCommand(ClientBasic* client,
@@ -245,4 +245,4 @@ private:
 } cmdGroup;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

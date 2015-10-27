@@ -28,20 +28,20 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/rpc/request_interface.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/rpc/request_interface.h"
 
-namespace mongo {
+namespace mongol {
 class Message;
 
 namespace rpc {
 
 /**
  * An immutable view of an OP_COMMAND message. The underlying bytes are owned
- * by a mongo::Message, which must outlive any Reply instances created from it.
+ * by a mongol::Message, which must outlive any Reply instances created from it.
  *
  * TODO: BSON validation. See SERVER-18167 for details.
  */
@@ -103,4 +103,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

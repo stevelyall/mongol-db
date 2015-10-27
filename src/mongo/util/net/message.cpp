@@ -27,18 +27,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/message.h"
+#include "mongol/util/net/message.h"
 
 #include <fcntl.h>
 #include <errno.h>
 #include <time.h>
 
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message_port.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message_port.h"
 
-namespace mongo {
+namespace mongol {
 
 void Message::send(MessagingPort& p, const char* context) {
     if (empty()) {
@@ -69,4 +69,4 @@ bool doesOpGetAResponse(int op) {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

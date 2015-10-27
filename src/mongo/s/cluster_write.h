@@ -29,11 +29,11 @@
 #pragma once
 
 
-#include "mongo/s/write_ops/batch_write_exec.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClusterWriterStats;
 class BatchWriteExecStats;
@@ -82,4 +82,4 @@ Status clusterCreateIndex(OperationContext* txn,
                           bool unique,
                           BatchedCommandResponse* response);
 
-}  // namespace mongo
+}  // namespace mongol

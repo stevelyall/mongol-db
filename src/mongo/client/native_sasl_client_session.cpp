@@ -25,17 +25,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/native_sasl_client_session.h"
+#include "mongol/client/native_sasl_client_session.h"
 
-#include "mongo/base/init.h"
-#include "mongo/client/sasl_client_conversation.h"
-#include "mongo/client/sasl_plain_client_conversation.h"
-#include "mongo/client/sasl_scramsha1_client_conversation.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/client/sasl_client_conversation.h"
+#include "mongol/client/sasl_plain_client_conversation.h"
+#include "mongol/client/sasl_scramsha1_client_conversation.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 SaslClientSession* createNativeSaslClientSession(const std::string mech) {
@@ -66,7 +66,7 @@ Status NativeSaslClientSession::initialize() {
         _saslConversation.reset(new SaslSCRAMSHA1ClientConversation(this));
     } else {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << "SASL mechanism " << mechanism
+                      mongolutils::str::stream() << "SASL mechanism " << mechanism
                                                 << " is not supported");
     }
 
@@ -76,7 +76,7 @@ Status NativeSaslClientSession::initialize() {
 Status NativeSaslClientSession::step(StringData inputData, std::string* outputData) {
     if (!_saslConversation) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream()
+                      mongolutils::str::stream()
                           << "The client authentication session has not been properly initialized");
     }
 

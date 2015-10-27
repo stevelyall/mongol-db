@@ -3,19 +3,19 @@
 //
 
 var st = new ShardingTest({ shards : 1,
-                            mongos : 1,
+                            mongols : 1,
                             verbose : 1,
                             keyFile : "jstests/libs/key1",
                             other : { sync : true } })
 
-var mongos = st.s0
+var mongols = st.s0
 var configs = st._configServers
 
 printjson( configs )
 
-mongos.getDB("admin").createUser({user: "root", pwd: "pass", roles: ["root"]});
-mongos.getDB("admin").auth("root", "pass");
-assert.writeOK(mongos.getCollection( "foo.bar" ).insert({ hello : "world" }));
+mongols.getDB("admin").createUser({user: "root", pwd: "pass", roles: ["root"]});
+mongols.getDB("admin").auth("root", "pass");
+assert.writeOK(mongols.getCollection( "foo.bar" ).insert({ hello : "world" }));
 
 var stopOrder = [ 1, 0 ]
 
@@ -27,16 +27,16 @@ for( var i = 0; i < stopOrder.length; i++ ){
 
     MongoRunner.stopMongod( configToStop )
 
-    jsTest.log( "Starting mongos with auth..." )
+    jsTest.log( "Starting mongols with auth..." )
 
-    var mongosWithAuth = MongoRunner.runMongos({ keyFile : "jstests/libs/key1",
-                                                 configdb : mongos.savedOptions.configdb })
-    var foodb = mongosWithAuth.getDB('foo');
-    mongosWithAuth.getDB("admin").auth("root", "pass");
+    var mongolsWithAuth = MongoRunner.runMongos({ keyFile : "jstests/libs/key1",
+                                                 configdb : mongols.savedOptions.configdb })
+    var foodb = mongolsWithAuth.getDB('foo');
+    mongolsWithAuth.getDB("admin").auth("root", "pass");
     var res = foodb.bar.findOne();
-    assert.neq(null, res, "Test FAILED: unable to find document using mongos with auth");
+    assert.neq(null, res, "Test FAILED: unable to find document using mongols with auth");
     assert.eq("world", res.hello);
-    mongosWithAuth.getDB("admin").logout();
+    mongolsWithAuth.getDB("admin").logout();
 
     assert.throws( function() { foodb.createUser({user:'user' + i, pwd: 'pwd', roles: []}); } );
 }
@@ -51,7 +51,7 @@ for (var i = 0; i < stopOrder.length; i++ ) {
     configs[stopOrder[i]] = MongoRunner.runMongod( configToStart );
 }
 
-assert.eq(0, mongos.getDB('foo').getUsers().length);
+assert.eq(0, mongols.getDB('foo').getUsers().length);
 for (var i = 0; i < configs.length; i++) {
     configs[i].getDB("admin").auth("root", "pass");
     assert.eq(0, configs[i].getDB('foo').getUsers().length);

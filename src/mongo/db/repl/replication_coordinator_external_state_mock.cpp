@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replication_coordinator_external_state_mock.h"
+#include "mongol/db/repl/replication_coordinator_external_state_mock.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/oid.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/repl/operation_context_repl_mock.h"
-#include "mongo/db/storage/snapshot_name.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/sequence_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/oid.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/storage/snapshot_name.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/sequence_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ReplicationCoordinatorExternalStateMock::ReplicationCoordinatorExternalStateMock()
@@ -234,4 +234,4 @@ void ReplicationCoordinatorExternalStateMock::logTransitionToPrimaryToOplog(Oper
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

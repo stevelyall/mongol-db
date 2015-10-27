@@ -33,12 +33,12 @@
 #include <vector>
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/platform/hash_namespace.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/platform/hash_namespace.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Representation of a name of a role in a MongoDB system.
@@ -161,19 +161,19 @@ private:
     std::unique_ptr<Impl> _impl;
 };
 
-}  // namespace mongo
+}  // namespace mongol
 
 // Define hash function for RoleNames so they can be keys in std::unordered_map
 MONGO_HASH_NAMESPACE_START
 template <>
-struct hash<mongo::RoleName> {
-    size_t operator()(const mongo::RoleName& rname) const {
+struct hash<mongol::RoleName> {
+    size_t operator()(const mongol::RoleName& rname) const {
         return hash<std::string>()(rname.getFullName());
     }
 };
 MONGO_HASH_NAMESPACE_END
 
-namespace mongo {
+namespace mongol {
 
 template <typename ContainerIterator>
 class RoleNameContainerIteratorImpl : public RoleNameIterator::Impl {
@@ -212,4 +212,4 @@ RoleNameIterator makeRoleNameIteratorForContainer(const Container& container) {
     return makeRoleNameIterator(container.begin(), container.end());
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/background.h"
+#include "mongol/base/status.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/background.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class Database;

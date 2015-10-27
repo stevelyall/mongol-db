@@ -26,33 +26,33 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/dbtests/framework.h"
+#include "mongol/dbtests/framework.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/dbtests/config_server_fixture.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/dbtests/framework_options.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/catalog/legacy/legacy_dist_lock_manager.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/version.h"
+#include "mongol/base/status.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/dbtests/config_server_fixture.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/dbtests/framework_options.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_manager.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 namespace dbtests {
 
 int runDbTests(int argc, char** argv) {
@@ -109,4 +109,4 @@ bool shouldStartService() {
 }  // namespace ntservice
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

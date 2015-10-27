@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/unicode/string.h"
+#include "mongol/db/fts/unicode/string.h"
 
 #include <algorithm>
 
-#include "mongo/shell/linenoise_utf8.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/shell/linenoise_utf8.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace unicode {
 
 using linenoise_utf8::copyString32to8;
@@ -207,4 +207,4 @@ bool String::substrMatch(const String& str,
 }
 
 }  // namespace unicode
-}  // namespace mongo
+}  // namespace mongol

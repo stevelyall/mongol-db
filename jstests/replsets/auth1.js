@@ -7,7 +7,7 @@ var port = allocatePorts(5);
 var path = "jstests/libs/";
 
 
-print("try starting mongod with auth");
+print("try starting mongold with auth");
 var m = MongoRunner.runMongod({auth : "", port : port[4], dbpath : MongoRunner.dataDir + "/wrong-auth"});
 
 assert.eq(m.getDB("local").auth("__system", ""), 0);
@@ -20,12 +20,12 @@ run("chmod", "644", path+"key1");
 run("chmod", "644", path+"key2");
 
 
-print("try starting mongod");
-m = runMongoProgram( "mongod", "--keyFile", path+"key1", "--port", port[0], "--dbpath", MongoRunner.dataPath + name);
+print("try starting mongold");
+m = runMongoProgram( "mongold", "--keyFile", path+"key1", "--port", port[0], "--dbpath", MongoRunner.dataPath + name);
 
 
 print("should fail with wrong permissions");
-assert.eq(m, _isWindows()? 100 : 1, "mongod should exit w/ 1 (EXIT_FAILURE): permissions too open");
+assert.eq(m, _isWindows()? 100 : 1, "mongold should exit w/ 1 (EXIT_FAILURE): permissions too open");
 MongoRunner.stopMongod(port[0]);
 
 

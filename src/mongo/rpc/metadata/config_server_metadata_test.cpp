@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 namespace {
 
@@ -67,4 +67,4 @@ TEST(ConfigSvrMetadataTest, Roundtrip) {
 
 }  // unnamed namespace
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

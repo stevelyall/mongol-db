@@ -30,13 +30,13 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_algorithm.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_algorithm.h"
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 
@@ -162,4 +162,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

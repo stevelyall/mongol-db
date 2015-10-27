@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_range.h"
+#include "mongol/base/data_range.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status ConstDataRange::makeOffsetStatus(size_t offset) const {
     str::stream ss;
@@ -48,4 +48,4 @@ Status DataRangeTypeHelper::makeStoreStatus(size_t t_length,
     return Status(ErrorCodes::Overflow, ss);
 }
 
-}  // namespace mongo
+}  // namespace mongol

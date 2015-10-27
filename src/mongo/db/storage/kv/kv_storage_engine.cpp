@@ -28,18 +28,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/kv/kv_storage_engine.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
 
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/kv/kv_database_catalog_entry.h"
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/kv/kv_database_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;

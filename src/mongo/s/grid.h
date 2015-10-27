@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class CatalogCache;
@@ -139,4 +139,4 @@ private:
 
 extern Grid grid;
 
-}  // namespace mongo
+}  // namespace mongol

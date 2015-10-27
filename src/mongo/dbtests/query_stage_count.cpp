@@ -28,17 +28,17 @@
 
 #include <memory>
 
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/collection_scan_common.h"
-#include "mongo/db/exec/count.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/collection_scan_common.h"
+#include "mongol/db/exec/count.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace QueryStageCount {
 

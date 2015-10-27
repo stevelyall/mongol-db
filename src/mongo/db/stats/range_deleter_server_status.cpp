@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/range_deleter_service.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/range_deleter_service.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Server status section for RangeDeleter.

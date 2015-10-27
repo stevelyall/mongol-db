@@ -27,19 +27,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/oid.h"
+#include "mongol/bson/oid.h"
 
 #include <boost/functional/hash.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/platform/random.h"
-#include "mongo/util/hex.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/platform/random.h"
+#include "mongol/util/hex.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 std::unique_ptr<AtomicUInt32> counter;
@@ -171,4 +171,4 @@ std::string OID::toIncString() const {
     return toHexLower(getIncrement().bytes, kIncrementSize);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/db/auth/sasl_options.h"
+#include "mongol/db/auth/sasl_options.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/base/status.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_options.h"
 
-namespace mongo {
+namespace mongol {
 
 SASLGlobalParams saslGlobalParams;
 
@@ -179,7 +179,7 @@ public:
     virtual Status validate(const int& newValue) {
         if (newValue < minimumScramIterationCount) {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for SCRAM iteration count: " << newValue
                               << " is less than the minimum SCRAM iteration count, "
                               << minimumScramIterationCount);
@@ -189,4 +189,4 @@ public:
     }
 } scramIterationCountParam;
 
-}  // namespace mongo
+}  // namespace mongol

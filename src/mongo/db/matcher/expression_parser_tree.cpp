@@ -28,17 +28,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_parser.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/matcher/expression_array.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/db/matcher/expression_tree.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/db/matcher/expression_tree.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 const int MatchExpressionParser::kMaximumTreeDepth = 100;

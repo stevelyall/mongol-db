@@ -28,24 +28,24 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/durop.h"
+#include "mongol/db/storage/mmap_v1/durop.h"
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/storage/mmap_v1/aligned_builder.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
-#include "mongo/util/file.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/storage/mmap_v1/aligned_builder.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/util/file.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::shared_ptr;

@@ -32,11 +32,11 @@
 #include <limits>
 #include <queue>
 
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/base/disallow_copying.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 size_t _getSizeDefault(const T& t) {

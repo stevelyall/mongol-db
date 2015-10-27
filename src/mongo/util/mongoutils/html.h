@@ -30,7 +30,7 @@
 
 #include <sstream>
 
-namespace mongo {
+namespace mongol {
 
 namespace html {
 

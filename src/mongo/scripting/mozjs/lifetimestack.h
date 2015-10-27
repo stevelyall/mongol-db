@@ -31,9 +31,9 @@
 #include <type_traits>
 #include <utility>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -131,4 +131,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

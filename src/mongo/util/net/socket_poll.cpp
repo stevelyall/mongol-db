@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/socket_poll.h"
+#include "mongol/base/init.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/socket_poll.h"
 
-namespace mongo {
+namespace mongol {
 
 #ifdef _WIN32
 

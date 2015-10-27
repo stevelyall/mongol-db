@@ -27,23 +27,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <initializer_list>
 #include <boost/version.hpp>
 #include <sstream>
 #include <string>
 
-#include "mongo/base/parse_number.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/config.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/version.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/config.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/version.h"
 
 #ifdef MONGO_CONFIG_SSL
 #include <openssl/crypto.h>
@@ -52,14 +52,14 @@
 #include <pcrecpp.h>
 #include <cstdlib>
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
 
-const char versionString[] = "@mongo_version@";
+const char versionString[] = "@mongol_version@";
 const char* gitVersion() {
-    return "@mongo_git_hash@";
+    return "@mongol_git_hash@";
 }
 const char* compiledJSEngine() {
     return "@buildinfo_js_engine@";
@@ -68,11 +68,11 @@ const char* allocator() {
     return "@buildinfo_allocator@";
 }
 
-const int kMongoVersionMajor = @mongo_version_major@;
-const int kMongoVersionMinor = @mongo_version_minor@;
-const int kMongoVersionPatch = @mongo_version_patch@;
-const int kMongoVersionExtra = @mongo_version_extra@;
-const char kMongoVersionExtraStr[] = "@mongo_version_extra_str@";
+const int kMongoVersionMajor = @mongol_version_major@;
+const int kMongoVersionMinor = @mongol_version_minor@;
+const int kMongoVersionPatch = @mongol_version_patch@;
+const int kMongoVersionExtra = @mongol_version_extra@;
+const char kMongoVersionExtraStr[] = "@mongol_version_extra_str@";
 
 using BuildInfoTuple = std::tuple<std::string, std::string, bool, bool>;
 const std::vector<BuildInfoTuple> kBuildEnvironment = @buildinfo_environment_data@;
@@ -92,7 +92,7 @@ bool isSameMajorVersion(const char* version) {
     return (major == kMongoVersionMajor && minor == kMongoVersionMinor);
 }
 
-string mongodVersion() {
+string mongoldVersion() {
     stringstream ss;
     ss << "db version v" << versionString;
     return ss.str();

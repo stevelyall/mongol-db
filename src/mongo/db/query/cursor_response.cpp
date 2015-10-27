@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/cursor_response.h"
+#include "mongol/db/query/cursor_response.h"
 
-#include "mongo/bson/bsontypes.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -188,4 +188,4 @@ BSONObj CursorResponse::toBSON(CursorResponse::ResponseType responseType) const 
     return builder.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,9 +30,9 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -138,6 +138,6 @@ private:
 std::ostream& operator<<(std::ostream& os, LogSeverity severity);
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/logger/log_severity-inl.h"
+#include "mongol/logger/log_severity-inl.h"

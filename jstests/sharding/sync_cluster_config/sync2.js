@@ -2,10 +2,10 @@
 
 var s = new ShardingTest({ name: "sync2",
                            shards: 3,
-                           mongos: 2,
+                           mongols: 2,
                            other: { sync : true } });
 
-var s2 = s._mongos[1];
+var s2 = s._mongols[1];
 
 s.adminCommand( { enablesharding : "test" } );
 s.ensurePrimaryShard('test', 'shard0001');
@@ -92,7 +92,7 @@ for (i = 1; i < hashes.length; i++) {
             continue;
         }
         
-        if (k == "mongos" || k == "changelog" || k == "locks" || k == "lockpings") {
+        if (k == "mongols" || k == "changelog" || k == "locks" || k == "lockpings") {
             continue;
         }
         

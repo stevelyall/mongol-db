@@ -224,7 +224,7 @@ var testOps = function(db, allowedActions) {
             while (cursor.hasNext()) {
                 var next = cursor.next();
 
-                // This is a failure in mongos case. Standalone case will fail
+                // This is a failure in mongols case. Standalone case will fail
                 // when next() was called.
                 if (next.code == 16336) {
                     // could not find cursor in cache for id
@@ -235,7 +235,7 @@ var testOps = function(db, allowedActions) {
     }); // TODO: enable test after SERVER-5813 is fixed.
 
     var isMongos = db.runCommand({ isdbgrid: 1 }).isdbgrid;
-    // Note: fsyncUnlock is not supported in mongos.
+    // Note: fsyncUnlock is not supported in mongols.
     if (!isMongos){
         checkErr(allowedActions.hasOwnProperty('fsync_unlock'), function() {
             var res = db.fsyncUnlock();
@@ -473,7 +473,7 @@ var TESTS = [
  * Driver method for setting up the test environment, running them, cleanup
  * after every test and keeping track of test failures.
  *
- * @param conn {Mongo} a connection to a mongod or mongos to test.
+ * @param conn {Mongo} a connection to a mongold or mongols to test.
  */
 var runTests = function(conn) {
     var setup = function() {

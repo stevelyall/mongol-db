@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/barrier.h"
+#include "mongol/unittest/barrier.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 Barrier::Barrier(size_t threadCount)
@@ -56,4 +56,4 @@ void Barrier::countDownAndWait() {
 }
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

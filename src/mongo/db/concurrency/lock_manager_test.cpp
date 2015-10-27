@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/concurrency/lock_manager_test_help.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/concurrency/lock_manager_test_help.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(ResourceId, Semantics) {
     ResourceId resIdDb(RESOURCE_DATABASE, 324334234);
@@ -816,4 +816,4 @@ TEST(LockManager, CompatibleFirstCancelWaiting) {
     ASSERT(lockMgr.unlock(&requestX));
 }
 
-}  // namespace mongo
+}  // namespace mongol

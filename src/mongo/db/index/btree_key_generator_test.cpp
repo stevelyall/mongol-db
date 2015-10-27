@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/index/btree_key_generator.h"
+#include "mongol/db/index/btree_key_generator.h"
 
 #include <iostream>
 
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 using std::unique_ptr;
 using std::cout;
 using std::endl;

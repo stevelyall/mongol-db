@@ -27,11 +27,11 @@
  *    it in the license file.
  */
 
-#include "mongo/bson/bsontypes.h"
+#include "mongol/bson/bsontypes.h"
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 const char kMaxKeyData[] = {7, 0, 0, 0, static_cast<char>(MaxKey), 0, 0};
 const BSONObj kMaxBSONKey(kMaxKeyData);
@@ -92,4 +92,4 @@ const char* typeName(BSONType type) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

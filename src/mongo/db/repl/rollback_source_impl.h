@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/db/repl/oplog_interface_remote.h"
-#include "mongo/db/repl/rollback_source.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/db/repl/oplog_interface_remote.h"
+#include "mongol/db/repl/rollback_source.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 
@@ -77,4 +77,4 @@ private:
 
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,33 +26,33 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/mongos_options.h"
+#include "mongol/s/mongols_options.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_options_helpers.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/version_mongos.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_options_helpers.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/version_mongols.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
-MongosGlobalParams mongosGlobalParams;
+MongosGlobalParams mongolsGlobalParams;
 
 Status addMongosOptions(moe::OptionSection* options) {
     moe::OptionSection general_options("General options");
@@ -156,8 +156,8 @@ bool handlePreValidationMongosOptions(const moe::Environment& params,
         return false;
     }
     if (params.count("test") && params["test"].as<bool>() == true) {
-        ::mongo::logger::globalLogDomain()->setMinimumLoggedSeverity(
-            ::mongo::logger::LogSeverity::Debug(5));
+        ::mongol::logger::globalLogDomain()->setMinimumLoggedSeverity(
+            ::mongol::logger::LogSeverity::Debug(5));
         StartupTest::runTests();
         return false;
     }
@@ -240,7 +240,7 @@ Status storeMongosOptions(const moe::Environment& params, const std::vector<std:
     }
 
     if (params.count("noscripting")) {
-        // This option currently has no effect for mongos
+        // This option currently has no effect for mongols
     }
 
     if (params.count("sharding.autoSplit")) {
@@ -264,17 +264,17 @@ Status storeMongosOptions(const moe::Environment& params, const std::vector<std:
                                         << configdbConnectionString.getStatus().toString());
         }
 
-        mongosGlobalParams.configdbs = configdbConnectionString.getValue();
+        mongolsGlobalParams.configdbs = configdbConnectionString.getValue();
     }
 
-    std::vector<HostAndPort> configServers = mongosGlobalParams.configdbs.getServers();
+    std::vector<HostAndPort> configServers = mongolsGlobalParams.configdbs.getServers();
 
-    if (mongosGlobalParams.configdbs.type() != ConnectionString::SYNC &&
-        mongosGlobalParams.configdbs.type() != ConnectionString::SET &&
-        mongosGlobalParams.configdbs.type() != ConnectionString::MASTER) {
+    if (mongolsGlobalParams.configdbs.type() != ConnectionString::SYNC &&
+        mongolsGlobalParams.configdbs.type() != ConnectionString::SET &&
+        mongolsGlobalParams.configdbs.type() != ConnectionString::MASTER) {
         return Status(ErrorCodes::BadValue,
                       str::stream() << "Invalid config server value "
-                                    << mongosGlobalParams.configdbs.toString());
+                                    << mongolsGlobalParams.configdbs.toString());
     }
 
     if (configServers.size() < 3) {
@@ -285,4 +285,4 @@ Status storeMongosOptions(const moe::Environment& params, const std::vector<std:
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

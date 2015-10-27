@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/storage/mmap_v1/catalog/index_details.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/storage/mmap_v1/catalog/index_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class NamespaceIndex;
@@ -248,4 +248,4 @@ private:
 static_assert(sizeof(NamespaceDetails) == 496, "sizeof(NamespaceDetails) == 496");
 #pragma pack()
 
-}  // namespace mongo
+}  // namespace mongol

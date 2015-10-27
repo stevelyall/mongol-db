@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/md5.hpp"
+#include "mongol/base/string_data.h"
+#include "mongol/util/md5.hpp"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Hashes the password so that it can be stored in a user object or used for MONGODB-CR
@@ -41,4 +41,4 @@ namespace mongo {
  */
 std::string createPasswordDigest(StringData username, StringData clearTextPassword);
 
-}  // namespace mongo
+}  // namespace mongol

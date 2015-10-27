@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/repl_set_command.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/repl_set_command.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class CmdReplSetRequestVotes : public ReplSetCommand {
@@ -86,4 +86,4 @@ private:
 } cmdReplSetRequestVotes;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

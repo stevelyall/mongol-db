@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/applier.h"
+#include "mongol/db/repl/applier.h"
 
 #include <algorithm>
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 Applier::Applier(ReplicationExecutor* executor,
@@ -223,4 +223,4 @@ StatusWith<std::pair<std::unique_ptr<Applier>, Applier::Operations>> applyUntilA
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

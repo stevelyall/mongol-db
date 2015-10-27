@@ -27,15 +27,15 @@
  */
 
 //
-// This file contains tests for mongo/db/exec/queued_data_stage.cpp
+// This file contains tests for mongol/db/exec/queued_data_stage.cpp
 //
 
-#include "mongo/db/exec/queued_data_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/exec/queued_data_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

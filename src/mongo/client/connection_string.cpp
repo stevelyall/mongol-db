@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connection_string.h"
+#include "mongol/client/connection_string.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 ConnectionString::ConnectionString(const HostAndPort& server) : _type(MASTER) {
     _servers.push_back(server);
@@ -234,4 +234,4 @@ std::string ConnectionString::typeToString(ConnectionType type) {
     MONGO_UNREACHABLE;
 }
 
-}  // namespace mongo
+}  // namespace mongol

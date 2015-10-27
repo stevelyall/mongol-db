@@ -26,20 +26,20 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/global.h"
+#include "mongol/scripting/mozjs/global.h"
 
 #include <js/Conversions.h>
 
-#include "mongo/base/init.h"
-#include "mongo/logger/logstream_builder.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
+#include "mongol/base/init.h"
+#include "mongol/logger/logstream_builder.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec GlobalInfo::freeFunctions[4] = {
@@ -100,4 +100,4 @@ MONGO_INITIALIZER(JavascriptPrintDomain)(InitializerContext*) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

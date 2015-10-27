@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_client_cursor_mock.h"
+#include "mongol/s/query/cluster_client_cursor_mock.h"
 
-namespace mongo {
+namespace mongol {
 
 ClusterClientCursorMock::ClusterClientCursorMock(stdx::function<void(void)> killCallback)
     : _killCallback(std::move(killCallback)) {}
@@ -91,4 +91,4 @@ void ClusterClientCursorMock::queueError(Status status) {
     _resultsQueue.push({status});
 }
 
-}  // namespace mongo
+}  // namespace mongol

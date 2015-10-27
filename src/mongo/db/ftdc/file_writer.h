@@ -34,11 +34,11 @@
 #include <fstream>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/ftdc/compressor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/ftdc/compressor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Manages writing to an append only archive file, and an interim file.
@@ -53,7 +53,7 @@ namespace mongo {
  * The chunks in the archive stream will have better compression since it compresses larger chunks
  * of data.
  *
- * File format is compatible with mongodump as it is just a sequential series of bson documents
+ * File format is compatible with mongoldump as it is just a sequential series of bson documents
  *
  * File rotation and cleanup is not handled by this class.
  */
@@ -141,4 +141,4 @@ private:
     std::size_t _sizeInterim{0};
 };
 
-}  // namespace mongo
+}  // namespace mongol

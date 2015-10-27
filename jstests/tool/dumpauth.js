@@ -1,5 +1,5 @@
 // dumpauth.js
-// test mongodump with authentication
+// test mongoldump with authentication
 
 var m = MongoRunner.runMongod({auth: "", bind_ip: "127.0.0.1"});
 var dbName = "admin"
@@ -16,11 +16,11 @@ for(var i = 0; i < 100; i++) {
   t.save({ "x": i });
 }
 
-x = runMongoProgram( "mongodump",
+x = runMongoProgram( "mongoldump",
                      "--db", dbName,
                      "--authenticationDatabase=admin",
                      "-u", "testuser",
                      "-p", "testuser",
                      "-h", "127.0.0.1:"+m.port,
                      "--collection", colName);
-assert.eq(x, 0, "mongodump should succeed with authentication");
+assert.eq(x, 0, "mongoldump should succeed with authentication");

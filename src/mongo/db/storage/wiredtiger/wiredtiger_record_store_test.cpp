@@ -28,28 +28,28 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sstream>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/base/checked_cast.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/record_store_test_harness.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store_oplog_stones.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_size_storer.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/base/checked_cast.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store_oplog_stones.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_size_storer.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -398,7 +398,7 @@ public:
     }
 };
 
-class SizeStorerValidateTest : public mongo::unittest::Test {
+class SizeStorerValidateTest : public mongol::unittest::Test {
 private:
     virtual void setUp() {
         harnessHelper.reset(new WiredTigerHarnessHelper());
@@ -1370,4 +1370,4 @@ TEST(WiredTigerRecordStoreTest, OplogStones_AscendingOrder) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,9 +32,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
@@ -60,4 +60,4 @@ Status addSASLOptions(moe::OptionSection* options);
 
 Status storeSASLOptions(const moe::Environment& params);
 
-}  // namespace mongo
+}  // namespace mongol

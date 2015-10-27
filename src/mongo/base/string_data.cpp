@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
 #include <ostream>
 #include <third_party/murmurhash3/MurmurHash3.h>
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -61,4 +61,4 @@ size_t StringData::Hasher::operator()(StringData str) const {
     return murmur3<sizeof(size_t)>(str);
 }
 
-}  // namespace mongo
+}  // namespace mongol

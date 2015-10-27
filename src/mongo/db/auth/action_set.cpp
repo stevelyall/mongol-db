@@ -25,21 +25,21 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_set.h"
+#include "mongol/db/auth/action_set.h"
 
 #include <bitset>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 void ActionSet::addAction(const ActionType& action) {
     if (action == ActionType::anyAction) {
@@ -146,4 +146,4 @@ std::vector<std::string> ActionSet::getActionsAsStrings() const {
     return result;
 }
 
-}  // namespace mongo
+}  // namespace mongol

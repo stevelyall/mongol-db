@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/metadata/server_selection_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
 
 #include <utility>
 #include <tuple>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 
@@ -74,7 +74,7 @@ StatusWith<std::tuple<bool, BSONObj>> unwrapCommand(const BSONObj& maybeWrapped)
 
     BSONElement inner;
     auto extractStatus =
-        bsonExtractTypedField(maybeWrapped, firstElFieldName, mongo::Object, &inner);
+        bsonExtractTypedField(maybeWrapped, firstElFieldName, mongol::Object, &inner);
 
     if (!extractStatus.isOK()) {
         return extractStatus;
@@ -89,7 +89,7 @@ StatusWith<std::tuple<bool, BSONObj>> unwrapCommand(const BSONObj& maybeWrapped)
 Status extractWrappedReadPreference(const BSONObj& wrappedCommand, BSONObjBuilder* metadataBob) {
     BSONElement readPrefEl;
     auto rpExtractStatus =
-        bsonExtractTypedField(wrappedCommand, kReadPreferenceFieldName, mongo::Object, &readPrefEl);
+        bsonExtractTypedField(wrappedCommand, kReadPreferenceFieldName, mongol::Object, &readPrefEl);
     if (rpExtractStatus.isOK()) {
         metadataBob->append(readPrefEl);
     } else if (rpExtractStatus != ErrorCodes::NoSuchKey) {
@@ -110,7 +110,7 @@ Status extractUnwrappedReadPreference(const BSONObj& unwrappedCommand,
     BSONElement readPrefEl;
 
     auto queryOptionsExtractStatus = bsonExtractTypedField(
-        unwrappedCommand, kQueryOptionsFieldName, mongo::Object, &queryOptionsEl);
+        unwrappedCommand, kQueryOptionsFieldName, mongol::Object, &queryOptionsEl);
 
     // If there is no queryOptions subobject, we write out the command and return.
     if (queryOptionsExtractStatus == ErrorCodes::NoSuchKey) {
@@ -128,7 +128,7 @@ Status extractUnwrappedReadPreference(const BSONObj& unwrappedCommand,
     }
 
     auto rpExtractStatus = bsonExtractTypedField(
-        queryOptionsEl.embeddedObject(), kReadPreferenceFieldName, mongo::Object, &readPrefEl);
+        queryOptionsEl.embeddedObject(), kReadPreferenceFieldName, mongol::Object, &readPrefEl);
 
     // If there is a $queryOptions field, we expect there to be a $readPreference.
     if (!rpExtractStatus.isOK()) {
@@ -157,10 +157,10 @@ StatusWith<ServerSelectionMetadata> ServerSelectionMetadata::readFromMetadata(
     const BSONElement& metadataElem) {
     if (metadataElem.eoo()) {
         return ServerSelectionMetadata{};
-    } else if (metadataElem.type() != mongo::Object) {
+    } else if (metadataElem.type() != mongol::Object) {
         return {ErrorCodes::TypeMismatch,
                 str::stream() << "ServerSelectionMetadata element has incorrect type: expected"
-                              << mongo::Object << " but got " << metadataElem.type()};
+                              << mongol::Object << " but got " << metadataElem.type()};
     }
 
     bool secondaryOk = false;
@@ -171,10 +171,10 @@ StatusWith<ServerSelectionMetadata> ServerSelectionMetadata::readFromMetadata(
         if (ssmElemFieldName == kSecondaryOkFieldName) {
             secondaryOk = ssmElem.trueValue();
         } else if (ssmElemFieldName == kReadPreferenceFieldName) {
-            if (ssmElem.type() != mongo::Object) {
+            if (ssmElem.type() != mongol::Object) {
                 return Status(ErrorCodes::TypeMismatch,
                               str::stream() << "ReadPreference has incorrect type: expected"
-                                            << mongo::Object << "but got" << metadataElem.type());
+                                            << mongol::Object << "but got" << metadataElem.type());
             }
             auto parsedRps = ReadPreferenceSetting::fromBSON(ssmElem.Obj());
             if (!parsedRps.isOK()) {
@@ -218,10 +218,10 @@ Status ServerSelectionMetadata::downconvert(const BSONObj& command,
     auto ssmElem = metadata.getField(fieldName());
     if (ssmElem.eoo()) {
         // slaveOk is false by default.
-        *legacyQueryFlags &= ~mongo::QueryOption_SlaveOk;
+        *legacyQueryFlags &= ~mongol::QueryOption_SlaveOk;
         legacyCommand->appendElements(command);
         return Status::OK();
-    } else if (ssmElem.type() != mongo::Object) {
+    } else if (ssmElem.type() != mongol::Object) {
         return {
             ErrorCodes::TypeMismatch,
             str::stream() << "ServerSelectionMetadata metadata element must be an object, but got "
@@ -242,9 +242,9 @@ Status ServerSelectionMetadata::downconvert(const BSONObj& command,
     }
 
     if (!secondaryOkElem.eoo() && secondaryOkElem.trueValue()) {
-        *legacyQueryFlags |= mongo::QueryOption_SlaveOk;
+        *legacyQueryFlags |= mongol::QueryOption_SlaveOk;
     } else {
-        *legacyQueryFlags &= ~mongo::QueryOption_SlaveOk;
+        *legacyQueryFlags &= ~mongol::QueryOption_SlaveOk;
     }
 
     if (!readPreferenceElem.eoo()) {
@@ -255,7 +255,7 @@ Status ServerSelectionMetadata::downconvert(const BSONObj& command,
         // '$query'. We should probably standardize on one - drivers use '$query',
         // and the shell uses 'query'. See SERVER-18705 for details.
 
-        // TODO: this may need to use the $queryOptions hack on mongos.
+        // TODO: this may need to use the $queryOptions hack on mongols.
         legacyCommand->append(kQueryWrapper, command);
         legacyCommand->append(readPreferenceElem);
     } else {
@@ -306,7 +306,7 @@ Status ServerSelectionMetadata::upconvert(const BSONObj& legacyCommand,
             return status;
         }
     } else {
-        // If the command was not wrapped, we need to check for a readPreference sent by mongos
+        // If the command was not wrapped, we need to check for a readPreference sent by mongols
         // on the $queryOptions field of the command. If it is set, we remove it from the
         // upconverted command, so we need to pass the command builder along.
 
@@ -348,4 +348,4 @@ ServerSelectionMetadata& ServerSelectionMetadata::operator=(ServerSelectionMetad
 #endif
 
 }  // rpc
-}  // mongo
+}  // mongol

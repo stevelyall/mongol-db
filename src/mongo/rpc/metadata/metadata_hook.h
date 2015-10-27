@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -68,4 +68,4 @@ protected:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

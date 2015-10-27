@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 class ServiceContext;
 
 /** Provides access to system's FQDNs acquired via forward and reverse resolution of its hostname.
@@ -69,4 +69,4 @@ private:
     stdx::thread _canonicalizationThread;
 };
 
-}  // namespace mongo
+}  // namespace mongol

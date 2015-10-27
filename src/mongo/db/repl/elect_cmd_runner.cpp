@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/elect_cmd_runner.h"
+#include "mongol/db/repl/elect_cmd_runner.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_runner.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_runner.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -111,7 +111,7 @@ void ElectCmdRunner::Algorithm::processResponse(const RemoteCommandRequest& requ
         log() << "received " << res["vote"] << " votes from " << request.target;
         LOG(1) << "full elect res: " << res.toString();
         BSONElement vote(res["vote"]);
-        if (vote.type() != mongo::NumberInt) {
+        if (vote.type() != mongol::NumberInt) {
             error() << "wrong type for vote argument in replSetElect command: "
                     << typeName(vote.type());
             _sufficientResponsesReceived = true;
@@ -148,4 +148,4 @@ int ElectCmdRunner::getReceivedVotes() const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

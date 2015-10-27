@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/clientcursor.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/clientcursor.h"
 
-namespace mongo {
+namespace mongol {
 
 struct KillCursorsResponse {
     /**
@@ -62,4 +62,4 @@ struct KillCursorsResponse {
     const std::vector<CursorId> cursorsUnknown;
 };
 
-}  // namespace mongo
+}  // namespace mongol

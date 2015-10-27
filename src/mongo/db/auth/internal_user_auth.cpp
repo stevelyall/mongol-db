@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/internal_user_auth.h"
+#include "mongol/db/auth/internal_user_auth.h"
 
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
-namespace mmb = mongo::mutablebson;
+namespace mongol {
+namespace mmb = mongol::mutablebson;
 
 // not guarded by the authParams mutex never changed in
 // multi-threaded operation
@@ -85,4 +85,4 @@ BSONObj getInternalUserAuthParamsWithFallback() {
     return authParams.copy();
 }
 
-}  // namespace mongo
+}  // namespace mongol

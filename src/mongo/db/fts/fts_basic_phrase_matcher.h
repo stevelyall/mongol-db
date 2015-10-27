@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/fts/fts_phrase_matcher.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/fts/fts_phrase_matcher.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 /**
@@ -51,4 +51,4 @@ public:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

@@ -29,11 +29,11 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/concurrency/thread_pool.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/concurrency/thread_pool.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Implementation of a fixed-size pool of threads that can perform scheduled
@@ -92,4 +92,4 @@ private:
     ThreadPool _pool;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,14 +32,14 @@
 #include <deque>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Collection;
 struct CollectionOptions;
@@ -156,4 +156,4 @@ void setOplogCollectionName();
 void signalOplogWaiters();
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

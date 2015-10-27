@@ -1,6 +1,6 @@
 // Tests the dropping and re-adding of a collection
 
-var st = new ShardingTest( name = "multidrop", shards = 1, verbose = 0, mongos = 2 )
+var st = new ShardingTest( name = "multidrop", shards = 1, verbose = 0, mongols = 2 )
 
 var mA = st.s0
 var mB = st.s1
@@ -18,7 +18,7 @@ for( var i = -100; i < 100; i++ ){
     admin.runCommand({ split : coll + "", middle : { _id : i } })
 }
 
-jsTestLog( "Create versioned connection for each mongos..." )
+jsTestLog( "Create versioned connection for each mongols..." )
 
 coll.find().itcount()
 collB.find().itcount()

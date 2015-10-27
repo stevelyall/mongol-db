@@ -30,7 +30,7 @@
 
 #include <vector>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
 /**
  * Please, please, please do not rely on this existing.  If you write code that uses
@@ -38,9 +38,9 @@
  *
  * This is visible only for for upgrade checking.
  */
-namespace mongo {
+namespace mongol {
 
 // Returns whether or not the largest key the index will generate for the document is too large.
 bool isAnyIndexKeyTooLarge(const BSONObj& index, const BSONObj& doc);
 
-}  // namespace mongo
+}  // namespace mongol

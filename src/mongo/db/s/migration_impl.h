@@ -31,15 +31,15 @@
 #include <boost/optional.hpp>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 class CollectionMetadata;
 class OperationContext;
@@ -206,4 +206,4 @@ private:
     bool _isRunning = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/unittest/temp_dir.h"
 
 #include <fstream>
 #include <boost/filesystem.hpp>
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-using mongo::unittest::TempDir;
+using mongol::unittest::TempDir;
 
 TEST(TempDirTests, CreatesDir) {
     TempDir tempDir("tempDirTests");

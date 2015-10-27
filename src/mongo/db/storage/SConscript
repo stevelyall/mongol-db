@@ -17,7 +17,7 @@ env.Library(
         'index_entry_comparison.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         ],
     )
 
@@ -27,7 +27,7 @@ env.Library(
         'key_string.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         ],
     )
 
@@ -38,8 +38,8 @@ env.Library(
         'bson_collection_catalog_entry.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/catalog/collection_options',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/catalog/collection_options',
+        '$BUILD_DIR/mongol/db/service_context',
         ],
     )
 
@@ -49,7 +49,7 @@ env.Library(
         'oplog_hack.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         ]
     )
 
@@ -59,7 +59,7 @@ env.Library(
         'paths.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -69,7 +69,7 @@ env.Library(
         'storage_options.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/server_parameters',
+        '$BUILD_DIR/mongol/db/server_parameters',
     ],
 )
 
@@ -95,8 +95,8 @@ env.Library(
         'sorted_data_interface_test_unindex.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/service_context',
-        '$BUILD_DIR/mongo/unittest/unittest',
+        '$BUILD_DIR/mongol/db/service_context',
+        '$BUILD_DIR/mongol/unittest/unittest',
         'index_entry_comparison',
     ],
     LIBDEPS_TAGS=[
@@ -128,8 +128,8 @@ env.Library(
         'record_store_test_validate.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/unittest/unittest',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/unittest/unittest',
+        '$BUILD_DIR/mongol/db/service_context',
         ],
     LIBDEPS_TAGS=[
         # Depends on newHarnessHelper, which does not have a unique definition
@@ -143,7 +143,7 @@ env.Library(
         'storage_engine_lock_file_${TARGET_OS_FAMILY}.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/platform/platform',
+        '$BUILD_DIR/mongol/platform/platform',
         'paths',
         ]
     )
@@ -162,7 +162,7 @@ env.Library(
         'storage_engine_metadata.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         ]
     )
 
@@ -179,6 +179,6 @@ env.CppUnitTest(
     source='key_string_test.cpp',
     LIBDEPS=[
         'key_string',
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         ]
 )

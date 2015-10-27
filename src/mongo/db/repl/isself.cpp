@@ -26,26 +26,26 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/isself.h"
+#include "mongol/db/repl/isself.h"
 
 #include <boost/algorithm/string.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/log.h"
 
 #if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__sun) || \
     defined(__OpenBSD__)
@@ -73,7 +73,7 @@
 #include <Ws2tcpip.h>
 #endif  // defined(_WIN32)
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 OID instanceId;
@@ -346,4 +346,4 @@ std::vector<std::string> getBoundAddrs(const bool ipv6enabled) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

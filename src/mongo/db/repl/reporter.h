@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class Reporter {
@@ -127,4 +127,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

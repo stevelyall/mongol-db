@@ -31,33 +31,33 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * MongoURI handles parsing of URIs for mongodb, and falls back to old-style
+ * MongoURI handles parsing of URIs for mongoldb, and falls back to old-style
  * ConnectionString parsing. It's used primarily by the shell.
  * It parses URIs with the following format:
  *
- *    mongodb://[usr:pwd@]host1[:port1]...[,hostN[:portN]]][/[db][?options]]
+ *    mongoldb://[usr:pwd@]host1[:port1]...[,hostN[:portN]]][/[db][?options]]
  *
  * For a complete list of URI string options, see
- * https://wiki.mongodb.com/display/DH/Connection+String+Format
+ * https://wiki.mongoldb.com/display/DH/Connection+String+Format
  *
  * Examples:
  *
  *    A replica set with three members (one running on default port 27017):
- *      string uri = mongodb://localhost,localhost:27018,localhost:27019
+ *      string uri = mongoldb://localhost,localhost:27018,localhost:27019
  *
  *    Authenticated connection to db 'bedrock' with user 'barney' and pwd 'rubble':
- *      string url = mongodb://barney:rubble@localhost/bedrock
+ *      string url = mongoldb://barney:rubble@localhost/bedrock
  *
  *    Use parse() to parse the url, then validate and connect:
  *      string errmsg;
@@ -130,4 +130,4 @@ private:
     std::string _database;
     BSONObj _options;
 };
-}  // namespace mongo
+}  // namespace mongol

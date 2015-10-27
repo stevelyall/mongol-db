@@ -14,11 +14,11 @@ if (true) { // toggle to disable test
     }
     assert.eq(100000, db[baseName].count());
 
-    // mongo --autokillop suppressed the ctrl-c "do you want to kill current operation" message
+    // mongol --autokillop suppressed the ctrl-c "do you want to kill current operation" message
     // it's just for testing purposes and thus not in the shell help
     var evalStr = "print('SKO subtask started'); db." + baseName + ".update( {}, {$set:{i:'abcdefghijkl'}}, false, true ); db." + baseName + ".count();";
     print("shellkillop.js evalStr:" + evalStr);
-    spawn = startMongoProgramNoConnect("mongo", "--autokillop", "--port", myPort(), "--eval", evalStr);
+    spawn = startMongoProgramNoConnect("mongol", "--autokillop", "--port", myPort(), "--eval", evalStr);
 
     sleep(100);
     retry = true;

@@ -28,13 +28,13 @@
 #pragma once
 
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/locker_noop.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/storage/recovery_unit_noop.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/locker_noop.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/storage/recovery_unit_noop.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContextNoop : public OperationContext {
 public:
@@ -121,4 +121,4 @@ private:
     ProgressMeter _pm;
 };
 
-}  // namespace mongo
+}  // namespace mongol

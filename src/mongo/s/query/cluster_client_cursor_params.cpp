@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_client_cursor_params.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
 
-namespace mongo {
+namespace mongol {
 
 const char ClusterClientCursorParams::kSortKeyField[] = "$sortKey";
 
-}  // namespace mongo
+}  // namespace mongol

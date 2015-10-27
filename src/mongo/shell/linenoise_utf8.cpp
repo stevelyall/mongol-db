@@ -27,12 +27,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/shell/linenoise_utf8.h"
+#include "mongol/shell/linenoise_utf8.h"
 
 #ifdef _WIN32
 #include <io.h>
-#include "mongo/platform/windows_basic.h"
-#include "mongo/util/text.h"
+#include "mongol/platform/windows_basic.h"
+#include "mongol/util/text.h"
 #else
 #include <unistd.h>
 #endif
@@ -322,7 +322,7 @@ int write32(int fileHandle, const UChar32* string32, unsigned int sourceLengthIn
                                           sourceLengthInCharacters);
 #if defined(_WIN32)
     if (_isatty(fileHandle)) {
-        bool success = mongo::writeUtf8ToWindowsConsole(tempCharString.get(), count);
+        bool success = mongol::writeUtf8ToWindowsConsole(tempCharString.get(), count);
         if (!success) {
             return -1;
         }

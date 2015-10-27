@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/heartbeat_response_action.h"
+#include "mongol/db/repl/heartbeat_response_action.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 HeartbeatResponseAction HeartbeatResponseAction::makeNoAction() {
@@ -82,4 +82,4 @@ void HeartbeatResponseAction::setNextHeartbeatStartDate(Date_t when) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

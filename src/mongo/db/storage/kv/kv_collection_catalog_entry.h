@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/storage/bson_collection_catalog_entry.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/storage/bson_collection_catalog_entry.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 
 class KVCatalog;
 class KVEngine;

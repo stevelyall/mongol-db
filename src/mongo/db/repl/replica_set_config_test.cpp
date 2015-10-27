@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/bson/json.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/json.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -1195,4 +1195,4 @@ TEST(ReplicaSetConfig, GetPriorityTakeoverDelay) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

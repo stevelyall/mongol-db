@@ -33,9 +33,9 @@
 
 #pragma once
 
-#include "mongo/db/pipeline/pipeline.h"
+#include "mongol/db/pipeline/pipeline.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * This class holds optimizations applied to a single Pipeline.
  *
@@ -129,4 +129,4 @@ public:
      */
     static void limitFieldsSentFromShardsToMerger(Pipeline* shardPipe, Pipeline* mergePipe);
 };
-}  // namespace mongo
+}  // namespace mongol

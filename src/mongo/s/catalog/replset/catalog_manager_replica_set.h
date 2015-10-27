@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/client/connection_string.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/catalog/catalog_manager_common.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/catalog/catalog_manager_common.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 struct ReadPreferenceSetting;
@@ -218,4 +218,4 @@ private:
     repl::OpTime _configOpTime;  // (M)
 };
 
-}  // namespace mongo
+}  // namespace mongol

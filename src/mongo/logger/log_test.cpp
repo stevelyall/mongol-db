@@ -25,33 +25,33 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_test.h"
+#include "mongol/logger/log_test.h"
 
 #include <sstream>
 #include <string>
 #include <vector>
 
-#include "mongo/logger/appender.h"
-#include "mongo/logger/encoder.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/log_component_settings.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/logger/message_log_domain.h"
-#include "mongo/logger/rotatable_file_appender.h"
-#include "mongo/logger/rotatable_file_writer.h"
-#include "mongo/platform/compiler.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/logger/appender.h"
+#include "mongol/logger/encoder.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/log_component_settings.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/message_log_domain.h"
+#include "mongol/logger/rotatable_file_appender.h"
+#include "mongol/logger/rotatable_file_writer.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-using namespace mongo::logger;
+using namespace mongol::logger;
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 typedef LogTest<MessageEventDetailsEncoder> LogTestDetailsEncoder;
@@ -509,4 +509,4 @@ TEST_F(LogTestDetailsEncoder, LogFunctions) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

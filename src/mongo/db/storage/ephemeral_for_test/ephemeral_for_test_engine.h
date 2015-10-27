@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/string_map.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class EphemeralForTestEngine : public KVEngine {
 public:

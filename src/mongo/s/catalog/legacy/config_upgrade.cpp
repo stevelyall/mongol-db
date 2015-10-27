@@ -26,33 +26,33 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/config_upgrade.h"
+#include "mongol/s/catalog/legacy/config_upgrade.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/catalog/config_server_version.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/legacy/cluster_client_internal.h"
-#include "mongo/s/catalog/mongo_version_range.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/version.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/catalog/config_server_version.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/legacy/cluster_client_internal.h"
+#include "mongol/s/catalog/mongol_version_range.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::make_pair;
@@ -84,7 +84,7 @@ Status makeConfigVersionDocument(OperationContext* txn, CatalogManager* catalogM
     invariantOK(versionInfo.validate());
 
     // If the cluster has not previously been initialized, we need to set the version before
-    // using so subsequent mongoses use the config data the same way.  This requires all three
+    // using so subsequent mongolses use the config data the same way.  This requires all three
     // config servers online initially.
     return catalogManager->update(txn,
                                   VersionType::ConfigNS,
@@ -125,7 +125,7 @@ enum VersionStatus {
 
 /**
  * Checks whether or not a particular cluster version is compatible with our current
- * version and mongodb version.  The version is compatible if it falls between the
+ * version and mongoldb version.  The version is compatible if it falls between the
  * MIN_COMPATIBLE_CONFIG_VERSION and CURRENT_CONFIG_VERSION and is not explicitly excluded.
  *
  * @return a VersionStatus enum indicating compatibility
@@ -276,7 +276,7 @@ Status checkAndInitConfigVersion(OperationContext* txn,
     if (versionInfo.getCurrentVersion() != UpgradeHistory_EmptyVersion) {
         return {ErrorCodes::IncompatibleShardingMetadata,
                 stream() << "newer version " << CURRENT_CONFIG_VERSION
-                         << " of mongo config metadata is required, "
+                         << " of mongol config metadata is required, "
                          << "current version is " << versionInfo.getCurrentVersion()};
     }
 
@@ -290,7 +290,7 @@ Status checkAndInitConfigVersion(OperationContext* txn,
     //
     // Acquire a lock for the upgrade process.
     //
-    // We want to ensure that only a single mongo process is upgrading the config server at a
+    // We want to ensure that only a single mongol process is upgrading the config server at a
     // time.
     //
 
@@ -339,4 +339,4 @@ Status checkAndInitConfigVersion(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

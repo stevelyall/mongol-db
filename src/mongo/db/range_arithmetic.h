@@ -32,9 +32,9 @@
 #include <map>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A KeyRange represents a range over keys of documents in a namespace, qualified by a

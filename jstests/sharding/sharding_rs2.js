@@ -1,4 +1,4 @@
-// mostly for testing mongos w/replica sets
+// mostly for testing mongols w/replica sets
 (function() {
 
 var s = new ShardingTest({ shards: { rs0: { nodes: 2 }, rs1: { nodes: 2 } },
@@ -191,7 +191,7 @@ rs.test.getSecondaries().forEach(function(secondary) {
 // Modify data only on the primary replica of the primary shard.
 // { x: 60 } goes to the shard of "rs", which is the primary shard.
 assert.writeOK( ts.insert( { primaryOnly: true, x: 60 } ) );
-// Read from secondary through mongos, the doc is not there due to replication delay or fsync.
+// Read from secondary through mongols, the doc is not there due to replication delay or fsync.
 // But we can guarantee not to read from primary.
 assert.eq( 0, ts.find({ primaryOnly: true, x: 60 }).itcount() );
 // Unlock the secondaries

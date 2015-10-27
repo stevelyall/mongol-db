@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/explain_common.h"
+#include "mongol/db/query/explain_common.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 const char* ExplainCommon::verbosityString(ExplainCommon::Verbosity verbosity) {
@@ -58,11 +58,11 @@ Status ExplainCommon::parseCmdBSON(const BSONObj& cmdObj, ExplainCommon::Verbosi
     *verbosity = ExplainCommon::EXEC_ALL_PLANS;
     if (!cmdObj["verbosity"].eoo()) {
         const char* verbStr = cmdObj["verbosity"].valuestrsafe();
-        if (mongoutils::str::equals(verbStr, "queryPlanner")) {
+        if (mongolutils::str::equals(verbStr, "queryPlanner")) {
             *verbosity = ExplainCommon::QUERY_PLANNER;
-        } else if (mongoutils::str::equals(verbStr, "executionStats")) {
+        } else if (mongolutils::str::equals(verbStr, "executionStats")) {
             *verbosity = ExplainCommon::EXEC_STATS;
-        } else if (!mongoutils::str::equals(verbStr, "allPlansExecution")) {
+        } else if (!mongolutils::str::equals(verbStr, "allPlansExecution")) {
             return Status(ErrorCodes::BadValue,
                           "verbosity string must be one of "
                           "{'queryPlanner', 'executionStats', 'allPlansExecution'}");
@@ -72,4 +72,4 @@ Status ExplainCommon::parseCmdBSON(const BSONObj& cmdObj, ExplainCommon::Verbosi
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/db/server_options_helpers.h"
+#include "mongol/db/server_options_helpers.h"
 
 #ifdef _WIN32
 #include <direct.h>
@@ -41,25 +41,25 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/util/cmdline_utils/censor_cmdline.h"
-#include "mongo/util/log.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/listen.h"  // For DEFAULT_MAX_CONN
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/util/cmdline_utils/censor_cmdline.h"
+#include "mongol/util/log.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/listen.h"  // For DEFAULT_MAX_CONN
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/options_parser/startup_options.h"
 
 using std::endl;
 using std::string;
 
-namespace mongo {
+namespace mongol {
 
 /*
  * SERVER-11160 syslog.h does not define facilitynames under solaris.
@@ -243,7 +243,7 @@ Status addGeneralServerOptions(moe::OptionSection* options) {
     options->addOptionChaining("systemLog.syslogFacility",
                                "syslogFacility",
                                moe::String,
-                               "syslog facility used for mongodb syslog message");
+                               "syslog facility used for mongoldb syslog message");
 
 #endif  // _WIN32
     options->addOptionChaining("systemLog.logAppend",
@@ -413,7 +413,7 @@ Status addWindowsServerOptions(moe::OptionSection* options) {
                                moe::String,
                                "password used to authenticate serviceUser");
 
-    options->addOptionChaining("service", "service", moe::Switch, "start mongodb service")
+    options->addOptionChaining("service", "service", moe::Switch, "start mongoldb service")
         .hidden()
         .setSources(moe::SourceAllLegacy);
 
@@ -989,4 +989,4 @@ Status storeServerOptions(const moe::Environment& params, const std::vector<std:
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

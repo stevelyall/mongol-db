@@ -26,40 +26,40 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/rs_initialsync.h"
+#include "mongol/db/repl/rs_initialsync.h"
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/client.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/initial_sync.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/oplogreader.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/client.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/initial_sync.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/oplogreader.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -493,4 +493,4 @@ void syncDoInitialSync() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

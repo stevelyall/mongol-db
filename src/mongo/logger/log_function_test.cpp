@@ -25,26 +25,26 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/log_test.h"
+#include "mongol/logger/log_test.h"
 
 #include <sstream>
 #include <string>
 #include <vector>
 
-#include "mongo/logger/appender.h"
-#include "mongo/logger/encoder.h"
-#include "mongo/logger/log_component.h"
-#include "mongo/logger/message_event_utf8_encoder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/logger/appender.h"
+#include "mongol/logger/encoder.h"
+#include "mongol/logger/log_component.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-using namespace mongo::logger;
+using namespace mongol::logger;
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 typedef LogTest<MessageEventDetailsEncoder> LogTestDetailsEncoder;
@@ -125,4 +125,4 @@ TEST_F(LogTestDetailsEncoder, LogFunctionsOverrideGlobalComponent) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

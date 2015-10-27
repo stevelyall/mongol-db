@@ -3,26 +3,26 @@
 // @tags : [ hashed ]
 //
 
-var options = { mongosOptions : { binVersion : "" },
+var options = { mongolsOptions : { binVersion : "" },
                 shardOptions : { binVersion : "" },
                 configOptions : { binVersion : "" } };
 
 var st = new ShardingTest({ shards : 2, other : options });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB("admin");
-var shards = mongos.getDB("config").shards.find().toArray();
+var mongols = st.s0;
+var admin = mongols.getDB("admin");
+var shards = mongols.getDB("config").shards.find().toArray();
 
 //
 // Set up multiple collections to target with regex shard keys on two shards
 //
 
-var coll = mongos.getCollection("foo.bar");
-var collSharded = mongos.getCollection("foo.barSharded");
-var collCompound = mongos.getCollection("foo.barCompound");
-var collNested = mongos.getCollection("foo.barNested");
-var collHashed = mongos.getCollection("foo.barHashed");
+var coll = mongols.getCollection("foo.bar");
+var collSharded = mongols.getCollection("foo.barSharded");
+var collCompound = mongols.getCollection("foo.barCompound");
+var collNested = mongols.getCollection("foo.barNested");
+var collHashed = mongols.getCollection("foo.barHashed");
 
 assert.commandWorked(admin.runCommand({ enableSharding : coll.getDB().toString() }));
 admin.runCommand({ movePrimary : coll.getDB().toString(), to : shards[0]._id });

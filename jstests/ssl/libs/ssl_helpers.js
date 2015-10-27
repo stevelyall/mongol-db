@@ -50,19 +50,19 @@ var replShouldFail = function(name, opt1, opt2) {
 };
 
 /**
- * Takes in two mongod/mongos configuration options and runs a basic
+ * Takes in two mongold/mongols configuration options and runs a basic
  * sharding test to see if they can work together...
  */
 function mixedShardTest(options1, options2, shouldSucceed) {
     try {
         var st = new ShardingTest({
-            mongos : [options1],
+            mongols : [options1],
             config : [options1],
             shards : [options1, options2]
         });
         st.stopBalancer();
 
-        // Test mongos talking to config servers
+        // Test mongols talking to config servers
         var r = st.adminCommand({enableSharding: "test"});
         assert.eq(r, true, "error enabling sharding for this configuration");
 
@@ -72,7 +72,7 @@ function mixedShardTest(options1, options2, shouldSucceed) {
         r = st.adminCommand({ shardCollection : "test.col" , key : { _id : 1 } });
         assert.eq(r, true, "error sharding collection for this configuration");
 
-        // Test mongos talking to shards
+        // Test mongols talking to shards
         var bigstr = Array(1024*1024).join("#");
 
         var bulk = db1.col.initializeUnorderedBulkOp();

@@ -4,42 +4,42 @@ Welcome to MongoDB!
 
 COMPONENTS
 
-  mongod - The database process.
-  mongos - Sharding controller.
-  mongo  - The database shell (uses interactive javascript).
+  mongold - The database process.
+  mongols - Sharding controller.
+  mongol  - The database shell (uses interactive javascript).
 
 UTILITIES
 
-  mongodump         - MongoDB dump tool - for backups, snapshots, etc.
-  mongorestore      - MongoDB restore a dump
-  mongoexport       - Export a single collection to test (JSON, CSV)
-  mongoimport       - Import from JSON or CSV
-  mongofiles        - Utility for putting and getting files from MongoDB GridFS
-  mongostat         - Show performance statistics
+  mongoldump         - MongoDB dump tool - for backups, snapshots, etc.
+  mongolrestore      - MongoDB restore a dump
+  mongolexport       - Export a single collection to test (JSON, CSV)
+  mongolimport       - Import from JSON or CSV
+  mongolfiles        - Utility for putting and getting files from MongoDB GridFS
+  mongolstat         - Show performance statistics
 
 BUILDING
 
-  See docs/building.md, also www.mongodb.org search for "Building".
+  See docs/building.md, also www.mongoldb.org search for "Building".
 
 RUNNING
 
   For command line options invoke:
 
-    $ ./mongod --help
+    $ ./mongold --help
 
   To run a single server database:
 
     $ mkdir /data/db
-    $ ./mongod
+    $ ./mongold
     $
-    $ # The mongo javascript shell connects to localhost and test database by default:
-    $ ./mongo 
+    $ # The mongol javascript shell connects to localhost and test database by default:
+    $ ./mongol 
     > help
 
 DRIVERS
 
-  Client drivers for most programming languages are available at mongodb.org.  Use the 
-  shell ("mongo") for administrative tasks.
+  Client drivers for most programming languages are available at mongoldb.org.  Use the 
+  shell ("mongol") for administrative tasks.
 
 PACKAGING
 
@@ -48,19 +48,19 @@ PACKAGING
 
 DOCUMENTATION
 
-  http://www.mongodb.org/
+  http://www.mongoldb.org/
  
 CLOUD MANAGED MONGODB
 
-  http://cloud.mongodb.com/
+  http://cloud.mongoldb.com/
 
 MAIL LISTS AND IRC
 
-  http://dochub.mongodb.org/core/community
+  http://dochub.mongoldb.org/core/community
   
 LEARN MONGODB
 
-  http://university.mongodb.com/
+  http://university.mongoldb.com/
 
 32 BIT BUILD NOTES
 
@@ -70,10 +70,10 @@ LEARN MONGODB
 
 LICENSE
 
-  Most MongoDB source files (src/mongo folder and below) are made available under the terms of the
+  Most MongoDB source files (src/mongol folder and below) are made available under the terms of the
   GNU Affero General Public License (AGPL).  See individual files for
   details.
 
   As an exception, the files in the client/, debian/, rpm/,
-  utils/mongoutils, and all subdirectories thereof are made available under
+  utils/mongolutils, and all subdirectories thereof are made available under
   the terms of the Apache License, version 2.0.

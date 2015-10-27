@@ -28,32 +28,32 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/index_create.h"
+#include "mongol/db/catalog/index_create.h"
 
 
-#include "mongo/base/error_codes.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/progress_meter.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/progress_meter.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -357,4 +357,4 @@ void MultiIndexBlock::commit() {
     _needToCleanup = false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

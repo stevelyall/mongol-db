@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replica_set_config.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replica_set_config.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace repl {
 
@@ -98,4 +98,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

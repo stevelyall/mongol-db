@@ -36,17 +36,17 @@
 
 #pragma once
 
-#include "mongo/db/client_basic.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/platform/random.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/spin_lock.h"
-#include "mongo/util/concurrency/threadlocal.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/platform/random.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/spin_lock.h"
+#include "mongol/util/concurrency/threadlocal.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class AbstractMessagingPort;

@@ -36,13 +36,13 @@
 
 #include <wiredtiger.h>
 
-#include "mongo/bson/ordering.h"
-#include "mongo/db/storage/kv/kv_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/elapsed_tracker.h"
+#include "mongol/bson/ordering.h"
+#include "mongol/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/elapsed_tracker.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerSessionCache;
 class WiredTigerSizeStorer;

@@ -31,18 +31,18 @@
 
 #include <string>
 
-#include "mongo/bson/bsonobj.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 struct BSONArray;
 class BSONObjBuilder;
 
-// mongo version
+// mongol version
 extern const char versionString[];
 extern const int versionNumber;
-std::string mongodVersion();
+std::string mongoldVersion();
 
-// mongo git version
+// mongol git version
 const char* gitVersion();
 const char* distName();
 std::vector<std::string> compiledModules();
@@ -66,6 +66,6 @@ extern const int kMongoVersionPatch;
 extern const int kMongoVersionExtra;
 extern const char kMongoVersionExtraStr[];
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // UTIL_VERSION_HEADER

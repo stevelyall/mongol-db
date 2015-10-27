@@ -577,7 +577,7 @@ Now that WiredTiger is part of MongoDB, we are tracking issues related to
 MongoDB usage of WiredTiger in the MongoDB JIRA system.  Some entries in
 the changelog now reference JIRA tickets that can be found at:
 
-  http://jira.mongodb.org
+  http://jira.mongoldb.org
 
 New features and API changes:
 

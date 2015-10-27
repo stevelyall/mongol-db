@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/oid.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/oid.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using unittest::assertGet;
 
@@ -332,4 +332,4 @@ TEST(SetShardVersionRequest, ToSSVCommandFullNoConnectionVersioning) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

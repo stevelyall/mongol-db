@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_test_env.h"
+#include "mongol/executor/network_test_env.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/query/cursor_response.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/cursor_response.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace executor {
 
@@ -140,4 +140,4 @@ void NetworkTestEnv::onFindWithMetadataCommand(OnFindCommandWithMetadataFunction
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

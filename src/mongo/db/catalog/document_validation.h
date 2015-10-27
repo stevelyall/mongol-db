@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/operation_context.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/operation_context.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * If true, Collection should do no validation of writes from this OperationContext.
  *

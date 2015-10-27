@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class FTSAccessMethod : public IndexAccessMethod {
 public:
@@ -51,4 +51,4 @@ private:
     fts::FTSSpec _ftsSpec;
 };
 
-}  // namespace mongo
+}  // namespace mongol

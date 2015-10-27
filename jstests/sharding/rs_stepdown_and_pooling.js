@@ -4,13 +4,13 @@
 (function() {
 "use strict";
 
-var st = new ShardingTest({shards : {rs0 : {nodes : 2}}, mongos : 1});
+var st = new ShardingTest({shards : {rs0 : {nodes : 2}}, mongols : 1});
 
 // Stop balancer to eliminate weird conn stuff
 st.stopBalancer();
 
-var mongos = st.s0;
-var coll = mongos.getCollection("foo.bar");
+var mongols = st.s0;
+var coll = mongols.getCollection("foo.bar");
 var db = coll.getDB();
 
 //Test is not valid for Win32
@@ -30,11 +30,11 @@ else {
     
     jsTest.log("Creating new connections...");
     
-    // Create a bunch of connections to the primary node through mongos.
-    // jstest ->(x10)-> mongos ->(x10)-> primary
+    // Create a bunch of connections to the primary node through mongols.
+    // jstest ->(x10)-> mongols ->(x10)-> primary
     var conns = [];
     for ( var i = 0; i < 50; i++) {
-        conns.push(new Mongo(mongos.host));
+        conns.push(new Mongo(mongols.host));
         conns[i].getCollection(coll + "").findOne();
     }
 
@@ -48,7 +48,7 @@ else {
     
     // Don't make test fragile by linking to format of shardConnPoolStats, but this is useful if
     // something goes wrong.
-    var connPoolStats = mongos.getDB("admin").runCommand({ shardConnPoolStats : 1 });
+    var connPoolStats = mongols.getDB("admin").runCommand({ shardConnPoolStats : 1 });
     printjson( connPoolStats );
     
     jsTest.log("Stepdown primary and then step back up...");
@@ -68,9 +68,9 @@ else {
     
     stepDown(primary, 0);
     
-    jsTest.log("Waiting for mongos to acknowledge stepdown...");
+    jsTest.log("Waiting for mongols to acknowledge stepdown...");
     
-    ReplSetTest.awaitRSClientHosts( mongos, 
+    ReplSetTest.awaitRSClientHosts( mongols, 
                                     secondary, 
                                     { ismaster : true },
                                     st.rs0,
@@ -80,9 +80,9 @@ else {
     
     stepDown(secondary, 10000);
     
-    jsTest.log("Waiting for mongos to acknowledge step up...");
+    jsTest.log("Waiting for mongols to acknowledge step up...");
     
-    ReplSetTest.awaitRSClientHosts( mongos, 
+    ReplSetTest.awaitRSClientHosts( mongols, 
                                     primary, 
                                     { ismaster : true },
                                     st.rs0,
@@ -97,7 +97,7 @@ else {
     
     var numErrors = 0;
     for ( var i = 0; i < conns.length; i++) {
-        var newConn = new Mongo(mongos.host);
+        var newConn = new Mongo(mongols.host);
         try {
             printjson(newConn.getCollection("foo.bar").findOne());
         } catch (e) {

@@ -28,11 +28,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/kv/kv_database_catalog_entry.h"
+#include "mongol/db/storage/kv/kv_database_catalog_entry.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 // Used to satisfy link dependencies in unit test - not invoked.
 IndexAccessMethod* KVDatabaseCatalogEntry::getIndex(OperationContext* txn,

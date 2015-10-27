@@ -30,25 +30,25 @@
 #include <vector>
 #include <map>
 
-#include "mongo/db/field_parser.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
 namespace {
 
-using mongo::BSONArray;
-using mongo::BSONField;
-using mongo::BSONObj;
-using mongo::BSONObjBuilder;
-using mongo::Date_t;
-using mongo::FieldParser;
-using mongo::OID;
+using mongol::BSONArray;
+using mongol::BSONField;
+using mongol::BSONObj;
+using mongol::BSONObjBuilder;
+using mongol::Date_t;
+using mongol::FieldParser;
+using mongol::OID;
 using std::string;
 using std::vector;
 using std::map;
 
-class ExtractionFixture : public mongo::unittest::Test {
+class ExtractionFixture : public mongol::unittest::Test {
 protected:
     BSONObj doc;
 

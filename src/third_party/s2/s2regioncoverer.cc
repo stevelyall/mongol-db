@@ -26,7 +26,7 @@ using std::vector;
 #include "s2.h"
 #include "s2cap.h"
 #include "s2cellunion.h"
-#include "mongo/base/init.h"
+#include "mongol/base/init.h"
 
 // Define storage for header file constants (the values are not needed here).
 int const S2RegionCoverer::kDefaultMaxCells = 8;
@@ -50,9 +50,9 @@ static void Init() {
   }
 }
 
-MONGO_INITIALIZER_WITH_PREREQUISITES(S2RegionCovererInit, ("S2CellIdInit"))(mongo::InitializerContext *context) {
+MONGO_INITIALIZER_WITH_PREREQUISITES(S2RegionCovererInit, ("S2CellIdInit"))(mongol::InitializerContext *context) {
     Init();
-    return mongo::Status::OK();
+    return mongol::Status::OK();
 }
 
 S2RegionCoverer::S2RegionCoverer() :

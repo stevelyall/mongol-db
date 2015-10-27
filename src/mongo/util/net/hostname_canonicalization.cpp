@@ -26,11 +26,11 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/hostname_canonicalization.h"
+#include "mongol/util/net/hostname_canonicalization.h"
 
 #if !defined(_WIN32)
 #include <arpa/inet.h>
@@ -39,12 +39,12 @@
 #include <netdb.h>
 #endif
 
-#include "mongo/util/log.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/text.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 std::vector<std::string> getHostFQDNs(std::string hostName, HostnameCanonicalizationMode mode) {
 #ifndef _WIN32
@@ -159,4 +159,4 @@ std::vector<std::string> getHostFQDNs(std::string hostName, HostnameCanonicaliza
     return results;
 }
 
-}  // namespace mongo
+}  // namespace mongol

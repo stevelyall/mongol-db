@@ -32,12 +32,12 @@
 #include <stdlib.h>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/storage/snapshot.h"
-#include "mongo/db/storage/snapshot_name.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/storage/snapshot.h"
+#include "mongol/db/storage/snapshot_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class OperationContext;
@@ -257,4 +257,4 @@ protected:
     RecoveryUnit() {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

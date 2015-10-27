@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/document_range.h"
+#include "mongol/rpc/document_range.h"
 
 #include <algorithm>
 #include <cstring>
 #include <tuple>
 #include <utility>
 
-#include "mongo/base/data_type_validated.h"
-#include "mongo/rpc/object_check.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/rpc/object_check.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 DocumentRange::DocumentRange(const char* begin, const char* end) : _range{begin, end} {}
@@ -105,4 +105,4 @@ bool operator!=(const DocumentRange::const_iterator& lhs,
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

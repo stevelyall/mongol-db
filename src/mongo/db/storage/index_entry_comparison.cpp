@@ -25,14 +25,14 @@
  *    exception statement from all source files in the program, then also delete
  *    it in the license file.
  */
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <ostream>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/storage/index_entry_comparison.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/storage/index_entry_comparison.h"
 
-namespace mongo {
+namespace mongol {
 
 std::ostream& operator<<(std::ostream& stream, const IndexKeyEntry& entry) {
     return stream << entry.key << '@' << entry.loc;
@@ -164,4 +164,4 @@ BSONObj IndexEntryComparison::makeQueryObject(const BSONObj& keyPrefix,
     return bb.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

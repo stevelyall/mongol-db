@@ -16,8 +16,8 @@ env.Library(
         'server_status_metric.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/net/hostname_canonicalization_worker',
-        '$BUILD_DIR/mongo/base'
+        '$BUILD_DIR/mongol/util/net/hostname_canonicalization_worker',
+        '$BUILD_DIR/mongol/base'
         ]
     )
 
@@ -42,41 +42,41 @@ env.Library(
         "generic.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/client/clientdriver',
-        '$BUILD_DIR/mongo/db/audit',
-        '$BUILD_DIR/mongo/db/auth/authcommon',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_global',
-        '$BUILD_DIR/mongo/db/auth/serverauth',
-        '$BUILD_DIR/mongo/db/commands',
-        '$BUILD_DIR/mongo/db/commands/test_commands_enabled',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/db/curop',
-        '$BUILD_DIR/mongo/db/exec/working_set',
-        '$BUILD_DIR/mongo/db/index/key_generator',
-        '$BUILD_DIR/mongo/db/index_names',
-        '$BUILD_DIR/mongo/db/lasterror',
-        '$BUILD_DIR/mongo/db/log_process_details',
-        '$BUILD_DIR/mongo/db/matcher/expressions',
-        '$BUILD_DIR/mongo/db/matcher/expressions_geo',
-        '$BUILD_DIR/mongo/db/matcher/expressions_text',
-        '$BUILD_DIR/mongo/db/repl/isself',
-        '$BUILD_DIR/mongo/db/repl/repl_coordinator_global',
-        '$BUILD_DIR/mongo/db/server_options',
-        '$BUILD_DIR/mongo/db/server_parameters',
-        '$BUILD_DIR/mongo/db/startup_warnings_common',
-        '$BUILD_DIR/mongo/db/stats/counters',
-        '$BUILD_DIR/mongo/db/stats/timer_stats',
-        '$BUILD_DIR/mongo/logger/parse_log_component_settings',
-        '$BUILD_DIR/mongo/s/client/sharding_client',
-        '$BUILD_DIR/mongo/s/write_ops/batch_write_types',
-        '$BUILD_DIR/mongo/scripting/scripting_common',
-        '$BUILD_DIR/mongo/util/cmdline_utils/cmdline_utils',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/processinfo',
+        '$BUILD_DIR/mongol/client/clientdriver',
+        '$BUILD_DIR/mongol/db/audit',
+        '$BUILD_DIR/mongol/db/auth/authcommon',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_global',
+        '$BUILD_DIR/mongol/db/auth/serverauth',
+        '$BUILD_DIR/mongol/db/commands',
+        '$BUILD_DIR/mongol/db/commands/test_commands_enabled',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/db/curop',
+        '$BUILD_DIR/mongol/db/exec/working_set',
+        '$BUILD_DIR/mongol/db/index/key_generator',
+        '$BUILD_DIR/mongol/db/index_names',
+        '$BUILD_DIR/mongol/db/lasterror',
+        '$BUILD_DIR/mongol/db/log_process_details',
+        '$BUILD_DIR/mongol/db/matcher/expressions',
+        '$BUILD_DIR/mongol/db/matcher/expressions_geo',
+        '$BUILD_DIR/mongol/db/matcher/expressions_text',
+        '$BUILD_DIR/mongol/db/repl/isself',
+        '$BUILD_DIR/mongol/db/repl/repl_coordinator_global',
+        '$BUILD_DIR/mongol/db/server_options',
+        '$BUILD_DIR/mongol/db/server_parameters',
+        '$BUILD_DIR/mongol/db/startup_warnings_common',
+        '$BUILD_DIR/mongol/db/stats/counters',
+        '$BUILD_DIR/mongol/db/stats/timer_stats',
+        '$BUILD_DIR/mongol/logger/parse_log_component_settings',
+        '$BUILD_DIR/mongol/s/client/sharding_client',
+        '$BUILD_DIR/mongol/s/write_ops/batch_write_types',
+        '$BUILD_DIR/mongol/scripting/scripting_common',
+        '$BUILD_DIR/mongol/util/cmdline_utils/cmdline_utils',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/processinfo',
         'server_status_core',
     ],
     LIBDEPS_TAGS=[
-        # Depends on mongo::exitCleanly.
+        # Depends on mongol::exitCleanly.
         'incomplete',
     ],
 )
@@ -89,10 +89,10 @@ env.Library(
         'killcursors_common.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/audit',
-        '$BUILD_DIR/mongo/db/commands',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_global',
-        '$BUILD_DIR/mongo/db/query/command_request_response',
+        '$BUILD_DIR/mongol/db/audit',
+        '$BUILD_DIR/mongol/db/commands',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_global',
+        '$BUILD_DIR/mongol/db/query/command_request_response',
     ],
 )
 
@@ -102,8 +102,8 @@ env.CppUnitTest(
         "index_filter_commands_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/serveronly",
-        "$BUILD_DIR/mongo/util/ntservice_mock",
+        "$BUILD_DIR/mongol/db/serveronly",
+        "$BUILD_DIR/mongol/util/ntservice_mock",
     ],
     NO_CRUTCH = True,
 )
@@ -114,8 +114,8 @@ env.CppUnitTest(
         "mr_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/serveronly",
-        "$BUILD_DIR/mongo/util/ntservice_mock",
+        "$BUILD_DIR/mongol/db/serveronly",
+        "$BUILD_DIR/mongol/util/ntservice_mock",
     ],
     NO_CRUTCH = True,
 )
@@ -126,8 +126,8 @@ env.CppUnitTest(
         "plan_cache_commands_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/serveronly",
-        "$BUILD_DIR/mongo/util/ntservice_mock",
+        "$BUILD_DIR/mongol/db/serveronly",
+        "$BUILD_DIR/mongol/util/ntservice_mock",
     ],
     NO_CRUTCH = True,
 )

@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iterator>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/oplog_interface_mock.h"
-#include "mongo/db/repl/roll_back_local_operations.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/oplog_interface_mock.h"
+#include "mongol/db/repl/roll_back_local_operations.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 const OplogInterfaceMock::Operations kEmptyMockOperations;
 

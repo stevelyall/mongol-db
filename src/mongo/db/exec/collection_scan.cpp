@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/exec/collection_scan.h"
+#include "mongol/db/exec/collection_scan.h"
 
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/exec/collection_scan_common.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/exec/collection_scan_common.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
 
-#include "mongo/db/client.h"  // XXX-ERH
+#include "mongol/db/client.h"  // XXX-ERH
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -256,4 +256,4 @@ const SpecificStats* CollectionScan::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

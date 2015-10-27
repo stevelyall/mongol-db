@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/task_runner.h"
+#include "mongol/db/repl/task_runner.h"
 
 #include <memory>
 
-#include "mongo/db/operation_context.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -203,4 +203,4 @@ TaskRunner::Task TaskRunner::_waitForNextTask() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,11 +26,11 @@ sourcesList = [ "BinaryFragment.wxs",
 # Need to do this in order to get scons to translate path separators into native format
 buildDir = env.Dir("$BUILD_DIR").path
 if has_option("use-new-tools"):
-	toolBuildDir = "src\mongo-tools"
+	toolBuildDir = "src\mongol-tools"
 else:
-	toolBuildDir = buildDir + r'\mongo'
+	toolBuildDir = buildDir + r'\mongol'
 
-enterprisebase = 'src\mongo\db\modules\enterprise'
+enterprisebase = 'src\mongol\db\modules\enterprise'
 
 # Set up parameters to pass to wix -
 #
@@ -104,14 +104,14 @@ env.Command(objects,
             ' -dMongoDBVersion=' + full_version +
             ' -dLicenseSource=distsrc'
             r' -dEnterpriseBase=' + enterprisebase + '\\'
-            ' -dBinarySource=' + buildDir + r'\mongo'
+            ' -dBinarySource=' + buildDir + r'\mongol'
             ' -dToolBinarySource=' + toolBuildDir +
             ' -dMergeModulesBasePath="$MERGEMODULESBASEPATH"'
             ' -dEdition=' + msi_edition +
             ' -d"ProductId=*\"'
             ' -dUpgradeCode=' + upgrade_code +
             ' -dClientSource=' + buildDir + r'\client_build'
-            r' -dClientHeaderSource=${INSTALL_DIR}\include\mongo'
+            r' -dClientHeaderSource=${INSTALL_DIR}\include\mongol'
             ' -dConfiguration=Release'
             ' -dOutDir=' + buildDir + r'\msi'
             ' -dPlatform=' + msi_platform +

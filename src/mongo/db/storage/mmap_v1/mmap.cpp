@@ -27,24 +27,24 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/util/concurrency/rwlock.h"
-#include "mongo/util/log.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/progress_meter.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/util/concurrency/rwlock.h"
+#include "mongol/util/log.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/progress_meter.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::map;
@@ -95,7 +95,7 @@ void* MemoryMappedFile::map(const char* filename) {
         l = boost::filesystem::file_size(filename);
     } catch (boost::filesystem::filesystem_error& e) {
         uasserted(15922,
-                  mongoutils::str::stream() << "couldn't get file length when opening mapping "
+                  mongolutils::str::stream() << "couldn't get file length when opening mapping "
                                             << filename << ' ' << e.what());
     }
     return map(filename, l);
@@ -106,7 +106,7 @@ void* MemoryMappedFile::mapWithOptions(const char* filename, int options) {
         l = boost::filesystem::file_size(filename);
     } catch (boost::filesystem::filesystem_error& e) {
         uasserted(15923,
-                  mongoutils::str::stream() << "couldn't get file length when opening mapping "
+                  mongolutils::str::stream() << "couldn't get file length when opening mapping "
                                             << filename << ' ' << e.what());
     }
     return map(filename, l, options);
@@ -262,4 +262,4 @@ void dataSyncFailedHandler() {
     fassertFailed(17346);
 }
 
-}  // namespace mongo
+}  // namespace mongol

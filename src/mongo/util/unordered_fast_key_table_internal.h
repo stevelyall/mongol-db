@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/util/unordered_fast_key_table.h"
+#include "mongol/util/unordered_fast_key_table.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename K_L, typename K_S, typename V, typename Traits>
 inline int UnorderedFastKeyTable<K_L, K_S, V, Traits>::Area::find(const HashedKey& key,

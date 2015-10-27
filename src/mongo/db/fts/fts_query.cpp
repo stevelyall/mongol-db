@@ -28,21 +28,21 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/fts/fts_query.h"
+#include "mongol/db/fts/fts_query.h"
 
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/fts_query_parser.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_query_parser.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 using std::set;
 using std::string;

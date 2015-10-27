@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/unittest_helpers.h"
+#include "mongol/unittest/unittest_helpers.h"
 
 #include <ostream>
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 std::ostream& operator<<(std::ostream& s, const Timestamp& ot) {
     s << ot.toString();

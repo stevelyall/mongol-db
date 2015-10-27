@@ -26,44 +26,44 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <algorithm>
 #include <map>
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/index_legacy.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/index_legacy.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::ostringstream;
@@ -954,4 +954,4 @@ private:
 
 } cmdSplitChunk;
 
-}  // namespace mongo
+}  // namespace mongol

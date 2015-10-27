@@ -31,7 +31,7 @@ var tearDown = function() {
  * @param conn {Mongo} the connection object of which to test the read
  *     preference functionality.
  * @param hostList {Array.<Mongo>} list of the replica set host members.
- * @param isMongos {boolean} true if conn is a mongos connection.
+ * @param isMongos {boolean} true if conn is a mongols connection.
  * @param mode {string} a read preference mode like 'secondary'
  * @param tagSets {Array.<Object>} list of tag sets to use
  * @param secExpected {boolean} true if we expect to run any commands on secondary
@@ -172,7 +172,7 @@ var testReadPreference = function(conn, hostList, isMongos, mode, tagSets, secEx
  * @param conn {Mongo} the connection object of which to test the read
  *     preference functionality.
  * @param hostList {Array.<Mongo>} list of the replica set host members.
- * @param isMongos {boolean} true if conn is a mongos connection.
+ * @param isMongos {boolean} true if conn is a mongols connection.
  * @param mode {string} a read preference mode like 'secondary'
  * @param tagSets {Array.<Object>} list of tag sets to use
  */
@@ -264,7 +264,7 @@ var testAllModes = function(conn, hostList, isMongos) {
 };
 
 var st = new ShardingTest({shards : {rs0 : {nodes : NODE_COUNT, verbose : 1}},
-                           other : {mongosOptions : {verbose : 3}}});
+                           other : {mongolsOptions : {verbose : 3}}});
 st.stopBalancer();
 
 ReplSetTest.awaitRSClientHosts(st.s, st.rs0.nodes);
@@ -299,14 +299,14 @@ catch(e) {
 
 st.rs0.awaitSecondaryNodes();
 
-// Force mongos to reconnect after our reconfig
+// Force mongols to reconnect after our reconfig
 assert.soon(function() {
     try {
         st.s.getDB('foo').runCommand({ create: 'foo' });
         return true;
     }
     catch (x) {
-        // Intentionally caused an error that forces mongos's monitor to refresh.
+        // Intentionally caused an error that forces mongols's monitor to refresh.
         jsTest.log('Caught exception while doing dummy command: ' + tojson(x));
         return false;
     }
@@ -326,7 +326,7 @@ _awaitRSHostViaRSMonitor(secondary.name, { ok: true, tags: SECONDARY_TAG }, st.r
 
 testAllModes(replConn, st.rs0.nodes, false);
 
-jsTest.log('Starting test for mongos connection');
+jsTest.log('Starting test for mongols connection');
 
 testAllModes(st.s, st.rs0.nodes, true);
 

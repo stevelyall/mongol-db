@@ -29,7 +29,7 @@ function checkNoJournalFiles(path, pass) {
     var files = listFiles(path);
     if (files.some(function (f) { return f.name.indexOf("prealloc") < 0; })) {
         if (pass == null) {
-            // wait a bit longer for mongod to potentially finish if it is still running.
+            // wait a bit longer for mongold to potentially finish if it is still running.
             sleep(10000);
             return checkNoJournalFiles(path, 1);
         }
@@ -141,7 +141,7 @@ function someWritesInJournal() {
 function noWritesInJournal() {
     // It is too difficult to consistently trigger cases where there are no existing journal files due to lack of disk space, but
     // if we were to test this case we would need to manualy remove the lock file.
-//    removeFile( startPath + "/mongod.lock" );
+//    removeFile( startPath + "/mongold.lock" );
 }
 
 if ( doIt ) {

@@ -28,11 +28,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/dbtests/dbtests.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/dbtests/dbtests.h"
 
 namespace ExpressionTests {
 
@@ -53,7 +53,7 @@ static BSONObj constify(const BSONObj& obj, bool parentIsArray = false) {
             // arrays within arrays are treated as constant values by the real parser
             bob << elem.fieldName() << BSONArray(constify(elem.Obj(), true));
         } else if (str::equals(elem.fieldName(), "$const") ||
-                   (elem.type() == mongo::String && elem.valuestrsafe()[0] == '$')) {
+                   (elem.type() == mongol::String && elem.valuestrsafe()[0] == '$')) {
             bob.append(elem);
         } else {
             bob.append(elem.fieldName(), BSON("$const" << elem));
@@ -2024,7 +2024,7 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression()->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << 5);
@@ -2054,7 +2054,7 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a"),
+        expression()->addField(mongol::FieldPath("a"),
                                ExpressionConstant::create(Value(BSONUndefined)));
     }
     BSONObj expected() {
@@ -2085,7 +2085,7 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(BSONNULL)));
+        expression()->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(BSONNULL)));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSONNULL);
@@ -2108,7 +2108,7 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
+        expression()->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << 5));
@@ -2131,7 +2131,7 @@ public:
         return BSON("_id" << 0 << "x" << 4);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a"), ExpressionFieldPath::create("x"));
+        expression()->addField(mongol::FieldPath("a"), ExpressionFieldPath::create("x"));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << 4);
@@ -2156,7 +2156,7 @@ public:
         return BSON("_id" << 0 << "x" << BSON("y" << 4));
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b"), ExpressionFieldPath::create("x.y"));
+        expression()->addField(mongol::FieldPath("a.b"), ExpressionFieldPath::create("x.y"));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << 4));
@@ -2183,8 +2183,8 @@ public:
     void prepareExpression() {
         // Create a sub expression returning an empty object.
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("b"), ExpressionFieldPath::create("a.b"));
-        expression()->addField(mongo::FieldPath("a"), subExpression);
+        subExpression->addField(mongol::FieldPath("b"), ExpressionFieldPath::create("a.b"));
+        expression()->addField(mongol::FieldPath("a"), subExpression);
     }
     BSONObj expected() {
         return BSON("_id" << 0);
@@ -2210,8 +2210,8 @@ public:
     void prepareExpression() {
         // Create a sub expression returning an empty object.
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(6)));
-        expression()->addField(mongo::FieldPath("a"), subExpression);
+        subExpression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a"), subExpression);
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << 6));
@@ -2234,8 +2234,8 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
-        expression()->addField(mongo::FieldPath("a.c"), ExpressionConstant::create(Value(7)));
+        expression()->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a.c"), ExpressionConstant::create(Value(7)));
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << 6 << "c" << 7));
@@ -2254,10 +2254,10 @@ public:
 /** Two computed fields within a common parent, in one case dotted. */
 class AdjacentDottedAndNestedComputedFields : public AdjacentDottedComputedFields {
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("c"), ExpressionConstant::create(Value(7)));
-        expression()->addField(mongo::FieldPath("a"), subExpression);
+        subExpression->addField(mongol::FieldPath("c"), ExpressionConstant::create(Value(7)));
+        expression()->addField(mongol::FieldPath("a"), subExpression);
     }
 };
 
@@ -2265,9 +2265,9 @@ class AdjacentDottedAndNestedComputedFields : public AdjacentDottedComputedField
 class AdjacentNestedAndDottedComputedFields : public AdjacentDottedComputedFields {
     void prepareExpression() {
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(6)));
-        expression()->addField(mongo::FieldPath("a"), subExpression);
-        expression()->addField(mongo::FieldPath("a.c"), ExpressionConstant::create(Value(7)));
+        subExpression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a"), subExpression);
+        expression()->addField(mongol::FieldPath("a.c"), ExpressionConstant::create(Value(7)));
     }
 };
 
@@ -2275,11 +2275,11 @@ class AdjacentNestedAndDottedComputedFields : public AdjacentDottedComputedField
 class AdjacentNestedComputedFields : public AdjacentDottedComputedFields {
     void prepareExpression() {
         intrusive_ptr<ExpressionObject> firstSubExpression = ExpressionObject::create();
-        firstSubExpression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(6)));
-        expression()->addField(mongo::FieldPath("a"), firstSubExpression);
+        firstSubExpression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a"), firstSubExpression);
         intrusive_ptr<ExpressionObject> secondSubExpression = ExpressionObject::create();
-        secondSubExpression->addField(mongo::FieldPath("c"), ExpressionConstant::create(Value(7)));
-        expression()->addField(mongo::FieldPath("a"), secondSubExpression);
+        secondSubExpression->addField(mongol::FieldPath("c"), ExpressionConstant::create(Value(7)));
+        expression()->addField(mongol::FieldPath("a"), secondSubExpression);
     }
 };
 
@@ -2290,12 +2290,12 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
         // Add field 'd' then 'c'.  Expect the same field ordering in the result doc.
-        subExpression->addField(mongo::FieldPath("d"), ExpressionConstant::create(Value(7)));
-        subExpression->addField(mongo::FieldPath("c"), ExpressionConstant::create(Value(8)));
-        expression()->addField(mongo::FieldPath("a"), subExpression);
+        subExpression->addField(mongol::FieldPath("d"), ExpressionConstant::create(Value(7)));
+        subExpression->addField(mongol::FieldPath("c"), ExpressionConstant::create(Value(8)));
+        expression()->addField(mongol::FieldPath("a"), subExpression);
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << 6 << "d" << 7 << "c" << 8));
@@ -2318,12 +2318,12 @@ public:
         return BSON("_id" << 0);
     }
     void prepareExpression() {
-        expression()->addField(mongo::FieldPath("a.b.c"), ExpressionConstant::create(Value(6)));
+        expression()->addField(mongol::FieldPath("a.b.c"), ExpressionConstant::create(Value(6)));
         intrusive_ptr<ExpressionObject> bSubExpression = ExpressionObject::create();
-        bSubExpression->addField(mongo::FieldPath("d"), ExpressionConstant::create(Value(7)));
+        bSubExpression->addField(mongol::FieldPath("d"), ExpressionConstant::create(Value(7)));
         intrusive_ptr<ExpressionObject> aSubExpression = ExpressionObject::create();
-        aSubExpression->addField(mongo::FieldPath("b"), bSubExpression);
-        expression()->addField(mongo::FieldPath("a"), aSubExpression);
+        aSubExpression->addField(mongol::FieldPath("b"), bSubExpression);
+        expression()->addField(mongol::FieldPath("a"), aSubExpression);
     }
     BSONObj expected() {
         return BSON("_id" << 0 << "a" << BSON("b" << BSON("c" << 6 << "d" << 7)));
@@ -2344,8 +2344,8 @@ class ConflictingExpressionFields : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
-        ASSERT_THROWS(expression->addField(mongo::FieldPath("a"),  // Duplicate field.
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        ASSERT_THROWS(expression->addField(mongol::FieldPath("a"),  // Duplicate field.
                                            ExpressionConstant::create(Value(6))),
                       UserException);
     }
@@ -2358,7 +2358,7 @@ public:
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
         expression->includePath("a");
         ASSERT_THROWS(
-            expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(6))),
+            expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(6))),
             UserException);
     }
 };
@@ -2368,7 +2368,7 @@ class ConflictingExpressionInclusionFields : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         ASSERT_THROWS(expression->includePath("a"), UserException);
     }
 };
@@ -2380,9 +2380,9 @@ public:
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
         subExpression->includePath("b");
-        expression->addField(mongo::FieldPath("a"), subExpression);
+        expression->addField(mongol::FieldPath("a"), subExpression);
         ASSERT_THROWS(
-            expression->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(6))),
+            expression->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(6))),
             UserException);
     }
 };
@@ -2392,10 +2392,10 @@ class ConflictingConstantObjectExpressionFields : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
+        expression->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(6)));
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
         subExpression->includePath("b");
-        ASSERT_THROWS(expression->addField(mongo::FieldPath("a"), subExpression), UserException);
+        ASSERT_THROWS(expression->addField(mongol::FieldPath("a"), subExpression), UserException);
     }
 };
 
@@ -2404,8 +2404,8 @@ class ConflictingNestedFields : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
-        ASSERT_THROWS(expression->addField(mongo::FieldPath("a.b"),  // Duplicate field.
+        expression->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
+        ASSERT_THROWS(expression->addField(mongol::FieldPath("a.b"),  // Duplicate field.
                                            ExpressionConstant::create(Value(6))),
                       UserException);
     }
@@ -2416,9 +2416,9 @@ class ConflictingFieldAndSubfield : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         ASSERT_THROWS(
-            expression->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(5))),
+            expression->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(5))),
             UserException);
     }
 };
@@ -2428,10 +2428,10 @@ class ConflictingFieldAndNestedField : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(5)));
-        ASSERT_THROWS(expression->addField(mongo::FieldPath("a"), subExpression), UserException);
+        subExpression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(5)));
+        ASSERT_THROWS(expression->addField(mongol::FieldPath("a"), subExpression), UserException);
     }
 };
 
@@ -2440,9 +2440,9 @@ class ConflictingSubfieldAndField : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a.b"), ExpressionConstant::create(Value(5)));
         ASSERT_THROWS(
-            expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5))),
+            expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5))),
             UserException);
     }
 };
@@ -2453,10 +2453,10 @@ public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
         intrusive_ptr<ExpressionObject> subExpression = ExpressionObject::create();
-        subExpression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(5)));
-        expression->addField(mongo::FieldPath("a"), subExpression);
+        subExpression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), subExpression);
         ASSERT_THROWS(
-            expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5))),
+            expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5))),
             UserException);
     }
 };
@@ -2466,10 +2466,10 @@ class NonInclusionDependencies : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         assertDependencies(BSON_ARRAY("_id"), expression, true);
         assertDependencies(BSONArray(), expression, false);
-        expression->addField(mongo::FieldPath("b"), ExpressionFieldPath::create("c.d"));
+        expression->addField(mongol::FieldPath("b"), ExpressionFieldPath::create("c.d"));
         assertDependencies(BSON_ARRAY("_id"
                                       << "c.d"),
                            expression,
@@ -2503,7 +2503,7 @@ public:
         expression->includePath("a");
         // Add non inclusion.
         intrusive_ptr<Expression> andExpr = new ExpressionAnd();
-        expression->addField(mongo::FieldPath("b"), andExpr);
+        expression->addField(mongol::FieldPath("b"), andExpr);
         expression->optimize();
         // Optimizing 'expression' optimizes its non inclusion sub expressions, while
         // inclusion sub expressions are passed through.
@@ -2517,7 +2517,7 @@ class AddToBsonObj : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         ASSERT_EQUALS(constify(BSON("foo" << BSON("a" << 5))),
                       BSON("foo" << expression->serialize(false)));
     }
@@ -2528,7 +2528,7 @@ class AddToBsonObjRequireExpression : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         ASSERT_EQUALS(BSON("foo" << BSON("a" << BSON("$const" << 5))),
                       BSON("foo" << expression->serialize(false)));
     }
@@ -2539,7 +2539,7 @@ class AddToBsonArray : public Base {
 public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
-        expression->addField(mongo::FieldPath("a"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("a"), ExpressionConstant::create(Value(5)));
         BSONArrayBuilder bab;
         bab << expression->serialize(false);
         ASSERT_EQUALS(constify(BSON_ARRAY(BSON("a" << 5))), bab.arr());
@@ -2556,8 +2556,8 @@ public:
     void run() {
         intrusive_ptr<ExpressionObject> expression = ExpressionObject::createRoot();
         expression->includePath("a");
-        expression->addField(mongo::FieldPath("b"), ExpressionConstant::create(Value(5)));
-        expression->addField(mongo::FieldPath("c"), ExpressionFieldPath::create("a"));
+        expression->addField(mongol::FieldPath("b"), ExpressionConstant::create(Value(5)));
+        expression->addField(mongol::FieldPath("c"), ExpressionFieldPath::create("a"));
         ASSERT_EQUALS(
             BSON("b" << 5 << "c" << 1),
             toBson(expression->evaluate(fromBson(BSON("_id" << 0 << "a" << 1))).getDocument()));
@@ -3128,7 +3128,7 @@ class InvalidType : public ParseError {
 
 namespace Expression {
 
-using mongo::Expression;
+using mongol::Expression;
 
 class Base {
 public:
@@ -3274,8 +3274,8 @@ public:
         BSONElement specElement = specObject.firstElement();
         VariablesIdGenerator idGenerator;
         VariablesParseState vps(&idGenerator);
-        intrusive_ptr<mongo::Expression> expression =
-            mongo::Expression::parseOperand(specElement, vps);
+        intrusive_ptr<mongol::Expression> expression =
+            mongol::Expression::parseOperand(specElement, vps);
         ASSERT_EQUALS(expectedBson(), expressionToBson(expression));
     }
 
@@ -3294,7 +3294,7 @@ public:
         BSONElement specElement = specObject.firstElement();
         VariablesIdGenerator idGenerator;
         VariablesParseState vps(&idGenerator);
-        ASSERT_THROWS(mongo::Expression::parseOperand(specElement, vps), UserException);
+        ASSERT_THROWS(mongol::Expression::parseOperand(specElement, vps), UserException);
     }
 
 protected:
@@ -3310,8 +3310,8 @@ public:
         BSONElement specElement = specObject.firstElement();
         VariablesIdGenerator idGenerator;
         VariablesParseState vps(&idGenerator);
-        intrusive_ptr<mongo::Expression> expression =
-            mongo::Expression::parseOperand(specElement, vps);
+        intrusive_ptr<mongol::Expression> expression =
+            mongol::Expression::parseOperand(specElement, vps);
         ASSERT_EQUALS(specObject, BSON("" << expression->serialize(false)));
     }
 };

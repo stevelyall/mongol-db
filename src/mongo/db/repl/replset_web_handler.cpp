@@ -26,19 +26,19 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sstream>
 
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/repl_set_html_summary.h"
-#include "mongo/db/repl/rslog.h"
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/repl_set_html_summary.h"
+#include "mongol/db/repl/rslog.h"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using namespace html;
@@ -70,7 +70,7 @@ public:
         s << p(a("/", "back", "Home") + " | " +
                a("/local/system.replset/?html=1", "", "View Replset Config") + " | " +
                a("/replSetGetStatus?text=1", "", "replSetGetStatus") + " | " +
-               a("http://dochub.mongodb.org/core/replicasets", "", "Docs"));
+               a("http://dochub.mongoldb.org/core/replicasets", "", "Docs"));
 
         ReplicationCoordinator* replCoord = getGlobalReplicationCoordinator();
         if (replCoord->getReplicationMode() != ReplicationCoordinator::modeReplSet) {
@@ -92,4 +92,4 @@ public:
 } replSetHandler;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

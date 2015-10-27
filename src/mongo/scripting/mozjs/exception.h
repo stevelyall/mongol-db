@@ -30,17 +30,17 @@
 
 #include <jsapi.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/string_data.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
  * Turns a current C++ exception into a JS exception
  */
-void mongoToJSException(JSContext* cx);
+void mongolToJSException(JSContext* cx);
 
 /**
  * Sets an exception for javascript
@@ -77,4 +77,4 @@ MONGO_COMPILER_NORETURN void throwCurrentJSException(JSContext* cx,
                                                      StringData altReason);
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -7,12 +7,12 @@
  * 
  *   {
  *     name {string}: name for this test
- *     verbose {number}: the verbosity for the mongos
+ *     verbose {number}: the verbosity for the mongols
  *     keyFile {string}: the location of the keyFile
  *     chunksize {number}:
  *     nopreallocj {boolean|number}:
  * 
- *     mongos {number|Object|Array.<Object>}: number of mongos or mongos
+ *     mongols {number|Object|Array.<Object>}: number of mongols or mongols
  *       configuration object(s)(*). @see MongoRunner.runMongos
  * 
  *     rs {Object|Array.<Object>}: replica set configuration object. Can
@@ -36,7 +36,7 @@
  * 
  *           { d0: { verbose: 5 }, d1: { auth: '' }, rs2: { oplogsize: 10 }}
  * 
- *           In this format, d = mongod, s = mongos & c = config servers
+ *           In this format, d = mongold, s = mongols & c = config servers
  * 
  *       (2) Using the array format. Example:
  * 
@@ -56,8 +56,8 @@
  *          1 or 3 config servers, based on the value of numConfigs.
  *       configOptions {Object}: same as the config property above.
  *          Can be used to specify options that are common all config servers.
- *       mongosOptions {Object}: same as the mongos property above.
- *          Can be used to specify options that are common all mongos.
+ *       mongolsOptions {Object}: same as the mongols property above.
+ *          Can be used to specify options that are common all mongols.
  *       enableBalancer {boolean} : if true, enable the balancer
  *       manualAddShard {boolean}: shards will not be added if true.
  *
@@ -71,8 +71,8 @@
  *   }
  *
  * Member variables:
- * s {Mongo} - connection to the first mongos
- * s0, s1, ... {Mongo} - connection to different mongos
+ * s {Mongo} - connection to the first mongols
+ * s0, s1, ... {Mongo} - connection to different mongols
  * rs0, rs1, ... {ReplSetTest} - test objects to replica sets
  * shard0, shard1, ... {Mongo} - connection to shards (not available for replica sets)
  * d0, d1, ... {Mongo} - same as shard0, shard1, ...
@@ -97,13 +97,13 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
 
         numShards = otherParams.hasOwnProperty('shards') ? otherParams.shards : 2;
         verboseLevel = otherParams.hasOwnProperty('verbose') ? otherParams.verbose : 0;
-        numMongos = otherParams.hasOwnProperty('mongos') ? otherParams.mongos : 1;
+        numMongos = otherParams.hasOwnProperty('mongols') ? otherParams.mongols : 1;
         numConfigs = otherParams.hasOwnProperty('config') ? otherParams.config : numConfigs;
 
         var tempCount = 0;
         
         // Allow specifying options like :
-        // { mongos : [ { noprealloc : "" } ], config : [ { smallfiles : "" } ], shards : { rs : true, d : true } } 
+        // { mongols : [ { noprealloc : "" } ], config : [ { smallfiles : "" } ], shards : { rs : true, d : true } } 
         if( Array.isArray( numShards ) ){
             for( var i = 0; i < numShards.length; i++ ){
                 otherParams[ "d" + i ] = numShards[i];
@@ -364,7 +364,7 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
         config.settings = config.settings || {};
         this.configRS.initiate(config);
 
-        this.configRS.getMaster(); // Wait for master to be elected before starting mongos
+        this.configRS.getMaster(); // Wait for master to be elected before starting mongols
 
         this._configDB = this.configRS.getURL();
         this._configServers = this.configRS.nodes;
@@ -396,20 +396,20 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
 
     if ( numMongos == 0 && !otherParams.noChunkSize ) {
         if ( keyFile ) {
-            throw Error("Cannot set chunk size without any mongos when using auth");
+            throw Error("Cannot set chunk size without any mongols when using auth");
         } else {
             this._configConnection.getDB( "config" ).settings.insert(
                 { _id : "chunksize" , value : otherParams.chunksize || otherParams.chunkSize || 50 } );
         }
     }
 
-    this._mongos = []
+    this._mongols = []
 
     // Start the MongoS servers
     for (var i = 0; i < ( ( numMongos == 0 ? -1 : numMongos ) || 1 ); i++ ){
         options = {
             useHostname: otherParams.useHostname,
-            pathOpts: Object.merge(pathOpts, {mongos: i}),
+            pathOpts: Object.merge(pathOpts, {mongols: i}),
             configdb: this._configDB,
             verbose: verboseLevel || 0,
             keyFile: keyFile
@@ -419,20 +419,20 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
             options.chunkSize = otherParams.chunksize || otherParams.chunkSize || 50;
         }
 
-        options = Object.merge( options, ShardingTest.mongosOptions || {} )
+        options = Object.merge( options, ShardingTest.mongolsOptions || {} )
 
-        if (otherParams.mongosOptions && otherParams.mongosOptions.binVersion) {
-            otherParams.mongosOptions.binVersion =
-                MongoRunner.versionIterator(otherParams.mongosOptions.binVersion);
+        if (otherParams.mongolsOptions && otherParams.mongolsOptions.binVersion) {
+            otherParams.mongolsOptions.binVersion =
+                MongoRunner.versionIterator(otherParams.mongolsOptions.binVersion);
         }
 
-        options = Object.merge( options, otherParams.mongosOptions )
+        options = Object.merge( options, otherParams.mongolsOptions )
         options = Object.merge( options, otherParams.extraOptions )
         options = Object.merge( options, otherParams["s" + i] )
 
         conn = MongoRunner.runMongos(options);
 
-        this._mongos.push(conn);
+        this._mongols.push(conn);
 
         if (i === 0) {
             this.s = conn;
@@ -446,7 +446,7 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
     // Disable the balancer unless it is explicitly turned on
     if ( !otherParams.enableBalancer ) {
         if (keyFile) {
-            authutil.assertAuthenticate(this._mongos, 'admin', {
+            authutil.assertAuthenticate(this._mongols, 'admin', {
                 user: '__system',
                 mechanism: 'MONGODB-CR',
                 pwd: cat(keyFile).replace(/[\011-\015\040]/g, '')
@@ -456,7 +456,7 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
                 this.stopBalancer();
             }
             finally {
-                authutil.logout(this._mongos, 'admin');
+                authutil.logout(this._mongols, 'admin');
             }
         }
         else {
@@ -495,7 +495,7 @@ ShardingTest = function( testName , numShards , verboseLevel , numMongos , other
     if (jsTestOptions().keyFile) {
         jsTest.authenticate( this._configConnection );
         jsTest.authenticateNodes( this._configServers );
-        jsTest.authenticateNodes( this._mongos );
+        jsTest.authenticateNodes( this._mongols );
     }
 }
 
@@ -583,8 +583,8 @@ ShardingTest.prototype.getOther = function( one ){
     if ( this._connections.length < 2 )
         throw Error("getOther only works with 2 servers");
 
-    if ( one._mongo )
-        one = one._mongo
+    if ( one._mongol )
+        one = one._mongol
     
     for( var i = 0; i < this._connections.length; i++ ){
         if( this._connections[i] != one ) return this._connections[i]
@@ -597,8 +597,8 @@ ShardingTest.prototype.getAnother = function( one ){
     if(this._connections.length < 2)
         throw Error("getAnother() only works with multiple servers");
 	
-	if ( one._mongo )
-        one = one._mongo
+	if ( one._mongol )
+        one = one._mongol
     
     for(var i = 0; i < this._connections.length; i++){
     	if(this._connections[i] == one)
@@ -615,8 +615,8 @@ ShardingTest.prototype.getFirstOther = function( one ){
 }
 
 ShardingTest.prototype.stop = function(){
-    for (var i = 0; i < this._mongos.length; i++) {
-        MongoRunner.stopMongos(this._mongos[i].port);
+    for (var i = 0; i < this._mongols.length; i++) {
+        MongoRunner.stopMongos(this._mongols[i].port);
     }
 
     for (var i = 0; i < this._connections.length; i++) {
@@ -711,11 +711,11 @@ ShardingTest.prototype.printCollectionInfo = function( ns , msg ){
     out += "sharding collection info: " + ns + "\n";
     for ( var i=0; i<this._connections.length; i++ ){
         var c = this._connections[i];
-        out += "  mongod " + c + " " + tojson( c.getCollection( ns ).getShardVersion() , " " , true ) + "\n";
+        out += "  mongold " + c + " " + tojson( c.getCollection( ns ).getShardVersion() , " " , true ) + "\n";
     }
-    for ( var i=0; i<this._mongos.length; i++ ){
-        var c = this._mongos[i];
-        out += "  mongos " + c + " " + tojson( c.getCollection( ns ).getShardVersion() , " " , true ) + "\n";
+    for ( var i=0; i<this._mongols.length; i++ ){
+        var c = this._mongols[i];
+        out += "  mongols " + c + " " + tojson( c.getCollection( ns ).getShardVersion() , " " , true ) + "\n";
     }
     
     out += this.getChunksString( ns );
@@ -731,7 +731,7 @@ printShardingStatus = function( configDB , verbose ){
     
     var version = configDB.getCollection( "version" ).findOne();
     if ( version == null ){
-        print( "printShardingStatus: this db does not have sharding enabled. be sure you are connecting to a mongos from the shell and not to a mongod." );
+        print( "printShardingStatus: this db does not have sharding enabled. be sure you are connecting to a mongols from the shell and not to a mongold." );
         return;
     }
     
@@ -749,22 +749,22 @@ printShardingStatus = function( configDB , verbose ){
         }
     );
 
-    // (most recently) active mongoses
-    var mongosActiveThresholdMs = 60000;
-    var mostRecentMongos = configDB.mongos.find().sort( { ping : -1 } ).limit(1);
+    // (most recently) active mongolses
+    var mongolsActiveThresholdMs = 60000;
+    var mostRecentMongos = configDB.mongols.find().sort( { ping : -1 } ).limit(1);
     var mostRecentMongosTime = null;
-    var mongosAdjective = "most recently active";
+    var mongolsAdjective = "most recently active";
     if (mostRecentMongos.hasNext()) {
         mostRecentMongosTime = mostRecentMongos.next().ping;
         // Mongoses older than the threshold are the most recent, but cannot be
-        // considered "active" mongoses. (This is more likely to be an old(er)
-        // configdb dump, or all the mongoses have been stopped.)
-        if (mostRecentMongosTime.getTime() >= Date.now() - mongosActiveThresholdMs) {
-            mongosAdjective = "active";
+        // considered "active" mongolses. (This is more likely to be an old(er)
+        // configdb dump, or all the mongolses have been stopped.)
+        if (mostRecentMongosTime.getTime() >= Date.now() - mongolsActiveThresholdMs) {
+            mongolsAdjective = "active";
         }
     }
 
-    output( "  " + mongosAdjective + " mongoses:" );
+    output( "  " + mongolsAdjective + " mongolses:" );
     if (mostRecentMongosTime === null) {
         output( "\tnone" );
     } else {
@@ -772,22 +772,22 @@ printShardingStatus = function( configDB , verbose ){
             ping: {
                 $gt: (function () {
                     var d = mostRecentMongosTime;
-                    d.setTime(d.getTime() - mongosActiveThresholdMs);
+                    d.setTime(d.getTime() - mongolsActiveThresholdMs);
                     return d;
                 } )()
             }
         };
 
         if ( verbose ) {
-            configDB.mongos.find( recentMongosQuery ).sort( { ping : -1 } ).forEach(
+            configDB.mongols.find( recentMongosQuery ).sort( { ping : -1 } ).forEach(
                 function (z) {
                     output( "\t" + tojsononeline( z ) );
                 }
             );
         } else {
-            configDB.mongos.aggregate( [
+            configDB.mongols.aggregate( [
                         { $match: recentMongosQuery },
-                        { $group: { _id: "$mongoVersion", num: { $sum: 1 } } },
+                        { $group: { _id: "$mongolVersion", num: { $sum: 1 } } },
                         { $sort: { num: -1 } }
                     ] ).forEach(
                 function (z) {
@@ -1006,7 +1006,7 @@ ShardingTest.prototype.sync = function(){
 }
 
 ShardingTest.prototype.onNumShards = function( collName , dbName ){
-    this.sync(); // we should sync since we're going directly to mongod here
+    this.sync(); // we should sync since we're going directly to mongold here
     dbName = dbName || "test";
     var num=0;
     for ( var i=0; i<this._connections.length; i++ )
@@ -1017,7 +1017,7 @@ ShardingTest.prototype.onNumShards = function( collName , dbName ){
 
 
 ShardingTest.prototype.shardCounts = function( collName , dbName ){
-    this.sync(); // we should sync since we're going directly to mongod here
+    this.sync(); // we should sync since we're going directly to mongold here
     dbName = dbName || "test";
     var counts = {}
     for ( var i=0; i<this._connections.length; i++ )
@@ -1239,36 +1239,36 @@ ShardingTest.prototype.isAnyBalanceInFlight = function() {
 }
 
 /**
- * Kills the mongos with index n.
+ * Kills the mongols with index n.
  */
 ShardingTest.prototype.stopMongos = function(n) {
     MongoRunner.stopMongos(this['s' + n].port);
 };
 
 /**
- * Kills the mongod with index n.
+ * Kills the mongold with index n.
  */
 ShardingTest.prototype.stopMongod = function(n) {
     MongoRunner.stopMongod(this['d' + n].port);
 };
 
 /**
- * Restarts a previously stopped mongos.
+ * Restarts a previously stopped mongols.
  *
- * If opts is specified, the new mongos is started using those options. Otherwise, it is started
+ * If opts is specified, the new mongols is started using those options. Otherwise, it is started
  * with its previous parameters.
  *
  * Warning: Overwrites the old s (if n = 0) admin, config, and sn member variables.
  */
 ShardingTest.prototype.restartMongos = function(n, opts) {
-    var mongos = this['s' + n];
+    var mongols = this['s' + n];
 
     if (opts === undefined) {
         opts = this['s' + n];
         opts.restart = true;
     }
 
-    MongoRunner.stopMongos(mongos);
+    MongoRunner.stopMongos(mongols);
 
     var newConn = MongoRunner.runMongos(opts);
 
@@ -1281,23 +1281,23 @@ ShardingTest.prototype.restartMongos = function(n, opts) {
 };
 
 /**
- * Restarts a previously stopped mongod using the same parameters as before.
+ * Restarts a previously stopped mongold using the same parameters as before.
  *
  * Warning: Overwrites the old dn member variables.
  */
 ShardingTest.prototype.restartMongod = function(n) {
-    var mongod = this['d' + n];
-    MongoRunner.stopMongod(mongod);
-    mongod.restart = true;
+    var mongold = this['d' + n];
+    MongoRunner.stopMongod(mongold);
+    mongold.restart = true;
 
-    var newConn = MongoRunner.runMongod(mongod);
+    var newConn = MongoRunner.runMongod(mongold);
 
     this['d' + n] = newConn;
 };
 
 /**
  * Helper method for setting primary shard of a database and making sure that it was successful.
- * Note: first mongos needs to be up.
+ * Note: first mongols needs to be up.
  */
 ShardingTest.prototype.ensurePrimaryShard = function(dbName, shardName) {
     var db = this.s0.getDB('admin');

@@ -26,9 +26,9 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/compiler.h"
+#include "mongol/platform/compiler.h"
 
-namespace mongo {
+namespace mongol {
 
 /** This function will call ::_exit and not return. Use this instead of calling ::_exit
  *  directly:
@@ -40,4 +40,4 @@ namespace mongo {
  */
 MONGO_COMPILER_NORETURN void quickExit(int);
 
-}  // namespace mongo
+}  // namespace mongol

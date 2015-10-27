@@ -27,19 +27,19 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/miniwebserver.h"
+#include "mongol/util/net/miniwebserver.h"
 
 #include <pcrecpp.h>
 
-#include "mongo/config.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
+#include "mongol/config.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::endl;
@@ -233,4 +233,4 @@ string MiniWebServer::urlDecode(const char* s) {
     return out.str();
 }
 
-}  // namespace mongo
+}  // namespace mongol

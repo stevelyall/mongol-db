@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/s/client/mock_multi_write_command.h"
-#include "mongo/s/mock_ns_targeter.h"
-#include "mongo/s/mock_shard_resolver.h"
-#include "mongo/s/write_ops/batch_write_exec.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/s/client/mock_multi_write_command.h"
+#include "mongol/s/mock_ns_targeter.h"
+#include "mongol/s/mock_shard_resolver.h"
+#include "mongol/s/write_ops/batch_write_exec.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -309,4 +309,4 @@ TEST(BatchWriteExecTests, ManyStaleOpWithMigration) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

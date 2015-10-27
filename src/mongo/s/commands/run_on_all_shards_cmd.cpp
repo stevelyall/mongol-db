@@ -26,23 +26,23 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/commands/run_on_all_shards_cmd.h"
+#include "mongol/s/commands/run_on_all_shards_cmd.h"
 
 #include <list>
 #include <set>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 RunOnAllShardsCommand::RunOnAllShardsCommand(const char* name,
                                              const char* oldName,

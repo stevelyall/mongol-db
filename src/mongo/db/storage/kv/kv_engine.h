@@ -33,11 +33,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/catalog/collection_options.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/catalog/collection_options.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexDescriptor;
 class OperationContext;
@@ -119,7 +119,7 @@ public:
     /**
      * Returns true if storage engine supports --directoryperdb.
      * See:
-     *     http://docs.mongodb.org/manual/reference/program/mongod/#cmdoption--directoryperdb
+     *     http://docs.mongoldb.org/manual/reference/program/mongold/#cmdoption--directoryperdb
      */
     virtual bool supportsDirectoryPerDB() const = 0;
 
@@ -154,7 +154,7 @@ public:
     }
 
     /**
-     * The destructor will never be called from mongod, but may be called from tests.
+     * The destructor will never be called from mongold, but may be called from tests.
      * Engines may assume that this will only be called in the case of clean shutdown, even if
      * cleanShutdown() hasn't been called.
      */

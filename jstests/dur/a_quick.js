@@ -41,7 +41,7 @@ function checkNoJournalFiles(path, pass) {
     var files = listFiles(path);
     if (files.some(function (f) { return f.name.indexOf("prealloc") < 0; })) {
         if (pass == null) {
-            // wait a bit longer for mongod to potentially finish if it is still running.
+            // wait a bit longer for mongold to potentially finish if it is still running.
             sleep(10000);
             return checkNoJournalFiles(path, 1);
         }   
@@ -58,7 +58,7 @@ var path1 = MongoRunner.dataDir + "/quicknodur";
 var path2 = MongoRunner.dataDir + "/quickdur";
 
 // non-durable version
-tst.log("start mongod without dur");
+tst.log("start mongold without dur");
 var conn = MongoRunner.runMongod({dbpath: path1, nojournal: ""});
 tst.log("without dur work");
 var d = conn.getDB("test");
@@ -67,7 +67,7 @@ tst.log("stop without dur");
 MongoRunner.stopMongod(conn);
 
 // durable version
-tst.log("start mongod with dur");
+tst.log("start mongold with dur");
 conn = MongoRunner.runMongod({dbpath: path2, journal: "", journalOptions: 8});
 tst.log("with dur work");
 d = conn.getDB("test");
@@ -80,7 +80,7 @@ tst.log("sleep a bit for a group commit");
 sleep(8000);
 
 // kill the process hard
-tst.log("kill -9 mongod");
+tst.log("kill -9 mongold");
 MongoRunner.stopMongod(conn.port, /*signal*/9);
 
 // journal file should be present, and non-empty as we killed hard

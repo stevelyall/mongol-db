@@ -27,25 +27,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/bson/bsonelement.h"
+#include "mongol/bson/bsonelement.h"
 
 #include <cmath>
 #include <boost/functional/hash.hpp>
 
-#include "mongo/base/compare_numbers.h"
-#include "mongo/base/data_cursor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/strnlen.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/compare_numbers.h"
+#include "mongol/base/data_cursor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/strnlen.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
-namespace str = mongoutils::str;
+namespace mongol {
+namespace str = mongolutils::str;
 
 using std::dec;
 using std::hex;
@@ -56,7 +56,7 @@ string BSONElement::jsonString(JsonStringFormat format, bool includeFieldNames, 
     if (includeFieldNames)
         s << '"' << escape(fieldName()) << "\" : ";
     switch (type()) {
-        case mongo::String:
+        case mongol::String:
         case Symbol:
             s << '"' << escape(string(valuestr(), valuestrsize() - 1)) << '"';
             break;
@@ -111,7 +111,7 @@ string BSONElement::jsonString(JsonStringFormat format, bool includeFieldNames, 
             else
                 s << "\" }";
             break;
-        case mongo::Bool:
+        case mongol::Bool:
             s << (boolean() ? "true" : "false");
             break;
         case jstNULL:
@@ -127,7 +127,7 @@ string BSONElement::jsonString(JsonStringFormat format, bool includeFieldNames, 
         case Object:
             s << embeddedObject().jsonString(format, pretty);
             break;
-        case mongo::Array: {
+        case mongol::Array: {
             if (embeddedObject().isEmpty()) {
                 s << "[]";
                 break;
@@ -167,7 +167,7 @@ string BSONElement::jsonString(JsonStringFormat format, bool includeFieldNames, 
             s << '"' << valuestr() << "\", ";
             if (format != TenGen)
                 s << "\"$id\" : ";
-            s << '"' << mongo::OID::from(valuestr() + valuestrsize()) << "\" ";
+            s << '"' << mongol::OID::from(valuestr() + valuestrsize()) << "\" ";
             if (format == TenGen)
                 s << ')';
             else
@@ -201,7 +201,7 @@ string BSONElement::jsonString(JsonStringFormat format, bool includeFieldNames, 
             s << "\" }";
             break;
         }
-        case mongo::Date:
+        case mongol::Date:
             if (format == Strict) {
                 Date_t d = date();
                 s << "{ \"$date\" : ";
@@ -355,7 +355,7 @@ int BSONElement::getGtLtOp(int def) const {
     any fields with non-numeric field names.
     */
 std::vector<BSONElement> BSONElement::Array() const {
-    chk(mongo::Array);
+    chk(mongol::Array);
     std::vector<BSONElement> v;
     BSONObjIterator i(Obj());
     while (i.more()) {
@@ -377,7 +377,7 @@ std::vector<BSONElement> BSONElement::Array() const {
 }
 
 /* wo = "well ordered"
-   note: (mongodb related) : this can only change in behavior when index version # changes
+   note: (mongoldb related) : this can only change in behavior when index version # changes
 */
 int BSONElement::woCompare(const BSONElement& e, bool considerFieldName) const {
     int lt = (int)canonicalType();
@@ -454,14 +454,14 @@ int BSONElement::size(int maxLen) const {
         case MaxKey:
         case MinKey:
             break;
-        case mongo::Bool:
+        case mongol::Bool:
             x = 1;
             break;
         case NumberInt:
             x = 4;
             break;
         case bsonTimestamp:
-        case mongo::Date:
+        case mongol::Date:
         case NumberDouble:
         case NumberLong:
             x = 8;
@@ -474,7 +474,7 @@ int BSONElement::size(int maxLen) const {
             break;
         case Symbol:
         case Code:
-        case mongo::String:
+        case mongol::String:
             massert(
                 10313, "Insufficient bytes to calculate element size", maxLen == -1 || remain > 3);
             x = valuestrsize() + 4;
@@ -491,7 +491,7 @@ int BSONElement::size(int maxLen) const {
             x = valuestrsize() + 4 + 12;
             break;
         case Object:
-        case mongo::Array:
+        case mongol::Array:
             massert(
                 10316, "Insufficient bytes to calculate element size", maxLen == -1 || remain > 3);
             x = objsize();
@@ -541,14 +541,14 @@ int BSONElement::size() const {
         case MaxKey:
         case MinKey:
             break;
-        case mongo::Bool:
+        case mongol::Bool:
             x = 1;
             break;
         case NumberInt:
             x = 4;
             break;
         case bsonTimestamp:
-        case mongo::Date:
+        case mongol::Date:
         case NumberDouble:
         case NumberLong:
             x = 8;
@@ -561,7 +561,7 @@ int BSONElement::size() const {
             break;
         case Symbol:
         case Code:
-        case mongo::String:
+        case mongol::String:
             x = valuestrsize() + 4;
             break;
         case DBRef:
@@ -569,7 +569,7 @@ int BSONElement::size() const {
             break;
         case CodeWScope:
         case Object:
-        case mongo::Array:
+        case mongol::Array:
             x = objsize();
             break;
         case BinData:
@@ -620,7 +620,7 @@ void BSONElement::toString(StringBuilder& s, bool includeFieldName, bool full, i
         case EOO:
             s << "EOO";
             break;
-        case mongo::Date:
+        case mongol::Date:
             s << "new Date(" << date().toMillisSinceEpoch() << ')';
             break;
         case RegEx: {
@@ -641,13 +641,13 @@ void BSONElement::toString(StringBuilder& s, bool includeFieldName, bool full, i
         case NumberDecimal:
             s << _numberDecimal().toString();
             break;
-        case mongo::Bool:
+        case mongol::Bool:
             s << (boolean() ? "true" : "false");
             break;
         case Object:
             embeddedObject().toString(s, false, full, depth + 1);
             break;
-        case mongo::Array:
+        case mongol::Array:
             embeddedObject().toString(s, true, full, depth + 1);
             break;
         case Undefined:
@@ -675,7 +675,7 @@ void BSONElement::toString(StringBuilder& s, bool includeFieldName, bool full, i
             }
             break;
         case Symbol:
-        case mongo::String:
+        case mongol::String:
             s << '"';
             if (!full && valuestrsize() > 160) {
                 s.write(valuestr(), 150);
@@ -687,7 +687,7 @@ void BSONElement::toString(StringBuilder& s, bool includeFieldName, bool full, i
             break;
         case DBRef:
             s << "DBRef('" << valuestr() << "',";
-            s << mongo::OID::from(valuestr() + valuestrsize()) << ')';
+            s << mongol::OID::from(valuestr() + valuestrsize()) << ')';
             break;
         case jstOID:
             s << "ObjectId('";
@@ -716,7 +716,7 @@ void BSONElement::toString(StringBuilder& s, bool includeFieldName, bool full, i
 
 std::string BSONElement::_asCode() const {
     switch (type()) {
-        case mongo::String:
+        case mongol::String:
         case Code:
             return std::string(valuestr(), valuestrsize() - 1);
         case CodeWScope:
@@ -740,7 +740,7 @@ StringBuilder& operator<<(StringBuilder& s, const BSONElement& e) {
 
 template <>
 bool BSONElement::coerce<std::string>(std::string* out) const {
-    if (type() != mongo::String)
+    if (type() != mongol::String)
         return false;
     *out = String();
     return true;
@@ -786,7 +786,7 @@ bool BSONElement::coerce<bool>(bool* out) const {
 
 template <>
 bool BSONElement::coerce<std::vector<std::string>>(std::vector<std::string>* out) const {
-    if (type() != mongo::Array)
+    if (type() != mongol::Array)
         return false;
     return Obj().coerceVector<std::string>(out);
 }
@@ -1009,27 +1009,27 @@ size_t BSONElement::Hasher::operator()(const BSONElement& elem) const {
     switch (elem.type()) {
         // Order of types is the same as in compareElementValues().
 
-        case mongo::EOO:
-        case mongo::Undefined:
-        case mongo::jstNULL:
-        case mongo::MaxKey:
-        case mongo::MinKey:
+        case mongol::EOO:
+        case mongol::Undefined:
+        case mongol::jstNULL:
+        case mongol::MaxKey:
+        case mongol::MinKey:
             // These are valueless types
             break;
 
-        case mongo::Bool:
+        case mongol::Bool:
             boost::hash_combine(hash, elem.boolean());
             break;
 
-        case mongo::bsonTimestamp:
+        case mongol::bsonTimestamp:
             boost::hash_combine(hash, elem.timestamp().asULL());
             break;
 
-        case mongo::Date:
+        case mongol::Date:
             boost::hash_combine(hash, elem.date().asInt64());
             break;
 
-        case mongo::NumberDecimal: {
+        case mongol::NumberDecimal: {
             const Decimal128 dcml = elem.numberDecimal();
             if (dcml.toAbs().isGreater(Decimal128(std::numeric_limits<double>::max())) &&
                 !dcml.isInfinite() && !dcml.isNaN()) {
@@ -1044,9 +1044,9 @@ size_t BSONElement::Hasher::operator()(const BSONElement& elem) const {
             // At this point the decimal fits into the range of doubles, is infinity, or is NaN,
             // which doubles have a cheaper representation for.
         }
-        case mongo::NumberDouble:
-        case mongo::NumberLong:
-        case mongo::NumberInt: {
+        case mongol::NumberDouble:
+        case mongol::NumberLong:
+        case mongol::NumberInt: {
             // This converts all numbers to doubles, which ignores the low-order bits of
             // NumberLongs > 2**53 and precise decimal numbers without double representations,
             // but that is ok since the hash will still be the same for equal numbers and is
@@ -1063,34 +1063,34 @@ size_t BSONElement::Hasher::operator()(const BSONElement& elem) const {
             break;
         }
 
-        case mongo::jstOID:
+        case mongol::jstOID:
             elem.__oid().hash_combine(hash);
             break;
 
-        case mongo::Code:
-        case mongo::Symbol:
-        case mongo::String:
+        case mongol::Code:
+        case mongol::Symbol:
+        case mongol::String:
             boost::hash_combine(hash, StringData::Hasher()(elem.valueStringData()));
             break;
 
-        case mongo::Object:
-        case mongo::Array:
+        case mongol::Object:
+        case mongol::Array:
             boost::hash_combine(hash, BSONObj::Hasher()(elem.embeddedObject()));
             break;
 
-        case mongo::DBRef:
-        case mongo::BinData:
+        case mongol::DBRef:
+        case mongol::BinData:
             // All bytes of the value are required to be identical.
             boost::hash_combine(hash,
                                 StringData::Hasher()(StringData(elem.value(), elem.valuesize())));
             break;
 
-        case mongo::RegEx:
+        case mongol::RegEx:
             boost::hash_combine(hash, StringData::Hasher()(elem.regex()));
             boost::hash_combine(hash, StringData::Hasher()(elem.regexFlags()));
             break;
 
-        case mongo::CodeWScope: {
+        case mongol::CodeWScope: {
             boost::hash_combine(
                 hash,
                 StringData::Hasher()(StringData(elem.codeWScopeCode(), elem.codeWScopeCodeLen())));
@@ -1101,4 +1101,4 @@ size_t BSONElement::Hasher::operator()(const BSONElement& elem) const {
     return hash;
 }
 
-}  // namespace mongo
+}  // namespace mongol

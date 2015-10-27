@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 inline Element Element::operator[](size_t n) const {
@@ -39,79 +39,79 @@ inline Element Element::operator[](StringData name) const {
 }
 
 inline double Element::getValueDouble() const {
-    dassert(hasValue() && isType(mongo::NumberDouble));
+    dassert(hasValue() && isType(mongol::NumberDouble));
     return getValue()._numberDouble();
 }
 
 inline StringData Element::getValueString() const {
-    dassert(hasValue() && isType(mongo::String));
+    dassert(hasValue() && isType(mongol::String));
     return getValueStringOrSymbol();
 }
 
 inline BSONObj Element::getValueObject() const {
-    dassert(hasValue() && isType(mongo::Object));
+    dassert(hasValue() && isType(mongol::Object));
     return getValue().Obj();
 }
 
 inline BSONArray Element::getValueArray() const {
-    dassert(hasValue() && isType(mongo::Array));
+    dassert(hasValue() && isType(mongol::Array));
     return BSONArray(getValue().Obj());
 }
 
 inline bool Element::isValueUndefined() const {
-    return isType(mongo::Undefined);
+    return isType(mongol::Undefined);
 }
 
 inline OID Element::getValueOID() const {
-    dassert(hasValue() && isType(mongo::jstOID));
+    dassert(hasValue() && isType(mongol::jstOID));
     return getValue().__oid();
 }
 
 inline bool Element::getValueBool() const {
-    dassert(hasValue() && isType(mongo::Bool));
+    dassert(hasValue() && isType(mongol::Bool));
     return getValue().boolean();
 }
 
 inline Date_t Element::getValueDate() const {
-    dassert(hasValue() && isType(mongo::Date));
+    dassert(hasValue() && isType(mongol::Date));
     return getValue().date();
 }
 
 inline bool Element::isValueNull() const {
-    return isType(mongo::jstNULL);
+    return isType(mongol::jstNULL);
 }
 
 inline StringData Element::getValueSymbol() const {
-    dassert(hasValue() && isType(mongo::Symbol));
+    dassert(hasValue() && isType(mongol::Symbol));
     return getValueStringOrSymbol();
 }
 
 inline int32_t Element::getValueInt() const {
-    dassert(hasValue() && isType(mongo::NumberInt));
+    dassert(hasValue() && isType(mongol::NumberInt));
     return getValue()._numberInt();
 }
 
 inline Timestamp Element::getValueTimestamp() const {
-    dassert(hasValue() && isType(mongo::bsonTimestamp));
+    dassert(hasValue() && isType(mongol::bsonTimestamp));
     return getValue().timestamp();
 }
 
 inline int64_t Element::getValueLong() const {
-    dassert(hasValue() && isType(mongo::NumberLong));
+    dassert(hasValue() && isType(mongol::NumberLong));
     return getValue()._numberLong();
 }
 
 inline Decimal128 Element::getValueDecimal() const {
-    dassert(hasValue() && isType(mongo::NumberDecimal));
+    dassert(hasValue() && isType(mongol::NumberDecimal));
     return getValue()._numberDecimal();
 }
 
 inline bool Element::isValueMinKey() const {
-    return isType(mongo::MinKey);
+    return isType(mongol::MinKey);
 }
 
 inline bool Element::isValueMaxKey() const {
-    return isType(mongo::MaxKey);
+    return isType(mongol::MaxKey);
 }
 
 inline bool Element::ok() const {
@@ -156,4 +156,4 @@ inline bool operator!=(const Element& l, const Element& r) {
 
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

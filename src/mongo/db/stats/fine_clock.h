@@ -33,7 +33,7 @@
 
 #include <time.h>  // struct timespec
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This is a nano-second precision clock. We're skipping the

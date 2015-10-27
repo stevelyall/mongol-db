@@ -32,12 +32,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/repl/optime.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/util/concurrency/ticketholder.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/util/concurrency/ticketholder.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class ChunkManager;
@@ -319,4 +319,4 @@ private:
     friend class TestableChunkManager;
 };
 
-}  // namespace mongo
+}  // namespace mongol

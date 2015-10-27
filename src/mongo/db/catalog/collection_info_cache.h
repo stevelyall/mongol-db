@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/db/collection_index_usage_tracker.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/update_index_data.h"
+#include "mongol/db/collection_index_usage_tracker.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/update_index_data.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class IndexDescriptor;
@@ -132,4 +132,4 @@ private:
     void rebuildIndexData(OperationContext* txn);
 };
 
-}  // namespace mongo
+}  // namespace mongol

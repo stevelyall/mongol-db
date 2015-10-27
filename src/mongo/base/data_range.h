@@ -31,13 +31,13 @@
 #include <tuple>
 #include <type_traits>
 
-#include "mongo/base/data_type.h"
-#include "mongo/base/error_codes.h"
-#include "mongo/base/status_with.h"
-#include "mongo/platform/endian.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/data_type.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/status_with.h"
+#include "mongol/platform/endian.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class ConstDataRange {
 public:
@@ -180,4 +180,4 @@ struct DataType::Handler<T,
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

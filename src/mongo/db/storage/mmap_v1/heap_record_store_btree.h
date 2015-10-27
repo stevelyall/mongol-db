@@ -33,10 +33,10 @@
 #include <boost/shared_array.hpp>
 #include <map>
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/recovery_unit.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A RecordStore that stores all data on the heap. This implementation contains only the
@@ -225,4 +225,4 @@ private:
     std::vector<ModEntry> _mods;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/tools/mongobridge_options.h"
+#include "mongol/tools/mongolbridge_options.h"
 
 #include <iostream>
 
-#include "mongo/base/status.h"
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/base/status.h"
+#include "mongol/util/options_parser/startup_options.h"
 
-namespace mongo {
+namespace mongol {
 
-MongoBridgeGlobalParams mongoBridgeGlobalParams;
+MongoBridgeGlobalParams mongolBridgeGlobalParams;
 
 Status addMongoBridgeOptions(moe::OptionSection* options) {
     options->addOptionChaining("help", "help", moe::Switch, "produce help message");
 
 
-    options->addOptionChaining("port", "port", moe::Int, "port to listen for mongo messages");
+    options->addOptionChaining("port", "port", moe::Int, "port to listen for mongol messages");
 
 
-    options->addOptionChaining("dest", "dest", moe::String, "uri of remote mongod instance");
+    options->addOptionChaining("dest", "dest", moe::String, "uri of remote mongold instance");
 
 
     options->addOptionChaining(
@@ -56,7 +56,7 @@ Status addMongoBridgeOptions(moe::OptionSection* options) {
 }
 
 void printMongoBridgeHelp(std::ostream* out) {
-    *out << "Usage: mongobridge --port <port> --dest <dest> [ --delay <ms> ] [ --help ]"
+    *out << "Usage: mongolbridge --port <port> --dest <dest> [ --delay <ms> ] [ --help ]"
          << std::endl;
     *out << moe::startupOptions.helpString();
     *out << std::flush;
@@ -80,14 +80,14 @@ Status storeMongoBridgeOptions(const moe::Environment& params,
         return Status(ErrorCodes::BadValue, "Missing required option: \"--dest\"");
     }
 
-    mongoBridgeGlobalParams.port = params["port"].as<int>();
-    mongoBridgeGlobalParams.destUri = params["dest"].as<std::string>();
+    mongolBridgeGlobalParams.port = params["port"].as<int>();
+    mongolBridgeGlobalParams.destUri = params["dest"].as<std::string>();
 
     if (params.count("delay")) {
-        mongoBridgeGlobalParams.delay = params["delay"].as<int>();
+        mongolBridgeGlobalParams.delay = params["delay"].as<int>();
     }
 
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

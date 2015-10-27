@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/client/remote_command_targeter_factory.h"
+#include "mongol/client/remote_command_targeter_factory.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Targeter factory that instantiates remote command targeters based on the type of the
@@ -46,4 +46,4 @@ public:
     std::unique_ptr<RemoteCommandTargeter> create(const ConnectionString& connStr) override;
 };
 
-}  // namespace mongo
+}  // namespace mongol

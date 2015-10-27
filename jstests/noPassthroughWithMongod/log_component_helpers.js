@@ -2,7 +2,7 @@
 
 (function(db) {
     "use strict";
-    var mongo = db.getMongo();
+    var mongol = db.getMongo();
 
     // Get current log component setttings. We will reset to these later.
     var originalSettings = assert.commandWorked(
@@ -10,7 +10,7 @@
             ).logComponentVerbosity;
 
     // getLogComponents
-    var components1 = mongo.getLogComponents();
+    var components1 = mongol.getLogComponents();
     assert.docEq(components1, originalSettings);
 
     // getLogComponents via db
@@ -18,21 +18,21 @@
     assert.docEq(components2, originalSettings);
 
     // setLogLevel - default component
-    mongo.setLogLevel(2);
-    assert.eq(mongo.getLogComponents().verbosity, 2);
+    mongol.setLogLevel(2);
+    assert.eq(mongol.getLogComponents().verbosity, 2);
 
     db.setLogLevel(0);
-    assert.eq(mongo.getLogComponents().verbosity, 0);
+    assert.eq(mongol.getLogComponents().verbosity, 0);
 
     // setLogLevel - valid log component
-    mongo.setLogLevel(2, "storage.journal");
-    assert.eq(mongo.getLogComponents().storage.journal.verbosity, 2);
+    mongol.setLogLevel(2, "storage.journal");
+    assert.eq(mongol.getLogComponents().storage.journal.verbosity, 2);
 
     db.setLogLevel(1, "storage.journal");
-    assert.eq(mongo.getLogComponents().storage.journal.verbosity, 1);
+    assert.eq(mongol.getLogComponents().storage.journal.verbosity, 1);
 
     // setLogLevel - invalid argument
-    assert.throws(mongo.setLogLevel, [2, 24]);
+    assert.throws(mongol.setLogLevel, [2, 24]);
     assert.throws(db.setLogLevel, [2, ["array", "not.allowed"]]);
 
     // Restore originalSettings

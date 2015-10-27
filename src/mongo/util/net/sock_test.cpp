@@ -26,9 +26,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/sock.h"
+#include "mongol/util/net/sock.h"
 
 #ifndef _WIN32
 #include <netdb.h>
@@ -36,15 +36,15 @@
 #include <sys/types.h>
 #endif
 
-#include "mongo/db/server_options.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/fail_point_service.h"
+#include "mongol/db/server_options.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/fail_point_service.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::shared_ptr;
 
 typedef std::shared_ptr<Socket> SocketPtr;

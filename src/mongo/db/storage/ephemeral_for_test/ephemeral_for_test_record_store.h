@@ -33,10 +33,10 @@
 #include <boost/shared_array.hpp>
 #include <map>
 
-#include "mongo/db/storage/capped_callback.h"
-#include "mongo/db/storage/record_store.h"
+#include "mongol/db/storage/capped_callback.h"
+#include "mongol/db/storage/record_store.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A RecordStore that stores all data in-memory.
@@ -199,4 +199,4 @@ private:
     Data* const _data;
 };
 
-}  // namespace mongo
+}  // namespace mongol

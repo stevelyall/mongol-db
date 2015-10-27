@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/repl/oplog_interface.h"
+#include "mongol/db/repl/oplog_interface.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -52,4 +52,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

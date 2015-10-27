@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/util/time_support.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -138,4 +138,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

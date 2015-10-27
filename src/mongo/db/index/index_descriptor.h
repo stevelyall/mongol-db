@@ -32,12 +32,12 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/catalog/collection.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/catalog/collection.h"
 
-#include "mongo/util/stacktrace.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexCatalog;
 class IndexCatalogEntry;
@@ -250,4 +250,4 @@ private:
     friend class IndexCatalogEntryContainer;
 };
 
-}  // namespace mongo
+}  // namespace mongol

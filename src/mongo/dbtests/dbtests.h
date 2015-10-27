@@ -32,14 +32,14 @@
 #pragma once
 
 
-#include "mongo/db/instance.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/instance.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
-using namespace mongo::unittest;
+using namespace mongol;
+using namespace mongol::unittest;
 using std::shared_ptr;
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class OperationContext;
 class Status;
@@ -59,4 +59,4 @@ Status createIndex(OperationContext* txn, StringData ns, const BSONObj& keys, bo
  */
 Status createIndexFromSpec(OperationContext* txn, StringData ns, const BSONObj& spec);
 }  // namespace dbtests
-}  // namespace mongo
+}  // namespace mongol

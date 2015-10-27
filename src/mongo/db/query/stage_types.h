@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * These map to implementations of the PlanStage interface, all of which live in db/exec/
@@ -108,4 +108,4 @@ enum StageType {
     STAGE_UPDATE,
 };
 
-}  // namespace mongo
+}  // namespace mongol

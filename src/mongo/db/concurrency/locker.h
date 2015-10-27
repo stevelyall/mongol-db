@@ -31,10 +31,10 @@
 #include <climits>  // For UINT_MAX
 #include <vector>
 
-#include "mongo/db/concurrency/lock_manager.h"
-#include "mongo/db/concurrency/lock_stats.h"
+#include "mongol/db/concurrency/lock_manager.h"
+#include "mongol/db/concurrency/lock_stats.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Interface for acquiring locks. One of those objects will have to be instantiated for each
@@ -294,4 +294,4 @@ protected:
     Locker() {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

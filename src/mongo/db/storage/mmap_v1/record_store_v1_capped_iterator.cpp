@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped_iterator.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped_iterator.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped.h"
 
-namespace mongo {
+namespace mongol {
 
 
 //
@@ -212,4 +212,4 @@ std::unique_ptr<RecordFetcher> CappedRecordStoreV1Iterator::fetcherForId(const R
     return _recordStore->_extentManager->recordNeedsFetch(DiskLoc::fromRecordId(id));
 }
 
-}  // namespace mongo
+}  // namespace mongol

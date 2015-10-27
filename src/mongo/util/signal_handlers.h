@@ -30,7 +30,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Sets up handlers for signals and other events like terminate and new_handler.
@@ -59,4 +59,4 @@ void startSignalProcessingThread();
  */
 void removeControlCHandler();
 
-}  // namespace mongo
+}  // namespace mongol

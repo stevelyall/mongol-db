@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/metadata/sharding_metadata.h"
+#include "mongol/rpc/metadata/sharding_metadata.h"
 
 #include <utility>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 namespace {
@@ -51,7 +51,7 @@ const char kGLEStatsElectionIdFieldName[] = "electionId";
 StatusWith<ShardingMetadata> ShardingMetadata::readFromMetadata(const BSONObj& metadataObj) {
     BSONElement smElem;
     auto smExtractStatus =
-        bsonExtractTypedField(metadataObj, kGLEStatsFieldName, mongo::Object, &smElem);
+        bsonExtractTypedField(metadataObj, kGLEStatsFieldName, mongol::Object, &smElem);
     if (!smExtractStatus.isOK()) {
         return smExtractStatus;
     }
@@ -86,7 +86,7 @@ StatusWith<ShardingMetadata> ShardingMetadata::readFromMetadata(const BSONObj& m
 
     BSONElement lastElectionIdElem;
     auto lastElectionIdExtractStatus = bsonExtractTypedField(
-        smElem.embeddedObject(), kGLEStatsElectionIdFieldName, mongo::jstOID, &lastElectionIdElem);
+        smElem.embeddedObject(), kGLEStatsElectionIdFieldName, mongol::jstOID, &lastElectionIdElem);
     if (!lastElectionIdExtractStatus.isOK()) {
         return lastElectionIdExtractStatus;
     }
@@ -160,4 +160,4 @@ const OID& ShardingMetadata::getLastElectionId() const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

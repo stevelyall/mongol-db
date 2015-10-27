@@ -28,18 +28,18 @@
 
 #ifdef _WIN32
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/sasl_sspi_options.h"
+#include "mongol/client/sasl_sspi_options.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/options_parser/startup_option_init.h"
+#include "mongol/base/status.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/options_parser/startup_option_init.h"
 
-namespace mongo {
+namespace mongol {
 
 SASLSSPIGlobalParams saslSSPIGlobalParams;
 
@@ -80,6 +80,6 @@ MONGO_STARTUP_OPTIONS_STORE(SASLSSPIOptions)(InitializerContext* context) {
     return storeSASLSSPIOptions(moe::startupOptionsParsed);
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // ifdef _WIN32

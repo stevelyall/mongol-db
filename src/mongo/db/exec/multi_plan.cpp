@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/multi_plan.h"
+#include "mongol/db/exec/multi_plan.h"
 
 #include <algorithm>
 #include <math.h>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/client.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/client.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::list;
@@ -493,4 +493,4 @@ const SpecificStats* MultiPlanStage::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

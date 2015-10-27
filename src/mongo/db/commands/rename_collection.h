@@ -31,10 +31,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClientBasic;
 
@@ -45,4 +45,4 @@ Status checkAuthForRenameCollectionCommand(ClientBasic* client,
                                            const BSONObj& cmdObj);
 
 }  // namespace rename_collection
-}  // namespace mongo
+}  // namespace mongol

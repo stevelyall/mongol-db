@@ -31,11 +31,11 @@
 #pragma once
 
 
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/db/storage/paths.h"
-#include "mongo/util/bufreader.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/util/bufreader.h"
 
-namespace mongo {
+namespace mongol {
 
 class AlignedBuilder;
 

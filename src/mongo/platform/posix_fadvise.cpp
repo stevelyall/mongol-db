@@ -27,14 +27,14 @@
 
 #if defined(__sun)
 
-#include "mongo/platform/posix_fadvise.h"
+#include "mongol/platform/posix_fadvise.h"
 
 #include <dlfcn.h>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 namespace pal {
 
 int posix_fadvise_emulation(int fd, off_t offset, off_t len, int advice) {
@@ -42,7 +42,7 @@ int posix_fadvise_emulation(int fd, off_t offset, off_t len, int advice) {
 }
 
 typedef int (*PosixFadviseFunc)(int fd, off_t offset, off_t len, int advice);
-static PosixFadviseFunc posix_fadvise_switcher = mongo::pal::posix_fadvise_emulation;
+static PosixFadviseFunc posix_fadvise_switcher = mongol::pal::posix_fadvise_emulation;
 
 int posix_fadvise(int fd, off_t offset, off_t len, int advice) {
     return posix_fadvise_switcher(fd, offset, len, advice);
@@ -57,12 +57,12 @@ MONGO_INITIALIZER_GENERAL(SolarisPosixFadvise,
                           ("default"))(InitializerContext* context) {
     void* functionAddress = dlsym(RTLD_DEFAULT, "posix_fadvise");
     if (functionAddress != NULL) {
-        mongo::pal::posix_fadvise_switcher =
-            reinterpret_cast<mongo::pal::PosixFadviseFunc>(functionAddress);
+        mongol::pal::posix_fadvise_switcher =
+            reinterpret_cast<mongol::pal::PosixFadviseFunc>(functionAddress);
     }
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // #if defined(__sun)

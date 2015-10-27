@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/bson/timestamp.h"
+#include "mongol/bson/timestamp.h"
 
-namespace mongo {
+namespace mongol {
 void setGlobalTimestamp(const Timestamp& newTime);
 
 /**

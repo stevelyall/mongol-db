@@ -193,7 +193,7 @@ MongoRunner.stopMongod(conn);
 // run all tests sharded
 conn = new ShardingTest({
     shards: 2,
-    mongos: 1,
+    mongols: 1,
     keyFile: "jstests/libs/key1",
     other: { shardOptions: opts }
 });

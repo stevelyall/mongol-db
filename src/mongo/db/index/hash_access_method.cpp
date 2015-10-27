@@ -26,12 +26,12 @@
 *    it in the license file.
 */
 
-#include "mongo/db/hasher.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/index/hash_access_method.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/index/hash_access_method.h"
 
-namespace mongo {
+namespace mongol {
 
 HashAccessMethod::HashAccessMethod(IndexCatalogEntry* btreeState, SortedDataInterface* btree)
     : IndexAccessMethod(btreeState, btree) {
@@ -54,4 +54,4 @@ void HashAccessMethod::getKeys(const BSONObj& obj, BSONObjSet* keys) const {
         obj, _hashedField, _seed, _hashVersion, _descriptor->isSparse(), keys);
 }
 
-}  // namespace mongo
+}  // namespace mongol

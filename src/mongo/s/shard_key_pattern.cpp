@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/shard_key_pattern.h"
+#include "mongol/s/shard_key_pattern.h"
 
 #include <vector>
 
-#include "mongo/db/field_ref.h"
-#include "mongo/db/field_ref_set.h"
-#include "mongo/db/hasher.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/field_ref_set.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::make_pair;
 using std::pair;
@@ -48,7 +48,7 @@ using std::unique_ptr;
 using std::vector;
 
 using pathsupport::EqualityMatches;
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const int ShardKeyPattern::kMaxShardKeySizeBytes = 512;
 const unsigned int ShardKeyPattern::kMaxFlattenedInCombinations = 4000000;

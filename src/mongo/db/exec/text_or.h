@@ -31,14 +31,14 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;

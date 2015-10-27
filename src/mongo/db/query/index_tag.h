@@ -30,10 +30,10 @@
 
 #include <vector>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/matcher/expression.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/matcher/expression.h"
 
-namespace mongo {
+namespace mongol {
 
 // output from enumerator to query planner
 class IndexTag : public MatchExpression::TagData {
@@ -129,4 +129,4 @@ void tagForSort(MatchExpression* tree);
  */
 void sortUsingTags(MatchExpression* tree);
 
-}  // namespace mongo
+}  // namespace mongol

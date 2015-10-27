@@ -29,14 +29,14 @@
 #pragma once
 
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/ops/update_driver.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/ops/update_result.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/ops/update_driver.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/ops/update_result.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -202,4 +202,4 @@ private:
     mutablebson::DamageVector _damages;
 };
 
-}  // namespace mongo
+}  // namespace mongol

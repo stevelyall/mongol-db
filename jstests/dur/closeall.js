@@ -4,7 +4,7 @@
 function f(variant, quickCommits, paranoid) {
     var ourdb = "closealltest";
 
-    print("closeall.js start mongod variant:" + variant + "." + quickCommits + "." + paranoid);
+    print("closeall.js start mongold variant:" + variant + "." + quickCommits + "." + paranoid);
     var options = (paranoid==1 ? 8 : 0); // 8 is DurParanoid
     print("closeall.js --journalOptions " + options);
     var N = 1000;

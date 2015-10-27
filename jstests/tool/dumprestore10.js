@@ -29,11 +29,11 @@ var total = 1000;
     replTest.awaitReplication();
 }
 
-step("mongodump from replset");
+step("mongoldump from replset");
 
 var data = MongoRunner.dataDir + "/dumprestore10-dump1/";
 
-runMongoProgram( "mongodump", "--host", "127.0.0.1:"+master.port, "--out", data );
+runMongoProgram( "mongoldump", "--host", "127.0.0.1:"+master.port, "--out", data );
 
 
 {
@@ -46,16 +46,16 @@ runMongoProgram( "mongodump", "--host", "127.0.0.1:"+master.port, "--out", data 
     replTest.awaitReplication();
 }
 
-step("try mongorestore with write concern");
+step("try mongolrestore with write concern");
 
-runMongoProgram( "mongorestore", "--writeConcern", "2", "--host", "127.0.0.1:"+master.port, "--dir", data );
+runMongoProgram( "mongolrestore", "--writeConcern", "2", "--host", "127.0.0.1:"+master.port, "--dir", data );
 
 var x = 0;
 
 // no waiting for replication
 x = master.getDB("foo").getCollection("bar").count();
 
-assert.eq(x, total, "mongorestore should have successfully restored the collection");
+assert.eq(x, total, "mongolrestore should have successfully restored the collection");
 
 step("stopSet");
 replTest.stopSet();

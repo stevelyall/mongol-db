@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class OperationContext;
 
 /**
  * Drops the database "dbName".
  */
 Status dropDatabase(OperationContext* txn, const std::string& dbName);
-}  // namespace mongo
+}  // namespace mongol

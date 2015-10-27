@@ -31,19 +31,19 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 class Fetcher {
     MONGO_DISALLOW_COPYING(Fetcher);
 
@@ -210,4 +210,4 @@ private:
     Milliseconds _timeout;
 };
 
-}  // namespace mongo
+}  // namespace mongol

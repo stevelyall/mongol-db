@@ -28,15 +28,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <algorithm>
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 std::unique_ptr<SortedDataInterface> HarnessHelper::newSortedDataInterface(
     bool unique, std::initializer_list<IndexKeyEntry> toInsert) {
     invariant(std::is_sorted(
@@ -557,4 +557,4 @@ TEST(SortedDataInterface, Locate4) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -8,8 +8,8 @@ env.Library(
         'bson_extract.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/repl/optime',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/repl/optime',
     ],
 )
 
@@ -19,8 +19,8 @@ env.CppUnitTest(
         'bson_extract_test.cpp'
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/repl/optime',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/repl/optime',
         'bson_extract',
     ],
 )
@@ -31,7 +31,7 @@ env.CppUnitTest(
         'builder_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -41,6 +41,6 @@ env.CppUnitTest(
         'bson_check_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )

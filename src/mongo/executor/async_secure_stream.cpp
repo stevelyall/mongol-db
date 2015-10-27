@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_secure_stream.h"
+#include "mongol/executor/async_secure_stream.h"
 
-#include "mongo/base/system_error.h"
-#include "mongo/config.h"
-#include "mongo/executor/async_stream_common.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/base/system_error.h"
+#include "mongol/config.h"
+#include "mongol/executor/async_stream_common.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/ssl_manager.h"
 
 #ifdef MONGO_CONFIG_SSL
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 AsyncSecureStream::AsyncSecureStream(asio::io_service* io_service, asio::ssl::context* sslContext)
@@ -99,6 +99,6 @@ void AsyncSecureStream::cancel() {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol
 
 #endif

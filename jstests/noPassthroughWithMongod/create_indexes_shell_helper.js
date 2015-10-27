@@ -3,7 +3,7 @@
     var t = db.create_indexes_shell_helper;
     t.drop();
 
-    var mongo = db.getMongo();
+    var mongol = db.getMongo();
 
     try {
         var commandsRan = [];
@@ -35,7 +35,7 @@
             }
         };
 
-        db._mongo = mockMongo;
+        db._mongol = mockMongo;
 
         mockMongo.forceWriteMode("commands");
 
@@ -77,6 +77,6 @@
         assert(commandsRan[0].cmd.hasOwnProperty("getlasterror"));
     }
     finally {
-        db._mongo = mongo;
+        db._mongol = mongol;
     }
 }());

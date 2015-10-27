@@ -26,22 +26,22 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/cluster_last_error_info.h"
+#include "mongol/s/cluster_last_error_info.h"
 
 #include <utility>
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/rpc/metadata/sharding_metadata.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/rpc/metadata/sharding_metadata.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 const ClientBasic::Decoration<ClusterLastErrorInfo> ClusterLastErrorInfo::get =
     ClientBasic::declareDecoration<ClusterLastErrorInfo>();
@@ -108,4 +108,4 @@ void saveGLEStats(const BSONObj& metadata, StringData hostString) {
             HostOpTime(shardingMetadata.getLastOpTime(), shardingMetadata.getLastElectionId()));
 }
 
-}  // namespace mongo
+}  // namespace mongol

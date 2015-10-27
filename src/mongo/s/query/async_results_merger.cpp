@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/async_results_merger.h"
+#include "mongol/s/query/async_results_merger.h"
 
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/query/killcursors_request.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/query/killcursors_request.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // Maximum number of retries for network and replication notMaster errors (per host).
@@ -255,7 +255,7 @@ Status AsyncResultsMerger::askForNextBatch_inlock(size_t remoteIndex) {
 
     invariant(!remote.cbHandle.isValid());
 
-    // If mongod returned less docs than the requested batchSize then modify the next getMore
+    // If mongold returned less docs than the requested batchSize then modify the next getMore
     // request to fetch the remaining docs only. If the remote node has a plan with OR for top k and
     // a full sort as is the case for the OP_QUERY find then this optimization will prevent
     // switching to the full sort plan branch.
@@ -657,4 +657,4 @@ bool AsyncResultsMerger::MergingComparator::operator()(const size_t& lhs, const 
     return leftDocKey.woCompare(rightDocKey, _sort, false /*considerFieldName*/) > 0;
 }
 
-}  // namespace mongo
+}  // namespace mongol

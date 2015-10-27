@@ -1,5 +1,5 @@
 /**
- *    Copyright (C) 2013 mongoDB Inc.
+ *    Copyright (C) 2013 mongolDB Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
  *    it under the terms of the GNU Affero General Public License, version 3,
@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/wc_error_detail.h"
+#include "mongol/s/write_ops/wc_error_detail.h"
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 const BSONField<int> WCErrorDetail::errCode("code");
 const BSONField<BSONObj> WCErrorDetail::errInfo("errInfo");
 const BSONField<std::string> WCErrorDetail::errMessage("errmsg");
@@ -184,4 +184,4 @@ const std::string& WCErrorDetail::getErrMessage() const {
     return _errMessage;
 }
 
-}  // namespace mongo
+}  // namespace mongol

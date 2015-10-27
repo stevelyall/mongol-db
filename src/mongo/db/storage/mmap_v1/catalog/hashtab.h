@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Simple, fixed size hash table used for namespace mapping (effectively the contents of the
@@ -134,4 +134,4 @@ private:
     int maxChain;
 };
 
-}  // namespace mongo
+}  // namespace mongol

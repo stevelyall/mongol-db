@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio.h"
 
-#include "mongo/client/authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/server_options.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/legacy_request_builder.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/client/authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/server_options.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/legacy_request_builder.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/net/ssl_manager.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 using ResponseStatus = TaskExecutor::ResponseStatus;
@@ -163,4 +163,4 @@ void NetworkInterfaceASIO::_authenticate(AsyncOp* op) {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

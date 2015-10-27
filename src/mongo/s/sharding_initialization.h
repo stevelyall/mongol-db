@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class ConnectionString;
 class OperationContext;
@@ -42,4 +42,4 @@ Status initializeGlobalShardingState(OperationContext* txn,
                                      const ConnectionString& configCS,
                                      bool allowNetworking);
 
-}  // namespace mongo
+}  // namespace mongol

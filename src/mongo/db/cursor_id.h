@@ -28,8 +28,8 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 using CursorId = long long;
 
-}  // namespace mongo
+}  // namespace mongol

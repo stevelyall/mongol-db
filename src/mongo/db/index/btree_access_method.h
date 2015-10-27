@@ -29,13 +29,13 @@
 #pragma once
 
 
-#include "mongo/base/status.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/btree_key_generator.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/btree_key_generator.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexDescriptor;
 
@@ -54,4 +54,4 @@ private:
     std::unique_ptr<BtreeKeyGenerator> _keyGenerator;
 };
 
-}  // namespace mongo
+}  // namespace mongol

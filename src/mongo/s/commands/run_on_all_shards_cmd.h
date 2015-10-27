@@ -30,11 +30,11 @@
 #include <tuple>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/client/shard.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/client/shard.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -101,4 +101,4 @@ private:
     const bool _implicitCreateDb;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/status.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -79,4 +79,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

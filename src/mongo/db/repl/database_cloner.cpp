@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/database_cloner.h"
+#include "mongol/db/repl/database_cloner.h"
 
 #include <algorithm>
 #include <iterator>
 #include <set>
 
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -224,7 +224,7 @@ void DatabaseCloner::_listCollectionsCallback(const StatusWith<Fetcher::QueryRes
                                                  << "field : " << info));
             return;
         }
-        if (nameElement.type() != mongo::String) {
+        if (nameElement.type() != mongol::String) {
             _finishCallback(Status(ErrorCodes::TypeMismatch,
                                    str::stream() << "'" << kNameFieldName
                                                  << "' field must be a string: " << info));
@@ -330,4 +330,4 @@ void DatabaseCloner::_finishCallback(const Status& status) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

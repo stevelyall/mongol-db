@@ -132,14 +132,14 @@ catch(e) {
 
 st.rs0.awaitSecondaryNodes();
 
-// Force mongos to reconnect after our reconfig and also create the test database
+// Force mongols to reconnect after our reconfig and also create the test database
 assert.soon(function() {
     try {
         st.s.getDB('TestDB').runCommand({ create: 'TestColl' });
         return true;
     }
     catch (x) {
-        // Intentionally caused an error that forces mongos's monitor to refresh.
+        // Intentionally caused an error that forces mongols's monitor to refresh.
         jsTest.log('Caught exception while doing dummy command: ' + tojson(x));
         return false;
     }
@@ -159,7 +159,7 @@ _awaitRSHostViaRSMonitor(secondary.name, { ok: true, tags: SECONDARY_TAG }, st.r
 
 testAllModes(replConn, false);
 
-jsTest.log('Starting test for mongos connection');
+jsTest.log('Starting test for mongols connection');
 
 testAllModes(st.s, true);
 

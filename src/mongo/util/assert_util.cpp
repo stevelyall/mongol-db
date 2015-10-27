@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
 using namespace std;
 
@@ -44,17 +44,17 @@ using namespace std;
 #include <boost/exception/exception.hpp>
 #include <exception>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/config.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/debugger.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/config.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/debugger.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 AssertionCount assertionCount;
 

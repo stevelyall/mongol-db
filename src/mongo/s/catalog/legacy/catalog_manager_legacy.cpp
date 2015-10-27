@@ -26,63 +26,63 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/catalog_manager_legacy.h"
+#include "mongol/s/catalog/legacy/catalog_manager_legacy.h"
 
 #include <pcrecpp.h>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/server_options.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/catalog/config_server_version.h"
-#include "mongo/s/catalog/legacy/cluster_client_internal.h"
-#include "mongo/s/catalog/legacy/config_coordinator.h"
-#include "mongo/s/catalog/legacy/config_upgrade.h"
-#include "mongo/s/catalog/type_actionlog.h"
-#include "mongo/s/catalog/type_changelog.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/dbclient_multi_command.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/legacy/legacy_dist_lock_manager.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/server_options.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/catalog/config_server_version.h"
+#include "mongol/s/catalog/legacy/cluster_client_internal.h"
+#include "mongol/s/catalog/legacy/config_coordinator.h"
+#include "mongol/s/catalog/legacy/config_upgrade.h"
+#include "mongol/s/catalog/type_actionlog.h"
+#include "mongol/s/catalog/type_changelog.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/dbclient_multi_command.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_manager.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_FP_DECLARE(setSCCCDropCollDistLockWait);
 
@@ -271,7 +271,7 @@ Status CatalogManagerLegacy::shardCollection(OperationContext* txn,
                                              bool unique,
                                              const vector<BSONObj>& initPoints,
                                              const set<ShardId>& initShardIds) {
-    // Lock the collection globally so that no other mongos can try to shard or drop the collection
+    // Lock the collection globally so that no other mongols can try to shard or drop the collection
     // at the same time.
     auto scopedDistLock = getDistLockManager()->lock(txn, ns, "shardCollection");
     if (!scopedDistLock.isOK()) {
@@ -286,7 +286,7 @@ Status CatalogManagerLegacy::shardCollection(OperationContext* txn,
     ShardId dbPrimaryShardId = status.getValue().value.getPrimary();
 
     // This is an extra safety check that the collection is not getting sharded concurrently by
-    // two different mongos instances. It is not 100%-proof, but it reduces the chance that two
+    // two different mongols instances. It is not 100%-proof, but it reduces the chance that two
     // invocations of shard collection will step on each other's toes.
     {
         ScopedDbConnection conn(_configServerConnectionString, 30);
@@ -339,14 +339,14 @@ Status CatalogManagerLegacy::shardCollection(OperationContext* txn,
     collInfo.save(txn, ns);
     manager->reload(txn, true);
 
-    // Tell the primary mongod to refresh its data
-    // TODO:  Think the real fix here is for mongos to just
+    // Tell the primary mongold to refresh its data
+    // TODO:  Think the real fix here is for mongols to just
     //        assume that all collections are sharded, when we get there
     for (int i = 0; i < 4; i++) {
         if (i == 3) {
             warning() << "too many tries updating initial version of " << ns << " on shard primary "
                       << dbPrimaryShardStr
-                      << ", other mongoses may not see the collection as sharded immediately";
+                      << ", other mongolses may not see the collection as sharded immediately";
             break;
         }
 
@@ -1355,4 +1355,4 @@ bool CatalogManagerLegacy::_isConsistentFromLastCheck() {
     return _consistentFromLastCheck;
 }
 
-}  // namespace mongo
+}  // namespace mongol

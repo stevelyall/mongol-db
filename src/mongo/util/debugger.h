@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 // Sets SIGTRAP handler to launch GDB
 // Noop unless on *NIX and compiled with MONGO_CONFIG_DEBUG_BUILD
@@ -36,4 +36,4 @@ void setupSIGTRAPforGDB();
 
 void breakpoint();
 
-}  // namespace mongo
+}  // namespace mongol

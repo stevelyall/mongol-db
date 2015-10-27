@@ -30,16 +30,16 @@
 
 #pragma once
 
-#include "mongo/stdx/chrono.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/util/concurrency/mutex.h"
 
 #if defined(NTDDI_VERSION) && defined(NTDDI_WIN7) && (NTDDI_VERSION >= NTDDI_WIN7)
 
 // Windows slimreaderwriter version. Newer windows versions only. Under contention this is slower
-// than boost::shared_mutex, but see https://jira.mongodb.org/browse/SERVER-2327 for why it cannot
+// than boost::shared_mutex, but see https://jira.mongoldb.org/browse/SERVER-2327 for why it cannot
 // be used.
 
-namespace mongo {
+namespace mongol {
 unsigned long long curTimeMicros64();
 
 class RWLockBase {
@@ -115,22 +115,22 @@ public:
 
 #if defined(_WIN32)
 #include "shared_mutex_win.hpp"
-namespace mongo {
+namespace mongol {
 namespace detail {
 using rwlock_underlying_shared_mutex = boost::modified_shared_mutex;
 }  // namespace detail
-}  // namespace mongo
+}  // namespace mongol
 #else
 #include <boost/chrono.hpp>
 #include <boost/thread/shared_mutex.hpp>
-namespace mongo {
+namespace mongol {
 namespace detail {
 using rwlock_underlying_shared_mutex = boost::shared_mutex;  // NOLINT
 }  // namespace detail
-}  // namespace mongo
+}  // namespace mongol
 #endif
 
-namespace mongo {
+namespace mongol {
 class RWLockBase {
     MONGO_DISALLOW_COPYING(RWLockBase);
     friend class SimpleRWLock;

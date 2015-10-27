@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/catalog_cache.h"
+#include "mongol/s/catalog/catalog_cache.h"
 
 
-#include "mongo/base/status_with.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_database.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
+#include "mongol/base/status_with.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_database.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -85,4 +85,4 @@ void CatalogCache::invalidateAll() {
     _databases.clear();
 }
 
-}  // namespace mongo
+}  // namespace mongol

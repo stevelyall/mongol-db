@@ -26,17 +26,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_collection.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 const std::string CollectionType::ConfigNS = "config.collections";
 
@@ -222,4 +222,4 @@ void CollectionType::setKeyPattern(const KeyPattern& keyPattern) {
     _keyPattern = keyPattern;
 }
 
-}  // namespace mongo
+}  // namespace mongol

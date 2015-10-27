@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/global_conn_pool.h"
+#include "mongol/client/global_conn_pool.h"
 
-namespace mongo {
+namespace mongol {
 
 DBConnectionPool globalConnPool;
 
 ReplicaSetMonitorManager globalRSMonitorManager;
 
-}  // namespace mongo
+}  // namespace mongol

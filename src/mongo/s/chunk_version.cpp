@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/chunk_version.h"
+#include "mongol/s/chunk_version.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const char kVersion[] = "version";
@@ -104,4 +104,4 @@ void ChunkVersion::appendForCommands(BSONObjBuilder* builder) const {
     builder->appendArray(kShardVersion, toBSON());
 }
 
-}  // namespace mongo
+}  // namespace mongol

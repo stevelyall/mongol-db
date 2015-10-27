@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/s/mock_ns_targeter.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_delete_document.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/s/write_ops/write_op.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/s/mock_ns_targeter.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/s/write_ops/write_op.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -365,4 +365,4 @@ TEST(WriteOpTests, RetrySingleOp) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

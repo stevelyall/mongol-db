@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_pull.h"
+#include "mongol/db/ops/modifier_pull.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mb = mutablebson;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 struct ModifierPull::PreparedState {
     PreparedState(mb::Document& doc)
@@ -99,7 +99,7 @@ Status ModifierPull::init(const BSONElement& modExpr, const Options& opts, bool*
 
     // If the element in the mod is actually an object or a regular expression, we need to
     // build a matcher, instead of just doing an equality comparision.
-    if ((_exprElt.type() == mongo::Object) || (_exprElt.type() == mongo::RegEx)) {
+    if ((_exprElt.type() == mongol::Object) || (_exprElt.type() == mongol::RegEx)) {
         if (_exprElt.type() == Object) {
             _exprObj = _exprElt.embeddedObject();
 
@@ -167,7 +167,7 @@ Status ModifierPull::prepare(mb::Element root, StringData matchedField, ExecInfo
     }
 
     // This operation only applies to arrays
-    if (_preparedState->elemFound.getType() != mongo::Array)
+    if (_preparedState->elemFound.getType() != mongol::Array)
         return Status(ErrorCodes::BadValue, "Cannot apply $pull to a non-array value");
 
     // If the array is empty, there is nothing to pull, so this is a noop.
@@ -273,4 +273,4 @@ bool ModifierPull::isMatch(mutablebson::ConstElement element) {
     return _matchExpr->matchesBSON(element.getValueObject());
 }
 
-}  // namespace mongo
+}  // namespace mongol

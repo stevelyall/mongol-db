@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/builder.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 
 /** a page-aligned BufBuilder. */
 class AlignedBuilder {

@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/update_index_data.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/update_index_data.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

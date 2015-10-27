@@ -26,21 +26,21 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/db.h"
+#include "mongol/scripting/mozjs/db.h"
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/scripting/mozjs/idwrapper.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/internedstring.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/s/d_state.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/scripting/mozjs/idwrapper.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/internedstring.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/s/d_state.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const char* const DBInfo::className = "DB";
@@ -131,7 +131,7 @@ void DBInfo::construct(JSContext* cx, JS::CallArgs args) {
     scope->getProto<DBInfo>().newObject(&thisv);
     ObjectWrapper o(cx, thisv);
 
-    o.setValue(InternedString::_mongo, args.get(0));
+    o.setValue(InternedString::_mongol, args.get(0));
     o.setValue(InternedString::_name, args.get(1));
 
     std::string dbName = ValueWriter(cx, args.get(1)).toString();
@@ -144,4 +144,4 @@ void DBInfo::construct(JSContext* cx, JS::CallArgs args) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -36,15 +36,15 @@
 #include <string.h>
 
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/base/data_view.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/inline_decls.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/base/data_view.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/inline_decls.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 /* Accessing unaligned doubles on ARM generates an alignment trap and aborts with SIGBUS on Linux.
    Wrapping the double in a packed struct forces gcc to generate code that works with unaligned
    values too. The generated code for other architectures (which already allow unaligned accesses)
@@ -77,10 +77,10 @@ class StringBuilderImpl;
 class TrivialAllocator {
 public:
     void* Malloc(size_t sz) {
-        return mongoMalloc(sz);
+        return mongolMalloc(sz);
     }
     void* Realloc(void* p, size_t sz) {
-        return mongoRealloc(p, sz);
+        return mongolRealloc(p, sz);
     }
     void Free(void* p) {
         free(p);
@@ -93,19 +93,19 @@ public:
     void* Malloc(size_t sz) {
         if (sz <= SZ)
             return buf;
-        return mongoMalloc(sz);
+        return mongolMalloc(sz);
     }
     void* Realloc(void* p, size_t sz) {
         if (p == buf) {
             if (sz <= SZ)
                 return buf;
-            void* d = mongoMalloc(sz);
+            void* d = mongolMalloc(sz);
             if (d == 0)
                 msgasserted(15912, "out of memory StackAllocator::Realloc");
             memcpy(d, p, SZ);
             return d;
         }
-        return mongoRealloc(p, sz);
+        return mongolRealloc(p, sz);
     }
     void Free(void* p) {
         if (p != buf)
@@ -455,4 +455,4 @@ typedef StringBuilderImpl<StackAllocator> StackStringBuilder;
 #undef snprintf
 #pragma pop_macro("snprintf")
 #endif
-}  // namespace mongo
+}  // namespace mongol

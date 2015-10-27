@@ -30,12 +30,12 @@
 
 #include <wiredtiger.h>
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/storage/index_entry_comparison.h"
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/storage/index_entry_comparison.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexCatalogEntry;
 class IndexDescriptor;

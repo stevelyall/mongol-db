@@ -28,14 +28,14 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/fts/fts_matcher.h"
-#include "mongo/db/fts/fts_phrase_matcher.h"
-#include "mongo/db/fts/fts_tokenizer.h"
-#include "mongo/db/fts/fts_element_iterator.h"
+#include "mongol/db/fts/fts_matcher.h"
+#include "mongol/db/fts/fts_phrase_matcher.h"
+#include "mongol/db/fts/fts_tokenizer.h"
+#include "mongol/db/fts/fts_element_iterator.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

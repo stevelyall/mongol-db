@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/index_scan.h"
+#include "mongol/db/exec/index_scan.h"
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/filter.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/query/index_bounds_builder.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/filter.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/query/index_bounds_builder.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
 namespace {
 
@@ -53,7 +53,7 @@ int sgn(int i) {
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 // static
 const char* IndexScan::kStageType = "IXSCAN";
@@ -305,4 +305,4 @@ const SpecificStats* IndexScan::getSpecificStats() const {
     return &_specificStats;
 }
 
-}  // namespace mongo
+}  // namespace mongol

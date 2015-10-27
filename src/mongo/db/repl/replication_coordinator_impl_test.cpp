@@ -26,49 +26,49 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 #include <memory>
 #include <set>
 #include <vector>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/repl/handshake_args.h"
-#include "mongo/db/repl/is_master_response.h"
-#include "mongo/db/repl/operation_context_repl_mock.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/db/repl/read_concern_response.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator.h"  // ReplSetReconfigArgs
-#include "mongo/db/repl/replication_coordinator_external_state_mock.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/replication_coordinator_test_fixture.h"
-#include "mongo/db/repl/topology_coordinator_impl.h"
-#include "mongo/db/repl/update_position_args.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/barrier.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/repl/handshake_args.h"
+#include "mongol/db/repl/is_master_response.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/db/repl/read_concern_response.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator.h"  // ReplSetReconfigArgs
+#include "mongol/db/repl/replication_coordinator_external_state_mock.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/replication_coordinator_test_fixture.h"
+#include "mongol/db/repl/topology_coordinator_impl.h"
+#include "mongol/db/repl/update_position_args.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/barrier.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -3388,4 +3388,4 @@ TEST_F(ReplCoordTest, WaitForDrainFinish) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

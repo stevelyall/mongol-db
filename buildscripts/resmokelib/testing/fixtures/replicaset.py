@@ -7,7 +7,7 @@ from __future__ import absolute_import
 import os.path
 import time
 
-import pymongo
+import pymongol
 
 from . import interface
 from . import standalone
@@ -24,8 +24,8 @@ class ReplicaSetFixture(interface.ReplFixture):
     def __init__(self,
                  logger,
                  job_num,
-                 mongod_executable=None,
-                 mongod_options=None,
+                 mongold_executable=None,
+                 mongold_options=None,
                  dbpath_prefix=None,
                  preserve_dbpath=False,
                  num_nodes=2,
@@ -34,18 +34,18 @@ class ReplicaSetFixture(interface.ReplFixture):
 
         interface.ReplFixture.__init__(self, logger, job_num)
 
-        self.mongod_executable = mongod_executable
-        self.mongod_options = utils.default_if_none(mongod_options, {})
+        self.mongold_executable = mongold_executable
+        self.mongold_options = utils.default_if_none(mongold_options, {})
         self.preserve_dbpath = preserve_dbpath
         self.num_nodes = num_nodes
         self.auth_options = auth_options
         self.replset_config_options = utils.default_if_none(replset_config_options, {})
 
-        # The dbpath in mongod_options is used as the dbpath prefix for replica set members and
+        # The dbpath in mongold_options is used as the dbpath prefix for replica set members and
         # takes precedence over other settings. The ShardedClusterFixture uses this parameter to
         # create replica sets and assign their dbpath structure explicitly.
-        if "dbpath" in self.mongod_options:
-            self._dbpath_prefix = self.mongod_options.pop("dbpath")
+        if "dbpath" in self.mongold_options:
+            self._dbpath_prefix = self.mongold_options.pop("dbpath")
         else:
             # Command line options override the YAML configuration.
             dbpath_prefix = utils.default_if_none(config.DBPATH_PREFIX, dbpath_prefix)
@@ -58,11 +58,11 @@ class ReplicaSetFixture(interface.ReplFixture):
         self.replset_name = None
 
     def setup(self):
-        self.replset_name = self.mongod_options.get("replSet", "rs")
+        self.replset_name = self.mongold_options.get("replSet", "rs")
 
         if not self.nodes:
             for i in xrange(self.num_nodes):
-                node = self._new_mongod(i, self.replset_name)
+                node = self._new_mongold(i, self.replset_name)
                 self.nodes.append(node)
 
         for node in self.nodes:
@@ -84,7 +84,7 @@ class ReplicaSetFixture(interface.ReplFixture):
             members.append(member_info)
         initiate_cmd_obj = {"replSetInitiate": {"_id": self.replset_name, "members": members}}
 
-        client = utils.new_mongo_client(port=self.port)
+        client = utils.new_mongol_client(port=self.port)
         if self.auth_options is not None:
             auth_db = client[self.auth_options["authenticationDatabase"]]
             auth_db.authenticate(self.auth_options["username"],
@@ -99,7 +99,7 @@ class ReplicaSetFixture(interface.ReplFixture):
 
     def await_ready(self):
         # Wait for the primary to be elected.
-        client = utils.new_mongo_client(port=self.port)
+        client = utils.new_mongol_client(port=self.port)
         while True:
             is_master = client.admin.command("isMaster")["ismaster"]
             if is_master:
@@ -109,8 +109,8 @@ class ReplicaSetFixture(interface.ReplFixture):
 
         # Wait for the secondaries to become available.
         for secondary in self.get_secondaries():
-            client = utils.new_mongo_client(port=secondary.port,
-                                            read_preference=pymongo.ReadPreference.SECONDARY)
+            client = utils.new_mongol_client(port=secondary.port,
+                                            read_preference=pymongol.ReadPreference.SECONDARY)
             while True:
                 is_secondary = client.admin.command("isMaster")["secondary"]
                 if is_secondary:
@@ -156,36 +156,36 @@ class ReplicaSetFixture(interface.ReplFixture):
         # Keep retrying this until it times out waiting for replication.
         def insert_fn(remaining_secs):
             remaining_millis = int(round(remaining_secs * 1000))
-            client = utils.new_mongo_client(port=self.port)
+            client = utils.new_mongol_client(port=self.port)
             client.resmoke.await_repl.insert({"awaiting": "repl"},
                                              w=self.num_nodes,
                                              wtimeout=remaining_millis)
         try:
             self.retry_until_wtimeout(insert_fn)
-        except pymongo.errors.WTimeoutError:
+        except pymongol.errors.WTimeoutError:
             self.logger.info("Replication of write operation timed out.")
             raise
 
         self.logger.info("Replication of write operation completed.")
 
-    def _new_mongod(self, index, replset_name):
+    def _new_mongold(self, index, replset_name):
         """
         Returns a standalone.MongoDFixture configured to be used as a
         replica-set member of 'replset_name'.
         """
 
-        mongod_logger = self._get_logger_for_mongod(index)
-        mongod_options = self.mongod_options.copy()
-        mongod_options["replSet"] = replset_name
-        mongod_options["dbpath"] = os.path.join(self._dbpath_prefix, "node%d" % (index))
+        mongold_logger = self._get_logger_for_mongold(index)
+        mongold_options = self.mongold_options.copy()
+        mongold_options["replSet"] = replset_name
+        mongold_options["dbpath"] = os.path.join(self._dbpath_prefix, "node%d" % (index))
 
-        return standalone.MongoDFixture(mongod_logger,
+        return standalone.MongoDFixture(mongold_logger,
                                         self.job_num,
-                                        mongod_executable=self.mongod_executable,
-                                        mongod_options=mongod_options,
+                                        mongold_executable=self.mongold_executable,
+                                        mongold_options=mongold_options,
                                         preserve_dbpath=self.preserve_dbpath)
 
-    def _get_logger_for_mongod(self, index):
+    def _get_logger_for_mongold(self, index):
         """
         Returns a new logging.Logger instance for use as the primary or
         secondary of a replica-set.

@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/write_concern_options.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 template <typename T>
@@ -105,4 +105,4 @@ Status waitForWriteConcern(OperationContext* txn,
                            WriteConcernResult* result);
 
 
-}  // namespace mongo
+}  // namespace mongol

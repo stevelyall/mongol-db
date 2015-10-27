@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/legacy_dist_lock_pinger.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_pinger.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/s/catalog/legacy/distlock.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/s/catalog/legacy/distlock.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

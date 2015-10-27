@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/proxyscope.h"
+#include "mongol/scripting/mozjs/proxyscope.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 MozJSProxyScope::MozJSProxyScope(MozJSScriptEngine* engine)
@@ -366,4 +366,4 @@ void MozJSProxyScope::implThread(void* arg) {
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

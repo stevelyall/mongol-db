@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/config.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/config.h"
+#include "mongol/util/scopeguard.h"
 
 #ifndef MONGO_CONFIG_SSL
 #error This file should only be included in SSL-enabled builds
@@ -39,7 +39,7 @@
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 
-namespace mongo {
+namespace mongol {
 namespace crypto {
 /*
  * Computes a SHA-1 hash of 'input'.
@@ -73,4 +73,4 @@ bool hmacSha1(const unsigned char* key,
 }
 
 }  // namespace crypto
-}  // namespace mongo
+}  // namespace mongol

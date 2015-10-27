@@ -33,13 +33,13 @@
 #include <map>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/bson_collection_catalog_entry.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/bson_collection_catalog_entry.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class RecordStore;

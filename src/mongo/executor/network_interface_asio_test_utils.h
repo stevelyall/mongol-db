@@ -32,13 +32,13 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/thread_pool_interface.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/thread_pool_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -156,4 +156,4 @@ static Deferred<std::vector<T>> collect(std::vector<Deferred<T>>& ds, ThreadPool
 }  // namespace helpers
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

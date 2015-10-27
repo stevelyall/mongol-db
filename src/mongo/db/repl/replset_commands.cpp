@@ -26,40 +26,40 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/repl_set_command.h"
+#include "mongol/db/repl/repl_set_command.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/repl/initial_sync.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_external_state_impl.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/update_position_args.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/repl/initial_sync.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_external_state_impl.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/update_position_args.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using std::string;
@@ -171,7 +171,7 @@ public:
     virtual void help(stringstream& help) const {
         help << "Report status of a replica set from the POV of this server\n";
         help << "{ replSetGetStatus : 1 }";
-        help << "\nhttp://dochub.mongodb.org/core/replicasetcommands";
+        help << "\nhttp://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -208,7 +208,7 @@ public:
     virtual void help(stringstream& help) const {
         help << "Returns the current replica set configuration";
         help << "{ replSetGetConfig : 1 }";
-        help << "\nhttp://dochub.mongodb.org/core/replicasetcommands";
+        help << "\nhttp://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -315,7 +315,7 @@ public:
     CmdReplSetInitiate() : ReplSetCommand("replSetInitiate") {}
     virtual void help(stringstream& h) const {
         h << "Initiate/christen a replica set.";
-        h << "\nhttp://dochub.mongodb.org/core/replicasetcommands";
+        h << "\nhttp://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -393,7 +393,7 @@ public:
     virtual void help(stringstream& help) const {
         help << "Adjust configuration of a replica set\n";
         help << "{ replSetReconfig : config_object }";
-        help << "\nhttp://dochub.mongodb.org/core/replicasetcommands";
+        help << "\nhttp://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -456,7 +456,7 @@ public:
                 "expires.\n";
         help << "You can call again with {replSetFreeze:0} to unfreeze sooner.\n";
         help << "A process restart unfreezes the member also.\n";
-        help << "\nhttp://dochub.mongodb.org/core/replicasetcommands";
+        help << "\nhttp://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -494,7 +494,7 @@ public:
                 "(1 minute if no numeric secs value specified).\n";
         help << "(If another member with same priority takes over in the meantime, it will stay "
                 "primary.)\n";
-        help << "http://dochub.mongodb.org/core/replicasetcommands";
+        help << "http://dochub.mongoldb.org/core/replicasetcommands";
     }
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
@@ -851,4 +851,4 @@ private:
 } cmdReplSetElect;
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,22 +26,22 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/file_reader.h"
+#include "mongol/db/ftdc/file_reader.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_type_validated.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 FTDCFileReader::~FTDCFileReader() {
     _stream.close();
@@ -220,4 +220,4 @@ Status FTDCFileReader::open(const boost::filesystem::path& file) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

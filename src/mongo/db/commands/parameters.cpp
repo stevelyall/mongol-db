@@ -28,29 +28,29 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <set>
 
-#include "mongo/bson/json.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/logger/parse_log_component_settings.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/ssl_options.h"
+#include "mongol/bson/json.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/logger/parse_log_component_settings.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_options.h"
 
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 void appendParameterNames(stringstream& help) {
@@ -254,7 +254,7 @@ public:
         int newValue;
         if (!newValueElement.coerce(&newValue) || newValue < 0)
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for logLevel: " << newValueElement);
         LogSeverity newSeverity =
             (newValue > 0) ? LogSeverity::Debug(newValue) : LogSeverity::Log();
@@ -269,7 +269,7 @@ public:
             return status;
         if (newValue < 0)
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream() << "Invalid value for logLevel: " << newValue);
+                          mongolutils::str::stream() << "Invalid value for logLevel: " << newValue);
         LogSeverity newSeverity =
             (newValue > 0) ? LogSeverity::Debug(newValue) : LogSeverity::Log();
         globalLogDomain()->setMinimumLoggedSeverity(newSeverity);
@@ -298,7 +298,7 @@ public:
     virtual Status set(const BSONElement& newValueElement) {
         if (!newValueElement.isABSONObj()) {
             return Status(ErrorCodes::TypeMismatch,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "log component verbosity is not a BSON object: "
                               << newValueElement);
         }
@@ -307,7 +307,7 @@ public:
 
     virtual Status setFromString(const std::string& str) {
         try {
-            return _set(mongo::fromjson(str));
+            return _set(mongol::fromjson(str));
         } catch (const DBException& ex) {
             return ex.toStatus();
         }
@@ -467,7 +467,7 @@ public:
             return setFromString(newValueElement.String());
         } catch (MsgAssertionException msg) {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for sslMode via setParameter command: "
                               << newValueElement);
         }
@@ -476,12 +476,12 @@ public:
     virtual Status setFromString(const std::string& str) {
 #ifndef MONGO_CONFIG_SSL
         return Status(ErrorCodes::IllegalOperation,
-                      mongoutils::str::stream()
+                      mongolutils::str::stream()
                           << "Unable to set sslMode, SSL support is not compiled into server");
 #endif
         if (str != "disabled" && str != "allowSSL" && str != "preferSSL" && str != "requireSSL") {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for sslMode via setParameter command: " << str);
         }
 
@@ -492,7 +492,7 @@ public:
             sslGlobalParams.sslMode.store(SSLParams::SSLMode_requireSSL);
         } else {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Illegal state transition for sslMode, attempt to change from "
                               << sslModeStr() << " to " << str);
         }
@@ -533,7 +533,7 @@ public:
             return setFromString(newValueElement.String());
         } catch (MsgAssertionException msg) {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for clusterAuthMode via setParameter command: "
                               << newValueElement);
         }
@@ -542,12 +542,12 @@ public:
     virtual Status setFromString(const std::string& str) {
 #ifndef MONGO_CONFIG_SSL
         return Status(ErrorCodes::IllegalOperation,
-                      mongoutils::str::stream() << "Unable to set clusterAuthMode, "
+                      mongolutils::str::stream() << "Unable to set clusterAuthMode, "
                                                 << "SSL support is not compiled into server");
 #endif
         if (str != "keyFile" && str != "sendKeyFile" && str != "sendX509" && str != "x509") {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Invalid value for clusterAuthMode via setParameter command: "
                               << str);
         }
@@ -557,7 +557,7 @@ public:
         if (str == "sendX509" && oldMode == ServerGlobalParams::ClusterAuthMode_sendKeyFile) {
             if (sslMode == SSLParams::SSLMode_disabled || sslMode == SSLParams::SSLMode_allowSSL) {
                 return Status(ErrorCodes::BadValue,
-                              mongoutils::str::stream()
+                              mongolutils::str::stream()
                                   << "Illegal state transition for clusterAuthMode, "
                                   << "need to enable SSL for outgoing connections");
             }
@@ -573,7 +573,7 @@ public:
             serverGlobalParams.clusterAuthMode.store(ServerGlobalParams::ClusterAuthMode_x509);
         } else {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Illegal state transition for clusterAuthMode, change from "
                               << clusterAuthModeStr() << " to " << str);
         }

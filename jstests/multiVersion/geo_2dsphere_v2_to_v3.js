@@ -68,8 +68,8 @@ var nearQuery = {
     }
 };
 
-var mongod = MongoRunner.runMongod({binVersion: "3.0"});
-var coll = getCollection(mongod);
+var mongold = MongoRunner.runMongod({binVersion: "3.0"});
+var coll = getCollection(mongold);
 var res = coll.insert(generatePoints(10));
 res = coll.insert(generatePolygons(10));
 res = coll.createIndex({geometry: "2dsphere"}, {"2dsphereIndexVersion": 2});
@@ -78,9 +78,9 @@ res = coll.find(nearQuery);
 assert.eq(res.itcount(), 20);
 
 // Version 2 index should still work fine in latest
-MongoRunner.stopMongod(mongod);
-mongod = MongoRunner.runMongod({binVersion: "latest", restart: mongod});
-coll = getCollection(mongod);
+MongoRunner.stopMongod(mongold);
+mongold = MongoRunner.runMongod({binVersion: "latest", restart: mongold});
+coll = getCollection(mongold);
 assert.eq(2, get2dsphereIndexVersion(coll));
 res = coll.find(nearQuery);
 assert.eq(res.itcount(), 20);
@@ -93,21 +93,21 @@ res = coll.find(nearQuery);
 assert.eq(res.itcount(), 20);
 
 // downgrading shouldn't be able to startup because of assertion error
-MongoRunner.stopMongod(mongod);
-var failed_mongod = MongoRunner.runMongod({binVersion: "3.0", restart: mongod});
-assert.eq(failed_mongod, null);
+MongoRunner.stopMongod(mongold);
+var failed_mongold = MongoRunner.runMongod({binVersion: "3.0", restart: mongold});
+assert.eq(failed_mongold, null);
 
 // upgrade, reindex, then downgrade to fix
-mongod = MongoRunner.runMongod({binVersion: "latest", restart: mongod})
-coll = getCollection(mongod);
+mongold = MongoRunner.runMongod({binVersion: "latest", restart: mongold})
+coll = getCollection(mongold);
 assert.eq(3, get2dsphereIndexVersion(coll));
 res = coll.dropIndex({geometry: "2dsphere"});
 res = coll.createIndex({geometry: "2dsphere"}, {"2dsphereIndexVersion": 2});
 assert.eq(2, get2dsphereIndexVersion(coll));
-MongoRunner.stopMongod(mongod);
-mongod = MongoRunner.runMongod({binVersion: "3.0", restart: mongod});
-assert.neq(mongod, null);
-coll = getCollection(mongod);
+MongoRunner.stopMongod(mongold);
+mongold = MongoRunner.runMongod({binVersion: "3.0", restart: mongold});
+assert.neq(mongold, null);
+coll = getCollection(mongold);
 assert.eq(2, get2dsphereIndexVersion(coll));
 res = coll.find(nearQuery);
 assert.eq(res.itcount(), 20);

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connection_string.h"
+#include "mongol/client/connection_string.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(ConnectionString, EqualitySync) {
     ConnectionString cs(ConnectionString::SYNC, "a,b,c", "");

@@ -15,9 +15,9 @@
 #ifndef LOKI_SCOPEGUARD_H_
 #define LOKI_SCOPEGUARD_H_
 
-#include "mongo/platform/compiler.h"
+#include "mongol/platform/compiler.h"
 
-namespace mongo {
+namespace mongol {
 
 ////////////////////////////////////////////////////////////////////////////////
 ///  \class RefToValue

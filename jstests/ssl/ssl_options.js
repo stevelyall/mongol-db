@@ -2,14 +2,14 @@ var baseName = "jstests_ssl_ssl_options";
 
 jsTest.log("Testing censorship of ssl options");
 
-var mongodConfig = { sslPEMKeyFile : "jstests/libs/password_protected.pem",
+var mongoldConfig = { sslPEMKeyFile : "jstests/libs/password_protected.pem",
                      sslMode : "requireSSL",
                      sslPEMKeyPassword : "qwerty",
                      sslClusterPassword : "qwerty",
                      sslCAFile: "jstests/libs/ca.pem"};
-var mongodSource = MongoRunner.runMongod(mongodConfig);
+var mongoldSource = MongoRunner.runMongod(mongoldConfig);
 
-var getCmdLineOptsResult = mongodSource.adminCommand("getCmdLineOpts");
+var getCmdLineOptsResult = mongoldSource.adminCommand("getCmdLineOpts");
 
 var i;
 var isPassword = false;
@@ -31,6 +31,6 @@ assert.eq(getCmdLineOptsResult.parsed.net.ssl.PEMKeyPassword, "<password>",
 assert.eq(getCmdLineOptsResult.parsed.net.ssl.clusterPassword, "<password>",
           "Password not properly censored: " + tojson(getCmdLineOptsResult));
 
-MongoRunner.stopMongod(mongodSource.port);
+MongoRunner.stopMongod(mongoldSource.port);
 
 print(baseName + " succeeded.");

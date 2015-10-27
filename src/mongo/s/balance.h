@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/util/background.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/util/background.h"
 
-namespace mongo {
+namespace mongol {
 
 class BalancerPolicy;
 struct MigrateInfo;
@@ -42,7 +42,7 @@ struct WriteConcernOptions;
 
 /**
  * The balancer is a background task that tries to keep the number of chunks across all
- * servers of the cluster even. Although every mongos will have one balancer running, only one
+ * servers of the cluster even. Although every mongols will have one balancer running, only one
  * of them will be active at the any given point in time. The balancer uses a distributed lock
  * for that coordination.
  *
@@ -64,7 +64,7 @@ public:
     }
 
 private:
-    // hostname:port of my mongos
+    // hostname:port of my mongols
     std::string _myid;
 
     // time the Balancer started running

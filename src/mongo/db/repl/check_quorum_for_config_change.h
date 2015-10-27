@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/scatter_gather_algorithm.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/scatter_gather_algorithm.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class ReplicaSetConfig;
@@ -149,4 +149,4 @@ Status checkQuorumForReconfig(ReplicationExecutor* executor,
                               const int myIndex);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

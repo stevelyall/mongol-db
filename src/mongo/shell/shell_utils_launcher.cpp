@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils_launcher.cpp
+// mongol/shell/shell_utils_launcher.cpp
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/shell/shell_utils_launcher.h"
+#include "mongol/shell/shell_utils_launcher.h"
 
 #include <iostream>
 #include <map>
@@ -50,17 +50,17 @@
 #include <sys/wait.h>
 #endif
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/shell/shell_utils.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/signal_win32.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/shell/shell_utils.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/signal_win32.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::cout;
@@ -166,13 +166,13 @@ void ProgramRegistry::getRegisteredPids(vector<ProcessId>& pids) {
 ProgramRegistry& registry = *(new ProgramRegistry());
 
 void goingAwaySoon() {
-    stdx::lock_guard<stdx::mutex> lk(mongoProgramOutputMutex);
-    mongo::dbexitCalled = true;
+    stdx::lock_guard<stdx::mutex> lk(mongolProgramOutputMutex);
+    mongol::dbexitCalled = true;
 }
 
 void ProgramOutputMultiplexer::appendLine(int port, ProcessId pid, const char* line) {
-    stdx::lock_guard<stdx::mutex> lk(mongoProgramOutputMutex);
-    uassert(28695, "program is terminating", !mongo::dbexitCalled);
+    stdx::lock_guard<stdx::mutex> lk(mongolProgramOutputMutex);
+    uassert(28695, "program is terminating", !mongol::dbexitCalled);
     stringstream buf;
     string name = registry.programName(pid);
     if (port > 0)
@@ -185,7 +185,7 @@ void ProgramOutputMultiplexer::appendLine(int port, ProcessId pid, const char* l
 }
 
 string ProgramOutputMultiplexer::str() const {
-    stdx::lock_guard<stdx::mutex> lk(mongoProgramOutputMutex);
+    stdx::lock_guard<stdx::mutex> lk(mongolProgramOutputMutex);
     string ret = _buffer.str();
     size_t len = ret.length();
     if (len > 100000) {
@@ -195,7 +195,7 @@ string ProgramOutputMultiplexer::str() const {
 }
 
 void ProgramOutputMultiplexer::clear() {
-    stdx::lock_guard<stdx::mutex> lk(mongoProgramOutputMutex);
+    stdx::lock_guard<stdx::mutex> lk(mongolProgramOutputMutex);
     _buffer.str("");
 }
 
@@ -206,25 +206,25 @@ ProgramRunner::ProgramRunner(const BSONObj& args) {
     verify(!program.empty());
     boost::filesystem::path programPath = findProgram(program);
 
-    string prefix("mongod-");
+    string prefix("mongold-");
     bool isMongodProgram =
-        string("mongod") == program || program.compare(0, prefix.size(), prefix) == 0;
-    prefix = "mongos-";
+        string("mongold") == program || program.compare(0, prefix.size(), prefix) == 0;
+    prefix = "mongols-";
     bool isMongosProgram =
-        string("mongos") == program || program.compare(0, prefix.size(), prefix) == 0;
+        string("mongols") == program || program.compare(0, prefix.size(), prefix) == 0;
 
     if (isMongodProgram) {
         _name = "d";
     } else if (isMongosProgram) {
         _name = "s";
-    } else if (program == "mongobridge") {
+    } else if (program == "mongolbridge") {
         _name = "b";
     }
 
 #if 0
-            if (isMongosProgram == "mongos") {
+            if (isMongosProgram == "mongols") {
                 _argv.push_back("valgrind");
-                _argv.push_back("--log-file=/tmp/mongos-%p.valgrind");
+                _argv.push_back("--log-file=/tmp/mongols-%p.valgrind");
                 _argv.push_back("--leak-check=yes");
                 _argv.push_back("--suppressions=valgrind.suppressions");
                 //_argv.push_back("--error-exitcode=1");
@@ -246,7 +246,7 @@ ProgramRunner::ProgramRunner(const BSONObj& args) {
             ss << e.number();
             str = ss.str();
         } else {
-            verify(e.type() == mongo::String);
+            verify(e.type() == mongol::String);
             str = e.valuestr();
         }
         if (str == "--port") {
@@ -259,7 +259,7 @@ ProgramRunner::ProgramRunner(const BSONObj& args) {
         _argv.push_back(str);
     }
 
-    if (!isMongodProgram && !isMongosProgram && program != "mongobridge")
+    if (!isMongodProgram && !isMongosProgram && program != "mongolbridge")
         _port = 0;
     else {
         if (_port <= 0)
@@ -306,7 +306,7 @@ void ProgramRunner::start() {
 
 void ProgramRunner::operator()() {
     try {
-        // This assumes there aren't any 0's in the mongo program output.
+        // This assumes there aren't any 0's in the mongol program output.
         // Hope that's ok.
         const unsigned bufSize = 128 * 1024;
         char buf[bufSize];
@@ -320,13 +320,13 @@ void ProgramRunner::operator()() {
             }
             verify(lenToRead > 0);
             int ret = read(_pipe, (void*)start, lenToRead);
-            if (mongo::dbexitCalled)
+            if (mongol::dbexitCalled)
                 break;
             verify(ret != -1);
             start[ret] = '\0';
             if (strlen(start) != unsigned(ret))
                 programOutputLogger.appendLine(
-                    _port, _pid, "WARNING: mongod wrote null bytes to output");
+                    _port, _pid, "WARNING: mongold wrote null bytes to output");
             char* last = buf;
             for (char* i = strchr(buf, '\n'); i; last = i + 1, i = strchr(last, '\n')) {
                 *i = '\0';
@@ -357,7 +357,7 @@ boost::filesystem::path ProgramRunner::findProgram(const string& prog) {
 
 #ifdef _WIN32
     // The system programs either come versioned in the form of <utility>-<major.minor>
-    // (e.g., mongorestore-2.4) or just <utility>. For windows, the appropriate extension
+    // (e.g., mongolrestore-2.4) or just <utility>. For windows, the appropriate extension
     // needs to be appended.
     //
     if (p.extension() != ".exe") {
@@ -623,7 +623,7 @@ void copyDir(const boost::filesystem::path& from, const boost::filesystem::path&
     boost::filesystem::directory_iterator i(from);
     while (i != end) {
         boost::filesystem::path p = *i;
-        if (p.leaf() != "mongod.lock" && p.leaf() != "WiredTiger.lock") {
+        if (p.leaf() != "mongold.lock" && p.leaf() != "WiredTiger.lock") {
             if (boost::filesystem::is_directory(p)) {
                 boost::filesystem::path newDir = to / p.leaf();
                 boost::filesystem::create_directory(newDir);
@@ -804,7 +804,7 @@ BSONObj StopMongoProgram(const BSONObj& a, void* data) {
     uassert(15853, "stopMongo needs a number", a.firstElement().isNumber());
     int port = int(a.firstElement().number());
     int code = killDb(port, ProcessId::fromNative(0), getSignal(a), getStopMongodOpts(a));
-    log() << "shell: stopped mongo program on port " << port << endl;
+    log() << "shell: stopped mongol program on port " << port << endl;
     return BSON("" << (double)code);
 }
 
@@ -813,7 +813,7 @@ BSONObj StopMongoProgramByPid(const BSONObj& a, void* data) {
     uassert(15852, "stopMongoByPid needs a number", a.firstElement().isNumber());
     ProcessId pid = ProcessId::fromNative(int(a.firstElement().number()));
     int code = killDb(0, pid, getSignal(a));
-    log() << "shell: stopped mongo program on pid " << pid << endl;
+    log() << "shell: stopped mongol program on pid " << pid << endl;
     return BSON("" << (double)code);
 }
 

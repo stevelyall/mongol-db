@@ -35,7 +35,7 @@
 #include <windows.h>
 #include "text.h"
 
-namespace mongo {
+namespace mongol {
 
 inline std::string GetWinErrMsg(DWORD err) {
     LPTSTR errMsg;

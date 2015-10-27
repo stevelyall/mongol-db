@@ -26,11 +26,11 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/base.h"
+#include "mongol/scripting/mozjs/base.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec* BaseInfo::freeFunctions = nullptr;
@@ -65,4 +65,4 @@ void BaseInfo::setProperty(
     JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool strict, JS::MutableHandleValue vp) {}
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

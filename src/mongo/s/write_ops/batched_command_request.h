@@ -30,13 +30,13 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/write_ops/batched_insert_request.h"
-#include "mongo/s/write_ops/batched_update_request.h"
-#include "mongo/s/write_ops/batched_delete_request.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/write_ops/batched_insert_request.h"
+#include "mongol/s/write_ops/batched_update_request.h"
+#include "mongol/s/write_ops/batched_delete_request.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceString;
 
@@ -245,4 +245,4 @@ private:
     const int _itemIndex;
 };
 
-}  // namespace mongo
+}  // namespace mongol

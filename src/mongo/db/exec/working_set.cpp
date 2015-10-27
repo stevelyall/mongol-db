@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/working_set.h"
+#include "mongol/db/exec/working_set.h"
 
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/record_fetcher.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/record_fetcher.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -250,4 +250,4 @@ size_t WorkingSetMember::getMemUsage() const {
     return memUsage;
 }
 
-}  // namespace mongo
+}  // namespace mongol

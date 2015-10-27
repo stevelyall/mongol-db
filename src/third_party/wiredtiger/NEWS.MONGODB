@@ -95,25 +95,25 @@ Date:   Mon Apr 20 16:50:13 2015 +1000
     /test/format/ops.c: 489
 
 commit 3eceb85ce623dcce9273f7b722bb64f509dbe24d
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Mon Apr 20 16:15:41 2015 +1000
 
     Clear session->dhandle so that future error messages don't dereference freed memory.
 
 commit 23ce8bae4d6507d6b6d599cb73a26a6c856cce98
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Mon Apr 20 15:48:29 2015 +1000
 
     Clear eviction walks in all trees before the eviction server exits.
 
 commit a4bce0e0bc05d528f118b645d0d1915db00cdcf3
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Mon Apr 20 14:11:57 2015 +1000
 
     Move the "cache is empty" check to where the cache is destoyed, not when the eviction server is exiting.
 
 commit c8fdd9c676c4a24bee6328a56cf7fd074cd045e0
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Mon Apr 20 13:25:36 2015 +1000
 
     Shut down the eviction server before closing file handles to avoid a race.
@@ -175,7 +175,7 @@ Date:   Fri Apr 17 04:32:52 2015 +0000
     on their session_max setting.
 
 commit ee02428d1fdf1118c482688ec870a9da69bee45a
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Fri Apr 17 12:28:52 2015 +1000
 
     If an LSM search-near operation lands on a deleted item, make a copy of the key before stepping to the next record.
@@ -274,13 +274,13 @@ Date:   Tue Apr 14 06:30:41 2015 +0000
     Make test/thread use WT_TEST not cwd, and add some more logging.
 
 commit b9e2e76511a24505014369aaf0e1ec286e9c473d
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Tue Apr 14 16:30:31 2015 +1000
 
     Merge bulk cursor close with regular file cursor close: we were missing a decrement that kept bulk-loaded files pinned.
 
 commit a9e6a51f4ace1da5c73dd54c108d9a764fc5d8a4
-Author: Michael Cahill <michael.cahill@mongodb.com>
+Author: Michael Cahill <michael.cahill@mongoldb.com>
 Date:   Tue Apr 14 14:37:12 2015 +1000
 
     Fix some 64-to-32-bit conversion warnings.
@@ -344,7 +344,7 @@ Date:   Mon Apr 13 12:59:29 2015 +1000
     Allow forced eviction of pages already queued for eviction
 
 commit 9c83351f63afc2e032e492e3030df4f3b1cd6883
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Sun Apr 12 19:02:32 2015 -0400
 
     Disable fallocate on Windows since SetEndofFile does not
@@ -460,7 +460,7 @@ Date:   Wed Apr 8 14:38:49 2015 -0400
     Fix places where we were using the wrong link for traversing hash buckets.
 
 commit 7d0e5fe3dfa39f7ff377a1d4660bc2bc36dc0df8
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Wed Apr 8 10:19:33 2015 -0400
 
     Enable test/fops for Windows, and add to CI
@@ -468,7 +468,7 @@ Date:   Wed Apr 8 10:19:33 2015 -0400
     - Added Windows shim for gettimeofday
 
 commit c6270b677499525067d5d729a6fbdce6ad2f533a
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Wed Apr 8 13:28:41 2015 -0400
 
     test/format for Windows
@@ -498,7 +498,7 @@ Date:   Wed Apr 8 07:58:49 2015 -0400
     macros needed for the Windows port.
 
 commit 9f9fbb19ba19f90e4fc52d7568bd66427edb31e6
-Author: Pat Gunn <pgunn@mongodb.com>
+Author: Pat Gunn <pgunn@mongoldb.com>
 Date:   Tue Apr 7 22:56:55 2015 -0400
 
     Add a Python ex_stat example
@@ -723,7 +723,7 @@ Date:   Fri Mar 27 10:07:16 2015 -0400
     work of finding the next useful record. Reference #1807.
 
 commit e1ee6432fb5a948ebd5cafe2ba9c2b79411458f5
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Thu Mar 26 11:31:27 2015 -0400
 
     Revert "Make LZ4 default off in scons builds for now."
@@ -731,7 +731,7 @@ Date:   Thu Mar 26 11:31:27 2015 -0400
     This reverts commit 67b71e1eaad1a5825f99a415d9851976f11dbfee.
 
 commit 003e6c3598408c7670f65a8720622c38fdaf148d
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Thu Mar 26 11:17:57 2015 -0400
 
     Use Standard C type uint64_t for zlib
@@ -823,7 +823,7 @@ Date:   Mon Mar 23 10:13:37 2015 -0400
 ------------------
 
 commit 17bd2356a5b17893e626749be399fb8fda23db1e
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Fri Mar 20 01:07:59 2015 -0400
 
     Use beginthreadex, and ensure we use the correct C calling conventions in all callbacks
@@ -879,7 +879,7 @@ Date:   Fri Mar 20 17:19:28 2015 +1100
     Only align buffers on Linux if direct I/O is configured.  Clarify why we round up the allocation size: it usually won't matter because we allocate multiples of the alignment size anyway.
 
 commit ee7456799277e19ff4771de79ac4eafac43aff9b
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Thu Mar 19 16:16:15 2015 -0400
 
     Visual Studio 2015 Preview support
@@ -1110,7 +1110,7 @@ Date:   Tue Mar 10 07:19:59 2015 +0000
     refs #1742
 
 commit e51cc35a88ed497f911a25fec9f4bfcc6617d6a2
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Mon Mar 9 15:40:59 2015 -0400
 
     SERVER-17471: Use uint64_t instead of long since long is compiler specific
@@ -1438,7 +1438,7 @@ commit bf3ee2cd064b46cf0175d75950c825aa1f42c694
 Author: Michael Cahill <michael.cahill@wiredtiger.com>
 Date:   Wed Feb 18 12:53:41 2015 +1100
 
-    Flip cache overhead to apply to the allocated bytes rather than the total size.  Include the overhead in stats so that tools (e.g., mongostat) report accurate cache full and dirty percentages.  This also makes eviction triggers and targets meaningful: with the default trigger of 95% and overhead 8%, eviction was previously never triggered until the cache was completely full.
+    Flip cache overhead to apply to the allocated bytes rather than the total size.  Include the overhead in stats so that tools (e.g., mongolstat) report accurate cache full and dirty percentages.  This also makes eviction triggers and targets meaningful: with the default trigger of 95% and overhead 8%, eviction was previously never triggered until the cache was completely full.
 
 commit f9e6f942cf73c8a53aaadbc587c1b7efad6cc832
 Author: Keith Bostic <keith@wiredtiger.com>
@@ -1880,32 +1880,32 @@ Date:   Wed Jan 28 17:40:06 2015 +1100
     refs SERVER-16997
 
 commit 4adf9c929b1b46f273239214b4e2757fcfdb8f96
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Fri Jan 23 18:29:15 2015 -0500
 
     Windows Install Documentation
 
 commit 8faa218d27e7f21091f0b51a973f27047db1d950
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Tue Jan 27 13:47:24 2015 -0500
 
     MCI configuration update
 
 commit 422cbb6cea5fa5be6829044215ae46dc10be5f70
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Mon Jan 26 16:11:29 2015 -0500
 
     Add Install Target to SCons
 
 commit 41e7ab083d79a650e93a34d09e01e973ca4100d9
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Fri Jan 23 15:54:40 2015 -0500
 
     WiredTiger DLL support
     - Examples that only depend on public API use DLL now
 
 commit 23b2493e75cd166075eaccdaef75c8beee4576db
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Fri Jan 23 15:50:16 2015 -0500
 
     Scons Improvements
@@ -1914,7 +1914,7 @@ Date:   Fri Jan 23 15:50:16 2015 -0500
     - Renamed wiredtiger static library to libwiredtiger.lib
 
 commit 96ab0ef67eee20fa75fa6d52c97d98bc119b74ae
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Thu Jan 15 15:07:01 2015 -0500
 
     Struct alignment and packing for MSVC
@@ -1982,7 +1982,7 @@ Date:   Fri Jan 23 16:21:06 2015 -0500
     Reference SERVER-16997, SERVER-17020.
 
 commit 3abb99d58aaa46b0b3fcd338293a668422e3fcaf
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Fri Jan 23 15:05:16 2015 -0500
 
     Close Thread Handle after thread join on Windows
@@ -2222,7 +2222,7 @@ Date:   Fri Dec 19 12:23:21 2014 +1100
     refs #1495, #1497 (maybe)
 
 commit 87328a8d5c1d4a201a1df604ba32a87863948bbb
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Thu Dec 18 14:51:51 2014 -0500
 
     fix test_salvage on Windows
@@ -2236,7 +2236,7 @@ Date:   Thu Dec 18 16:45:06 2014 +1100
     refs SERVER-16546
 
 commit 235f747e2df80d9899497595a2b649e7d6df8601
-Author: Mark Benvenuto <mark.benvenuto@mongodb.com>
+Author: Mark Benvenuto <mark.benvenuto@mongoldb.com>
 Date:   Wed Dec 17 14:11:41 2014 -0500
 
     snprintf - Implement a custom version of snprintf match the truncation behavior of C99 standard snprintf until MSVC supports snprintf.

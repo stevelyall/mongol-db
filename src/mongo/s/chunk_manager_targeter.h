@@ -30,11 +30,11 @@
 
 #include <map>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/ns_targeter.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/ns_targeter.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkManager;
 struct ChunkVersion;
@@ -166,4 +166,4 @@ private:
     ShardVersionMap _remoteShardVersions;
 };
 
-}  // namespace mongo
+}  // namespace mongol

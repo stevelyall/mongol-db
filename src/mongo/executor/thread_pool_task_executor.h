@@ -30,14 +30,14 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/list.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/list.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 class ThreadPoolInterface;
 
@@ -162,4 +162,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

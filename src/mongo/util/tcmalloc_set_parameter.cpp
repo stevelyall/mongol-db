@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include "gperftools/malloc_extension.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/init.h"
-#include "mongo/base/parse_number.h"
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/init.h"
+#include "mongol/base/parse_number.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class TcmallocNumericPropertyServerParameter : public ServerParameter {
@@ -129,4 +129,4 @@ MONGO_INITIALIZER_GENERAL(TcmallocConfigurationDefaults,
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

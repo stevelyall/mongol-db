@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/storage_interface.h"
+#include "mongol/db/repl/storage_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 StorageInterface::StorageInterface() {}
 StorageInterface::~StorageInterface() {}
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

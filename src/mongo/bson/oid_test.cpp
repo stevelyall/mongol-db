@@ -25,14 +25,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/bson/oid.h"
+#include "mongol/bson/oid.h"
 
-#include "mongo/platform/endian.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/platform/endian.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::OID;
+using mongol::OID;
 
 TEST(Equals, Simple) {
     OID o1 = OID::gen();
@@ -79,7 +79,7 @@ TEST(TimestampIsBigEndian, Endianness) {
     OID::Timestamp ts = 123;
     o1.setTimestamp(ts);
 
-    int32_t ts_big = mongo::endian::nativeToBig<int32_t>(123);
+    int32_t ts_big = mongol::endian::nativeToBig<int32_t>(123);
 
     const char* oidBytes = o1.view().view();
     ASSERT(std::memcmp(&ts_big, oidBytes, sizeof(int32_t)) == 0);

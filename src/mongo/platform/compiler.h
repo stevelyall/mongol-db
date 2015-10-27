@@ -29,7 +29,7 @@
 #pragma once
 
 /**
- * Include "mongo/platform/compiler.h" to get compiler-targeted macro definitions and utilities.
+ * Include "mongol/platform/compiler.h" to get compiler-targeted macro definitions and utilities.
  *
  * The following macros are provided in all compiler environments:
  *
@@ -122,9 +122,9 @@
  */
 
 #if defined(_MSC_VER)
-#include "mongo/platform/compiler_msvc.h"
+#include "mongol/platform/compiler_msvc.h"
 #elif defined(__GNUC__)
-#include "mongo/platform/compiler_gcc.h"
+#include "mongol/platform/compiler_gcc.h"
 #else
 #error "Unsupported compiler family"
 #endif

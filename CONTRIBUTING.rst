@@ -8,7 +8,7 @@ For any particular improvement you want to make, you can begin a discussion on t
 `MongoDB Developers Forum`_.  This is the best place discuss your proposed improvement (and its
 implementation) with the core development team.
 
-.. _MongoDB Developers Forum: https://groups.google.com/forum/?fromgroups#!forum/mongodb-dev
+.. _MongoDB Developers Forum: https://groups.google.com/forum/?fromgroups#!forum/mongoldb-dev
 
 
 Getting Started
@@ -16,10 +16,10 @@ Getting Started
 
 - Create a `MongoDB JIRA account`_.
 - Create a `Github account`_.
-- Fork the repository on Github at https://github.com/mongodb/mongo.
-- For more details see http://www.mongodb.org/about/contributors/
+- Fork the repository on Github at https://github.com/mongoldb/mongol.
+- For more details see http://www.mongoldb.org/about/contributors/
 
-.. _MongoDB JIRA account: https://jira.mongodb.org/secure/Signup!default.jspa
+.. _MongoDB JIRA account: https://jira.mongoldb.org/secure/Signup!default.jspa
 .. _Github account: https://github.com/signup/free
 
 
@@ -37,7 +37,7 @@ the issue is present and clear steps to reproduce.
 For improvements or feature requests, be sure to explain the goal or use case and the approach
 your solution will take.
 
-.. _SERVER project: https://jira.mongodb.org/browse/SERVER
+.. _SERVER project: https://jira.mongoldb.org/browse/SERVER
 
 
 The Life Cycle of a Pull Request
@@ -68,8 +68,8 @@ not covered in this document you should default to the `Google CPP Style Guide`_
 Your commit message should also be prefaced with the relevant JIRA ticket, e.g. "SERVER-XXX Fixed
 a bug in aggregation".
 
-.. _kernel development rules: http://dochub.mongodb.org/core/kernelcodedevelopmentrules
-.. _Kernel Code Style guidelines: http://dochub.mongodb.org/core/kernelcodestyle
+.. _kernel development rules: http://dochub.mongoldb.org/core/kernelcodedevelopmentrules
+.. _Kernel Code Style guidelines: http://dochub.mongoldb.org/core/kernelcodestyle
 .. _Google CPP Style Guide: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 .. _Google JavaScript Style Guide: http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 
@@ -91,4 +91,4 @@ Contributor Agreement
 A patch will only be considered for merging into the upstream codebase after you have signed the
 `contributor agreement`_.
 
-.. _contributor agreement: http://www.mongodb.com/contributor
+.. _contributor agreement: http://www.mongoldb.com/contributor

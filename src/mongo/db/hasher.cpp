@@ -32,13 +32,13 @@
 *    it in the license file.
 */
 
-#include "mongo/db/hasher.h"
+#include "mongol/db/hasher.h"
 
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 

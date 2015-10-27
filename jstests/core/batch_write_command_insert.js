@@ -1,5 +1,5 @@
 //
-// Ensures that mongod respects the batch write protocol for inserts
+// Ensures that mongold respects the batch write protocol for inserts
 //
 
 var coll = db.getCollection( "batch_write_insert" );

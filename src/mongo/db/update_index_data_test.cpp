@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/db/update_index_data.h"
+#include "mongol/db/update_index_data.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

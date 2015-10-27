@@ -1,4 +1,4 @@
-// mongo tool tests, very basic to start with
+// mongol tool tests, very basic to start with
 
 baseName = "jstests_tool_tool1";
 dbPath = MongoRunner.dataPath + baseName + "/";
@@ -23,20 +23,20 @@ c = m.getDB( baseName ).getCollection( baseName );
 c.save( { a: 1 } );
 assert( c.findOne() );
 
-runMongoProgram( "mongodump", "--host", "127.0.0.1:" + m.port, "--out", externalPath );
+runMongoProgram( "mongoldump", "--host", "127.0.0.1:" + m.port, "--out", externalPath );
 c.drop();
-runMongoProgram( "mongorestore", "--host", "127.0.0.1:" + m.port, "--dir", externalPath );
-assert.soon( "c.findOne()" , "mongodump then restore has no data w/sleep" );
-assert( c.findOne() , "mongodump then restore has no data" );
-assert.eq( 1 , c.findOne().a , "mongodump then restore has no broken data" );
+runMongoProgram( "mongolrestore", "--host", "127.0.0.1:" + m.port, "--dir", externalPath );
+assert.soon( "c.findOne()" , "mongoldump then restore has no data w/sleep" );
+assert( c.findOne() , "mongoldump then restore has no data" );
+assert.eq( 1 , c.findOne().a , "mongoldump then restore has no broken data" );
 
 resetDbpath( externalPath );
 
-assert.eq( -1 , fileSize() , "mongoexport prep invalid" );
-runMongoProgram( "mongoexport", "--host", "127.0.0.1:" + m.port, "-d", baseName, "-c", baseName, "--out", externalFile );
+assert.eq( -1 , fileSize() , "mongolexport prep invalid" );
+runMongoProgram( "mongolexport", "--host", "127.0.0.1:" + m.port, "-d", baseName, "-c", baseName, "--out", externalFile );
 assert.lt( 10 , fileSize() , "file size changed" );
 
 c.drop();
-runMongoProgram( "mongoimport", "--host", "127.0.0.1:" + m.port, "-d", baseName, "-c", baseName, "--file", externalFile );
-assert.soon( "c.findOne()" , "mongo import json A" );
-assert( c.findOne() && 1 == c.findOne().a , "mongo import json B" );
+runMongoProgram( "mongolimport", "--host", "127.0.0.1:" + m.port, "-d", baseName, "-c", baseName, "--file", externalFile );
+assert.soon( "c.findOne()" , "mongol import json A" );
+assert( c.findOne() && 1 == c.findOne().a , "mongol import json B" );

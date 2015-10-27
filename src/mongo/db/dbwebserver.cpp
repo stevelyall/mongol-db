@@ -31,40 +31,40 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/dbwebserver.h"
+#include "mongol/db/dbwebserver.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <pcrecpp.h>
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/background.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/stats/snapshots.h"
-#include "mongo/rpc/command_reply.h"
-#include "mongo/rpc/command_reply_builder.h"
-#include "mongo/rpc/command_request.h"
-#include "mongo/rpc/command_request_builder.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/util/admin_access.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/mongoutils/html.h"
-#include "mongo/util/ramlog.h"
-#include "mongo/util/version.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/background.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/stats/snapshots.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/rpc/command_reply_builder.h"
+#include "mongol/rpc/command_request.h"
+#include "mongol/rpc/command_request_builder.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/util/admin_access.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/mongolutils/html.h"
+#include "mongol/util/ramlog.h"
+#include "mongol/util/version.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::map;
 using std::stringstream;
@@ -77,7 +77,7 @@ namespace {
 void doUnlockedStuff(stringstream& ss) {
     // This is in the header already ss << "port:      " << port << '\n'
     ss << "<pre>";
-    ss << mongodVersion() << '\n';
+    ss << mongoldVersion() << '\n';
     ss << "git hash: " << gitVersion() << '\n';
     ss << openSSLVersion("OpenSSL version: ", "\n");
     ss << "uptime: " << time(0) - serverGlobalParams.started << " seconds\n";
@@ -209,7 +209,7 @@ public:
         ss << p(a("/", "back", "Home"));
         ss << p(
             "<b>MongoDB List of "
-            "<a href=\"http://dochub.mongodb.org/core/commands\">Commands</a>"
+            "<a href=\"http://dochub.mongoldb.org/core/commands\">Commands</a>"
             "</b>\n");
 
         const Command::CommandMap* m = Command::commandsByBestName();
@@ -510,7 +510,7 @@ bool DbWebServer::_allowed(OperationContext* txn,
 
     stringstream authHeader;
     authHeader << "WWW-Authenticate: "
-               << "Digest realm=\"mongo\", "
+               << "Digest realm=\"mongol\", "
                << "nonce=\"abc\", "
                << "algorithm=MD5, qop=\"auth\" ";
 
@@ -608,4 +608,4 @@ void webServerListenThread(std::shared_ptr<DbWebServer> dbWebServer) {
     dbWebServer->initAndListen();
 }
 
-}  // namespace mongo
+}  // namespace mongol

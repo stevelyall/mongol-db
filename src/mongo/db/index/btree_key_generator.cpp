@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/index/btree_key_generator.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/index/btree_key_generator.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 // SortStage checks for this error code in order to informatively error when we try to sort keys
 // with parallel arrays.
@@ -216,14 +216,14 @@ BSONElement BtreeKeyGeneratorV1::extractNextElement(const BSONObj& obj,
                                                     const PositionalPathInfo& positionalInfo,
                                                     const char** field,
                                                     bool* arrayNestedArray) const {
-    std::string firstField = mongoutils::str::before(*field, '.');
+    std::string firstField = mongolutils::str::before(*field, '.');
     bool haveObjField = !obj.getField(firstField).eoo();
     BSONElement arrField = positionalInfo.positionallyIndexedElt;
 
     // An index component field name cannot exist in both a document
     // array and one of that array's children.
     uassert(16746,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "Ambiguous field name found in array (do not use numeric field names in "
                    "embedded elements in an array), field: '" << arrField.fieldName()
                 << "' for array: " << positionalInfo.arrayObj,
@@ -386,4 +386,4 @@ void BtreeKeyGeneratorV1::getKeysImplWithArray(
         }
     }
 }
-}  // namespace mongo
+}  // namespace mongol

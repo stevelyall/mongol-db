@@ -26,15 +26,15 @@
  * it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/util/log.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::min;
@@ -154,7 +154,7 @@ BSONObj DocumentSourceGeoNear::buildGeoNearCmd() const {
 void DocumentSourceGeoNear::runCommand() {
     massert(16603, "Already ran geoNearCommand", !resultsIterator);
 
-    bool ok = _mongod->directClient()->runCommand(
+    bool ok = _mongold->directClient()->runCommand(
         pExpCtx->ns.db().toString(), buildGeoNearCmd(), cmdOutput);
     uassert(16604, "geoNear command failed: " + cmdOutput.toString(), ok);
 

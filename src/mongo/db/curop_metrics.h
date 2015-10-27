@@ -28,10 +28,10 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
 void recordCurOpMetrics(OperationContext* opCtx);
 
-}  // namespace mongo
+}  // namespace mongol

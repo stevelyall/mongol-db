@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/metadata/audit_metadata.h"
+#include "mongol/rpc/metadata/audit_metadata.h"
 
 #include <utility>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 const OperationContext::Decoration<AuditMetadata> AuditMetadata::get =
@@ -87,4 +87,4 @@ const char kLegacyImpersonatedUsersFieldName[] = "impersonatedUsers";
 const char kLegacyImpersonatedRolesFieldName[] = "impersonatedRoles";
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

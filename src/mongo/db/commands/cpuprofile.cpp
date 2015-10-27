@@ -30,11 +30,11 @@
 
 /**
  * This module provides commands for starting and stopping the Google perftools
- * cpu profiler linked into mongod.
+ * cpu profiler linked into mongold.
  *
  * The following command enables the not-currently-enabled profiler, and writes
  * the profile data to the specified "profileFilename."
- *     { _cpuProfilerStart: { profileFilename: '/path/on/mongod-host.prof' } }
+ *     { _cpuProfilerStart: { profileFilename: '/path/on/mongold-host.prof' } }
  *
  * The following command disables the already-enabled profiler:
  *     { _cpuProfilerStop: 1}
@@ -52,16 +52,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -168,4 +168,4 @@ bool CpuProfilerStopCommand::run(OperationContext* txn,
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

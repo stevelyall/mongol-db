@@ -27,10 +27,10 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/status.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class InitializerContext;
 
@@ -42,4 +42,4 @@ class InitializerContext;
  */
 typedef stdx::function<Status(InitializerContext*)> InitializerFunction;
 
-}  // namespace mongo
+}  // namespace mongol

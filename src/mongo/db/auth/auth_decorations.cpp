@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 #include <utility>
 
-#include "mongo/base/init.h"
-#include "mongo/db/auth/authentication_session.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_manager_external_state.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/init.h"
+#include "mongol/db/auth/authentication_session.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_manager_external_state.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 MONGO_INITIALIZER_WITH_PREREQUISITES(CreateAuthorizationManager,
@@ -134,4 +134,4 @@ void AuthorizationSession::set(ClientBasic* client,
     authzSession = std::move(authorizationSession);
 }
 
-}  // namespace mongo
+}  // namespace mongol

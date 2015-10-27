@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/operation_context_impl.h"
+#include "mongol/db/operation_context_impl.h"
 
 #include <memory>
 
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/platform/random.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/platform/random.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 std::unique_ptr<Locker> newLocker() {
@@ -212,4 +212,4 @@ void OperationContextImpl::setReplicatedWrites(bool writesAreReplicated) {
 bool OperationContextImpl::writesAreReplicated() const {
     return _writesAreReplicated;
 }
-}  // namespace mongo
+}  // namespace mongol

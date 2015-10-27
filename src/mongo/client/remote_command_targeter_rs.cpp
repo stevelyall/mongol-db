@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/remote_command_targeter_rs.h"
+#include "mongol/client/remote_command_targeter_rs.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 RemoteCommandTargeterRS::RemoteCommandTargeterRS(const std::string& rsName,
                                                  const std::vector<HostAndPort>& seedHosts)
@@ -90,4 +90,4 @@ void RemoteCommandTargeterRS::markHostUnreachable(const HostAndPort& host) {
     _rsMonitor->failedHost(host);
 }
 
-}  // namespace mongo
+}  // namespace mongol

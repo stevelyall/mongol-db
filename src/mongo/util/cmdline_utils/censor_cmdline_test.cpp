@@ -30,16 +30,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/cmdline_utils/censor_cmdline.h"
-#include "mongo/util/options_parser/environment.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/cmdline_utils/censor_cmdline.h"
+#include "mongol/util/options_parser/environment.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 void testCensoringArgv(const char* const* expected, const char* const* toCensor, int elementCount) {
     std::vector<std::string> toCensorStringVec(toCensor, toCensor + elementCount);
@@ -298,4 +298,4 @@ TEST(BSONObjCensorTests, SubObjects) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

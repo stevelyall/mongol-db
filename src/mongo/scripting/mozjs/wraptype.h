@@ -32,10 +32,10 @@
 #include <jsapi.h>
 #include <type_traits>
 
-#include "mongo/scripting/mozjs/base.h"
-#include "mongo/scripting/mozjs/exception.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/scripting/mozjs/base.h"
+#include "mongol/scripting/mozjs/exception.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/util/assert_util.h"
 
 // The purpose of this class is to take in specially crafted types and generate
 // a wrapper which installs the type, along with any useful life cycle methods
@@ -44,11 +44,11 @@
 // complexity of exposing C++ code into javascript. Most prominently, we have
 // to wrap every function that can be called from javascript to prevent any C++
 // exceptions from leaking out. We do this, with template and macro based
-// codegen, and turn mongo exceptions into instances of Status, then convert
+// codegen, and turn mongol exceptions into instances of Status, then convert
 // those into javascript exceptions before returning. That allows all consumers
 // of this library to throw exceptions freely, with the understanding that
 // they'll be visible in javascript. Javascript exceptions are trapped at the
-// top level and converted back to mongo exceptions by an error handler on
+// top level and converted back to mongol exceptions by an error handler on
 // ImplScope.
 
 // MONGO_*_JS_FUNCTION_* macros are public and allow wrapped types to install
@@ -82,7 +82,7 @@
                 nullptr                                                                           \
     }
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 namespace smUtils {
@@ -94,7 +94,7 @@ bool wrapFunction(JSContext* cx, unsigned argc, JS::Value* vp) {
         T::call(cx, args);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 }
@@ -106,7 +106,7 @@ bool addProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::Mutab
         T::addProperty(cx, obj, id, v);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -117,7 +117,7 @@ bool call(JSContext* cx, unsigned argc, JS::Value* vp) {
         T::call(cx, JS::CallArgsFromVp(argc, vp));
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -128,7 +128,7 @@ bool construct(JSContext* cx, unsigned argc, JS::Value* vp) {
         T::construct(cx, JS::CallArgsFromVp(argc, vp));
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -139,7 +139,7 @@ bool convert(JSContext* cx, JS::HandleObject obj, JSType type, JS::MutableHandle
         T::convert(cx, obj, type, vp);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -150,7 +150,7 @@ bool delProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool* suc
         T::delProperty(cx, obj, id, succeeded);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -161,7 +161,7 @@ bool enumerate(JSContext* cx, JS::HandleObject obj, JS::AutoIdVector& properties
         T::enumerate(cx, obj, properties);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -172,7 +172,7 @@ bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::Mutab
         T::getProperty(cx, obj, id, vp);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -183,7 +183,7 @@ bool hasInstance(JSContext* cx, JS::HandleObject obj, JS::MutableHandleValue vp,
         T::hasInstance(cx, obj, vp, bp);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -195,7 +195,7 @@ bool setProperty(
         T::setProperty(cx, obj, id, strict, vp);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -206,7 +206,7 @@ bool resolve(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool* resolve
         T::resolve(cx, obj, id, resolvedp);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 };
@@ -514,4 +514,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_record_store.h"
 
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
-#include "mongo/db/storage/record_store_test_harness.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_recovery_unit.h"
+#include "mongol/db/storage/record_store_test_harness.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class EphemeralForTestHarnessHelper final : public HarnessHelper {
 public:

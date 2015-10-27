@@ -31,12 +31,12 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Iterates over a collection using multiple underlying RecordCursors.
@@ -92,4 +92,4 @@ private:
     const WorkingSetID _wsidForFetch;
 };
 
-}  // namespace mongo
+}  // namespace mongol

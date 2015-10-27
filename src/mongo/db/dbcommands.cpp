@@ -26,84 +26,84 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 #include <time.h>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/impersonation_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/user_management_commands_parser.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/coll_mod.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/catalog/create_collection.h"
-#include "mongo/db/catalog/drop_collection.h"
-#include "mongo/db/catalog/drop_database.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/commands/shutdown.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/introspect.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/repair_database.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/db/repl/read_concern_response.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/s/operation_shard_version.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/rpc/request_interface.h"
-#include "mongo/rpc/reply_builder_interface.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/rpc/metadata/sharding_metadata.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"  // for SendStaleConfigException
-#include "mongo/scripting/engine.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/print.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/impersonation_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/user_management_commands_parser.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/coll_mod.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/create_collection.h"
+#include "mongol/db/catalog/drop_collection.h"
+#include "mongol/db/catalog/drop_database.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/commands/shutdown.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/introspect.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/repair_database.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/db/repl/read_concern_response.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/s/operation_shard_version.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/rpc/request_interface.h"
+#include "mongol/rpc/reply_builder_interface.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/rpc/metadata/sharding_metadata.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"  // for SendStaleConfigException
+#include "mongol/scripting/engine.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/print.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::ostringstream;
@@ -190,7 +190,7 @@ public:
         if (serverGlobalParams.configsvr && (dbname == "config")) {
             return appendCommandStatus(result,
                                        Status(ErrorCodes::IllegalOperation,
-                                              "Cannot drop 'config' database if mongod started "
+                                              "Cannot drop 'config' database if mongold started "
                                               "with --configsvr"));
         }
 
@@ -300,7 +300,7 @@ public:
         help << "{ profile : <n> }\n";
         help << "0=off 1=log slow ops 2=log all\n";
         help << "-1 to get current values\n";
-        help << "http://docs.mongodb.org/manual/reference/command/profile/#dbcmd.profile";
+        help << "http://docs.mongoldb.org/manual/reference/command/profile/#dbcmd.profile";
     }
 
     virtual bool isWriteCommandForConfigServer() const {
@@ -385,7 +385,7 @@ public:
     }
 
     void help(stringstream& h) const {
-        h << "http://dochub.mongodb.org/core/"
+        h << "http://dochub.mongoldb.org/core/"
              "monitoring#MonitoringandDiagnostics-DatabaseRecord%2FReplay%28diagLoggingcommand%29";
     }
 
@@ -584,8 +584,8 @@ public:
         if (partialOk) {
             // WARNING: This code depends on the binary layout of md5_state. It will not be
             // compatible with different md5 libraries or work correctly in an environment with
-            // mongod's of different endians. It is ok for mongos to be a different endian since
-            // it just passes the buffer through to another mongod.
+            // mongold's of different endians. It is ok for mongols to be a different endian since
+            // it just passes the buffer through to another mongold.
             BSONElement stateElem = jsobj["md5state"];
             if (!stateElem.eoo()) {
                 int len;
@@ -1179,7 +1179,7 @@ void Command::execCommand(OperationContext* txn,
             stdx::lock_guard<Client> lk(*txn->getClient());
             CurOp::get(txn)->setCommand_inlock(command);
         }
-        // TODO: move this back to runCommands when mongos supports OperationContext
+        // TODO: move this back to runCommands when mongols supports OperationContext
         // see SERVER-18515 for details.
         uassertStatusOK(rpc::readRequestMetadata(txn, request.getMetadata()));
 
@@ -1393,7 +1393,7 @@ bool Command::run(OperationContext* txn,
             repl::ReplClientInfo::forClient(txn->getClient()).getLastOp();
         replCoord->prepareReplResponseMetadata(request, lastOpTimeFromClient, &metadataBob);
 
-        // For commands from mongos, append some info to help getLastError(w) work.
+        // For commands from mongols, append some info to help getLastError(w) work.
         // TODO: refactor out of here as part of SERVER-18326
         if (isShardingAware || serverGlobalParams.configsvr) {
             rpc::ShardingMetadata(lastOpTimeFromClient, replCoord->getElectionId())
@@ -1425,4 +1425,4 @@ void Command::registerError(OperationContext* txn, const DBException& exception)
     CurOp::get(txn)->debug().exceptionInfo = exception.getInfo();
 }
 
-}  // namespace mongo
+}  // namespace mongol

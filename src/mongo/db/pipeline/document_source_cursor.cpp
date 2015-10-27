@@ -26,22 +26,22 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
 
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/s/d_state.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/s/d_state.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::shared_ptr;

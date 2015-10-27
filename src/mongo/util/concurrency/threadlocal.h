@@ -30,9 +30,9 @@
 
 #include <boost/thread/tss.hpp>
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
 #if defined(MONGO_CONFIG_HAVE_THREAD_LOCAL)
 #define MONGO_TRIVIALLY_CONSTRUCTIBLE_THREAD_LOCAL thread_local
@@ -44,7 +44,7 @@
 #error "Compiler must support trivially constructible thread local variables"
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using boost::thread_specific_ptr;
 
@@ -135,4 +135,4 @@ private:
         tsp.reset(v);                                   \
         _##p = v;                                       \
     }
-}  // namespace mongo
+}  // namespace mongol

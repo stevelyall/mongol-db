@@ -22,20 +22,20 @@ if wiredtiger:
             'wiredtiger_util.cpp',
             ],
         LIBDEPS= [
-            '$BUILD_DIR/mongo/base',
-            '$BUILD_DIR/mongo/db/namespace_string',
-            '$BUILD_DIR/mongo/db/catalog/collection_options',
-            '$BUILD_DIR/mongo/db/concurrency/write_conflict_exception',
-            '$BUILD_DIR/mongo/db/index/index_descriptor',
-            '$BUILD_DIR/mongo/db/service_context',
-            '$BUILD_DIR/mongo/db/storage/index_entry_comparison',
-            '$BUILD_DIR/mongo/db/storage/key_string',
-            '$BUILD_DIR/mongo/db/storage/oplog_hack',
-            '$BUILD_DIR/mongo/db/storage/storage_options',
-            '$BUILD_DIR/mongo/util/elapsed_tracker',
-            '$BUILD_DIR/mongo/util/foundation',
-            '$BUILD_DIR/mongo/util/processinfo',
-            '$BUILD_DIR/mongo/util/concurrency/ticketholder',
+            '$BUILD_DIR/mongol/base',
+            '$BUILD_DIR/mongol/db/namespace_string',
+            '$BUILD_DIR/mongol/db/catalog/collection_options',
+            '$BUILD_DIR/mongol/db/concurrency/write_conflict_exception',
+            '$BUILD_DIR/mongol/db/index/index_descriptor',
+            '$BUILD_DIR/mongol/db/service_context',
+            '$BUILD_DIR/mongol/db/storage/index_entry_comparison',
+            '$BUILD_DIR/mongol/db/storage/key_string',
+            '$BUILD_DIR/mongol/db/storage/oplog_hack',
+            '$BUILD_DIR/mongol/db/storage/storage_options',
+            '$BUILD_DIR/mongol/util/elapsed_tracker',
+            '$BUILD_DIR/mongol/util/foundation',
+            '$BUILD_DIR/mongol/util/processinfo',
+            '$BUILD_DIR/mongol/util/concurrency/ticketholder',
             '$BUILD_DIR/third_party/shim_wiredtiger',
             '$BUILD_DIR/third_party/shim_snappy',
             '$BUILD_DIR/third_party/shim_zlib',
@@ -53,13 +53,13 @@ if wiredtiger:
             'wiredtiger_init.cpp',
             'wiredtiger_options_init.cpp',
             'wiredtiger_parameters.cpp',
-            'wiredtiger_record_store_mongod.cpp',
+            'wiredtiger_record_store_mongold.cpp',
             'wiredtiger_server_status.cpp',
             ],
         LIBDEPS=['storage_wiredtiger_core',
-                 '$BUILD_DIR/mongo/db/storage/kv/kv_engine',
-                 '$BUILD_DIR/mongo/db/storage/storage_engine_lock_file',
-                 '$BUILD_DIR/mongo/db/storage/storage_engine_metadata',
+                 '$BUILD_DIR/mongol/db/storage/kv/kv_engine',
+                 '$BUILD_DIR/mongol/db/storage/storage_engine_lock_file',
+                 '$BUILD_DIR/mongol/db/storage/storage_engine_metadata',
                  ],
         LIBDEPS_TAGS=[
             # Depends on symbols defined in serverOnlyfiles
@@ -82,7 +82,7 @@ if wiredtiger:
                 ],
         LIBDEPS=[
             'storage_wiredtiger_mock',
-            '$BUILD_DIR/mongo/db/storage/record_store_test_harness',
+            '$BUILD_DIR/mongol/db/storage/record_store_test_harness',
             ],
         )
 
@@ -92,7 +92,7 @@ if wiredtiger:
                 ],
         LIBDEPS=[
             'storage_wiredtiger_mock',
-            '$BUILD_DIR/mongo/db/storage/sorted_data_interface_test_harness',
+            '$BUILD_DIR/mongol/db/storage/sorted_data_interface_test_harness',
             ],
         )
 
@@ -101,8 +101,8 @@ if wiredtiger:
         source=['wiredtiger_init_test.cpp',
                 ],
         LIBDEPS=[
-            '$BUILD_DIR/mongo/db/serveronly',
-            '$BUILD_DIR/mongo/util/ntservice_mock',
+            '$BUILD_DIR/mongol/db/serveronly',
+            '$BUILD_DIR/mongol/util/ntservice_mock',
             ],
         NO_CRUTCH=True,
         )
@@ -113,7 +113,7 @@ if wiredtiger:
                 ],
         LIBDEPS=[
             'storage_wiredtiger_mock',
-            '$BUILD_DIR/mongo/db/storage/kv/kv_engine_test_harness',
+            '$BUILD_DIR/mongol/db/storage/kv/kv_engine_test_harness',
             ],
         )
 
@@ -122,7 +122,7 @@ if wiredtiger:
         source=['wiredtiger_util_test.cpp',
                 ],
         LIBDEPS=[
-            '$BUILD_DIR/mongo/db/service_context',
+            '$BUILD_DIR/mongol/db/service_context',
             'storage_wiredtiger_mock',
             ],
         )

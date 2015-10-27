@@ -27,9 +27,9 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -53,4 +53,4 @@ public:
 };
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

@@ -28,9 +28,9 @@
 *    then also delete it in the license file.
 */
 
-#include "mongo/platform/unordered_map.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 /** Thread safe map.
     Be careful not to use this too much or it could make things slow;

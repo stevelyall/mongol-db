@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/base/status_with.h"
-#include "mongo/s/client/multi_host_query.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/concurrency/synchronization.h"
+#include "mongol/base/status_with.h"
+#include "mongol/s/client/multi_host_query.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/concurrency/synchronization.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::unique_ptr;
 using std::shared_ptr;
 using std::make_pair;

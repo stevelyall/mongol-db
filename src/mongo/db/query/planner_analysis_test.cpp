@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/planner_analysis.h"
+#include "mongol/db/query/planner_analysis.h"
 
 #include <set>
 
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

@@ -28,15 +28,15 @@
 
 #include <string>
 
-#include "mongo/db/storage/sorted_data_interface.h"
+#include "mongol/db/storage/sorted_data_interface.h"
 
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_logic.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_logic.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
@@ -424,4 +424,4 @@ SortedDataInterface* getMMAPV1Interface(HeadManager* headManager,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

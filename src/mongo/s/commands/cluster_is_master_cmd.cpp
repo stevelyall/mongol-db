@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class CmdIsMaster : public Command {
@@ -83,4 +83,4 @@ public:
 } isMaster;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

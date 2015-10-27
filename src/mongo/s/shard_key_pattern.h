@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/matcher/matchable.h"
-#include "mongo/db/query/index_bounds.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/matcher/matchable.h"
+#include "mongol/db/query/index_bounds.h"
 
-namespace mongo {
+namespace mongol {
 
 class FieldRef;
 

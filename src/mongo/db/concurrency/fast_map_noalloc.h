@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/platform/unordered_map.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * NOTE: This structure should not be used for anything other than the Lock Manager.
@@ -257,4 +257,4 @@ private:
     int _fastAccessUsedSize;
 };
 
-}  // namespace mongo
+}  // namespace mongol

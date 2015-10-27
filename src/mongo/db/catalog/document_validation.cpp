@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/document_validation.h"
+#include "mongol/db/catalog/document_validation.h"
 
-namespace mongo {
+namespace mongol {
 const OperationContext::Decoration<bool> documentValidationDisabled =
     OperationContext::declareDecoration<bool>();
 }

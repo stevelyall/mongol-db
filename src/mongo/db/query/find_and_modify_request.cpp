@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/find_and_modify_request.h"
+#include "mongol/db/query/find_and_modify_request.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/write_concern.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/write_concern.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const char kCmdName[] = "findAndModify";

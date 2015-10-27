@@ -28,13 +28,13 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/repl/isself.h"
+#include "mongol/base/init.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/repl/isself.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -72,4 +72,4 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(RegisterIsSelfCommand, ("GenerateInstanceId
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

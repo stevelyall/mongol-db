@@ -34,7 +34,7 @@
 
 #include "spin_lock.h"
 
-namespace mongo {
+namespace mongol {
 
 // todo: rename this to ThreadSafeString or something
 /** there is now one mutex per DiagStr.  If you have hundreds or millions of

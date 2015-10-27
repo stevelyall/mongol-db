@@ -31,11 +31,11 @@
 #include <set>
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/concurrency/mutex.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 extern int maxSyncSourceLagSecs;
@@ -95,4 +95,4 @@ public:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

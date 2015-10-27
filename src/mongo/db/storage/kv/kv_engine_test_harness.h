@@ -30,9 +30,9 @@
 
 #pragma once
 
-#include "mongo/db/storage/kv/kv_engine.h"
+#include "mongol/db/storage/kv/kv_engine.h"
 
-namespace mongo {
+namespace mongol {
 class KVHarnessHelper {
 public:
     virtual ~KVHarnessHelper() {}

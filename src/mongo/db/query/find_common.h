@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class LiteParsedQuery;
 
 /**
- * Suite of find/getMore related functions used in both the mongod and mongos query paths.
+ * Suite of find/getMore related functions used in both the mongold and mongols query paths.
  */
 class FindCommon {
 public:
@@ -74,4 +74,4 @@ public:
     static BSONObj transformSortSpec(const BSONObj& sortSpec);
 };
 
-}  // namespace mongo
+}  // namespace mongol

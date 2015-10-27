@@ -1,4 +1,4 @@
-// mongo/util/startup_test.cpp
+// mongol/util/startup_test.cpp
 
 /**
 *    Copyright (C) 2012 10gen Inc.
@@ -28,9 +28,9 @@
 *    then also delete it in the license file.
 */
 
-#include "mongo/util/startup_test.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 std::vector<StartupTest*>* StartupTest::tests = 0;
 bool StartupTest::running = false;
 
@@ -54,4 +54,4 @@ void StartupTest::runTests() {
     running = false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

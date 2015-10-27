@@ -26,7 +26,7 @@
  *    it in the license file.
  */
 
-namespace mongo {
+namespace mongol {
 namespace ntservice {
 
 bool shouldStartService() {
@@ -34,4 +34,4 @@ bool shouldStartService() {
 }
 
 }  // namespace ntservice
-}  // namespace mongo
+}  // namespace mongol

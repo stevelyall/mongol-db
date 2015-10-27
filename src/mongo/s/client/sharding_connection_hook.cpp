@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/sharding_connection_hook.h"
+#include "mongol/s/client/sharding_connection_hook.h"
 
 #include <string>
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/client.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata/audit_metadata.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/s/client/scc_fast_query_handler.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/version_manager.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/client.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata/audit_metadata.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/s/client/scc_fast_query_handler.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/version_manager.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
 namespace {
 
 // A hook that parses the reply metadata from every response to a command sent from a DBClient
-// created by mongos or a sharding aware mongod and being used for sharded operations.
-// Used by mongos to capture the GLE stats so that we can target the correct node when subsequent
-// getLastError calls are made, as well as by both mongod and mongos to update the stored config
+// created by mongols or a sharding aware mongold and being used for sharded operations.
+// Used by mongols to capture the GLE stats so that we can target the correct node when subsequent
+// getLastError calls are made, as well as by both mongold and mongols to update the stored config
 // server optime.
 Status _shardingReplyMetadataReader(const BSONObj& metadataObj, StringData hostString) {
     saveGLEStats(metadataObj, hostString);
@@ -82,8 +82,8 @@ Status _shardingReplyMetadataReader(const BSONObj& metadataObj, StringData hostS
 }
 
 // A hook that will append impersonated users to the metadata of every runCommand run by a DBClient
-// created by mongos or a sharding aware mongod.  mongos uses this information to send information
-// to mongod so that the mongod can produce auditing records attributed to the proper authenticated
+// created by mongols or a sharding aware mongold.  mongols uses this information to send information
+// to mongold so that the mongold can produce auditing records attributed to the proper authenticated
 // user(s).
 // Additionally, if the connection is sharding-aware, also appends the stored config server optime.
 Status _shardingRequestMetadataWriter(bool shardedConn,
@@ -185,4 +185,4 @@ void ShardingConnectionHook::onRelease(DBClientBase* conn) {
     conn->reset();
 }
 
-}  // namespace mongo
+}  // namespace mongol

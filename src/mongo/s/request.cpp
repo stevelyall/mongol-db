@@ -28,25 +28,25 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/request.h"
+#include "mongol/s/request.h"
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/cursors.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/strategy.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/cursors.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/strategy.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -68,7 +68,7 @@ void Request::init(OperationContext* txn) {
         const NamespaceString nss(getns());
 
         uassert(ErrorCodes::IllegalOperation,
-                "can't use 'local' database through mongos",
+                "can't use 'local' database through mongols",
                 nss.db() != "local");
 
         uassert(ErrorCodes::InvalidNamespace,
@@ -139,4 +139,4 @@ void Request::reply(Message& response, const string& fromServer) {
     _p->reply(_m, response, _id);
 }
 
-}  // namespace mongo
+}  // namespace mongol

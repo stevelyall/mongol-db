@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "Sharding multiple ns",
                            shards: 1,
-                           mongos: 1,
+                           mongols: 1,
                            verbose: 1,
                            other: { rs : true , chunkSize: 1 } });
 
@@ -37,7 +37,7 @@ s._rs[0].test.stopMaster(15);
 // Wait for the primary to come back online...
 var primary = s._rs[0].test.getPrimary();
 
-// Wait for the mongos to recognize the new primary...
+// Wait for the mongols to recognize the new primary...
 ReplSetTest.awaitRSClientHosts( db.getMongo(), primary, { ismaster : true } );
 
 assert.eq( 5 , db.foo.findOne( { _id : 5 } ).x );

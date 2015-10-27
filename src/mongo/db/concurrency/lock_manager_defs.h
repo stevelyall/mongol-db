@@ -32,11 +32,11 @@
 #include <string>
 #include <limits>
 
-#include "mongo/base/string_data.h"
-#include "mongo/config.h"
-#include "mongo/platform/hash_namespace.h"
+#include "mongol/base/string_data.h"
+#include "mongol/config.h"
+#include "mongol/platform/hash_namespace.h"
 
-namespace mongo {
+namespace mongol {
 
 class Locker;
 
@@ -410,13 +410,13 @@ struct LockRequest {
  */
 const char* lockRequestStatusName(LockRequest::Status status);
 
-}  // namespace mongo
+}  // namespace mongol
 
 
 MONGO_HASH_NAMESPACE_START
 template <>
-struct hash<mongo::ResourceId> {
-    size_t operator()(const mongo::ResourceId& resource) const {
+struct hash<mongol::ResourceId> {
+    size_t operator()(const mongol::ResourceId& resource) const {
         return resource;
     }
 };

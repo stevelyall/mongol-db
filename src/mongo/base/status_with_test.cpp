@@ -29,18 +29,18 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
 namespace {
 
-using mongo::makeStatusWith;
-using mongo::StatusWith;
+using mongol::makeStatusWith;
+using mongol::StatusWith;
 
 TEST(StatusWith, makeStatusWith) {
-    using mongo::StringData;
+    using mongol::StringData;
 
     auto s1 = makeStatusWith<int>(3);
     ASSERT_TRUE(s1.isOK());
@@ -87,7 +87,7 @@ TEST(StatusWith, nonDefaultConstructible) {
     auto swND = makeStatusWith<NoDefault>(1);
     ASSERT_TRUE(swND.getValue()._x = 1);
 
-    auto swNDerror = StatusWith<NoDefault>(mongo::ErrorCodes::BadValue, "foo");
+    auto swNDerror = StatusWith<NoDefault>(mongol::ErrorCodes::BadValue, "foo");
     ASSERT_FALSE(swNDerror.isOK());
 }
 

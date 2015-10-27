@@ -4,46 +4,46 @@ Welcome to MongoDB!
 
 COMPONENTS
 
-  bin/mongod - The database process.
-  bin/mongos - Sharding controller.
-  bin/mongo  - The database shell (uses interactive javascript).
+  bin/mongold - The database process.
+  bin/mongols - Sharding controller.
+  bin/mongol  - The database shell (uses interactive javascript).
 
 UTILITIES
 
-  bin/mongodump         - MongoDB dump tool - for backups, snapshots, etc..
-  bin/mongorestore      - MongoDB restore a dump
-  bin/mongoexport       - Export a single collection to test (JSON, CSV)
-  bin/mongoimport       - Import from JSON or CSV
-  bin/mongofiles        - Utility for putting and getting files from MongoDB GridFS
-  bin/mongostat         - Show performance statistics
+  bin/mongoldump         - MongoDB dump tool - for backups, snapshots, etc..
+  bin/mongolrestore      - MongoDB restore a dump
+  bin/mongolexport       - Export a single collection to test (JSON, CSV)
+  bin/mongolimport       - Import from JSON or CSV
+  bin/mongolfiles        - Utility for putting and getting files from MongoDB GridFS
+  bin/mongolstat         - Show performance statistics
 
 RUNNING
 
   For command line options invoke:
 
-    $ ./mongod --help
+    $ ./mongold --help
 
   To run a single server database:
 
     $ mkdir /data/db
-    $ ./mongod
+    $ ./mongold
     $
-    $ # The mongo javascript shell connects to localhost and test database by default:
-    $ ./mongo 
+    $ # The mongol javascript shell connects to localhost and test database by default:
+    $ ./mongol 
     > help
 
 DRIVERS
 
-  Client drivers for most programming languages are available at mongodb.org.  Use the 
-  shell ("mongo") for administrative tasks.
+  Client drivers for most programming languages are available at mongoldb.org.  Use the 
+  shell ("mongol") for administrative tasks.
 
 DOCUMENTATION
 
-  http://www.mongodb.org/
+  http://www.mongoldb.org/
 
 MAIL LISTS AND IRC
 
-  http://dochub.mongodb.org/core/community
+  http://dochub.mongoldb.org/core/community
 
 32 BIT BUILD NOTES
 

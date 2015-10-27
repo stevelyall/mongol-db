@@ -28,7 +28,7 @@
     }
 
     function testShutdownLogging(launcher, crashFn, matchFn) {
-        var logFileName = MongoRunner.dataPath + "mongod.log";
+        var logFileName = MongoRunner.dataPath + "mongold.log";
         var opts = { logpath: logFileName };
         var conn = launcher.start(opts);
         try {
@@ -69,7 +69,7 @@
     }
 
     (function testMongod() {
-        print("********************\nTesting exit logging in mongod\n********************");
+        print("********************\nTesting exit logging in mongold\n********************");
 
         runAllTests({
             start: function (opts) {
@@ -82,13 +82,13 @@
     }());
 
     (function testMongos() {
-        print("********************\nTesting exit logging in mongos\n********************");
+        print("********************\nTesting exit logging in mongols\n********************");
 
         var st = new ShardingTest({
             shards: 1,
             other: { shardOptions: { nojournal: "" } }
         });
-        var mongosLauncher = {
+        var mongolsLauncher = {
             start: function (opts) {
                 var actualOpts = { configdb: st._configDB }
                 Object.extend(actualOpts, opts);
@@ -98,7 +98,7 @@
             stop: MongoRunner.stopMongos
         };
 
-        runAllTests(mongosLauncher);
+        runAllTests(mongolsLauncher);
     }());
 
 }());

@@ -28,24 +28,24 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/catalog/index_catalog_entry.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_index.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/temp_dir.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/catalog/index_catalog_entry.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_index.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/temp_dir.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -139,4 +139,4 @@ TEST(WiredTigerIndexTest, GenerateCreateStringValidConfigStringOption) {
     ASSERT_EQ(WiredTigerIndex::parseIndexOptions(spec), std::string("prefix_compression=true,"));
 }
 
-}  // namespace mongo
+}  // namespace mongol

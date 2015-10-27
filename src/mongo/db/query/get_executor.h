@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/ops/parsed_delete.h"
-#include "mongo/db/ops/parsed_update.h"
-#include "mongo/db/ops/update_driver.h"
-#include "mongo/db/ops/update_request.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/ops/parsed_delete.h"
+#include "mongol/db/ops/parsed_update.h"
+#include "mongol/db/ops/update_driver.h"
+#include "mongol/db/ops/update_request.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class CountRequest;
@@ -181,4 +181,4 @@ StatusWith<std::unique_ptr<PlanExecutor>> getExecutorGroup(OperationContext* txn
                                                            const GroupRequest& request,
                                                            PlanExecutor::YieldPolicy yieldPolicy);
 
-}  // namespace mongo
+}  // namespace mongol

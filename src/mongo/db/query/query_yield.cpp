@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/query_yield.h"
+#include "mongol/db/query/query_yield.h"
 
-#include "mongo/db/curop.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/record_fetcher.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/record_fetcher.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 void QueryYield::yieldAllLocks(OperationContext* txn, RecordFetcher* fetcher) {
@@ -72,4 +72,4 @@ void QueryYield::yieldAllLocks(OperationContext* txn, RecordFetcher* fetcher) {
     locker->restoreLockState(snapshot);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,11 +28,11 @@
 
 #include <string>
 
-#include "mongo/db/fts/fts_query_parser.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/fts/fts_query_parser.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

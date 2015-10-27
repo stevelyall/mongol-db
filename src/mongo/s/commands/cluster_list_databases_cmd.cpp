@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 #include <string>
 #include <vector>
 
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::map;
@@ -213,4 +213,4 @@ public:
 } clusterCmdListDatabases;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

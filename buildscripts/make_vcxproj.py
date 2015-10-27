@@ -7,7 +7,7 @@
 #   scons TARGET.exe > out
 #   python buildscripts/make_vcxproj.py TARGET < out > my.vcxproj
 #
-#   where TARGET is your target e.g., "mongod"
+#   where TARGET is your target e.g., "mongold"
 #
 #   NOTES
 #
@@ -26,9 +26,9 @@
 #       todo: i don't think the generated vcxproj perfectly handles switching from debug to release and
 #       such yet.  so for example:
 #
-#         scons --clean all && scons --dd --win2008plus --64 mongod.exe && python ...
+#         scons --clean all && scons --dd --win2008plus --64 mongold.exe && python ...
 #
-#       should generate a file that will work for building mongod.exe, *if* you pick win2008plus and
+#       should generate a file that will work for building mongold.exe, *if* you pick win2008plus and
 #       Debug and 64 bit from the drop downs.  The other variations so far, ymmv.
 #
 
@@ -41,11 +41,11 @@ footer= """
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="src\\mongo\\db\\mongo.ico" />
+    <None Include="src\\mongol\\db\\mongol.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <ResourceCompile Include="src\\mongo\\db\\db.rc" />
+    <ResourceCompile Include="src\\mongol\\db\\db.rc" />
   </ItemGroup>
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
@@ -99,8 +99,8 @@ def parse_line(x,line):
         xtra = ""
         if x.startswith('build\\'):
             parts = x.split(os.sep)
-            if "mongo" in parts:
-                x = os.sep.join(parts[parts.index("mongo"):])
+            if "mongol" in parts:
+                x = os.sep.join(parts[parts.index("mongol"):])
             elif "third_party" in parts:
                 x = os.sep.join(parts[parts.index("third_party"):])
             else:

@@ -11,7 +11,7 @@ assert( res.ok, tojson( res ) );
 t2 = db.repair_cursor1a;
 t2.drop();
 
-cursor = new DBCommandCursor( db._mongo, res );
+cursor = new DBCommandCursor( db._mongol, res );
 cursor.forEach( function(z){ t2.insert(z); } );
 assert.eq( t.find().itcount(), t2.find().itcount() );
 assert.eq( t.hashAllDocs(), t2.hashAllDocs() );

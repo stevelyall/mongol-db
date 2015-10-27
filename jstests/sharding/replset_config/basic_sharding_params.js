@@ -3,7 +3,7 @@
 function shardingTestUsingObjects() {
     var st = new ShardingTest( {
     
-       mongos : { s0 : { verbose : 6 }, s1 : { verbose : 5 } },
+       mongols : { s0 : { verbose : 6 }, s1 : { verbose : 5 } },
        config : { c0 : { verbose : 4 } },
        shards : { d0 : { verbose : 3 }, 
                   rs1 : {
@@ -13,10 +13,10 @@ function shardingTestUsingObjects() {
     } );
 
     var s0 = st.s0;
-    assert.eq( s0, st._mongos[0] );
+    assert.eq( s0, st._mongols[0] );
 
     var s1 = st.s1;
-    assert.eq( s1, st._mongos[1] );
+    assert.eq( s1, st._mongols[1] );
 
     var c0 = st.c0;
     assert.eq( c0, st._configServers[0] );
@@ -42,16 +42,16 @@ function shardingTestUsingObjects() {
 
 function shardingTestUsingArrays() {
     var st = new ShardingTest( {
-       mongos : [{ verbose : 5 },  { verbose : 4 } ],
+       mongols : [{ verbose : 5 },  { verbose : 4 } ],
        config : [{ verbose : 3 }],
        shards : [{ verbose : 2 }, { verbose : 1 } ]
     });
 
     var s0 = st.s0;
-    assert.eq( s0, st._mongos[0] );
+    assert.eq( s0, st._mongols[0] );
 
     var s1 = st.s1;
-    assert.eq( s1, st._mongos[1] );
+    assert.eq( s1, st._mongols[1] );
 
     var c0 = st.c0;
     assert.eq( c0, st._configServers[0] );

@@ -26,34 +26,34 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/pipeline_proxy.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/pipeline/accumulator.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/db/pipeline/pipeline_d.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/query/find_common.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/pipeline_proxy.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/pipeline/accumulator.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/db/pipeline/pipeline_d.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/query/find_common.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::endl;
@@ -167,7 +167,7 @@ public:
              << ", allowDiskUse: <bool>"
              << ", cursor: {batchSize: <number>}"
              << " }" << endl
-             << "See http://dochub.mongodb.org/core/aggregation for more details.";
+             << "See http://dochub.mongoldb.org/core/aggregation for more details.";
     }
 
     Status checkAuthForCommand(ClientBasic* client,
@@ -222,7 +222,7 @@ public:
 
             Collection* collection = ctx.getCollection();
 
-            // This does mongod-specific stuff like creating the input PlanExecutor and adding
+            // This does mongold-specific stuff like creating the input PlanExecutor and adding
             // it to the front of the pipeline if needed.
             std::shared_ptr<PlanExecutor> input =
                 PipelineD::prepareCursorSource(txn, collection, pPipeline, pCtx);
@@ -321,4 +321,4 @@ public:
     }
 } cmdPipeline;
 
-}  // namespace mongo
+}  // namespace mongol

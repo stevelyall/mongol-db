@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/component_message_log_domain.h"
+#include "mongol/logger/component_message_log_domain.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 ComponentMessageLogDomain::ComponentMessageLogDomain() {}
@@ -80,4 +80,4 @@ void ComponentMessageLogDomain::clearMinimumLoggedSeverity(LogComponent componen
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

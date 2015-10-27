@@ -31,12 +31,12 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class RecordId;
@@ -144,4 +144,4 @@ private:
     std::deque<OplogStones::Stone> _stones;  // front = oldest, back = newest.
 };
 
-}  // namespace mongo
+}  // namespace mongol

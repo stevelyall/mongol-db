@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/s/cluster_last_error_info.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/cluster_last_error_info.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class CmdReplSetGetStatus : public Command {
@@ -53,13 +53,13 @@ public:
     }
 
     virtual void help(std::stringstream& help) const {
-        help << "Not supported through mongos";
+        help << "Not supported through mongols";
     }
 
     virtual Status checkAuthForCommand(ClientBasic* client,
                                        const std::string& dbname,
                                        const BSONObj& cmdObj) {
-        // Require no auth since this command isn't supported in mongos
+        // Require no auth since this command isn't supported in mongols
         return Status::OK();
     }
 
@@ -74,8 +74,8 @@ public:
             ClusterLastErrorInfo::get(cc()).disableForCommand();
         }
 
-        errmsg = "replSetGetStatus is not supported through mongos";
-        result.append("info", "mongos");
+        errmsg = "replSetGetStatus is not supported through mongols";
+        result.append("info", "mongols");
 
         return false;
     }
@@ -83,4 +83,4 @@ public:
 } cmdReplSetGetStatus;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

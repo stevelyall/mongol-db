@@ -29,9 +29,9 @@
 
 #include <map>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * An std::map wrapper that deletes pointers within a vector on destruction.  The objects
@@ -78,4 +78,4 @@ void OwnedPointerMap<K, T, Compare>::clear() {
     _map.clear();
 }
 
-}  // namespace mongo
+}  // namespace mongol

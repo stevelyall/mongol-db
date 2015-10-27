@@ -28,24 +28,24 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/intrusive_ptr.hpp>
 #include <map>
 #include <string>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/db/pipeline/dependencies.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/field_path.h"
-#include "mongo/db/pipeline/value.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/intrusive_counter.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/init.h"
+#include "mongol/db/pipeline/dependencies.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/field_path.h"
+#include "mongol/db/pipeline/value.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/intrusive_counter.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONArrayBuilder;
 class BSONElement;
@@ -391,7 +391,7 @@ class ExpressionRangedArity : public ExpressionNaryBase<SubClass> {
 public:
     void validateArguments(const Expression::ExpressionVector& args) const override {
         uassert(28667,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "Expression " << this->getOpName() << " takes at least " << MinArgs
                     << " arguments, and at most " << MaxArgs << ", but " << args.size()
                     << " were passed in.",
@@ -405,7 +405,7 @@ class ExpressionFixedArity : public ExpressionNaryBase<SubClass> {
 public:
     void validateArguments(const Expression::ExpressionVector& args) const override {
         uassert(16020,
-                mongoutils::str::stream() << "Expression " << this->getOpName() << " takes exactly "
+                mongolutils::str::stream() << "Expression " << this->getOpName() << " takes exactly "
                                           << NArgs << " arguments. " << args.size()
                                           << " were passed in.",
                 args.size() == NArgs);

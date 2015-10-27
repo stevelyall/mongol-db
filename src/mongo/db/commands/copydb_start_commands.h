@@ -26,9 +26,9 @@
 *    it in the license file.
 */
 
-#include "mongo/client/dbclientinterface.h"
+#include "mongol/client/dbclientinterface.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 
@@ -36,4 +36,4 @@ struct CopyDbAuthConnection {
     static std::unique_ptr<DBClientBase>& forClient(Client* client);
 };
 
-}  // namespace mongo
+}  // namespace mongol

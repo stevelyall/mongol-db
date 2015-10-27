@@ -30,9 +30,9 @@
 
 #include <atomic>
 
-#include "mongo/util/background.h"
+#include "mongol/util/background.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Background job which regularly performs cleanup tasks on the ClusterCursorManager owned by the
@@ -59,4 +59,4 @@ public:
 
 extern ClusterCursorCleanupJob clusterCursorCleanupJob;
 
-}  // namespace mongo
+}  // namespace mongol

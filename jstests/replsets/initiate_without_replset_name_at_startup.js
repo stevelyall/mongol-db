@@ -12,7 +12,7 @@
     var port = allocatePorts(1)[0];
     var dbpath = MongoRunner.dataPath + baseName + '/';
 
-    var mongod = MongoRunner.runMongod({
+    var mongold = MongoRunner.runMongod({
         dbpath: dbpath,
         port: port});
 
@@ -20,15 +20,15 @@
         _id: baseName,
         version: 1,
         members: [
-            {_id: 0, host: mongod.name},
+            {_id: 0, host: mongold.name},
         ],
     };
     assert.commandWorked(
-        mongod.getDB('admin').runCommand({replSetInitiate: config}),
+        mongold.getDB('admin').runCommand({replSetInitiate: config}),
         'replSetInitiate should not fail when given a valid configuration');
 
     // Check saved config
-    var systemReplsetCollection = mongod.getDB('local').system.replset;
+    var systemReplsetCollection = mongold.getDB('local').system.replset;
     assert.eq(1, systemReplsetCollection.count(),
               'replSetInitiate did not save configuration in ' +
               systemReplsetCollection.getFullName());
@@ -38,11 +38,11 @@
               systemReplsetCollection.getFullName() + ' (right side)');
 
     var result = assert.commandFailedWithCode(
-        mongod.getDB('admin').runCommand({replSetInitiate: {
+        mongold.getDB('admin').runCommand({replSetInitiate: {
             _id: baseName + '-2',
             version: 1,
             members: [
-                {_id: 0, host: mongod.name},
+                {_id: 0, host: mongold.name},
             ],
         }}),
         23, // AlreadyInitialized
@@ -51,17 +51,17 @@
     assert(result.errmsg.match(/already initialized/),
            'unexpected error message when replica set configuration already exists ' +
            tojson(result));
-    systemReplsetCollection = mongod.getDB('local').system.replset;
+    systemReplsetCollection = mongold.getDB('local').system.replset;
     savedConfig = systemReplsetCollection.findOne();
     assert.eq(config._id, savedConfig._id,
               'config passed to replSetInitiate (left side) does not match config saved in ' +
               systemReplsetCollection.getFullName() + ' (right side)');
 
-    var oplogCollection = mongod.getDB('local').oplog.rs;
+    var oplogCollection = mongold.getDB('local').oplog.rs;
     assert(oplogCollection.exists(),
            'oplog collection ' + oplogCollection.getFullName() +
            ' not created after successful replSetInitiate. Collections in local database: ' +
-           mongod.getDB('local').getCollectionNames().join(', '));
+           mongold.getDB('local').getCollectionNames().join(', '));
     assert(oplogCollection.isCapped(),
            'oplog collection ' + oplogCollection.getFullName() + ' must be capped');
     assert.eq(1, oplogCollection.count(),
@@ -73,16 +73,16 @@
     MongoRunner.stopMongod(port);
 
     // Restart server and attempt to save a different config.
-    mongod = MongoRunner.runMongod({
+    mongold = MongoRunner.runMongod({
         dbpath: dbpath,
         port: port,
         restart: true});
     result = assert.commandFailedWithCode(
-        mongod.getDB('admin').runCommand({replSetInitiate: {
+        mongold.getDB('admin').runCommand({replSetInitiate: {
             _id: baseName + '-2',
             version: 1,
             members: [
-                {_id: 0, host: mongod.name},
+                {_id: 0, host: mongold.name},
             ],
         }}),
         23, // AlreadyInitialized
@@ -91,7 +91,7 @@
     assert(result.errmsg.match(/already initialized/),
            'unexpected error message when replica set configuration already exists ' +
            '(after restarting without --replSet): ' + tojson(result));
-    systemReplsetCollection = mongod.getDB('local').system.replset;
+    systemReplsetCollection = mongold.getDB('local').system.replset;
     savedConfig = systemReplsetCollection.findOne();
     assert.eq(config._id, savedConfig._id,
               'config passed to replSetInitiate (left side) does not match config saved in ' +
@@ -100,7 +100,7 @@
     MongoRunner.stopMongod(port);
 
     // Restart server with --replSet and check own replica member state.
-    mongod = MongoRunner.runMongod({
+    mongold = MongoRunner.runMongod({
         dbpath: dbpath,
         port: port,
         replSet: config._id,
@@ -110,7 +110,7 @@
     assert.soon(
         function() {
             result = assert.commandWorked(
-                mongod.getDB('admin').runCommand({replSetGetStatus: 1}),
+                mongold.getDB('admin').runCommand({replSetGetStatus: 1}),
                 'failed to get replica set status after restarting server with --replSet option');
             assert.eq(1, result.members.length,
                       'replica set status should contain exactly 1 member');
@@ -123,7 +123,7 @@
         1000);
 
     // Write/read a single document to ensure basic functionality.
-    var t = mongod.getDB('test').getCollection(baseName);
+    var t = mongold.getDB('test').getCollection(baseName);
     var doc = {_id: 0};
     assert.soon(
         function() {
@@ -149,7 +149,7 @@
     assert.eq(1, t.count(), 'incorrect collection size after successful write');
     assert.eq(doc, t.findOne());
 
-    oplogCollection = mongod.getDB('local').oplog.rs;
+    oplogCollection = mongold.getDB('local').oplog.rs;
     oplogEntry = oplogCollection.find().sort({$natural: -1}).limit(1).next();
     assert.eq('i', oplogEntry.op, 'unexpected optype for insert oplog entry');
     assert.eq(t.getFullName(), oplogEntry.ns, 'unexpected namespace for insert oplog entry');

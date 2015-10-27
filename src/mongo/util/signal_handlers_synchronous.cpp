@@ -26,11 +26,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/exception/exception.hpp>
@@ -42,24 +42,24 @@
 #include <streambuf>
 #include <typeinfo>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/logger/log_domain.h"
-#include "mongo/logger/logger.h"
-#include "mongo/platform/compiler.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/debugger.h"
-#include "mongo/util/exception_filter_win32.h"
-#include "mongo/util/exit_code.h"
-#include "mongo/util/log.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/text.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/logger/log_domain.h"
+#include "mongol/logger/logger.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/debugger.h"
+#include "mongol/util/exception_filter_win32.h"
+#include "mongol/util/exit_code.h"
+#include "mongol/util/log.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -344,4 +344,4 @@ void reportOutOfMemoryErrorAndExit() {
     writeMallocFreeStreamToLog();
     quickExit(EXIT_ABRUPT);
 }
-}  // namespace mongo
+}  // namespace mongol

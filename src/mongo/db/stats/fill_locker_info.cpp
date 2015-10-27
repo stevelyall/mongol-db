@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/stats/fill_locker_info.h"
+#include "mongol/db/stats/fill_locker_info.h"
 
 #include <algorithm>
 
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 void fillLockerInfo(const Locker::LockerInfo& lockerInfo, BSONObjBuilder& infoBuilder) {
     // "locks" section
@@ -76,4 +76,4 @@ void fillLockerInfo(const Locker::LockerInfo& lockerInfo, BSONObjBuilder& infoBu
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

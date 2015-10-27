@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/s/commands/run_on_all_shards_cmd.h"
+#include "mongol/s/commands/run_on_all_shards_cmd.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::vector;
@@ -83,7 +83,7 @@ public:
         // result.appendNumber( "collections" , ncollections );
         output.appendNumber("objects", objects);
 
-        // avgObjSize on mongod is not scaled based on the argument to db.stats(), so we use
+        // avgObjSize on mongold is not scaled based on the argument to db.stats(), so we use
         // unscaledDataSize here for consistency.  See SERVER-7347.
         output.append("avgObjSize", objects == 0 ? 0 : double(unscaledDataSize) / double(objects));
         output.appendNumber("dataSize", dataSize);
@@ -104,4 +104,4 @@ public:
 } clusterDBStatsCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

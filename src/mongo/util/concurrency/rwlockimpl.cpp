@@ -38,18 +38,18 @@
 #include <set>
 #include <boost/version.hpp>
 
-#include "mongo/config.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/rwlockimpl.h"
-#include "mongo/util/concurrency/simplerwlock.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/time_support.h"
+#include "mongol/config.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/rwlockimpl.h"
+#include "mongol/util/concurrency/simplerwlock.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/time_support.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 #if defined(NTDDI_VERSION) && defined(NTDDI_WIN7) && (NTDDI_VERSION >= NTDDI_WIN7)
 SimpleRWLock::SimpleRWLock(StringData p) : name(p.toString()) {

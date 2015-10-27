@@ -31,10 +31,10 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "mongo/base/status.h"
-#include "mongo/base/data_type.h"
+#include "mongol/base/status.h"
+#include "mongol/base/data_type.h"
 
-namespace mongo {
+namespace mongol {
 /**
  * Methods to compress and decompress 64-bit integers into variable integers
  *
@@ -89,4 +89,4 @@ struct DataType::Handler<FTDCVarInt> {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

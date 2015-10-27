@@ -33,10 +33,10 @@
 #include <boost/filesystem/operations.hpp>
 #include <list>
 
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class DurableMappedFile;
 

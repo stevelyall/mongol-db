@@ -29,39 +29,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_index.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_size_storer.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/background.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_customization_hooks.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_index.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_recovery_unit.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_size_storer.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/background.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
 
 #if !defined(__has_feature)
 #define __has_feature(x) 0
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;

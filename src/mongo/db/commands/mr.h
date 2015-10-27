@@ -33,14 +33,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/scripting/engine.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/scripting/engine.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class Database;
@@ -245,7 +245,7 @@ public:
     // maximum size of map before it gets dumped to disk
     long maxInMemSize;
 
-    // true when called from mongos to do phase-1 of M/R
+    // true when called from mongols to do phase-1 of M/R
     bool shardedFirstPass;
 
     static AtomicUInt32 JOB_NUMBER;

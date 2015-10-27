@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class Status;
@@ -73,4 +73,4 @@ public:
     static Status recover(OperationContext* txn);
 };
 
-}  // namespace mongo
+}  // namespace mongol

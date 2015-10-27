@@ -8,7 +8,7 @@ if (jsTest.options().storageEngine === "mmapv1") {
     var coll = "userFlagsColl";
     var ns = dbname + "." + coll;
 
-    // First create fresh collection on a new standalone mongod
+    // First create fresh collection on a new standalone mongold
     var newShardConn = MongoRunner.runMongod({});
     var db1 = newShardConn.getDB( dbname );
     var t = db1.getCollection( coll );
@@ -38,7 +38,7 @@ if (jsTest.options().storageEngine === "mmapv1") {
     printjson( collstats );
     assert.eq( collstats.userFlags , 0 , "modified collection should have userFlags = 0 ");
 
-    // start up a new sharded cluster, and add previous mongod
+    // start up a new sharded cluster, and add previous mongold
     var s = new ShardingTest({ name: "user_flags", shards: 1 });
     assert( s.admin.runCommand( { addshard: newShardConn.host , name: "myShard" } ).ok,
             "did not accept new shard" );

@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/json.h"
-#include "mongo/client/remote_command_targeter_mock.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/catalog/dist_lock_manager_mock.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set.h"
-#include "mongo/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/chunk.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/write_ops/batched_update_request.h"
-#include "mongo/stdx/chrono.h"
+#include "mongol/bson/json.h"
+#include "mongol/client/remote_command_targeter_mock.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/catalog/dist_lock_manager_mock.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set.h"
+#include "mongol/s/catalog/replset/catalog_manager_replica_set_test_fixture.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/chunk.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/write_ops/batched_update_request.h"
+#include "mongol/stdx/chrono.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using executor::RemoteCommandRequest;
@@ -735,4 +735,4 @@ TEST_F(DropColl2ShardTest, UnsetErrorOnShard2) {
 }
 
 }  // unnamed namespace
-}  // namespace mongo
+}  // namespace mongol

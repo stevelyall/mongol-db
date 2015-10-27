@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/db/fts/fts_language.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/matcher/expression_text.h"
+#include "mongol/base/init.h"
+#include "mongol/db/fts/fts_language.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_text.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -46,7 +46,7 @@ StatusWithMatchExpression expressionParserTextCallbackReal(const BSONObj& queryO
 
     int expectedFieldCount = 1;
 
-    if (mongo::String != queryObj["$search"].type()) {
+    if (mongol::String != queryObj["$search"].type()) {
         return StatusWithMatchExpression(ErrorCodes::TypeMismatch,
                                          "$search requires a string value");
     }
@@ -55,7 +55,7 @@ StatusWithMatchExpression expressionParserTextCallbackReal(const BSONObj& queryO
     BSONElement languageElt = queryObj["$language"];
     if (!languageElt.eoo()) {
         expectedFieldCount++;
-        if (mongo::String != languageElt.type()) {
+        if (mongol::String != languageElt.type()) {
             return StatusWithMatchExpression(ErrorCodes::TypeMismatch,
                                              "$language requires a string value");
         }
@@ -72,7 +72,7 @@ StatusWithMatchExpression expressionParserTextCallbackReal(const BSONObj& queryO
     bool caseSensitive = fts::FTSQuery::caseSensitiveDefault;
     if (!caseSensitiveElt.eoo()) {
         expectedFieldCount++;
-        if (mongo::Bool != caseSensitiveElt.type()) {
+        if (mongol::Bool != caseSensitiveElt.type()) {
             return StatusWithMatchExpression(ErrorCodes::TypeMismatch,
                                              "$caseSensitive requires a boolean value");
         }
@@ -83,7 +83,7 @@ StatusWithMatchExpression expressionParserTextCallbackReal(const BSONObj& queryO
     bool diacriticSensitive = fts::FTSQuery::diacriticSensitiveDefault;
     if (!diacriticSensitiveElt.eoo()) {
         expectedFieldCount++;
-        if (mongo::Bool != diacriticSensitiveElt.type()) {
+        if (mongol::Bool != diacriticSensitiveElt.type()) {
             return StatusWithMatchExpression(ErrorCodes::TypeMismatch,
                                              "$diacriticSensitive requires a boolean value");
         }
@@ -102,7 +102,7 @@ StatusWithMatchExpression expressionParserTextCallbackReal(const BSONObj& queryO
     return {std::move(e)};
 }
 
-MONGO_INITIALIZER(MatchExpressionParserText)(::mongo::InitializerContext* context) {
+MONGO_INITIALIZER(MatchExpressionParserText)(::mongol::InitializerContext* context) {
     expressionParserTextCallback = expressionParserTextCallbackReal;
     return Status::OK();
 }

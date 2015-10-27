@@ -32,16 +32,16 @@
 #include <cstdint>
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/file_manager.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/file_manager.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Responsible for periodic collection of samples, writing them to disk,
@@ -114,7 +114,7 @@ public:
     /**
      * Stop the controller.
      *
-     * Does not require start to be called to support early exit by mongod.
+     * Does not require start to be called to support early exit by mongold.
      */
     void stop();
 
@@ -186,4 +186,4 @@ private:
     stdx::thread _thread;
 };
 
-}  // namespace mongo
+}  // namespace mongol

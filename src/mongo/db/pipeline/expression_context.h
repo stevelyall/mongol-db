@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/util/intrusive_counter.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/util/intrusive_counter.h"
 
-namespace mongo {
+namespace mongol {
 
 struct ExpressionContext : public IntrusiveCounterUnsigned {
 public:
@@ -57,7 +57,7 @@ public:
     bool bypassDocumentValidation = false;
 
     NamespaceString ns;
-    std::string tempDir;  // Defaults to empty to prevent external sorting in mongos.
+    std::string tempDir;  // Defaults to empty to prevent external sorting in mongols.
 
     OperationContext* opCtx;
     static const int kInterruptCheckPeriod = 128;

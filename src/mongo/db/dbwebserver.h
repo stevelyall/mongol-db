@@ -34,11 +34,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/util/net/miniwebserver.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/util/net/miniwebserver.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 class AdminAccess;
 class DbWebServer;

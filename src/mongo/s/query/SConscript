@@ -8,8 +8,8 @@ env.Library(
         "cluster_find.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/commands',
-        '$BUILD_DIR/mongo/db/query/query_common',
+        '$BUILD_DIR/mongol/db/commands',
+        '$BUILD_DIR/mongol/db/query/query_common',
         "cluster_client_cursor",
         "cluster_cursor_cleanup_job",
         "store_possible_cursor",
@@ -48,8 +48,8 @@ env.CppUnitTest(
         "router_stage_skip_test.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        "$BUILD_DIR/mongo/s/mongoscore",
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        "$BUILD_DIR/mongol/s/mongolscore",
         "router_exec_stage",
     ],
 )
@@ -61,10 +61,10 @@ env.Library(
         "cluster_client_cursor_params.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/query/command_request_response",
-        "$BUILD_DIR/mongo/executor/task_executor_interface",
-        "$BUILD_DIR/mongo/s/client/sharding_client",
-        "$BUILD_DIR/mongo/s/coreshard",
+        "$BUILD_DIR/mongol/db/query/command_request_response",
+        "$BUILD_DIR/mongol/executor/task_executor_interface",
+        "$BUILD_DIR/mongol/s/client/sharding_client",
+        "$BUILD_DIR/mongol/s/coreshard",
     ],
 )
 
@@ -74,7 +74,7 @@ env.Library(
         "cluster_client_cursor_mock.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -84,11 +84,11 @@ env.CppUnitTest(
         "async_results_merger_test.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        "$BUILD_DIR/mongo/db/query/lite_parsed_query",
-        "$BUILD_DIR/mongo/executor/thread_pool_task_executor_test_fixture",
-        "$BUILD_DIR/mongo/s/mongoscore",
-        "$BUILD_DIR/mongo/s/sharding_test_fixture",
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        "$BUILD_DIR/mongol/db/query/lite_parsed_query",
+        "$BUILD_DIR/mongol/executor/thread_pool_task_executor_test_fixture",
+        "$BUILD_DIR/mongol/s/mongolscore",
+        "$BUILD_DIR/mongol/s/sharding_test_fixture",
         "async_results_merger",
     ],
 )
@@ -99,13 +99,13 @@ env.Library(
         "store_possible_cursor.cpp"
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/db/query/command_request_response",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/db/query/command_request_response",
         "cluster_client_cursor",
         "cluster_cursor_manager",
     ],
     LIBDEPS_TAGS=[
-        # Circular with libmongoscore.  TODO: This tag should be removed as part of the work for
+        # Circular with libmongolscore.  TODO: This tag should be removed as part of the work for
         # SERVER-20758.
         'incomplete',
     ],
@@ -117,7 +117,7 @@ env.Library(
         "cluster_cursor_manager.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -127,7 +127,7 @@ env.CppUnitTest(
         "cluster_cursor_manager_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/util/clock_source_mock",
+        "$BUILD_DIR/mongol/util/clock_source_mock",
         "cluster_client_cursor_mock",
         "cluster_cursor_manager",
     ],
@@ -139,11 +139,11 @@ env.Library(
         "cluster_cursor_cleanup_job.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/s/coreshard",
-        "$BUILD_DIR/mongo/util/background_job",
+        "$BUILD_DIR/mongol/s/coreshard",
+        "$BUILD_DIR/mongol/util/background_job",
     ],
     LIBDEPS_TAGS=[
-        # Needs mongo::inShutDown()
+        # Needs mongol::inShutDown()
         'incomplete',
     ],
 )
@@ -154,8 +154,8 @@ env.CppUnitTest(
         "cluster_client_cursor_impl_test.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        "$BUILD_DIR/mongo/s/mongoscore",
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        "$BUILD_DIR/mongol/s/mongolscore",
         "cluster_client_cursor",
     ],
 )

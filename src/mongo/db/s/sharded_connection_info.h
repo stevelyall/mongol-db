@@ -31,15 +31,15 @@
 #include <map>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 struct ChunkVersion;
 class Client;
 
 /**
- * There is one instance of these per each connection from mongos. Holds version state for each
+ * There is one instance of these per each connection from mongols. Holds version state for each
  * namespace.
  */
 class ShardedConnectionInfo {
@@ -68,4 +68,4 @@ private:
 };
 
 
-}  // namespace mongo
+}  // namespace mongol

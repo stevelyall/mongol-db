@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/query_planner_test_fixture.h"
+#include "mongol/db/query/query_planner_test_fixture.h"
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_test_lib.h"
-#include "mongo/util/log.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_test_lib.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using unittest::assertGet;
 
@@ -269,12 +269,12 @@ size_t QueryPlannerTest::getNumSolutions() const {
 }
 
 void QueryPlannerTest::dumpSolutions() const {
-    mongoutils::str::stream ost;
+    mongolutils::str::stream ost;
     dumpSolutions(ost);
     log() << std::string(ost);
 }
 
-void QueryPlannerTest::dumpSolutions(mongoutils::str::stream& ost) const {
+void QueryPlannerTest::dumpSolutions(mongolutils::str::stream& ost) const {
     for (auto&& soln : solns) {
         ost << soln->toString() << '\n';
     }
@@ -284,7 +284,7 @@ void QueryPlannerTest::assertNumSolutions(size_t expectSolutions) const {
     if (getNumSolutions() == expectSolutions) {
         return;
     }
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "expected " << expectSolutions << " solutions but got " << getNumSolutions()
        << " instead. solutions generated: " << '\n';
     dumpSolutions(ss);
@@ -308,7 +308,7 @@ void QueryPlannerTest::assertSolutionExists(const std::string& solnJson, size_t 
     if (numMatches == matches) {
         return;
     }
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "expected " << numMatches << " matches for solution " << solnJson << " but got "
        << matches << " instead. all solutions generated: " << '\n';
     dumpSolutions(ss);
@@ -326,7 +326,7 @@ void QueryPlannerTest::assertHasOneSolutionOf(const std::vector<std::string>& so
     if (1U == matches) {
         return;
     }
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "assertHasOneSolutionOf expected one matching solution"
        << " but got " << matches << " instead. all solutions generated: " << '\n';
     dumpSolutions(ss);
@@ -342,4 +342,4 @@ std::unique_ptr<MatchExpression> QueryPlannerTest::parseMatchExpression(const BS
     return std::move(status.getValue());
 }
 
-}  // namespace mongo
+}  // namespace mongol

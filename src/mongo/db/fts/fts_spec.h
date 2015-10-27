@@ -34,14 +34,14 @@
 #include <vector>
 #include <string>
 
-#include "mongo/db/fts/fts_language.h"
-#include "mongo/db/fts/fts_util.h"
-#include "mongo/db/fts/stemmer.h"
-#include "mongo/db/fts/stop_words.h"
-#include "mongo/db/fts/tokenizer.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/db/fts/fts_language.h"
+#include "mongol/db/fts/fts_util.h"
+#include "mongol/db/fts/stemmer.h"
+#include "mongol/db/fts/stop_words.h"
+#include "mongol/db/fts/tokenizer.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

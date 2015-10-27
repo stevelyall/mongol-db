@@ -29,7 +29,7 @@ var $config = extendWorkload($config, function($config, $super) {
                 //       What about for other storage engines?
                 assertWhenOwnColl.lte(this.numDocs, res.nMatched, tojson(res));
             }
-        } else { // mongos
+        } else { // mongols
             // In a mixed cluster, it is unknown what underlying storage engine
             // the update operations will be executed against. Thus, we can only
             // make the weakest of all assertions above.

@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kGeo
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kGeo
 
-#include "mongo/db/geo/geoparser.h"
+#include "mongol/db/geo/geoparser.h"
 
 #include <string>
 #include <vector>
 #include <cmath>
 
-#include "mongo/db/geo/shapes.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/geo/shapes.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 #include "third_party/s2/s2polygonbuilder.h"
 
-#define BAD_VALUE(error) Status(ErrorCodes::BadValue, ::mongoutils::str::stream() << error)
+#define BAD_VALUE(error) Status(ErrorCodes::BadValue, ::mongolutils::str::stream() << error)
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::stringstream;
@@ -67,7 +67,7 @@ static const string GEOJSON_GEOMETRIES = "geometries";
 // and http://www.geojson.org/geojson-spec.html#named-crs
 static const string CRS_CRS84 = "urn:ogc:def:crs:OGC:1.3:CRS84";
 static const string CRS_EPSG_4326 = "EPSG:4326";
-static const string CRS_STRICT_WINDING = "urn:x-mongodb:crs:strictwinding:EPSG:4326";
+static const string CRS_STRICT_WINDING = "urn:x-mongoldb:crs:strictwinding:EPSG:4326";
 
 static Status parseFlatPoint(const BSONElement& elem, Point* out, bool allowAddlFields = false) {
     if (!elem.isABSONObj())
@@ -764,15 +764,15 @@ GeoParser::GeoSpecifier GeoParser::parseGeoSpecifier(const BSONElement& type) {
         return GeoParser::UNKNOWN;
     }
     const char* fieldName = type.fieldName();
-    if (mongoutils::str::equals(fieldName, "$box")) {
+    if (mongolutils::str::equals(fieldName, "$box")) {
         return GeoParser::BOX;
-    } else if (mongoutils::str::equals(fieldName, "$center")) {
+    } else if (mongolutils::str::equals(fieldName, "$center")) {
         return GeoParser::CENTER;
-    } else if (mongoutils::str::equals(fieldName, "$polygon")) {
+    } else if (mongolutils::str::equals(fieldName, "$polygon")) {
         return GeoParser::POLYGON;
-    } else if (mongoutils::str::equals(fieldName, "$centerSphere")) {
+    } else if (mongolutils::str::equals(fieldName, "$centerSphere")) {
         return GeoParser::CENTER_SPHERE;
-    } else if (mongoutils::str::equals(fieldName, "$geometry")) {
+    } else if (mongolutils::str::equals(fieldName, "$geometry")) {
         return GeoParser::GEOMETRY;
     }
     return GeoParser::UNKNOWN;
@@ -802,4 +802,4 @@ GeoParser::GeoJSONType GeoParser::parseGeoJSONType(const BSONObj& obj) {
     return GeoParser::GEOJSON_UNKNOWN;
 }
 
-}  // namespace mongo
+}  // namespace mongol

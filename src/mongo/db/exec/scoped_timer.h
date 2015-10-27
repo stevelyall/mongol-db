@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class increments a counter by a rough estimate of the time elapsed since its
@@ -55,4 +55,4 @@ private:
     long long _start;
 };
 
-}  // namespace mongo
+}  // namespace mongol

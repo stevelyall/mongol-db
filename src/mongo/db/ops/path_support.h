@@ -31,14 +31,14 @@
 #include <cstdint>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/field_ref_set.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/field_ref_set.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace pathsupport {
 
@@ -185,4 +185,4 @@ Status addEqualitiesToDoc(const EqualityMatches& equalities, mutablebson::Docume
 
 }  // namespace pathsupport
 
-}  // namespace mongo
+}  // namespace mongol

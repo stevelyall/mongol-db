@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class WhatsMyUriCmd : public Command {
@@ -70,4 +70,4 @@ public:
 } whatsMyUriCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -30,13 +30,13 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONElement;
@@ -212,4 +212,4 @@ Status bsonExtractIntegerFieldWithDefaultIf(const BSONObj& object,
                                             stdx::function<bool(long long)> pred,
                                             long long* out);
 
-}  // namespace mongo
+}  // namespace mongol

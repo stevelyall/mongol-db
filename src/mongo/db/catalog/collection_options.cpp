@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/collection_options.h"
+#include "mongol/db/catalog/collection_options.h"
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 // static
 bool CollectionOptions::validMaxCappedDocs(long long* max) {
@@ -70,13 +70,13 @@ Status checkStorageEngineOptions(const BSONElement& elem) {
     //     },
     //     ...
     // }
-    if (elem.type() != mongo::Object) {
+    if (elem.type() != mongol::Object) {
         return {ErrorCodes::BadValue, "'storageEngine' has to be a document."};
     }
 
     BSONForEach(storageEngineElement, elem.Obj()) {
         StringData storageEngineName = storageEngineElement.fieldNameStringData();
-        if (storageEngineElement.type() != mongo::Object) {
+        if (storageEngineElement.type() != mongol::Object) {
             return {ErrorCodes::BadValue,
                     str::stream() << "'storageEngine." << storageEngineName
                                   << "' has to be an embedded document."};
@@ -173,7 +173,7 @@ Status CollectionOptions::parse(const BSONObj& options) {
             }
             storageEngine = e.Obj().getOwned();
         } else if (fieldName == "indexOptionDefaults") {
-            if (e.type() != mongo::Object) {
+            if (e.type() != mongol::Object) {
                 return {ErrorCodes::TypeMismatch, "'indexOptionDefaults' has to be a document."};
             }
             BSONForEach(option, e.Obj()) {
@@ -192,19 +192,19 @@ Status CollectionOptions::parse(const BSONObj& options) {
             }
             indexOptionDefaults = e.Obj().getOwned();
         } else if (fieldName == "validator") {
-            if (e.type() != mongo::Object) {
+            if (e.type() != mongol::Object) {
                 return Status(ErrorCodes::BadValue, "'validator' has to be a document.");
             }
 
             validator = e.Obj().getOwned();
         } else if (fieldName == "validationAction") {
-            if (e.type() != mongo::String) {
+            if (e.type() != mongol::String) {
                 return Status(ErrorCodes::BadValue, "'validationAction' has to be a string.");
             }
 
             validationAction = e.String();
         } else if (fieldName == "validationLevel") {
-            if (e.type() != mongo::String) {
+            if (e.type() != mongol::String) {
                 return Status(ErrorCodes::BadValue, "'validationLevel' has to be a string.");
             }
 

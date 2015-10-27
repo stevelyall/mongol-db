@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/config.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/config.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 class AbstractMessagingPort {
     MONGO_DISALLOW_COPYING(AbstractMessagingPort);
@@ -75,4 +75,4 @@ private:
     std::string _x509SubjectName;
 };
 
-}  // namespace mongo
+}  // namespace mongol

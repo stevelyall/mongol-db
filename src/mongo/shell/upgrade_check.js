@@ -165,7 +165,7 @@ DB.prototype.upgradeCheck = function(obj, checkDocs) {
                     return true;
                 }
                 print("To fix the problems above please consult " +
-                       "http://dochub.mongodb.org/core/upgrade_checker_help");
+                       "http://dochub.mongoldb.org/core/upgrade_checker_help");
                 return false;
             }
         }
@@ -183,7 +183,7 @@ DB.prototype.upgradeCheck = function(obj, checkDocs) {
         return true;
     }
     print("To fix the problems above please consult " +
-          "http://dochub.mongodb.org/core/upgrade_checker_help");
+          "http://dochub.mongoldb.org/core/upgrade_checker_help");
     return false;
 };
 
@@ -208,7 +208,7 @@ DB.prototype.upgradeCheckAllDBs = function(checkDocs) {
         return true;
     }
     print("To fix the problems above please consult " +
-          "http://dochub.mongodb.org/core/upgrade_checker_help");
+          "http://dochub.mongoldb.org/core/upgrade_checker_help");
     return false;
 };
 

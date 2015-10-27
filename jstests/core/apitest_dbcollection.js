@@ -43,9 +43,9 @@ for (i = 0; i < 100; i++) {
 
 (function() {
     var validateResult = assert.commandWorked(db.getCollection( "test_db" ).validate());
-    // Extract validation results from mongos output if running in a sharded context.
+    // Extract validation results from mongols output if running in a sharded context.
     if (jsTest.isMongos(db.getMongo())) {
-        // Sample mongos format:
+        // Sample mongols format:
         // {
         //   raw: {
         //     "localhost:30000": {

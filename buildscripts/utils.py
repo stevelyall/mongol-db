@@ -22,10 +22,10 @@ def getAllSourceFiles( arr=None , prefix="." ):
         return arr
         
     for x in os.listdir( prefix ):
-        if x.startswith( "." ) or x.startswith( "pcre-" ) or x.startswith( "32bit" ) or x.startswith( "mongodb-" ) or x.startswith("debian") or x.startswith( "mongo-cxx-driver" ):
+        if x.startswith( "." ) or x.startswith( "pcre-" ) or x.startswith( "32bit" ) or x.startswith( "mongoldb-" ) or x.startswith("debian") or x.startswith( "mongol-cxx-driver" ):
             continue
         # XXX: Avoid conflict between v8, v8-3.25 and mozjs source files in
-        #      src/mongo/scripting
+        #      src/mongol/scripting
         #      Remove after v8-3.25 migration.
         if x.find("v8-3.25") != -1 or x.find("mozjs") != -1:
             continue
@@ -53,7 +53,7 @@ def getGitBranch():
 
 def getGitBranchString( prefix="" , postfix="" ):
     t = re.compile( '[/\\\]' ).split( os.getcwd() )
-    if len(t) > 2 and t[len(t)-1] == "mongo":
+    if len(t) > 2 and t[len(t)-1] == "mongol":
         par = t[len(t)-2]
         m = re.compile( ".*_([vV]\d+\.\d+)$" ).match( par )
         if m is not None:

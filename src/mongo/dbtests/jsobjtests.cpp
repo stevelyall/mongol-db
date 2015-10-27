@@ -29,25 +29,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cmath>
 #include <iostream>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/storage/mmap_v1/btree/key.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/embedded_builder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/storage/mmap_v1/btree/key.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/embedded_builder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::cout;
 using std::endl;
@@ -217,7 +217,7 @@ public:
             ASSERT(strcmp("foo", b.buf()) == 0);
         }
         {
-            mongo::StackBufBuilder b;
+            mongol::StackBufBuilder b;
             b.appendStr("foo");
             ASSERT_EQUALS(4, b.len());
             ASSERT(strcmp("foo", b.buf()) == 0);
@@ -237,7 +237,7 @@ public:
         } catch (const AssertionException&) {
         }
         // assert half of max buffer size was allocated before exception is thrown
-        ASSERT(written == mongo::BufferMaxSize / 2);
+        ASSERT(written == mongol::BufferMaxSize / 2);
     }
 };
 
@@ -712,7 +712,7 @@ struct AppendNumber {
         b.appendNumber("d", (1024LL * 1024 * 1024 * 1024) - 1);
         b.appendNumber("e", 1024LL * 1024 * 1024 * 1024 * 1024 * 1024);
         if (Decimal128::enabled) {
-            b.appendNumber("f", mongo::Decimal128("1"));
+            b.appendNumber("f", mongol::Decimal128("1"));
         }
 
         BSONObj o = b.obj();
@@ -1137,7 +1137,7 @@ public:
         BSONObjBuilder b;
         b.appendNull("a");
         BSONObj o = b.done();
-        set(o, 4, mongo::Undefined);
+        set(o, 4, mongol::Undefined);
         ASSERT(o.valid());
     }
 };
@@ -1500,7 +1500,7 @@ class LabelSize : public LabelBase {
         return BSON("a" << BSON("$size" << 4));
     }
     BSONObj actual() {
-        return BSON("a" << mongo::BSIZE << 4);
+        return BSON("a" << mongol::BSIZE << 4);
     }
 };
 
@@ -1628,8 +1628,8 @@ public:
         ASSERT_EQUALS(arrTypeOf(1LL), NumberLong);
 
         if (Decimal128::enabled) {
-            ASSERT_EQUALS(objTypeOf(mongo::Decimal128("1")), NumberDecimal);
-            ASSERT_EQUALS(arrTypeOf(mongo::Decimal128("1")), NumberDecimal);
+            ASSERT_EQUALS(objTypeOf(mongol::Decimal128("1")), NumberDecimal);
+            ASSERT_EQUALS(arrTypeOf(mongol::Decimal128("1")), NumberDecimal);
         }
 
         ASSERT_EQUALS(objTypeOf(MAXKEY), MaxKey);
@@ -2020,7 +2020,7 @@ public:
         // The sorted iterator should perform numeric comparisons and return results in the same
         // order as the unsorted iterator.
         BSONObjIterator unsorted(arr);
-        mongo::BSONArrayIteratorSorted sorted(arr);
+        mongol::BSONArrayIteratorSorted sorted(arr);
         while (unsorted.more()) {
             ASSERT(sorted.more());
             ASSERT_EQUALS(string(unsorted.next().fieldName()), sorted.next().fieldName());
@@ -2137,7 +2137,7 @@ public:
     void run() {
         BSONObj x = BSON("_id" << 5 << "t" << 2);
         {
-            char* crap = (char*)mongoMalloc(x.objsize());
+            char* crap = (char*)mongolMalloc(x.objsize());
             memcpy(crap, x.objdata(), x.objsize());
             BSONObj y(crap);
             ASSERT_EQUALS(x, y);
@@ -2145,7 +2145,7 @@ public:
         }
 
         {
-            char* crap = (char*)mongoMalloc(x.objsize());
+            char* crap = (char*)mongolMalloc(x.objsize());
             memcpy(crap, x.objdata(), x.objsize());
             int* foo = (int*)crap;
             foo[0] = 123123123;

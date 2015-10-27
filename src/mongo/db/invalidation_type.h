@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 enum InvalidationType {
     // The RecordId is about to be deleted.  The receiver of this invalidate call cannot use
@@ -39,4 +39,4 @@ enum InvalidationType {
     INVALIDATION_MUTATION,
 };
 
-}  // namespace mongo
+}  // namespace mongol

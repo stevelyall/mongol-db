@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/op_observer.h"
+#include "mongol/db/op_observer.h"
 
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/commands/dbhash.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/s/d_state.h"
-#include "mongo/scripting/engine.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/commands/dbhash.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/s/d_state.h"
+#include "mongol/scripting/engine.h"
 
-namespace mongo {
+namespace mongol {
 
 void OpObserver::onCreateIndex(OperationContext* txn,
                                const std::string& ns,
@@ -214,4 +214,4 @@ void OpObserver::onEmptyCapped(OperationContext* txn, const NamespaceString& col
     logOpForDbHash(txn, dbName.c_str());
 }
 
-}  // namespace mongo
+}  // namespace mongol

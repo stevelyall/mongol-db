@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/repl/oplog_interface.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/repl/oplog_interface.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class RollBackLocalOperations {
@@ -90,4 +90,4 @@ StatusWith<RollBackLocalOperations::RollbackCommonPoint> syncRollBackLocalOperat
     const RollBackLocalOperations::RollbackOperationFn& rollbackOperation);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

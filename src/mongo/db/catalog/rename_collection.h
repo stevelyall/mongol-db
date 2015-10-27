@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class NamespaceString;
 class OperationContext;
 
@@ -43,4 +43,4 @@ Status renameCollection(OperationContext* txn,
                         bool dropTarget,
                         bool stayTemp);
 
-}  // namespace mongo
+}  // namespace mongol

@@ -33,40 +33,40 @@
  *
  * #include <normal/include/files.h>
  *
- * #include "mongo/db/sorter/sorter.h"
+ * #include "mongol/db/sorter/sorter.h"
  *
- * namespace mongo {
+ * namespace mongol {
  *     // Your code
  * }
  *
- * #include "mongo/db/sorter/sorter.cpp"
+ * #include "mongol/db/sorter/sorter.cpp"
  * MONGO_CREATE_SORTER(MyKeyType, MyValueType, MyComparatorType);
  *
  * Do this once for each unique set of parameters to MONGO_CREATE_SORTER.
  */
 
-#include "mongo/db/sorter/sorter.h"
+#include "mongol/db/sorter/sorter.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <snappy.h>
 
-#include "mongo/base/string_data.h"
-#include "mongo/config.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/mongos_options.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/bufreader.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/print.h"
-#include "mongo/util/unowned_ptr.h"
+#include "mongol/base/string_data.h"
+#include "mongol/config.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/mongols_options.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/bufreader.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/print.h"
+#include "mongol/util/unowned_ptr.h"
 
-namespace mongo {
+namespace mongol {
 namespace sorter {
 
 using std::shared_ptr;
-using namespace mongoutils;
+using namespace mongolutils;
 
 // We need to use the "real" errno everywhere, not GetLastError() on Windows
 inline std::string myErrnoWithDescription() {
@@ -798,11 +798,11 @@ inline unsigned nextFileNumber() {
 template <typename Key, typename Value>
 SortedFileWriter<Key, Value>::SortedFileWriter(const SortOptions& opts, const Settings& settings)
     : _settings(settings) {
-    namespace str = mongoutils::str;
+    namespace str = mongolutils::str;
 
     // This should be checked by consumers, but if we get here don't allow writes.
     massert(
-        16946, "Attempting to use external sort from mongos. This is not allowed.", !isMongos());
+        16946, "Attempting to use external sort from mongols. This is not allowed.", !isMongos());
 
     massert(17148,
             "Attempting to use external sort without setting SortOptions::tempDir",
@@ -839,7 +839,7 @@ void SortedFileWriter<Key, Value>::addAlreadySorted(const Key& key, const Value&
 
 template <typename Key, typename Value>
 void SortedFileWriter<Key, Value>::spill() {
-    namespace str = mongoutils::str;
+    namespace str = mongolutils::str;
 
     if (_buffer.len() == 0)
         return;
@@ -894,7 +894,7 @@ Sorter<Key, Value>* Sorter<Key, Value>::make(const SortOptions& opts,
                                              const Settings& settings) {
     // This should be checked by consumers, but if it isn't try to fail early.
     massert(16947,
-            "Attempting to use external sort from mongos. This is not allowed.",
+            "Attempting to use external sort from mongols. This is not allowed.",
             !(isMongos() && opts.extSortAllowed));
 
     massert(17149,

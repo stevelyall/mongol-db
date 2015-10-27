@@ -26,7 +26,7 @@
  */
 
 /**
- * The ntservice namespace provides minimal support for running mongo servers as NT services.
+ * The ntservice namespace provides minimal support for running mongol servers as NT services.
  *
  * TODO: ntservice should only provide implementation for a more general server process
  * startup/shutdown/management interface.
@@ -39,17 +39,17 @@
 #include <string>
 #include <vector>
 
-#include "mongo/platform/compiler.h"
-#include "mongo/util/exit_code.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/util/exit_code.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 namespace ntservice {
 struct NtServiceDefaultStrings {
@@ -81,11 +81,11 @@ void configureService(ServiceCallback serviceCallback,
 bool shouldStartService();
 
 /**
- * Construct an argv array that Windows should use to start mongod/mongos as a service
- * if mongo was started with "inputArgv", which is assumed to be an argument vector that
- * dictates that Windows should install mongo as a service.
+ * Construct an argv array that Windows should use to start mongold/mongols as a service
+ * if mongol was started with "inputArgv", which is assumed to be an argument vector that
+ * dictates that Windows should install mongol as a service.
  *
- * The result is suitable for passing to mongo::constructUtf8WindowsCommandLine() to construct
+ * The result is suitable for passing to mongol::constructUtf8WindowsCommandLine() to construct
  * a properly quoted command line string.
  */
 std::vector<std::string> constructServiceArgv(const std::vector<std::string>& inputArgv);
@@ -98,6 +98,6 @@ MONGO_COMPILER_NORETURN void startService();
 bool reportStatus(DWORD reportState, DWORD waitHint = 0, DWORD exitCode = 0);
 
 }  // namespace ntservice
-}  // namespace mongo
+}  // namespace mongol
 
 #endif  // defined(_WIN32)

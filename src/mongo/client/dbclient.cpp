@@ -27,46 +27,46 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <utility>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/authenticate.h"
-#include "mongo/client/constants.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/config.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/json.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/reply_interface.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/s/stale_exception.h"  // for RecvStaleConfigException
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/authenticate.h"
+#include "mongol/client/constants.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/config.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/json.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/reply_interface.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/s/stale_exception.h"  // for RecvStaleConfigException
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/password_digest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -499,7 +499,7 @@ BSONObj DBClientWithCommands::getPrevError() {
 
 string DBClientWithCommands::createPasswordDigest(const string& username,
                                                   const string& clearTextPassword) {
-    return mongo::createPasswordDigest(username, clearTextPassword);
+    return mongol::createPasswordDigest(username, clearTextPassword);
 }
 
 namespace {
@@ -1576,4 +1576,4 @@ string nsGetCollection(const string& ns) {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

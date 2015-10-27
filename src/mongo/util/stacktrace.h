@@ -36,10 +36,10 @@
 #if defined(_WIN32)
 // We need to pick up a decl for CONTEXT. Forward declaring would be preferable, but it is
 // unclear that we can do so.
-#include "mongo/platform/windows_basic.h"
+#include "mongol/platform/windows_basic.h"
 #endif
 
-namespace mongo {
+namespace mongol {
 
 // Print stack trace information to "os", default to the log stream.
 void printStackTrace(std::ostream& os);
@@ -54,4 +54,4 @@ void printWindowsStackTrace(CONTEXT& context);
 int crtDebugCallback(int, char* originalMessage, int*);
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

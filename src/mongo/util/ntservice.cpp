@@ -27,34 +27,34 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
 #if defined(_WIN32)
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/range/size.hpp>
 
-#include "mongo/util/ntservice.h"
+#include "mongol/util/ntservice.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/instance.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/future.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/signal_handlers.h"
-#include "mongo/util/text.h"
-#include "mongo/util/winutil.h"
+#include "mongol/db/client.h"
+#include "mongol/db/instance.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/future.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/signal_handlers.h"
+#include "mongol/util/text.h"
+#include "mongol/util/winutil.h"
 
 using std::string;
 using std::wstring;
 
-namespace mongo {
+namespace mongol {
 
 namespace ntservice {
 namespace {
@@ -205,7 +205,7 @@ void configureService(ServiceCallback serviceCallback,
     }
 }
 
-// This implementation assumes that inputArgv was a valid argv to mongod.  That is, it assumes
+// This implementation assumes that inputArgv was a valid argv to mongold.  That is, it assumes
 // that options that take arguments received them, and options that do not take arguments did
 // not.
 std::vector<std::string> constructServiceArgv(const std::vector<std::string>& inputArgv) {
@@ -246,7 +246,7 @@ std::vector<std::string> constructServiceArgv(const std::vector<std::string>& in
 
         std::string name;
         std::string value;
-        bool foundEqualSign = mongoutils::str::splitOn(*iter, '=', name, value);
+        bool foundEqualSign = mongolutils::str::splitOn(*iter, '=', name, value);
         if (!foundEqualSign)
             name = *iter;
         if (optionsWithArgumentsToStripEnd !=
@@ -385,11 +385,11 @@ void installServiceOrDie(const wstring& serviceName,
 #if 1
     if (!serviceInstalled) {
 #else
-    // This code sets the mongod service to auto-restart, forever. This might be a fine thing to do
-    // except that when mongod or Windows has a crash, the mongo.lock file is still around, so any
+    // This code sets the mongold service to auto-restart, forever. This might be a fine thing to do
+    // except that when mongold or Windows has a crash, the mongol.lock file is still around, so any
     // attempt at a restart will immediately fail.  With auto-restart, we go into a loop, crashing
     // and restarting, crashing and restarting, until someone comes in and disables the service or
-    // deletes the mongod.lock file.
+    // deletes the mongold.lock file.
     //
     // I'm leaving the old code here for now in case we solve this and are able to turn
     // SC_ACTION_RESTART
@@ -626,6 +626,6 @@ void startService() {
 }
 
 }  // namspace ntservice
-}  // namespace mongo
+}  // namespace mongol
 
 #endif

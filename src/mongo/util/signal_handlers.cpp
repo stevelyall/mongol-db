@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/signal_handlers.h"
+#include "mongol/util/signal_handlers.h"
 
 #include <signal.h>
 
@@ -38,18 +38,18 @@
 #include <unistd.h>
 #endif
 
-#include "mongo/db/client.h"
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/server_options.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/exit_code.h"
-#include "mongo/util/log.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/signal_handlers_synchronous.h"
-#include "mongo/util/signal_win32.h"
+#include "mongol/db/client.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/server_options.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/exit_code.h"
+#include "mongol/util/log.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/signal_handlers_synchronous.h"
+#include "mongol/util/signal_win32.h"
 
 #if defined(_WIN32)
 namespace {
@@ -65,7 +65,7 @@ const char* strsignal(int signalNum) {
 }
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 
@@ -228,4 +228,4 @@ void removeControlCHandler() {
 }
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

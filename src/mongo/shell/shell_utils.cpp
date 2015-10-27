@@ -1,4 +1,4 @@
-// mongo/shell/shell_utils.cpp
+// mongol/shell/shell_utils.cpp
 /*
  *    Copyright 2010 10gen Inc.
  *
@@ -27,26 +27,26 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/shell/shell_utils.h"
+#include "mongol/shell/shell_utils.h"
 
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/catalog/index_key_validate.h"
-#include "mongo/db/index/external_key_generator.h"
-#include "mongo/shell/bench.h"
-#include "mongo/scripting/engine.h"
-#include "mongo/shell/shell_options.h"
-#include "mongo/shell/shell_utils_extended.h"
-#include "mongo/shell/shell_utils_launcher.h"
-#include "mongo/util/concurrency/threadlocal.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/text.h"
-#include "mongo/util/version.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/catalog/index_key_validate.h"
+#include "mongol/db/index/external_key_generator.h"
+#include "mongol/shell/bench.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/shell/shell_options.h"
+#include "mongol/shell/shell_utils_extended.h"
+#include "mongol/shell/shell_utils_launcher.h"
+#include "mongol/util/concurrency/threadlocal.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/text.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::map;
@@ -246,7 +246,7 @@ void initScope(Scope& scope) {
     scope.injectNative("_writeMode", writeMode);
     scope.injectNative("_readMode", readMode);
     scope.externalSetup();
-    mongo::shell_utils::installShellUtils(scope);
+    mongol::shell_utils::installShellUtils(scope);
     scope.execSetup(JSFiles::servers);
     scope.execSetup(JSFiles::shardingtest);
     scope.execSetup(JSFiles::servers_misc);
@@ -365,6 +365,6 @@ bool fileExists(const std::string& file) {
 }
 
 
-stdx::mutex& mongoProgramOutputMutex(*(new stdx::mutex()));
+stdx::mutex& mongolProgramOutputMutex(*(new stdx::mutex()));
 }
 }

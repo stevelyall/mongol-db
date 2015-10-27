@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/base/data_view.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/platform/random.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/util/log.h"
+#include "mongol/base/data_view.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/platform/random.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/util/log.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::unique_ptr;
 using std::endl;
 

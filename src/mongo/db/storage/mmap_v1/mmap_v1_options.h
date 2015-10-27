@@ -35,7 +35,7 @@
  * mmap v1 storage engine.
  */
 
-namespace mongo {
+namespace mongol {
 
 struct MMAPV1Options {
     MMAPV1Options()
@@ -85,4 +85,4 @@ struct MMAPV1Options {
 
 extern MMAPV1Options mmapv1GlobalOptions;
 
-}  // namespace mongo
+}  // namespace mongol

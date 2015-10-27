@@ -29,28 +29,28 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/db.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/json.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/repl/master_slave.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_mock.h"
-#include "mongo/db/repl/sync_tail.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/db.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/json.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/repl/master_slave.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
+#include "mongol/db/repl/sync_tail.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/log.h"
 
-using namespace mongo::repl;
+using namespace mongol::repl;
 
 namespace ReplTests {
 
@@ -124,7 +124,7 @@ protected:
     }
     void check(const BSONObj& expected, const BSONObj& got) const {
         if (expected.woCompare(got)) {
-            ::mongo::log() << "expected: " << expected.toString() << ", got: " << got.toString()
+            ::mongol::log() << "expected: " << expected.toString() << ", got: " << got.toString()
                            << endl;
         }
         ASSERT_EQUALS(expected, got);
@@ -193,7 +193,7 @@ protected:
             ReplSource a(&_txn, b.obj());
             for (vector<BSONObj>::iterator i = ops.begin(); i != ops.end(); ++i) {
                 if (0) {
-                    mongo::unittest::log() << "op: " << *i << endl;
+                    mongol::unittest::log() << "op: " << *i << endl;
                 }
                 _txn.setReplicatedWrites(false);
                 a.applyOperation(&_txn, ctx.db(), *i);
@@ -215,9 +215,9 @@ protected:
         }
 
         auto cursor = coll->getCursor(&_txn);
-        ::mongo::log() << "all for " << ns << endl;
+        ::mongol::log() << "all for " << ns << endl;
         while (auto record = cursor->next()) {
-            ::mongo::log() << record->data.releaseToBson() << endl;
+            ::mongol::log() << record->data.releaseToBson() << endl;
         }
     }
     // These deletes don't get logged.

@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/topology_coordinator_impl.h"
-#include "mongo/db/repl/elect_cmd_runner.h"
-#include "mongo/db/repl/freshness_checker.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/topology_coordinator_impl.h"
+#include "mongol/db/repl/elect_cmd_runner.h"
+#include "mongol/db/repl/freshness_checker.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -283,4 +283,4 @@ void ReplicationCoordinatorImpl::_recoverFromElectionTie(
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -28,21 +28,21 @@
  */
 
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/listen.h"
+#include "mongol/util/net/listen.h"
 
 
-#include "mongo/config.h"
-#include "mongo/db/server_options.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/message_port.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/config.h"
+#include "mongol/db/server_options.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/message_port.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/scopeguard.h"
 
 #ifndef _WIN32
 
@@ -72,7 +72,7 @@
 
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::endl;
@@ -372,8 +372,8 @@ static void disableNonblockingMode(SOCKET socket) {
                                 NULL,
                                 NULL);
     if (status == SOCKET_ERROR) {
-        const int mongo_errno = WSAGetLastError();
-        error() << "Windows WSAIoctl returned " << errnoWithDescription(mongo_errno) << endl;
+        const int mongol_errno = WSAGetLastError();
+        error() << "Windows WSAIoctl returned " << errnoWithDescription(mongol_errno) << endl;
         fassertFailed(16726);
     }
 }
@@ -386,8 +386,8 @@ public:
     EventHolder() {
         _socketEventHandle = WSACreateEvent();
         if (_socketEventHandle == WSA_INVALID_EVENT) {
-            const int mongo_errno = WSAGetLastError();
-            error() << "Windows WSACreateEvent returned " << errnoWithDescription(mongo_errno)
+            const int mongol_errno = WSAGetLastError();
+            error() << "Windows WSACreateEvent returned " << errnoWithDescription(mongol_errno)
                     << endl;
             fassertFailed(16728);
         }
@@ -395,8 +395,8 @@ public:
     ~EventHolder() {
         BOOL bstatus = WSACloseEvent(_socketEventHandle);
         if (bstatus == FALSE) {
-            const int mongo_errno = WSAGetLastError();
-            error() << "Windows WSACloseEvent returned " << errnoWithDescription(mongo_errno)
+            const int mongol_errno = WSAGetLastError();
+            error() << "Windows WSACloseEvent returned " << errnoWithDescription(mongol_errno)
                     << endl;
             fassertFailed(16725);
         }
@@ -449,7 +449,7 @@ void Listener::initAndListen() {
         for (size_t count = 0; count < _socks.size(); ++count) {
             int status = WSAEventSelect(_socks[count], events[count], FD_ACCEPT | FD_CLOSE);
             if (status == SOCKET_ERROR) {
-                const int mongo_errno = WSAGetLastError();
+                const int mongol_errno = WSAGetLastError();
 
                 // During shutdown, we may fail to listen on the socket if it has already
                 // been closed
@@ -457,7 +457,7 @@ void Listener::initAndListen() {
                     return;
                 }
 
-                error() << "Windows WSAEventSelect returned " << errnoWithDescription(mongo_errno)
+                error() << "Windows WSAEventSelect returned " << errnoWithDescription(mongol_errno)
                         << endl;
                 fassertFailed(16727);
             }
@@ -470,9 +470,9 @@ void Listener::initAndListen() {
                                                 10,      // timeout, in ms
                                                 FALSE);  // do not allow I/O interruptions
         if (result == WSA_WAIT_FAILED) {
-            const int mongo_errno = WSAGetLastError();
+            const int mongol_errno = WSAGetLastError();
             error() << "Windows WSAWaitForMultipleEvents returned "
-                    << errnoWithDescription(mongo_errno) << endl;
+                    << errnoWithDescription(mongol_errno) << endl;
             fassertFailed(16723);
         }
 
@@ -488,8 +488,8 @@ void Listener::initAndListen() {
         // Extract event details, and clear event for next pass
         int status = WSAEnumNetworkEvents(_socks[eventIndex], events[eventIndex], &networkEvents);
         if (status == SOCKET_ERROR) {
-            const int mongo_errno = WSAGetLastError();
-            error() << "Windows WSAEnumNetworkEvents returned " << errnoWithDescription(mongo_errno)
+            const int mongol_errno = WSAGetLastError();
+            error() << "Windows WSAEnumNetworkEvents returned " << errnoWithDescription(mongol_errno)
                     << endl;
             continue;
         }
@@ -512,8 +512,8 @@ void Listener::initAndListen() {
 
         status = WSAEventSelect(_socks[eventIndex], NULL, 0);
         if (status == SOCKET_ERROR) {
-            const int mongo_errno = WSAGetLastError();
-            error() << "Windows WSAEventSelect returned " << errnoWithDescription(mongo_errno)
+            const int mongol_errno = WSAGetLastError();
+            error() << "Windows WSAEventSelect returned " << errnoWithDescription(mongol_errno)
                     << endl;
             continue;
         }

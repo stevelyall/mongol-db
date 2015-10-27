@@ -30,13 +30,13 @@
 
 #include <jsapi.h>
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 namespace smUtils {
 
@@ -113,11 +113,11 @@ bool wrapConstrainedMethod(JSContext* cx, unsigned argc, JS::Value* vp) {
         T::call(cx, args);
         return true;
     } catch (...) {
-        mongoToJSException(cx);
+        mongolToJSException(cx);
         return false;
     }
 }
 
 }  // namespace smUtils
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

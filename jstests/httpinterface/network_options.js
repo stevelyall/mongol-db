@@ -175,7 +175,7 @@ expectedResult = {
 testGetCmdLineOptsMongod({ config : "jstests/libs/config_files/disable_rest_interface.json" },
                          expectedResult);
 
-jsTest.log("Testing explicitly disabling \"net.http.JSONPEnabled\" config file option on mongoD");
+jsTest.log("Testing explicitly disabling \"net.http.JSONPEnabled\" config file option on mongolD");
 expectedResult = {
     "parsed" : {
         "config" : "jstests/libs/config_files/disable_jsonp.json",
@@ -189,9 +189,9 @@ expectedResult = {
 testGetCmdLineOptsMongod({ config : "jstests/libs/config_files/disable_jsonp.json" },
                          expectedResult);
 
-// jsonp on mongos is legacy and not supported in json/yaml config files since this interface is not
+// jsonp on mongols is legacy and not supported in json/yaml config files since this interface is not
 // well defined.  See SERVER-11707 for an example.
-jsTest.log("Testing explicitly disabling \"jsonp\" config file option on mongoS");
+jsTest.log("Testing explicitly disabling \"jsonp\" config file option on mongolS");
 expectedResult = {
     "parsed" : {
         "config" : "jstests/libs/config_files/disable_jsonp.ini",

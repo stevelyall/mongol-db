@@ -33,13 +33,13 @@
 #include <limits>
 #include <wiredtiger.h>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class OperationContext;
@@ -52,7 +52,7 @@ inline bool wt_keeptxnopen() {
 Status wtRCToStatus_slow(int retCode, const char* prefix);
 
 /**
- * converts wiredtiger return codes to mongodb statuses.
+ * converts wiredtiger return codes to mongoldb statuses.
  */
 inline Status wtRCToStatus(int retCode, const char* prefix = NULL) {
     if (MONGO_likely(retCode == 0))
@@ -298,4 +298,4 @@ ResultType WiredTigerUtil::_castStatisticsValue(uint64_t statisticsValue,
         : static_cast<ResultType>(statisticsValue);
 }
 
-}  // namespace mongo
+}  // namespace mongol

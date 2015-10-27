@@ -30,15 +30,15 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class DataFile;
@@ -227,4 +227,4 @@ Status userCreateNS(OperationContext* txn,
                     BSONObj options,
                     bool createDefaultIndexes = true);
 
-}  // namespace mongo
+}  // namespace mongol

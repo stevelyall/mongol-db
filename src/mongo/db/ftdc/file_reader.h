@@ -34,14 +34,14 @@
 #include <stddef.h>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/ftdc/decompressor.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/ftdc/decompressor.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Reads a file, either an archive stream or interim file
@@ -144,4 +144,4 @@ private:
     std::ifstream _stream;
 };
 
-}  // namespace mongo
+}  // namespace mongol

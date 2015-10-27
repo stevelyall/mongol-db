@@ -12,7 +12,7 @@ dbc.ensureIndex({ "name" : 1,
                   "date" : 1,
                   "time" : 1,
                   "renameCollection" : 1,
-                  "mongodb" : 1,
+                  "mongoldb" : 1,
                   "testing" : 1,
                   "data" : 1});
 //Checking for the newly created index and the _id index in original collection

@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/exec/oplogstart.h"
+#include "mongol/db/exec/oplogstart.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -216,4 +216,4 @@ unique_ptr<PlanStageStats> OplogStart::getStats() {
 
 int OplogStart::_backwardsScanTime = 5;
 
-}  // namespace mongo
+}  // namespace mongol

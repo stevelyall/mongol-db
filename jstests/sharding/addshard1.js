@@ -2,7 +2,7 @@ s = new ShardingTest({name: "add_shard1", shards: 1, useHostname: false });
 
 assert.eq( 1, s.config.shards.count(), "initial server count wrong" );
 
-// create a shard and add a database; if the database is not duplicated the mongod should accepted
+// create a shard and add a database; if the database is not duplicated the mongold should accepted
 // it as shard
 conn1 = MongoRunner.runMongod({});
 
@@ -27,7 +27,7 @@ assert.neq(null, configDB.databases.findOne({ _id: 'testDB' }));
 var newShardDoc = configDB.shards.findOne({ _id: newShard });
 assert.eq(1024, newShardDoc.maxSize);
 
-// a mongod with an existing database name should not be allowed to become a shard
+// a mongold with an existing database name should not be allowed to become a shard
 conn2 = MongoRunner.runMongod({});
 db2 = conn2.getDB( "otherDB" );
 assert.writeOK(db2.foo.save({ a: 1 }));
@@ -37,15 +37,15 @@ assert.writeOK(db3.foo.save({ a: 1 } ));
 s.config.databases.find().forEach( printjson )
 rejectedShard = "rejectedShard";
 assert( ! s.admin.runCommand( { addshard: "localhost:" + conn2.port , name : rejectedShard } ).ok,
-        "accepted mongod with duplicate db" );
+        "accepted mongold with duplicate db" );
 
-// check that all collection that were local to the mongod's are accessible through the mongos
+// check that all collection that were local to the mongold's are accessible through the mongols
 sdb1 = s.getDB( "testDB" );
 assert.eq( numObjs , sdb1.foo.count() , "wrong count for database that existed before addshard" );
 sdb2 = s.getDB( "otherDB" );
-assert.eq( 0 , sdb2.foo.count() , "database of rejected shard appears through mongos" );
+assert.eq( 0 , sdb2.foo.count() , "database of rejected shard appears through mongols" );
 
-// make sure we can move a DB from the original mongod to a previoulsy existing shard
+// make sure we can move a DB from the original mongold to a previoulsy existing shard
 assert.eq( s.normalize( s.config.databases.findOne( { _id : "testDB" } ).primary ), newShard , "DB primary is wrong" );
 origShard = s.getNonPrimaries( "testDB" )[0];
 s.adminCommand( { moveprimary : "testDB" , to : origShard } );

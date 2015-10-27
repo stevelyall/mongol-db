@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/auth/role_name.h"
+#include "mongol/db/auth/role_name.h"
 
 #include <algorithm>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 RoleName::RoleName(StringData role, StringData dbname) {
     _fullName.resize(role.size() + dbname.size() + 1);
@@ -51,4 +51,4 @@ std::ostream& operator<<(std::ostream& os, const RoleName& name) {
     return os << name.getFullName();
 }
 
-}  // namespace mongo
+}  // namespace mongol

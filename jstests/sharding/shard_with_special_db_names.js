@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "shard_with_special_db_names",
                            shards: 2,
-                           mongos: 2 });
+                           mongols: 2 });
 var specialDB = "[a-z]+";
 var specialNS = specialDB + ".special";
 

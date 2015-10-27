@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# mongod - Startup script for mongod
+# mongold - Startup script for mongold
 
 ### BEGIN INIT INFO
-# Provides:       mongod
+# Provides:       mongold
 # Required-Start: $network
 # Required-Stop: $network
 # Default-Start:  2 3 5
@@ -16,21 +16,21 @@
 . /etc/rc.status
 rc_reset
 
-# things from mongod.conf get there by mongod reading it
+# things from mongold.conf get there by mongold reading it
 
 
 # NOTE: if you change any OPTIONS here, you get what you pay for:
 # this script assumes all options are in the config file.
-CONFIGFILE="/etc/mongod.conf"
+CONFIGFILE="/etc/mongold.conf"
 OPTIONS=" -f $CONFIGFILE"
-SYSCONFIG="/etc/sysconfig/mongod"
+SYSCONFIG="/etc/sysconfig/mongold"
 
 PIDFILEPATH=`awk -F'[:=]' -v IGNORECASE=1 '/^[[:blank:]]*(processManagement\.)?pidfilepath[[:blank:]]*[:=][[:blank:]]*/{print $2}' "$CONFIGFILE" | tr -d "[:blank:]\"'"`
 
-mongod=${MONGOD-/usr/bin/mongod}
+mongold=${MONGOD-/usr/bin/mongold}
 
-MONGO_USER=mongod
-MONGO_GROUP=mongod
+MONGO_USER=mongold
+MONGO_GROUP=mongold
 
 if [ -f "$SYSCONFIG" ]; then
     . "$SYSCONFIG"
@@ -56,8 +56,8 @@ start()
     install -d -m 0755 -o $MONGO_USER -g $MONGO_GROUP $PIDDIR
   fi
 
-  # Recommended ulimit values for mongod or mongos
-  # See http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings
+  # Recommended ulimit values for mongold or mongols
+  # See http://docs.mongoldb.org/manual/reference/ulimit/#recommended-settings
   #
   ulimit -f unlimited
   ulimit -t unlimited
@@ -66,20 +66,20 @@ start()
   ulimit -m unlimited
   ulimit -u 64000
 
-  echo -n "Starting mongod: "
-  $NUMACTL /sbin/start_daemon -u "$MONGO_USER" -p "$PIDFILEPATH" $mongod $OPTIONS >/dev/null 2>&1
+  echo -n "Starting mongold: "
+  $NUMACTL /sbin/start_daemon -u "$MONGO_USER" -p "$PIDFILEPATH" $mongold $OPTIONS >/dev/null 2>&1
 
   RETVAL=$?
-  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/mongod
+  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/mongold
   return $RETVAL
 }
 
 stop()
 {
-  echo -n "Stopping mongod: "
-  mongo_killproc "$PIDFILEPATH" $mongod
+  echo -n "Stopping mongold: "
+  mongol_killproc "$PIDFILEPATH" $mongold
   RETVAL=$?
-  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/mongod
+  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/mongold
   return $RETVAL
 }
 
@@ -93,7 +93,7 @@ restart () {
 # Built-in killproc() (found in /etc/init.d/functions) is on certain versions of Linux
 # where it sleeps for the full $delay seconds if process does not respond fast enough to
 # the initial TERM signal.
-mongo_killproc()
+mongol_killproc()
 {
   local pid_file=$1
   local procname=$2
@@ -135,12 +135,12 @@ case "$1" in
     rc_status -v
     ;;
   condrestart)
-    [ -f /var/lock/subsys/mongod ] && restart || :
+    [ -f /var/lock/subsys/mongold ] && restart || :
     rc_status
     ;;
   status)
-    echo -n "Checking for mongod:"
-    checkproc -p "$PIDFILEPATH" $mongod
+    echo -n "Checking for mongold:"
+    checkproc -p "$PIDFILEPATH" $mongold
     rc_status -v
     ;;
   *)

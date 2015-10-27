@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/auth/sasl_authentication_session.h"
-#include "mongo/db/auth/user.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/auth/sasl_authentication_session.h"
+#include "mongol/db/auth/user.h"
 
-namespace mongo {
+namespace mongol {
 
 class SaslAuthenticationSession;
 template <typename T>
@@ -86,4 +86,4 @@ protected:
     std::string _user;
 };
 
-}  // namespace mongo
+}  // namespace mongol

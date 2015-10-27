@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 /** A range of values for one field. */
 struct Interval {
@@ -52,7 +52,7 @@ struct Interval {
     Interval();
 
     std::string toString() const {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         if (startInclusive) {
             ss << "[";
         } else {
@@ -194,4 +194,4 @@ inline bool operator!=(const Interval& lhs, const Interval& rhs) {
     return !(lhs == rhs);
 }
 
-}  // namespace mongo
+}  // namespace mongol

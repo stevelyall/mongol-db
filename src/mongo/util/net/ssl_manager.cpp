@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_manager.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -40,21 +40,21 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/config.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/net/ssl_expiration.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/text.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/config.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/net/ssl_expiration.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/text.h"
 
 #ifdef MONGO_CONFIG_SSL
 #include <openssl/evp.h>
@@ -63,7 +63,7 @@
 
 using std::endl;
 
-namespace mongo {
+namespace mongol {
 
 SSLParams sslGlobalParams;
 
@@ -306,7 +306,7 @@ void setupFIPS() {
     }
     log() << "FIPS 140-2 mode activated" << endl;
 #else
-    severe() << "this version of mongodb was not compiled with FIPS support";
+    severe() << "this version of mongoldb was not compiled with FIPS support";
     fassertFailedNoTrace(17089);
 #endif
 }
@@ -417,9 +417,9 @@ void canonicalizeClusterDN(std::vector<std::string>* dn) {
     for (size_t i = 0; i < dn->size(); i++) {
         std::string& comp = dn->at(i);
         boost::algorithm::trim(comp);
-        if (!mongoutils::str::startsWith(comp.c_str(), "DC=") &&
-            !mongoutils::str::startsWith(comp.c_str(), "O=") &&
-            !mongoutils::str::startsWith(comp.c_str(), "OU=")) {
+        if (!mongolutils::str::startsWith(comp.c_str(), "DC=") &&
+            !mongolutils::str::startsWith(comp.c_str(), "O=") &&
+            !mongolutils::str::startsWith(comp.c_str(), "OU=")) {
             dn->erase(dn->begin() + i);
             i--;
         }

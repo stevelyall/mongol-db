@@ -26,37 +26,37 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/sharding_initialization.h"
+#include "mongol/s/sharding_initialization.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/client/remote_command_targeter_factory_impl.h"
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context.h"
-#include "mongo/executor/network_interface_factory.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/executor/thread_pool_task_executor.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/rpc/metadata/metadata_hook.h"
-#include "mongo/rpc/metadata/config_server_metadata.h"
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/client/sharding_network_connection_hook.h"
-#include "mongo/s/cluster_last_error_info.h"
-#include "mongo/s/grid.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/thread_pool.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/base/status.h"
+#include "mongol/client/remote_command_targeter_factory_impl.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context.h"
+#include "mongol/executor/network_interface_factory.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/executor/thread_pool_task_executor.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/rpc/metadata/metadata_hook.h"
+#include "mongol/rpc/metadata/config_server_metadata.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/client/sharding_network_connection_hook.h"
+#include "mongol/s/cluster_last_error_info.h"
+#include "mongol/s/grid.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/thread_pool.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -169,4 +169,4 @@ Status initializeGlobalShardingState(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

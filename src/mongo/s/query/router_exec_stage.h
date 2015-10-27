@@ -31,17 +31,17 @@
 #include <boost/optional.hpp>
 #include <memory>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * This is the lightweight mongoS analogue of the PlanStage abstraction used to execute queries on
- * mongoD (see mongo/db/plan_stage.h).
+ * This is the lightweight mongolS analogue of the PlanStage abstraction used to execute queries on
+ * mongolD (see mongol/db/plan_stage.h).
  *
  * Each subclass is a query execution stage which executes on the merging node. In general, the
- * execution plan on mongos could have a tree of execution stages, but currently each node has at
+ * execution plan on mongols could have a tree of execution stages, but currently each node has at
  * most one child. The leaf stage of the pipeline receives query result documents merged from the
  * shards. The pipeline may then transform the result set in various ways before being returned by
  * the root stage.
@@ -83,4 +83,4 @@ private:
     std::unique_ptr<RouterExecStage> _child;
 };
 
-}  // namespace mongo
+}  // namespace mongol

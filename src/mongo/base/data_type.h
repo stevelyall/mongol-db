@@ -27,16 +27,16 @@
 
 #pragma once
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #include <cstring>
 #include <type_traits>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 
 struct DataType {
     // Second template parameter allows templatized SFINAE specialization.
@@ -164,4 +164,4 @@ struct DataType {
     static Status makeTrivialLoadStatus(size_t sizeOfT, size_t length, size_t debug_offset);
 };
 
-}  // namespace mongo
+}  // namespace mongol

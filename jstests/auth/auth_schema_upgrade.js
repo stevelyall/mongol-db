@@ -61,10 +61,10 @@ var testAuthSchemaUpgrade = function(conn) {
 }
 
 // Test authSchemaUpgrade and upgrade shards
-var testUpgradeShards = function(mongos, shard) {
+var testUpgradeShards = function(mongols, shard) {
     setupCRUsers(shard);
 
-    assert.commandWorked(mongos.adminCommand({"authSchemaUpgrade":1,"upgradeShards":1}));
+    assert.commandWorked(mongols.adminCommand({"authSchemaUpgrade":1,"upgradeShards":1}));
     verifySchemaUpgrade(shard.getDB('admin'));
 }
 
@@ -77,10 +77,10 @@ jsTest.log('Test authSchemUpgrade sharded');
 var dopts = { smallfiles: "", nopreallocj: ""}
 var st = new ShardingTest(
     { shards: 1,
-      mongos: 1,
+      mongols: 1,
       config: 1,
       useHostname: false, // Needed when relying on the localhost exception
-      other: { shardOptions: dopts, configOptions: dopts, mongosOptions: { verbose: 1 } } } );
+      other: { shardOptions: dopts, configOptions: dopts, mongolsOptions: { verbose: 1 } } } );
 testAuthSchemaUpgrade(st.s);
 testUpgradeShards(st.s, st.shard0);
 st.stop();

@@ -35,12 +35,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/record_id.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class BackgroundOperation;
 class BSONObj;
@@ -235,4 +235,4 @@ private:
     bool _needToCleanup;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,11 +32,11 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This reads and write the storage engine metadata file 'storage.bson'
@@ -116,4 +116,4 @@ private:
     BSONObj _storageEngineOptions;
 };
 
-}  // namespace mongo
+}  // namespace mongol

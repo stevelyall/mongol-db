@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 class StatusWith;
@@ -122,4 +122,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

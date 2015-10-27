@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/get_status_from_command_result.h"
+#include "mongol/rpc/get_status_from_command_result.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status getStatusFromCommandResult(const BSONObj& result) {
     BSONElement okElement = result["ok"];
@@ -46,7 +46,7 @@ Status getStatusFromCommandResult(const BSONObj& result) {
 
     if (okElement.eoo() && dollarErrElement.eoo()) {
         return Status(ErrorCodes::CommandResultSchemaViolation,
-                      mongoutils::str::stream() << "No \"ok\" field in command result " << result);
+                      mongolutils::str::stream() << "No \"ok\" field in command result " << result);
     }
     if (okElement.trueValue()) {
         return Status::OK();
@@ -72,4 +72,4 @@ Status getStatusFromCommandResult(const BSONObj& result) {
     return Status(ErrorCodes::Error(code), errmsg);
 }
 
-}  // namespace mongo
+}  // namespace mongol

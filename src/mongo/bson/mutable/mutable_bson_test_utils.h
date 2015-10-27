@@ -27,9 +27,9 @@
 
 #include <iosfwd>
 
-#include "mongo/bson/mutable/document.h"
+#include "mongol/bson/mutable/document.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -131,4 +131,4 @@ std::ostream& operator<<(std::ostream& stream, const UnorderedWrapper_Doc& uw_d)
 std::ostream& operator<<(std::ostream& stream, const UnorderedWrapper_Obj& uw_o);
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

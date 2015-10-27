@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace rpc {
 class ReplyInterface;
@@ -61,4 +61,4 @@ struct RemoteCommandResponse {
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

@@ -31,7 +31,7 @@
 #include <string>
 #include <vector>
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DNS canonicalization converts a hostname into another potentially more globally useful hostname.
@@ -54,4 +54,4 @@ enum class HostnameCanonicalizationMode {
  */
 std::vector<std::string> getHostFQDNs(std::string hostName, HostnameCanonicalizationMode mode);
 
-}  // namespace mongo
+}  // namespace mongol

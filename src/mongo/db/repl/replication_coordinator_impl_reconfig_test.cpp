@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator_external_state_mock.h"
-#include "mongo/db/repl/replication_coordinator_impl.h"
-#include "mongo/db/repl/replication_coordinator_test_fixture.h"
-#include "mongo/db/repl/replication_coordinator.h"  // ReplSetReconfigArgs
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator_external_state_mock.h"
+#include "mongol/db/repl/replication_coordinator_impl.h"
+#include "mongol/db/repl/replication_coordinator_test_fixture.h"
+#include "mongol/db/repl/replication_coordinator.h"  // ReplSetReconfigArgs
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -549,4 +549,4 @@ TEST_F(ReplCoordTest, ForceReconfigWhileNotPrimarySuccessful) {
 
 }  // anonymous namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

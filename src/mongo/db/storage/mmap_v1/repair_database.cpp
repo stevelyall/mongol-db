@@ -28,32 +28,32 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/client.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/util/file.h"
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/client.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/util/file.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;

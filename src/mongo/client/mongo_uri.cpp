@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/mongo_uri.h"
+#include "mongol/client/mongol_uri.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/password_digest.h"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -45,12 +45,12 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/regex.hpp>
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const char kMongoDBURL[] =
     // scheme: non-capturing
-    "mongodb://"
+    "mongoldb://"
 
     // credentials: two inner captures for user and password
     "(?:([^:]+)(?::([^@]+))?@)?"
@@ -69,7 +69,7 @@ const char kMongoDBURL[] =
 
 
 StatusWith<MongoURI> MongoURI::parse(const std::string& url) {
-    if (!boost::algorithm::starts_with(url, "mongodb://")) {
+    if (!boost::algorithm::starts_with(url, "mongoldb://")) {
         auto cs_status = ConnectionString::parse(url);
         if (!cs_status.isOK()) {
             return cs_status.getStatus();
@@ -78,12 +78,12 @@ StatusWith<MongoURI> MongoURI::parse(const std::string& url) {
         return MongoURI(cs_status.getValue());
     }
 
-    const boost::regex mongoUrlRe(kMongoDBURL);
+    const boost::regex mongolUrlRe(kMongoDBURL);
 
     boost::smatch matches;
-    if (!boost::regex_match(url, matches, mongoUrlRe)) {
+    if (!boost::regex_match(url, matches, mongolUrlRe)) {
         return Status(ErrorCodes::FailedToParse,
-                      str::stream() << "Failed to parse mongodb:// URL: " << url);
+                      str::stream() << "Failed to parse mongoldb:// URL: " << url);
     }
 
     // We have 5 top level captures, plus the whole input.
@@ -104,7 +104,7 @@ StatusWith<MongoURI> MongoURI::parse(const std::string& url) {
         if (optionsTokens.size() % 2 != 0) {
             return Status(ErrorCodes::FailedToParse,
                           str::stream()
-                              << "Missing a key or value in the options for mongodb:// URL: "
+                              << "Missing a key or value in the options for mongoldb:// URL: "
                               << url);
             ;
         }
@@ -151,4 +151,4 @@ StatusWith<MongoURI> MongoURI::parse(const std::string& url) {
     return MongoURI(cs, matches[1].str(), matches[2].str(), matches[4].str(), optionsBob.obj());
 }
 
-}  // namespace mongo
+}  // namespace mongol

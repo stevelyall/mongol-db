@@ -26,35 +26,35 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 
-#include "mongo/client/fetcher.h"
-#include "mongo/db/json.h"
-#include "mongo/db/repl/base_cloner_test_fixture.h"
-#include "mongo/db/repl/data_replicator.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_executor_test_fixture.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/reporter.h"
-#include "mongo/db/repl/sync_source_selector.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/client/fetcher.h"
+#include "mongol/db/json.h"
+#include "mongol/db/repl/base_cloner_test_fixture.h"
+#include "mongol/db/repl/data_replicator.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_executor_test_fixture.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/reporter.h"
+#include "mongol/db/repl/sync_source_selector.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-#include "mongo/unittest/barrier.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/barrier.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 using executor::NetworkInterfaceMock;
 using executor::RemoteCommandRequest;
 using executor::RemoteCommandResponse;
@@ -496,7 +496,7 @@ TEST_F(InitialSyncTest, MissingDocOnApplyCompletes) {
 }
 
 TEST_F(InitialSyncTest, Failpoint) {
-    mongo::getGlobalFailPointRegistry()
+    mongol::getGlobalFailPointRegistry()
         ->getFailPoint("failInitialSyncWithBadHost")
         ->setMode(FailPoint::alwaysOn);
 
@@ -520,7 +520,7 @@ TEST_F(InitialSyncTest, Failpoint) {
     isbr.run();
     ASSERT_EQ(isbr.getResult().getStatus().code(), ErrorCodes::InitialSyncFailure);
 
-    mongo::getGlobalFailPointRegistry()
+    mongol::getGlobalFailPointRegistry()
         ->getFailPoint("failInitialSyncWithBadHost")
         ->setMode(FailPoint::off);
 }

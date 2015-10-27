@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/concurrency/lock_manager.h"
-#include "mongo/db/concurrency/lock_state.h"
+#include "mongol/db/concurrency/lock_manager.h"
+#include "mongol/db/concurrency/lock_state.h"
 
-namespace mongo {
+namespace mongol {
 
 class LockerForTests : public LockerImpl<false> {
 public:
@@ -70,4 +70,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

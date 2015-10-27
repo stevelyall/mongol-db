@@ -19,9 +19,9 @@ env.Library(
         'sharding_initialization.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/executor/network_interface_factory',
-        '$BUILD_DIR/mongo/executor/thread_pool_task_executor',
-        '$BUILD_DIR/mongo/s/catalog/forwarding_catalog_manager',
+        '$BUILD_DIR/mongol/executor/network_interface_factory',
+        '$BUILD_DIR/mongol/executor/thread_pool_task_executor',
+        '$BUILD_DIR/mongol/s/catalog/forwarding_catalog_manager',
         'client/sharding_connection_hook',
         'coreshard',
     ],
@@ -31,7 +31,7 @@ env.Library(
     ],
 )
 
-# Functionality shared between mongod and mongos
+# Functionality shared between mongold and mongols
 env.Library(
     target='common',
     source=[
@@ -41,9 +41,9 @@ env.Library(
     ],
     LIBDEPS=[
         'catalog/catalog_types',
-        '$BUILD_DIR/mongo/client/connection_string',
-        '$BUILD_DIR/mongo/db/repl/optime',
-        '$BUILD_DIR/mongo/rpc/metadata',
+        '$BUILD_DIR/mongol/client/connection_string',
+        '$BUILD_DIR/mongol/db/repl/optime',
+        '$BUILD_DIR/mongol/rpc/metadata',
     ]
 )
 
@@ -63,18 +63,18 @@ env.Library(
         'sharding_test_fixture.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/client/remote_command_targeter_mock',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        '$BUILD_DIR/mongo/executor/network_test_env',
-        '$BUILD_DIR/mongo/executor/thread_pool_task_executor_test_fixture',
-        '$BUILD_DIR/mongo/rpc/metadata',
-        '$BUILD_DIR/mongo/s/catalog/dist_lock_manager_mock',
-        '$BUILD_DIR/mongo/s/catalog/forwarding_catalog_manager',
-        '$BUILD_DIR/mongo/s/catalog/replset/catalog_manager_replica_set',
-        '$BUILD_DIR/mongo/s/coreshard',
-        '$BUILD_DIR/mongo/s/mongoscore',
-        '$BUILD_DIR/mongo/util/clock_source_mock',
-        '$BUILD_DIR/mongo/util/net/message_port_mock',
+        '$BUILD_DIR/mongol/client/remote_command_targeter_mock',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        '$BUILD_DIR/mongol/executor/network_test_env',
+        '$BUILD_DIR/mongol/executor/thread_pool_task_executor_test_fixture',
+        '$BUILD_DIR/mongol/rpc/metadata',
+        '$BUILD_DIR/mongol/s/catalog/dist_lock_manager_mock',
+        '$BUILD_DIR/mongol/s/catalog/forwarding_catalog_manager',
+        '$BUILD_DIR/mongol/s/catalog/replset/catalog_manager_replica_set',
+        '$BUILD_DIR/mongol/s/coreshard',
+        '$BUILD_DIR/mongol/s/mongolscore',
+        '$BUILD_DIR/mongol/util/clock_source_mock',
+        '$BUILD_DIR/mongol/util/net/message_port_mock',
     ],
     LIBDEPS_TAGS=[
         # Depends on coreshard, but that would be circular
@@ -89,7 +89,7 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         'common',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/service_context',
     ]
 )
 
@@ -114,7 +114,7 @@ env.CppUnitTest(
 )
 
 #
-# Implementations of components to perform cluster operations in mongos
+# Implementations of components to perform cluster operations in mongols
 #
 # This is the glue code implementing the interfaces required by cluster ops
 # in particular environments.
@@ -131,7 +131,7 @@ env.Library(
         'client/sharding_client',
         'write_ops/cluster_write_op',
         'write_ops/cluster_write_op_conversion',
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
     LIBDEPS_TAGS=[
         # Circular with coreshard, below
@@ -146,12 +146,12 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         'coreshard',
-        'mongoscore',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
+        'mongolscore',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
     ]
 )
 
-# This library contains sharding functionality used by both mongod and mongos. Certain tests,
+# This library contains sharding functionality used by both mongold and mongols. Certain tests,
 # which exercise this functionality also link against it.
 env.Library(
     target='coreshard',
@@ -166,7 +166,7 @@ env.Library(
         'version_manager.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/s/query/cluster_cursor_manager',
+        '$BUILD_DIR/mongol/s/query/cluster_cursor_manager',
         'catalog/forwarding_catalog_manager',
         'catalog/catalog_types',
         'client/sharding_client',
@@ -179,10 +179,10 @@ env.Library(
     ],
 )
 
-# This library is only used by the mongos execuable and any tests which require mongos runtime
+# This library is only used by the mongols execuable and any tests which require mongols runtime
 # objects, such as the request processing pipeline or the balancer.
 env.Library(
-    target='mongoscore',
+    target='mongolscore',
     source=[
         'balance.cpp',
         'cluster_cursor_stats.cpp',
@@ -192,15 +192,15 @@ env.Library(
         's_only.cpp',
         's_sharding_server_status.cpp',
         'strategy.cpp',
-        'version_mongos.cpp',
+        'version_mongols.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/auth/authmongos',
-        '$BUILD_DIR/mongo/client/parallel',
-        '$BUILD_DIR/mongo/db/fts/ftsmongos',
-        '$BUILD_DIR/mongo/db/stats/counters',
-        '$BUILD_DIR/mongo/s/query/cluster_query',
-        '$BUILD_DIR/mongo/util/concurrency/task',
+        '$BUILD_DIR/mongol/db/auth/authmongols',
+        '$BUILD_DIR/mongol/client/parallel',
+        '$BUILD_DIR/mongol/db/fts/ftsmongols',
+        '$BUILD_DIR/mongol/db/stats/counters',
+        '$BUILD_DIR/mongol/s/query/cluster_query',
+        '$BUILD_DIR/mongol/util/concurrency/task',
         'write_ops/cluster_write_op',
         'write_ops/cluster_write_op_conversion',
     ],
@@ -211,15 +211,15 @@ env.Library(
 )
 
 env.CppUnitTest(
-    target='mongoscore_test',
+    target='mongolscore_test',
     source=[
         'balancer_policy_tests.cpp',
         'shard_key_pattern_test.cpp',
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init",
+        "$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init",
         'coreshard',
-        'mongoscore',
+        'mongolscore',
     ]
 )
 
@@ -234,12 +234,12 @@ env.Library(
         "distlock_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/db/concurrency/lock_manager",
-        "$BUILD_DIR/mongo/db/query/query",
-        "$BUILD_DIR/mongo/db/range_deleter",
-        "$BUILD_DIR/mongo/db/s/metadata",
-        "$BUILD_DIR/mongo/db/s/sharding",
-        "$BUILD_DIR/mongo/executor/network_interface_factory",
+        "$BUILD_DIR/mongol/db/concurrency/lock_manager",
+        "$BUILD_DIR/mongol/db/query/query",
+        "$BUILD_DIR/mongol/db/range_deleter",
+        "$BUILD_DIR/mongol/db/s/metadata",
+        "$BUILD_DIR/mongol/db/s/sharding",
+        "$BUILD_DIR/mongol/executor/network_interface_factory",
         "coreshard",
     ],
     LIBDEPS_TAGS=[

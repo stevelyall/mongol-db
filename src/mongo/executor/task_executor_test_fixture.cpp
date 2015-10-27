@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/task_executor_test_fixture.h"
+#include "mongol/executor/task_executor_test_fixture.h"
 
-#include "mongo/base/status.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/status.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 Status TaskExecutorTest::getDetectableErrorStatus() {
@@ -79,4 +79,4 @@ void TaskExecutorTest::joinExecutorThread() {
 void TaskExecutorTest::postExecutorThreadLaunch() {}
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

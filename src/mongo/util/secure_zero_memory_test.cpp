@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/unittest/death_test.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/secure_zero_memory.h"
+#include "mongol/unittest/death_test.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/secure_zero_memory.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(SecureZeroMemoryTest, zeroZeroLengthNull) {
     void* ptr = nullptr;
@@ -61,4 +61,4 @@ TEST(SecureZeroMemoryTest, dataZeroed) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -33,10 +33,10 @@
 #include <vector>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/config.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/config.h"
 
-namespace mongo {
+namespace mongol {
 
 class StringSplitter {
 public:
@@ -124,4 +124,4 @@ public:
  */
 std::string constructUtf8WindowsCommandLine(const std::vector<std::string>& argv);
 
-}  // namespace mongo
+}  // namespace mongol

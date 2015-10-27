@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/network_connection_hook.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/network_connection_hook.h"
 
 #include <algorithm>
 #include <iterator>
 
-#include "mongo/stdx/functional.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 NetworkInterfaceMock::NetworkInterfaceMock()
@@ -91,7 +91,7 @@ void NetworkInterfaceMock::startCommand(const TaskExecutor::CallbackHandle& cbHa
 }
 
 void NetworkInterfaceMock::setHandshakeReplyForHost(
-    const mongo::HostAndPort& host, mongo::executor::RemoteCommandResponse&& reply) {
+    const mongol::HostAndPort& host, mongol::executor::RemoteCommandResponse&& reply) {
     stdx::lock_guard<stdx::mutex> lk(_mutex);
     auto it = _handshakeReplies.find(host);
     if (it == std::end(_handshakeReplies)) {
@@ -322,7 +322,7 @@ void NetworkInterfaceMock::waitForWorkUntil(Date_t when) {
 }
 
 void NetworkInterfaceMock::_enqueueOperation_inlock(
-    mongo::executor::NetworkInterfaceMock::NetworkOperation&& op) {
+    mongol::executor::NetworkInterfaceMock::NetworkOperation&& op) {
     auto insertBefore =
         std::upper_bound(std::begin(_unscheduled),
                          std::end(_unscheduled),
@@ -524,4 +524,4 @@ void NetworkInterfaceMock::NetworkOperation::finishResponse() {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

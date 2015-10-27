@@ -26,33 +26,33 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_rename.h"
+#include "mongol/db/ops/modifier_rename.h"
 
 #include <cstdint>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::fromjson;
-using mongo::LogBuilder;
-using mongo::ModifierInterface;
-using mongo::NumberInt;
-using mongo::ModifierRename;
-using mongo::Status;
-using mongo::StringData;
-using mongo::mutablebson::ConstElement;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
+using mongol::BSONObj;
+using mongol::fromjson;
+using mongol::LogBuilder;
+using mongol::ModifierInterface;
+using mongol::NumberInt;
+using mongol::ModifierRename;
+using mongol::Status;
+using mongol::StringData;
+using mongol::mutablebson::ConstElement;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
 
 /** Helper to build and manipulate the mod. */
 class Mod {

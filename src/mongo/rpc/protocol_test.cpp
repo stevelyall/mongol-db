@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::WireVersion;
-using namespace mongo::rpc;
-using mongo::unittest::assertGet;
-using mongo::BSONObj;
+using mongol::WireVersion;
+using namespace mongol::rpc;
+using mongol::unittest::assertGet;
+using mongol::BSONObj;
 
 // Checks if negotiation of the first to protocol sets results in the 'proto'
 const auto assert_negotiated = [](ProtocolSet fst, ProtocolSet snd, Protocol proto) {
@@ -58,7 +58,7 @@ TEST(Protocol, SuccessfulNegotiation) {
 const auto assert_not_negotiated = [](ProtocolSet fst, ProtocolSet snd) {
     auto proto = negotiate(fst, snd);
     ASSERT_TRUE(!proto.isOK());
-    ASSERT_TRUE(proto.getStatus().code() == mongo::ErrorCodes::RPCProtocolNegotiationFailed);
+    ASSERT_TRUE(proto.getStatus().code() == mongol::ErrorCodes::RPCProtocolNegotiationFailed);
 };
 
 TEST(Protocol, FailedNegotiation) {
@@ -70,32 +70,32 @@ TEST(Protocol, FailedNegotiation) {
 
 TEST(Protocol, parseProtocolSetFromIsMasterReply) {
     {
-        // MongoDB 3.2 (mongod)
-        auto mongod32 =
+        // MongoDB 3.2 (mongold)
+        auto mongold32 =
             BSON("maxWireVersion" << static_cast<int>(WireVersion::FIND_COMMAND) << "minWireVersion"
                                   << static_cast<int>(WireVersion::RELEASE_2_4_AND_BEFORE));
 
-        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongod32)), supports::kAll);
+        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongold32)), supports::kAll);
     }
     {
-        // MongoDB 3.2 (mongos)
-        auto mongos32 =
+        // MongoDB 3.2 (mongols)
+        auto mongols32 =
             BSON("maxWireVersion" << static_cast<int>(WireVersion::FIND_COMMAND) << "minWireVersion"
                                   << static_cast<int>(WireVersion::RELEASE_2_4_AND_BEFORE) << "msg"
                                   << "isdbgrid");
 
-        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongos32)), supports::kOpQueryOnly);
+        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongols32)), supports::kOpQueryOnly);
     }
     {
-        // MongoDB 3.0 (mongod)
-        auto mongod30 = BSON("maxWireVersion"
+        // MongoDB 3.0 (mongold)
+        auto mongold30 = BSON("maxWireVersion"
                              << static_cast<int>(WireVersion::RELEASE_2_7_7) << "minWireVersion"
                              << static_cast<int>(WireVersion::RELEASE_2_4_AND_BEFORE));
-        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongod30)), supports::kOpQueryOnly);
+        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongold30)), supports::kOpQueryOnly);
     }
     {
-        auto mongod24 = BSONObj();
-        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongod24)), supports::kOpQueryOnly);
+        auto mongold24 = BSONObj();
+        ASSERT_EQ(assertGet(parseProtocolSetFromIsMasterReply(mongold24)), supports::kOpQueryOnly);
     }
 }
 

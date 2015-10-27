@@ -27,12 +27,12 @@
 
 #pragma once
 
-#include "mongo/base/data_view.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/data_view.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Timestamp: A combination of a count of seconds since the POSIX epoch plus an ordinal value.
@@ -124,4 +124,4 @@ private:
     unsigned secs = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

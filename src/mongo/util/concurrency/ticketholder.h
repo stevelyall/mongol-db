@@ -30,12 +30,12 @@
 #include <semaphore.h>
 #endif
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class TicketHolder {
     MONGO_DISALLOW_COPYING(TicketHolder);

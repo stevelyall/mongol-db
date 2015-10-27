@@ -31,15 +31,15 @@
 #include <map>
 #include <memory>
 
-#include "mongo/bson/oid.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/legacy/distlock.h"
-#include "mongo/s/catalog/legacy/legacy_dist_lock_pinger.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/bson/oid.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/legacy/distlock.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_pinger.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 class DistributedLock;
 

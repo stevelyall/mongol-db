@@ -28,26 +28,26 @@
 *    it in the license file.
 */
 
-#include "mongo/db/catalog/cursor_manager.h"
+#include "mongol/db/catalog/cursor_manager.h"
 
-#include "mongo/base/data_cursor.h"
-#include "mongo/base/init.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/platform/random.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/base/data_cursor.h"
+#include "mongol/base/init.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/platform/random.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;

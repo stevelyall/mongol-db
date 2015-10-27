@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_options.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 class WiredTigerGlobalOptions {
 public:

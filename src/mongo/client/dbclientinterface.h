@@ -30,20 +30,20 @@
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/rpc/unique_message.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_port.h"
+#include "mongol/base/string_data.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/rpc/unique_message.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_port.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace executor {
 struct RemoteCommandResponse;
@@ -120,7 +120,7 @@ enum UpdateOptions {
        (Default is update a single document and stop.) */
     UpdateOption_Multi = 1 << 1,
 
-    /** flag from mongo saying this update went everywhere */
+    /** flag from mongol saying this update went everywhere */
     UpdateOption_Broadcast = 1 << 2
 };
 
@@ -128,7 +128,7 @@ enum RemoveOptions {
     /** only delete one option */
     RemoveOption_JustOne = 1 << 0,
 
-    /** flag from mongo saying this update went everywhere */
+    /** flag from mongol saying this update went everywhere */
     RemoveOption_Broadcast = 1 << 1
 };
 
@@ -217,7 +217,7 @@ public:
 
     /** Return explain information about execution of this query instead of the actual query
      * results.
-     *  Normally it is easier to use the mongo shell to run db.find(...).explain().
+     *  Normally it is easier to use the mongol shell to run db.find(...).explain().
      */
     Query& explain();
 
@@ -384,7 +384,7 @@ public:
 /** Typically one uses the QUERY(...) macro to construct a Query object.
     Example: QUERY( "age" << 33 << "school" << "UCLA" )
 */
-#define QUERY(x) ::mongo::Query(BSON(x))
+#define QUERY(x) ::mongol::Query(BSON(x))
 
 // Useful utilities for namespaces
 /** @return the database name portion of an ns std::string */
@@ -590,10 +590,10 @@ public:
      *     "user": The std::string name of the user to authenticate.  Mandatory.
      *     "db": The database target of the auth command, which identifies the location
      *         of the credential information for the user.  May be "$external" if
-     *         credential information is stored outside of the mongo cluster.  Mandatory.
+     *         credential information is stored outside of the mongol cluster.  Mandatory.
      *     "pwd": The password data.
      *     "digestPassword": Boolean, set to true if the "pwd" is undigested (default).
-     *     "serviceName": The GSSAPI service name to use.  Defaults to "mongodb".
+     *     "serviceName": The GSSAPI service name to use.  Defaults to "mongoldb".
      *     "serviceHostname": The GSSAPI hostname to use.  Defaults to the name of the remote
      *          host.
      *
@@ -626,7 +626,7 @@ public:
      *
      * @param dbname the database to logout from.
      * @param info the result object for the logout command (provided for backwards
-     *     compatibility with mongo shell)
+     *     compatibility with mongol shell)
      */
     virtual void logout(const std::string& dbname, BSONObj& info);
 
@@ -860,7 +860,7 @@ public:
        @param unique if true, indicates that key uniqueness should be enforced for this index
        @param name if not specified, it will be created from the keys automatically (which is
               recommended)
-       @param background build index in the background (see mongodb docs for details)
+       @param background build index in the background (see mongoldb docs for details)
        @param v index version. leave at default value. (unit tests set this parameter.)
        @param ttl. The value of how many seconds before data should be removed from a collection.
      */
@@ -1175,7 +1175,7 @@ public:
      *
      * @param dbname the database to logout from.
      * @param info the result object for the logout command (provided for backwards
-     *     compatibility with mongo shell)
+     *     compatibility with mongol shell)
      */
     virtual void logout(const std::string& dbname, BSONObj& info);
 
@@ -1330,6 +1330,6 @@ void assembleQueryRequest(const std::string& ns,
                           int queryOptions,
                           Message& toSend);
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/client/dbclientcursor.h"
+#include "mongol/client/dbclientcursor.h"

@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/parsed_delete.h"
+#include "mongol/db/ops/parsed_delete.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 ParsedDelete::ParsedDelete(OperationContext* txn, const DeleteRequest* request)
     : _txn(txn), _request(request) {}
@@ -126,4 +126,4 @@ std::unique_ptr<CanonicalQuery> ParsedDelete::releaseParsedQuery() {
     return std::move(_canonicalQuery);
 }
 
-}  // namespace mongo
+}  // namespace mongol

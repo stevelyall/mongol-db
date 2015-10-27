@@ -26,38 +26,38 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <list>
 #include <memory>
 #include <utility>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/operation_context_repl_mock.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/oplog_interface.h"
-#include "mongo/db/repl/oplog_interface_mock.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/repl/replication_coordinator_mock.h"
-#include "mongo/db/repl/rs_rollback.h"
-#include "mongo/db/repl/rollback_source.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/operation_context_repl_mock.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/oplog_interface.h"
+#include "mongol/db/repl/oplog_interface_mock.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/repl/replication_coordinator_mock.h"
+#include "mongol/db/repl/rs_rollback.h"
+#include "mongol/db/repl/rollback_source.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/unittest/temp_dir.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 const OplogInterfaceMock::Operations kEmptyMockOperations;
 
@@ -140,10 +140,10 @@ void RSRollbackTest::setUp() {
         // When using the 'devnull' storage engine, it is fine for the temporary directory to
         // go away after the global storage engine is initialized.
         unittest::TempDir tempDir("rs_rollback_test");
-        mongo::storageGlobalParams.dbpath = tempDir.path();
-        mongo::storageGlobalParams.dbpath = tempDir.path();
-        mongo::storageGlobalParams.engine = "ephemeralForTest";
-        mongo::storageGlobalParams.engineSetByUser = true;
+        mongol::storageGlobalParams.dbpath = tempDir.path();
+        mongol::storageGlobalParams.dbpath = tempDir.path();
+        mongol::storageGlobalParams.engine = "ephemeralForTest";
+        mongol::storageGlobalParams.engineSetByUser = true;
         serviceContext->initializeGlobalStorageEngine();
     }
 
@@ -161,7 +161,7 @@ void RSRollbackTest::tearDown() {
     {
         Lock::GlobalWrite globalLock(_txn->lockState());
         BSONObjBuilder unused;
-        invariant(mongo::dbHolder().closeAll(_txn.get(), unused, false));
+        invariant(mongol::dbHolder().closeAll(_txn.get(), unused, false));
     }
     _txn.reset();
     setGlobalReplicationCoordinator(nullptr);
@@ -286,7 +286,7 @@ Collection* _createCollection(OperationContext* txn,
                               const NamespaceString& nss,
                               const CollectionOptions& options) {
     Lock::DBLock dbLock(txn->lockState(), nss.db(), MODE_X);
-    mongo::WriteUnitOfWork wuow(txn);
+    mongol::WriteUnitOfWork wuow(txn);
     auto db = dbHolder().openDb(txn, nss.db());
     ASSERT_TRUE(db);
     db->dropCollection(txn, nss.ns());
@@ -708,7 +708,7 @@ TEST_F(RSRollbackTest, RollbackUnknownCommand) {
                        RecordId(2));
     {
         Lock::DBLock dbLock(_txn->lockState(), "test", MODE_X);
-        mongo::WriteUnitOfWork wuow(_txn.get());
+        mongol::WriteUnitOfWork wuow(_txn.get());
         auto db = dbHolder().openDb(_txn.get(), "test");
         ASSERT_TRUE(db);
         ASSERT_TRUE(db->getOrCreateCollection(_txn.get(), "test.t"));

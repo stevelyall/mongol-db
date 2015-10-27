@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/optional.hpp>
 
-#include "mongo/client/read_preference.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/s/query/cluster_find.h"
-#include "mongo/s/strategy.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/s/query/cluster_find.h"
+#include "mongol/s/strategy.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::unique_ptr;
@@ -48,7 +48,7 @@ using std::vector;
 const char kTermField[] = "term";
 
 /**
- * Implements the find command on mongos.
+ * Implements the find command on mongols.
  */
 class ClusterFindCmd : public Command {
     MONGO_DISALLOW_COPYING(ClusterFindCmd);
@@ -175,4 +175,4 @@ public:
 } cmdFindCluster;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

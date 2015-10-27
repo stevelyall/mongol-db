@@ -31,15 +31,15 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/decorable.h"
-#include "mongo/util/clock_source.h"
-#include "mongo/util/tick_source.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/decorable.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/tick_source.h"
 
-namespace mongo {
+namespace mongol {
 
 class AbstractMessagingPort;
 class Client;
@@ -244,7 +244,7 @@ public:
     virtual void initializeGlobalStorageEngine() = 0;
 
     /**
-     * Shuts down storage engine cleanly and releases any locks on mongod.lock.
+     * Shuts down storage engine cleanly and releases any locks on mongold.lock.
      */
     virtual void shutdownGlobalStorageEngineCleanly() = 0;
 
@@ -405,4 +405,4 @@ BSONArray storageEngineList();
  */
 void appendStorageEngineList(BSONObjBuilder* result);
 
-}  // namespace mongo
+}  // namespace mongol

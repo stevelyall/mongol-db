@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/replica_set_monitor_internal.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/replica_set_monitor_internal.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::set;
 
 // Pull nested types to top-level scope
@@ -174,11 +174,11 @@ TEST(ReplSetMonitorNode, PriNodeCompatibleTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, SecNodeCompatibleTag) {
@@ -194,11 +194,11 @@ TEST(ReplSetMonitorNode, SecNodeCompatibleTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, PriNodeNotCompatibleTag) {
@@ -214,11 +214,11 @@ TEST(ReplSetMonitorNode, PriNodeNotCompatibleTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, SecNodeNotCompatibleTag) {
@@ -234,11 +234,11 @@ TEST(ReplSetMonitorNode, SecNodeNotCompatibleTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, PriNodeCompatiblMultiTag) {
@@ -258,11 +258,11 @@ TEST(ReplSetMonitorNode, PriNodeCompatiblMultiTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, SecNodeCompatibleMultiTag) {
@@ -282,11 +282,11 @@ TEST(ReplSetMonitorNode, SecNodeCompatibleMultiTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, PriNodeNotCompatibleMultiTag) {
@@ -306,11 +306,11 @@ TEST(ReplSetMonitorNode, PriNodeNotCompatibleMultiTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 TEST(ReplSetMonitorNode, SecNodeNotCompatibleMultiTag) {
@@ -330,11 +330,11 @@ TEST(ReplSetMonitorNode, SecNodeNotCompatibleMultiTag) {
 
     TagSet tags(BSONArray(builder.done()));
 
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::PrimaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryPreferred, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::SecondaryOnly, tags));
-    ASSERT(!isCompatible(node, mongo::ReadPreference::Nearest, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::PrimaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryPreferred, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::SecondaryOnly, tags));
+    ASSERT(!isCompatible(node, mongol::ReadPreference::Nearest, tags));
 }
 
 }  // namespace

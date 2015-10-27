@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/clientcursor.h"
+#include "mongol/db/clientcursor.h"
 
 #include <string>
 #include <time.h>
 #include <vector>
 
-#include "mongo/base/counter.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/server_status.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/background.h"
-#include "mongo/util/exit.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/background.h"
+#include "mongol/util/exit.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -297,4 +297,4 @@ void startClientCursorMonitor() {
     clientCursorMonitor.go();
 }
 
-}  // namespace mongo
+}  // namespace mongol

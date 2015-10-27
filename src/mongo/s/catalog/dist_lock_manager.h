@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/oid.h"
-#include "mongo/stdx/chrono.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/oid.h"
+#include "mongol/stdx/chrono.h"
 
-namespace mongo {
+namespace mongol {
 
 using DistLockHandle = OID;
 class OperationContext;

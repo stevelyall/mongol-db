@@ -28,14 +28,14 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
 
 
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 static_assert(sizeof(Namespace) == 128, "sizeof(Namespace) == 128");
 static_assert(Namespace::MaxNsLenWithNUL == MaxDatabaseNameLen,

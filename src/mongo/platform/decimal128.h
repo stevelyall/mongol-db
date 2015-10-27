@@ -33,9 +33,9 @@
 #include <string>
 #include <utility>
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Wrapper class for the MongoDB Decimal128 data type. Sample usage:
@@ -306,4 +306,4 @@ private:
     Value _value;
 };
 
-}  // namespace mongo
+}  // namespace mongol

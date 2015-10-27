@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/bson_serializable.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/bson_serializable.h"
 
-namespace mongo {
+namespace mongol {
 
 class Privilege;
 
@@ -193,4 +193,4 @@ private:
     bool _isResourceSet;
 };
 
-}  // namespace mongo
+}  // namespace mongol

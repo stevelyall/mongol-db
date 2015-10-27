@@ -30,16 +30,16 @@
 
 #pragma once
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/stats/top.h"
-#include "mongo/platform/basic.h"
-#include "mongo/util/background.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/stats/top.h"
+#include "mongol/platform/basic.h"
+#include "mongol/util/background.h"
 
 /**
    handles snapshotting performance metrics and other such things
  */
-namespace mongo {
+namespace mongol {
 
 class StatsSnapshotThread;
 

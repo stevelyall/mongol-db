@@ -37,11 +37,11 @@
 #include <set>
 #include <iosfwd>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/namespace_string.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 /* these are administrative operations / jobs
    for a namespace running in the background, and that if in progress,
@@ -83,4 +83,4 @@ private:
     NamespaceString _ns;
 };
 
-}  // namespace mongo
+}  // namespace mongol

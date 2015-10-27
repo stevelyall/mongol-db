@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/options_parser/value.h"
+#include "mongol/util/options_parser/value.h"
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 // Value implementation
@@ -279,4 +279,4 @@ const std::type_info& Value::type() const {
 }
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

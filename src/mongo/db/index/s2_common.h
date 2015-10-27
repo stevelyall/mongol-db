@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
 class S2CellId;
 class S2RegionCoverer;
 
-namespace mongo {
+namespace mongol {
 
 class GeometryContainer;
 
@@ -79,4 +79,4 @@ struct S2IndexingParams {
 
 BSONObj S2CellIdToIndexKey(const S2CellId& cellId, S2IndexVersion indexVersion);
 
-}  // namespace mongo
+}  // namespace mongol

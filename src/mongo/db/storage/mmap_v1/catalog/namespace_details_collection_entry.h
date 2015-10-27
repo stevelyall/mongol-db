@@ -30,12 +30,12 @@
 *    it in the license file.
 */
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/catalog/collection_catalog_entry.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceDetails;
 

@@ -28,18 +28,18 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <third_party/murmurhash3/MurmurHash3.h>
 
-#include "mongo/base/init.h"
-#include "mongo/db/fts/fts_index_format.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/db/fts/fts_index_format.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -138,7 +138,7 @@ void FTSIndexFormat::getKeys(const FTSSpec& spec, const BSONObj& obj, BSONObjSet
     // only 1 per string
 
     uassert(16732,
-            mongoutils::str::stream() << "too many unique keys for a single document to"
+            mongolutils::str::stream() << "too many unique keys for a single document to"
                                       << " have a text index, max is " << term_freqs.size()
                                       << obj["_id"],
             term_freqs.size() <= 400000);
@@ -171,7 +171,7 @@ void FTSIndexFormat::getKeys(const FTSSpec& spec, const BSONObj& obj, BSONObjSet
         keyBSONSize += res.objsize();
 
         uassert(16733,
-                mongoutils::str::stream()
+                mongolutils::str::stream()
                     << "trying to index text where term list is too big, max is "
                     << MaxKeyBSONSizeMB << "mb " << obj["_id"],
                 keyBSONSize <= (MaxKeyBSONSizeMB * 1024 * 1024));
@@ -215,7 +215,7 @@ void FTSIndexFormat::_appendIndexKey(BSONObjBuilder& b,
             } t;
             uint32_t seed = 0;
             MurmurHash3_x64_128(term.data(), term.size(), seed, t.hash);
-            string keySuffix = mongo::toHexLower(t.data, sizeof(t.data));
+            string keySuffix = mongol::toHexLower(t.data, sizeof(t.data));
             invariant(termKeySuffixLengthV2 == keySuffix.size());
             b.append("", term.substr(0, termKeyPrefixLengthV2) + keySuffix);
         }

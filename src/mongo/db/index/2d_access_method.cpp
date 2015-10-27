@@ -26,18 +26,18 @@
 *    it in the license file.
 */
 
-#include "mongo/db/index/2d_access_method.h"
+#include "mongol/db/index/2d_access_method.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/2d_common.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/2d_common.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 TwoDAccessMethod::TwoDAccessMethod(IndexCatalogEntry* btreeState, SortedDataInterface* btree)
     : IndexAccessMethod(btreeState, btree) {
@@ -56,4 +56,4 @@ void TwoDAccessMethod::getKeys(const BSONObj& obj, std::vector<BSONObj>& locs) c
     ExpressionKeysPrivate::get2DKeys(obj, _params, NULL, &locs);
 }
 
-}  // namespace mongo
+}  // namespace mongol

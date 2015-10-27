@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/network_interface.h"
+#include "mongol/executor/network_interface.h"
 
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 // This is a bitmask with the first bit set. It's used to mark connections that should be kept
@@ -45,4 +45,4 @@ NetworkInterface::~NetworkInterface() {}
 
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

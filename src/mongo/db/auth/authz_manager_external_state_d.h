@@ -30,17 +30,17 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authz_manager_external_state_local.h"
-#include "mongo/db/auth/role_graph.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authz_manager_external_state_local.h"
+#include "mongol/db/auth/role_graph.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * The implementation of AuthzManagerExternalState functionality for mongod.
+ * The implementation of AuthzManagerExternalState functionality for mongold.
  */
 class AuthzManagerExternalStateMongod : public AuthzManagerExternalStateLocal {
     MONGO_DISALLOW_COPYING(AuthzManagerExternalStateMongod);
@@ -63,4 +63,4 @@ public:
                          const stdx::function<void(const BSONObj&)>& resultProcessor);
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -25,20 +25,20 @@
  *    exception statement from all source files in the program, then also delete
  *    it in the license file.
  */
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/fetcher.h"
+#include "mongol/client/fetcher.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -83,7 +83,7 @@ Status parseCursorResponse(const BSONObj& obj,
                       str::stream() << "cursor response must contain '" << kCursorFieldName << "."
                                     << kCursorIdFieldName << "' field: " << obj);
     }
-    if (cursorIdElement.type() != mongo::NumberLong) {
+    if (cursorIdElement.type() != mongol::NumberLong) {
         return Status(ErrorCodes::FailedToParse,
                       str::stream() << "'" << kCursorFieldName << "." << kCursorIdFieldName
                                     << "' field must be a 'long' but was a '"
@@ -98,7 +98,7 @@ Status parseCursorResponse(const BSONObj& obj,
                                     << "'" << kCursorFieldName << "." << kNamespaceFieldName
                                     << "' field: " << obj);
     }
-    if (namespaceElement.type() != mongo::String) {
+    if (namespaceElement.type() != mongol::String) {
         return Status(ErrorCodes::FailedToParse,
                       str::stream() << "'" << kCursorFieldName << "." << kNamespaceFieldName
                                     << "' field must be a string: " << obj);
@@ -338,4 +338,4 @@ void Fetcher::_finishCallback() {
     _condition.notify_all();
 }
 
-}  // namespace mongo
+}  // namespace mongol

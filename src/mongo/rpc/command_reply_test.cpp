@@ -26,29 +26,29 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <cstdint>
 #include <iterator>
 #include <string>
 #include <vector>
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/base/data_view.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/command_reply.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/base/data_view.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/message.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::begin;
 using std::end;
 
-class ReplyTest : public mongo::unittest::Test {
+class ReplyTest : public mongol::unittest::Test {
 protected:
     std::vector<char> _cmdData{};
     // using unique ptr so we can destroy and replace easily

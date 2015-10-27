@@ -30,9 +30,9 @@
 
 #include <tuple>
 
-#include "mongo/bson/timestamp.h"
+#include "mongol/bson/timestamp.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -133,4 +133,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

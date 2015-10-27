@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replica_set_config.h"
 
 #include <algorithm>
 
-#include "mongo/bson/util/bson_check.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/server_options.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/bson/util/bson_check.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/server_options.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 #ifndef _MSC_VER
@@ -677,4 +677,4 @@ int ReplicaSetConfig::_calculatePriorityRank(double priority) const {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

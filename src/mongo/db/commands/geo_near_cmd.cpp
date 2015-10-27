@@ -26,33 +26,33 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/range_preserver.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/range_preserver.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::stringstream;
@@ -75,7 +75,7 @@ public:
     }
 
     void help(stringstream& h) const {
-        h << "http://dochub.mongodb.org/core/geo#GeospatialIndexing-geoNearCommand";
+        h << "http://dochub.mongoldb.org/core/geo#GeospatialIndexing-geoNearCommand";
     }
 
     virtual void addRequiredPrivileges(const std::string& dbname,
@@ -228,8 +228,8 @@ public:
             BSONObjBuilder resBob;
             while (resIt.more()) {
                 BSONElement elt = resIt.next();
-                if (!mongoutils::str::equals("$pt", elt.fieldName()) &&
-                    !mongoutils::str::equals("$dis", elt.fieldName())) {
+                if (!mongolutils::str::equals("$pt", elt.fieldName()) &&
+                    !mongolutils::str::equals("$dis", elt.fieldName())) {
                     resBob.append(elt);
                 }
             }
@@ -353,4 +353,4 @@ private:
         return false;
     }
 } geo2dFindNearCmd;
-}  // namespace mongo
+}  // namespace mongol

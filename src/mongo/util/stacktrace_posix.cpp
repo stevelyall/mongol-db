@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/stacktrace.h"
+#include "mongol/util/stacktrace.h"
 
 #include <cstdlib>
 #include <dlfcn.h>
@@ -37,12 +37,12 @@
 #include <string>
 #include <sys/utsname.h>
 
-#include "mongo/base/init.h"
-#include "mongo/config.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/version.h"
+#include "mongol/base/init.h"
+#include "mongol/config.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/version.h"
 
 #if defined(MONGO_CONFIG_HAVE_EXECINFO_BACKTRACE)
 #include <execinfo.h>
@@ -50,7 +50,7 @@
 #include <ucontext.h>
 #endif
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 /// Maximum number of stack frames to appear in a backtrace.
@@ -251,7 +251,7 @@ void addOSComponentsToSoMap(BSONObjBuilder* soMap);
  */
 MONGO_INITIALIZER(ExtractSOMap)(InitializerContext*) {
     BSONObjBuilder soMap;
-    soMap << "mongodbVersion" << versionString;
+    soMap << "mongoldbVersion" << versionString;
     soMap << "gitVersion" << gitVersion();
     soMap << "compiledModules" << compiledModules();
     struct utsname unameData;
@@ -266,14 +266,14 @@ MONGO_INITIALIZER(ExtractSOMap)(InitializerContext*) {
 }
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol
 
 #if defined(__linux__)
 
 #include <elf.h>
 #include <link.h>
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
@@ -431,7 +431,7 @@ void addOSComponentsToSoMap(BSONObjBuilder* soMap) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol
 
 #elif defined(__APPLE__) && defined(__MACH__)
 
@@ -439,7 +439,7 @@ void addOSComponentsToSoMap(BSONObjBuilder* soMap) {
 #include <mach-o/ldsyms.h>
 #include <mach-o/loader.h>
 
-namespace mongo {
+namespace mongol {
 namespace {
 const char* lcNext(const char* lcCurr) {
     const load_command* cmd = reinterpret_cast<const load_command*>(lcCurr);
@@ -489,11 +489,11 @@ void addOSComponentsToSoMap(BSONObjBuilder* soMap) {
     }
 }
 }  // namepace
-}  // namespace mongo
+}  // namespace mongol
 #else
-namespace mongo {
+namespace mongol {
 namespace {
 void addOSComponentsToSoMap(BSONObjBuilder* soMap) {}
 }  // namepace
-}  // namespace mongo
+}  // namespace mongol
 #endif

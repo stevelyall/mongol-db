@@ -32,10 +32,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/mongo_version_range.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/mongol_version_range.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and contents of documents contained in the
@@ -149,4 +149,4 @@ private:
     boost::optional<BSONObj> _upgradeState;
 };
 
-}  // namespace mongo
+}  // namespace mongol

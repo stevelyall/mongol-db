@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_push_sorter.h"
+#include "mongol/db/ops/modifier_push_sorter.h"
 
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::fromjson;
-using mongo::PatternElementCmp;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
-using mongo::mutablebson::sortChildren;
+using mongol::BSONObj;
+using mongol::fromjson;
+using mongol::PatternElementCmp;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
+using mongol::mutablebson::sortChildren;
 
-class ObjectArray : public mongo::unittest::Test {
+class ObjectArray : public mongol::unittest::Test {
 public:
     ObjectArray() : _doc(), _size(0) {}
 
@@ -59,7 +59,7 @@ public:
         _objs[_size] = obj;
         _size++;
 
-        ASSERT_OK(_doc.root()["x"].appendObject(mongo::StringData(), obj));
+        ASSERT_OK(_doc.root()["x"].appendObject(mongol::StringData(), obj));
     }
 
     BSONObj getOrigObj(size_t i) {

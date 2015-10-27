@@ -2,7 +2,7 @@
 
 var s = new ShardingTest({ name: "auto2",
                            shards: 2,
-                           mongos: 2,
+                           mongols: 2,
                            verbose: 1 });
 
 s.adminCommand( { enablesharding : "test" } );

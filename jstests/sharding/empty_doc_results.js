@@ -1,16 +1,16 @@
 //
-// Verifies that mongos correctly handles empty documents when all fields are projected out
+// Verifies that mongols correctly handles empty documents when all fields are projected out
 //
 
-var options = { mongosOptions : { binVersion : "" },
+var options = { mongolsOptions : { binVersion : "" },
                 shardOptions : { binVersion : "" } };
 
 var st = new ShardingTest({ shards : 2, other : options });
 
-var mongos = st.s0;
-var coll = mongos.getCollection("foo.bar");
-var admin = mongos.getDB("admin");
-var shards = mongos.getDB("config").shards.find().toArray();
+var mongols = st.s0;
+var coll = mongols.getCollection("foo.bar");
+var admin = mongols.getDB("admin");
+var shards = mongols.getDB("config").shards.find().toArray();
 
 assert.commandWorked(admin.runCommand({ enableSharding : coll.getDB().getName() }));
 printjson(admin.runCommand({ movePrimary : coll.getDB().getName(), to : shards[0]._id }));

@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/lru_key_value.h"
+#include "mongol/db/query/lru_key_value.h"
 
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 

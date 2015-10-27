@@ -31,10 +31,10 @@
 #include <jsapi.h>
 #include <string>
 
-#include "mongo/base/string_data.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/base/string_data.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -73,4 +73,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

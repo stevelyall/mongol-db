@@ -26,9 +26,9 @@
  */
 
 
-#include "mongo/util/touch_pages.h"
+#include "mongol/util/touch_pages.h"
 
-namespace mongo {
+namespace mongol {
 
 char _touch_pages_char_reader;  // goes in .bss
 

@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
 
-namespace mongo {
+namespace mongol {
 
 // Extracts the value for 'pattern' for both 'lhs' and 'rhs' and return true if 'lhs' <
 // 'rhs'. We expect that both 'lhs' and 'rhs' be key patterns.
@@ -67,4 +67,4 @@ struct PatternElementCmp {
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

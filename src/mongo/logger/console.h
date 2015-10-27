@@ -29,9 +29,9 @@
 
 #include <iosfwd>
 
-#include "mongo/stdx/mutex.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Representation of the console.  Use this in place of cout/cin, in applications that write to
@@ -57,4 +57,4 @@ private:
     stdx::unique_lock<stdx::mutex> _consoleLock;
 };
 
-}  // namespace mongo
+}  // namespace mongol

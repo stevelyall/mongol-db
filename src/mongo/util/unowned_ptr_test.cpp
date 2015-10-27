@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/unowned_ptr.h"
+#include "mongol/util/unowned_ptr.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 static int* const aNullPtr = nullptr;
 
 TEST(UnownedPtr, Construction) {

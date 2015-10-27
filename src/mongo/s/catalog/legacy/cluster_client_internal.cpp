@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/cluster_client_internal.h"
+#include "mongol/s/catalog/legacy/cluster_client_internal.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/client/connpool.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 // Helper function for safe cursors
 DBClientCursor* _safeCursor(unique_ptr<DBClientCursor> cursor) {

@@ -40,7 +40,7 @@ def os_specific_variant_dir_generator(target, source, env, for_signature):
 
 def get_toolchain_ver(env, tool):
     # By default we don't know the version of each tool, and only report what
-    # command gets executed (gcc vs /opt/mongodbtoolchain/bin/gcc).
+    # command gets executed (gcc vs /opt/mongoldbtoolchain/bin/gcc).
     verstr = "version unknown"
     proc = None
     if env.ToolchainIs('clang', 'gcc'):
@@ -73,7 +73,7 @@ def get_toolchain_ver(env, tool):
     return env.subst('${%s}: %s' % (tool, verstr))
 
 # This is the tuple that will be returned by the buildInfo command and
-# printed by the --version command-line option to mongod.
+# printed by the --version command-line option to mongold.
 # Each tuple consists of:
 #   key (string)
 #   value (string)

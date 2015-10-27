@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/pipeline_proxy.h"
+#include "mongol/db/exec/pipeline_proxy.h"
 
 
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::shared_ptr;
@@ -139,4 +139,4 @@ shared_ptr<PlanExecutor> PipelineProxyStage::getChildExecutor() {
     return _childExec.lock();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class ClusterCursorManager;
@@ -57,4 +57,4 @@ StatusWith<BSONObj> storePossibleCursor(const HostAndPort& server,
                                         executor::TaskExecutor* executor,
                                         ClusterCursorManager* cursorManager);
 
-}  // namespace mongo
+}  // namespace mongol

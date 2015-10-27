@@ -30,10 +30,10 @@
 
 #include <chrono>
 
-namespace mongo {
+namespace mongol {
 namespace stdx {
 
 namespace chrono = ::std::chrono;  // NOLINT
 
 }  // namespace stdx
-}  // namespace mongo
+}  // namespace mongol

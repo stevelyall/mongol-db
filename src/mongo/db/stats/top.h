@@ -31,10 +31,10 @@
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/string_map.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServiceContext;
 
@@ -97,4 +97,4 @@ private:
     std::string _lastDropped;
 };
 
-}  // namespace mongo
+}  // namespace mongol

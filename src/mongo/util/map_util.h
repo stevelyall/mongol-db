@@ -1,4 +1,4 @@
-// "mongo/util/map_util.h"
+// "mongol/util/map_util.h"
 
 /*    Copyright 2012 10gen Inc.
  *
@@ -29,7 +29,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /*
  *  If "myMap" contains "key", returns "myMap[key]".  Otherwise, returns "defaultValue."

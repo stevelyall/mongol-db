@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/query/explain_common.h"
-#include "mongo/s/strategy.h"
-#include "mongo/s/write_ops/batched_command_request.h"
+#include "mongol/db/query/explain_common.h"
+#include "mongol/s/strategy.h"
+#include "mongol/s/write_ops/batched_command_request.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -44,7 +44,7 @@ class ServerSelectionMetadata;
 
 /**
  * Namespace for the collection of static methods used by commands in the implementation of
- * explain on mongos.
+ * explain on mongols.
  */
 class ClusterExplain {
 public:
@@ -65,7 +65,7 @@ public:
                               int* optionsOut);
 
     /**
-     * Determines the kind of "execution stage" that mongos would use in order to collect
+     * Determines the kind of "execution stage" that mongols would use in order to collect
      * the results from the shards, assuming that the command being explained is a read
      * operation such as find or count.
      */
@@ -73,19 +73,19 @@ public:
         const std::vector<Strategy::CommandResult>& shardResults, const BSONObj& explainObj);
 
     /**
-     * Command implementations on mongos use this method to construct the sharded explain
+     * Command implementations on mongols use this method to construct the sharded explain
      * output format based on the results from the shards in 'shardResults'.
      *
      * On success, the output is added to the BSONObj builder 'out'.
      */
     static Status buildExplainResult(OperationContext* txn,
                                      const std::vector<Strategy::CommandResult>& shardResults,
-                                     const char* mongosStageName,
+                                     const char* mongolsStageName,
                                      long long millisElapsed,
                                      BSONObjBuilder* out);
 
     //
-    // Names of mock mongos execution stages.
+    // Names of mock mongols execution stages.
     //
 
     static const char* kSingleShard;
@@ -104,25 +104,25 @@ private:
      * Populates the BSONObj builder 'out' with query planner explain information, based on
      * the results from the shards contained in 'shardResults'.
      *
-     * The planner info will display 'mongosStageName' as the name of the execution stage
-     * performed by mongos after gathering results from the shards.
+     * The planner info will display 'mongolsStageName' as the name of the execution stage
+     * performed by mongols after gathering results from the shards.
      */
     static void buildPlannerInfo(OperationContext* txn,
                                  const std::vector<Strategy::CommandResult>& shardResults,
-                                 const char* mongosStageName,
+                                 const char* mongolsStageName,
                                  BSONObjBuilder* out);
 
     /**
      * Populates the BSONObj builder 'out' with execution stats explain information,
      * if the results from the shards in 'shardsResults' contain this info.
      *
-     * Will display 'mongosStageName' as the name of the execution stage performed by mongos,
-     * and 'millisElapsed' as the execution time of the mongos stage.
+     * Will display 'mongolsStageName' as the name of the execution stage performed by mongols,
+     * and 'millisElapsed' as the execution time of the mongols stage.
      */
     static void buildExecStats(const std::vector<Strategy::CommandResult>& shardResults,
-                               const char* mongosStageName,
+                               const char* mongolsStageName,
                                long long millisElapsed,
                                BSONObjBuilder* out);
 };
 
-}  // namespace mongo
+}  // namespace mongol

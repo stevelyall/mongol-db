@@ -1,5 +1,5 @@
 /**
- *    Copyright (C) 2013 mongoDB Inc.
+ *    Copyright (C) 2013 mongolDB Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
  *    it under the terms of the GNU Affero General Public License, version 3,
@@ -27,17 +27,17 @@
  */
 
 /**
- * This file contains tests for mongo/db/exec/sort.cpp
+ * This file contains tests for mongol/db/exec/sort.cpp
  */
 
-#include "mongo/db/exec/sort.h"
+#include "mongol/db/exec/sort.h"
 
-#include "mongo/db/exec/queued_data_stage.h"
-#include "mongo/db/json.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/exec/queued_data_stage.h"
+#include "mongol/db/json.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -149,7 +149,7 @@ void testWork(const char* patternStr,
     // Finally, we get to compare the sorted results against what we expect.
     BSONObj expectedObj = fromjson(expectedStr);
     if (outputObj != expectedObj) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         // Even though we have the original string representation of the expected output,
         // we invoke BSONObj::toString() to get a format consistent with outputObj.
         ss << "Unexpected sort result with query=" << queryStr << "; pattern=" << patternStr

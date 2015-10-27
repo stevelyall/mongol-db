@@ -28,10 +28,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
-#include "mongo/db/storage/kv/kv_engine_test_harness.h"
+#include "mongol/db/storage/ephemeral_for_test/ephemeral_for_test_engine.h"
+#include "mongol/db/storage/kv/kv_engine_test_harness.h"
 
-namespace mongo {
+namespace mongol {
 
 class EphemeralForTestKVHarnessHelper : public KVHarnessHelper {
 public:

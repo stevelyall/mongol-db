@@ -26,36 +26,36 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/authz_manager_external_state_mock.h"
-#include "mongo/db/auth/authz_session_external_state_mock.h"
-#include "mongo/db/auth/mongo_authentication_session.h"
-#include "mongo/db/auth/sasl_authentication_session.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/authentication_commands.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/base64.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/sequence_util.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/authz_manager_external_state_mock.h"
+#include "mongol/db/auth/authz_session_external_state_mock.h"
+#include "mongol/db/auth/mongol_authentication_session.h"
+#include "mongol/db/auth/sasl_authentication_session.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/authentication_commands.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/base64.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/sequence_util.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::stringstream;
@@ -240,7 +240,7 @@ Status doSaslStart(const ClientBasic* client,
         result->append(saslCommandMechanismListFieldName,
                        saslGlobalParams.authenticationMechanisms);
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << "Unsupported mechanism " << mechanism);
+                      mongolutils::str::stream() << "Unsupported mechanism " << mechanism);
     }
 
     status = session->start(
@@ -339,7 +339,7 @@ bool CmdSaslContinue::run(OperationContext* txn,
     SaslAuthenticationSession* session =
         static_cast<SaslAuthenticationSession*>(sessionGuard.get());
 
-    // Authenticating the __system@local user to the admin database on mongos is required
+    // Authenticating the __system@local user to the admin database on mongols is required
     // by the auth passthrough test suite.
     if (session->getAuthenticationDatabase() != db && !Command::testCommandsEnabled) {
         addStatus(Status(ErrorCodes::ProtocolError,
@@ -385,4 +385,4 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(PreSaslCommands, ("NativeSaslServerCore"))
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

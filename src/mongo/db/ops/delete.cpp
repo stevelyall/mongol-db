@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ops/delete.h"
+#include "mongol/db/ops/delete.h"
 
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/ops/delete_request.h"
-#include "mongo/db/ops/parsed_delete.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/repl/repl_client_info.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/ops/delete_request.h"
+#include "mongol/db/ops/parsed_delete.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/repl/repl_client_info.h"
 
-namespace mongo {
+namespace mongol {
 
 /* ns:      namespace, e.g. <database>.<collection>
    pattern: the "where" clause / criteria
@@ -79,4 +79,4 @@ long long deleteObjects(OperationContext* txn,
     return DeleteStage::getNumDeleted(*exec);
 }
 
-}  // namespace mongo
+}  // namespace mongol

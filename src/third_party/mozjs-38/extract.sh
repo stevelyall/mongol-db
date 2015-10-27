@@ -210,4 +210,4 @@ cp extract/mfbt/WeakPtr.h include/mozilla
 cp extract/mfbt/unused.h include/mozilla
 
 # Reverse apply a local patch
-git apply -R < mongodb.patch
+git apply -R < mongoldb.patch

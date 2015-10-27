@@ -26,25 +26,25 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/metadata_loader.h"
-#include "mongo/dbtests/mock/mock_conn_registry.h"
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
-#include "mongo/s/catalog/legacy/catalog_manager_legacy.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/metadata_loader.h"
+#include "mongol/dbtests/mock/mock_conn_registry.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/s/catalog/legacy/catalog_manager_legacy.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::make_pair;
@@ -54,12 +54,12 @@ using std::vector;
 
 const std::string CONFIG_HOST_PORT = "$dummy_config:27017";
 
-class NoChunkFixture : public mongo::unittest::Test {
+class NoChunkFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         OperationContextNoop txn;
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -445,12 +445,12 @@ TEST_F(NoChunkFixture, PendingOrphanedDataRanges) {
  * Fixture with single chunk containing:
  * [10->20)
  */
-class SingleChunkFixture : public mongo::unittest::Test {
+class SingleChunkFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         OperationContextNoop txn;
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -760,12 +760,12 @@ TEST_F(SingleChunkFixture, ChunkOrphanedDataRanges) {
  * Fixture with single chunk containing:
  * [(min, min)->(max, max))
  */
-class SingleChunkMinMaxCompoundKeyFixture : public mongo::unittest::Test {
+class SingleChunkMinMaxCompoundKeyFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         OperationContextNoop txn;
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -825,12 +825,12 @@ TEST_F(SingleChunkMinMaxCompoundKeyFixture, CompoudKeyBelongsToMe) {
  * Fixture with chunks:
  * [(10, 0)->(20, 0)), [(30, 0)->(40, 0))
  */
-class TwoChunksWithGapCompoundKeyFixture : public mongo::unittest::Test {
+class TwoChunksWithGapCompoundKeyFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         OperationContextNoop txn;
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch = OID::gen();
@@ -1076,12 +1076,12 @@ TEST_F(TwoChunksWithGapCompoundKeyFixture, ChunkGapAndPendingOrphanedDataRanges)
  * Fixture with chunk containing:
  * [min->10) , [10->20) , <gap> , [30->max)
  */
-class ThreeChunkWithRangeGapFixture : public mongo::unittest::Test {
+class ThreeChunkWithRangeGapFixture : public mongol::unittest::Test {
 protected:
     void setUp() {
         OperationContextNoop txn;
         _dummyConfig.reset(new MockRemoteDBServer(CONFIG_HOST_PORT));
-        mongo::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
+        mongol::ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
         MockConnRegistry::get()->addServer(_dummyConfig.get());
 
         OID epoch(OID::gen());
@@ -1322,4 +1322,4 @@ TEST_F(ThreeChunkWithRangeGapFixture, CannotMergeWithHole) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

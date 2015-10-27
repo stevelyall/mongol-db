@@ -26,17 +26,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::MINKEY;
-using mongo::MAXKEY;
-using mongo::rangeOverlaps;
-using mongo::rangeMapOverlaps;
-using mongo::RangeMap;
-using mongo::RangeVector;
+using mongol::MINKEY;
+using mongol::MAXKEY;
+using mongol::rangeOverlaps;
+using mongol::rangeMapOverlaps;
+using mongol::RangeMap;
+using mongol::RangeVector;
 using std::make_pair;
 
 TEST(BSONRange, SmallerLowerRangeNonSubset) {

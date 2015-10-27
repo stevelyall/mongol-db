@@ -26,20 +26,20 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/numberdecimal.h"
+#include "mongol/scripting/mozjs/numberdecimal.h"
 
-#include "mongo/platform/decimal128.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
-#include "mongo/scripting/mozjs/wrapconstrainedmethod.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/text.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
+#include "mongol/scripting/mozjs/wrapconstrainedmethod.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec NumberDecimalInfo::methods[2] = {
@@ -106,4 +106,4 @@ void NumberDecimalInfo::make(JSContext* cx, JS::MutableHandleValue thisv, Decima
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

@@ -1,22 +1,22 @@
-jsTest.log("Testing spaces in mongodump command-line options...");
+jsTest.log("Testing spaces in mongoldump command-line options...");
 
-var mongod = MongoRunner.runMongod();
-var coll = mongod.getDB("spaces").coll;
+var mongold = MongoRunner.runMongod();
+var coll = mongold.getDB("spaces").coll;
 coll.drop();
 coll.insert({a: 1});
 coll.insert({a: 2});
 
 var query = "{\"a\": {\"$gt\": 1} }";
 assert(!MongoRunner.runMongoTool(
-  "mongodump",
+  "mongoldump",
   {
-    "host": "127.0.0.1:" + mongod.port,
+    "host": "127.0.0.1:" + mongold.port,
     "db": "spaces",
     "collection": "coll",
     "query": query
   }
 ));
 
-MongoRunner.stopMongod(mongod);
+MongoRunner.stopMongod(mongold);
 
 jsTest.log("Test completed successfully");

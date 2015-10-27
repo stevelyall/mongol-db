@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/rpc/command_reply.h"
+#include "mongol/rpc/command_reply.h"
 
 #include <tuple>
 #include <utility>
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_type_validated.h"
-#include "mongo/rpc/object_check.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/rpc/object_check.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 CommandReply::CommandReply(const Message* message) : _message(message) {
@@ -83,4 +83,4 @@ bool operator!=(const CommandReply& lhs, const CommandReply& rhs) {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

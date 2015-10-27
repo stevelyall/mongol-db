@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class NamespaceString;
@@ -41,4 +41,4 @@ Status collMod(OperationContext* txn,
                const NamespaceString& ns,
                const BSONObj& cmdObj,
                BSONObjBuilder* result);
-}  // namespace mongo
+}  // namespace mongol

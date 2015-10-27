@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 LogSeverity LogSeverity::Severe() {
@@ -83,4 +83,4 @@ bool LogSeverity::operator>=(LogSeverity other) const {
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

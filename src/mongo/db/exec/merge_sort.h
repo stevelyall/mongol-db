@@ -32,12 +32,12 @@
 #include <queue>
 #include <vector>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 // External params for the merge sort stage.  Declared below.
 class MergeSortStageParams;
@@ -155,4 +155,4 @@ public:
     bool dedup;
 };
 
-}  // namespace mongo
+}  // namespace mongol

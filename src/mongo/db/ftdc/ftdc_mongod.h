@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Start Full Time Data Capture
@@ -41,4 +41,4 @@ void startFTDC();
  */
 void stopFTDC();
 
-}  // namespace mongo
+}  // namespace mongol

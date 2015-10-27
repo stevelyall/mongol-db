@@ -28,13 +28,13 @@
 *    it in the license file.
 */
 
-#include "mongo/db/matcher/match_details.h"
+#include "mongol/db/matcher/match_details.h"
 
 #include <sstream>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

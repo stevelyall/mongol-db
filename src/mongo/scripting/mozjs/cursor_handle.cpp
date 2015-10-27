@@ -26,17 +26,17 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/cursor_handle.h"
+#include "mongol/scripting/mozjs/cursor_handle.h"
 
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/wrapconstrainedmethod.h"
-#include "mongo/util/log.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/wrapconstrainedmethod.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 const JSFunctionSpec CursorHandleInfo::methods[2] = {
@@ -93,4 +93,4 @@ void CursorHandleInfo::Functions::zeroCursorId::call(JSContext* cx, JS::CallArgs
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

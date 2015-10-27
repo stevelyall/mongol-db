@@ -27,21 +27,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/dbtests/mock/mock_dbclient_cursor.h"
+#include "mongol/dbtests/mock/mock_dbclient_cursor.h"
 
-namespace mongo {
-MockDBClientCursor::MockDBClientCursor(mongo::DBClientBase* client,
-                                       const mongo::BSONArray& resultSet)
-    : mongo::DBClientCursor(client, "", 0, 0, 0) {
+namespace mongol {
+MockDBClientCursor::MockDBClientCursor(mongol::DBClientBase* client,
+                                       const mongol::BSONArray& resultSet)
+    : mongol::DBClientCursor(client, "", 0, 0, 0) {
     _resultSet = resultSet.copy();
-    _cursor.reset(new mongo::DBClientMockCursor(BSONArray(_resultSet)));
+    _cursor.reset(new mongol::DBClientMockCursor(BSONArray(_resultSet)));
 }
 
 bool MockDBClientCursor::more() {
     return _cursor->more();
 }
 
-mongo::BSONObj MockDBClientCursor::next() {
+mongol::BSONObj MockDBClientCursor::next() {
     return _cursor->next();
 }
 }

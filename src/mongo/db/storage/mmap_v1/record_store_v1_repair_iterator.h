@@ -30,15 +30,15 @@
 
 #include <set>
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This iterator will go over the collection twice - once going forward (first extent -> last
  * extent) and once backwards in an attempt to salvage potentially corrupted or unreachable
- * records. It is used by the mongodump --repair option.
+ * records. It is used by the mongoldump --repair option.
  */
 class RecordStoreV1RepairCursor final : public RecordCursor {
 public:
@@ -93,4 +93,4 @@ private:
     std::set<DiskLoc> _seenInCurrentExtent;
 };
 
-}  // namespace mongo
+}  // namespace mongol

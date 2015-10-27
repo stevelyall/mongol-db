@@ -31,16 +31,16 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 struct CreateOrUpdateUserArgs {
@@ -217,7 +217,7 @@ struct MergeAuthzCollectionsArgs {
  * not to drop the existing users/roles, the database if this is a for a db-specific restore,
  * and the writeConcern.
  * Returns ErrorCodes::OutdatedClient if the "db" field is missing, as that likely indicates
- * the command was sent by an outdated (pre 2.6.4) version of mongorestore.
+ * the command was sent by an outdated (pre 2.6.4) version of mongolrestore.
  * Returns other codes indicating missing or incorrectly typed fields.
  */
 Status parseMergeAuthzCollectionsCommand(const BSONObj& cmdObj,
@@ -238,4 +238,4 @@ Status parseAuthSchemaUpgradeCommand(const BSONObj& cmdObj,
                                      const std::string& dbname,
                                      AuthSchemaUpgradeArgs* parsedArgs);
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

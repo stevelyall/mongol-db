@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/db/commands/fsync.h"
+#include "mongol/db/commands/fsync.h"
 
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/db.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/background.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/db.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/background.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -89,7 +89,7 @@ public:
 class FSyncCommand : public Command {
 public:
     static const char* url() {
-        return "http://dochub.mongodb.org/core/fsynccommand";
+        return "http://dochub.mongoldb.org/core/fsynccommand";
     }
     bool locked;
     bool pendingUnlock;

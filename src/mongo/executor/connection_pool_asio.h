@@ -29,13 +29,13 @@
 
 #include <memory>
 
-#include "mongo/executor/connection_pool.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/executor/connection_pool.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace connection_pool_asio {
 
@@ -126,4 +126,4 @@ private:
 
 }  // namespace connection_pool_asio
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

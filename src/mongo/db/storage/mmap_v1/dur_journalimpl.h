@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/db/storage/mmap_v1/dur_journalformat.h"
-#include "mongo/db/storage/mmap_v1/logfile.h"
+#include "mongol/db/storage/mmap_v1/dur_journalformat.h"
+#include "mongol/db/storage/mmap_v1/logfile.h"
 
-namespace mongo {
+namespace mongol {
 namespace dur {
 
 /** the writeahead journal for durability */

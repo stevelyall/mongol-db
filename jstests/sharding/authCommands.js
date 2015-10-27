@@ -7,10 +7,10 @@ var rsOpts = { oplogSize: 10, useHostname : false };
 var st = new ShardingTest({ keyFile : 'jstests/libs/key1', shards : 2, chunksize : 2,
                             rs : rsOpts, other : { nopreallocj : 1, useHostname : false }});
 
-var mongos = st.s;
-var adminDB = mongos.getDB( 'admin' );
-var configDB = mongos.getDB( 'config' );
-var testDB = mongos.getDB( 'test' );
+var mongols = st.s;
+var adminDB = mongols.getDB( 'admin' );
+var configDB = mongols.getDB( 'config' );
+var testDB = mongols.getDB( 'test' );
 
 jsTestLog('Setting up initial users');
 var rwUser = 'rwUser';
@@ -23,14 +23,14 @@ adminDB.createUser({user: rwUser, pwd: password, roles: jsTest.adminUserRoles});
 assert( adminDB.auth( rwUser, password ) );
 
 // Secondaries should be up here, since we awaitReplication in the ShardingTest, but we *don't*
-// wait for the mongos to explicitly detect them.
-ReplSetTest.awaitRSClientHosts( mongos, st.rs0.getSecondaries(), { ok : true, secondary : true });
-ReplSetTest.awaitRSClientHosts( mongos, st.rs1.getSecondaries(), { ok : true, secondary : true });
+// wait for the mongols to explicitly detect them.
+ReplSetTest.awaitRSClientHosts( mongols, st.rs0.getSecondaries(), { ok : true, secondary : true });
+ReplSetTest.awaitRSClientHosts( mongols, st.rs1.getSecondaries(), { ok : true, secondary : true });
 
 testDB.createUser({user: rwUser, pwd: password, roles: jsTest.basicUserRoles});
 testDB.createUser({user: roUser, pwd: password, roles: jsTest.readOnlyUserRoles});
 
-authenticatedConn = new Mongo( mongos.host );
+authenticatedConn = new Mongo( mongols.host );
 authenticatedConn.getDB( 'admin' ).auth( rwUser, password );
 
 // Add user to shards to prevent localhost connections from having automatic full access

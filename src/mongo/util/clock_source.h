@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class Date_t;
 
@@ -45,4 +45,4 @@ public:
     virtual Date_t now() = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

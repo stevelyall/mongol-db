@@ -3,19 +3,19 @@
 (function() {
 
 var st = new ShardingTest({ shards: 2,
-                            mongos: 1,
+                            mongols: 1,
                             other: {
                                 rs: true,
                                 rsOptions: { nodes : 1 }
                             }
                           });
 
-var mongos = st.s0;
-var admin = mongos.getDB("admin");
-var shards = mongos.getCollection("config.shards").find().toArray();
+var mongols = st.s0;
+var admin = mongols.getDB("admin");
+var shards = mongols.getCollection("config.shards").find().toArray();
 
-var coll = mongos.getCollection("foo.bar");
-var collSharded = mongos.getCollection("foo.barSharded");
+var coll = mongols.getCollection("foo.bar");
+var collSharded = mongols.getCollection("foo.barSharded");
 
 assert.commandWorked(admin.runCommand({ enableSharding : coll.getDB() + "" }));
 printjson(admin.runCommand({ movePrimary : coll.getDB() + "", to : shards[0]._id }));
@@ -27,7 +27,7 @@ assert.commandWorked(admin.runCommand({ moveChunk : collSharded.toString(),
 
 assert.writeOK(coll.insert({ some : "data" }));
 assert.writeOK(collSharded.insert({ some : "data" }));
-assert.eq(2, mongos.adminCommand({ getShardVersion : collSharded.toString() }).version.t);
+assert.eq(2, mongols.adminCommand({ getShardVersion : collSharded.toString() }).version.t);
 
 st.printShardingStatus();
 
@@ -39,12 +39,12 @@ var restartPrimaries = function() {
     st.rs0.stop(rs0Primary);
     st.rs1.stop(rs1Primary);
 
-    ReplSetTest.awaitRSClientHosts(mongos, [rs0Primary, rs1Primary], { ok : false });
+    ReplSetTest.awaitRSClientHosts(mongols, [rs0Primary, rs1Primary], { ok : false });
 
     st.rs0.start(rs0Primary, { restart : true });
     st.rs1.start(rs1Primary, { restart : true });
 
-    ReplSetTest.awaitRSClientHosts(mongos, [rs0Primary, rs1Primary], { ismaster : true });
+    ReplSetTest.awaitRSClientHosts(mongols, [rs0Primary, rs1Primary], { ismaster : true });
 };
 
 restartPrimaries();
@@ -96,7 +96,7 @@ var stepDownPrimaries = function() {
         // Expected connection exception, will check for stepdown later
     }
 
-    ReplSetTest.awaitRSClientHosts(mongos, [rs0Primary, rs1Primary], { secondary : true });
+    ReplSetTest.awaitRSClientHosts(mongols, [rs0Primary, rs1Primary], { secondary : true });
 
     assert.commandWorked(new Mongo(rs0Primary.host).adminCommand({ replSetFreeze : 0 }));
     assert.commandWorked(new Mongo(rs1Primary.host).adminCommand({ replSetFreeze : 0 }));
@@ -108,7 +108,7 @@ var stepDownPrimaries = function() {
     assert.commandWorked(rs0Primary.adminCommand({ connPoolSync : true }));
     assert.commandWorked(rs1Primary.adminCommand({ connPoolSync : true }));
 
-    ReplSetTest.awaitRSClientHosts(mongos, [rs0Primary, rs1Primary], { ismaster : true });
+    ReplSetTest.awaitRSClientHosts(mongols, [rs0Primary, rs1Primary], { ismaster : true });
 };
 
 stepDownPrimaries();
@@ -126,7 +126,7 @@ assert.eq({},
 //
 //
 // Metadata commands should enable sharding data implicitly
-assert.commandWorked(mongos.adminCommand({ split : collSharded.toString(), middle : { _id : 0 }}));
+assert.commandWorked(mongols.adminCommand({ split : collSharded.toString(), middle : { _id : 0 }}));
 assert.eq({},
           st.rs0.getPrimary().adminCommand(
             { getShardVersion : collSharded.toString(), fullMetadata : true }).metadata);
@@ -137,7 +137,7 @@ assert.neq({},
 //
 //
 // MoveChunk command should enable sharding data implicitly on TO-shard
-assert.commandWorked(mongos.adminCommand({ moveChunk : collSharded.toString(), find : { _id : 0 },
+assert.commandWorked(mongols.adminCommand({ moveChunk : collSharded.toString(), find : { _id : 0 },
                                            to : shards[0]._id }));
 assert.neq({},
            st.rs0.getPrimary().adminCommand(

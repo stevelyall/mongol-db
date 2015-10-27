@@ -31,9 +31,9 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/storage/recovery_unit.h"
+#include "mongol/db/storage/recovery_unit.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -84,4 +84,4 @@ private:
     std::vector<std::unique_ptr<Change>> _changes;
 };
 
-}  // namespace mongo
+}  // namespace mongol

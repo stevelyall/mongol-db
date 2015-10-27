@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongo {
+namespace mongol {
 TEST(Builder, String1) {
     const char* big = "eliot was here";
     StringData small(big, 5);

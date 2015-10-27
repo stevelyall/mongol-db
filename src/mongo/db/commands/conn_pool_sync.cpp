@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sstream>
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/client/shard_connection.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/client/shard_connection.h"
 
-namespace mongo {
+namespace mongol {
 
 class PoolFlushCmd : public Command {
 public:
@@ -56,10 +56,10 @@ public:
 
     virtual bool run(OperationContext* txn,
                      const std::string&,
-                     mongo::BSONObj&,
+                     mongol::BSONObj&,
                      int,
                      std::string&,
-                     mongo::BSONObjBuilder& result) {
+                     mongol::BSONObjBuilder& result) {
         shardConnectionPool.flush();
         globalConnPool.flush();
         return true;
@@ -70,4 +70,4 @@ public:
 
 } poolFlushCmd;
 
-}  // namespace mongo
+}  // namespace mongol

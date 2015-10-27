@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #ifdef MONGO_CONFIG_SSL
 #error This file should not be included if compiling with SSL support
 #endif
 
-#include "mongo/crypto/tom/tomcrypt.h"
+#include "mongol/crypto/tom/tomcrypt.h"
 
-namespace mongo {
+namespace mongol {
 namespace crypto {
 /*
  * Computes a SHA-1 hash of 'input'.
@@ -85,4 +85,4 @@ bool hmacSha1(const unsigned char* key,
 }
 
 }  // namespace crypto
-}  // namespace mongo
+}  // namespace mongol

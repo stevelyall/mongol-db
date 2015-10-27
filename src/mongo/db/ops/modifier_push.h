@@ -30,14 +30,14 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/ops/modifier_interface.h"
-#include "mongo/db/ops/modifier_push_sorter.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/ops/modifier_interface.h"
+#include "mongol/db/ops/modifier_push_sorter.h"
 
-namespace mongo {
+namespace mongol {
 
 class LogBuilder;
 
@@ -126,4 +126,4 @@ private:
     std::unique_ptr<PreparedState> _preparedState;
 };
 
-}  // namespace mongo
+}  // namespace mongol

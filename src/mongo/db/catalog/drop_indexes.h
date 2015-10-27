@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class BSONObjBuilder;
 class NamespaceString;
@@ -43,4 +43,4 @@ Status dropIndexes(OperationContext* txn,
                    const BSONObj& idxDescriptor,
                    BSONObjBuilder* result);
 
-}  // namespace mongo
+}  // namespace mongol

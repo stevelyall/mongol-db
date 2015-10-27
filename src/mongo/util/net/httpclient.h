@@ -29,13 +29,13 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/platform/basic.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/platform/basic.h"
 
 #include <map>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class HttpClient {
     MONGO_DISALLOW_COPYING(HttpClient);

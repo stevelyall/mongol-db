@@ -26,21 +26,21 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/json.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
+#include "mongol/db/json.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::unique_ptr;
 using std::make_pair;

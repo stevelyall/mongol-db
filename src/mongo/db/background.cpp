@@ -28,22 +28,22 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/background.h"
+#include "mongol/db/background.h"
 
 #include <iostream>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 
@@ -128,7 +128,7 @@ bool BackgroundOperation::inProgForNs(StringData ns) {
 
 void BackgroundOperation::assertNoBgOpInProgForDb(StringData db) {
     uassert(ErrorCodes::BackgroundOperationInProgressForDatabase,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "cannot perform operation: a background operation is currently running for "
                    "database " << db,
             !inProgForDb(db));
@@ -136,7 +136,7 @@ void BackgroundOperation::assertNoBgOpInProgForDb(StringData db) {
 
 void BackgroundOperation::assertNoBgOpInProgForNs(StringData ns) {
     uassert(ErrorCodes::BackgroundOperationInProgressForNamespace,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "cannot perform operation: a background operation is currently running for "
                    "collection " << ns,
             !inProgForNs(ns));
@@ -177,4 +177,4 @@ void BackgroundOperation::dump(std::ostream& ss) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

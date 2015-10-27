@@ -5,7 +5,7 @@
 var s = new ShardingTest({ name: "rename",
                            shards: 2,
                            verbose: 1,
-                           mongos: 1,
+                           mongols: 1,
                            rs: { oplogSize: 10 } });
 
 var db = s.getDB("test");

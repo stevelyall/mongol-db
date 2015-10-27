@@ -26,31 +26,31 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/oplogreader.h"
+#include "mongol/db/repl/oplogreader.h"
 
 #include <string>
 
-#include "mongo/base/counter.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/executor/network_interface.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
+#include "mongol/base/counter.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::endl;
@@ -164,7 +164,7 @@ void OplogReader::connectToSyncSource(OperationContext* txn,
             error() << "too stale to catch up";
             log() << "our last optime : " << lastOpTimeFetched;
             log() << "oldest available is " << oldestOpTimeSeen;
-            log() << "See http://dochub.mongodb.org/core/resyncingaverystalereplicasetmember";
+            log() << "See http://dochub.mongoldb.org/core/resyncingaverystalereplicasetmember";
             setMinValid(txn, {lastOpTimeFetched, oldestOpTimeSeen});
             bool worked = replCoord->setFollowerMode(MemberState::RS_RECOVERING);
             if (!worked) {
@@ -206,4 +206,4 @@ void OplogReader::connectToSyncSource(OperationContext* txn,
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

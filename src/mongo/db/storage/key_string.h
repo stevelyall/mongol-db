@@ -30,14 +30,14 @@
 
 #pragma once
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/bson/ordering.h"
-#include "mongo/db/record_id.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/bson/ordering.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class KeyString {
 public:
@@ -350,4 +350,4 @@ inline std::ostream& operator<<(std::ostream& stream, const KeyString& value) {
     return stream << value.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

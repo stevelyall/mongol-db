@@ -1,5 +1,5 @@
 // to run: 
-//   ./mongo jstests/<this-file>
+//   ./mongol jstests/<this-file>
 
 contains = function(arr,obj) {
     var i = arr.length;

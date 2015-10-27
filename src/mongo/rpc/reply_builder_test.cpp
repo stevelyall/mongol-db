@@ -26,22 +26,22 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/rpc/command_reply.h"
-#include "mongo/rpc/legacy_reply.h"
-#include "mongo/rpc/command_reply_builder.h"
-#include "mongo/rpc/legacy_reply_builder.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/unittest/death_test.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/rpc/command_reply.h"
+#include "mongol/rpc/legacy_reply.h"
+#include "mongol/rpc/command_reply_builder.h"
+#include "mongol/rpc/legacy_reply_builder.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/unittest/death_test.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 void testMaxCommandReply(rpc::ReplyBuilderInterface& replyBuilder);
 
@@ -69,7 +69,7 @@ BSONObj buildMetadata() {
 
 BSONObj buildEmptyCommand() {
     const char text[] = "{ ok: 1.0, cursor: { firstBatch: [] } }";
-    mongo::BSONObj obj = mongo::fromjson(text);
+    mongol::BSONObj obj = mongol::fromjson(text);
     return obj;
 }
 
@@ -219,7 +219,7 @@ TEST(LegacyReplyBuilderSpaceTest, DocSize) {
     ASSERT_EQUALS(sizeBefore - sizeAfter, dataLen - dataLen0 + 5);
 }
 
-class CommandReplyBuilderSpaceTest : public mongo::unittest::Test {
+class CommandReplyBuilderSpaceTest : public mongol::unittest::Test {
 protected:
     // compute  an empty doc size to use in follow up tests for payload size computation
     virtual void setUp() override {
@@ -266,7 +266,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize1) {
 
     while (availSpace > 0u) {
         std::size_t payloadSz =
-            std::min(availSpace, static_cast<std::size_t>(mongo::BSONObjMaxUserSize)) -
+            std::min(availSpace, static_cast<std::size_t>(mongol::BSONObjMaxUserSize)) -
             emptyDocSize;
         BSONObjBuilder docBuilder{};
         std::string payload = std::string(payloadSz, 'y');
@@ -278,7 +278,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize1) {
     auto msg = replyBuilder.done();
     auto sizeUInt = static_cast<std::size_t>(msg->size());
 
-    ASSERT_EQUALS(sizeUInt, mongo::MaxMessageSizeBytes);
+    ASSERT_EQUALS(sizeUInt, mongol::MaxMessageSizeBytes);
 }
 
 // multiple calls to addOutputDoc, some metadata
@@ -294,7 +294,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize2) {
 
     while (availSpace > 0u) {
         std::size_t payloadSz =
-            std::min(availSpace, static_cast<std::size_t>(mongo::BSONObjMaxUserSize)) -
+            std::min(availSpace, static_cast<std::size_t>(mongol::BSONObjMaxUserSize)) -
             emptyDocSize;
         BSONObjBuilder docBuilder{};
         std::string payload = std::string(payloadSz, 'y');
@@ -306,7 +306,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize2) {
     auto msg = replyBuilder.done();
     auto sizeUInt = static_cast<std::size_t>(msg->size());
 
-    ASSERT_EQUALS(sizeUInt, mongo::MaxMessageSizeBytes);
+    ASSERT_EQUALS(sizeUInt, mongol::MaxMessageSizeBytes);
 }
 
 
@@ -324,7 +324,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize3) {
     BufBuilder docs;
     while (availSpace > 0u) {
         std::size_t payloadSz =
-            std::min(availSpace, static_cast<std::size_t>(mongo::BSONObjMaxUserSize)) -
+            std::min(availSpace, static_cast<std::size_t>(mongol::BSONObjMaxUserSize)) -
             emptyDocSize;
         BSONObjBuilder docBuilder{};
         std::string payload = std::string(payloadSz, 'y');
@@ -340,7 +340,7 @@ TEST_F(CommandReplyBuilderSpaceTest, MaxDocSize3) {
 
     auto sizeUInt = static_cast<std::size_t>(msg->size());
 
-    ASSERT_EQUALS(sizeUInt, mongo::MaxMessageSizeBytes);
+    ASSERT_EQUALS(sizeUInt, mongol::MaxMessageSizeBytes);
 }
 
 // call to addCommandReply
@@ -353,13 +353,13 @@ void testMaxCommandReply(rpc::ReplyBuilderInterface& replyBuilder) {
     auto metadata = buildMetadata();
     replyBuilder.setMetadata(metadata);
 
-    auto payloadSz = static_cast<std::size_t>(mongo::BSONObjMaxUserSize) - emptyDocSize;
+    auto payloadSz = static_cast<std::size_t>(mongol::BSONObjMaxUserSize) - emptyDocSize;
 
     BSONObjBuilder commandReplyBuilder{};
     std::string payload = std::string(payloadSz, 'y');
     commandReplyBuilder.append("x", payload);
     auto commandReply = commandReplyBuilder.obj();
-    ASSERT_EQUALS(commandReply.objsize(), mongo::BSONObjMaxUserSize);
+    ASSERT_EQUALS(commandReply.objsize(), mongol::BSONObjMaxUserSize);
     replyBuilder.setCommandReply(commandReply);
 }
 

@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/client/shard.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/client/shard.h"
 
-namespace mongo {
+namespace mongol {
 
 class ChunkManager;
 class OperationContext;
@@ -73,7 +73,7 @@ public:
               long long currSizeMB,
               bool draining,
               const std::set<std::string>& tags = std::set<std::string>(),
-              const std::string& _mongoVersion = std::string(""));
+              const std::string& _mongolVersion = std::string(""));
 
     void addTag(const std::string& tag);
 
@@ -104,7 +104,7 @@ public:
     }
 
     std::string getMongoVersion() const {
-        return _mongoVersion;
+        return _mongolVersion;
     }
 
     std::string toString() const;
@@ -114,7 +114,7 @@ private:
     long long _currSizeMB;
     bool _draining;
     std::set<std::string> _tags;
-    std::string _mongoVersion;
+    std::string _mongolVersion;
 };
 
 
@@ -236,4 +236,4 @@ public:
                                 int balancedLastTime);
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,14 +28,14 @@
 
 // DeadlineMonitor unit tests
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/deadline_monitor.h"
+#include "mongol/scripting/deadline_monitor.h"
 
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::vector;
@@ -174,4 +174,4 @@ TEST(DeadlineMonitor, MultipleTasksExpireOrComplete) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

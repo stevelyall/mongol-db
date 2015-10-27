@@ -1,14 +1,14 @@
 /* SERVER-4972
- * Test for mongorestore on server with --auth allows restore without credentials of colls 
+ * Test for mongolrestore on server with --auth allows restore without credentials of colls 
  * with no index
  */
 /*
- * 1) Start mongo without auth.
+ * 1) Start mongol without auth.
  * 2) Write to collection
- * 3) Take dump of the collection using mongodump.
+ * 3) Take dump of the collection using mongoldump.
  * 4) Drop the collection.
- * 5) Stop mongod from step 1.
- * 6) Restart mongod with auth.
+ * 5) Stop mongold from step 1.
+ * 6) Restart mongold with auth.
  * 7) Add admin user to kick authentication
  * 8) Try restore without auth credentials. The restore should fail
  * 9) Try restore with correct auth credentials. The restore should succeed this time.
@@ -40,15 +40,15 @@ assert.eq(foo.baz.getIndexes().length, 1);
 // get data dump
 var dumpdir = MongoRunner.dataDir + "/restorewithauth-dump1/";
 resetDbpath( dumpdir );
-x = runMongoProgram("mongodump", "--db", "foo", "-h", "127.0.0.1:"+ conn.port, "--out", dumpdir);
+x = runMongoProgram("mongoldump", "--db", "foo", "-h", "127.0.0.1:"+ conn.port, "--out", dumpdir);
 
 // now drop the db
 foo.dropDatabase();
 
-// stop mongod
+// stop mongold
 MongoRunner.stopMongod(conn);
 
-// start mongod with --auth
+// start mongold with --auth
 conn = MongoRunner.runMongod({auth: "", nojournal: "", bind_ip: "127.0.0.1"});
 
 // admin user
@@ -64,7 +64,7 @@ assert.eq(-1, collNames.indexOf("bar"), "bar collection already exists");
 assert.eq(-1, collNames.indexOf("baz"), "baz collection already exists");
 
 // now try to restore dump
-x = runMongoProgram( "mongorestore", "-h", "127.0.0.1:" + conn.port,  "--dir" , dumpdir, "-vvvvv" );
+x = runMongoProgram( "mongolrestore", "-h", "127.0.0.1:" + conn.port,  "--dir" , dumpdir, "-vvvvv" );
 
 // make sure that the collection isn't restored
 collNames = foo.getCollectionNames();
@@ -72,7 +72,7 @@ assert.eq(-1, collNames.indexOf("bar"), "bar collection was restored");
 assert.eq(-1, collNames.indexOf("baz"), "baz collection was restored");
 
 // now try to restore dump with correct credentials
-x = runMongoProgram( "mongorestore",
+x = runMongoProgram( "mongolrestore",
                      "-h", "127.0.0.1:" + conn.port,
                      "-d", "foo",
                      "--authenticationDatabase=admin",
@@ -95,7 +95,7 @@ foo.dropDatabase();
 foo.createUser({user: 'user', pwd: 'password', roles: jsTest.basicUserRoles});
 
 // now try to restore dump with foo database credentials
-x = runMongoProgram("mongorestore",
+x = runMongoProgram("mongolrestore",
                     "-h", "127.0.0.1:" + conn.port,
                     "-d", "foo",
                     "-u", "user",

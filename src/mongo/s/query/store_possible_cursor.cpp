@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/store_possible_cursor.h"
+#include "mongol/s/query/store_possible_cursor.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/query/cursor_response.h"
-#include "mongo/s/cursors.h"
-#include "mongo/s/strategy.h"
-#include "mongo/s/query/cluster_client_cursor_impl.h"
-#include "mongo/s/query/cluster_client_cursor_params.h"
-#include "mongo/s/query/cluster_cursor_manager.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/query/cursor_response.h"
+#include "mongol/s/cursors.h"
+#include "mongol/s/strategy.h"
+#include "mongol/s/query/cluster_client_cursor_impl.h"
+#include "mongol/s/query/cluster_client_cursor_params.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 Status storePossibleCursorLegacy(const HostAndPort& server, const BSONObj& cmdResult) {
     if (cmdResult["ok"].trueValue() && cmdResult.hasField("cursor")) {
         BSONElement cursorIdElt = cmdResult.getFieldDotted("cursor.id");
 
-        if (cursorIdElt.type() != mongo::NumberLong) {
+        if (cursorIdElt.type() != mongol::NumberLong) {
             return Status(ErrorCodes::TypeMismatch,
                           str::stream() << "expected \"cursor.id\" field from shard "
                                         << "response to have NumberLong type, instead "
@@ -57,7 +57,7 @@ Status storePossibleCursorLegacy(const HostAndPort& server, const BSONObj& cmdRe
         const long long cursorId = cursorIdElt.Long();
         if (cursorId != 0) {
             BSONElement cursorNsElt = cmdResult.getFieldDotted("cursor.ns");
-            if (cursorNsElt.type() != mongo::String) {
+            if (cursorNsElt.type() != mongol::String) {
                 return Status(ErrorCodes::TypeMismatch,
                               str::stream() << "expected \"cursor.ns\" field from "
                                             << "shard response to have String type, "
@@ -113,4 +113,4 @@ StatusWith<BSONObj> storePossibleCursor(const HostAndPort& server,
     return outgoingCursorResponse.toBSON(CursorResponse::ResponseType::InitialResponse);
 }
 
-}  // namespace mongo
+}  // namespace mongol

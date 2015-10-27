@@ -40,7 +40,7 @@ if not use_system_version_of_library('zlib'):
 if True:
     thirdPartyIncludePathList.append(
         ('mozjs', ['#/src/third_party/mozjs' + mozjsSuffix + '/include',
-                   '#/src/third_party/mozjs' + mozjsSuffix + '/mongo_sources',
+                   '#/src/third_party/mozjs' + mozjsSuffix + '/mongol_sources',
                    '#/src/third_party/mozjs' + mozjsSuffix + '/platform/' + env["TARGET_ARCH"] + "/" + env["TARGET_OS"] + "/include",
         ]))
 

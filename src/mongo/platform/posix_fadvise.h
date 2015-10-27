@@ -35,18 +35,18 @@
 
 #include <sys/types.h>
 
-namespace mongo {
+namespace mongol {
 namespace pal {
 int posix_fadvise(int fd, off_t offset, off_t len, int advice);
 }  // namespace pal
 using pal::posix_fadvise;
-}  // namespace mongo
+}  // namespace mongol
 
 #elif defined(POSIX_FADV_DONTNEED)
 
-namespace mongo {
+namespace mongol {
 using ::posix_fadvise;
-}  // namespace mongo
+}  // namespace mongol
 
 #endif
 

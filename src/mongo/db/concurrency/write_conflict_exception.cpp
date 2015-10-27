@@ -28,14 +28,14 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 std::atomic<bool> WriteConflictException::trace(false);  // NOLINT
 

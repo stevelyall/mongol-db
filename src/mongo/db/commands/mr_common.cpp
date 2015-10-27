@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/commands/mr.h"
+#include "mongol/db/commands/mr.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace mr {
 Config::OutputOptions Config::parseOutputOptions(const std::string& dbname, const BSONObj& cmdObj) {
@@ -88,7 +88,7 @@ Config::OutputOptions Config::parseOutputOptions(const std::string& dbname, cons
     }
 
     if (outputOptions.outType != INMEMORY) {
-        outputOptions.finalNamespace = mongoutils::str::stream()
+        outputOptions.finalNamespace = mongolutils::str::stream()
             << (outputOptions.outDB.empty() ? dbname : outputOptions.outDB) << "."
             << outputOptions.collectionName;
     }
@@ -104,7 +104,7 @@ void addPrivilegesRequiredForMapReduce(Command* commandTemplate,
 
     ResourcePattern inputResource(commandTemplate->parseResourcePattern(dbname, cmdObj));
     uassert(17142,
-            mongoutils::str::stream() << "Invalid input resource " << inputResource.toString(),
+            mongolutils::str::stream() << "Invalid input resource " << inputResource.toString(),
             inputResource.isExactNamespacePattern());
     out->push_back(Privilege(inputResource, ActionType::find));
 
@@ -124,7 +124,7 @@ void addPrivilegesRequiredForMapReduce(Command* commandTemplate,
         ResourcePattern outputResource(
             ResourcePattern::forExactNamespace(NamespaceString(outputOptions.finalNamespace)));
         uassert(17143,
-                mongoutils::str::stream() << "Invalid target namespace "
+                mongolutils::str::stream() << "Invalid target namespace "
                                           << outputResource.ns().ns(),
                 outputResource.ns().isValid());
 

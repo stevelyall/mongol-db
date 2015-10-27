@@ -32,7 +32,7 @@ function assertInsert(collection, obj) {
 
 var cluster = new ShardingTest({ name: "authwhere",
                                  shards: 1,
-                                 mongos: 1,
+                                 mongols: 1,
                                  other: {
                                     extraOptions: { keyFile: "jstests/libs/key1" }
                                  }

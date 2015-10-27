@@ -28,19 +28,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped.h"
 
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_capped_iterator.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_capped_iterator.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
 /*
  capped collection layout
@@ -60,7 +60,7 @@
 
 #define DDD(x)
 
-namespace mongo {
+namespace mongol {
 
 using std::dec;
 using std::endl;
@@ -101,7 +101,7 @@ StatusWith<DiskLoc> CappedRecordStoreV1::allocRecord(OperationContext* txn,
         // storage size
         if (lenToAlloc > storageSize(txn)) {
             return StatusWith<DiskLoc>(ErrorCodes::DocTooLargeForCapped,
-                                       mongoutils::str::stream()
+                                       mongolutils::str::stream()
                                            << "document is larger than capped size " << lenToAlloc
                                            << " > " << storageSize(txn),
                                        16328);

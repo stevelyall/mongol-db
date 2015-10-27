@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/snapshot_manager.h"
+#include "mongol/base/init.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/snapshot_manager.h"
 
-namespace mongo {
+namespace mongol {
 class CmdMakeSnapshot final : public Command {
 public:
     CmdMakeSnapshot() : Command("makeSnapshot") {}

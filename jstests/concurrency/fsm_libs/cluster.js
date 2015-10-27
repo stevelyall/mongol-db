@@ -51,11 +51,11 @@ var Cluster = function(options) {
         options.setupFunctions = options.setupFunctions || {};
         assert.eq('object', typeof options.setupFunctions);
 
-        options.setupFunctions.mongod = options.setupFunctions.mongod || function(db) { };
-        assert.eq('function', typeof options.setupFunctions.mongod);
+        options.setupFunctions.mongold = options.setupFunctions.mongold || function(db) { };
+        assert.eq('function', typeof options.setupFunctions.mongold);
 
-        options.setupFunctions.mongos = options.setupFunctions.mongos || function(db) { };
-        assert.eq('function', typeof options.setupFunctions.mongos);
+        options.setupFunctions.mongols = options.setupFunctions.mongols || function(db) { };
+        assert.eq('function', typeof options.setupFunctions.mongols);
 
         assert(!options.masterSlave || !options.replication, "Both 'masterSlave' and " +
                "'replication' cannot be true");
@@ -70,8 +70,8 @@ var Cluster = function(options) {
     var initialized = false;
 
     var _conns = {
-        mongos: [],
-        mongod: []
+        mongols: [],
+        mongold: []
     };
     var nextConn = 0;
     var primaries = [];
@@ -90,10 +90,10 @@ var Cluster = function(options) {
         }
 
         if (options.sharded) {
-            // TODO: allow 'options' to specify the number of shards and mongos processes
+            // TODO: allow 'options' to specify the number of shards and mongols processes
             var shardConfig = {
                 shards: 2,
-                mongos: 2,
+                mongols: 2,
                 // Legacy config servers are pre-3.2 style, 3-node non-replica-set config servers
                 sync: options.useLegacyConfigServers,
                 verbose: verbosityLevel
@@ -112,7 +112,7 @@ var Cluster = function(options) {
 
             st = new ShardingTest(shardConfig);
 
-            conn = st.s; // mongos
+            conn = st.s; // mongols
 
             this.shardCollection = function() {
                 st.shardColl.apply(st, arguments);
@@ -122,14 +122,14 @@ var Cluster = function(options) {
                 st.stop();
             };
 
-            // Save all mongos and mongod connections
+            // Save all mongols and mongold connections
             var i = 0;
-            var mongos = st.s0;
-            var mongod = st.d0;
-            while (mongos) {
-                _conns.mongos.push(mongos);
+            var mongols = st.s0;
+            var mongold = st.d0;
+            while (mongols) {
+                _conns.mongols.push(mongols);
                 ++i;
-                mongos = st['s' + i];
+                mongols = st['s' + i];
             }
             if (options.replication) {
                 var rsTest = st.rs0;
@@ -143,10 +143,10 @@ var Cluster = function(options) {
                 }
             }
             i = 0;
-            while (mongod) {
-                _conns.mongod.push(mongod);
+            while (mongold) {
+                _conns.mongold.push(mongold);
                 ++i;
-                mongod = st['d' + i];
+                mongold = st['d' + i];
             }
         } else if (options.replication) {
             // TODO: allow 'options' to specify the number of nodes
@@ -187,26 +187,26 @@ var Cluster = function(options) {
                 rt.stop();
             };
 
-            _conns.mongod = [master, slave];
+            _conns.mongold = [master, slave];
 
         } else { // standalone server
             conn = db.getMongo();
             db.adminCommand({ setParameter: 1, logLevel: verbosityLevel });
 
-            _conns.mongod = [conn];
+            _conns.mongold = [conn];
         }
 
         initialized = true;
 
-        this.executeOnMongodNodes(options.setupFunctions.mongod);
-        this.executeOnMongosNodes(options.setupFunctions.mongos);
+        this.executeOnMongodNodes(options.setupFunctions.mongold);
+        this.executeOnMongosNodes(options.setupFunctions.mongols);
     };
 
 
     this._addReplicaSetConns = function _addReplicaSetConns(rsTest) {
-        _conns.mongod.push(rsTest.getPrimary());
+        _conns.mongold.push(rsTest.getPrimary());
         rsTest.getSecondaries().forEach(function (secondaryConn) {
-            _conns.mongod.push(secondaryConn);
+            _conns.mongold.push(secondaryConn);
         });
     };
 
@@ -216,10 +216,10 @@ var Cluster = function(options) {
                             'against it');
         }
         if (!fn || typeof(fn) !== 'function' || fn.length !== 1) {
-            throw new Error('mongod function must be a function that takes a db as an argument');
+            throw new Error('mongold function must be a function that takes a db as an argument');
         }
-        _conns.mongod.forEach(function(mongodConn) {
-            fn(mongodConn.getDB('admin'));
+        _conns.mongold.forEach(function(mongoldConn) {
+            fn(mongoldConn.getDB('admin'));
         });
     };
 
@@ -229,10 +229,10 @@ var Cluster = function(options) {
                             'against it');
         }
         if (!fn || typeof(fn) !== 'function' || fn.length !== 1) {
-            throw new Error('mongos function must be a function that takes a db as an argument');
+            throw new Error('mongols function must be a function that takes a db as an argument');
         }
-        _conns.mongos.forEach(function(mongosConn) {
-            fn(mongosConn.getDB('admin'));
+        _conns.mongols.forEach(function(mongolsConn) {
+            fn(mongolsConn.getDB('admin'));
         });
     };
 
@@ -251,9 +251,9 @@ var Cluster = function(options) {
             throw new Error('cluster has not been initialized yet');
         }
 
-        // Alternate mongos connections for sharded clusters
+        // Alternate mongols connections for sharded clusters
         if (this.isSharded()) {
-            return _conns.mongos[nextConn++ % _conns.mongos.length].host;
+            return _conns.mongols[nextConn++ % _conns.mongols.length].host;
         }
         return conn.host;
     };
@@ -277,7 +277,7 @@ var Cluster = function(options) {
     //
     // Serialized format:
     // {
-    //      mongos: [
+    //      mongols: [
     //          "localhost:30998",
     //          "localhost:30999"
     //      ],
@@ -306,17 +306,17 @@ var Cluster = function(options) {
         }
 
         var cluster = {
-            mongos: [],
+            mongols: [],
             config: [],
             shards: {}
         };
 
         var i = 0;
-        var mongos = st.s0;
-        while (mongos) {
-            cluster.mongos.push(mongos.name);
+        var mongols = st.s0;
+        while (mongols) {
+            cluster.mongols.push(mongols.name);
             ++i;
-            mongos = st['s' + i];
+            mongols = st['s' + i];
         }
 
         i = 0;
@@ -336,7 +336,7 @@ var Cluster = function(options) {
                 var [setName, shards] = shard.name.split('/');
                 cluster.shards[setName] = shards.split(',');
             } else {
-                // If the shard is a standalone mongod, the format of st.shard0.name in ShardingTest
+                // If the shard is a standalone mongold, the format of st.shard0.name in ShardingTest
                 // is "localhost:20006".
                 cluster.shards[i] = [shard.name];
             }
@@ -382,7 +382,7 @@ var Cluster = function(options) {
 };
 
 /**
- * Returns true if 'clusterOptions' represents a standalone mongod,
+ * Returns true if 'clusterOptions' represents a standalone mongold,
  * and false otherwise.
  */
 Cluster.isStandalone = function isStandalone(clusterOptions) {

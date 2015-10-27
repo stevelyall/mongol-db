@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/decimal128.h"
+#include "mongol/platform/decimal128.h"
 
 #include <array>
 #include <cmath>
 #include <string>
 #include <utility>
 
-#include "mongo/config.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/config.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Tests for Decimal128 constructors
 TEST(Decimal128Test, TestInt32ConstructorZero) {
@@ -1225,4 +1225,4 @@ TEST(Decimal128Test, TestDecimal128GetLargestNegativeExponentZero) {
     ASSERT_EQUALS(d.getValue().low64, largestNegativeExponentZeroLow64);
 }
 
-}  // namespace mongo
+}  // namespace mongol

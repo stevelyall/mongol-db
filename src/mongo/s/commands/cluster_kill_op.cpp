@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/bson/bsonelement.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ClusterKillOpCommand : public Command {
@@ -82,7 +82,7 @@ public:
              std::string& errmsg,
              BSONObjBuilder& result) final {
         // The format of op is shardid:opid
-        // This is different than the format passed to the mongod killOp command.
+        // This is different than the format passed to the mongold killOp command.
         std::string opToKill;
         uassertStatusOK(bsonExtractStringField(cmdObj, "op", &opToKill));
 
@@ -120,7 +120,7 @@ public:
             "admin", "killOp", rpc::makeEmptyMetadata(), BSON("killOp" << 1 << "op" << opId));
         conn.done();
 
-        // The original behavior of killOp on mongos is to always return success, regardless of
+        // The original behavior of killOp on mongols is to always return success, regardless of
         // whether the shard reported success or not.
         return true;
     }
@@ -128,4 +128,4 @@ public:
 } clusterKillOpCommand;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

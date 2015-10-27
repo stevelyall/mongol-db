@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class UpdateNotifierSpy : public UpdateNotifier {
@@ -82,4 +82,4 @@ private:
 };
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

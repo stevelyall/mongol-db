@@ -26,17 +26,17 @@
 *    it in the license file.
 */
 
-#include "mongo/db/auth/authz_session_external_state_s.h"
+#include "mongol/db/auth/authz_session_external_state_s.h"
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/grid.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 
 AuthzSessionExternalStateMongos::AuthzSessionExternalStateMongos(AuthorizationManager* authzManager)
     : AuthzSessionExternalStateServerCommon(authzManager) {}
@@ -46,4 +46,4 @@ void AuthzSessionExternalStateMongos::startRequest(OperationContext* txn) {
     _checkShouldAllowLocalhost(txn);
 }
 
-}  // namespace mongo
+}  // namespace mongol

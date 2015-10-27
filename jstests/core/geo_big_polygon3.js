@@ -25,7 +25,7 @@ var epsg4326CRS = {
 var strictCRS = {
     type: "name",
     properties: {
-        name: "urn:x-mongodb:crs:strictwinding:EPSG:4326"
+        name: "urn:x-mongoldb:crs:strictwinding:EPSG:4326"
     }
 };
 

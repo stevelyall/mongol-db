@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/util/time_support.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/util/time_support.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(TimerStatsTest, GetReportNoRecording) {
     ASSERT_EQUALS(BSON("num" << 0 << "totalMillis" << 0), TimerStats().getReport());

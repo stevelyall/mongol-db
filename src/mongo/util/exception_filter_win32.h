@@ -28,10 +28,10 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 void setWindowsUnhandledExceptionFilter();
 
 void doMinidump();
 
-}  // namespace mongo
+}  // namespace mongol

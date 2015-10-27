@@ -1,5 +1,5 @@
 /*
- * Test that the explain command supports findAndModify when talking to a mongos
+ * Test that the explain command supports findAndModify when talking to a mongols
  * and the collection is sharded.
  */
 (function() {

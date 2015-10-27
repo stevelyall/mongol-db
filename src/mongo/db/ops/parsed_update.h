@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/ops/update_driver.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/ops/update_driver.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class OperationContext;
@@ -133,4 +133,4 @@ private:
     std::unique_ptr<CanonicalQuery> _canonicalQuery;
 };
 
-}  // namespace mongo
+}  // namespace mongol

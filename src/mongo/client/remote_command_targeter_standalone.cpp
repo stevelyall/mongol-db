@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connection_string.h"
-#include "mongo/client/remote_command_targeter_standalone.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/client/remote_command_targeter_standalone.h"
 
-#include "mongo/base/status_with.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 
 RemoteCommandTargeterStandalone::RemoteCommandTargeterStandalone(const HostAndPort& hostAndPort)
     : _hostAndPort(hostAndPort) {}
@@ -55,4 +55,4 @@ void RemoteCommandTargeterStandalone::markHostUnreachable(const HostAndPort& hos
     dassert(host == _hostAndPort);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,15 +26,15 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/block_compressor.h"
+#include "mongol/db/ftdc/block_compressor.h"
 
 #include <zlib.h>
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 StatusWith<ConstDataRange> BlockCompressor::compress(ConstDataRange source) {
     z_stream stream;
@@ -116,4 +116,4 @@ StatusWith<ConstDataRange> BlockCompressor::uncompress(ConstDataRange source,
     return ConstDataRange(reinterpret_cast<char*>(_buffer.data()), stream.total_out);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,17 +31,17 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/field_ref_set.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/ops/modifier_interface.h"
-#include "mongo/db/ops/modifier_table.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/update_index_data.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/field_ref_set.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/ops/modifier_interface.h"
+#include "mongol/db/ops/modifier_table.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/update_index_data.h"
 
-namespace mongo {
+namespace mongol {
 
 class UpdateDriver {
 public:
@@ -189,4 +189,4 @@ struct UpdateDriver::Options {
     Options() : logOp(false), modOptions() {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

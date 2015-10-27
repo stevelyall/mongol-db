@@ -3,7 +3,7 @@
 
 var s = new ShardingTest({ name: "shard_keycount",
                            shards: 2,
-                           mongos: 1,
+                           mongols: 1,
                            other:{ chunkSize: 1 } });
 
 dbName = "test"

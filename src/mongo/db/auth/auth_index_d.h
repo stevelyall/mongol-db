@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/namespace_string.h"
+#include "mongol/db/namespace_string.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class OperationContext;
@@ -50,4 +50,4 @@ void createSystemIndexes(OperationContext* txn, Collection* collection);
 Status verifySystemIndexes(OperationContext* txn);
 
 }  // namespace authindex
-}  // namespace mongo
+}  // namespace mongol

@@ -30,15 +30,15 @@
 
 #include <deque>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/repl/replication_coordinator_external_state.h"
-#include "mongo/db/repl/sync_source_feedback.h"
-#include "mongo/db/storage/snapshot_manager.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
+#include "mongol/db/repl/sync_source_feedback.h"
+#include "mongol/db/storage/snapshot_manager.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class SnapshotThread;
@@ -113,4 +113,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 /**
@@ -240,4 +240,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

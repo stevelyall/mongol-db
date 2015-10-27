@@ -31,10 +31,10 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/auth/user_name.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/auth/user_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -62,4 +62,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

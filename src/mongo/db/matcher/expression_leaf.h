@@ -32,16 +32,16 @@
 
 #include <unordered_map>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/stdx/memory.h"
 
 namespace pcrecpp {
 class RE;
 }  // namespace pcrecpp;
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This file contains leaves in the parse tree that are not array-based.
@@ -576,4 +576,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

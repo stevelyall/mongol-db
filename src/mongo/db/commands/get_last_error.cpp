@@ -28,22 +28,22 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -127,7 +127,7 @@ public:
         // reported with ok : 0.0, to match legacy behavior.
         //
         // There is a special case when "wOpTime" and "wElectionId" are explicitly provided by
-        // the client (mongos) - in this case we *only* enforce the write concern if it is
+        // the client (mongols) - in this case we *only* enforce the write concern if it is
         // valid.
         //
         // We always need to either report "err" (if ok : 1) or "errmsg" (if ok : 0), even if
@@ -246,7 +246,7 @@ public:
         if (electionIdPresent) {
             if (repl::getGlobalReplicationCoordinator()->getReplicationMode() !=
                 repl::ReplicationCoordinator::modeReplSet) {
-                // Ignore electionIds of 0 from mongos.
+                // Ignore electionIds of 0 from mongols.
                 if (electionId != OID()) {
                     errmsg = "wElectionId passed but no replication active";
                     result.append("code", ErrorCodes::BadValue);

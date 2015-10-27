@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/shard_util.h"
+#include "mongol/s/shard_util.h"
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace shardutil {
 
 StatusWith<long long> retrieveTotalShardSize(OperationContext* txn,
@@ -61,4 +61,4 @@ StatusWith<long long> retrieveTotalShardSize(OperationContext* txn,
 }
 
 }  // namespace shardutil
-}  // namespace mongo
+}  // namespace mongol

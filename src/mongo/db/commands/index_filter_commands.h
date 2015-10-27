@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/commands.h"
-#include "mongo/db/query/query_settings.h"
-#include "mongo/db/query/plan_cache.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/query_settings.h"
+#include "mongol/db/query/plan_cache.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DB commands for index filters.
@@ -183,4 +183,4 @@ public:
                       const BSONObj& cmdObj);
 };
 
-}  // namespace mongo
+}  // namespace mongol

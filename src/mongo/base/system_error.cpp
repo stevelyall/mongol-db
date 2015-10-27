@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/config.hpp>
 #include <string>
 
-#include "mongo/base/system_error.h"
+#include "mongol/base/system_error.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -45,7 +45,7 @@ public:
     MongoErrorCategoryImpl() = default;
 
     const char* name() const BOOST_NOEXCEPT override {
-        return "mongo";
+        return "mongol";
     }
 
     std::string message(int ev) const override {
@@ -74,18 +74,18 @@ public:
 
 }  // namespace
 
-const std::error_category& mongoErrorCategory() {
+const std::error_category& mongolErrorCategory() {
     // TODO: Remove this static, and make a constexpr instance when we move to C++14.
     static const MongoErrorCategoryImpl instance{};
     return instance;
 }
 
 std::error_code make_error_code(ErrorCodes::Error code) {
-    return std::error_code(ErrorCodes::fromInt(code), mongoErrorCategory());
+    return std::error_code(ErrorCodes::fromInt(code), mongolErrorCategory());
 }
 
 std::error_condition make_error_condition(ErrorCodes::Error code) {
-    return std::error_condition(ErrorCodes::fromInt(code), mongoErrorCategory());
+    return std::error_condition(ErrorCodes::fromInt(code), mongolErrorCategory());
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,13 +31,13 @@
 #include <unordered_map>
 #include <queue>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 
@@ -279,4 +279,4 @@ public:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

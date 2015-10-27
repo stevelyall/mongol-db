@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/concurrency/lock_manager.h"
+#include "mongol/db/concurrency/lock_manager.h"
 
-#include "mongo/config.h"
-#include "mongo/db/concurrency/locker.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
-#include "mongo/util/timer.h"
+#include "mongol/config.h"
+#include "mongol/db/concurrency/locker.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -1111,4 +1111,4 @@ const char* lockRequestStatusName(LockRequest::Status status) {
     return LockRequestStatusNames[status];
 }
 
-}  // namespace mongo
+}  // namespace mongol

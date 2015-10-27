@@ -26,12 +26,12 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_test_fixture.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_test_fixture.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST_F(QueryPlannerTest, PartialIndexEq) {
@@ -444,4 +444,4 @@ TEST_F(QueryPlannerTest, PartialIndexNor) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

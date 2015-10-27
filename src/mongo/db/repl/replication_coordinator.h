@@ -30,15 +30,15 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/repl/member_state.h"
-#include "mongo/db/repl/repl_settings.h"
-#include "mongo/db/repl/sync_source_selector.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/repl/member_state.h"
+#include "mongol/db/repl/repl_settings.h"
+#include "mongol/db/repl/sync_source_selector.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -736,4 +736,4 @@ protected:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

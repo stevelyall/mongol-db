@@ -30,7 +30,7 @@
 #include <cstdlib>
 #include <fcntl.h>
 
-namespace mongo {
+namespace mongol {
 
 // Touch a range of pages using an OS-specific method.
 // Takes a file descriptor, offset, and length, for Linux use.

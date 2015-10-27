@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/field_parser.h"
+#include "mongol/db/field_parser.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -446,4 +446,4 @@ FieldParser::FieldState FieldParser::extractID(BSONElement elem,
     return FIELD_INVALID;
 }
 
-}  // namespace mongo
+}  // namespace mongol

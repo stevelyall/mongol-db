@@ -33,12 +33,12 @@
 #include <list>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
 
-namespace mongo {
+namespace mongol {
 
 class NamespaceDetails;
 class NamespaceHashTable;

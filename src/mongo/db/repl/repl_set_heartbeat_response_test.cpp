@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -766,4 +766,4 @@ TEST(ReplSetHeartbeatResponse, ServerError) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

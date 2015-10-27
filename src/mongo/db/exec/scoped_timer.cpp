@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/scoped_timer.h"
+#include "mongol/db/exec/scoped_timer.h"
 
-#include "mongo/util/net/listen.h"
+#include "mongol/util/net/listen.h"
 
-namespace mongo {
+namespace mongol {
 
 ScopedTimer::ScopedTimer(long long* counter)
     : _counter(counter), _start(Listener::getElapsedTimeMillis()) {}
@@ -42,4 +42,4 @@ ScopedTimer::~ScopedTimer() {
     *_counter += elapsed;
 }
 
-}  // namespace mongo
+}  // namespace mongol

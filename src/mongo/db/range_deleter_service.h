@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/range_deleter.h"
+#include "mongol/db/range_deleter.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Gets the global instance of the deleter and starts it.

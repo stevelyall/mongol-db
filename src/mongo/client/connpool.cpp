@@ -30,18 +30,18 @@
 
 // _ todo: reconnect?
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::list;
@@ -513,4 +513,4 @@ void ScopedDbConnection::clearPool() {
 
 AtomicInt32 AScopedConnection::_numConnections;
 
-}  // namespace mongo
+}  // namespace mongol

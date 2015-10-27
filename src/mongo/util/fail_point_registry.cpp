@@ -26,14 +26,14 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/fail_point_registry.h"
+#include "mongol/util/fail_point_registry.h"
 
-#include "mongo/util/map_util.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/map_util.h"
+#include "mongol/util/mongolutils/str.h"
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

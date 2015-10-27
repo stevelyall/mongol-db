@@ -28,21 +28,21 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 #include <algorithm>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 // Insert multiple records and iterate through them in the forward direction.
 // When curr() or getNext() is called on an iterator positioned at EOF,
@@ -440,4 +440,4 @@ TEST(RecordStoreTestHarness, SeekAfterEofAndContinue) {
     ASSERT(!cursor->next());
 }
 
-}  // namespace mongo
+}  // namespace mongol

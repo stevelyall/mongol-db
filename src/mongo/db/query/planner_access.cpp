@@ -26,31 +26,31 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/planner_access.h"
+#include "mongol/db/query/planner_access.h"
 
 #include <algorithm>
 #include <vector>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/matcher/expression_array.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/matcher/expression_text.h"
-#include "mongo/db/query/indexability.h"
-#include "mongo/db/query/index_bounds_builder.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/matcher/expression_text.h"
+#include "mongol/db/query/indexability.h"
+#include "mongol/db/query/index_bounds_builder.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 /**
  * Text node functors.
@@ -106,7 +106,7 @@ bool scansAreEquivalent(const QuerySolutionNode* lhs, const QuerySolutionNode* r
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -1400,4 +1400,4 @@ QuerySolutionNode* QueryPlannerAccess::makeIndexScan(const IndexEntry& index,
     return solnRoot;
 }
 
-}  // namespace mongo
+}  // namespace mongol

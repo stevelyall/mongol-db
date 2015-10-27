@@ -26,11 +26,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/matcher/expression.h"
+#include "mongol/db/matcher/expression.h"
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Logic for how indices can be used with an expression.
@@ -151,4 +151,4 @@ private:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

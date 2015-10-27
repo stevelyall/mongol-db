@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/random.h"
-#include "mongo/s/balancer_policy.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/config.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/balancer_policy.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/config.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 using std::map;
 using std::string;

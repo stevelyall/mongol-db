@@ -33,16 +33,16 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 class Applier {
@@ -169,4 +169,4 @@ StatusWith<std::pair<std::unique_ptr<Applier>, Applier::Operations>> applyUntilA
     const Applier::CallbackFn& onCompletion);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

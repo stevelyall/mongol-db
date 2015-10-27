@@ -36,11 +36,11 @@
 #include <vector>
 
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
-// see also mongoutils/str.h - perhaps move these there?
+// see also mongolutils/str.h - perhaps move these there?
 // see also text.h
 
 void splitStringDelim(const std::string& str, std::vector<std::string>* res, char delim);
@@ -84,4 +84,4 @@ private:
 // For now, this needs to be near the LexNumCmp or else
 int versionCmp(const StringData rhs, const StringData lhs);
 
-}  // namespace mongo
+}  // namespace mongol

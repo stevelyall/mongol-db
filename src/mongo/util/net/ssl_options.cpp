@@ -25,21 +25,21 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/ssl_options.h"
+#include "mongol/util/net/ssl_options.h"
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/base/status.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/text.h"
-#include "mongo/util/options_parser/startup_options.h"
+#include "mongol/base/status.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/text.h"
+#include "mongol/util/options_parser/startup_options.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -395,4 +395,4 @@ Status validateSSLMongoShellOptions(const moe::Environment& params) {
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

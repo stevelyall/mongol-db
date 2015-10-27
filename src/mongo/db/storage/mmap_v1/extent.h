@@ -34,10 +34,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 /* extents are datafile regions where all the records within the region
    belong to the same namespace.

@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/replset/replset_dist_lock_manager.h"
+#include "mongol/s/catalog/replset/replset_dist_lock_manager.h"
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/s/catalog/dist_lock_catalog.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/s/catalog/type_locks.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/s/catalog/dist_lock_catalog.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/s/catalog/type_locks.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_FP_DECLARE(setDistLockTimeout);
 

@@ -28,15 +28,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_parser.h"
+#include "mongol/db/matcher/expression_parser.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/init.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using stdx::make_unique;
@@ -82,7 +82,7 @@ StatusWithMatchExpression expressionParserGeoCallbackReal(const char* name,
     }
 }
 
-MONGO_INITIALIZER(MatchExpressionParserGeo)(::mongo::InitializerContext* context) {
+MONGO_INITIALIZER(MatchExpressionParserGeo)(::mongol::InitializerContext* context) {
     expressionParserGeoCallback = expressionParserGeoCallbackReal;
     return Status::OK();
 }

@@ -104,7 +104,7 @@ var eg2result = {
                         }
                 }
         ],
-        "mongosPipeline" : [
+        "mongolsPipeline" : [
                 {
                         "$group" : {
                                 "_id" : "$_id",

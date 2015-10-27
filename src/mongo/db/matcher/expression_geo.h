@@ -32,11 +32,11 @@
 #pragma once
 
 
-#include "mongo/db/geo/geometry_container.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
+#include "mongol/db/geo/geometry_container.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
 
-namespace mongo {
+namespace mongol {
 
 struct PointWithCRS;
 class GeometryContainer;
@@ -193,4 +193,4 @@ private:
     std::shared_ptr<const GeoNearExpression> _query;
 };
 
-}  // namespace mongo
+}  // namespace mongol

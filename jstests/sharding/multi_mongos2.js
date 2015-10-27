@@ -1,8 +1,8 @@
 // This tests sharding an existing collection that both shards are aware of (SERVER-2828)
 (function() {
 
-var s1 = new ShardingTest({ name: "multi_mongos1", shards: 2, mongos: 2 });
-s2 = s1._mongos[1];
+var s1 = new ShardingTest({ name: "multi_mongols1", shards: 2, mongols: 2 });
+s2 = s1._mongols[1];
 
 s1.adminCommand( { enablesharding : "test" } );
 s1.ensurePrimaryShard('test', 'shard0001');

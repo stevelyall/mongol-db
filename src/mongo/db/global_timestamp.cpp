@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/db/global_timestamp.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/log.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/log.h"
 
 namespace {
-mongo::stdx::mutex globalTimestampMutex;
-mongo::Timestamp globalTimestamp(0, 0);
+mongol::stdx::mutex globalTimestampMutex;
+mongol::Timestamp globalTimestamp(0, 0);
 
-bool skewed(const mongo::Timestamp& val) {
+bool skewed(const mongol::Timestamp& val) {
     if (val.getInc() & 0x80000000) {
-        mongo::warning() << "clock skew detected  prev: " << val.getSecs()
+        mongol::warning() << "clock skew detected  prev: " << val.getSecs()
                          << " now: " << (unsigned)time(0) << std::endl;
         return true;
     }
@@ -48,7 +48,7 @@ bool skewed(const mongo::Timestamp& val) {
 }
 }
 
-namespace mongo {
+namespace mongol {
 void setGlobalTimestamp(const Timestamp& newTime) {
     stdx::lock_guard<stdx::mutex> lk(globalTimestampMutex);
     globalTimestamp = newTime;

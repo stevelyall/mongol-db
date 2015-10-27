@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
 #include <cstdlib>
 #include <ctime>
 #include <string>
 
-#include "mongo/base/init.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/log.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/init.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/log.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const bool isTimeTSmall =
@@ -831,4 +831,4 @@ TEST(SystemTime, ConvertDateToSystemTime) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

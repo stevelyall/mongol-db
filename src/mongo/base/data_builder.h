@@ -32,10 +32,10 @@
 #include <cstring>
 #include <limits>
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/util/allocator.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/util/allocator.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * DataBuilder provides a reallocing buffer underneath the DataRangeCursor API.
@@ -175,7 +175,7 @@ public:
 
         auto ptr = _buf.release();
 
-        _buf.reset(static_cast<char*>(mongoRealloc(ptr, newSize)));
+        _buf.reset(static_cast<char*>(mongolRealloc(ptr, newSize)));
 
         _capacity = newSize;
 
@@ -253,4 +253,4 @@ private:
     DataRangeCursor _unwrittenSpaceCursor = {nullptr, nullptr};
 };
 
-}  // namespace mongo
+}  // namespace mongol

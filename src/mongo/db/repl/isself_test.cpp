@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/isself.h"
-#include "mongo/db/server_options.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/repl/isself.h"
+#include "mongol/db/server_options.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -79,4 +79,4 @@ TEST(IsSelf, DetectsSameHostIPv6) {
 }  // namespace
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

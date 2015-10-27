@@ -26,28 +26,28 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>
 #include <memory>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobjbuilder.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobjbuilder.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/db/ftdc/collector.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/controller.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/replication_coordinator.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_options.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/ftdc/collector.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/controller.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_options.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -358,4 +358,4 @@ void stopFTDC() {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

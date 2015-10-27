@@ -26,20 +26,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <map>
 #include <utility>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/platform/random.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/chunk_diff.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/platform/random.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/chunk_diff.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 using std::string;
@@ -100,7 +100,7 @@ void convertBSONArrayToChunkTypes(const BSONArray& chunksArray,
     }
 }
 
-class ChunkDiffUnitTest : public mongo::unittest::Test {
+class ChunkDiffUnitTest : public mongol::unittest::Test {
 protected:
     typedef map<BSONObj, BSONObj, BSONObjCmp> RangeMap;
     typedef map<string, ChunkVersion> VersionMap;
@@ -424,4 +424,4 @@ TEST_F(ChunkDiffUnitTest, Inverse) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

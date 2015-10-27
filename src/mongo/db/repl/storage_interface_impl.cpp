@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/storage_interface_impl.h"
+#include "mongol/db/repl/storage_interface_impl.h"
 
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context_impl.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context_impl.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 StorageInterfaceImpl::StorageInterfaceImpl() : StorageInterface() {}
@@ -51,4 +51,4 @@ OperationContext* StorageInterfaceImpl::createOperationContext() {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

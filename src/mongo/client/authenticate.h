@@ -29,14 +29,14 @@
 
 #include <string>
 
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/md5.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/md5.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientWithCommands;
 class BSONObj;
@@ -73,10 +73,10 @@ extern const char* const kMechanismScramSha1;
  *     "user": The std::string name of the user to authenticate.  Mandatory.
  *     "db": The database target of the auth command, which identifies the location
  *         of the credential information for the user.  May be "$external" if
- *         credential information is stored outside of the mongo cluster.  Mandatory.
+ *         credential information is stored outside of the mongol cluster.  Mandatory.
  *     "pwd": The password data.
  *     "digestPassword": Boolean, set to true if the "pwd" is undigested (default).
- *     "serviceName": The GSSAPI service name to use.  Defaults to "mongodb".
+ *     "serviceName": The GSSAPI service name to use.  Defaults to "mongoldb".
  *     "serviceHostname": The GSSAPI hostname to use.  Defaults to the name of the remote
  *          host.
  *
@@ -122,4 +122,4 @@ StringData getSaslCommandUserDBFieldName();
 StringData getSaslCommandUserFieldName();
 
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

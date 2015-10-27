@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_factory.h"
 
-#include "mongo/executor/async_secure_stream.h"
-#include "mongo/executor/async_stream.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/executor/async_secure_stream.h"
+#include "mongol/executor/async_stream.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 std::unique_ptr<AsyncStreamInterface> AsyncStreamFactory::makeStream(asio::io_service* io_service,
@@ -44,4 +44,4 @@ std::unique_ptr<AsyncStreamInterface> AsyncStreamFactory::makeStream(asio::io_se
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

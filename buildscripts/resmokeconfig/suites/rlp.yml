@@ -1,7 +1,7 @@
 selector:
   js_test:
     roots:
-    - src/mongo/db/modules/*/jstests/rlp/*.js
+    - src/mongol/db/modules/*/jstests/rlp/*.js
 
 executor:
   js_test:
@@ -13,7 +13,7 @@ executor:
       n: 20
     fixture:
       class: MongoDFixture
-      mongod_options:
+      mongold_options:
         basisTechRootDirectory: /opt/basis
         set_parameters:
           enableTestCommands: 1

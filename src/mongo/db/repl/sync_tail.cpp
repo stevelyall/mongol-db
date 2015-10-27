@@ -26,48 +26,48 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
-#include "mongo/platform/bits.h"
+#include "mongol/platform/basic.h"
+#include "mongol/platform/bits.h"
 
-#include "mongo/db/repl/sync_tail.h"
+#include "mongol/db/repl/sync_tail.h"
 
 #include <boost/functional/hash.hpp>
 #include <memory>
 #include "third_party/murmurhash3/MurmurHash3.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/commands/fsync.h"
-#include "mongo/db/commands/server_status_metric.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/prefetch.h"
-#include "mongo/db/repl/bgsync.h"
-#include "mongo/db/repl/minvalid.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/oplogreader.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/stats/timer_stats.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/commands/fsync.h"
+#include "mongol/db/commands/server_status_metric.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/prefetch.h"
+#include "mongol/db/repl/bgsync.h"
+#include "mongol/db/repl/minvalid.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/oplogreader.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/stats/timer_stats.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 
@@ -850,4 +850,4 @@ void multiInitialSyncApply(const std::vector<BSONObj>& ops, SyncTail* st) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

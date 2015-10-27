@@ -30,14 +30,14 @@
 
 #include <memory>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/protocol.h"
-#include "mongo/rpc/reply_builder_interface.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/protocol.h"
+#include "mongol/rpc/reply_builder_interface.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 /**
@@ -91,4 +91,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

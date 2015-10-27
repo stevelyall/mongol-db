@@ -26,52 +26,52 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/type_mongos.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/type_mongols.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(Validity, MissingName) {
     BSONObj obj = BSON(MongosType::ping(Date_t::fromMillisSinceEpoch(1))
                        << MongosType::uptime(100) << MongosType::waiting(false)
-                       << MongosType::mongoVersion("x.x.x") << MongosType::configVersion(0));
+                       << MongosType::mongolVersion("x.x.x") << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_EQ(ErrorCodes::NoSuchKey, mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_EQ(ErrorCodes::NoSuchKey, mongolsTypeResult.getStatus());
 }
 
 TEST(Validity, MissingPing) {
     BSONObj obj = BSON(MongosType::name("localhost:27017")
                        << MongosType::uptime(100) << MongosType::waiting(false)
-                       << MongosType::mongoVersion("x.x.x") << MongosType::configVersion(0));
+                       << MongosType::mongolVersion("x.x.x") << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_EQ(ErrorCodes::NoSuchKey, mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_EQ(ErrorCodes::NoSuchKey, mongolsTypeResult.getStatus());
 }
 
 TEST(Validity, MissingUp) {
     BSONObj obj =
         BSON(MongosType::name("localhost:27017")
              << MongosType::ping(Date_t::fromMillisSinceEpoch(1)) << MongosType::waiting(false)
-             << MongosType::mongoVersion("x.x.x") << MongosType::configVersion(0));
+             << MongosType::mongolVersion("x.x.x") << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_EQ(ErrorCodes::NoSuchKey, mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_EQ(ErrorCodes::NoSuchKey, mongolsTypeResult.getStatus());
 }
 
 TEST(Validity, MissingWaiting) {
     BSONObj obj =
         BSON(MongosType::name("localhost:27017")
              << MongosType::ping(Date_t::fromMillisSinceEpoch(1)) << MongosType::uptime(100)
-             << MongosType::mongoVersion("x.x.x") << MongosType::configVersion(0));
+             << MongosType::mongolVersion("x.x.x") << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_EQ(ErrorCodes::NoSuchKey, mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_EQ(ErrorCodes::NoSuchKey, mongolsTypeResult.getStatus());
 }
 
 TEST(Validity, MissingMongoVersion) {
@@ -80,12 +80,12 @@ TEST(Validity, MissingMongoVersion) {
              << MongosType::ping(Date_t::fromMillisSinceEpoch(1)) << MongosType::uptime(100)
              << MongosType::waiting(false) << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_OK(mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_OK(mongolsTypeResult.getStatus());
 
-    MongosType& mtype = mongosTypeResult.getValue();
+    MongosType& mtype = mongolsTypeResult.getValue();
     /**
-     * Note: mongoVersion should eventually become mandatory, but is optional now
+     * Note: mongolVersion should eventually become mandatory, but is optional now
      *       for backward compatibility reasons.
      */
     ASSERT_OK(mtype.validate());
@@ -95,12 +95,12 @@ TEST(Validity, MissingConfigVersion) {
     BSONObj obj =
         BSON(MongosType::name("localhost:27017")
              << MongosType::ping(Date_t::fromMillisSinceEpoch(1)) << MongosType::uptime(100)
-             << MongosType::waiting(false) << MongosType::mongoVersion("x.x.x"));
+             << MongosType::waiting(false) << MongosType::mongolVersion("x.x.x"));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_OK(mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_OK(mongolsTypeResult.getStatus());
 
-    MongosType& mtype = mongosTypeResult.getValue();
+    MongosType& mtype = mongolsTypeResult.getValue();
     /**
      * Note: configVersion should eventually become mandatory, but is optional now
      *       for backward compatibility reasons.
@@ -112,10 +112,10 @@ TEST(Validity, Valid) {
     BSONObj obj = BSON(MongosType::name("localhost:27017")
                        << MongosType::ping(Date_t::fromMillisSinceEpoch(1))
                        << MongosType::uptime(100) << MongosType::waiting(false)
-                       << MongosType::mongoVersion("x.x.x") << MongosType::configVersion(0));
+                       << MongosType::mongolVersion("x.x.x") << MongosType::configVersion(0));
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    MongosType& mType = mongosTypeResult.getValue();
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    MongosType& mType = mongolsTypeResult.getValue();
 
     ASSERT_OK(mType.validate());
 
@@ -130,8 +130,8 @@ TEST(Validity, Valid) {
 TEST(Validity, BadType) {
     BSONObj obj = BSON(MongosType::name() << 0);
 
-    auto mongosTypeResult = MongosType::fromBSON(obj);
-    ASSERT_EQ(ErrorCodes::TypeMismatch, mongosTypeResult.getStatus());
+    auto mongolsTypeResult = MongosType::fromBSON(obj);
+    ASSERT_EQ(ErrorCodes::TypeMismatch, mongolsTypeResult.getStatus());
 }
 
 }  // unnamed namespace

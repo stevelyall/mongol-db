@@ -30,15 +30,15 @@
 
 #include <string>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/write_ops/batched_update_document.h"
-#include "mongo/s/write_ops/batched_delete_document.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/write_ops/batched_update_document.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 struct ShardEndpoint;
@@ -164,4 +164,4 @@ struct ShardEndpoint {
     const ChunkVersion shardVersion;
 };
 
-}  // namespace mongo
+}  // namespace mongol

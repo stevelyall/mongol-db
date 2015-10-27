@@ -37,12 +37,12 @@
 #include <boost/thread/shared_mutex.hpp>
 #include <wiredtiger.h>
 
-#include "mongo/db/storage/wiredtiger/wiredtiger_snapshot_manager.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/spin_lock.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_snapshot_manager.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/spin_lock.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerKVEngine;
 

@@ -30,9 +30,9 @@
 
 #include <asio.hpp>
 
-#include "mongo/executor/async_stream_interface.h"
+#include "mongol/executor/async_stream_interface.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class AsyncStream final : public AsyncStreamInterface {
@@ -55,4 +55,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

@@ -32,10 +32,10 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * this is a thread safe string
@@ -77,4 +77,4 @@ private:
 
 std::ostream& operator<<(std::ostream& s, const ThreadSafeString& o);
 
-}  // namespace mongo
+}  // namespace mongol

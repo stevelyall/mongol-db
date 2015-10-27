@@ -27,28 +27,28 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/balancer_policy.h"
+#include "mongol/s/balancer_policy.h"
 
 #include <algorithm>
 
-#include "mongo/client/read_preference.h"
-#include "mongo/client/remote_command_targeter.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/catalog/type_tags.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/shard_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/client/read_preference.h"
+#include "mongol/client/remote_command_targeter.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/catalog/type_tags.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/shard_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::map;
 using std::numeric_limits;
@@ -504,12 +504,12 @@ ShardInfo::ShardInfo(long long maxSizeMB,
                      long long currSizeMB,
                      bool draining,
                      const set<string>& tags,
-                     const string& mongoVersion)
+                     const string& mongolVersion)
     : _maxSizeMB(maxSizeMB),
       _currSizeMB(currSizeMB),
       _draining(draining),
       _tags(tags),
-      _mongoVersion(mongoVersion) {}
+      _mongolVersion(mongolVersion) {}
 
 ShardInfo::ShardInfo() : _maxSizeMB(0), _currSizeMB(0), _draining(false) {}
 
@@ -541,7 +541,7 @@ string ShardInfo::toString() const {
         for (set<string>::const_iterator i = _tags.begin(); i != _tags.end(); ++i)
             ss << *i << ",";
     }
-    ss << " version: " << _mongoVersion;
+    ss << " version: " << _mongolVersion;
     return ss.str();
 }
 
@@ -552,4 +552,4 @@ string ChunkInfo::toString() const {
     return buf.str();
 }
 
-}  // namespace mongo
+}  // namespace mongol

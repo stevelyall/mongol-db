@@ -26,27 +26,27 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 // This file defines functions from both of these headers
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/db/pipeline/pipeline_optimizations.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/db/pipeline/pipeline_optimizations.h"
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/pipeline/accumulator.h"
-#include "mongo/db/pipeline/document.h"
-#include "mongo/db/pipeline/document_source.h"
-#include "mongo/db/pipeline/expression.h"
-#include "mongo/db/pipeline/expression_context.h"
-#include "mongo/db/repl/read_concern_args.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/pipeline/accumulator.h"
+#include "mongol/db/pipeline/document.h"
+#include "mongol/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/expression.h"
+#include "mongol/db/pipeline/expression_context.h"
+#include "mongol/db/repl/read_concern_args.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::endl;
@@ -59,7 +59,7 @@ const char Pipeline::pipelineName[] = "pipeline";
 const char Pipeline::explainName[] = "explain";
 const char Pipeline::fromRouterName[] = "fromRouter";
 const char Pipeline::serverPipelineName[] = "serverPipeline";
-const char Pipeline::mongosPipelineName[] = "mongosPipeline";
+const char Pipeline::mongolsPipelineName[] = "mongolsPipeline";
 
 Pipeline::Pipeline(const intrusive_ptr<ExpressionContext>& pTheCtx)
     : explain(false), pCtx(pTheCtx) {}
@@ -322,7 +322,7 @@ Status Pipeline::checkAuthForCommand(ClientBasic* client,
     NamespaceString inputNs(db, cmdObj.firstElement().str());
     auto inputResource = ResourcePattern::forExactNamespace(inputNs);
     uassert(17138,
-            mongoutils::str::stream() << "Invalid input namespace, " << inputNs.ns(),
+            mongolutils::str::stream() << "Invalid input namespace, " << inputNs.ns(),
             inputNs.isValid());
 
     std::vector<Privilege> privileges;
@@ -345,7 +345,7 @@ Status Pipeline::checkAuthForCommand(ClientBasic* client,
         if (stageName == "$out" && stage.firstElementType() == String) {
             NamespaceString outputNs(db, stage.firstElement().str());
             uassert(17139,
-                    mongoutils::str::stream() << "Invalid $out target namespace, " << outputNs.ns(),
+                    mongolutils::str::stream() << "Invalid $out target namespace, " << outputNs.ns(),
                     outputNs.isValid());
 
             ActionSet actions;
@@ -609,4 +609,4 @@ DepsTracker Pipeline::getDependencies(const BSONObj& initialQuery) const {
 
     return deps;
 }
-}  // namespace mongo
+}  // namespace mongol

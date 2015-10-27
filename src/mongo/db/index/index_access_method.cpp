@@ -26,28 +26,28 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/index/btree_access_method.h"
+#include "mongol/db/index/btree_access_method.h"
 
 #include <vector>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/status.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/progress_meter.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/status.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/progress_meter.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::set;
@@ -445,7 +445,7 @@ Status IndexAccessMethod::commitBulk(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
-#include "mongo/db/sorter/sorter.cpp"
-MONGO_CREATE_SORTER(mongo::BSONObj, mongo::RecordId, mongo::BtreeExternalSortComparison);
+#include "mongol/db/sorter/sorter.cpp"
+MONGO_CREATE_SORTER(mongol::BSONObj, mongol::RecordId, mongol::BtreeExternalSortComparison);

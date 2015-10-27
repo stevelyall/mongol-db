@@ -30,12 +30,12 @@
 
 #include <vector>
 
-#include "mongo/db/lasterror.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // Utility functions for up-converting incoming write messages into batch write requests.

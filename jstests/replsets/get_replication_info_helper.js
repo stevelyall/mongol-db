@@ -28,9 +28,9 @@
 
     // calling this function with and without a primary, should provide sufficient code coverage
     // to catch any JS errors
-    var mongo = startParallelShell("db.getSiblingDB('admin').printSlaveReplicationInfo();",
+    var mongol = startParallelShell("db.getSiblingDB('admin').printSlaveReplicationInfo();",
                                    primary.port);
-    mongo();
+    mongol();
     assert.soon(function() {
         return rawMongoProgramOutput().match("behind the primary");
     });
@@ -45,9 +45,9 @@
     }
     catch (e) {}
 
-    mongo = startParallelShell("db.getSiblingDB('admin').printSlaveReplicationInfo();",
+    mongol = startParallelShell("db.getSiblingDB('admin').printSlaveReplicationInfo();",
                                primary.port);
-    mongo();
+    mongol();
     assert.soon(function() {
         return rawMongoProgramOutput().match("behind the freshest");
     });

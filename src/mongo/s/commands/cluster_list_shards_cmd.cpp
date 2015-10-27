@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/client/connpool.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/grid.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/grid.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ListShardsCmd : public Command {
@@ -91,4 +91,4 @@ public:
 } listShards;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

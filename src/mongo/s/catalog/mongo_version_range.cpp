@@ -26,13 +26,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/mongo_version_range.h"
+#include "mongol/s/catalog/mongol_version_range.h"
 
-#include "mongo/util/stringutils.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -56,7 +56,7 @@ bool MongoVersionRange::parseBSONElement(const BSONElement& el, string* errMsg) 
     if (el.type() == String) {
         minVersion = el.String();
         if (minVersion == "") {
-            *errMsg = (string) "cannot parse single empty mongo version (" + el.toString() + ")";
+            *errMsg = (string) "cannot parse single empty mongol version (" + el.toString() + ")";
             return false;
         }
         return true;
@@ -64,7 +64,7 @@ bool MongoVersionRange::parseBSONElement(const BSONElement& el, string* errMsg) 
         BSONObj range = el.Obj();
 
         if (range.nFields() != 2) {
-            *errMsg = (string) "not enough fields in mongo version range (" + el.toString() + ")";
+            *errMsg = (string) "not enough fields in mongol version range (" + el.toString() + ")";
             return false;
         }
 
@@ -74,7 +74,7 @@ bool MongoVersionRange::parseBSONElement(const BSONElement& el, string* errMsg) 
         BSONElement subElB = it.next();
 
         if (subElA.type() != String || subElB.type() != String) {
-            *errMsg = (string) "wrong field type for mongo version range (" + el.toString() + ")";
+            *errMsg = (string) "wrong field type for mongol version range (" + el.toString() + ")";
             return false;
         }
 
@@ -82,12 +82,12 @@ bool MongoVersionRange::parseBSONElement(const BSONElement& el, string* errMsg) 
         maxVersion = subElB.String();
 
         if (minVersion == "") {
-            *errMsg = (string) "cannot parse first empty mongo version (" + el.toString() + ")";
+            *errMsg = (string) "cannot parse first empty mongol version (" + el.toString() + ")";
             return false;
         }
 
         if (maxVersion == "") {
-            *errMsg = (string) "cannot parse second empty mongo version (" + el.toString() + ")";
+            *errMsg = (string) "cannot parse second empty mongol version (" + el.toString() + ")";
             return false;
         }
 
@@ -99,7 +99,7 @@ bool MongoVersionRange::parseBSONElement(const BSONElement& el, string* errMsg) 
 
         return true;
     } else {
-        *errMsg = (string) "wrong type for mongo version range " + el.toString();
+        *errMsg = (string) "wrong type for mongol version range " + el.toString();
         return false;
     }
 }

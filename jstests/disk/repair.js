@@ -38,7 +38,7 @@ check();
 MongoRunner.stopMongod( m.port );
 
 resetDbpath( repairpath );
-rc = runMongoProgram("mongod", "--repair", "--port", m.port, "--dbpath", dbpath,
+rc = runMongoProgram("mongold", "--repair", "--port", m.port, "--dbpath", dbpath,
                      "--repairpath", repairpath);
 assert.eq.automsg( "0", "rc" );
 m = MongoRunner.runMongod({
@@ -51,7 +51,7 @@ check();
 MongoRunner.stopMongod( m.port );
 
 resetDbpath( repairpath );
-rc = runMongoProgram("mongod", "--repair", "--port", m.port, "--dbpath", dbpath);
+rc = runMongoProgram("mongold", "--repair", "--port", m.port, "--dbpath", dbpath);
 assert.eq.automsg( "0", "rc" );
 m = MongoRunner.runMongod({
     port: m.port,

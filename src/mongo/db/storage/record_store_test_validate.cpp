@@ -28,17 +28,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_validate.h"
+#include "mongol/db/storage/record_store_test_validate.h"
 
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/record_store_test_harness.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/record_store_test_harness.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::string;
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // Verify that calling validate() on an empty collection returns an OK status.
@@ -248,4 +248,4 @@ TEST_F(ValidateTest, FullValidateNonEmptyAndScanData) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

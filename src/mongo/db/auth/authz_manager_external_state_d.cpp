@@ -26,30 +26,30 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/authz_manager_external_state_d.h"
+#include "mongol/db/auth/authz_manager_external_state_d.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_session_external_state_d.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/client.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_session_external_state_d.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/client.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 AuthzManagerExternalStateMongod::AuthzManagerExternalStateMongod() = default;
 AuthzManagerExternalStateMongod::~AuthzManagerExternalStateMongod() = default;
@@ -86,8 +86,8 @@ Status AuthzManagerExternalStateMongod::findOne(OperationContext* txn,
         return Status::OK();
     }
     return Status(ErrorCodes::NoMatchingDocument,
-                  mongoutils::str::stream() << "No document in " << collectionName.ns()
+                  mongolutils::str::stream() << "No document in " << collectionName.ns()
                                             << " matches " << query);
 }
 
-}  // namespace mongo
+}  // namespace mongol

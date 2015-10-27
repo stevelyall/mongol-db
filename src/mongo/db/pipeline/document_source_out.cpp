@@ -26,11 +26,11 @@
  * it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/pipeline/document_source.h"
+#include "mongol/db/pipeline/document_source.h"
 
-namespace mongo {
+namespace mongol {
 
 using boost::intrusive_ptr;
 using std::vector;
@@ -40,7 +40,7 @@ DocumentSourceOut::~DocumentSourceOut() {
         // Make sure we drop the temp collection if anything goes wrong. Errors are ignored
         // here because nothing can be done about them. Additionally, if this fails and the
         // collection is left behind, it will be cleaned up next time the server is started.
-        if (_mongod && _tempNs.size()) _mongod->directClient()->dropCollection(_tempNs.ns());)
+        if (_mongold && _tempNs.size()) _mongold->directClient()->dropCollection(_tempNs.ns());)
 }
 
 REGISTER_DOCUMENT_SOURCE(out, DocumentSourceOut::createFromBson);
@@ -51,22 +51,22 @@ const char* DocumentSourceOut::getSourceName() const {
 
 static AtomicUInt32 aggOutCounter;
 void DocumentSourceOut::prepTempCollection() {
-    verify(_mongod);
+    verify(_mongold);
     verify(_tempNs.size() == 0);
 
-    DBClientBase* conn = _mongod->directClient();
+    DBClientBase* conn = _mongold->directClient();
 
     // Fail early by checking before we do any work.
     uassert(17017,
             str::stream() << "namespace '" << _outputNs.ns()
                           << "' is sharded so it can't be used for $out'",
-            !_mongod->isSharded(_outputNs));
+            !_mongold->isSharded(_outputNs));
 
     // cannot $out to capped collection
     uassert(17152,
             str::stream() << "namespace '" << _outputNs.ns()
                           << "' is capped so it can't be used for $out",
-            !_mongod->isCapped(_outputNs));
+            !_mongold->isCapped(_outputNs));
 
     _tempNs = NamespaceString(StringData(str::stream() << _outputNs.db() << ".tmp.agg_out."
                                                        << aggOutCounter.addAndFetch(1)));
@@ -108,7 +108,7 @@ void DocumentSourceOut::prepTempCollection() {
 }
 
 void DocumentSourceOut::spill(const vector<BSONObj>& toInsert) {
-    BSONObj err = _mongod->insert(_tempNs, toInsert);
+    BSONObj err = _mongold->insert(_tempNs, toInsert);
     uassert(16996,
             str::stream() << "insert for $out failed: " << err,
             DBClientWithCommands::getLastErrorString(err).empty());
@@ -122,8 +122,8 @@ boost::optional<Document> DocumentSourceOut::getNext() {
         return boost::none;
     _done = true;
 
-    verify(_mongod);
-    DBClientBase* conn = _mongod->directClient();
+    verify(_mongold);
+    DBClientBase* conn = _mongold->directClient();
 
     prepTempCollection();
     verify(_tempNs.size() != 0);
@@ -148,7 +148,7 @@ boost::optional<Document> DocumentSourceOut::getNext() {
     uassert(17018,
             str::stream() << "namespace '" << _outputNs.ns()
                           << "' became sharded so it can't be used for $out'",
-            !_mongod->isSharded(_outputNs));
+            !_mongold->isSharded(_outputNs));
 
     BSONObj rename =
         BSON("renameCollection" << _tempNs.ns() << "to" << _outputNs.ns() << "dropTarget" << true);

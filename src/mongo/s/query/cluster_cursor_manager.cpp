@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_cursor_manager.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
 
 #include <set>
 
-#include "mongo/util/clock_source.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/clock_source.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -443,4 +443,4 @@ StatusWith<std::unique_ptr<ClusterClientCursor>> ClusterCursorManager::detachCur
     return std::move(cursor);
 }
 
-}  // namespace mongo
+}  // namespace mongol

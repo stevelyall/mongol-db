@@ -9,9 +9,9 @@ var numShards = 2;
 var username = "foo";
 var password = "bar";
 
-var createUser = function(mongo) {
+var createUser = function(mongol) {
     print("============ adding a user.");
-    mongo.getDB("admin").createUser({user: username, pwd: password, roles: jsTest.adminUserRoles});
+    mongol.getDB("admin").createUser({user: username, pwd: password, roles: jsTest.adminUserRoles});
 };
 
 var addUsersToEachShard = function(st) {
@@ -47,11 +47,11 @@ var findEmptyShard = function(st, ns) {
     return null;
 };
 
-var assertCannotRunCommands = function(mongo, st) {
+var assertCannotRunCommands = function(mongol, st) {
     print("============ ensuring that commands cannot be run.");
 
     // CRUD
-    var test = mongo.getDB("test");
+    var test = mongol.getDB("test");
     assert.throws( function() { test.system.users.findOne(); });
     assert.writeError(test.foo.save({ _id: 0 }));
     assert.throws( function() { test.foo.findOne({_id:0}); });
@@ -68,20 +68,20 @@ var assertCannotRunCommands = function(mongo, st) {
 
     // Config
     assert.throws(function() {
-        mongo.getDB("config").shards.findOne();
+        mongol.getDB("config").shards.findOne();
     });
 
     var authorizeErrorCode = 13;
-    var res = mongo.getDB("admin").runCommand({
+    var res = mongol.getDB("admin").runCommand({
         moveChunk: "test.foo",
         find: {_id: 1},
         to: "shard0000" // Arbitrary shard.
     });
     assert.commandFailedWithCode(res, authorizeErrorCode, "moveChunk");
-    assert.commandFailedWithCode(mongo.getDB("test").copyDatabase("admin",  "admin2"),
+    assert.commandFailedWithCode(mongol.getDB("test").copyDatabase("admin",  "admin2"),
         authorizeErrorCode, "copyDatabase");
     // Create collection
-    assert.commandFailedWithCode(mongo.getDB("test").createCollection(
+    assert.commandFailedWithCode(mongol.getDB("test").createCollection(
         "log", { capped: true, size: 5242880, max: 5000 } ),
         authorizeErrorCode, "createCollection");
     // Set/Get system parameters
@@ -101,22 +101,22 @@ var assertCannotRunCommands = function(mongo, st) {
     params.forEach(function(p) {
         var cmd = { setParameter: 1 };
         cmd[p.param] = p.val;
-        assert.commandFailedWithCode(mongo.getDB("admin").runCommand(cmd),
+        assert.commandFailedWithCode(mongol.getDB("admin").runCommand(cmd),
             authorizeErrorCode, "setParameter: "+p.param);
     });
     params.forEach(function(p) {
         var cmd = { getParameter: 1 };
         cmd[p.param] = 1;
-        assert.commandFailedWithCode(mongo.getDB("admin").runCommand(cmd),
+        assert.commandFailedWithCode(mongol.getDB("admin").runCommand(cmd),
             authorizeErrorCode, "getParameter: "+p.param);
     });
 };
 
-var assertCanRunCommands = function(mongo, st) {
+var assertCanRunCommands = function(mongol, st) {
     print("============ ensuring that commands can be run.");
 
     // CRUD
-    var test = mongo.getDB("test");
+    var test = mongol.getDB("test");
 
     // this will throw if it fails
     test.system.users.findOne();
@@ -134,10 +134,10 @@ var assertCanRunCommands = function(mongo, st) {
 
     // Config
     // this will throw if it fails
-    mongo.getDB("config").shards.findOne();
+    mongol.getDB("config").shards.findOne();
 
     to = findEmptyShard(st, "test.foo");
-    var res = mongo.getDB("admin").runCommand({
+    var res = mongol.getDB("admin").runCommand({
         moveChunk: "test.foo",
         find: {_id: 1},
         to: to
@@ -145,20 +145,20 @@ var assertCanRunCommands = function(mongo, st) {
     assert.commandWorked(res);
 };
 
-var authenticate = function(mongo) {
+var authenticate = function(mongol) {
     print("============ authenticating user.");
-    mongo.getDB("admin").auth(username, password);
+    mongol.getDB("admin").auth(username, password);
 };
 
 var setupSharding = function(shardingTest) {
-    var mongo = shardingTest.s;
+    var mongol = shardingTest.s;
 
     print("============ enabling sharding on test.foo.");
-    mongo.getDB("admin").runCommand({enableSharding : "test"});
+    mongol.getDB("admin").runCommand({enableSharding : "test"});
     shardingTest.ensurePrimaryShard('test', 'shard0001');
-    mongo.getDB("admin").runCommand({shardCollection : "test.foo", key : {_id : 1}});
+    mongol.getDB("admin").runCommand({shardCollection : "test.foo", key : {_id : 1}});
 
-    var test = mongo.getDB("test");
+    var test = mongol.getDB("test");
     for(i = 1; i < 20; i++) {
         test.foo.insert({_id: i});
     }
@@ -185,7 +185,7 @@ var shutdown = function(st) {
     // ShardingTest.stop does not have a way to provide auth
     // information.  Therefore, we'll do this manually for now.
 
-    for(i = 0; i < st._mongos.length; i++) {
+    for(i = 0; i < st._mongols.length; i++) {
         var port = st["s" + i].port;
         MongoRunner.stopMongos(
             port,
@@ -223,35 +223,35 @@ var runTest = function() {
     var host = st.s.host;
     var extraShards = [];
 
-    var mongo = new Mongo(host);
+    var mongol = new Mongo(host);
 
-    assertCannotRunCommands(mongo, st);
+    assertCannotRunCommands(mongol, st);
 
     extraShards.push(addShard(st, 1));
-    createUser(mongo);
+    createUser(mongol);
 
-    authenticate(mongo);
+    authenticate(mongol);
     authenticate(st.s);
     setupSharding(st);
 
     addUsersToEachShard(st);
     st.printShardingStatus();
 
-    assertCanRunCommands(mongo, st);
+    assertCanRunCommands(mongol, st);
 
     print("===============================");
     print("reconnecting with a new client.");
     print("===============================");
 
-    mongo = new Mongo(host);
+    mongol = new Mongo(host);
 
-    assertCannotRunCommands(mongo, st);
-    extraShards.push(addShard(mongo, 0));
+    assertCannotRunCommands(mongol, st);
+    extraShards.push(addShard(mongol, 0));
 
-    authenticate(mongo);
+    authenticate(mongol);
 
-    assertCanRunCommands(mongo, st);
-    extraShards.push(addShard(mongo, 1));
+    assertCanRunCommands(mongol, st);
+    extraShards.push(addShard(mongol, 1));
     st.printShardingStatus();
 
     shutdown(st);

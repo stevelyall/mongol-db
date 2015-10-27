@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-namespace mongo {
+namespace mongol {
 /** a simple, rather dumb, but very fast checksum.  see perftests.cpp for unit tests. */
 struct Checksum {
     union {

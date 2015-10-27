@@ -33,11 +33,11 @@
 
 #include <string>
 
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/admin_access.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/admin_access.h"
 
-namespace mongo {
+namespace mongol {
 
 class RestAdminAccess : public AdminAccess {
 public:
@@ -46,4 +46,4 @@ public:
     virtual bool haveAdminUsers(OperationContext* txn) const;
 };
 
-}  // namespace mongo
+}  // namespace mongol

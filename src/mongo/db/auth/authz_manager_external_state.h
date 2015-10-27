@@ -32,14 +32,14 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/role_name.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/role_name.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class AuthorizationManager;
 class AuthzSessionExternalState;
@@ -48,7 +48,7 @@ class OperationContext;
 /**
  * Public interface for a class that encapsulates all the information related to system
  * state not stored in AuthorizationManager.  This is primarily to make AuthorizationManager
- * easier to test as well as to allow different implementations for mongos and mongod.
+ * easier to test as well as to allow different implementations for mongols and mongold.
  */
 class AuthzManagerExternalState {
     MONGO_DISALLOW_COPYING(AuthzManagerExternalState);
@@ -140,4 +140,4 @@ protected:
     AuthzManagerExternalState();  // This class should never be instantiated directly.
 };
 
-}  // namespace mongo
+}  // namespace mongol

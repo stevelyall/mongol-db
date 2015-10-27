@@ -27,32 +27,32 @@
  */
 
 
-#include "mongo/db/ops/modifier_bit.h"
+#include "mongol/db/ops/modifier_bit.h"
 
 #include <cstdint>
 
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/platform/decimal128.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::Decimal128;
-using mongo::LogBuilder;
-using mongo::ModifierBit;
-using mongo::ModifierInterface;
-using mongo::Status;
-using mongo::StringData;
-using mongo::fromjson;
-using mongo::mutablebson::ConstElement;
-using mongo::mutablebson::Document;
-using mongo::mutablebson::Element;
+using mongol::BSONObj;
+using mongol::Decimal128;
+using mongol::LogBuilder;
+using mongol::ModifierBit;
+using mongol::ModifierInterface;
+using mongol::Status;
+using mongol::StringData;
+using mongol::fromjson;
+using mongol::mutablebson::ConstElement;
+using mongol::mutablebson::Document;
+using mongol::mutablebson::Element;
 
 /** Helper to build and manipulate a $bit mod. */
 class Mod {
@@ -124,7 +124,7 @@ TEST(Init, FailToInitWithInvalidValue) {
     ASSERT_NOT_OK(mod.init(modObj["$bit"].embeddedObject().firstElement(),
                            ModifierInterface::Options::normal()));
 
-    if (mongo::Decimal128::enabled) {
+    if (mongol::Decimal128::enabled) {
         // The argument to the sub-operator must be integral
         modObj = fromjson("{ $bit : { a : { or : NumberDecimal(\"1.0\") } } }");
         ASSERT_NOT_OK(mod.init(modObj["$bit"].embeddedObject().firstElement(),
@@ -520,7 +520,7 @@ TEST(Upcasting, UpcastIntToLongAnd) {
     ASSERT_OK(mod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 TEST(Upcasting, UpcastIntToLongOr) {
@@ -534,7 +534,7 @@ TEST(Upcasting, UpcastIntToLongOr) {
     ASSERT_OK(mod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 TEST(Upcasting, UpcastIntToLongXor) {
@@ -548,7 +548,7 @@ TEST(Upcasting, UpcastIntToLongXor) {
     ASSERT_OK(mod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 1 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 TEST(Upcasting, LongsStayLongsAnd) {
@@ -562,7 +562,7 @@ TEST(Upcasting, LongsStayLongsAnd) {
     ASSERT_OK(mod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 0 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 TEST(Upcasting, LongsStayLongsOr) {
@@ -576,7 +576,7 @@ TEST(Upcasting, LongsStayLongsOr) {
     ASSERT_OK(mod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 3 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 TEST(Upcasting, LongsStayLongsXor) {
@@ -590,7 +590,7 @@ TEST(Upcasting, LongsStayLongsXor) {
     ASSERT_OK(mod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(fromjson("{ a : 0 }"), doc);
-    ASSERT_EQUALS(mongo::NumberLong, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberLong, doc.root()["a"].getType());
 }
 
 // The following tests are re-created from the previous $bit tests in updatetests.cpp. They
@@ -607,7 +607,7 @@ TEST(DbUpdateTests, BitRewriteExistingField) {
     ASSERT_OK(mod.apply());
     ASSERT_TRUE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(BSON("a" << static_cast<int>(1)), doc);
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());
@@ -626,7 +626,7 @@ TEST(DbUpdateTests, BitRewriteNonExistingField) {
     ASSERT_OK(mod.apply());
     ASSERT_FALSE(doc.isInPlaceModeEnabled());
     ASSERT_EQUALS(BSON("a" << static_cast<int>(0) << "b" << static_cast<int>(1)), doc);
-    ASSERT_EQUALS(mongo::NumberInt, doc.root()["a"].getType());
+    ASSERT_EQUALS(mongol::NumberInt, doc.root()["a"].getType());
 
     Document logDoc;
     LogBuilder logBuilder(logDoc.root());

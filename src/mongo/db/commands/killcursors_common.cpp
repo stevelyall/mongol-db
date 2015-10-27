@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/killcursors_common.h"
+#include "mongol/db/commands/killcursors_common.h"
 
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/query/killcursors_request.h"
-#include "mongo/db/query/killcursors_response.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/query/killcursors_request.h"
+#include "mongol/db/query/killcursors_response.h"
 
-namespace mongo {
+namespace mongol {
 
 Status KillCursorsCmdBase::checkAuthForCommand(ClientBasic* client,
                                                const std::string& dbname,
@@ -100,4 +100,4 @@ bool KillCursorsCmdBase::run(OperationContext* txn,
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

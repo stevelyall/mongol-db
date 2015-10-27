@@ -49,7 +49,7 @@ var st;
     jsTest.log("Setting up SCCC sharded cluster")
     st = new ShardingTest({
         name: "csrsUpgrade",
-        mongos: 2,
+        mongols: 2,
         rs: { nodes: 2 },
         shards: 2,
         nopreallocj: true,
@@ -167,7 +167,7 @@ var st;
         if (csrsStatus.members[0].stateStr == "STARTUP" ||
             csrsStatus.members[0].stateStr == "STARTUP2" ||
             csrsStatus.members[0].stateStr == "RECOVERING") {
-            // Make sure first node is fully online or else mongoses still in SCCC mode might not
+            // Make sure first node is fully online or else mongolses still in SCCC mode might not
             // find any node online to talk to.
             return false;
         }

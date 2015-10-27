@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/storage/mmap_v1/btree/key.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/storage/mmap_v1/btree/key.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
 
-namespace mongo {
+namespace mongol {
 
 const int OldBucketSize = 8192;
 
@@ -377,4 +377,4 @@ struct BtreeLayoutV1 {
 
 #pragma pack()
 
-}  // namespace mongo
+}  // namespace mongol

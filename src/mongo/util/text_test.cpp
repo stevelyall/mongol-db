@@ -30,10 +30,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/text.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/text.h"
 
-using namespace mongo;
+using namespace mongol;
 
 static std::vector<std::string> svec(const char* first, ...) {
     std::vector<std::string> result;
@@ -69,22 +69,22 @@ TEST(WindowsCommandLineConstruction, ThingsToQuote) {
 
 TEST(WindowsCommandLineConstruction, RegressionSERVER_7252) {
     ASSERT_EQUALS(
-        "mongod \"--serviceName=My Service\" --serviceDescription \"My Service\" "
-        "--serviceDisplayName \"My Service\" --dbpath C:\\mongo\\data\\config "
-        "--port 20001 --logpath C:\\mongo\\logs\\mongo_config.log.txt "
+        "mongold \"--serviceName=My Service\" --serviceDescription \"My Service\" "
+        "--serviceDisplayName \"My Service\" --dbpath C:\\mongol\\data\\config "
+        "--port 20001 --logpath C:\\mongol\\logs\\mongol_config.log.txt "
         "--configsvr --service",
-        constructUtf8WindowsCommandLine(svec("mongod",
+        constructUtf8WindowsCommandLine(svec("mongold",
                                              "--serviceName=My Service",
                                              "--serviceDescription",
                                              "My Service",
                                              "--serviceDisplayName",
                                              "My Service",
                                              "--dbpath",
-                                             "C:\\mongo\\data\\config",
+                                             "C:\\mongol\\data\\config",
                                              "--port",
                                              "20001",
                                              "--logpath",
-                                             "C:\\mongo\\logs\\mongo_config.log.txt",
+                                             "C:\\mongol\\logs\\mongol_config.log.txt",
                                              "--configsvr",
                                              "--service",
                                              NULL)));

@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/status_with.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/catalog/type_lockpings.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status_with.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/catalog/type_lockpings.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/time_support.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(Validity, MissingProcess) {
     BSONObj objNoProcess = BSON(LockpingsType::ping(Date_t::now()));

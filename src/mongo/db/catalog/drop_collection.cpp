@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/drop_collection.h"
+#include "mongol/db/catalog/drop_collection.h"
 
-#include "mongo/db/background.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/index_catalog.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/curop.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/log.h"
+#include "mongol/db/background.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/index_catalog.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/curop.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 Status dropCollection(OperationContext* txn,
                       const NamespaceString& collectionName,
@@ -104,4 +104,4 @@ Status dropCollection(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

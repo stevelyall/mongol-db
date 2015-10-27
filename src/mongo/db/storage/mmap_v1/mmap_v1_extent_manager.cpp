@@ -28,32 +28,32 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
 #include <boost/filesystem/operations.hpp>
 
-#include "mongo/db/storage/mmap_v1/mmap_v1_extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_extent_manager.h"
 
-#include "mongo/base/counter.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/client.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/data_file.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
-#include "mongo/db/storage/mmap_v1/mmap.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_engine.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_options.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/file.h"
-#include "mongo/util/log.h"
+#include "mongol/base/counter.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/client.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/data_file.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/mmap.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_engine.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_options.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/file.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -94,8 +94,8 @@ public:
         __record_touch_dummy += *recordChar;
 
         // We're not going to touch the record anymore, so we can give up our
-        // lock on mongo files. We do this here because we have to release the
-        // lock on mongo files prior to reacquiring lock mgr locks.
+        // lock on mongol files. We do this here because we have to release the
+        // lock on mongol files prior to reacquiring lock mgr locks.
         _filesLock.reset();
     }
 

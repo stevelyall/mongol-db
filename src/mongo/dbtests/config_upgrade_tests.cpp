@@ -26,21 +26,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/dbtests/config_server_fixture.h"
-#include "mongo/s/catalog/config_server_version.h"
-#include "mongo/s/catalog/legacy/cluster_client_internal.h"
-#include "mongo/s/catalog/legacy/config_upgrade.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_config_version.h"
-#include "mongo/s/catalog/type_mongos.h"
-#include "mongo/s/catalog/type_settings.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/grid.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/version.h"
+#include "mongol/dbtests/config_server_fixture.h"
+#include "mongol/s/catalog/config_server_version.h"
+#include "mongol/s/catalog/legacy/cluster_client_internal.h"
+#include "mongol/s/catalog/legacy/config_upgrade.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_config_version.h"
+#include "mongol/s/catalog/type_mongols.h"
+#include "mongol/s/catalog/type_settings.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/grid.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -246,4 +246,4 @@ TEST_F(ConfigUpgradeTests, BadVersionUpgrade) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

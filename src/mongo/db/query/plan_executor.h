@@ -31,12 +31,12 @@
 #include <boost/optional.hpp>
 #include <queue>
 
-#include "mongo/base/status.h"
-#include "mongo/db/invalidation_type.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/storage/snapshot.h"
+#include "mongol/base/status.h"
+#include "mongol/db/invalidation_type.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/storage/snapshot.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class Collection;
@@ -468,4 +468,4 @@ private:
     bool _everDetachedFromOperationContext = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

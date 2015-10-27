@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "mongo/rpc/protocol.h"
+#include "mongol/rpc/protocol.h"
 
 #include <memory>
 
@@ -37,7 +37,7 @@
  * supports, and what the client has been configured to do.
  */
 
-namespace mongo {
+namespace mongol {
 class Message;
 
 namespace rpc {
@@ -72,4 +72,4 @@ std::unique_ptr<RequestInterface> makeRequest(const Message* unownedMessage);
 std::unique_ptr<ReplyBuilderInterface> makeReplyBuilder(Protocol protocol);
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

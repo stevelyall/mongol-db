@@ -33,9 +33,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/catalog/collection_catalog_entry.h"
+#include "mongol/db/catalog/collection_catalog_entry.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This is a helper class for any storage engine that wants to store catalog information

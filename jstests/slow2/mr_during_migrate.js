@@ -1,14 +1,14 @@
 // Do parallel ops with migrates occurring
 
-var st = new ShardingTest({ shards : 10, mongos : 2, verbose : 2 })
+var st = new ShardingTest({ shards : 10, mongols : 2, verbose : 2 })
 
 jsTest.log( "Doing parallel operations..." )
 
 //Stop balancer, since it'll just get in the way of these
 st.stopBalancer()
 
-var mongos = st.s0
-var admin = mongos.getDB("admin")
+var mongols = st.s0
+var admin = mongols.getDB("admin")
 var coll = st.s.getCollection( jsTest.name() + ".coll" )
 
 var numDocs = 1024 * 1024
@@ -73,9 +73,9 @@ for( var t = 0; t < numTests; t++ ){
     
     jsTest.log( "Test #" + t )
     
-    var mongos = st.s1 // use other mongos so we get stale shard versions
-    var coll = mongos.getCollection( coll + "" )
-    var outputColl = mongos.getCollection( coll + "_output" )
+    var mongols = st.s1 // use other mongols so we get stale shard versions
+    var coll = mongols.getCollection( coll + "" )
+    var outputColl = mongols.getCollection( coll + "_output" )
     
     var numTypes = 32
     var map = function(){ emit( this._id % 32 /* must be hardcoded */, { c : 1 } ) }

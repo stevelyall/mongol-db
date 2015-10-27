@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::set;
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 // Create an iterator for repairing an empty record store.
 TEST(RecordStoreTestHarness, GetIteratorForRepairEmpty) {
@@ -165,4 +165,4 @@ TEST(RecordStoreTestHarness, GetIteratorForRepairInvalidateSingleton) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

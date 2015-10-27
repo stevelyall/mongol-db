@@ -27,19 +27,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/oplog_hack.h"
+#include "mongol/db/storage/oplog_hack.h"
 
 #include <limits>
 
-#include "mongo/bson/bson_validate.h"
-#include "mongo/bson/timestamp.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/record_id.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/record_id.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace oploghack {
 
 StatusWith<RecordId> keyForOptime(const Timestamp& opTime) {
@@ -78,4 +78,4 @@ StatusWith<RecordId> extractKey(const char* data, int len) {
 }
 
 }  // namespace oploghack
-}  // namespace mongo
+}  // namespace mongol

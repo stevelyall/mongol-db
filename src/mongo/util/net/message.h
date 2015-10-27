@@ -32,18 +32,18 @@
 #include <cstdint>
 #include <vector>
 
-#include "mongo/base/data_type_endian.h"
-#include "mongo/base/data_view.h"
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/encoded_value_storage.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/net/sock.h"
-#include "mongo/util/print.h"
+#include "mongol/base/data_type_endian.h"
+#include "mongol/base/data_view.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/encoded_value_storage.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/net/sock.h"
+#include "mongol/util/print.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Maximum accepted message size on the wire protocol.
@@ -126,7 +126,7 @@ inline bool opIsWrite(int op) {
 
 namespace MSGHEADER {
 #pragma pack(1)
-/* see http://dochub.mongodb.org/core/mongowireprotocol
+/* see http://dochub.mongoldb.org/core/mongolwireprotocol
 */
 struct Layout {
     int32_t messageLength;  // total message size, including this
@@ -402,7 +402,7 @@ public:
              ++i) {
             totalSize += i->second;
         }
-        char* buf = (char*)mongoMalloc(totalSize);
+        char* buf = (char*)mongolMalloc(totalSize);
         char* p = buf;
         for (std::vector<std::pair<char*, int>>::const_iterator i = _data.begin(); i != _data.end();
              ++i) {
@@ -480,7 +480,7 @@ public:
     void setData(int operation, const char* msgdata, size_t len) {
         verify(empty());
         size_t dataLen = len + sizeof(MsgData::Value) - 4;
-        MsgData::View d = reinterpret_cast<char*>(mongoMalloc(dataLen));
+        MsgData::View d = reinterpret_cast<char*>(mongolMalloc(dataLen));
         memcpy(d.data(), msgdata, len);
         d.setLen(dataLen);
         d.setOperation(operation);
@@ -517,4 +517,4 @@ private:
 MSGID nextMessageId();
 
 
-}  // namespace mongo
+}  // namespace mongol

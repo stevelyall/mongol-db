@@ -32,10 +32,10 @@
 #include <memory>
 #include <unordered_map>
 
-#include "mongo/base/status.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A key-value store structure with a least recently used (LRU) replacement
@@ -225,4 +225,4 @@ private:
     mutable KVMap _kvMap;
 };
 
-}  // namespace mongo
+}  // namespace mongol

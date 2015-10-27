@@ -2,13 +2,13 @@
 (function() {
     'use strict';
 
-    var mongo = MongoRunner.runMongod({master: ""});
+    var mongol = MongoRunner.runMongod({master: ""});
 
     var cmdRes;
     var cursorId;
     var defaultBatchSize = 101;
     var collName = 'await_data';
-    var db = mongo.getDB("test");
+    var db = mongol.getDB("test");
     var coll = db[collName];
 
     var localDB = db.getSiblingDB("local");

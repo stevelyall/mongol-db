@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <numeric>
 
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/storage/mmap_v1/btree/btree_logic.h"
-#include "mongo/db/storage/mmap_v1/btree/key.h"
-#include "mongo/db/storage/mmap_v1/diskloc.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/db/storage/mmap_v1/record_store_v1_base.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/storage/mmap_v1/btree/btree_logic.h"
+#include "mongol/db/storage/mmap_v1/btree/key.h"
+#include "mongol/db/storage/mmap_v1/diskloc.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_base.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::dec;
@@ -890,7 +890,7 @@ bool BtreeLogic<BtreeLayout>::customFind(OperationContext* txn,
  * 'rBegin' is composed partly of an existing bsonobj, and the remaining keys are taken from a
  * vector of elements that frequently changes
  *
- * see https://jira.mongodb.org/browse/SERVER-371
+ * see https://jira.mongoldb.org/browse/SERVER-371
  */
 // static
 template <class BtreeLayout>
@@ -2435,4 +2435,4 @@ template class BtreeLogic<BtreeLayoutV0>;
 template struct FixedWidthKey<DiskLoc56Bit>;
 template class BtreeLogic<BtreeLayoutV1>;
 
-}  // namespace mongo
+}  // namespace mongol

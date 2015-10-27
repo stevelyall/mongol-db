@@ -28,18 +28,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::string;
@@ -117,7 +117,7 @@ public:
         }
 
         if (!results.valid) {
-            result.append("advice", "ns corrupt. See http://dochub.mongodb.org/core/data-recovery");
+            result.append("advice", "ns corrupt. See http://dochub.mongoldb.org/core/data-recovery");
         }
 
         return true;

@@ -26,12 +26,12 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/util.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 void checkTime(int expected, int now_time, int period) {
     ASSERT_TRUE(Date_t::fromMillisSinceEpoch(expected) ==
@@ -46,4 +46,4 @@ TEST(FTDCUtilTest, TestRoundTime) {
     checkTime(14, 13, 7);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 /**
  * Begins an initial sync of a node.  This drops all data, chooses a sync source,

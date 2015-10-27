@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/query_fetcher.h"
+#include "mongol/client/query_fetcher.h"
 
-namespace mongo {
+namespace mongol {
 
 QueryFetcher::QueryFetcher(executor::TaskExecutor* exec,
                            const HostAndPort& src,
@@ -80,4 +80,4 @@ std::string QueryFetcher::getDiagnosticString() const {
                          << " fetcher: " << _fetcher.getDiagnosticString();
 }
 
-}  // namespace mongo
+}  // namespace mongol

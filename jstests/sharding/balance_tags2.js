@@ -1,7 +1,7 @@
 // Test balancing all chunks to one shard by tagging the full shard-key range on that collection
 var s = new ShardingTest({ name: "balance_tags2",
                            shards: 3,
-                           mongos: 1,
+                           mongols: 1,
                            verbose: 1,
                            other: { chunkSize: 1,
                                     enableBalancer : true } });

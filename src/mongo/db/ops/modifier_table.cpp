@@ -26,28 +26,28 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_table.h"
+#include "mongol/db/ops/modifier_table.h"
 
 #include <string>
 #include <utility>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/ops/modifier_add_to_set.h"
-#include "mongo/db/ops/modifier_bit.h"
-#include "mongo/db/ops/modifier_compare.h"
-#include "mongo/db/ops/modifier_current_date.h"
-#include "mongo/db/ops/modifier_inc.h"
-#include "mongo/db/ops/modifier_pop.h"
-#include "mongo/db/ops/modifier_pull.h"
-#include "mongo/db/ops/modifier_pull_all.h"
-#include "mongo/db/ops/modifier_push.h"
-#include "mongo/db/ops/modifier_rename.h"
-#include "mongo/db/ops/modifier_set.h"
-#include "mongo/db/ops/modifier_unset.h"
-#include "mongo/platform/unordered_map.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/ops/modifier_add_to_set.h"
+#include "mongol/db/ops/modifier_bit.h"
+#include "mongol/db/ops/modifier_compare.h"
+#include "mongol/db/ops/modifier_current_date.h"
+#include "mongol/db/ops/modifier_inc.h"
+#include "mongol/db/ops/modifier_pop.h"
+#include "mongol/db/ops/modifier_pull.h"
+#include "mongol/db/ops/modifier_pull_all.h"
+#include "mongol/db/ops/modifier_push.h"
+#include "mongol/db/ops/modifier_rename.h"
+#include "mongol/db/ops/modifier_set.h"
+#include "mongol/db/ops/modifier_unset.h"
+#include "mongol/platform/unordered_map.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::make_pair;
 using std::string;
@@ -174,4 +174,4 @@ ModifierInterface* makeUpdateMod(ModifierType modType) {
 }
 
 }  // namespace modifiertable
-}  // namespace mongo
+}  // namespace mongol

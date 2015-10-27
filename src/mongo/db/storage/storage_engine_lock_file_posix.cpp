@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/storage_engine_lock_file.h"
+#include "mongol/db/storage/storage_engine_lock_file.h"
 
 #include <boost/filesystem.hpp>
 #include <fcntl.h>
@@ -41,16 +41,16 @@
 #include <unistd.h>
 #include <sstream>
 
-#include "mongo/db/storage/paths.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
-const std::string kLockFileBasename = "mongod.lock";
+const std::string kLockFileBasename = "mongold.lock";
 
 }  // namespace
 
@@ -102,7 +102,7 @@ Status StorageEngineLockFile::open() {
         return Status(ErrorCodes::DBPathInUse,
                       str::stream() << "Unable to create/open lock file: " << _filespec << ' '
                                     << errnoWithDescription(errorcode)
-                                    << " Is a mongod instance already running?");
+                                    << " Is a mongold instance already running?");
     }
 #if !defined(__sun)
     int ret = ::flock(lockFile, LOCK_EX | LOCK_NB);
@@ -118,7 +118,7 @@ Status StorageEngineLockFile::open() {
         return Status(ErrorCodes::DBPathInUse,
                       str::stream() << "Unable to lock file: " << _filespec << ' '
                                     << errnoWithDescription(errorcode)
-                                    << ". Is a mongod instance already running?");
+                                    << ". Is a mongold instance already running?");
     }
     _lockFileHandle->_fd = lockFile;
     return Status::OK();
@@ -199,4 +199,4 @@ void StorageEngineLockFile::clearPidAndUnlock() {
 #endif  // !defined(__sun)
 }
 
-}  // namespace mongo
+}  // namespace mongol

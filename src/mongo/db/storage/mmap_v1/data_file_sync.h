@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/commands/server_status.h"
-#include "mongo/util/background.h"
+#include "mongol/db/commands/server_status.h"
+#include "mongol/util/background.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * does background async flushes of mmapped files

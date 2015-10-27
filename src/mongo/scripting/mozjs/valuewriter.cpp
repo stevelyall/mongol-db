@@ -26,21 +26,21 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/valuewriter.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
 
 #include <js/Conversions.h>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/scripting/mozjs/exception.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/jsstringwrapper.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/util/base64.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/scripting/mozjs/exception.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/jsstringwrapper.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/util/base64.h"
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 ValueWriter::ValueWriter(JSContext* cx, JS::HandleValue value)
@@ -209,7 +209,7 @@ void ValueWriter::writeThis(BSONObjBuilder* b,
         if (val == intval && _originalParent) {
             // This makes copying an object of numbers O(n**2) :(
             BSONElement elmt = _originalParent->getField(sd);
-            if (elmt.type() == mongo::NumberInt) {
+            if (elmt.type() == mongol::NumberInt) {
                 b->append(sd, intval);
                 return;
             }
@@ -226,7 +226,7 @@ void ValueWriter::writeThis(BSONObjBuilder* b,
         b->appendNull(sd);
     } else {
         uasserted(16662,
-                  str::stream() << "unable to convert JavaScript property to mongo element " << sd);
+                  str::stream() << "unable to convert JavaScript property to mongol element " << sd);
     }
 }
 
@@ -288,7 +288,7 @@ void ValueWriter::_writeObject(BSONObjBuilder* b,
 
                 b->appendBinData(sd,
                                  binData.size(),
-                                 static_cast<mongo::BinDataType>(
+                                 static_cast<mongol::BinDataType>(
                                      static_cast<int>(o.getNumber(InternedString::type))),
                                  binData.c_str());
 
@@ -362,4 +362,4 @@ void ValueWriter::_writeObject(BSONObjBuilder* b,
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

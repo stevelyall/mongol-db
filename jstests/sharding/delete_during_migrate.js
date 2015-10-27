@@ -3,7 +3,7 @@
 // starts. Protect against that by making chunk very large.
 
 // start up a new sharded cluster
-var st = new ShardingTest({ shards : 2, mongos : 1 });
+var st = new ShardingTest({ shards : 2, mongols : 1 });
 
 // stop balancer since we want manual control for this
 st.stopBalancer();
@@ -30,7 +30,7 @@ t.ensureIndex( { a : 1 } );
 s.adminCommand( { shardcollection : ns , key: { a : 1 } } );
 
 // start a parallel shell that deletes things
-startMongoProgramNoConnect( "mongo" ,
+startMongoProgramNoConnect( "mongol" ,
                             "--host" , getHostName() ,
                             "--port" , st.s0.port ,
                             "--eval" , "db." + coll + ".remove({});" ,

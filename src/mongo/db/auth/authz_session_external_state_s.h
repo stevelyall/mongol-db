@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authz_session_external_state_server_common.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authz_session_external_state_server_common.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * The implementation of AuthzSessionExternalState functionality for mongos.
+ * The implementation of AuthzSessionExternalState functionality for mongols.
  */
 class AuthzSessionExternalStateMongos : public AuthzSessionExternalStateServerCommon {
     MONGO_DISALLOW_COPYING(AuthzSessionExternalStateMongos);
@@ -48,4 +48,4 @@ public:
     virtual void startRequest(OperationContext* txn);
 };
 
-}  // namespace mongo
+}  // namespace mongol

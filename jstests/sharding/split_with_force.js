@@ -3,17 +3,17 @@
 //
 
 var options = { chunkSize: 1, // MB
-                mongosOptions : { noAutoSplit : "" }
+                mongolsOptions : { noAutoSplit : "" }
               };
 
-var st = new ShardingTest({ shards : 1, mongos : 1, other : options });
+var st = new ShardingTest({ shards : 1, mongols : 1, other : options });
 st.stopBalancer();
 
-var mongos = st.s0;
-var admin = mongos.getDB( "admin" );
-var config = mongos.getDB( "config" );
+var mongols = st.s0;
+var admin = mongols.getDB( "admin" );
+var config = mongols.getDB( "config" );
 var shardAdmin = st.shard0.getDB( "admin" );
-var coll = mongos.getCollection( "foo.bar" );
+var coll = mongols.getCollection( "foo.bar" );
 
 assert( admin.runCommand({ enableSharding : coll.getDB() + "" }).ok );
 assert( admin.runCommand({ shardCollection : coll + "", key : { _id : 1 } }).ok );

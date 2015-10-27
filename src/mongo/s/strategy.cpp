@@ -26,50 +26,50 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/strategy.h"
+#include "mongol/s/strategy.h"
 
-#include "mongo/base/data_cursor.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/max_time.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/db/query/getmore_request.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/bson_serializable.h"
-#include "mongo/s/catalog/catalog_cache.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/chunk_version.h"
-#include "mongo/s/config.h"
-#include "mongo/s/cursors.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/query/cluster_find.h"
-#include "mongo/s/request.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/version_manager.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batch_upconvert.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/data_cursor.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/max_time.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/db/query/getmore_request.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/bson_serializable.h"
+#include "mongol/s/catalog/catalog_cache.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/chunk_version.h"
+#include "mongol/s/config.h"
+#include "mongol/s/cursors.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/query/cluster_find.h"
+#include "mongol/s/request.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/version_manager.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batch_upconvert.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::shared_ptr;
@@ -127,7 +127,7 @@ static bool doShardedIndexQuery(OperationContext* txn, Request& request, const Q
 
     Message response;
     bool ok = c.call(request.m(), response, true, &actualServer);
-    uassert(10200, "mongos: error calling db", ok);
+    uassert(10200, "mongols: error calling db", ok);
 
     {
         QueryResult::View qr = response.singleData().view2ptr();
@@ -171,11 +171,11 @@ void Strategy::queryOp(OperationContext* txn, Request& request) {
 
     if (q.queryOptions & QueryOption_Exhaust) {
         uasserted(18526,
-                  string("the 'exhaust' query option is invalid for mongos queries: ") + q.ns +
+                  string("the 'exhaust' query option is invalid for mongols queries: ") + q.ns +
                       " " + q.query.toString());
     }
 
-    // Spigot which controls whether OP_QUERY style find on mongos uses the new ClusterClientCursor
+    // Spigot which controls whether OP_QUERY style find on mongols uses the new ClusterClientCursor
     // code path.
     // TODO: Delete the spigot and always use the new code.
     if (useClusterClientCursor) {
@@ -187,7 +187,7 @@ void Strategy::queryOp(OperationContext* txn, Request& request) {
 
         BSONElement rpElem;
         auto readPrefExtractStatus = bsonExtractTypedField(
-            q.query, LiteParsedQuery::kWrappedReadPrefField, mongo::Object, &rpElem);
+            q.query, LiteParsedQuery::kWrappedReadPrefField, mongol::Object, &rpElem);
 
         if (readPrefExtractStatus.isOK()) {
             auto parsedRps = ReadPreferenceSetting::fromBSON(rpElem.Obj());
@@ -239,7 +239,7 @@ void Strategy::queryOp(OperationContext* txn, Request& request) {
             ClusterFind::runQuery(txn, *canonicalQuery.getValue(), readPreference, &batch);
         uassertStatusOK(cursorId.getStatus());
 
-        // TODO: this constant should be shared between mongos and mongod, and should
+        // TODO: this constant should be shared between mongols and mongold, and should
         // not be inside ShardedClientCursor.
         BufBuilder buffer(ShardedClientCursor::INIT_REPLY_BUFFER_SIZE);
 
@@ -355,7 +355,7 @@ void Strategy::clientCommandOp(OperationContext* txn, Request& request) {
 
     if (q.queryOptions & QueryOption_Exhaust) {
         uasserted(18527,
-                  string("the 'exhaust' query option is invalid for mongos commands: ") + q.ns +
+                  string("the 'exhaust' query option is invalid for mongols commands: ") + q.ns +
                       " " + q.query.toString());
     }
 
@@ -459,7 +459,7 @@ bool Strategy::handleSpecialNamespaces(OperationContext* txn, Request& request, 
     } else if (strcmp(ns, "killop") == 0) {
         upgradeToRealCommand("killOp");
     } else if (strcmp(ns, "unlock") == 0) {
-        reply.append("err", "can't do unlock through mongos");
+        reply.append("err", "can't do unlock through mongols");
     } else {
         warning() << "unknown sys command [" << ns << "]";
         return false;
@@ -508,7 +508,7 @@ Status Strategy::commandOpUnsharded(OperationContext* txn,
     // sharding metadata is too stale
     auto status = grid.catalogCache()->getDatabase(txn, db);
     if (!status.isOK()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Passthrough command failed: " << command.toString() << " on ns " << versionedNS
            << ". Caused by " << causedBy(status.getStatus());
         return Status(ErrorCodes::IllegalOperation, ss);
@@ -516,7 +516,7 @@ Status Strategy::commandOpUnsharded(OperationContext* txn,
 
     shared_ptr<DBConfig> conf = status.getValue();
     if (conf->isSharded(versionedNS)) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Passthrough command failed: " << command.toString() << " on ns " << versionedNS
            << ". Cannot run on sharded namespace.";
         return Status(ErrorCodes::IllegalOperation, ss);
@@ -528,7 +528,7 @@ Status Strategy::commandOpUnsharded(OperationContext* txn,
     try {
         ShardConnection conn(primaryShard->getConnString(), "");
 
-        // TODO: this can throw a stale config when mongos is not up-to-date -- fix.
+        // TODO: this can throw a stale config when mongols is not up-to-date -- fix.
         if (!conn->runCommand(db, command, shardResult, options)) {
             conn.done();
             return Status(ErrorCodes::OperationFailed,
@@ -567,7 +567,7 @@ void Strategy::getMore(OperationContext* txn, Request& request) {
 
     uassertStatusOK(statusGetDb);
 
-    // Spigot which controls whether OP_QUERY style find on mongos uses the new ClusterClientCursor
+    // Spigot which controls whether OP_QUERY style find on mongols uses the new ClusterClientCursor
     // code path.
     //
     // TODO: Delete the spigot and always use the new code.
@@ -587,7 +587,7 @@ void Strategy::getMore(OperationContext* txn, Request& request) {
 
         // Build the response document.
         //
-        // TODO: this constant should be shared between mongos and mongod, and should not be inside
+        // TODO: this constant should be shared between mongols and mongold, and should not be inside
         // ShardedClientCursor.
         BufBuilder buffer(ShardedClientCursor::INIT_REPLY_BUFFER_SIZE);
 
@@ -661,7 +661,7 @@ void Strategy::getMore(OperationContext* txn, Request& request) {
             uasserted(ErrorCodes::ExceededTimeLimit, "operation exceeded time limit");
         }
 
-        // TODO: Try to match logic of mongod, where on subsequent getMore() we pull lots more data?
+        // TODO: Try to match logic of mongold, where on subsequent getMore() we pull lots more data?
         BufBuilder buffer(ShardedClientCursor::INIT_REPLY_BUFFER_SIZE);
         int docCount = 0;
         const int startFrom = cursor->getTotalSent();
@@ -826,9 +826,9 @@ Status Strategy::explainFind(OperationContext* txn,
 
     long long millisElapsed = timer.millis();
 
-    const char* mongosStageName = ClusterExplain::getStageNameForReadOp(shardResults, findCommand);
+    const char* mongolsStageName = ClusterExplain::getStageNameForReadOp(shardResults, findCommand);
 
     return ClusterExplain::buildExplainResult(
-        txn, shardResults, mongosStageName, millisElapsed, out);
+        txn, shardResults, mongolsStageName, millisElapsed, out);
 }
 }

@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/s/bson_serializable.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/s/bson_serializable.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A MultiCommandDispatch is a send/recv operation for multiple commands at once.

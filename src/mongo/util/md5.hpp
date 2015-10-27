@@ -29,13 +29,13 @@
 
 #pragma once
 
-#include "mongo/util/md5.h"
+#include "mongol/util/md5.h"
 
 #include <sstream>
 #include <string>
 #include <string.h>
 
-namespace mongo {
+namespace mongol {
 
     typedef unsigned char md5digest[16];
 
@@ -71,4 +71,4 @@ namespace mongo {
     }
 
 
-} // namespace mongo
+} // namespace mongol

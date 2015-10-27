@@ -26,19 +26,19 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/read_concern_args.h"
+#include "mongol/db/repl/read_concern_args.h"
 
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/mongolutils/str.h"
 
 using std::string;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -143,4 +143,4 @@ void ReadConcernArgs::appendInfo(BSONObjBuilder* builder) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

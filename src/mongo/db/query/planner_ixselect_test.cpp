@@ -27,19 +27,19 @@
  */
 
 /**
- * This file contains tests for mongo/db/query/planner_ixselect.cpp
+ * This file contains tests for mongol/db/query/planner_ixselect.cpp
  */
 
-#include "mongo/db/query/planner_ixselect.h"
+#include "mongol/db/query/planner_ixselect.h"
 
 #include <memory>
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/text.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/text.h"
 
-using namespace mongo;
+using namespace mongol;
 
 namespace {
 
@@ -61,7 +61,7 @@ unique_ptr<MatchExpression> parseMatchExpression(const BSONObj& obj) {
  */
 template <typename Iter>
 string toString(Iter begin, Iter end) {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "[";
     for (Iter i = begin; i != end; i++) {
         if (i != begin) {
@@ -91,7 +91,7 @@ void testGetFields(const char* query, const char* prefix, const char* expectedFi
     for (vector<string>::const_iterator i = expectedFields.begin(); i != expectedFields.end();
          i++) {
         if (fields.find(*i) == fields.end()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "getFields(query=" << query << ", prefix=" << prefix << "): unable to find " << *i
                << " in result: " << toString(fields.begin(), fields.end());
             FAIL(ss);
@@ -100,7 +100,7 @@ void testGetFields(const char* query, const char* prefix, const char* expectedFi
 
     // Next, confirm that results do not contain any unexpected fields.
     if (fields.size() != expectedFields.size()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "getFields(query=" << query << ", prefix=" << prefix
            << "): unexpected fields in result. expected: "
            << toString(expectedFields.begin(), expectedFields.end())
@@ -161,7 +161,7 @@ void findRelevantTaggedNodePaths(MatchExpression* root, vector<string>* paths) {
         tag->debugString(&buf);
         RelevantTag* r = dynamic_cast<RelevantTag*>(tag);
         if (!r) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "tag is not instance of RelevantTag. tree: " << root->toString()
                << "; tag: " << buf.str();
             FAIL(ss);
@@ -204,7 +204,7 @@ void testRateIndicesTaggedNodePaths(const char* query,
     // First verify number of paths retrieved.
     vector<string> expectedPaths = StringSplitter::split(expectedPathsStr, ",");
     if (paths.size() != expectedPaths.size()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "rateIndices(query=" << query << ", prefix=" << prefix
            << "): unexpected number of tagged nodes found. expected: "
            << toString(expectedPaths.begin(), expectedPaths.end())
@@ -219,7 +219,7 @@ void testRateIndicesTaggedNodePaths(const char* query,
         if (*i == *j) {
             continue;
         }
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "rateIndices(query=" << query << ", prefix=" << prefix
            << "): unexpected path found. expected: " << *j << " "
            << toString(expectedPaths.begin(), expectedPaths.end()) << ". actual: " << *i << " "

@@ -30,10 +30,10 @@ def getCopyrightNotice():
  */\n\n"""
 
 def openNamespaces():
-    return "namespace mongo {\nnamespace unicode {\n\n"
+    return "namespace mongol {\nnamespace unicode {\n\n"
 
 def closeNamespaces():
-    return "\n} //  namespace unicode\n} //  namespace mongo\n"
+    return "\n} //  namespace unicode\n} //  namespace mongol\n"
 
 def include(header):
     return '#include "' + header + '"\n'

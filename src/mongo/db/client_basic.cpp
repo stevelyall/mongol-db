@@ -26,15 +26,15 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/client_basic.h"
+#include "mongol/db/client_basic.h"
 
-namespace mongo {
+namespace mongol {
 
 ClientBasic::ClientBasic(ServiceContext* serviceContext, AbstractMessagingPort* messagingPort)
     : _serviceContext(serviceContext), _messagingPort(messagingPort) {}
 
 ClientBasic::~ClientBasic() = default;
 
-}  // namespace mongo
+}  // namespace mongol

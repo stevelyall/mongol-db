@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/bson/oid.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/oid.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -250,4 +250,4 @@ private:
 };
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/dbclient_multi_command.h"
+#include "mongol/s/client/dbclient_multi_command.h"
 
-#include "mongo/db/audit.h"
-#include "mongo/db/dbmessage.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/rpc/factory.h"
-#include "mongo/rpc/request_builder_interface.h"
-#include "mongo/s/client/shard_connection.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/net/message.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/rpc/factory.h"
+#include "mongol/rpc/request_builder_interface.h"
+#include "mongol/s/client/shard_connection.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::deque;
@@ -214,4 +214,4 @@ DBClientMultiCommand::PendingCommand::PendingCommand(const ConnectionString& end
 
 DBClientMultiCommand::PendingCommand::~PendingCommand() = default;
 
-}  // namespace mongo
+}  // namespace mongol

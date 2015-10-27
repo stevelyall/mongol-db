@@ -31,14 +31,14 @@
 #include <memory>
 #include <vector>
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/fts/fts_query.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/fts_util.h"
-#include "mongo/db/index/index_descriptor.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/fts/fts_query.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_util.h"
+#include "mongol/db/index/index_descriptor.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::vector;
@@ -105,4 +105,4 @@ private:
     TextStats _specificStats;
 };
 
-}  // namespace mongo
+}  // namespace mongol

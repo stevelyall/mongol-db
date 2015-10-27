@@ -30,7 +30,7 @@
 
 #include <boost/optional.hpp>
 
-namespace mongo {
+namespace mongol {
 
 class Status;
 template <typename T>
@@ -109,4 +109,4 @@ protected:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

@@ -30,7 +30,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * this is a sort of smart pointer class where we can move where something is and all the pointers

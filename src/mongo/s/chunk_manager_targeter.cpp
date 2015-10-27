@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/chunk_manager_targeter.h"
+#include "mongol/s/chunk_manager_targeter.h"
 
 #include <boost/thread/tss.hpp>
 
-#include "mongo/s/chunk_manager.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/s/chunk_manager.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 using std::map;
 using std::set;
 using std::string;
@@ -59,7 +59,7 @@ enum CompareResult { CompareResult_Unknown, CompareResult_GTE, CompareResult_LT 
 const ShardKeyPattern virtualIdShardKey(BSON("_id" << 1));
 
 // To match legacy reload behavior, we have to backoff on config reload per-thread
-// TODO: Centralize this behavior better by refactoring config reload in mongos
+// TODO: Centralize this behavior better by refactoring config reload in mongols
 boost::thread_specific_ptr<Backoff> perThreadBackoff;
 const int maxWaitMillis = 500;
 
@@ -721,4 +721,4 @@ Status ChunkManagerTargeter::refreshNow(OperationContext* txn, RefreshType refre
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

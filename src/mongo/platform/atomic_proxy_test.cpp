@@ -26,14 +26,14 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/platform/atomic_proxy.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/platform/atomic_proxy.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 template <typename AtomicProxyType>
@@ -56,4 +56,4 @@ TEST(AtomicProxyTests, BasicOperationsDouble) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

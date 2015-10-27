@@ -28,15 +28,15 @@
 
 #pragma once
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/explain_common.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/db/query/query_solution.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/explain_common.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/db/query/query_solution.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class OperationContext;

@@ -26,14 +26,14 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/rslog.h"
+#include "mongol/db/repl/rslog.h"
 
-#include "mongo/logger/tee.h"
-#include "mongo/util/ramlog.h"
+#include "mongol/logger/tee.h"
+#include "mongol/util/ramlog.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 static RamLog* _rsLog = RamLog::get("rs");
@@ -44,4 +44,4 @@ void fillRsLog(std::stringstream* s) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

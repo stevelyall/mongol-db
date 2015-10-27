@@ -18,7 +18,7 @@ if ( ! _isWindows() ) {
         port = hoststring.substr(index + 1)
     }
 
-    sock = new Mongo('/tmp/mongodb-' + port + '.sock')
+    sock = new Mongo('/tmp/mongoldb-' + port + '.sock')
     sockdb = sock.getDB(db.getName())
     assert( sockdb.runCommand('ping').ok );
 
@@ -29,7 +29,7 @@ if ( ! _isWindows() ) {
     
     var conn = MongoRunner.runMongod({dbpath: dataPath, unixSocketPrefix: path});
     
-    var sock2 = new Mongo(path + "/mongodb-" + conn.port + ".sock");
+    var sock2 = new Mongo(path + "/mongoldb-" + conn.port + ".sock");
     sockdb2 = sock2.getDB(db.getName())
     assert( sockdb2.runCommand('ping').ok );
 

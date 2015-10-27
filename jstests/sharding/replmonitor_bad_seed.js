@@ -3,36 +3,36 @@
  * replica set seed that has none of the nodes up will be able to recover
  * once the replica set come back up.
  *
- * ReplSetMonitor is tested indirectly through mongos. This is because
+ * ReplSetMonitor is tested indirectly through mongols. This is because
  * attempting to create a connection through the Mongo constructor won't
- * work because the shell will throw an exception before the mongo shell
+ * work because the shell will throw an exception before the mongol shell
  * binds the variable properly to the js environment (in simple terms,
  * the connection object is never returned when it cannot connect to it).
- * Another reason for using mongos in this test is so we can use
+ * Another reason for using mongols in this test is so we can use
  * connPoolStats to synchronize the test and make sure that the monitor
  * was able to refresh before proceeding to check.
  */
 
 var rsOpt = { oplogSize: 10 };
 var st = new ShardingTest({ shards: 1, rs: rsOpt });
-var mongos = st.s;
+var mongols = st.s;
 var replTest = st.rs0;
 
-var adminDB = mongos.getDB('admin');
+var adminDB = mongols.getDB('admin');
 //adminDB.runCommand({ addShard: replTest.getURL() });
 
 adminDB.runCommand({ enableSharding: 'test' });
 adminDB.runCommand({ shardCollection: 'test.user', key: { x: 1 }});
 
 /* The cluster now has the shard information. Then kill the replica set so
- * when mongos restarts and tries to create a ReplSetMonitor for that shard,
+ * when mongols restarts and tries to create a ReplSetMonitor for that shard,
  * it will not be able to connect to any of the seed servers.
  */
 replTest.stopSet();
 st.restartMongos(0);
-mongos = st.s; // refresh mongos with the new one
+mongols = st.s; // refresh mongols with the new one
 
-var coll = mongos.getDB('test').user;
+var coll = mongols.getDB('test').user;
 
 var verifyInsert = function() {
     var beforeCount = coll.find().count();
@@ -52,7 +52,7 @@ replTest.awaitSecondaryNodes();
 jsTest.log('Insert to an online replSet');
 
 // Verify that the replSetMonitor can reach the restarted set.
-ReplSetTest.awaitRSClientHosts(mongos, replTest.nodes, { ok: true });
+ReplSetTest.awaitRSClientHosts(mongols, replTest.nodes, { ok: true });
 verifyInsert();
 
 st.stop();

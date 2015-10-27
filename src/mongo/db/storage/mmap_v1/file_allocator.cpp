@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/file_allocator.h"
+#include "mongol/db/storage/mmap_v1/file_allocator.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <errno.h>
@@ -50,26 +50,26 @@
 #include <io.h>
 #endif
 
-#include "mongo/db/storage/paths.h"
-#include "mongo/platform/posix_fadvise.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/fail_point.h"
-#include "mongo/util/fail_point_service.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/storage/paths.h"
+#include "mongol/platform/posix_fadvise.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/fail_point.h"
+#include "mongol/util/fail_point_service.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
-using namespace mongoutils;
+using namespace mongolutils;
 
 #ifndef O_NOATIME
 #define O_NOATIME (0)
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::list;
@@ -480,4 +480,4 @@ FileAllocator* FileAllocator::get() {
     return _instance;
 }
 
-}  // namespace mongo
+}  // namespace mongol

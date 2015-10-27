@@ -26,74 +26,74 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/server.h"
+#include "mongol/s/server.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/initializer.h"
-#include "mongo/base/status.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclient_rs.h"
-#include "mongo/client/global_conn_pool.h"
-#include "mongo/client/remote_command_targeter_factory_impl.h"
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/config.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authz_manager_external_state_s.h"
-#include "mongo/db/auth/user_cache_invalidator_job.h"
-#include "mongo/db/client.h"
-#include "mongo/db/dbwebserver.h"
-#include "mongo/db/initialize_server_global_state.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/log_process_details.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/db/startup_warnings_common.h"
-#include "mongo/platform/process_id.h"
-#include "mongo/s/balance.h"
-#include "mongo/s/catalog/forwarding_catalog_manager.h"
-#include "mongo/s/client/sharding_connection_hook.h"
-#include "mongo/s/config.h"
-#include "mongo/s/cursors.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/mongos_options.h"
-#include "mongo/s/query/cluster_cursor_cleanup_job.h"
-#include "mongo/s/request.h"
-#include "mongo/s/sharding_initialization.h"
-#include "mongo/s/version_mongos.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/admin_access.h"
-#include "mongo/util/cmdline_utils/censor_cmdline.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/exception_filter_win32.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostname_canonicalization_worker.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_server.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/ntservice.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/quick_exit.h"
-#include "mongo/util/signal_handlers.h"
-#include "mongo/util/stacktrace.h"
-#include "mongo/util/static_observer.h"
-#include "mongo/util/stringutils.h"
-#include "mongo/util/system_clock_source.h"
-#include "mongo/util/system_tick_source.h"
-#include "mongo/util/text.h"
-#include "mongo/util/version.h"
+#include "mongol/base/init.h"
+#include "mongol/base/initializer.h"
+#include "mongol/base/status.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclient_rs.h"
+#include "mongol/client/global_conn_pool.h"
+#include "mongol/client/remote_command_targeter_factory_impl.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/config.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authz_manager_external_state_s.h"
+#include "mongol/db/auth/user_cache_invalidator_job.h"
+#include "mongol/db/client.h"
+#include "mongol/db/dbwebserver.h"
+#include "mongol/db/initialize_server_global_state.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/log_process_details.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/db/startup_warnings_common.h"
+#include "mongol/platform/process_id.h"
+#include "mongol/s/balance.h"
+#include "mongol/s/catalog/forwarding_catalog_manager.h"
+#include "mongol/s/client/sharding_connection_hook.h"
+#include "mongol/s/config.h"
+#include "mongol/s/cursors.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/mongols_options.h"
+#include "mongol/s/query/cluster_cursor_cleanup_job.h"
+#include "mongol/s/request.h"
+#include "mongol/s/sharding_initialization.h"
+#include "mongol/s/version_mongols.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/admin_access.h"
+#include "mongol/util/cmdline_utils/censor_cmdline.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/exception_filter_win32.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostname_canonicalization_worker.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_server.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/ntservice.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/quick_exit.h"
+#include "mongol/util/signal_handlers.h"
+#include "mongol/util/stacktrace.h"
+#include "mongol/util/static_observer.h"
+#include "mongol/util/stringutils.h"
+#include "mongol/util/system_clock_source.h"
+#include "mongol/util/system_tick_source.h"
+#include "mongol/util/text.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -175,12 +175,12 @@ DBClientBase* createDirectClient(OperationContext* txn) {
     return 0;
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
-using namespace mongo;
+using namespace mongol;
 
 static Status initializeSharding(OperationContext* txn) {
-    Status status = initializeGlobalShardingState(txn, mongosGlobalParams.configdbs, true);
+    Status status = initializeGlobalShardingState(txn, mongolsGlobalParams.configdbs, true);
     if (!status.isOK()) {
         return status;
     }
@@ -195,7 +195,7 @@ static Status initializeSharding(OperationContext* txn) {
 }
 
 static ExitCode runMongosServer() {
-    Client::initThread("mongosMain");
+    Client::initThread("mongolsMain");
     printShardingVersionInfo(false);
 
     // Add sharding hooks to both connection pools - ShardingConnectionHook includes auth hooks
@@ -227,7 +227,7 @@ static ExitCode runMongosServer() {
     }
 
 #if !defined(_WIN32)
-    mongo::signalForkSuccess();
+    mongol::signalForkSuccess();
 #endif
 
     if (serverGlobalParams.isHttpInterfaceEnabled) {
@@ -279,7 +279,7 @@ static ExitCode runMongosServer() {
 MONGO_INITIALIZER_GENERAL(ForkServer,
                           ("EndStartupOptionHandling"),
                           ("default"))(InitializerContext* context) {
-    mongo::forkServerOrDie();
+    mongol::forkServerOrDie();
     return Status::OK();
 }
 
@@ -303,7 +303,7 @@ static int _main() {
     startSignalProcessingThread();
 
     // we either have a setting where all processes are in localhost or none are
-    std::vector<HostAndPort> configServers = mongosGlobalParams.configdbs.getServers();
+    std::vector<HostAndPort> configServers = mongolsGlobalParams.configdbs.getServers();
     for (std::vector<HostAndPort>::const_iterator it = configServers.begin();
          it != configServers.end();
          ++it) {
@@ -314,7 +314,7 @@ static int _main() {
         }
 
         if (configAddr.isLocalHost() != grid.allowLocalHost()) {
-            mongo::log(LogComponent::kDefault)
+            mongol::log(LogComponent::kDefault)
                 << "cannot mix localhost and ip addresses in configdbs";
             return 10;
         }
@@ -332,14 +332,14 @@ static int _main() {
 }
 
 #if defined(_WIN32)
-namespace mongo {
+namespace mongol {
 static ExitCode initService() {
     ntservice::reportStatus(SERVICE_RUNNING);
     log() << "Service running";
 
     return runMongosServer();
 }
-}  // namespace mongo
+}  // namespace mongol
 #endif
 
 namespace {
@@ -369,14 +369,14 @@ MONGO_INITIALIZER_GENERAL(setSSLManagerType,
 #endif
 }  // namespace
 
-int mongoSMain(int argc, char* argv[], char** envp) {
+int mongolSMain(int argc, char* argv[], char** envp) {
     static StaticObserver staticObserver;
     if (argc < 1)
         return EXIT_FAILURE;
 
     setupSignalHandlers(false);
 
-    Status status = mongo::runGlobalInitializers(argc, argv, envp);
+    Status status = mongol::runGlobalInitializers(argc, argv, envp);
     if (!status.isOK()) {
         severe(LogComponent::kDefault) << "Failed global initialization: " << status;
         quickExit(EXIT_FAILURE);
@@ -385,19 +385,19 @@ int mongoSMain(int argc, char* argv[], char** envp) {
     startupConfigActions(std::vector<std::string>(argv, argv + argc));
     cmdline_utils::censorArgvArray(argc, argv);
 
-    mongo::logCommonStartupWarnings(serverGlobalParams);
+    mongol::logCommonStartupWarnings(serverGlobalParams);
 
     try {
         int exitCode = _main();
         return exitCode;
     } catch (const SocketException& e) {
-        error() << "uncaught SocketException in mongos main: " << e.toString();
+        error() << "uncaught SocketException in mongols main: " << e.toString();
     } catch (const DBException& e) {
-        error() << "uncaught DBException in mongos main: " << e.toString();
+        error() << "uncaught DBException in mongols main: " << e.toString();
     } catch (const std::exception& e) {
-        error() << "uncaught std::exception in mongos main:" << e.what();
+        error() << "uncaught std::exception in mongols main:" << e.what();
     } catch (...) {
-        error() << "uncaught unknown exception in mongos main";
+        error() << "uncaught unknown exception in mongols main";
     }
 
     return 20;
@@ -407,26 +407,26 @@ int mongoSMain(int argc, char* argv[], char** envp) {
 // In Windows, wmain() is an alternate entry point for main(), and receives the same parameters
 // as main() but encoded in Windows Unicode (UTF-16); "wide" 16-bit wchar_t characters.  The
 // WindowsCommandLine object converts these wide character strings to a UTF-8 coded equivalent
-// and makes them available through the argv() and envp() members.  This enables mongoSMain()
+// and makes them available through the argv() and envp() members.  This enables mongolSMain()
 // to process UTF-8 encoded arguments and environment variables without regard to platform.
 int wmain(int argc, wchar_t* argvW[], wchar_t* envpW[]) {
     WindowsCommandLine wcl(argc, argvW, envpW);
-    int exitCode = mongoSMain(argc, wcl.argv(), wcl.envp());
+    int exitCode = mongolSMain(argc, wcl.argv(), wcl.envp());
     quickExit(exitCode);
 }
 #else
 int main(int argc, char* argv[], char** envp) {
-    int exitCode = mongoSMain(argc, argv, envp);
+    int exitCode = mongolSMain(argc, argv, envp);
     quickExit(exitCode);
 }
 #endif
 
-void mongo::signalShutdown() {
+void mongol::signalShutdown() {
     // Notify all threads shutdown has started
     dbexitCalled = true;
 }
 
-void mongo::exitCleanly(ExitCode code) {
+void mongol::exitCleanly(ExitCode code) {
     // TODO: do we need to add anything?
     {
         Client& client = cc();
@@ -446,10 +446,10 @@ void mongo::exitCleanly(ExitCode code) {
         }
     }
 
-    mongo::dbexit(code);
+    mongol::dbexit(code);
 }
 
-void mongo::dbexit(ExitCode rc, const char* why) {
+void mongol::dbexit(ExitCode rc, const char* why) {
     dbexitCalled = true;
     audit::logShutdown(ClientBasic::getCurrent());
 

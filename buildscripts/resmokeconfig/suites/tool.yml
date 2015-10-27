@@ -3,7 +3,7 @@ selector:
     roots:
     - jstests/tool/*.js
 
-# Tool tests start their own mongod's.
+# Tool tests start their own mongold's.
 executor:
   js_test:
     config:

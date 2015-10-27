@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <algorithm>
 #include <cmath>
 #include <vector>
 #include <utility>
 
-#include "mongo/db/query/plan_ranker.h"
+#include "mongol/db/query/plan_ranker.h"
 
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/log.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/log.h"
 
 namespace {
 
@@ -59,7 +59,7 @@ bool scoreComparator(const std::pair<double, size_t>& lhs, const std::pair<doubl
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::vector;
@@ -239,7 +239,7 @@ double PlanRanker::scoreTree(const PlanStageStats* stats) {
     double tieBreakers = noFetchBonus + noSortBonus + noIxisectBonus;
     double score = baseScore + productivity + tieBreakers;
 
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << "score(" << score << ") = baseScore(" << baseScore << ")"
        << " + productivity((" << stats->common.advanced << " advanced)/(" << stats->common.works
        << " works) = " << productivity << ")"
@@ -260,4 +260,4 @@ double PlanRanker::scoreTree(const PlanStageStats* stats) {
     return score;
 }
 
-}  // namespace mongo
+}  // namespace mongol

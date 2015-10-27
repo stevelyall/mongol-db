@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -103,7 +103,7 @@ public:
 
         Command* commToExplain = Command::findCommand(explainObj.firstElementFieldName());
         if (NULL == commToExplain) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "unknown command: " << explainObj.firstElementFieldName();
             return Status(ErrorCodes::CommandNotFound, ss);
         }
@@ -128,7 +128,7 @@ public:
 
         Command* commToExplain = Command::findCommand(explainObj.firstElementFieldName());
         if (NULL == commToExplain) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "Explain failed due to unknown command: " << explainObj.firstElementFieldName();
             Status explainStatus(ErrorCodes::CommandNotFound, ss);
             return appendCommandStatus(result, explainStatus);
@@ -149,7 +149,7 @@ public:
             commandIsOverriddenToRunOnSecondary || iAmStandalone;
 
         if (!canRunHere) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "Explain's child command cannot run on this node. "
                << "Are you explaining a write command on a secondary?";
             appendCommandStatus(result, false, ss);
@@ -169,4 +169,4 @@ public:
 } cmdExplain;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

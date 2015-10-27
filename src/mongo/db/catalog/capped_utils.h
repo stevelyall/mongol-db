@@ -26,9 +26,9 @@
  *    it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 class Database;
 class NamespaceString;
 class OperationContext;
@@ -52,4 +52,4 @@ Status cloneCollectionAsCapped(OperationContext* txn,
  * Converts the collection "collectionName" to a capped collection with a size of "size".
  */
 Status convertToCapped(OperationContext* txn, const NamespaceString& collectionName, double size);
-}  // namespace mongo
+}  // namespace mongol

@@ -27,25 +27,25 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/message_port.h"
+#include "mongol/util/net/message_port.h"
 
 #include <fcntl.h>
 #include <time.h>
 
-#include "mongo/config.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/background.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/net/ssl_options.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
+#include "mongol/config.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/background.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/net/ssl_options.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
 
 #ifndef _WIN32
 #ifndef __sun
@@ -55,7 +55,7 @@
 #include <sys/stat.h>
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::string;
@@ -189,7 +189,7 @@ bool MessagingPort::recv(Message& m) {
         psock->setHandshakeReceived();
         int z = (len + 1023) & 0xfffffc00;
         verify(z >= len);
-        MsgData::View md = reinterpret_cast<char*>(mongoMalloc(z));
+        MsgData::View md = reinterpret_cast<char*>(mongolMalloc(z));
         ScopeGuard guard = MakeGuard(free, md.view2ptr());
         verify(md.view2ptr());
 
@@ -272,4 +272,4 @@ SockAddr MessagingPort::localAddr() const {
     return psock->localAddr();
 }
 
-}  // namespace mongo
+}  // namespace mongol

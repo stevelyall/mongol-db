@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/db/commands.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/commands.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 void logOpForDbHash(OperationContext* txn, const char* ns);
 

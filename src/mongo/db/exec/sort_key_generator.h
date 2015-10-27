@@ -30,13 +30,13 @@
 
 #include <memory>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/index/btree_key_generator.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/query/index_bounds.h"
-#include "mongo/db/query/stage_types.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/index/btree_key_generator.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/query/index_bounds.h"
+#include "mongol/db/query/stage_types.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class WorkingSetMember;
@@ -138,4 +138,4 @@ private:
     std::unique_ptr<SortKeyGenerator> _sortKeyGen;
 };
 
-}  // namespace mongo
+}  // namespace mongol

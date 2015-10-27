@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 class ParsedProjection {
 public:
@@ -142,4 +142,4 @@ private:
     bool _wantSortKey = false;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,19 +26,19 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/decompressor.h"
+#include "mongol/db/ftdc/decompressor.h"
 
-#include "mongo/base/data_range_cursor.h"
-#include "mongo/base/data_type_validated.h"
-#include "mongo/db/ftdc/compressor.h"
-#include "mongo/db/ftdc/util.h"
-#include "mongo/db/ftdc/varint.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/data_range_cursor.h"
+#include "mongol/base/data_type_validated.h"
+#include "mongol/db/ftdc/compressor.h"
+#include "mongol/db/ftdc/util.h"
+#include "mongol/db/ftdc/varint.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 StatusWith<std::vector<BSONObj>> FTDCDecompressor::uncompress(ConstDataRange buf) {
     ConstDataRangeCursor compressedDataRange(buf);
@@ -179,4 +179,4 @@ StatusWith<std::vector<BSONObj>> FTDCDecompressor::uncompress(ConstDataRange buf
     return {docs};
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,13 +31,13 @@
 
 #include <stack>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/util/net/message.h"
 
-namespace mongo {
+namespace mongol {
 
 class AScopedConnection;
 
@@ -321,4 +321,4 @@ private:
     int _n;
 };
 
-}  // namespace mongo
+}  // namespace mongol

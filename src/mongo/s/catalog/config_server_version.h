@@ -28,14 +28,14 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * UPGRADE HISTORY
  *
  * The enum below documents the version changes to *both* the config server data layout
- * and the versioning protocol between clients (i.e. the set of calls between mongos and
- * mongod).
+ * and the versioning protocol between clients (i.e. the set of calls between mongols and
+ * mongold).
  *
  * Friendly notice:
  *
@@ -47,7 +47,7 @@ namespace mongo {
  * + The CURRENT_CONFIG_VERSION below is incremented to that version
  * + There should be a determination if the MIN_COMPATIBLE_CONFIG_VERSION should be increased or
  *   not. This means determining if, by introducing the changes to layout and/or protocol, the
- *   new mongos/d can co-exist in a cluster with the old ones.
+ *   new mongols/d can co-exist in a cluster with the old ones.
  * + If layout changes are involved, there should be a corresponding layout upgrade routine. See
  *   for instance config_upgrade_vX_to_vY.cpp.
  * + Again, if a layout change occurs, the base upgrade method, config_upgrade_v0_to_vX.cpp must
@@ -62,7 +62,7 @@ enum UpgradeHistory {
     UpgradeHistory_EmptyVersion = 0,
 
     /**
-     * The unreported version older mongoses used before config.version collection existed
+     * The unreported version older mongolses used before config.version collection existed
      *
      * If there is a config.shards/databases/collections collection but no config.version
      * collection, version 1 is assumed
@@ -76,7 +76,7 @@ enum UpgradeHistory {
      */
 
     /**
-     * Base version used by pre-2.4 mongoses with no collection epochs.
+     * Base version used by pre-2.4 mongolses with no collection epochs.
      */
     UpgradeHistory_NoEpochVersion = 3,
 
@@ -87,7 +87,7 @@ enum UpgradeHistory {
      * Also:
      * + Version document in config.version now of the form:
      *   { minVersion : X, currentVersion : Y, clusterId : OID(...) }
-     * + Mongos pings include a "mongoVersion" field indicating the mongos version
+     * + Mongos pings include a "mongolVersion" field indicating the mongols version
      * + Mongos pings include a "configVersion" field indicating the current config version
      * + Mongos explicitly ignores any collection with a "primary" field
      */
@@ -96,9 +96,9 @@ enum UpgradeHistory {
     /**
      * Version upgrade with the following changes:
      *
-     * + Dropping a collection from mongos now waits for the chunks to be removed from the
-     *   config server before contacting each shard. Because of this, mongos should be
-     *   upgraded first before mongod or never drop collections during upgrade.
+     * + Dropping a collection from mongols now waits for the chunks to be removed from the
+     *   config server before contacting each shard. Because of this, mongols should be
+     *   upgraded first before mongold or never drop collections during upgrade.
      */
     UpgradeHistory_DummyBumpPre2_6 = 5,
 
@@ -118,4 +118,4 @@ const int MIN_COMPATIBLE_CONFIG_VERSION = UpgradeHistory_DummyBumpPre2_6;
 // Latest version we know how to communicate with
 const int CURRENT_CONFIG_VERSION = UpgradeHistory_DummyBumpPre2_8;
 
-}  // namespace mongo
+}  // namespace mongol

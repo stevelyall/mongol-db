@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/record_store_v1_test_help.h"
+#include "mongol/db/storage/mmap_v1/record_store_v1_test_help.h"
 
 #include <boost/next_prior.hpp>
 #include <algorithm>
@@ -38,14 +38,14 @@
 #include <set>
 #include <vector>
 
-#include "mongo/db/storage/mmap_v1/extent.h"
-#include "mongo/db/storage/mmap_v1/record.h"
-#include "mongo/db/storage/record_fetcher.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/log.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/record.h"
+#include "mongol/db/storage/record_fetcher.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::numeric_limits;
 
@@ -224,7 +224,7 @@ DiskLoc DummyExtentManager::allocateExtent(OperationContext* txn,
     size = quantizeExtentSize(size);
 
     ExtentInfo info;
-    info.data = static_cast<char*>(mongoMalloc(size));
+    info.data = static_cast<char*>(mongolMalloc(size));
     info.length = size;
 
     DiskLoc loc(_extents.size(), 0);

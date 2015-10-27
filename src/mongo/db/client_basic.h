@@ -30,19 +30,19 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/util/decorable.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/net/message_port.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/util/decorable.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/net/message_port.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServiceContext;
 
 /**
  * this is the base class for Client and ClientInfo
- * Client is for mongod
- * ClientInfo is for mongos
+ * Client is for mongold
+ * ClientInfo is for mongols
  * They should converge slowly
  * The idea is this has the basic api so that not all code has to be duplicated
  */

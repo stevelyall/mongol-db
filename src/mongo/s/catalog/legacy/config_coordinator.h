@@ -30,11 +30,11 @@
 
 #include <vector>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
 
-namespace mongo {
+namespace mongol {
 
 class MultiCommandDispatch;
 

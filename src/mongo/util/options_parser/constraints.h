@@ -27,11 +27,11 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/options_parser/environment.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/options_parser/environment.h"
 
-namespace mongo {
+namespace mongol {
 namespace optionenvironment {
 
 /** A Constraint validates an Environment.  It has one function, which takes an Environment as
@@ -174,4 +174,4 @@ private:
 };
 
 }  // namespace optionenvironment
-}  // namespace mongo
+}  // namespace mongol

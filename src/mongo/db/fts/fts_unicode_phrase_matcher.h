@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/fts/fts_phrase_matcher.h"
-#include "mongo/db/fts/unicode/codepoints.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/fts/fts_phrase_matcher.h"
+#include "mongol/db/fts/unicode/codepoints.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 class FTSLanguage;
@@ -61,4 +61,4 @@ private:
 };
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

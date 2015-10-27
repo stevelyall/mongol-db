@@ -28,21 +28,21 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/mmap_v1/dur_commitjob.h"
+#include "mongol/db/storage/mmap_v1/dur_commitjob.h"
 
 #include <iostream>
 
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/db/storage/mmap_v1/durable_mapped_file.h"
-#include "mongo/db/storage/mmap_v1/dur_stats.h"
-#include "mongo/util/log.h"
-#include "mongo/util/stacktrace.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/db/storage/mmap_v1/durable_mapped_file.h"
+#include "mongol/db/storage/mmap_v1/dur_stats.h"
+#include "mongol/util/log.h"
+#include "mongol/util/stacktrace.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::endl;
@@ -116,4 +116,4 @@ void CommitJob::committingReset() {
 }
 
 }  // namespace "dur"
-}  // namespace "mongo"
+}  // namespace "mongol"

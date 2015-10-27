@@ -26,37 +26,37 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <sstream>
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/catalog/apply_ops.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/dbhash.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/matcher/matcher.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/repl/oplog.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/log.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/catalog/apply_ops.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/dbhash.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/matcher/matcher.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/repl/oplog.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -129,7 +129,7 @@ private:
                 << "op does not contain required \"op\" field: " << e.fieldName();
             return false;
         }
-        if (opElement.type() != mongo::String) {
+        if (opElement.type() != mongol::String) {
             errmsg = str::stream() << "\"op\" field is not a string: " << e.fieldName();
             return false;
         }
@@ -148,7 +148,7 @@ private:
                 << "op does not contain required \"ns\" field: " << e.fieldName();
             return false;
         }
-        if (nsElement.type() != mongo::String) {
+        if (nsElement.type() != mongol::String) {
             errmsg = str::stream() << "\"ns\" field is not a string: " << e.fieldName();
             return false;
         }

@@ -33,20 +33,20 @@
  * Initializers are arranged in an acyclic directed dependency graph.  Declaring
  * a cycle will lead to a runtime error.
  *
- * Initializer functions take a parameter of type ::mongo::InitializerContext*, and return
+ * Initializer functions take a parameter of type ::mongol::InitializerContext*, and return
  * a Status.  Any status other than Status::OK() is considered a failure that will stop further
  * intializer processing.
  */
 
 #pragma once
 
-#include "mongo/base/initializer.h"
-#include "mongo/base/initializer_context.h"
-#include "mongo/base/initializer_function.h"
-#include "mongo/base/global_initializer.h"
-#include "mongo/base/global_initializer_registerer.h"
-#include "mongo/base/make_string_vector.h"
-#include "mongo/base/status.h"
+#include "mongol/base/initializer.h"
+#include "mongol/base/initializer_context.h"
+#include "mongol/base/initializer_function.h"
+#include "mongol/base/global_initializer.h"
+#include "mongol/base/global_initializer_registerer.h"
+#include "mongol/base/make_string_vector.h"
+#include "mongol/base/status.h"
 
 /**
  * Convenience parameter representing an empty set of prerequisites for an initializer function.
@@ -70,7 +70,7 @@
  * See MONGO_INITIALIZER_GENERAL.
  *
  * Usage:
- *     MONGO_INITIALIZER(myModule)(::mongo::InitializerContext* context) {
+ *     MONGO_INITIALIZER(myModule)(::mongol::InitializerContext* context) {
  *         ...
  *     }
  */
@@ -86,7 +86,7 @@
  * Usage:
  *     MONGO_INITIALIZER_WITH_PREREQUISITES(myGlobalStateChecker,
  *                                         ("globalStateInitialized", "stacktraces"))(
- *            ::mongo::InitializerContext* context) {
+ *            ::mongol::InitializerContext* context) {
  *    }
  */
 #define MONGO_INITIALIZER_WITH_PREREQUISITES(NAME, PREREQUISITES) \
@@ -101,14 +101,14 @@
  * DEPENDENTS is a tuple of 0 or more std::string literals.
  *
  * At run time, the full set of prerequisites for NAME will be computed as the union of the
- * explicit PREREQUISITES and the set of all other mongo initializers that name NAME in their
+ * explicit PREREQUISITES and the set of all other mongol initializers that name NAME in their
  * list of dependents.
  *
  * Usage:
  *    MONGO_INITIALIZER_GENERAL(myInitializer,
  *                             ("myPrereq1", "myPrereq2", ...),
  *                             ("myDependent1", "myDependent2", ...))(
- *            ::mongo::InitializerContext* context) {
+ *            ::mongol::InitializerContext* context) {
  *    }
  *
  * TODO: May want to be able to name the initializer separately from the function name.
@@ -116,15 +116,15 @@
  * of the function to declare would be options.
  */
 #define MONGO_INITIALIZER_GENERAL(NAME, PREREQUISITES, DEPENDENTS)                        \
-    ::mongo::Status _MONGO_INITIALIZER_FUNCTION_NAME(NAME)(::mongo::InitializerContext*); \
+    ::mongol::Status _MONGO_INITIALIZER_FUNCTION_NAME(NAME)(::mongol::InitializerContext*); \
     namespace {                                                                           \
-    ::mongo::GlobalInitializerRegisterer _mongoInitializerRegisterer_##NAME(              \
+    ::mongol::GlobalInitializerRegisterer _mongolInitializerRegisterer_##NAME(              \
         #NAME,                                                                            \
         _MONGO_INITIALIZER_FUNCTION_NAME(NAME),                                           \
         MONGO_MAKE_STRING_VECTOR PREREQUISITES,                                           \
         MONGO_MAKE_STRING_VECTOR DEPENDENTS);                                             \
     }                                                                                     \
-    ::mongo::Status _MONGO_INITIALIZER_FUNCTION_NAME(NAME)
+    ::mongol::Status _MONGO_INITIALIZER_FUNCTION_NAME(NAME)
 
 /**
  * Macro to define an initializer group.
@@ -134,12 +134,12 @@
  * global parameters initialized".
  */
 #define MONGO_INITIALIZER_GROUP(NAME, PREREQUISITES, DEPENDENTS)                               \
-    MONGO_INITIALIZER_GENERAL(NAME, PREREQUISITES, DEPENDENTS)(::mongo::InitializerContext*) { \
-        return ::mongo::Status::OK();                                                          \
+    MONGO_INITIALIZER_GENERAL(NAME, PREREQUISITES, DEPENDENTS)(::mongol::InitializerContext*) { \
+        return ::mongol::Status::OK();                                                          \
     }
 
 /**
- * Macro to produce a name for a mongo initializer function for an initializer operation
+ * Macro to produce a name for a mongol initializer function for an initializer operation
  * named "NAME".
  */
-#define _MONGO_INITIALIZER_FUNCTION_NAME(NAME) _mongoInitializerFunction_##NAME
+#define _MONGO_INITIALIZER_FUNCTION_NAME(NAME) _mongolInitializerFunction_##NAME

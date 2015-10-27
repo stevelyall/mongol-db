@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-// NOTE: This file *must not* depend on any mongo symbols.
+// NOTE: This file *must not* depend on any mongol symbols.
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #if defined(MONGO_CONFIG_HAVE_HEADER_UNISTD_H)
 #include <unistd.h>
@@ -51,7 +51,7 @@
 extern "C" void __gcov_flush();
 #endif
 
-namespace mongo {
+namespace mongol {
 
 void quickExit(int code) {
 #ifdef MONGO_GCOV
@@ -65,4 +65,4 @@ void quickExit(int code) {
     ::_exit(code);
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -33,10 +33,10 @@
 #include <boost/intrusive_ptr.hpp>
 #include <bitset>
 
-#include "mongo/util/intrusive_counter.h"
-#include "mongo/db/pipeline/value.h"
+#include "mongol/util/intrusive_counter.h"
+#include "mongol/db/pipeline/value.h"
 
-namespace mongo {
+namespace mongol {
 /** Helper class to make the position in a document abstract
  *  Warning: This is NOT guaranteed to be the ordered position.
  *           eg. the first field may not be at Position(0)

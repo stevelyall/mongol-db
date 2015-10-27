@@ -35,11 +35,11 @@
 #include <string>
 #include <wiredtiger.h>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_session_cache.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_session_cache.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class WiredTigerRecordStore;
 class WiredTigerSession;

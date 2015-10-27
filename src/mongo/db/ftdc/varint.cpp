@@ -26,13 +26,13 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/db/ftdc/varint.h"
+#include "mongol/db/ftdc/varint.h"
 
 #include <third_party/s2/util/coding/varint.h>
 
-#include "mongo/util/assert_util.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 Status DataType::Handler<FTDCVarInt>::load(
     FTDCVarInt* t, const char* ptr, size_t length, size_t* advanced, std::ptrdiff_t debug_offset) {
@@ -81,4 +81,4 @@ Status DataType::Handler<FTDCVarInt>::store(
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

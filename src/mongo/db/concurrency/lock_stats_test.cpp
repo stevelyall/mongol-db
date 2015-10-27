@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/db/concurrency/lock_manager_test_help.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/db/concurrency/lock_manager_test_help.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(LockStats, NoWait) {
     const ResourceId resId(RESOURCE_COLLECTION, std::string("LockStats.NoWait"));
@@ -99,4 +99,4 @@ TEST(LockStats, Reporting) {
     stats.report(&builder);
 }
 
-}  // namespace mongo
+}  // namespace mongol

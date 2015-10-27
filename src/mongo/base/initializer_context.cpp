@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/initializer_context.h"
+#include "mongol/base/initializer_context.h"
 
-namespace mongo {
+namespace mongol {
 
 InitializerContext::InitializerContext(const ArgumentVector& args, const EnvironmentMap& env)
     : _args(args), _env(env) {}
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,7 +30,7 @@
 
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 
@@ -91,4 +91,4 @@ public:
     static IndexType nameToType(const std::string& accessMethod);
 };
 
-}  // namespace mongo
+}  // namespace mongol

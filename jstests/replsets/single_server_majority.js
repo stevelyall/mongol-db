@@ -1,10 +1,10 @@
-// This test checks that w:"majority" works correctly on a lone mongod
+// This test checks that w:"majority" works correctly on a lone mongold
 
-// set up a mongod and connect
-var mongod = MongoRunner.runMongod({});
+// set up a mongold and connect
+var mongold = MongoRunner.runMongod({});
 
 // get db and collection, then perform a trivial insert
-db = mongod.getDB("test")
+db = mongold.getDB("test")
 col = db.getCollection("single_server_majority");
 col.drop();
 

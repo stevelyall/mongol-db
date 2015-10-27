@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/string_map.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/string_map.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class ConnectionString;
@@ -88,4 +88,4 @@ private:
     ReplicaSetMonitorsMap _monitors;
 };
 
-}  // namespace mongo
+}  // namespace mongol

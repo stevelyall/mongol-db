@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/stdx/memory.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientCursor;
 

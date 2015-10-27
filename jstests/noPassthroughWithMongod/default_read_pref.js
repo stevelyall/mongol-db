@@ -4,13 +4,13 @@
 
     "use strict";
 
-    var mongo = db.getMongo();
+    var mongol = db.getMongo();
     try {
         var commandsRan = [];
-        db._mongo = {
+        db._mongol = {
             getSlaveOk: function() { return false; },
-            getReadPrefMode: function() { return mongo.getReadPrefMode(); },
-            getReadPref: function() { return mongo.getReadPref(); },
+            getReadPrefMode: function() { return mongol.getReadPrefMode(); },
+            getReadPref: function() { return mongol.getReadPref(); },
             runCommand: function(db, cmd, opts) {
                 commandsRan.push({db: db, cmd: cmd, opts:opts});
             }
@@ -22,7 +22,7 @@
         assert.eq(commandsRan[0].opts & DBQuery.Option.slaveOk, 0, "The slaveOk bit should not be set.");
 
     } finally {
-        db._mongo = mongo;
+        db._mongol = mongol;
     }
 
 })();

@@ -26,11 +26,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/range_arithmetic.h"
+#include "mongol/db/range_arithmetic.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::make_pair;
 using std::pair;

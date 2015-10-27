@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/index/haystack_access_method.h"
+#include "mongol/db/index/haystack_access_method.h"
 
 
-#include "mongo/base/status.h"
-#include "mongo/db/geo/hash.h"
-#include "mongo/db/index/expression_keys_private.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/index/haystack_access_method_internal.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/geo/hash.h"
+#include "mongol/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/index/haystack_access_method_internal.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 
@@ -142,4 +142,4 @@ void HaystackAccessMethod::searchCommand(OperationContext* txn,
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

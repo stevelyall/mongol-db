@@ -29,10 +29,10 @@
 #pragma once
 
 
-#include "mongo/db/pipeline/value_internal.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/db/pipeline/value_internal.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 class BSONElement;
 
 /** A variant type that can hold any type of data representable in BSON
@@ -295,14 +295,14 @@ static_assert(sizeof(Value) == 16, "sizeof(Value) == 16");
 
 typedef unordered_set<Value, Value::Hash> ValueSet;
 
-inline void swap(mongo::Value& lhs, mongo::Value& rhs) {
+inline void swap(mongol::Value& lhs, mongol::Value& rhs) {
     lhs.swap(rhs);
 }
 }
 
 /* ======================= INLINED IMPLEMENTATIONS ========================== */
 
-namespace mongo {
+namespace mongol {
 
 inline size_t Value::getArrayLength() const {
     verify(getType() == Array);

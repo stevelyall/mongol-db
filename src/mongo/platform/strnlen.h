@@ -27,12 +27,12 @@
 
 #pragma once
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #include <cstddef>
 #include <cstring>
 
-namespace mongo {
+namespace mongol {
 
 #ifdef MONGO_CONFIG_HAVE_STRNLEN
 using ::strnlen;
@@ -40,4 +40,4 @@ using ::strnlen;
 size_t strnlen(const char* s, size_t maxlen);
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

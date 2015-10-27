@@ -25,21 +25,21 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/net/hostandport.h"
+#include "mongol/util/net/hostandport.h"
 
 #include <boost/functional/hash.hpp>
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 StatusWith<HostAndPort> HostAndPort::parse(StringData text) {
     HostAndPort result;
@@ -170,10 +170,10 @@ std::ostream& operator<<(std::ostream& os, const HostAndPort& hp) {
     return os << hp.toString();
 }
 
-}  // namespace mongo
+}  // namespace mongol
 
 MONGO_HASH_NAMESPACE_START
-size_t hash<mongo::HostAndPort>::operator()(const mongo::HostAndPort& host) const {
+size_t hash<mongol::HostAndPort>::operator()(const mongol::HostAndPort& host) const {
     hash<int> intHasher;
     size_t hash = intHasher(host.port());
     boost::hash_combine(hash, host.host());

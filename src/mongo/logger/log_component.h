@@ -30,9 +30,9 @@
 #include <iosfwd>
 #include <string>
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -107,4 +107,4 @@ private:
 std::ostream& operator<<(std::ostream& os, LogComponent component);
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

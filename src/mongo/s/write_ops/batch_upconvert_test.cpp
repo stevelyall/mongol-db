@@ -25,26 +25,26 @@
  *    exception statement from all source files in the program, then also delete
  *    it in the license file.
  */
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/write_ops/batch_upconvert.h"
+#include "mongol/s/write_ops/batch_upconvert.h"
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/dbclientinterface.h"  // for write constants
-#include "mongo/db/write_concern_options.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/message.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/dbclientinterface.h"  // for write constants
+#include "mongol/db/write_concern_options.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/message.h"
 
 namespace {
 
 using std::string;
 using std::vector;
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(WriteBatchUpconvert, BasicInsert) {
     // Tests that an insert message is correctly upconverted to a batch insert

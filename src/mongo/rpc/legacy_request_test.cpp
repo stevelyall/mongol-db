@@ -26,18 +26,18 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/legacy_request.h"
-#include "mongo/rpc/legacy_request_builder.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/legacy_request.h"
+#include "mongol/rpc/legacy_request_builder.h"
 
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 TEST(LegacyRequest, InvalidNSThrows) {
     rpc::LegacyRequestBuilder crb;

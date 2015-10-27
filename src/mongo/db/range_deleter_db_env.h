@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "mongo/db/range_deleter.h"
+#include "mongol/db/range_deleter.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class implements the deleter methods to be used for a shard.

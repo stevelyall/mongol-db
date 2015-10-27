@@ -30,11 +30,11 @@
 
 #include <memory>
 
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/executor/thread_pool_task_executor.h"
-#include "mongo/executor/task_executor_test_fixture.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/executor/thread_pool_task_executor.h"
+#include "mongol/executor/task_executor_test_fixture.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -53,4 +53,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

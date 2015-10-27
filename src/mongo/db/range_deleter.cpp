@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/range_deleter.h"
+#include "mongol/db/range_deleter.h"
 
 #include <boost/date_time/posix_time/posix_time_duration.hpp>
 #include <memory>
 
-#include "mongo/db/client.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/client.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
+#include "mongol/util/timer.h"
 
 using std::unique_ptr;
 using std::endl;
@@ -75,7 +75,7 @@ bool deletePtrElement(ContainerType* container, ContainerElementType elem) {
 }
 }
 
-namespace mongo {
+namespace mongol {
 
 namespace duration = boost::posix_time;
 

@@ -27,22 +27,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
 #include <boost/functional/hash.hpp>
 
-#include "mongo/base/data_range.h"
-#include "mongo/bson/bson_validate.h"
-#include "mongo/db/json.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/base/data_range.h"
+#include "mongol/bson/bson_validate.h"
+#include "mongol/db/json.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 using namespace std;
 /* BSONObj ------------------------------------------------------------*/
 
@@ -76,7 +76,7 @@ void BSONObj::_assertInvalid() const {
 }
 
 BSONObj BSONObj::copy() const {
-    char* storage = static_cast<char*>(mongoMalloc(sizeof(Holder) + objsize()));
+    char* storage = static_cast<char*>(mongolMalloc(sizeof(Holder) + objsize()));
     memcpy(storage + sizeof(Holder), objdata(), objsize());
     return BSONObj::takeOwnership(storage);
 }
@@ -796,20 +796,20 @@ Status DataType::Handler<BSONObj>::load(
     auto len = ConstDataRange(ptr, ptr + length).read<LittleEndian<uint32_t>>();
 
     if (!len.isOK()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "buffer size too small to read length at offset: " << debug_offset;
         return Status(ErrorCodes::InvalidBSON, ss);
     }
 
     if (len.getValue() > length) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "length (" << len.getValue() << ") greater than buffer size (" << length
            << ") at offset: " << debug_offset;
         return Status(ErrorCodes::InvalidBSON, ss);
     }
 
     if (len.getValue() < BSONObj::kMinBSONLength) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Invalid bson length (" << len.getValue() << ") at offset: " << debug_offset;
         return Status(ErrorCodes::InvalidBSON, ss);
     }
@@ -822,7 +822,7 @@ Status DataType::Handler<BSONObj>::load(
         }
     } catch (...) {
         auto status = exceptionToStatus();
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << status.reason() << " at offset: " << debug_offset;
 
         return Status(status.code(), ss);
@@ -838,7 +838,7 @@ Status DataType::Handler<BSONObj>::load(
 Status DataType::Handler<BSONObj>::store(
     const BSONObj& bson, char* ptr, size_t length, size_t* advanced, std::ptrdiff_t debug_offset) {
     if (bson.objsize() > static_cast<int>(length)) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "buffer too small to write bson of size (" << bson.objsize()
            << ") at offset: " << debug_offset;
         return Status(ErrorCodes::Overflow, ss);
@@ -900,4 +900,4 @@ BSONObjIteratorSorted::BSONObjIteratorSorted(const BSONObj& object)
 BSONArrayIteratorSorted::BSONArrayIteratorSorted(const BSONArray& array)
     : BSONIteratorSorted(array, ElementFieldCmp(true)) {}
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Status;
 
@@ -45,4 +45,4 @@ class Status;
  */
 Status getStatusFromCommandResult(const BSONObj& result);
 
-}  // namespace mongo
+}  // namespace mongol

@@ -28,15 +28,15 @@
 *    it in the license file.
 */
 
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/catalog/database_catalog_entry.h"
-#include "mongo/db/catalog/database_holder.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/storage/storage_engine.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/catalog/database_catalog_entry.h"
+#include "mongol/db/catalog/database_holder.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/storage/storage_engine.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;

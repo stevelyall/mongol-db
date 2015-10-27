@@ -31,7 +31,7 @@
 #include <type_traits>
 
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Implementation of the AtomicWord interface in terms of the C++11 Atomics.
@@ -162,4 +162,4 @@ _ATOMIC_WORD_DECLARE(AtomicInt32, int);
 _ATOMIC_WORD_DECLARE(AtomicInt64, long long);
 #undef _ATOMIC_WORD_DECLARE
 
-}  // namespace mongo
+}  // namespace mongol

@@ -127,7 +127,7 @@ class Distro(object):
         return self.n
 
     def pkgbase(self):
-        return "mongodb"
+        return "mongoldb"
 
     def archname(self, arch):
         if re.search("^(debian|ubuntu)", self.n):
@@ -145,20 +145,20 @@ class Distro(object):
 
         Examples:
 
-        repo/apt/ubuntu/dists/precise/mongodb-org/2.5/multiverse/binary-amd64
-        repo/apt/ubuntu/dists/precise/mongodb-org/2.5/multiverse/binary-i386
+        repo/apt/ubuntu/dists/precise/mongoldb-org/2.5/multiverse/binary-amd64
+        repo/apt/ubuntu/dists/precise/mongoldb-org/2.5/multiverse/binary-i386
 
-        repo/apt/ubuntu/dists/trusty/mongodb-org/2.5/multiverse/binary-amd64
-        repo/apt/ubuntu/dists/trusty/mongodb-org/2.5/multiverse/binary-i386
+        repo/apt/ubuntu/dists/trusty/mongoldb-org/2.5/multiverse/binary-amd64
+        repo/apt/ubuntu/dists/trusty/mongoldb-org/2.5/multiverse/binary-i386
 
-        repo/apt/debian/dists/wheezy/mongodb-org/2.5/main/binary-amd64
-        repo/apt/debian/dists/wheezy/mongodb-org/2.5/main/binary-i386
+        repo/apt/debian/dists/wheezy/mongoldb-org/2.5/main/binary-amd64
+        repo/apt/debian/dists/wheezy/mongoldb-org/2.5/main/binary-i386
 
-        repo/yum/redhat/6/mongodb-org/2.5/x86_64
-        yum/redhat/6/mongodb-org/2.5/i386
+        repo/yum/redhat/6/mongoldb-org/2.5/x86_64
+        yum/redhat/6/mongoldb-org/2.5/i386
 
-        repo/zypper/suse/11/mongodb-org/2.5/x86_64
-        zypper/suse/11/mongodb-org/2.5/i386
+        repo/zypper/suse/11/mongoldb-org/2.5/x86_64
+        zypper/suse/11/mongoldb-org/2.5/i386
 
         """
 
@@ -170,11 +170,11 @@ class Distro(object):
           repo_directory = spec.branch()
 
         if re.search("^(debian|ubuntu)", self.n):
-            return "repo/apt/%s/dists/%s/mongodb-org/%s/%s/binary-%s/" % (self.n, self.repo_os_version(build_os), repo_directory, self.repo_component(), self.archname(arch))
+            return "repo/apt/%s/dists/%s/mongoldb-org/%s/%s/binary-%s/" % (self.n, self.repo_os_version(build_os), repo_directory, self.repo_component(), self.archname(arch))
         elif re.search("(redhat|fedora|centos|amazon)", self.n):
-            return "repo/yum/%s/%s/mongodb-org/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
+            return "repo/yum/%s/%s/mongoldb-org/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
         elif re.search("(suse)", self.n):
-            return "repo/zypper/%s/%s/mongodb-org/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
+            return "repo/zypper/%s/%s/mongoldb-org/%s/%s/RPMS/" % (self.n, self.repo_os_version(build_os), repo_directory, self.archname(arch))
         else:
             raise Exception("BUG: unsupported platform?")
 
@@ -291,7 +291,7 @@ def main(argv):
     os.chdir(prefix)
     try:
       # Download the binaries.
-      urlfmt="http://downloads.mongodb.org/linux/mongodb-linux-%s-%s-%s.tgz"
+      urlfmt="http://downloads.mongoldb.org/linux/mongoldb-linux-%s-%s-%s.tgz"
 
       # Build a package for each distro/spec/arch tuple, and
       # accumulate the repository-layout directories.
@@ -346,15 +346,15 @@ def backtick(argv):
 def tarfile(build_os, arch, spec):
     """Return the location where we store the downloaded tarball for
     this package"""
-    return "dl/mongodb-linux-%s-%s-%s.tar.gz" % (spec.version(), build_os, arch)
+    return "dl/mongoldb-linux-%s-%s-%s.tar.gz" % (spec.version(), build_os, arch)
 
 def setupdir(distro, build_os, arch, spec):
     # The setupdir will be a directory containing all inputs to the
     # distro's packaging tools (e.g., package metadata files, init
     # scripts, etc), along with the already-built binaries).  In case
     # the following format string is unclear, an example setupdir
-    # would be dst/x86_64/debian-sysvinit/wheezy/mongodb-org-unstable/
-    # or dst/x86_64/redhat/rhel55/mongodb-org-unstable/
+    # would be dst/x86_64/debian-sysvinit/wheezy/mongoldb-org-unstable/
+    # or dst/x86_64/redhat/rhel55/mongoldb-org-unstable/
     return "dst/%s/%s/%s/%s%s-%s/" % (arch, distro.name(), build_os, distro.pkgbase(), spec.suffix(), spec.pversion(distro))
 
 def httpget(url, filename):
@@ -389,7 +389,7 @@ def unpack_binaries_into(build_os, arch, spec, where):
     os.chdir(where)
     try:
         sysassert(["tar", "xvzf", rootdir+"/"+tarfile(build_os, arch, spec)])
-        release_dir = glob('mongodb-linux-*')[0]
+        release_dir = glob('mongoldb-linux-*')[0]
         for releasefile in "bin", "GNU-AGPL-3.0", "README", "THIRD-PARTY-NOTICES", "MPL-2":
             print "moving file: %s/%s" % (release_dir, releasefile)
             os.rename("%s/%s" % (release_dir, releasefile), releasefile)
@@ -418,11 +418,11 @@ def make_package(distro, build_os, arch, spec, srcdir):
     # packaging infrastructure will move the files to wherever they
     # need to go.
     unpack_binaries_into(build_os, arch, spec, sdir)
-    # Remove the mongosniff binary due to libpcap dynamic
+    # Remove the mongolsniff binary due to libpcap dynamic
     # linkage.  FIXME: this removal should go away
     # eventually.
-    if os.path.exists(sdir + "bin/mongosniff"):
-      os.unlink(sdir + "bin/mongosniff")
+    if os.path.exists(sdir + "bin/mongolsniff"):
+      os.unlink(sdir + "bin/mongolsniff")
     return distro.make_pkg(build_os, arch, spec, srcdir)
 
 def make_repo(repodir, distro, build_os, spec):
@@ -441,10 +441,10 @@ def make_deb(distro, build_os, arch, spec, srcdir):
     suffix=spec.suffix()
     sdir=setupdir(distro, build_os, arch, spec)
     if re.search("debian", distro.name()):
-        os.link(sdir+"debian/init.d", sdir+"debian/%s%s-server.mongod.init" % (distro.pkgbase(), suffix))
-        os.unlink(sdir+"debian/mongod.upstart")
+        os.link(sdir+"debian/init.d", sdir+"debian/%s%s-server.mongold.init" % (distro.pkgbase(), suffix))
+        os.unlink(sdir+"debian/mongold.upstart")
     elif re.search("ubuntu", distro.name()):
-        os.link(sdir+"debian/mongod.upstart", sdir+"debian/%s%s-server.mongod.upstart" % (distro.pkgbase(), suffix))
+        os.link(sdir+"debian/mongold.upstart", sdir+"debian/%s%s-server.mongold.upstart" % (distro.pkgbase(), suffix))
         os.unlink(sdir+"debian/init.d")
     else:
         raise Exception("unknown debianoid flavor: not debian or ubuntu?")
@@ -497,10 +497,10 @@ def make_deb_repo(repo, distro, build_os, spec):
     # Notes: the Release{,.gpg} files must live in a special place,
     # and must be created after all the Packages.gz files have been
     # done.
-    s="""Origin: mongodb
-Label: mongodb
+    s="""Origin: mongoldb
+Label: mongoldb
 Suite: %s
-Codename: %s/mongodb-org
+Codename: %s/mongoldb-org
 Architectures: amd64
 Components: %s
 Description: MongoDB packages
@@ -593,11 +593,11 @@ def write_debian_changelog(path, spec, srcdir):
     finally:
         os.chdir(oldcwd)
     lines=s.split("\n")
-    # If the first line starts with "mongodb", it's not a revision
+    # If the first line starts with "mongoldb", it's not a revision
     # preamble, and so frob the version number.
-    lines[0]=re.sub("^mongodb \\(.*\\)", "mongodb (%s)" % (spec.pversion(Distro("debian"))), lines[0])
-    # Rewrite every changelog entry starting in mongodb<space>
-    lines=[re.sub("^mongodb ", "mongodb%s " % (spec.suffix()), l) for l in lines]
+    lines[0]=re.sub("^mongoldb \\(.*\\)", "mongoldb (%s)" % (spec.pversion(Distro("debian"))), lines[0])
+    # Rewrite every changelog entry starting in mongoldb<space>
+    lines=[re.sub("^mongoldb ", "mongoldb%s " % (spec.suffix()), l) for l in lines]
     lines=[re.sub("^  --", " --", l) for l in lines]
     s="\n".join(lines)
     with open(path, 'w') as f:
@@ -611,10 +611,10 @@ def make_rpm(distro, build_os, arch, spec, srcdir):
     # Use special suse init script if we're building for SUSE
     #
     if distro.name() == "suse":
-        os.unlink(sdir+"rpm/init.d-mongod")
-        os.link(sdir+"rpm/init.d-mongod.suse", sdir+"rpm/init.d-mongod")
+        os.unlink(sdir+"rpm/init.d-mongold")
+        os.link(sdir+"rpm/init.d-mongold.suse", sdir+"rpm/init.d-mongold")
 
-    specfile=srcdir+"rpm/mongodb%s.spec" % suffix
+    specfile=srcdir+"rpm/mongoldb%s.spec" % suffix
     topdir=ensure_dir('%s/rpmbuild/%s/' % (os.getcwd(), build_os))
     for subdir in ["BUILD", "RPMS", "SOURCES", "SPECS", "SRPMS"]:
         ensure_dir("%s/%s/" % (topdir, subdir))
@@ -668,13 +668,13 @@ def make_rpm(distro, build_os, arch, spec, srcdir):
     oldcwd=os.getcwd()
     os.chdir(sdir+"/../")
     try:
-        sysassert(["tar", "-cpzf", topdir+"SOURCES/mongodb%s-%s.tar.gz" % (suffix, spec.pversion(distro)), os.path.basename(os.path.dirname(sdir))])
+        sysassert(["tar", "-cpzf", topdir+"SOURCES/mongoldb%s-%s.tar.gz" % (suffix, spec.pversion(distro)), os.path.basename(os.path.dirname(sdir))])
     finally:
         os.chdir(oldcwd)
     # Do the build.
 
     flags.extend(["-D", "dynamic_version " + spec.pversion(distro), "-D", "dynamic_release " + spec.prelease(), "-D", "_topdir " + topdir])
-    sysassert(["rpmbuild", "-ba", "--target", distro_arch] + flags + ["%s/SPECS/mongodb%s.spec" % (topdir, suffix)])
+    sysassert(["rpmbuild", "-ba", "--target", distro_arch] + flags + ["%s/SPECS/mongoldb%s.spec" % (topdir, suffix)])
     r=distro.repodir(arch, build_os, spec)
     ensure_dir(r)
     # FIXME: see if some combination of shutil.copy<hoohah> and glob

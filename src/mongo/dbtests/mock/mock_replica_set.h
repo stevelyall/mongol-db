@@ -27,15 +27,15 @@
 
 #pragma once
 
-#include "mongo/dbtests/mock/mock_remote_db_server.h"
-#include "mongo/db/repl/member_config.h"
-#include "mongo/db/repl/replica_set_config.h"
+#include "mongol/dbtests/mock/mock_remote_db_server.h"
+#include "mongol/db/repl/member_config.h"
+#include "mongol/db/repl/replica_set_config.h"
 
 #include <string>
 #include <map>
 #include <vector>
 
-namespace mongo {
+namespace mongol {
 /**
  * This is a helper class for managing a replica set consisting of
  * MockRemoteDBServer instances.

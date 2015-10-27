@@ -29,7 +29,7 @@
 
 #include <iosfwd>
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 /**
@@ -46,4 +46,4 @@ public:
 };
 
 }  // namespace logger
-}  // nnamspace mongo
+}  // nnamspace mongol

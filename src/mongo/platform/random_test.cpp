@@ -31,11 +31,11 @@
 #include <set>
 #include <vector>
 
-#include "mongo/platform/random.h"
+#include "mongol/platform/random.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(RandomTest, Seed1) {
     PseudoRandom a(12);

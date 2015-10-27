@@ -26,17 +26,17 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/batched_delete_request.h"
+#include "mongol/s/write_ops/batched_delete_request.h"
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const std::string BatchedDeleteRequest::BATCHED_DELETE_REQUEST = "delete";
 const BSONField<std::string> BatchedDeleteRequest::collName("delete");
@@ -263,4 +263,4 @@ bool BatchedDeleteRequest::getOrdered() const {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

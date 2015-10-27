@@ -27,16 +27,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 #undef MONGO_PCH_WHITELISTED  // todo eliminate this include
 
-#include "mongo/util/concurrency/spin_lock.h"
+#include "mongol/util/concurrency/spin_lock.h"
 
 #include <time.h>
 
-#include "mongo/bson/inline_decls.h"
+#include "mongol/bson/inline_decls.h"
 
-namespace mongo {
+namespace mongol {
 
 SpinLock::~SpinLock() {
 #if defined(_WIN32)
@@ -129,4 +129,4 @@ bool SpinLock::isfast() {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

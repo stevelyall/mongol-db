@@ -6,7 +6,7 @@
     var extractResult = function(obj) {
         if (!isMongos) return obj;
 
-        // Sample mongos format:
+        // Sample mongols format:
         // {
         //   raw: {
         //     "localhost:30000": {

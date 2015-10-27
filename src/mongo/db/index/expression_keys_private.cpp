@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kIndex
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kIndex
 
-#include "mongo/db/index/expression_keys_private.h"
+#include "mongol/db/index/expression_keys_private.h"
 
 #include <utility>
 
-#include "mongo/db/fts/fts_index_format.h"
-#include "mongo/db/geo/geoconstants.h"
-#include "mongo/db/geo/geometry_container.h"
-#include "mongo/db/geo/geoparser.h"
-#include "mongo/db/geo/s2.h"
-#include "mongo/db/index_names.h"
-#include "mongo/db/index/2d_common.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/fts/fts_index_format.h"
+#include "mongol/db/geo/geoconstants.h"
+#include "mongol/db/geo/geometry_container.h"
+#include "mongol/db/geo/geoparser.h"
+#include "mongol/db/geo/s2.h"
+#include "mongol/db/index_names.h"
+#include "mongol/db/index/2d_common.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 #include "third_party/s2/s2cell.h"
 #include "third_party/s2/s2regioncoverer.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 
 //
 // Helper functions for getHaystackKeys
@@ -200,7 +200,7 @@ void getS2LiteralKeys(const BSONElementSet& elements, BSONObjSet* out) {
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::pair;
 using std::string;
@@ -253,7 +253,7 @@ void ExpressionKeysPrivate::get2DKeys(const BSONObj& obj,
                 BSONElement locElement = oi.next();
 
                 uassert(16804,
-                        mongoutils::str::stream()
+                        mongolutils::str::stream()
                             << "location object expected, location array not in correct format",
                         locElement.isABSONObj());
 
@@ -405,7 +405,7 @@ int ExpressionKeysPrivate::hashHaystackElement(const BSONElement& e, double buck
 
 // static
 std::string ExpressionKeysPrivate::makeHaystackString(int hashedX, int hashedY) {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
     ss << hashedX << "_" << hashedY;
     return ss;
 }
@@ -506,4 +506,4 @@ void ExpressionKeysPrivate::getS2Keys(const BSONObj& obj,
     *keys = keysToAdd;
 }
 
-}  // namespace mongo
+}  // namespace mongol

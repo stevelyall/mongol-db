@@ -1,20 +1,20 @@
 // tests gridfs with a sharded fs.chunks collection.
 
 var test = new ShardingTest({shards: 3,
-                             mongos: 1,
+                             mongols: 1,
                              config: 1,
                              verbose: 2,
                              other: {chunkSize:1}})
 
-var mongos = test.s0
+var mongols = test.s0
 
 
-var filename = "mongod" // A large file we are guaranteed to have
+var filename = "mongold" // A large file we are guaranteed to have
 if (_isWindows())
     filename += ".exe"
 
 function testGridFS(name) {
-    var d = mongos.getDB(name)
+    var d = mongols.getDB(name)
 
     // this function should be called on a clean db
     assert.eq(d.name.files.count(), 0)
@@ -23,12 +23,12 @@ function testGridFS(name) {
     var rawmd5 = md5sumFile(filename)
 
     // upload file (currently calls filemd5 internally)
-    runMongoProgram.apply(null, ["mongofiles", "--port", mongos.port, "put", filename, '--db', name]);
+    runMongoProgram.apply(null, ["mongolfiles", "--port", mongols.port, "put", filename, '--db', name]);
 
     assert.eq(d.fs.files.count(), 1)
     var fileObj = d.fs.files.findOne()
     print("fileObj: " + tojson(fileObj))
-    assert.eq(rawmd5, fileObj.md5) //check that mongofiles inserted the correct md5
+    assert.eq(rawmd5, fileObj.md5) //check that mongolfiles inserted the correct md5
 
     // Call filemd5 ourself and check results.
     var res = d.runCommand({filemd5: fileObj._id})

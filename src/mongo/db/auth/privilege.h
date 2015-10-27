@@ -29,12 +29,12 @@
 
 #include <vector>
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege_parser.h"
-#include "mongo/db/auth/resource_pattern.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege_parser.h"
+#include "mongol/db/auth/resource_pattern.h"
 
-namespace mongo {
+namespace mongol {
 
 class Privilege;
 typedef std::vector<Privilege> PrivilegeVector;
@@ -82,4 +82,4 @@ private:
     ActionSet _actions;  // bitmask of actions this privilege grants
 };
 
-}  // namespace mongo
+}  // namespace mongol

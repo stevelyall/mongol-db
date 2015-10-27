@@ -6,7 +6,7 @@
 'use strict';
 
 // Starting a new ShardingTest already exercises the addShard logic
-var st = new ShardingTest({ config: 1, mongos: 1, shards: 2, other: { sync: true } });
+var st = new ShardingTest({ config: 1, mongols: 1, shards: 2, other: { sync: true } });
 
 // Enable sharding
 assert.commandWorked(st.s.adminCommand({ enableSharding: 'TestDB' }));

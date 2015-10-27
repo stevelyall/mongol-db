@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/s/catalog/catalog_manager_common.h"
-#include "mongo/s/catalog/dist_lock_manager_mock.h"
+#include "mongol/s/catalog/catalog_manager_common.h"
+#include "mongol/s/catalog/dist_lock_manager_mock.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A dummy implementation of CatalogManager for testing purposes.
@@ -155,4 +155,4 @@ private:
     std::unique_ptr<DistLockManagerMock> _mockDistLockMgr;
 };
 
-}  // namespace mongo
+}  // namespace mongol

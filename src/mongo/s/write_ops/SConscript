@@ -17,9 +17,9 @@ env.Library(
         'write_error_detail.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/s/common',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/s/common',
     ],
 )
 
@@ -32,7 +32,7 @@ env.Library(
     ],
     LIBDEPS=[
         'batch_write_types',
-        '$BUILD_DIR/mongo/client/connection_string',
+        '$BUILD_DIR/mongol/client/connection_string',
     ],
 )
 
@@ -44,8 +44,8 @@ env.Library(
     ],
     LIBDEPS=[
         'cluster_write_op',
-        '$BUILD_DIR/mongo/db/dbmessage',
-        '$BUILD_DIR/mongo/db/lasterror',
+        '$BUILD_DIR/mongol/db/dbmessage',
+        '$BUILD_DIR/mongol/db/lasterror',
     ],
 )
 
@@ -72,8 +72,8 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         'cluster_write_op',
-        '$BUILD_DIR/mongo/db/range_arithmetic',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/range_arithmetic',
+        '$BUILD_DIR/mongol/db/service_context',
     ]
 )
 

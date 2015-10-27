@@ -26,10 +26,10 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/crypto/crypto.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/crypto/crypto.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 const int digestLen = 20;
 
@@ -518,4 +518,4 @@ TEST(CryptoVectors, HMACSHA1) {
     }
 }
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

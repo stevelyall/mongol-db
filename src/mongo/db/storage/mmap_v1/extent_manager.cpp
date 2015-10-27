@@ -28,11 +28,11 @@
 *    it in the license file.
 */
 
-#include "mongo/db/storage/mmap_v1/extent_manager.h"
+#include "mongol/db/storage/mmap_v1/extent_manager.h"
 
-#include "mongo/db/storage/mmap_v1/extent.h"
+#include "mongol/db/storage/mmap_v1/extent.h"
 
-namespace mongo {
+namespace mongol {
 
 int ExtentManager::quantizeExtentSize(int size) const {
     if (size == maxSize()) {

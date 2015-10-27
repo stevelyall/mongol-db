@@ -25,20 +25,20 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/bson/mutable/document.h"
+#include "mongol/bson/mutable/document.h"
 
 #include <cstdlib>
 #include <cstring>
 #include <limits>
 #include <vector>
 
-#include "mongo/bson/inline_decls.h"
-#include "mongo/bson/mutable/damage_vector.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/bson/inline_decls.h"
+#include "mongol/bson/mutable/damage_vector.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 /** Mutable BSON Implementation Overview
@@ -71,7 +71,7 @@ namespace mutablebson {
  *    only: ElementReps are never removed from it, even if the cooresponding Element is
  *    removed from the Document. By never removing ElementReps, and by using indexes into
  *    the Elements Vector, we can ensure that Elements are never invalidated. Note that
- *    every Document comes with an automatically provided 'root' element of mongo::Object
+ *    every Document comes with an automatically provided 'root' element of mongol::Object
  *    type. The ElementRep for the root is always in the first slot (index zero) of the
  *    Elements Vector.
  *
@@ -105,7 +105,7 @@ namespace mutablebson {
  *  - The 'Field Name Heap': For some elements, particularly those in the Leaf Builder or
  *    those embedded in a BSONObj in the Objects Vector, we can easily obtain the field
  *    name by reading it from the encoded BSON. However, some elements are not so
- *    fortunate. Newly created elements of mongo::Array or mongo::Object type, for
+ *    fortunate. Newly created elements of mongol::Array or mongol::Object type, for
  *    instance, don't have a memory region that provides values. In such cases, the field
  *    name is stored in the field name heap, which is simply std::vector<char>, where the
  *    field names are null-byte-delimited. ElementsReps for such elements store an offset
@@ -151,7 +151,7 @@ namespace mutablebson {
         "  'xs': { 'x' : 'x', 'X' : 'X' },"
         "  'ys': { 'y' : 'y' }"
         "}";
-    mongo::BSONObj inObj = mongo::fromjson(inJson);
+    mongol::BSONObj inObj = mongol::fromjson(inJson);
     mmb::Document doc(inObj);
 
  *    _elements
@@ -732,16 +732,16 @@ public:
     BSONType getType(const ElementRep& rep) const {
         // The root element is always an Object.
         if (&rep == &getElementRep(kRootRepIdx))
-            return mongo::Object;
+            return mongol::Object;
 
         if (rep.serialized || (rep.objIdx != kInvalidObjIdx))
             return getSerializedElement(rep).type();
 
-        return rep.array ? mongo::Array : mongo::Object;
+        return rep.array ? mongol::Array : mongol::Object;
     }
 
     static bool isLeafType(BSONType type) {
-        return ((type != mongo::Object) && (type != mongo::Array));
+        return ((type != mongol::Object) && (type != mongol::Array));
     }
 
     // Returns true if rep is not an object or array.
@@ -1266,7 +1266,7 @@ Status Element::rename(StringData newName) {
     // For non-leaf serialized elements, we can realize any opaque relatives and then
     // convert ourselves to deserialized.
     if (thisRep->objIdx != kInvalidObjIdx && !impl.isLeaf(*thisRep)) {
-        const bool array = (impl.getType(*thisRep) == mongo::Array);
+        const bool array = (impl.getType(*thisRep) == mongol::Array);
 
         // Realize any opaque right sibling or left child now, since otherwise we will lose
         // the ability to do so.
@@ -1449,8 +1449,8 @@ bool Element::isNumeric() const {
     const Document::Impl& impl = getDocument().getImpl();
     const ElementRep& thisRep = impl.getElementRep(_repIdx);
     const BSONType type = impl.getType(thisRep);
-    return ((type == mongo::NumberLong) || (type == mongo::NumberInt) ||
-            (type == mongo::NumberDouble) || (type == mongo::NumberDecimal));
+    return ((type == mongol::NumberLong) || (type == mongol::NumberInt) ||
+            (type == mongol::NumberDouble) || (type == mongol::NumberDecimal));
 }
 
 bool Element::isIntegral() const {
@@ -1458,7 +1458,7 @@ bool Element::isIntegral() const {
     const Document::Impl& impl = getDocument().getImpl();
     const ElementRep& thisRep = impl.getElementRep(_repIdx);
     const BSONType type = impl.getType(thisRep);
-    return ((type == mongo::NumberLong) || (type == mongo::NumberInt));
+    return ((type == mongol::NumberLong) || (type == mongol::NumberInt));
 }
 
 const BSONElement Element::getValue() const {
@@ -1472,13 +1472,13 @@ const BSONElement Element::getValue() const {
 
 SafeNum Element::getValueSafeNum() const {
     switch (getType()) {
-        case mongo::NumberInt:
+        case mongol::NumberInt:
             return static_cast<int>(getValueInt());
-        case mongo::NumberLong:
+        case mongol::NumberLong:
             return static_cast<long long int>(getValueLong());
-        case mongo::NumberDouble:
+        case mongol::NumberDouble:
             return getValueDouble();
-        case mongo::NumberDecimal:
+        case mongol::NumberDecimal:
             return getValueDecimal();
         default:
             return SafeNum();
@@ -1539,7 +1539,7 @@ int Element::compareWithElement(const ConstElement& other, bool considerFieldNam
     }
 
     const bool considerChildFieldNames =
-        (impl.getType(thisRep) != mongo::Array) && (oimpl.getType(otherRep) != mongo::Array);
+        (impl.getType(thisRep) != mongol::Array) && (oimpl.getType(otherRep) != mongol::Array);
 
     // We are dealing with either two objects, or two arrays. We need to consider the child
     // elements individually. We walk two iterators forward over the children and compare
@@ -1597,7 +1597,7 @@ int Element::compareWithBSONElement(const BSONElement& other, bool considerField
     }
 
     const bool considerChildFieldNames =
-        (impl.getType(thisRep) != mongo::Array) && (other.type() != mongo::Array);
+        (impl.getType(thisRep) != mongol::Array) && (other.type() != mongol::Array);
 
     return compareWithBSONObj(other.Obj(), considerChildFieldNames);
 }
@@ -1636,7 +1636,7 @@ void Element::writeTo(BSONObjBuilder* const builder) const {
     verify(ok());
     const Document::Impl& impl = getDocument().getImpl();
     const ElementRep& thisRep = impl.getElementRep(_repIdx);
-    verify(impl.getType(thisRep) == mongo::Object);
+    verify(impl.getType(thisRep) == mongol::Object);
     if (thisRep.parent == kInvalidRepIdx && _repIdx == kRootRepIdx) {
         // If this is the root element, then we need to handle it differently, since it
         // doesn't have a field name and should embed directly, rather than as an object.
@@ -1650,7 +1650,7 @@ void Element::writeArrayTo(BSONArrayBuilder* const builder) const {
     verify(ok());
     const Document::Impl& impl = getDocument().getImpl();
     const ElementRep& thisRep = impl.getElementRep(_repIdx);
-    verify(impl.getType(thisRep) == mongo::Array);
+    verify(impl.getType(thisRep) == mongol::Array);
     return impl.writeChildren(_repIdx, builder);
 }
 
@@ -1700,7 +1700,7 @@ Status Element::setValueArray(const BSONObj& value) {
 }
 
 Status Element::setValueBinary(const uint32_t len,
-                               mongo::BinDataType binType,
+                               mongol::BinDataType binType,
                                const void* const data) {
     verify(ok());
     Document::Impl& impl = getDocument().getImpl();
@@ -1877,7 +1877,7 @@ Status Element::setValueMaxKey() {
 Status Element::setValueBSONElement(const BSONElement& value) {
     verify(ok());
 
-    if (value.type() == mongo::EOO)
+    if (value.type() == mongol::EOO)
         return Status(ErrorCodes::IllegalOperation, "Can't set Element value to EOO");
 
     Document::Impl& impl = getDocument().getImpl();
@@ -1893,13 +1893,13 @@ Status Element::setValueBSONElement(const BSONElement& value) {
 Status Element::setValueSafeNum(const SafeNum value) {
     verify(ok());
     switch (value.type()) {
-        case mongo::NumberInt:
+        case mongol::NumberInt:
             return setValueInt(value._value.int32Val);
-        case mongo::NumberLong:
+        case mongol::NumberLong:
             return setValueLong(value._value.int64Val);
-        case mongo::NumberDouble:
+        case mongol::NumberDouble:
             return setValueDouble(value._value.doubleVal);
-        case mongo::NumberDecimal:
+        case mongol::NumberDecimal:
             return setValueDecimal(value._value.decimalVal);
         default:
             return Status(ErrorCodes::UnsupportedFormat,
@@ -2056,7 +2056,7 @@ struct SubBuilder;
 template <>
 struct SubBuilder<BSONObjBuilder> {
     SubBuilder(BSONObjBuilder* builder, BSONType type, StringData fieldName)
-        : buffer((type == mongo::Array) ? builder->subarrayStart(fieldName)
+        : buffer((type == mongol::Array) ? builder->subarrayStart(fieldName)
                                         : builder->subobjStart(fieldName)) {}
     BufBuilder& buffer;
 };
@@ -2064,7 +2064,7 @@ struct SubBuilder<BSONObjBuilder> {
 template <>
 struct SubBuilder<BSONArrayBuilder> {
     SubBuilder(BSONArrayBuilder* builder, BSONType type, StringData)
-        : buffer((type == mongo::Array) ? builder->subarrayStart() : builder->subobjStart()) {}
+        : buffer((type == mongol::Array) ? builder->subarrayStart() : builder->subobjStart()) {}
     BufBuilder& buffer;
 };
 
@@ -2101,9 +2101,9 @@ void Document::Impl::writeElement(Element::RepIdx repIdx,
         SubBuilder<Builder> subBuilder(builder, type, subName);
 
         // Otherwise, this is a 'dirty leaf', which is impossible.
-        dassert((type == mongo::Array) || (type == mongo::Object));
+        dassert((type == mongol::Array) || (type == mongol::Object));
 
-        if (type == mongo::Array) {
+        if (type == mongol::Array) {
             BSONArrayBuilder child_builder(subBuilder.buffer);
             writeChildren(repIdx, &child_builder);
             child_builder.doneFast();
@@ -2148,7 +2148,7 @@ void Document::Impl::writeChildren(Element::RepIdx repIdx, Builder* builder) con
             const ElementRep& parentRep = getElementRep(currentRep.parent);
 
             // Bulk copying right only works on objects
-            if ((getType(parentRep) == mongo::Object) && (currentRep.objIdx != kInvalidObjIdx) &&
+            if ((getType(parentRep) == mongol::Object) && (currentRep.objIdx != kInvalidObjIdx) &&
                 (currentRep.objIdx == parentRep.objIdx)) {
                 BSONElement currentElt = getSerializedElement(currentRep);
                 const uint32_t currentSize = currentElt.size();
@@ -2302,7 +2302,7 @@ Element Document::makeElementArray(StringData fieldName, const BSONObj& value) {
 
 Element Document::makeElementBinary(StringData fieldName,
                                     const uint32_t len,
-                                    const mongo::BinDataType binType,
+                                    const mongol::BinDataType binType,
                                     const void* const data) {
     Impl& impl = getImpl();
     dassert(impl.doesNotAlias(fieldName));
@@ -2494,11 +2494,11 @@ Element Document::makeElement(const BSONElement& value) {
     // Element. For array and object nodes, we flow through the custom
     // makeElement{Object|Array} methods, since they have special logic to deal with
     // opaqueness. Otherwise, we can just insert via appendAs.
-    if (value.type() == mongo::EOO)
+    if (value.type() == mongol::EOO)
         return end();
-    else if (value.type() == mongo::Object)
+    else if (value.type() == mongol::Object)
         return makeElementObject(value.fieldNameStringData(), value.Obj());
-    else if (value.type() == mongo::Array)
+    else if (value.type() == mongol::Array)
         return makeElementArray(value.fieldNameStringData(), value.Obj());
     else {
         dassert(impl.doesNotAlias(value));
@@ -2513,11 +2513,11 @@ Element Document::makeElementWithNewFieldName(StringData fieldName, const BSONEl
     Impl& impl = getImpl();
 
     // See the above makeElement for notes on these cases.
-    if (value.type() == mongo::EOO)
+    if (value.type() == mongol::EOO)
         return end();
-    else if (value.type() == mongo::Object)
+    else if (value.type() == mongol::Object)
         return makeElementObject(fieldName, value.Obj());
-    else if (value.type() == mongo::Array)
+    else if (value.type() == mongol::Array)
         return makeElementArray(fieldName, value.Obj());
     else {
         dassert(getImpl().doesNotAliasLeafBuilder(fieldName));
@@ -2533,13 +2533,13 @@ Element Document::makeElementSafeNum(StringData fieldName, SafeNum value) {
     dassert(getImpl().doesNotAlias(fieldName));
 
     switch (value.type()) {
-        case mongo::NumberInt:
+        case mongol::NumberInt:
             return makeElementInt(fieldName, value._value.int32Val);
-        case mongo::NumberLong:
+        case mongol::NumberLong:
             return makeElementLong(fieldName, value._value.int64Val);
-        case mongo::NumberDouble:
+        case mongol::NumberDouble:
             return makeElementDouble(fieldName, value._value.doubleVal);
-        case mongo::NumberDecimal:
+        case mongol::NumberDecimal:
             return makeElementDecimal(fieldName, value._value.decimalVal);
         default:
             // Return an invalid element to indicate that we failed.
@@ -2629,4 +2629,4 @@ inline const Document::Impl& Document::getImpl() const {
 }
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

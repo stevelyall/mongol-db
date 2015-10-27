@@ -26,36 +26,36 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/topology_coordinator_impl.h"
+#include "mongol/db/repl/topology_coordinator_impl.h"
 
 #include <limits>
 
-#include "mongo/db/audit.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/heartbeat_response_action.h"
-#include "mongo/db/repl/is_master_response.h"
-#include "mongo/db/repl/isself.h"
-#include "mongo/db/repl/repl_set_declare_election_winner_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/repl_set_html_summary.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/rslog.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/rpc/metadata/repl_set_metadata.h"
-#include "mongo/util/hex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/heartbeat_response_action.h"
+#include "mongol/db/repl/is_master_response.h"
+#include "mongol/db/repl/isself.h"
+#include "mongol/db/repl/repl_set_declare_election_winner_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/repl_set_html_summary.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/rslog.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/rpc/metadata/repl_set_metadata.h"
+#include "mongol/util/hex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using std::vector;
@@ -953,7 +953,7 @@ HeartbeatResponseAction TopologyCoordinatorImpl::processHeartbeatResponse(
                 LOG(2) << "Config from heartbeat response was same as ours.";
             }
             if (logger::globalLogDomain()->shouldLog(MongoLogDefaultComponent_component,
-                                                     ::mongo::LogstreamBuilder::severityCast(2))) {
+                                                     ::mongol::LogstreamBuilder::severityCast(2))) {
                 LogstreamBuilder lsb = log();
                 if (_rsConfig.isInitialized()) {
                     lsb << "Current config: " << _rsConfig.toBSON() << "; ";
@@ -2490,4 +2490,4 @@ void TopologyCoordinatorImpl::setStorageEngineSupportsReadCommitted(bool support
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

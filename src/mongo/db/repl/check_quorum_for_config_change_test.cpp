@@ -26,40 +26,40 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/check_quorum_for_config_change.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/check_quorum_for_config_change.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/net/hostandport.h"
 
 #define ASSERT_REASON_CONTAINS(STATUS, PATTERN)                      \
     do {                                                             \
-        const mongo::Status s_ = (STATUS);                           \
+        const mongol::Status s_ = (STATUS);                           \
         ASSERT_FALSE(s_.reason().find(PATTERN) == std::string::npos) \
             << #STATUS ".reason() == " << s_.reason();               \
     } while (false)
 
 #define ASSERT_NOT_REASON_CONTAINS(STATUS, PATTERN)                 \
     do {                                                            \
-        const mongo::Status s_ = (STATUS);                          \
+        const mongol::Status s_ = (STATUS);                          \
         ASSERT_TRUE(s_.reason().find(PATTERN) == std::string::npos) \
             << #STATUS ".reason() == " << s_.reason();              \
     } while (false)
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -67,7 +67,7 @@ using executor::NetworkInterfaceMock;
 using executor::RemoteCommandRequest;
 using executor::RemoteCommandResponse;
 
-class CheckQuorumTest : public mongo::unittest::Test {
+class CheckQuorumTest : public mongol::unittest::Test {
 protected:
     CheckQuorumTest();
 
@@ -819,4 +819,4 @@ TEST_F(CheckQuorumForReconfig, QuorumCheckSucceedsWithAsSoonAsPossible) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

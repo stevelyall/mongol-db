@@ -25,15 +25,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/logger/message_event_utf8_encoder.h"
+#include "mongol/logger/message_event_utf8_encoder.h"
 
 #include <iostream>
 
-#include "mongo/util/time_support.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace logger {
 
 static MessageEventDetailsEncoder::DateFormatter _dateFormatter = outputDateAsISOStringLocal;
@@ -106,4 +106,4 @@ std::ostream& MessageEventUnadornedEncoder::encode(const MessageEventEphemeral& 
 }
 
 }  // namespace logger
-}  // namespace mongo
+}  // namespace mongol

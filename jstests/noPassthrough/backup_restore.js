@@ -6,7 +6,7 @@
  * - fsyncLock (or stop) Secondary
  * - cp (or rsync) DB files
  * - fsyncUnlock (or start) Secondary
- * - Start mongod as hidden secondary
+ * - Start mongold as hidden secondary
  * - Wait until new hidden node becomes secondary
  */
 
@@ -60,16 +60,16 @@
             "   }" +
             "}";
 
-        // Returns the pid of the started mongo shell so the CRUD test client can be terminated
+        // Returns the pid of the started mongol shell so the CRUD test client can be terminated
         // without waiting for its execution to finish.
-        return startMongoProgramNoConnect("mongo", "--eval", crudClientCmds, host);
+        return startMongoProgramNoConnect("mongol", "--eval", crudClientCmds, host);
     }
 
     function fsmClient(host, blackListDb, numNodes) {
         // Launch FSM client
         // SERVER-19488 The FSM framework assumes that there is an implicit 'db' connection when
         // started without any cluster options. Since the shell running this test was started with
-        // --nodb, another mongo shell is used to allow implicit connections to be made to the
+        // --nodb, another mongol shell is used to allow implicit connections to be made to the
         // primary of the replica set.
         var fsmClientCmds = "'use strict';" +
             "load('jstests/concurrency/fsm_libs/runner.js');" +
@@ -109,9 +109,9 @@
             "   }" +
             "}";
 
-        // Returns the pid of the started mongo shell so the FSM test client can be terminated
+        // Returns the pid of the started mongol shell so the FSM test client can be terminated
         // without waiting for its execution to finish.
-        return startMongoProgramNoConnect("mongo", "--eval", fsmClientCmds, host);
+        return startMongoProgramNoConnect("mongol", "--eval", fsmClientCmds, host);
     }
 
     function runTest(options) {
@@ -141,7 +141,7 @@
         // Set the dbpath for the replica set
         var dbpathPrefix = MongoRunner.dataPath + 'backupRestore';
         resetDbpath(dbpathPrefix);
-        var dbpathFormat = dbpathPrefix + '/mongod-$port';
+        var dbpathFormat = dbpathPrefix + '/mongold-$port';
 
         // Start numNodes node replSet
         var replSetName = 'backupRestore';
@@ -183,7 +183,7 @@
 
         // Configure new hidden secondary
         var dbpathSecondary = secondary.dbpath;
-        var hiddenDbpath = dbpathPrefix + '/mongod-hiddensecondary';
+        var hiddenDbpath = dbpathPrefix + '/mongold-hiddensecondary';
         resetDbpath(hiddenDbpath);
 
         var sourcePath = dbpathSecondary + "/";
@@ -211,7 +211,7 @@
 
             dbHash = secondary.getDB(crudDb).runCommand({dbhash: 1}).md5;
             copyDbpath(dbpathSecondary, hiddenDbpath);
-            removeFile(hiddenDbpath + '/mongod.lock');
+            removeFile(hiddenDbpath + '/mongold.lock');
             print("Source directory:", tojson(ls(dbpathSecondary)));
             copiedFiles = ls(hiddenDbpath);
             print("Copied files:", tojson(copiedFiles));
@@ -225,21 +225,21 @@
                 runCmd(rsyncCmd);
                 sleep(10000);
             }
-            // Stop the mongod process
+            // Stop the mongold process
             rst.stop(secondary.nodeId);
             // One final rsync
             runCmd(rsyncCmd);
-            removeFile(hiddenDbpath + '/mongod.lock');
+            removeFile(hiddenDbpath + '/mongold.lock');
             print("Source directory:", tojson(ls(dbpathSecondary)));
             copiedFiles = ls(hiddenDbpath);
             print("Copied files:", tojson(copiedFiles));
             assert.gt(copiedFiles.length, 0, testName + ' no files copied');
             rst.start(secondary.nodeId, {}, true);
         } else if (options.backup == 'stopStart') {
-            // Stop the mongod process
+            // Stop the mongold process
             rst.stop(secondary.nodeId);
             copyDbpath(dbpathSecondary, hiddenDbpath);
-            removeFile(hiddenDbpath + '/mongod.lock');
+            removeFile(hiddenDbpath + '/mongold.lock');
             print("Source directory:", tojson(ls(dbpathSecondary)));
             copiedFiles = ls(hiddenDbpath);
             print("Copied files:", tojson(copiedFiles));
@@ -284,7 +284,7 @@
         // Wait up to 60 seconds until the new hidden node is in state secondary
         rst.waitForState(rst.nodes[numNodes], rst.SECONDARY, 60 * 1000);
 
-        // Stop CRUD client, FSM client & replica set mongods
+        // Stop CRUD client, FSM client & replica set mongolds
         assert(checkProgram(crudPid), testName + ' CRUD client was not running at end of test');
         assert(checkProgram(fsmPid), testName + ' FSM client was not running at end of test');
         stopMongoProgramByPid(crudPid);

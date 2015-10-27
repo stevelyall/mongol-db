@@ -25,25 +25,25 @@ functions:
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        remote_file: perf/${version_id}/${revision}/mongod-${version_id}
+        remote_file: perf/${version_id}/${revision}/mongold-${version_id}
         bucket: mciuploads
-        local_file: src/mongod
+        local_file: src/mongold
     - command: s3.get
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        remote_file: perf/${version_id}/${revision}/mongo-${version_id}
+        remote_file: perf/${version_id}/${revision}/mongol-${version_id}
         bucket: mciuploads
-        local_file: src/mongo
+        local_file: src/mongol
     - command: shell.exec
       params:
         working_dir: src
         script: |
           set -e 
           set -v
-          chmod +x mongod
-          chmod +x mongo
-          git clone https://github.com/mongodb/mongo-perf perf
+          chmod +x mongold
+          chmod +x mongol
+          git clone https://github.com/mongoldb/mongol-perf perf
           cd perf
           git checkout r20150814
     - command: shell.exec
@@ -54,10 +54,10 @@ functions:
           set -e 
           set -o verbose
           mkdir -p ./dbdata
-          ${mongod_exec_wrapper} ./mongod --dbpath ./dbdata ${mongod_flags}
+          ${mongold_exec_wrapper} ./mongold --dbpath ./dbdata ${mongold_flags}
           sleep 5
           # if we started a replset, initiate it and wait for it to become primary
-          ./mongo --eval "if(db.isMaster().isreplicaset){rs.initiate(); assert.soon(function(){return db.isMaster().ismaster}, 'no primary')}"
+          ./mongol --eval "if(db.isMaster().isreplicaset){rs.initiate(); assert.soon(function(){return db.isMaster().ismaster}, 'no primary')}"
           echo "MONGOD STARTED."
   "compare":
     - command: s3.get
@@ -151,9 +151,9 @@ functions:
           set -v
           source ./venv/bin/activate
           cd perf
-          #  give mongod a few seconds to start up so that we can connect.
+          #  give mongold a few seconds to start up so that we can connect.
           sleep 5
-          ${perf_exec_wrapper} python benchrun.py --shell ../mongo -t ${threads} --trialCount 5 -f testcases/*.js --includeFilter ${includeFilter1}  --includeFilter ${includeFilter2} --excludeFilter ${excludeFilter} --out perf.json --exclude-testbed
+          ${perf_exec_wrapper} python benchrun.py --shell ../mongol -t ${threads} --trialCount 5 -f testcases/*.js --includeFilter ${includeFilter1}  --includeFilter ${includeFilter2} --excludeFilter ${excludeFilter} --out perf.json --exclude-testbed
     - command: "json.send"
       params:
         name: "perf"
@@ -174,28 +174,28 @@ tasks:
         script: |
           set -o errexit
           set -o verbose
-          ${scons|scons} ${compile_flags|} mongo
-          ${scons|scons} ${compile_flags|} mongod
+          ${scons|scons} ${compile_flags|} mongol
+          ${scons|scons} ${compile_flags|} mongold
     - command: s3.put
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        local_file: src/mongod
-        remote_file: perf/${version_id}/${revision}/mongod-${version_id}
+        local_file: src/mongold
+        remote_file: perf/${version_id}/${revision}/mongold-${version_id}
         bucket: mciuploads
         permissions: public-read
         content_type: ${content_type|application/octet-stream}
-        display_name: mongod
+        display_name: mongold
     - command: s3.put
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        local_file: src/mongo
-        remote_file: perf/${version_id}/${revision}/mongo-${version_id}
+        local_file: src/mongol
+        remote_file: perf/${version_id}/${revision}/mongol-${version_id}
         bucket: mciuploads
         permissions: public-read
         content_type: ${content_type|application/octet-stream}
-        display_name: mongo
+        display_name: mongol
     - command: s3.put
       params:
         aws_key: ${aws_key}
@@ -647,10 +647,10 @@ buildvariants:
   display_name: Linux WT Standalone
   batchtime: 90 # 1.5 hours
   expansions:
-    compile_flags: &compile_flags -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongodbtoolchain/bin/gcc CXX=/opt/mongodbtoolchain/bin/g++ --release
-    mongod_exec_wrapper: &exec_wrapper "numactl --physcpubind=4,5,6,7 -i 1"
+    compile_flags: &compile_flags -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongoldbtoolchain/bin/gcc CXX=/opt/mongoldbtoolchain/bin/g++ --release
+    mongold_exec_wrapper: &exec_wrapper "numactl --physcpubind=4,5,6,7 -i 1"
     perf_exec_wrapper: &perf_wrapper "numactl --physcpubind=1,2,3 -i 0"
-    mongod_flags: "--storageEngine=wiredTiger --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --setParameter diagnosticDataCollectionEnabled=false  --wiredTigerCacheSizeGB 16"
+    mongold_flags: "--storageEngine=wiredTiger --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --setParameter diagnosticDataCollectionEnabled=false  --wiredTigerCacheSizeGB 16"
 
   run_on:
   - "centos6-perf"
@@ -671,9 +671,9 @@ buildvariants:
   batchtime: 90 # 1.5 hours
   expansions:
     compile_flags: *compile_flags
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--storageEngine=mmapv1 --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --setParameter diagnosticDataCollectionEnabled=false"
+    mongold_flags: "--storageEngine=mmapv1 --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --setParameter diagnosticDataCollectionEnabled=false"
 
   run_on:
   - "centos6-perf"
@@ -691,9 +691,9 @@ buildvariants:
   batchtime: 360 # 6 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=wiredTiger --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --wiredTigerCacheSizeGB 16 --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false "
+    mongold_flags: "--replSet=test --storageEngine=wiredTiger --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --wiredTigerCacheSizeGB 16 --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false "
 
   run_on:
   - "centos6-perf"
@@ -708,9 +708,9 @@ buildvariants:
   batchtime: 360 # 6 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
+    mongold_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
 
   run_on:
   - "centos6-perf"
@@ -725,9 +725,9 @@ buildvariants:
   batchtime: 360 # 6 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=wiredTiger --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false "
+    mongold_flags: "--replSet=test --storageEngine=wiredTiger --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false "
   run_on:
   - "centos6-perf"
 #    - "ubuntu1404-docker"
@@ -742,9 +742,9 @@ buildvariants:
   batchtime: 360 # 6 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
+    mongold_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
   run_on:
   - "centos6-perf"
 #    - "ubuntu1404-docker"
@@ -759,9 +759,9 @@ buildvariants:
   batchtime: 90 # 1.5 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
+    mongold_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
   run_on:
   - "centos6-perf"
 #    - "ubuntu1404-docker"
@@ -779,9 +779,9 @@ buildvariants:
   batchtime: 360 # 6 hours
   expansions:
     compile_flags: *compile_flags 
-    mongod_exec_wrapper: *exec_wrapper
+    mongold_exec_wrapper: *exec_wrapper
     perf_exec_wrapper: *perf_wrapper
-    mongod_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongod.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
+    mongold_flags: "--replSet=test --storageEngine=mmapv1 --logpath ./mongold.log --fork --syncdelay 0 --nojournal --setParameter ttlMonitorEnabled=false --oplogSize 100000 --setParameter diagnosticDataCollectionEnabled=false"
   run_on:
   - "centos6-perf"
 #    - "ubuntu1404-docker"

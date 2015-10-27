@@ -30,11 +30,11 @@
 
 #include <memory>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/rpc/protocol.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/rpc/protocol.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 class Message;
 
@@ -138,4 +138,4 @@ protected:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

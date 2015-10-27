@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/sort_key_generator.h"
+#include "mongol/db/exec/sort_key_generator.h"
 
 #include <vector>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/exec/working_set_computed_data.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/exec/working_set_computed_data.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 //
 // SortKeyGenerator
@@ -331,4 +331,4 @@ const SpecificStats* SortKeyGeneratorStage::getSpecificStats() const {
     return nullptr;
 }
 
-}  // namespace mongo
+}  // namespace mongol

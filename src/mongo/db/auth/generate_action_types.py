@@ -36,7 +36,7 @@ import sys
 
 
 headerFileTemplate = """// AUTO-GENERATED FILE DO NOT EDIT
-// See src/mongo/db/auth/generate_action_types.py
+// See src/mongol/db/auth/generate_action_types.py
 /*    Copyright 2014 MongoDB, Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
@@ -71,9 +71,9 @@ headerFileTemplate = """// AUTO-GENERATED FILE DO NOT EDIT
 #include <map>
 #include <string>
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
-namespace mongo {
+namespace mongol {
 
     struct ActionType {
     public:
@@ -112,11 +112,11 @@ namespace mongo {
     // String stream operator for ActionType
     std::ostream& operator<<(std::ostream& os, const ActionType& at);
 
-} // namespace mongo
+} // namespace mongol
 """
 
 sourceFileTemplate = """// AUTO-GENERATED FILE DO NOT EDIT
-// See src/mongo/db/auth/generate_action_types.py
+// See src/mongol/db/auth/generate_action_types.py
 /*    Copyright 2014 MongoDB, Inc.
  *
  *    This program is free software: you can redistribute it and/or  modify
@@ -144,18 +144,18 @@ sourceFileTemplate = """// AUTO-GENERATED FILE DO NOT EDIT
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/action_type.h"
+#include "mongol/db/auth/action_type.h"
 
 #include <cstdint>
 #include <iostream>
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 %(actionTypeConstants)s
     bool ActionType::operator==(const ActionType& rhs) const {
@@ -174,7 +174,7 @@ namespace mongo {
     Status ActionType::parseActionFromString(const std::string& action, ActionType* result) {
 %(fromStringIfStatements)s
         return Status(ErrorCodes::FailedToParse,
-                      mongoutils::str::stream() << "Unrecognized action privilege string: "
+                      mongolutils::str::stream() << "Unrecognized action privilege string: "
                                                 << action,
                       0);
     }
@@ -187,7 +187,7 @@ namespace mongo {
         }
     }
 
-} // namespace mongo
+} // namespace mongol
 """
 
 def writeSourceFile(actionTypes, sourceOutputFile):

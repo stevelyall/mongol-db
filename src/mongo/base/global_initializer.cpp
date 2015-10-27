@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/global_initializer.h"
+#include "mongol/base/global_initializer.h"
 
-#include "mongo/base/initializer.h"
+#include "mongol/base/initializer.h"
 
-namespace mongo {
+namespace mongol {
 
 Initializer& getGlobalInitializer() {
     static Initializer theGlobalInitializer;
@@ -45,4 +45,4 @@ Initializer* _theGlobalInitializer = &getGlobalInitializer();
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,12 +30,12 @@
 
 #include <vector>
 
-#include "mongo/config.h"
-#include "mongo/util/net/abstract_message_port.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/sock.h"
+#include "mongol/config.h"
+#include "mongol/util/net/abstract_message_port.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/sock.h"
 
-namespace mongo {
+namespace mongol {
 
 class MessagingPortMock : public AbstractMessagingPort {
     MONGO_DISALLOW_COPYING(MessagingPortMock);
@@ -58,4 +58,4 @@ private:
     HostAndPort _remote;
 };
 
-}  // namespace mongo
+}  // namespace mongol

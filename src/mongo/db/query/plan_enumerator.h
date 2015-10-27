@@ -30,14 +30,14 @@
 
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/db/query/query_knobs.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/db/query/query_knobs.h"
 
-namespace mongo {
+namespace mongol {
 
 struct PlanEnumeratorParams {
     PlanEnumeratorParams()
@@ -444,4 +444,4 @@ private:
     size_t _intersectLimit;
 };
 
-}  // namespace mongo
+}  // namespace mongol

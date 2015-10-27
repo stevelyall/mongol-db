@@ -32,11 +32,11 @@
 
 #include <asio.hpp>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 /**
@@ -89,4 +89,4 @@ protected:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

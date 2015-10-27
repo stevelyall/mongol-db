@@ -26,27 +26,27 @@
  * then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kFTDC
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kFTDC
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/ftdc/util.h"
+#include "mongol/db/ftdc/util.h"
 
 #include <boost/filesystem.hpp>
 
-#include "mongo/bson/bsonobjbuilder.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/config.h"
-#include "mongo/db/ftdc/config.h"
-#include "mongo/db/ftdc/constants.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/service_context.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/bsonobjbuilder.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/config.h"
+#include "mongol/db/ftdc/config.h"
+#include "mongol/db/ftdc/constants.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/service_context.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 const char kFTDCInterimFile[] = "metrics.interim";
 const char kFTDCInterimTempFile[] = "metrics.interim.temp";
@@ -419,4 +419,4 @@ StatusWith<std::vector<BSONObj>> getMetricsFromMetricDoc(const BSONObj& obj,
 
 }  // namespace FTDCBSONUtil
 
-}  // namespace mongo
+}  // namespace mongol

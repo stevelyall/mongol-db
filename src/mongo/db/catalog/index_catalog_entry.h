@@ -32,12 +32,12 @@
 
 #include <string>
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/bson/ordering.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/snapshot_name.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/bson/ordering.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/snapshot_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class CollectionCatalogEntry;
 class CollectionInfoCache;

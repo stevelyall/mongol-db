@@ -26,20 +26,20 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/authz_session_external_state_server_common.h"
+#include "mongol/db/auth/authz_session_external_state_server_common.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/client.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/log.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/client.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 MONGO_EXPORT_STARTUP_SERVER_PARAMETER(enableLocalhostAuthBypass, bool, true);
@@ -87,4 +87,4 @@ bool AuthzSessionExternalStateServerCommon::shouldIgnoreAuthChecks() const {
     return !_authzManager->isAuthEnabled();
 }
 
-}  // namespace mongo
+}  // namespace mongol

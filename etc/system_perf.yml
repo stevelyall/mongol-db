@@ -17,7 +17,7 @@ post:
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
-          # configure mongodb cluster with wiredTiger
+          # configure mongoldb cluster with wiredTiger
           yes yes | ./terraform destroy
           echo "Cluster DESTROYED."
           echo "Test Results: "
@@ -49,7 +49,7 @@ functions:
         script: |
           cd ./clusters/${cluster}
           # stage aws credential for terraform
-          ../../bin/make_terraform_env.sh ${terraform_key} ${terraform_secret} https://s3.amazonaws.com/mciuploads/dsi/${build_variant}/${revision}/mongodb-${build_id}.tar.gz
+          ../../bin/make_terraform_env.sh ${terraform_key} ${terraform_secret} https://s3.amazonaws.com/mciuploads/dsi/${build_variant}/${revision}/mongoldb-${build_id}.tar.gz
           # generate aws private key file
           echo "${ec2_pem}" > ../../keys/aws.pem
           chmod 400 ../../keys/aws.pem
@@ -60,7 +60,7 @@ functions:
         working_dir: dsi
         silent: true
         script: |
-          # to create a mongod EC2 cluster
+          # to create a mongold EC2 cluster
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
@@ -74,7 +74,7 @@ functions:
         working_dir: dsi
         silent: true
         script: |
-          # create a mongod EC2 cluster
+          # create a mongold EC2 cluster
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
@@ -86,17 +86,17 @@ functions:
           # this will extract all public and private IP address information
           ./env.sh
           echo "EC2 Cluster STARTED."
-  "configure mongodb cluster":
+  "configure mongoldb cluster":
     - command: shell.exec
-      # bring up the mongod
+      # bring up the mongold
       params:
         working_dir: dsi
         script: |
           set -e 
           set -o verbose
           cd ./clusters/${cluster}
-          # configure mongodb cluster with wiredTiger
-          ../../bin/config-${setup}.sh mongodb ${storageEngine} ${numShard} ${test}
+          # configure mongoldb cluster with wiredTiger
+          ../../bin/config-${setup}.sh mongoldb ${storageEngine} ${numShard} ${test}
           echo "${cluster} MongoDB Replica Cluster STARTED."
   "run test":
     - command: shell.exec
@@ -214,23 +214,23 @@ tasks:
         script: |
           set -o errexit
           set -o verbose
-          ${scons|scons} ${compile_flags|} mongo mongod mongos
-          mkdir -p mongodb/bin
-          mv mongo mongodb/bin
-          mv mongod mongodb/bin
-          mv mongos mongodb/bin
-          tar cvf mongodb.tar mongodb
-          gzip mongodb.tar
+          ${scons|scons} ${compile_flags|} mongol mongold mongols
+          mkdir -p mongoldb/bin
+          mv mongol mongoldb/bin
+          mv mongold mongoldb/bin
+          mv mongols mongoldb/bin
+          tar cvf mongoldb.tar mongoldb
+          gzip mongoldb.tar
     - command: s3.put
       params:
         aws_key: ${aws_key}
         aws_secret: ${aws_secret}
-        local_file: src/mongodb.tar.gz
-        remote_file: dsi/${build_variant}/${revision}/mongodb-${build_id}.tar.gz
+        local_file: src/mongoldb.tar.gz
+        remote_file: dsi/${build_variant}/${revision}/mongoldb-${build_id}.tar.gz
         bucket: mciuploads
         permissions: public-read
         content_type: ${content_type|application/x-gzip}
-        display_name: mongodb.tar.gz
+        display_name: mongoldb.tar.gz
 
 - name: single_cluster_test
   depends_on:
@@ -238,7 +238,7 @@ tasks:
   commands:
     - func: "prepare environment"
     - func: "bring up cluster"
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb"
         storageEngine: "wiredTiger"
@@ -260,7 +260,7 @@ tasks:
       vars:
         test: "benchRun-wiredTiger"
 
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb-mmap"
         storageEngine: "mmapv1"
@@ -292,7 +292,7 @@ tasks:
   commands:
     - func: "prepare environment"
     - func: "bring up cluster"
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb"
         storageEngine: "wiredTiger"
@@ -315,7 +315,7 @@ tasks:
       vars:
         test: "benchRun-wiredTiger"
 
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb-mmap"
         storageEngine: "mmapv1"
@@ -347,7 +347,7 @@ tasks:
   commands:
     - func: "prepare environment"
     - func: "bring up cluster"
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb"
         storageEngine: "wiredTiger"
@@ -370,7 +370,7 @@ tasks:
       vars:
         test: "benchRun-wiredTiger"
 
-    - func: "configure mongodb cluster"
+    - func: "configure mongoldb cluster"
       vars:
         test: "ycsb-mmap"
         storageEngine: "mmapv1"
@@ -402,7 +402,7 @@ buildvariants:
   display_name: Linux 1-Node ReplSet
   batchtime: 1440 # 12 hours
   expansions:
-    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongodbtoolchain/bin/gcc CXX=/opt/mongodbtoolchain/bin/g++ --release
+    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongoldbtoolchain/bin/gcc CXX=/opt/mongoldbtoolchain/bin/g++ --release
     setup: single-replica
     cluster: single
     numShard: 0
@@ -419,7 +419,7 @@ buildvariants:
   display_name: Linux 3-Shard Cluster
   batchtime: 1440 # 12 hours
   expansions:
-    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongodbtoolchain/bin/gcc CXX=/opt/mongodbtoolchain/bin/g++ --release
+    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongoldbtoolchain/bin/gcc CXX=/opt/mongoldbtoolchain/bin/g++ --release
     setup: shard
     cluster: shard
     numShard: 3
@@ -436,7 +436,7 @@ buildvariants:
   display_name: Linux 3-Node ReplSet Cluster
   batchtime: 1440 # 12 hours
   expansions:
-    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongodbtoolchain/bin/gcc CXX=/opt/mongodbtoolchain/bin/g++ --release
+    compile_flags: -j$(grep -c ^processor /proc/cpuinfo) CC=/opt/mongoldbtoolchain/bin/gcc CXX=/opt/mongoldbtoolchain/bin/g++ --release
     setup: replica
     cluster: replica
     numMember: 3

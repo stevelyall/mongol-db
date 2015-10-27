@@ -4,11 +4,11 @@ var shardOpts = [
 ];
 
 var st = new ShardingTest({ shards: shardOpts, other: { nopreallocj: 1 }});
-var mongos = st.s;
+var mongols = st.s;
 
 st.shardColl('bar', { x: 1 });
 
-var testDB = mongos.getDB('test');
+var testDB = mongols.getDB('test');
 var coll = testDB.bar;
 
 coll.insert({ x: 1 });
@@ -26,11 +26,11 @@ var mrResult = testDB.runCommand({ mapreduce: 'bar', map: map, reduce: reduce,
 
 assert.eq(0, mrResult.ok, 'mr result: ' + tojson(mrResult));
 
-// Confirm that mongos did not crash
+// Confirm that mongols did not crash
 assert(testDB.adminCommand({ serverStatus: 1 }).ok);
 
 // Confirm that the rest of the shards did not crash
-mongos.getDB('config').shards.find().forEach(function (shardDoc){
+mongols.getDB('config').shards.find().forEach(function (shardDoc){
     var shardConn = new Mongo(shardDoc.host);
     var adminDB = shardConn.getDB('admin');
     var cmdResult = adminDB.runCommand({ serverStatus: 1 });

@@ -35,13 +35,13 @@
 #include <utility>
 #include <vector>
 
-#include "mongo/executor/network_interface.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/list.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/time_support.h"
+#include "mongol/executor/network_interface.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/list.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class NetworkConnectionHook;
@@ -408,4 +408,4 @@ private:
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

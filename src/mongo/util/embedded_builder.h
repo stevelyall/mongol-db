@@ -30,7 +30,7 @@
 #pragma once
 
 
-namespace mongo {
+namespace mongol {
 
 // utility class for assembling hierarchical objects
 class EmbeddedBuilder {
@@ -103,4 +103,4 @@ private:
     std::vector<std::shared_ptr<BSONObjBuilder>> _builderStorage;
 };
 
-}  // namespace mongo
+}  // namespace mongol

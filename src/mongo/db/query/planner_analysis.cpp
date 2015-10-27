@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/db/query/planner_analysis.h"
+#include "mongol/db/query/planner_analysis.h"
 
 #include <set>
 #include <vector>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/index/expression_params.h"
-#include "mongo/db/index/s2_common.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/util/log.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/index/expression_params.h"
+#include "mongol/db/index/s2_common.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -316,7 +316,7 @@ BSONObj QueryPlannerAnalysis::getSortPattern(const BSONObj& indexKeyPattern) {
     BSONObjIterator kpIt(indexKeyPattern);
     while (kpIt.more()) {
         BSONElement elt = kpIt.next();
-        if (elt.type() == mongo::String) {
+        if (elt.type() == mongol::String) {
             break;
         }
         long long val = elt.safeNumberLong();
@@ -841,4 +841,4 @@ QuerySolution* QueryPlannerAnalysis::analyzeDataAccess(const CanonicalQuery& que
     return soln.release();
 }
 
-}  // namespace mongo
+}  // namespace mongol

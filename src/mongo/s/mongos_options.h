@@ -28,20 +28,20 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/util/options_parser/option_section.h"
+#include "mongol/base/status.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/util/options_parser/option_section.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct MongosGlobalParams {
     ConnectionString configdbs;
@@ -49,7 +49,7 @@ struct MongosGlobalParams {
     MongosGlobalParams() = default;
 };
 
-extern MongosGlobalParams mongosGlobalParams;
+extern MongosGlobalParams mongolsGlobalParams;
 
 Status addMongosOptions(moe::OptionSection* options);
 
@@ -64,14 +64,14 @@ bool handlePreValidationMongosOptions(const moe::Environment& params,
                                       const std::vector<std::string>& args);
 
 /**
- * Handle custom validation of mongos options that can not currently be done by using
+ * Handle custom validation of mongols options that can not currently be done by using
  * Constraints in the Environment.  See the "validate" function in the Environment class for
  * more details.
  */
 Status validateMongosOptions(const moe::Environment& params);
 
 /**
- * Canonicalize mongos options for the given environment.
+ * Canonicalize mongols options for the given environment.
  *
  * For example, the options "dur", "nodur", "journal", "nojournal", and
  * "storage.journaling.enabled" should all be merged into "storage.journaling.enabled".

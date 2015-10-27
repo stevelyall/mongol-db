@@ -26,12 +26,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/util/assert_util.h"
 
-using mongo::MsgAssertionException;
+using mongol::MsgAssertionException;
 
 /**
  * Test getLastError client handling

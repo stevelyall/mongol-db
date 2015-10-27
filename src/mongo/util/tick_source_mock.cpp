@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/util/tick_source_mock.h"
+#include "mongol/util/tick_source_mock.h"
 
 #include <utility>
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 const TickSource::Tick kTicksPerSecond = 1000;
@@ -52,4 +52,4 @@ void TickSourceMock::reset(TickSource::Tick tick) {
     _currentTicks = std::move(tick);
 }
 
-}  // namespace mongo
+}  // namespace mongol

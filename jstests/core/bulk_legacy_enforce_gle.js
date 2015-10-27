@@ -53,7 +53,7 @@ assert.eq(1, res.getWriteErrors().length);
 
 gle = db.runCommand({ getLastError: 1 });
 assert(gle.ok, tojson(gle));
-// mongos sends the bulk as one while the shell sends the write individually
+// mongols sends the bulk as one while the shell sends the write individually
 assert.gte(gle.n, 1);
 
 // batch with error at last should call resetError.

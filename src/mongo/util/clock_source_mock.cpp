@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/clock_source_mock.h"
+#include "mongol/util/clock_source_mock.h"
 
-namespace mongo {
+namespace mongol {
 
 Date_t ClockSourceMock::now() {
     return _now;
@@ -43,4 +43,4 @@ void ClockSourceMock::advance(stdx::chrono::milliseconds ms) {
 void ClockSourceMock::reset(Date_t newNow) {
     _now = newNow;
 }
-}  // namespace mongo
+}  // namespace mongol

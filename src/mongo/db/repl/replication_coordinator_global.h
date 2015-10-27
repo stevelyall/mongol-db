@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/repl/replication_coordinator.h"
+#include "mongol/db/repl/replication_coordinator.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 ReplicationCoordinator* getGlobalReplicationCoordinator();
 void setGlobalReplicationCoordinator(ReplicationCoordinator* coordinator);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

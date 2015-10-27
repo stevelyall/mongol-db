@@ -26,21 +26,21 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <list>
 #include <memory>
 #include <utility>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/base_cloner_test_fixture.h"
-#include "mongo/db/repl/database_cloner.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/base_cloner_test_fixture.h"
+#include "mongol/db/repl/database_cloner.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
-using namespace mongo::repl;
+using namespace mongol;
+using namespace mongol::repl;
 
 const std::string dbname("db");
 

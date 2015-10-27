@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_object_replace.h"
+#include "mongol/db/ops/modifier_object_replace.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/global_timestamp.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/global_timestamp.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 namespace {
 const char idFieldName[] = "_id";
@@ -183,4 +183,4 @@ Status ModifierObjectReplace::log(LogBuilder* logBuilder) const {
     return status;
 }
 
-}  // namespace mongo
+}  // namespace mongol

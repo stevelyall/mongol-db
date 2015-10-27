@@ -30,10 +30,10 @@
 
 #include <queue>
 
-#include "mongo/s/query/cluster_client_cursor.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/s/query/cluster_client_cursor.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 class ClusterClientCursorMock final : public ClusterClientCursor {
     MONGO_DISALLOW_COPYING(ClusterClientCursorMock);
@@ -78,4 +78,4 @@ private:
     bool _remotesExhausted = true;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -30,10 +30,10 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /** Key class for precomputing a small format index key that is denser than a traditional BSONObj.
 

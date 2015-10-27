@@ -26,13 +26,13 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/repl_set_command.h"
+#include "mongol/db/repl/repl_set_command.h"
 
-#include "mongo/db/auth/authorization_session.h"
+#include "mongol/db/auth/authorization_session.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 Status ReplSetCommand::checkAuthForCommand(ClientBasic* client,
@@ -46,4 +46,4 @@ Status ReplSetCommand::checkAuthForCommand(ClientBasic* client,
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

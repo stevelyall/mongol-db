@@ -32,10 +32,10 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * A FieldPath represents a path in a document, starting from the root. The path
@@ -205,4 +205,4 @@ inline bool operator>=(const FieldRef& lhs, const FieldRef& rhs) {
 
 std::ostream& operator<<(std::ostream& stream, const FieldRef& value);
 
-}  // namespace mongo
+}  // namespace mongol

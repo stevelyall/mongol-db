@@ -1,9 +1,9 @@
 // tests that listDatabases doesn't show config db on a shard, even if it is there
 
-var test = new ShardingTest({shards: 1, mongos: 1, other: {chunksize:1}})
+var test = new ShardingTest({shards: 1, mongols: 1, other: {chunksize:1}})
 
-var mongos = test.s0
-var mongod = test.shard0;
+var mongols = test.s0
+var mongold = test.shard0;
 
 //grab the config db instance by name
 var getDBSection = function (dbsArray, dbToFind) {
@@ -14,25 +14,25 @@ var getDBSection = function (dbsArray, dbToFind) {
     return null;
 }
 
-assert.writeOK(mongos.getDB("blah").foo.insert({ _id: 1 }));
-assert.writeOK(mongos.getDB("foo").foo.insert({ _id: 1 }));
-assert.writeOK(mongos.getDB("raw").foo.insert({ _id: 1 }));
+assert.writeOK(mongols.getDB("blah").foo.insert({ _id: 1 }));
+assert.writeOK(mongols.getDB("foo").foo.insert({ _id: 1 }));
+assert.writeOK(mongols.getDB("raw").foo.insert({ _id: 1 }));
 
 //verify that the config db is not on a shard
-var res = mongos.adminCommand("listDatabases");
+var res = mongols.adminCommand("listDatabases");
 var dbArray = res.databases;
 assert(getDBSection(dbArray, "config"), "config db not found! 1")
 assert(!getDBSection(dbArray, "config").shards, "config db is on a shard! 1")
 
 //add doc in config/admin db on the shard
-mongod.getDB("config").foo.insert({_id:1})
-mongod.getDB("admin").foo.insert({_id:1})
+mongold.getDB("config").foo.insert({_id:1})
+mongold.getDB("admin").foo.insert({_id:1})
 
-//add doc in admin db (via mongos)
-mongos.getDB("admin").foo.insert({_id:1})
+//add doc in admin db (via mongols)
+mongols.getDB("admin").foo.insert({_id:1})
 
 //verify that the config db is not on a shard
-var res = mongos.adminCommand("listDatabases");
+var res = mongols.adminCommand("listDatabases");
 var dbArray = res.databases;
 //check config db
 assert(getDBSection(dbArray, "config"), "config db not found! 2")

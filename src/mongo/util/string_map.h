@@ -31,11 +31,11 @@
 
 #include <third_party/murmurhash3/MurmurHash3.h>
 
-#include "mongo/base/string_data.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/unordered_fast_key_table.h"
+#include "mongol/base/string_data.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/unordered_fast_key_table.h"
 
-namespace mongo {
+namespace mongol {
 
 struct StringMapTraits {
     static uint32_t hash(StringData a) {
@@ -85,4 +85,4 @@ using StringMap = UnorderedFastKeyTable<StringData,   // K_L
                                         V,
                                         StringMapTraits>;
 
-}  // namespace mongo
+}  // namespace mongol

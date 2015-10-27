@@ -30,13 +30,13 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/user_name.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/user_name.h"
 
-namespace mongo {
+namespace mongol {
 
 class Principal;
 class OperationContext;
@@ -44,7 +44,7 @@ class OperationContext;
 /**
  * Public interface for a class that encapsulates all the session information related to system
  * state not stored in AuthorizationSession.  This is primarily to make AuthorizationSession
- * easier to test as well as to allow different implementations in mongos and mongod.
+ * easier to test as well as to allow different implementations in mongols and mongold.
  */
 class AuthzSessionExternalState {
     MONGO_DISALLOW_COPYING(AuthzSessionExternalState);
@@ -86,4 +86,4 @@ protected:
     AuthorizationManager* _authzManager;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -31,17 +31,17 @@
 #include <cstdint>
 #include <deque>
 
-#include "mongo/config.h"
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/db/concurrency/lock_request_list.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/platform/compiler.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/config.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/db/concurrency/lock_request_list.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Entry point for the lock manager scheduling functionality. Don't use it directly, but
@@ -280,4 +280,4 @@ private:
     bool _foundCycle;
 };
 
-}  // namespace mongo
+}  // namespace mongol

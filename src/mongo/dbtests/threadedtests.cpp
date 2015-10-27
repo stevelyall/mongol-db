@@ -29,31 +29,31 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <boost/thread/barrier.hpp>
 #include <boost/version.hpp>
 #include <iostream>
 
-#include "mongo/config.h"
-#include "mongo/db/client.h"
-#include "mongo/db/concurrency/d_concurrency.h"
-#include "mongo/db/concurrency/lock_state.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/platform/bits.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
-#include "mongo/util/concurrency/rwlock.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
-#include "mongo/util/concurrency/ticketholder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/config.h"
+#include "mongol/db/client.h"
+#include "mongol/db/concurrency/d_concurrency.h"
+#include "mongol/db/concurrency/lock_state.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/platform/bits.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
+#include "mongol/util/concurrency/rwlock.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
+#include "mongol/util/concurrency/ticketholder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
 namespace ThreadedTests {
 
@@ -117,7 +117,7 @@ public:
 
 private:
     virtual void subthread(int tnumber) {
-        Client::initThread("mongomutextest");
+        Client::initThread("mongolmutextest");
 
         OperationContextImpl txn;
 
@@ -493,11 +493,11 @@ private:
 #endif
                         DEV {
                             // a debug buildbot might be slow, try to avoid false positives
-                            mongo::unittest::log() << "warning lock upgrade was slow " << t.millis()
+                            mongol::unittest::log() << "warning lock upgrade was slow " << t.millis()
                                                    << endl;
                         }
                         else {
-                            mongo::unittest::log()
+                            mongol::unittest::log()
                                 << "assertion failure: lock upgrade was too slow: " << t.millis()
                                 << endl;
                             ASSERT(false);
@@ -677,23 +677,23 @@ private:
         int Z = 0;
         Client::initThread("utest");
         if (x == 1) {
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 1" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 1" << endl;
             rwlock_shared lk(m);
             sleepmillis(400);
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 1x" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 1x" << endl;
         }
         if (x == 2) {
             sleepmillis(100);
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 2" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 2" << endl;
             rwlock lk(m, true);
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 2x" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 2x" << endl;
         }
         if (x == 3) {
             sleepmillis(200);
             Timer t;
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 3" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 3" << endl;
             rwlock_shared lk(m);
-            LOG(Z) << mongo::curTimeMillis64() % 10000 << " 3x" << endl;
+            LOG(Z) << mongol::curTimeMillis64() % 10000 << " 3x" << endl;
             LOG(Z) << t.millis() << endl;
             ASSERT(t.millis() > 50);
         }
@@ -755,7 +755,7 @@ private:
             _hotel.checkOut();
 
             if ((i % (checkIns / 10)) == 0)
-                mongo::unittest::log() << "checked in " << i << " times..." << endl;
+                mongol::unittest::log() << "checked in " << i << " times..." << endl;
         }
     }
 

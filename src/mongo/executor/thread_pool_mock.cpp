@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT mongo::logger::LogComponent::kExecutor
+#define MONGO_LOG_DEFAULT_COMPONENT mongol::logger::LogComponent::kExecutor
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/thread_pool_mock.h"
+#include "mongol/executor/thread_pool_mock.h"
 
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/util/log.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 ThreadPoolMock::ThreadPoolMock(NetworkInterfaceMock* net, int32_t prngSeed)
@@ -135,4 +135,4 @@ void ThreadPoolMock::consumeTasks(stdx::unique_lock<stdx::mutex>* lk) {
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

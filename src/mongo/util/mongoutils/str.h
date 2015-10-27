@@ -33,15 +33,15 @@
  * String utilities.
  *
  * TODO: De-inline.
- * TODO: Retire the mongoutils namespace, and move str under the mongo namespace.
+ * TODO: Retire the mongolutils namespace, and move str under the mongol namespace.
  */
 
 #include <string>
 #include <sstream>
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-namespace mongoutils {
+namespace mongolutils {
 
 namespace str {
 
@@ -55,7 +55,7 @@ namespace str {
 */
 class stream {
 public:
-    mongo::StringBuilder ss;
+    mongol::StringBuilder ss;
     template <class T>
     stream& operator<<(const T& v) {
         ss << v;
@@ -237,10 +237,10 @@ inline std::string ltrim(const std::string& s) {
 
 }  // namespace str
 
-}  // namespace mongoutils
+}  // namespace mongolutils
 
-namespace mongo {
-using namespace mongoutils;
+namespace mongol {
+using namespace mongolutils;
 
 #if defined(_WIN32)
 inline int strcasecmp(const char* s1, const char* s2) {
@@ -248,4 +248,4 @@ inline int strcasecmp(const char* s1, const char* s2) {
 }
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

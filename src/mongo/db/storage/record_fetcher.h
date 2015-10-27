@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Used for yielding while data is fetched from disk.
@@ -52,4 +52,4 @@ public:
     virtual void fetch() = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

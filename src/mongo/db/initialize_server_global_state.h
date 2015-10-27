@@ -28,10 +28,10 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
- * Perform initialization activity common across all mongo server types.
+ * Perform initialization activity common across all mongol server types.
  *
  * Set up logging, daemonize the process, configure SSL, etc.
  */
@@ -41,7 +41,7 @@ bool initializeServerGlobalState();
  * Forks and detaches the server, on platforms that support it, if serverGlobalParams.doFork is
  * true.
  *
- * Call after processing the command line but before running mongo initializers.
+ * Call after processing the command line but before running mongol initializers.
  */
 void forkServerOrDie();
 
@@ -51,4 +51,4 @@ void forkServerOrDie();
  */
 void signalForkSuccess();
 
-}  // namespace mongo
+}  // namespace mongol

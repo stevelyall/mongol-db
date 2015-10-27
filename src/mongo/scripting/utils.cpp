@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/scripting/engine.h"
-#include "mongo/util/md5.hpp"
-#include "mongo/util/version.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/util/md5.hpp"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 
 static BSONObj native_hex_md5(const BSONObj& args, void* data) {
     uassert(10261,
@@ -52,7 +52,7 @@ static BSONObj native_version(const BSONObj& args, void* data) {
     return BSON("" << versionString);
 }
 
-static BSONObj native_sleep(const mongo::BSONObj& args, void* data) {
+static BSONObj native_sleep(const mongol::BSONObj& args, void* data) {
     uassert(16259,
             "sleep takes a single numeric argument -- sleep(milliseconds)",
             args.nFields() == 1 && args.firstElement().isNumber());

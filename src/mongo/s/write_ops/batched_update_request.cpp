@@ -26,18 +26,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/batched_update_request.h"
+#include "mongol/s/write_ops/batched_update_request.h"
 
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 
 const std::string BatchedUpdateRequest::BATCHED_UPDATE_REQUEST = "update";
 const BSONField<std::string> BatchedUpdateRequest::collName("update");
@@ -281,4 +281,4 @@ bool BatchedUpdateRequest::getOrdered() const {
         return ordered.getDefault();
     }
 }
-}  // namespace mongo
+}  // namespace mongol

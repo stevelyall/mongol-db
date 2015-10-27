@@ -18,30 +18,30 @@ st.configRS.stop(1);
 st.configRS.stop(2);
 st.configRS.awaitNoPrimary();
 
-jsTestLog("Starting a new mongos when the config servers have no primary which should work");
-var mongos2 = MongoRunner.runMongos({configdb: st.configRS.getURL()});
-assert.neq(null, mongos2);
+jsTestLog("Starting a new mongols when the config servers have no primary which should work");
+var mongols2 = MongoRunner.runMongos({configdb: st.configRS.getURL()});
+assert.neq(null, mongols2);
 
-var testOps = function(mongos) {
+var testOps = function(mongols) {
     jsTestLog("Doing ops that don't require metadata writes and thus should succeed against: " +
-              mongos);
-    var initialCount = mongos.getDB('test').foo.count();
-    assert.writeOK(mongos.getDB('test').foo.insert({a:1}));
-    assert.eq(initialCount + 1, mongos.getDB('test').foo.count());
+              mongols);
+    var initialCount = mongols.getDB('test').foo.count();
+    assert.writeOK(mongols.getDB('test').foo.insert({a:1}));
+    assert.eq(initialCount + 1, mongols.getDB('test').foo.count());
 
-    assert.throws(function() {mongos.getDB('config').shards.findOne();});
-    mongos.setSlaveOk(true);
-    var shardDoc = mongos.getDB('config').shards.findOne();
-    mongos.setSlaveOk(false);
+    assert.throws(function() {mongols.getDB('config').shards.findOne();});
+    mongols.setSlaveOk(true);
+    var shardDoc = mongols.getDB('config').shards.findOne();
+    mongols.setSlaveOk(false);
     assert.neq(null, shardDoc);
 
-    jsTestLog("Doing ops that require metadata writes and thus should fail against: " + mongos)
-    assert.writeError(mongos.getDB("newDB").foo.insert({a:1}));
-    assert.commandFailed(mongos.getDB('admin').runCommand({shardCollection: "test.foo",
+    jsTestLog("Doing ops that require metadata writes and thus should fail against: " + mongols)
+    assert.writeError(mongols.getDB("newDB").foo.insert({a:1}));
+    assert.commandFailed(mongols.getDB('admin').runCommand({shardCollection: "test.foo",
                                                            key: {a:1}}));
 }
 
-testOps(mongos2);
+testOps(mongols2);
 testOps(st.s);
 
 st.stop();

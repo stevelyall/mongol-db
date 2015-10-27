@@ -30,9 +30,9 @@
 #include <cstring>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * An std::vector wrapper that deletes pointers within a vector on destruction.  The objects
@@ -187,4 +187,4 @@ inline void OwnedPointerVector<T>::clear() {
     _vector.clear();
 }
 
-}  // namespace mongo
+}  // namespace mongol

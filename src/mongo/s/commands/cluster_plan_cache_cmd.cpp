@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#include "mongo/base/init.h"
-#include "mongo/base/error_codes.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/client_basic.h"
-#include "mongo/db/commands.h"
-#include "mongo/s/config.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/stale_exception.h"
-#include "mongo/s/strategy.h"
+#include "mongol/base/init.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/client_basic.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/config.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/stale_exception.h"
+#include "mongol/s/strategy.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
 using std::vector;
 
 /**
- * Base class for mongos plan cache commands.
+ * Base class for mongols plan cache commands.
  * Cluster plan cache commands don't do much more than
  * forwarding the commands to all shards and combining the results.
  */
@@ -171,4 +171,4 @@ MONGO_INITIALIZER(RegisterPlanCacheCommands)(InitializerContext* context) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

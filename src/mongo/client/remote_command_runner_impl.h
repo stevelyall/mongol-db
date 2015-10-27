@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/client/connection_pool.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
+#include "mongol/client/connection_pool.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace executor {
 class NetworkConnectionHook;
@@ -77,4 +77,4 @@ private:
     bool _active{false};
 };
 
-}  // namespace mongo
+}  // namespace mongol

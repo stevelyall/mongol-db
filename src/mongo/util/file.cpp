@@ -25,9 +25,9 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/util/file.h"
+#include "mongol/util/file.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <cstdint>
@@ -41,14 +41,14 @@
 #include <sys/types.h>
 #endif
 
-#include "mongo/platform/basic.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/text.h"
+#include "mongol/platform/basic.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/text.h"
 
-namespace mongo {
+namespace mongol {
 
 #if defined(_WIN32)
 
@@ -136,7 +136,7 @@ void File::read(fileofs o, char* data, unsigned len) {
     } else if (bytesRead != len) {
         _bad = true;
         msgasserted(10438,
-                    mongoutils::str::stream()
+                    mongolutils::str::stream()
                         << "In File::read(), ReadFile for '" << _name << "' read " << bytesRead
                         << " bytes while trying to read " << len << " bytes starting at offset "
                         << o << ", truncated file?");
@@ -259,7 +259,7 @@ void File::read(fileofs o, char* data, unsigned len) {
     } else if (bytesRead != static_cast<ssize_t>(len)) {
         _bad = true;
         msgasserted(16569,
-                    mongoutils::str::stream()
+                    mongolutils::str::stream()
                         << "In File::read(), ::pread for '" << _name << "' read " << bytesRead
                         << " bytes while trying to read " << len << " bytes starting at offset "
                         << o << ", truncated file?");

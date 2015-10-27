@@ -29,7 +29,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /* query results include a 32 result flag word consisting of these bits */
 enum ResultFlagType {

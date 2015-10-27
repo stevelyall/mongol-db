@@ -28,20 +28,20 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/record_data.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/record_data.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::set;
 using std::string;
 using std::stringstream;
 using std::vector;
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 
@@ -111,4 +111,4 @@ TEST(RecordStoreTestHarness, GetManyIteratorsNonEmpty) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

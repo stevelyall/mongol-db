@@ -32,16 +32,16 @@
 #include <boost/config.hpp>
 #include <boost/intrusive_ptr.hpp>
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsontypes.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/oid.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/intrusive_counter.h"
-#include "mongo/bson/timestamp.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsontypes.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/oid.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/intrusive_counter.h"
+#include "mongol/bson/timestamp.h"
 
 
-namespace mongo {
+namespace mongol {
 class Document;
 class DocumentStorage;
 class Value;

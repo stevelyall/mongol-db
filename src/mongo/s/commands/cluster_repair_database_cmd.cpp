@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/commands/run_on_all_shards_cmd.h"
+#include "mongol/s/commands/run_on_all_shards_cmd.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 class ClusterRepairDatabaseCmd : public RunOnAllShardsCommand {
@@ -48,4 +48,4 @@ public:
 } clusterRepairDatabaseCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

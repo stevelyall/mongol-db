@@ -26,47 +26,47 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/dbhelpers.h"
+#include "mongol/db/dbhelpers.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/index_create.h"
-#include "mongo/db/db.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/index/btree_access_method.h"
-#include "mongo/db/json.h"
-#include "mongo/db/keypattern.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/delete.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/ops/update_lifecycle_impl.h"
-#include "mongo/db/ops/update_request.h"
-#include "mongo/db/ops/update_result.h"
-#include "mongo/db/query/get_executor.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/query/query_planner.h"
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/db/repl/repl_client_info.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/db/write_concern.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/db/s/collection_metadata.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/s/shard_key_pattern.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/index_create.h"
+#include "mongol/db/db.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/index/btree_access_method.h"
+#include "mongol/db/json.h"
+#include "mongol/db/keypattern.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/delete.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/ops/update_lifecycle_impl.h"
+#include "mongol/db/ops/update_request.h"
+#include "mongol/db/ops/update_result.h"
+#include "mongol/db/query/get_executor.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/query/query_planner.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/db/repl/repl_client_info.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/db/write_concern.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/db/s/collection_metadata.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/s/shard_key_pattern.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -607,4 +607,4 @@ Status Helpers::RemoveSaver::goingToDelete(const BSONObj& o) {
 }
 
 
-}  // namespace mongo
+}  // namespace mongol

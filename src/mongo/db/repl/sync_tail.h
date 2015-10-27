@@ -30,13 +30,13 @@
 
 #include <deque>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/storage/mmap_v1/dur.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/concurrency/old_thread_pool.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/storage/mmap_v1/dur.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/concurrency/old_thread_pool.h"
 
-namespace mongo {
+namespace mongol {
 
 class Database;
 class OperationContext;
@@ -184,4 +184,4 @@ void multiSyncApply(const std::vector<BSONObj>& ops, SyncTail* st);
 void multiInitialSyncApply(const std::vector<BSONObj>& ops, SyncTail* st);
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

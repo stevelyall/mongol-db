@@ -30,11 +30,11 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/plan_executor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/plan_executor.h"
 
 
-namespace mongo {
+namespace mongol {
 
 class Database;
 class OperationContext;

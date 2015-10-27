@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/concurrency/lock_manager_defs.h"
-#include "mongo/platform/atomic_word.h"
+#include "mongol/db/concurrency/lock_manager_defs.h"
+#include "mongol/platform/atomic_word.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 
@@ -200,4 +200,4 @@ void reportGlobalLockingStats(SingleThreadedLockStats* outStats);
  */
 void resetGlobalLockStats();
 
-}  // namespace mongo
+}  // namespace mongol

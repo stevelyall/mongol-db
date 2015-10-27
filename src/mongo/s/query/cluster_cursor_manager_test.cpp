@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/query/cluster_cursor_manager.h"
+#include "mongol/s/query/cluster_cursor_manager.h"
 
 #include <vector>
 
-#include "mongo/s/query/cluster_client_cursor_mock.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/clock_source_mock.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/s/query/cluster_client_cursor_mock.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/clock_source_mock.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -744,4 +744,4 @@ TEST_F(ClusterCursorManagerTest, PinnedCursorDestructorKill) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

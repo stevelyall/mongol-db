@@ -33,16 +33,16 @@
 #include <string>
 #include <unordered_map>
 
-#include "mongo/base/string_data.h"
-#include "mongo/s/catalog/dist_lock_catalog.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/dist_lock_ping_info.h"
-#include "mongo/stdx/chrono.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
+#include "mongol/base/string_data.h"
+#include "mongol/s/catalog/dist_lock_catalog.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/dist_lock_ping_info.h"
+#include "mongol/stdx/chrono.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
 
-namespace mongo {
+namespace mongol {
 
 class ServiceContext;
 

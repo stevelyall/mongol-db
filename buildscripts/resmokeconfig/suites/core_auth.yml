@@ -34,7 +34,7 @@ executor:
       n: 20
     fixture:
       class: MongoDFixture
-      mongod_options:
+      mongold_options:
         auth: ''
         keyFile: *keyFile
         set_parameters:

@@ -28,18 +28,18 @@
 
 #pragma once
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/fetcher.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/optime.h"
-#include "mongo/executor/thread_pool_task_executor.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/queue.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/fetcher.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/optime.h"
+#include "mongol/executor/thread_pool_task_executor.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/queue.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientBase;
 class OperationContext;
@@ -224,4 +224,4 @@ private:
 
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

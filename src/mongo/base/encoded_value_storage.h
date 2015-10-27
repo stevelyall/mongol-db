@@ -29,9 +29,9 @@
 
 #include <cstring>
 
-#include "mongo/base/data_view.h"
+#include "mongol/base/data_view.h"
 
-namespace mongo {
+namespace mongol {
 
 struct ZeroInitTag_t {
     ZeroInitTag_t(){};
@@ -80,4 +80,4 @@ private:
     char _data[sizeof(Layout)];
 };
 
-}  // namespace mongo
+}  // namespace mongol

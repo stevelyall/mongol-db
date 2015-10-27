@@ -1,7 +1,7 @@
-# Ubuntu upstart file at /etc/init/mongod.conf
+# Ubuntu upstart file at /etc/init/mongold.conf
 
-# Recommended ulimit values for mongod or mongos
-# See http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings
+# Recommended ulimit values for mongold or mongols
+# See http://docs.mongoldb.org/manual/reference/ulimit/#recommended-settings
 #
 limit fsize unlimited unlimited
 limit cpu unlimited unlimited
@@ -13,15 +13,15 @@ limit nproc 64000 64000
 kill timeout 300 # wait 300s between SIGTERM and SIGKILL.
 
 pre-start script
-  DAEMONUSER=${DAEMONUSER:-mongodb}
-  if [ ! -d /var/lib/mongodb ]; then
-    mkdir -p /var/lib/mongodb && chown mongodb:mongodb /var/lib/mongodb
+  DAEMONUSER=${DAEMONUSER:-mongoldb}
+  if [ ! -d /var/lib/mongoldb ]; then
+    mkdir -p /var/lib/mongoldb && chown mongoldb:mongoldb /var/lib/mongoldb
   fi
-  if [ ! -d /var/log/mongodb ]; then
-    mkdir -p /var/log/mongodb && chown mongodb:mongodb /var/log/mongodb
+  if [ ! -d /var/log/mongoldb ]; then
+    mkdir -p /var/log/mongoldb && chown mongoldb:mongoldb /var/log/mongoldb
   fi
-  touch /var/run/mongodb.pid
-  chown $DAEMONUSER /var/run/mongodb.pid
+  touch /var/run/mongoldb.pid
+  chown $DAEMONUSER /var/run/mongoldb.pid
 end script
 
 start on runlevel [2345]
@@ -29,12 +29,12 @@ stop on runlevel [06]
 
 script
   ENABLE_MONGOD="yes"
-  CONF=/etc/mongod.conf
-  DAEMON=/usr/bin/mongod
-  DAEMONUSER=${DAEMONUSER:-mongodb}
-  DAEMONGROUP=${DAEMONGROUP:-mongodb}
+  CONF=/etc/mongold.conf
+  DAEMON=/usr/bin/mongold
+  DAEMONUSER=${DAEMONUSER:-mongoldb}
+  DAEMONGROUP=${DAEMONGROUP:-mongoldb}
 
-  if [ -f /etc/default/mongod ]; then . /etc/default/mongod; fi
+  if [ -f /etc/default/mongold ]; then . /etc/default/mongold; fi
 
   # Handle NUMA access to CPUs (SERVER-3574)
   # This verifies the existence of numactl as well as testing that the command works
@@ -52,7 +52,7 @@ script
   then
     exec start-stop-daemon --start \
         --chuid $DAEMONUSER:$DAEMONGROUP \
-        --pidfile /var/run/mongodb.pid \
+        --pidfile /var/run/mongoldb.pid \
         --make-pidfile \
         --exec $NUMACTL $DAEMON $DAEMON_OPTS
   fi

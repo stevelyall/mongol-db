@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/stacktrace.h"
+#include "mongol/util/stacktrace.h"
 
 #include <DbgHelp.h>
 #include <boost/filesystem/operations.hpp>
@@ -40,11 +40,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/util/assert_util.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/log.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Get the path string to be used when searching for PDB files.
@@ -111,7 +111,7 @@ static void getSourceFileAndLineNumber(HANDLE process,
     }
 
     std::string filename(line64.FileName);
-    std::string::size_type start = filename.find("\\src\\mongo\\");
+    std::string::size_type start = filename.find("\\src\\mongol\\");
     if (start == std::string::npos) {
         start = filename.find("\\src\\third_party\\");
     }

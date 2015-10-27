@@ -26,37 +26,37 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/ops/path_support.h"
+#include "mongol/db/ops/path_support.h"
 
 #include <cstdint>
 #include <string>
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/mutable_bson_test_utils.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/mutable_bson_test_utils.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using namespace mutablebson;
 using namespace pathsupport;
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 using std::unique_ptr;
 using std::string;
 
-class EmptyDoc : public mongo::unittest::Test {
+class EmptyDoc : public mongol::unittest::Test {
 public:
     EmptyDoc() : _doc() {}
 
@@ -104,7 +104,7 @@ TEST_F(EmptyDoc, NewField) {
     ASSERT_EQUALS(fromjson("{a: 1}"), doc());
 }
 
-class SimpleDoc : public mongo::unittest::Test {
+class SimpleDoc : public mongol::unittest::Test {
 public:
     SimpleDoc() : _doc() {}
 
@@ -192,7 +192,7 @@ TEST_F(SimpleDoc, NotCommonPrefix) {
     ASSERT_EQUALS(root().rightChild().leftSibling().getFieldName(), "a");
 }
 
-class NestedDoc : public mongo::unittest::Test {
+class NestedDoc : public mongol::unittest::Test {
 public:
     NestedDoc() : _doc() {}
 
@@ -303,7 +303,7 @@ TEST_F(NestedDoc, NotStartingFromRoot) {
     ASSERT_EQUALS(elemFound.compareWithElement(root()["a"]["b"]["c"]), 0);
 }
 
-class ArrayDoc : public mongo::unittest::Test {
+class ArrayDoc : public mongol::unittest::Test {
 public:
     ArrayDoc() : _doc() {}
 
@@ -455,7 +455,7 @@ TEST_F(ArrayDoc, ArrayPaddingNecessary) {
 
 TEST_F(ArrayDoc, ExcessivePaddingRequested) {
     // Try to create an array item beyond what we're allowed to pad.
-    string paddedField = stream() << "b." << mongo::pathsupport::kMaxPaddingAllowed + 1;
+    string paddedField = stream() << "b." << mongol::pathsupport::kMaxPaddingAllowed + 1;
     ;
     setField(paddedField);
 

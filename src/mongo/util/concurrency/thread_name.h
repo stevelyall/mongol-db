@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "mongo/base/string_data.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Sets the name of the current thread to "name".
@@ -44,4 +44,4 @@ void setThreadName(StringData name);
  */
 const std::string& getThreadName();
 
-}  // namespace mongo
+}  // namespace mongol

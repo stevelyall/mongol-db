@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/cursor_manager.h"
-#include "mongo/db/commands/killcursors_common.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/query/killcursors_request.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/cursor_manager.h"
+#include "mongol/db/commands/killcursors_common.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/query/killcursors_request.h"
 
-namespace mongo {
+namespace mongol {
 
 class KillCursorsCmd final : public KillCursorsCmdBase {
     MONGO_DISALLOW_COPYING(KillCursorsCmd);
@@ -68,4 +68,4 @@ private:
     }
 } killCursorsCmd;
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/update_driver.h"
+#include "mongol/db/ops/update_driver.h"
 
 
-#include "mongo/base/error_codes.h"
-#include "mongo/base/string_data.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/field_ref.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/modifier_object_replace.h"
-#include "mongo/db/ops/modifier_table.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/embedded_builder.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/base/string_data.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/field_ref.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/modifier_object_replace.h"
+#include "mongol/db/ops/modifier_table.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/embedded_builder.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
-namespace mb = mongo::mutablebson;
+namespace str = mongolutils::str;
+namespace mb = mongol::mutablebson;
 
 using std::unique_ptr;
 using std::vector;
@@ -383,4 +383,4 @@ void UpdateDriver::clear() {
     _positional = false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

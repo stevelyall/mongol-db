@@ -30,12 +30,12 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/s/shard_resolver.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/base/status.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/s/shard_resolver.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 class MockShardResolver : public ShardResolver {
 public:
@@ -50,4 +50,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

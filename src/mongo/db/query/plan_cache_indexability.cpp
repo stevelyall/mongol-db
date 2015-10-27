@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/plan_cache_indexability.h"
+#include "mongol/db/query/plan_cache_indexability.h"
 
 #include <memory>
-#include "mongo/base/init.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/query/index_entry.h"
-#include "mongo/db/matcher/expression.h"
-#include "mongo/db/matcher/expression_algo.h"
-#include "mongo/db/matcher/expression_leaf.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/base/init.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/query/index_entry.h"
+#include "mongol/db/matcher/expression.h"
+#include "mongol/db/matcher/expression_algo.h"
+#include "mongol/db/matcher/expression_leaf.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 void PlanCacheIndexabilityState::processSparseIndex(const BSONObj& keyPattern) {
     for (BSONElement elem : keyPattern) {
@@ -98,4 +98,4 @@ void PlanCacheIndexabilityState::updateDiscriminators(const std::vector<IndexEnt
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

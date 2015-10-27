@@ -26,25 +26,25 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/freshness_checker.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_executor.h"
-#include "mongo/db/repl/storage_interface_mock.h"
-#include "mongo/executor/network_interface_mock.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/freshness_checker.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_executor.h"
+#include "mongol/db/repl/storage_interface_mock.h"
+#include "mongol/executor/network_interface_mock.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
 
 using std::unique_ptr;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -57,7 +57,7 @@ bool stringContains(const std::string& haystack, const std::string& needle) {
     return haystack.find(needle) != std::string::npos;
 }
 
-class FreshnessCheckerTest : public mongo::unittest::Test {
+class FreshnessCheckerTest : public mongol::unittest::Test {
 protected:
     void startTest(const Timestamp& lastOpTimeApplied,
                    const ReplicaSetConfig& currentConfig,
@@ -799,7 +799,7 @@ TEST_F(FreshnessCheckerTest, ElectManyNodesNotAllRespond) {
     ASSERT_EQUALS(shouldAbortElection(), FreshnessChecker::None);
 }
 
-class FreshnessScatterGatherTest : public mongo::unittest::Test {
+class FreshnessScatterGatherTest : public mongol::unittest::Test {
 public:
     virtual void setUp() {
         int selfConfigIndex = 0;
@@ -1049,4 +1049,4 @@ TEST_F(FreshnessScatterGatherTest, NotEnoughVotersDueToUnauthorized) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

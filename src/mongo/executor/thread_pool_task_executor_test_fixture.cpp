@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/thread_pool_task_executor_test_fixture.h"
+#include "mongol/executor/thread_pool_task_executor_test_fixture.h"
 
-#include "mongo/executor/thread_pool_mock.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/executor/thread_pool_mock.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 std::unique_ptr<ThreadPoolTaskExecutor> makeThreadPoolTestExecutor(
@@ -49,4 +49,4 @@ std::unique_ptr<TaskExecutor> ThreadPoolExecutorTest::makeTaskExecutor(
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

@@ -27,15 +27,15 @@
 *    it in the license file.
 */
 
-#include "mongo/db/fts/fts_element_iterator.h"
-#include "mongo/db/fts/fts_spec.h"
-#include "mongo/db/fts/fts_util.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/stringutils.h"
+#include "mongol/db/fts/fts_element_iterator.h"
+#include "mongol/db/fts/fts_spec.h"
+#include "mongol/db/fts/fts_util.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/stringutils.h"
 
 #include <stack>
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 
@@ -62,7 +62,7 @@ inline bool _matchPrefix(const string& dottedName, const string& weight) {
     if (weight == dottedName) {
         return true;
     }
-    return mongoutils::str::startsWith(weight, dottedName + '.');
+    return mongolutils::str::startsWith(weight, dottedName + '.');
 }
 }
 
@@ -182,4 +182,4 @@ FTSIteratorValue FTSElementIterator::advance() {
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

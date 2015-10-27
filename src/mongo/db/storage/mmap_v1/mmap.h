@@ -33,9 +33,9 @@
 #include <sstream>
 #include <vector>
 
-#include "mongo/util/concurrency/rwlock.h"
+#include "mongol/util/concurrency/rwlock.h"
 
-namespace mongo {
+namespace mongol {
 
 #if !defined(_WIN32)
 typedef int HANDLE;
@@ -285,4 +285,4 @@ inline void MongoFile::forEach(F p) {
         p(*i);
 }
 
-}  // namespace mongo
+}  // namespace mongol

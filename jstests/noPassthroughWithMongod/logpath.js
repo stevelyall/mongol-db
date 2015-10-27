@@ -52,14 +52,14 @@ cleanupFiles();
 // log should not exist
 assert.eq(logCount(logs[0]), 0);
 
-print("------ Start mongod with logpath set to new file");
+print("------ Start mongold with logpath set to new file");
 var m = MongoRunner.runMongod({ port: port[0], dbpath: dbdir, logpath: logdir + logs[0]});
 
 // log should now exist (and no rotations should exist)
 assert.eq(logCount(logs[0], true), 1);
 MongoRunner.stopMongod(port[0]);
 
-print("------ Start mongod with logpath set to existing file");
+print("------ Start mongold with logpath set to existing file");
 m = MongoRunner.runMongod({ port: port[1], dbpath: dbdir, logpath: logdir + logs[0]});
 
 // log should continue to exist
@@ -72,21 +72,21 @@ cleanupFiles();
 MongoRunner.stopMongod(port[1]);
 
 // Blocking on SERVER-5117:
-// MongoRunner currently hangs if mongod fails to start so these tests don't work
+// MongoRunner currently hangs if mongold fails to start so these tests don't work
 if ( false ) {
     // only run forking test on *nix (not supported on Windows)
     if ( _isWindows() ) {
         print("------ Skipping fork tests... (Windows)");
 
     } else {
-        print("------ Start mongod with logpath set to new file, fork");
+        print("------ Start mongold with logpath set to new file, fork");
         var m = MongoRunner.runMongod({ port: port[2], dbpath: dbdir, logpath: logdir + logs[1], fork: true});
       
         // log should now exist (and no rotations should exist)
         assert.eq(logCount(logs[1], true), 1);
         MongoRunner.stopMongod(port[2]);
       
-        print("------ Start mongod with logpath set to existing file, fork");
+        print("------ Start mongold with logpath set to existing file, fork");
         m = MongoRunner.runMongod({ port: port[3], dbpath: dbdir, logpath: logdir + logs[1], fork: true});
       
         // log should continue to exist

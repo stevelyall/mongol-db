@@ -29,11 +29,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class CmdShutdown : public Command {
 public:
@@ -62,4 +62,4 @@ protected:
     static void shutdownHelper();
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/rpc/metadata/server_selection_metadata.h"
-#include "mongo/s/query/cluster_find.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/rpc/metadata/server_selection_metadata.h"
+#include "mongol/s/query/cluster_find.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 /**
- * Implements the explain command on mongos.
+ * Implements the explain command on mongols.
  *
  * "Old-style" explains (i.e. queries which have the $explain flag set), do not run
  * through this path. Such explains will be supported for backwards compatibility,
  * and must succeed in multiversion clusters.
  *
  * "New-style" explains use the explain command. When the explain command is routed
- * through mongos, it is forwarded to all relevant shards. If *any* shard does not
+ * through mongols, it is forwarded to all relevant shards. If *any* shard does not
  * support a new-style explain, then the entire explain will fail (i.e. new-style
  * explains cannot be used in multiversion clusters).
  */
@@ -98,7 +98,7 @@ public:
 
         Command* commToExplain = Command::findCommand(explainObj.firstElementFieldName());
         if (NULL == commToExplain) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "unknown command: " << explainObj.firstElementFieldName();
             return Status(ErrorCodes::CommandNotFound, ss);
         }
@@ -124,7 +124,7 @@ public:
         const std::string cmdName = explainObj.firstElementFieldName();
         Command* commToExplain = Command::findCommand(cmdName);
         if (NULL == commToExplain) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "Explain failed due to unknown command: " << cmdName;
             Status explainStatus(ErrorCodes::CommandNotFound, ss);
             return appendCommandStatus(result, explainStatus);
@@ -151,4 +151,4 @@ public:
 } cmdExplainCluster;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

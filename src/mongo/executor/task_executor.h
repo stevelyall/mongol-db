@@ -32,16 +32,16 @@
 #include <memory>
 #include <functional>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/base/string_data.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/base/string_data.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class OperationContext;
@@ -405,14 +405,14 @@ struct TaskExecutor::RemoteCommandCallbackArgs {
 };
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol
 
 // Provide a specialization for std::hash<CallbackHandle> so it can easily
 // be stored in unordered_set.
 namespace std {
 template <>
-struct hash<::mongo::executor::TaskExecutor::CallbackHandle> {
-    size_t operator()(const ::mongo::executor::TaskExecutor::CallbackHandle& x) const {
+struct hash<::mongol::executor::TaskExecutor::CallbackHandle> {
+    size_t operator()(const ::mongol::executor::TaskExecutor::CallbackHandle& x) const {
         return x.hash();
     }
 };

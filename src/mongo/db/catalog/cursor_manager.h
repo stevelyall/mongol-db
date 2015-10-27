@@ -31,14 +31,14 @@
 #pragma once
 
 
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/invalidation_type.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/record_id.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/invalidation_type.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/record_id.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class PseudoRandom;

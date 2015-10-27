@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Wrapper around several platform specific methods for zeroing memory
@@ -40,4 +40,4 @@ namespace mongo {
 void secureZeroMemory(void* ptr, size_t size);
 
 
-}  // namespace mongo
+}  // namespace mongol

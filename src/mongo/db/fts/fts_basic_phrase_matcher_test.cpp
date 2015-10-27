@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_basic_phrase_matcher.h"
+#include "mongol/db/fts/fts_basic_phrase_matcher.h"
 
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 // Case insensitive match.
@@ -74,4 +74,4 @@ TEST(FtsBasicPhraseMatcher, CaseSensitive) {
 }
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

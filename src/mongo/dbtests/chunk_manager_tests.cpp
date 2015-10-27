@@ -26,19 +26,19 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/dbtests/config_server_fixture.h"
-#include "mongo/dbtests/dbtests.h"
-#include "mongo/s/catalog/type_chunk.h"
-#include "mongo/s/catalog/type_collection.h"
-#include "mongo/s/catalog/type_shard.h"
-#include "mongo/s/chunk_manager.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/dbtests/config_server_fixture.h"
+#include "mongol/dbtests/dbtests.h"
+#include "mongol/s/catalog/type_chunk.h"
+#include "mongol/s/catalog/type_collection.h"
+#include "mongol/s/catalog/type_shard.h"
+#include "mongol/s/chunk_manager.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::set;
@@ -204,4 +204,4 @@ TEST_F(ChunkManagerTests, Basic) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

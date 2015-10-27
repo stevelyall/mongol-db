@@ -26,36 +26,36 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/unittest/temp_dir.h"
+#include "mongol/unittest/temp_dir.h"
 
 #include <boost/filesystem.hpp>
 
-#include "mongo/base/init.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/options_parser/startup_option_init.h"
+#include "mongol/base/init.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/options_parser/startup_option_init.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
 namespace unittest {
-namespace str = mongoutils::str;
-namespace moe = mongo::optionenvironment;
+namespace str = mongolutils::str;
+namespace moe = mongol::optionenvironment;
 
 namespace {
 boost::filesystem::path defaultRoot;
 
 MONGO_GENERAL_STARTUP_OPTIONS_REGISTER(TempDirOptions)(InitializerContext* context) {
     moe::startupOptions.addOptionChaining(
-        "tempPath", "tempPath", moe::String, "directory to place mongo::TempDir subdirectories");
+        "tempPath", "tempPath", moe::String, "directory to place mongol::TempDir subdirectories");
     return Status::OK();
 }
 
@@ -96,7 +96,7 @@ TempDir::TempDir(const std::string& namePrefix) {
         fassertFailed(17147);
     }
 
-    ::mongo::unittest::log() << "Created temporary directory: " << _path;
+    ::mongol::unittest::log() << "Created temporary directory: " << _path;
 }
 
 TempDir::~TempDir() {
@@ -108,4 +108,4 @@ TempDir::~TempDir() {
     }
 }
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

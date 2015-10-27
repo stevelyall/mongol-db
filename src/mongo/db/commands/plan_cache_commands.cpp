@@ -26,31 +26,31 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 #include <sstream>
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands/plan_cache_commands.h"
-#include "mongo/db/db_raii.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands/plan_cache_commands.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/util/log.h"
 
 namespace {
 
 using std::string;
 using std::unique_ptr;
-using namespace mongo;
+using namespace mongol;
 
 /**
  * Utility function to extract error code and message from status
@@ -98,7 +98,7 @@ static Status getPlanCache(OperationContext* txn,
 MONGO_INITIALIZER_WITH_PREREQUISITES(SetupPlanCacheCommands,
                                      MONGO_NO_PREREQUISITES)(InitializerContext* context) {
     // PlanCacheCommand constructors refer to static ActionType instances.
-    // Registering commands in a mongo static initializer ensures that
+    // Registering commands in a mongol static initializer ensures that
     // the ActionType construction will be completed first.
     new PlanCacheListQueryShapes();
     new PlanCacheClear();
@@ -109,7 +109,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SetupPlanCacheCommands,
 
 }  // namespace
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;
@@ -438,4 +438,4 @@ Status PlanCacheListPlans::list(OperationContext* txn,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/btree/key.h"
+#include "mongol/db/storage/mmap_v1/btree/key.h"
 
 #include <cmath>
 
-#include "mongo/bson/util/builder.h"
-#include "mongo/util/log.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/util/log.h"
+#include "mongol/util/startup_test.h"
 
 
-namespace mongo {
+namespace mongol {
 
 using std::endl;
 using std::numeric_limits;
@@ -712,4 +712,4 @@ struct CmpUnitTest : public StartupTest {
     }
 } cunittest;
 
-}  // namespace mongo
+}  // namespace mongol

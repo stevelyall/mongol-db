@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/executor/async_stream_common.h"
+#include "mongol/executor/async_stream_common.h"
 
-#include "mongo/util/log.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 void logCloseFailed(std::error_code ec) {
@@ -43,4 +43,4 @@ void logCloseFailed(std::error_code ec) {
 }
 
 }  // namespace executor
-}  // namespace  mongo
+}  // namespace  mongol

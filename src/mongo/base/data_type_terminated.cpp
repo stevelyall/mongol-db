@@ -25,11 +25,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/data_type_terminated.h"
+#include "mongol/base/data_type_terminated.h"
 
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 Status TerminatedHelper::makeLoadNoTerminalStatus(char c,
                                                   size_t length,
@@ -58,4 +58,4 @@ Status TerminatedHelper::makeStoreStatus(char c, size_t length, std::ptrdiff_t d
     return Status(ErrorCodes::Overflow, ss);
 }
 
-}  // namespace mongo
+}  // namespace mongol

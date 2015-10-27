@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/exec/working_set.h"
-#include "mongo/util/unowned_ptr.h"
+#include "mongol/db/exec/working_set.h"
+#include "mongol/util/unowned_ptr.h"
 
-namespace mongo {
+namespace mongol {
 
 class CanonicalQuery;
 class Collection;
@@ -133,4 +133,4 @@ public:
     static std::string toStatusString(const BSONObj& obj);
 };
 
-}  // namespace mongo
+}  // namespace mongol

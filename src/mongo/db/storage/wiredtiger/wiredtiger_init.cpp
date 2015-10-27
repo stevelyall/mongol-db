@@ -27,29 +27,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/service_context_d.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/storage/kv/kv_storage_engine.h"
-#include "mongo/db/storage/storage_engine_lock_file.h"
-#include "mongo/db/storage/storage_engine_metadata.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_global_options.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_index.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_parameters.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_record_store.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_server_status.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_util.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/service_context_d.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/storage/kv/kv_storage_engine.h"
+#include "mongol/db/storage/storage_engine_lock_file.h"
+#include "mongol/db/storage/storage_engine_metadata.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_global_options.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_index.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_parameters.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_record_store.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_server_status.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_util.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 class WiredTigerFactory : public StorageEngine::Factory {

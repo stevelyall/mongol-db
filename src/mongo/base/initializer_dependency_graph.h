@@ -31,13 +31,13 @@
 #include <vector>
 #include <utility>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/initializer_function.h"
-#include "mongo/base/status.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/platform/unordered_set.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/initializer_function.h"
+#include "mongol/base/status.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/platform/unordered_set.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Representation of a dependency graph of "initialization operations."
@@ -126,4 +126,4 @@ private:
     NodeMap _nodes;
 };
 
-}  // namespace mongo
+}  // namespace mongol

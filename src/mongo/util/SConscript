@@ -63,8 +63,8 @@ env.Library(
         'progress_meter.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/util/foundation',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/util/foundation',
     ],
 )
 
@@ -108,9 +108,9 @@ env.Library(
         'timer.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/platform/platform',
-        '$BUILD_DIR/mongo/util/concurrency/synchronization',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/platform/platform',
+        '$BUILD_DIR/mongol/util/concurrency/synchronization',
         '$BUILD_DIR/third_party/shim_allocator',
         '$BUILD_DIR/third_party/shim_boost',
         '$BUILD_DIR/third_party/shim_tz',
@@ -157,7 +157,7 @@ env.CppUnitTest(
         "stringutils_test.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
+        "$BUILD_DIR/mongol/base",
     ],
 )
 
@@ -168,9 +168,9 @@ env.Library(
         "processinfo_${TARGET_OS}.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/platform/platform",
-        "$BUILD_DIR/mongo/util/foundation",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/platform/platform",
+        "$BUILD_DIR/mongol/util/foundation",
     ],
 )
 
@@ -192,7 +192,7 @@ env.Library(
         "fail_point_service.cpp",
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
+        "$BUILD_DIR/mongol/base",
     ],
 )
 
@@ -212,7 +212,7 @@ env.Library(
         "background.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         'concurrency/spin_lock',
         'foundation',
     ],
@@ -259,13 +259,13 @@ if get_option('allocator') == 'tcmalloc':
             # TODO: This is needless, the definition of
             # ServerStatusSection should live in its own library, as
             # it doesn't require all of the other commands.
-            '$BUILD_DIR/mongo/db/commands/core',
-            '$BUILD_DIR/mongo/db/server_parameters',
-            '$BUILD_DIR/mongo/util/net/network',
+            '$BUILD_DIR/mongol/db/commands/core',
+            '$BUILD_DIR/mongol/db/server_parameters',
+            '$BUILD_DIR/mongol/util/net/network',
         ],
         PROGDEPS_DEPENDENTS=[
-            '$BUILD_DIR/mongo/mongod',
-            '$BUILD_DIR/mongo/mongos',
+            '$BUILD_DIR/mongol/mongold',
+            '$BUILD_DIR/mongol/mongols',
         ],
     )
 
@@ -277,7 +277,7 @@ env.Library(
     ],
     LIBDEPS=[
         'foundation',
-        '$BUILD_DIR/mongo/util/options_parser/options_parser',
+        '$BUILD_DIR/mongol/util/options_parser/options_parser',
     ],
 )
 
@@ -339,7 +339,7 @@ env.Library(
         'secure_zero_memory.cpp',
     ],
     LIBDEPS=[
-        "$BUILD_DIR/mongo/base",
+        "$BUILD_DIR/mongol/base",
     ],
 )
 
@@ -358,7 +358,7 @@ if not env.TargetOSIs('windows'):
             'signal_handlers_synchronous_test.cpp',
         ],
         LIBDEPS=[
-            '$BUILD_DIR/mongo/base',
+            '$BUILD_DIR/mongol/base',
         ],
     )
 
@@ -370,9 +370,9 @@ env.Library(
     ],
     LIBDEPS=[
         "foundation",
-        "$BUILD_DIR/mongo/base",
-        "$BUILD_DIR/mongo/db/service_context",
-        "$BUILD_DIR/mongo/db/server_options_core",
+        "$BUILD_DIR/mongol/base",
+        "$BUILD_DIR/mongol/db/service_context",
+        "$BUILD_DIR/mongol/db/server_options_core",
     ],
     LIBDEPS_TAGS=[
         # Depends on logProcessDetailsForLogRotate and exitCleanly
@@ -396,7 +396,7 @@ env.Library(
         'safe_num.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -406,7 +406,7 @@ env.CppUnitTest(
         'safe_num_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         'safe_num',
     ],
 )
@@ -417,7 +417,7 @@ env.CppUnitTest(
         'string_map_test.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
         'foundation',
     ],
 )
@@ -428,6 +428,6 @@ env.Library(
         'password.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )

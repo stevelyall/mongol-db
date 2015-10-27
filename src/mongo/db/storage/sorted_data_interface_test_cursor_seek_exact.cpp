@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 // Tests seekExact when it hits something.
 void testSeekExact_Hit(bool unique, bool forward) {
     auto harnessHelper = newHarnessHelper();
@@ -134,4 +134,4 @@ TEST(SortedDataInterface, SeekExact_HitWithDups_Reverse) {
     ASSERT_EQ(cursor->next(), IndexKeyEntry(key1, loc1));
     ASSERT_EQ(cursor->next(), boost::none);
 }
-}  // namespace mongo
+}  // namespace mongol

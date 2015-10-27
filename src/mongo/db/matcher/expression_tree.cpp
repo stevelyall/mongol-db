@@ -28,13 +28,13 @@
  *    it in the license file.
  */
 
-#include "mongo/db/matcher/expression_tree.h"
+#include "mongol/db/matcher/expression_tree.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/bson/bsonobjbuilder.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/bson/bsonobjbuilder.h"
 
-namespace mongo {
+namespace mongol {
 
 ListOfMatchExpression::~ListOfMatchExpression() {
     for (unsigned i = 0; i < _expressions.size(); i++)

@@ -7,7 +7,7 @@ env.Library(
         'field_path.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/util/foundation',
+        '$BUILD_DIR/mongol/util/foundation',
         ]
     )
 
@@ -27,9 +27,9 @@ env.Library(
         ],
     LIBDEPS=[
         'field_path',
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/intrusive_counter',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/intrusive_counter',
         ]
     )
 
@@ -46,7 +46,7 @@ env.CppUnitTest(
     source='document_source_test.cpp',
     LIBDEPS=[
         'document_source',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/service_context',
         ],
     )
 
@@ -119,13 +119,13 @@ docSourceEnv.Library(
         'dependencies',
         'document_value',
         'expression',
-        '$BUILD_DIR/mongo/client/clientdriver',
-        '$BUILD_DIR/mongo/db/service_context',
-        '$BUILD_DIR/mongo/db/matcher/expressions',
+        '$BUILD_DIR/mongol/client/clientdriver',
+        '$BUILD_DIR/mongol/db/service_context',
+        '$BUILD_DIR/mongol/db/matcher/expressions',
         '$BUILD_DIR/third_party/shim_snappy',
     ],
     LIBDEPS_TAGS=[
-        # Inclusion of sorter.cpp causes a dependency on mongo::isMongos,
+        # Inclusion of sorter.cpp causes a dependency on mongol::isMongos,
         # which is not uniquely defined
         'incomplete'
     ],
@@ -141,9 +141,9 @@ env.Library(
         'dependencies',
         'document_source',
         'document_value',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_global',
-        '$BUILD_DIR/mongo/db/auth/authcore',
-        '$BUILD_DIR/mongo/db/repl/read_concern_args',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_global',
+        '$BUILD_DIR/mongol/db/auth/authcore',
+        '$BUILD_DIR/mongol/db/repl/read_concern_args',
     ]
 )
 
@@ -169,7 +169,7 @@ env.CppUnitTest(
     source='pipeline_test.cpp',
     LIBDEPS=[
         'pipeline',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        '$BUILD_DIR/mongol/db/service_context',
         ],
     )

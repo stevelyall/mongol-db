@@ -26,23 +26,23 @@
  *    it in the license file.
  */
 
-#include "mongo/executor/network_interface_factory.h"
+#include "mongol/executor/network_interface_factory.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/config.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/executor/async_secure_stream_factory.h"
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/async_timer_asio.h"
-#include "mongo/executor/network_connection_hook.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/rpc/metadata/metadata_hook.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/net/ssl_manager.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/config.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/executor/async_secure_stream_factory.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/async_timer_asio.h"
+#include "mongol/executor/network_connection_hook.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/rpc/metadata/metadata_hook.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/net/ssl_manager.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 std::unique_ptr<NetworkInterface> makeNetworkInterface() {
@@ -70,4 +70,4 @@ std::unique_ptr<NetworkInterface> makeNetworkInterface(
 }
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

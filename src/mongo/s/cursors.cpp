@@ -27,32 +27,32 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/cursors.h"
+#include "mongol/s/cursors.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/data_cursor.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/max_time.h"
-#include "mongo/s/query/cluster_cursor_cleanup_job.h"
-#include "mongo/util/concurrency/task.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/listen.h"
+#include "mongol/base/data_cursor.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/max_time.h"
+#include "mongol/s/query/cluster_cursor_cleanup_job.h"
+#include "mongol/util/concurrency/task.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/listen.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -147,7 +147,7 @@ bool ShardedClientCursor::sendNextBatch(int batchSize, BufBuilder& buffer, int& 
     const bool sendMoreBatches = batchSize == 0 || batchSize > 1;
     batchSize = abs(batchSize);
 
-    // Set the initial batch size to 101, just like mongoD.
+    // Set the initial batch size to 101, just like mongolD.
     if (batchSize == 0 && _totalSent == 0)
         batchSize = 101;
 
@@ -189,9 +189,9 @@ bool ShardedClientCursor::sendNextBatch(int batchSize, BufBuilder& buffer, int& 
     //  will be explicitly false, and we know for sure that we do not have to send more batches.
     //
     //  On the other hand, if _cursor->more() is true there may or may not be more results.
-    //  Suppose that the mongod generates enough results to fill this batch. In this case it
+    //  Suppose that the mongold generates enough results to fill this batch. In this case it
     //  does not know whether not there are more, because doing so would require requesting an
-    //  extra result and seeing whether we get EOF. The mongod sends a valid cursorId to
+    //  extra result and seeing whether we get EOF. The mongold sends a valid cursorId to
     //  indicate that there may be more. We do the same here: we indicate that there may be
     //  more results to retrieve by setting 'hasMoreBatches' to true.
     bool hasMoreBatches = sendMoreBatches && cursorHasMore;
@@ -470,4 +470,4 @@ public:
 void CursorCache::startTimeoutThread() {
     task::repeat(new CursorTimeoutTask, 4000);
 }
-}  // namespace mongo
+}  // namespace mongol

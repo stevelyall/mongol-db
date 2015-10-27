@@ -26,32 +26,32 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kASIO
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kASIO
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <exception>
 
-#include "mongo/base/status_with.h"
-#include "mongo/bson/bsonmisc.h"
-#include "mongo/client/connection_string.h"
-#include "mongo/executor/async_stream_factory.h"
-#include "mongo/executor/async_stream_interface.h"
-#include "mongo/executor/async_timer_asio.h"
-#include "mongo/executor/network_interface_asio.h"
-#include "mongo/executor/network_interface_asio_test_utils.h"
-#include "mongo/executor/network_interface_impl.h"
-#include "mongo/executor/task_executor.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/unittest/integration_test.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/bsonmisc.h"
+#include "mongol/client/connection_string.h"
+#include "mongol/executor/async_stream_factory.h"
+#include "mongol/executor/async_stream_interface.h"
+#include "mongol/executor/async_timer_asio.h"
+#include "mongol/executor/network_interface_asio.h"
+#include "mongol/executor/network_interface_asio_test_utils.h"
+#include "mongol/executor/network_interface_impl.h"
+#include "mongol/executor/task_executor.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/unittest/integration_test.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 namespace {
 
@@ -119,4 +119,4 @@ TEST(NetworkInterfaceImpl, SerialPerf) {
 
 }  // namespace
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

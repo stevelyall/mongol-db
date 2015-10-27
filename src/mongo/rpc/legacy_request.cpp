@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <utility>
 
-#include "mongo/db/namespace_string.h"
-#include "mongo/rpc/legacy_request.h"
-#include "mongo/rpc/metadata.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/rpc/legacy_request.h"
+#include "mongol/rpc/metadata.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 namespace rpc {
 
 LegacyRequest::LegacyRequest(const Message* message)
@@ -80,4 +80,4 @@ Protocol LegacyRequest::getProtocol() const {
 }
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

@@ -26,25 +26,25 @@
 *    it in the license file.
 */
 
-#include "mongo/db/auth/user_management_commands_parser.h"
+#include "mongol/db/auth/user_management_commands_parser.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/privilege_parser.h"
-#include "mongo/db/auth/user_document_parser.h"
-#include "mongo/db/auth/user_name.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/privilege_parser.h"
+#include "mongol/db/auth/user_document_parser.h"
+#include "mongol/db/auth/user_name.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/password_digest.h"
 
-namespace mongo {
+namespace mongol {
 namespace auth {
 
 using std::vector;
@@ -77,7 +77,7 @@ Status _checkNoExtraFields(const BSONObj& cmdObj,
         StringData fieldName = (*iter).fieldNameStringData();
         if (!validFieldNames.count(fieldName.toString())) {
             return Status(ErrorCodes::BadValue,
-                          mongoutils::str::stream() << "\"" << fieldName << "\" is not "
+                          mongolutils::str::stream() << "\"" << fieldName << "\" is not "
                                                                             "a valid argument to "
                                                     << cmdName);
         }
@@ -196,7 +196,7 @@ Status parseRolePossessionManipulationCommands(const BSONObj& cmdObj,
 
     if (!parsedRoleNames->size()) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << cmdName << " command requires a non-empty "
+                      mongolutils::str::stream() << cmdName << " command requires a non-empty "
                                                               "\"roles\" array");
     }
     return Status::OK();
@@ -255,7 +255,7 @@ Status parseCreateOrUpdateUserCommands(const BSONObj& cmdObj,
         }
 
         if (digestPassword) {
-            parsedArgs->hashedPassword = mongo::createPasswordDigest(userName, password);
+            parsedArgs->hashedPassword = mongol::createPasswordDigest(userName, password);
         } else {
             parsedArgs->hashedPassword = password;
         }
@@ -578,7 +578,7 @@ Status parseAndValidateRolePrivilegeManipulationCommands(const BSONObj& cmdObj,
     }
     if (!parsedPrivileges->size()) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << cmdName << " command requires a non-empty "
+                      mongolutils::str::stream() << cmdName << " command requires a non-empty "
                                                               "\"privileges\" array");
     }
 
@@ -659,7 +659,7 @@ Status parseMergeAuthzCollectionsCommand(const BSONObj& cmdObj,
             return Status(ErrorCodes::OutdatedClient,
                           "Missing \"db\" field for _mergeAuthzCollections command. This is "
                           "most likely due to running an outdated (pre-2.6.4) version of "
-                          "mongorestore.");
+                          "mongolrestore.");
         }
         return status;
     }
@@ -702,7 +702,7 @@ Status parseAuthSchemaUpgradeCommand(const BSONObj& cmdObj,
         return status;
     if (steps < minUpgradeSteps || steps > maxUpgradeSteps) {
         return Status(ErrorCodes::BadValue,
-                      mongoutils::str::stream() << "Legal values for \"maxSteps\" are at least "
+                      mongolutils::str::stream() << "Legal values for \"maxSteps\" are at least "
                                                 << minUpgradeSteps << " and no more than "
                                                 << maxUpgradeSteps << "; found " << steps);
     }
@@ -716,4 +716,4 @@ Status parseAuthSchemaUpgradeCommand(const BSONObj& cmdObj,
     return Status::OK();
 }
 }  // namespace auth
-}  // namespace mongo
+}  // namespace mongol

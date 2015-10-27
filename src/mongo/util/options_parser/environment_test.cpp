@@ -25,18 +25,18 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/bson/util/builder.h"
+#include "mongol/bson/util/builder.h"
 
-#include "mongo/util/options_parser/constraints.h"
-#include "mongo/util/options_parser/environment.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/util/options_parser/constraints.h"
+#include "mongol/util/options_parser/environment.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::ErrorCodes;
-using mongo::Status;
+using mongol::ErrorCodes;
+using mongol::Status;
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 TEST(Environment, EmptyValue) {
     moe::Environment environment;
@@ -133,7 +133,7 @@ TEST(ToBSONTests, NormalValues) {
     moe::Environment environment;
     ASSERT_OK(environment.set(moe::Key("val1"), moe::Value(6)));
     ASSERT_OK(environment.set(moe::Key("val2"), moe::Value(std::string("string"))));
-    mongo::BSONObj obj = BSON("val1" << 6 << "val2"
+    mongol::BSONObj obj = BSON("val1" << 6 << "val2"
                                      << "string");
     // TODO: Put a comparison here that doesn't depend on the field order.  Right now it is
     // based on the sort order of keys in a std::map.
@@ -145,7 +145,7 @@ TEST(ToBSONTests, DottedValues) {
     ASSERT_OK(environment.set(moe::Key("val1.dotted1"), moe::Value(6)));
     ASSERT_OK(environment.set(moe::Key("val2"), moe::Value(true)));
     ASSERT_OK(environment.set(moe::Key("val1.dotted2"), moe::Value(std::string("string"))));
-    mongo::BSONObj obj = BSON("val1" << BSON("dotted1" << 6 << "dotted2"
+    mongol::BSONObj obj = BSON("val1" << BSON("dotted1" << 6 << "dotted2"
                                                        << "string") << "val2" << true);
     // TODO: Put a comparison here that doesn't depend on the field order.  Right now it is
     // based on the sort order of keys in a std::map.
@@ -159,7 +159,7 @@ TEST(ToBSONTests, DeepDottedValues) {
     ASSERT_OK(environment.set(moe::Key("val1.first2"), moe::Value(std::string("string"))));
     ASSERT_OK(environment.set(moe::Key("val1.first1.second1.third2"), moe::Value(true)));
     ASSERT_OK(environment.set(moe::Key("val2"), moe::Value(6.0)));
-    mongo::BSONObj obj =
+    mongol::BSONObj obj =
         BSON("val1" << BSON("first1" << BSON("second1" << BSON("third1" << 6 << "third2" << true)
                                                        << "second2" << BSON("third1" << false))
                                      << "first2"

@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/killcursors_request.h"
+#include "mongol/db/query/killcursors_request.h"
 
-#include "mongo/db/clientcursor.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -135,4 +135,4 @@ TEST(KillCursorsRequestTest, toBSON) {
 
 }  // namespace
 
-}  // namespace mongo
+}  // namespace mongol

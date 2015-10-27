@@ -27,7 +27,7 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 namespace mutablebson {
 
 inline ConstElement::ConstElement(const Element& basis) : _basis(basis) {}
@@ -240,4 +240,4 @@ inline bool operator!=(const ConstElement& l, const Element& r) {
 
 
 }  // namespace mutablebson
-}  // namespace mongo
+}  // namespace mongol

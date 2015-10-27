@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/client/parallel.h"
-#include "mongo/platform/random.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/client/parallel.h"
+#include "mongol/platform/random.h"
 
-namespace mongo {
+namespace mongol {
 
 class QueryMessage;
 
@@ -150,4 +150,4 @@ private:
 
 extern CursorCache cursorCache;
 
-}  // namespace mongo
+}  // namespace mongol

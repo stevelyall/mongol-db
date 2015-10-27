@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/replica_set_config_checks.h"
+#include "mongol/db/repl/replica_set_config_checks.h"
 
 #include <iterator>
 
-#include "mongo/db/repl/replica_set_config.h"
-#include "mongo/db/repl/replication_coordinator_external_state.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/repl/replica_set_config.h"
+#include "mongol/db/repl/replication_coordinator_external_state.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -278,4 +278,4 @@ StatusWith<int> validateConfigForHeartbeatReconfig(
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

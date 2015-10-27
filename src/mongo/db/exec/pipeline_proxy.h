@@ -31,13 +31,13 @@
 #include <boost/optional/optional.hpp>
 #include <boost/intrusive_ptr.hpp>
 
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/exec/plan_stage.h"
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/pipeline/pipeline.h"
-#include "mongo/db/record_id.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/exec/plan_stage.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/pipeline/pipeline.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Stage for pulling results out from an aggregation pipeline.
@@ -96,4 +96,4 @@ private:
     WorkingSet* _ws;
 };
 
-}  // namespace mongo
+}  // namespace mongol

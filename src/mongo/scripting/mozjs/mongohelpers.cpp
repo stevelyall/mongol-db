@@ -26,21 +26,21 @@
  * then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/scripting/mozjs/mongohelpers.h"
+#include "mongol/scripting/mozjs/mongolhelpers.h"
 
 #include <jsapi.h>
 
-#include "mongo/scripting/engine.h"
-#include "mongo/scripting/mozjs/implscope.h"
-#include "mongo/scripting/mozjs/objectwrapper.h"
-#include "mongo/scripting/mozjs/valuereader.h"
-#include "mongo/scripting/mozjs/valuewriter.h"
+#include "mongol/scripting/engine.h"
+#include "mongol/scripting/mozjs/implscope.h"
+#include "mongol/scripting/mozjs/objectwrapper.h"
+#include "mongol/scripting/mozjs/valuereader.h"
+#include "mongol/scripting/mozjs/valuewriter.h"
 
-namespace mongo {
+namespace mongol {
 namespace JSFiles {
-extern const JSFile mongohelpers;
+extern const JSFile mongolhelpers;
 }  // namespace JSFiles
 
 namespace mozjs {
@@ -78,7 +78,7 @@ void MongoHelpersInfo::postInstall(JSContext* cx, JS::HandleObject global, JS::H
     protoWrapper.setValue(kReflectName, reflectValue);
 
     JS::RootedValue exports(cx);
-    getScope(cx)->execSetup(JSFiles::mongohelpers);
+    getScope(cx)->execSetup(JSFiles::mongolhelpers);
     globalWrapper.getValue(kExportsObjectName, &exports);
     globalWrapper.deleteProperty(kExportsObjectName);
 
@@ -92,4 +92,4 @@ void MongoHelpersInfo::postInstall(JSContext* cx, JS::HandleObject global, JS::H
 }
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

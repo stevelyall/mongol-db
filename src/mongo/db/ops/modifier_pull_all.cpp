@@ -26,22 +26,22 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/modifier_pull_all.h"
+#include "mongol/db/ops/modifier_pull_all.h"
 
-#include "mongo/base/error_codes.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/db/ops/field_checker.h"
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/db/ops/path_support.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/error_codes.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/db/ops/field_checker.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/db/ops/path_support.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::vector;
 
 namespace mb = mutablebson;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 struct ModifierPullAll::PreparedState {
     PreparedState(mutablebson::Document* targetDoc)
@@ -232,4 +232,4 @@ Status ModifierPullAll::log(LogBuilder* logBuilder) const {
     }
     return logBuilder->addToSets(logElement);
 }
-}  // namespace mongo
+}  // namespace mongol

@@ -30,12 +30,12 @@
 
 #pragma once
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/catalog/collection_options.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/record_id.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/catalog/collection_options.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/record_id.h"
 
-namespace mongo {
+namespace mongol {
 
 class IndexDescriptor;
 class OperationContext;

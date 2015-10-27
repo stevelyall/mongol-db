@@ -27,12 +27,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/dbmessage.h"
-#include "mongo/platform/strnlen.h"
+#include "mongol/db/dbmessage.h"
+#include "mongol/platform/strnlen.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::stringstream;

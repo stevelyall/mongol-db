@@ -26,15 +26,15 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/query/interval.h"
+#include "mongol/db/query/interval.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using mongo::BSONObj;
-using mongo::Interval;
+using mongol::BSONObj;
+using mongol::Interval;
 
 //
 // Comparison

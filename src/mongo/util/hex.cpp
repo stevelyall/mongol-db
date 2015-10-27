@@ -27,13 +27,13 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/hex.h"
+#include "mongol/util/hex.h"
 
 #include <iomanip>
 #include <sstream>
 #include <string>
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 std::string integerToHexDef(T inInt) {

@@ -29,9 +29,9 @@
 
 #include <cstring>
 
-#include "mongo/base/data_type.h"
+#include "mongol/base/data_type.h"
 
-namespace mongo {
+namespace mongol {
 
 template <>
 struct DataType::Handler<StringData> {
@@ -81,4 +81,4 @@ private:
                                   std::ptrdiff_t debug_offset);
 };
 
-}  // namespace mongo
+}  // namespace mongol

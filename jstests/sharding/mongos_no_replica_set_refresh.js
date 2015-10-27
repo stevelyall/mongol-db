@@ -1,11 +1,11 @@
-// Tests whether new sharding is detected on insert by mongos
+// Tests whether new sharding is detected on insert by mongols
 load("jstests/replsets/rslib.js");
 (function () {
 var st = new ShardingTest(
     name = "test",
     shards = 1,
     verbose = 2,
-    mongos = 2,
+    mongols = 2,
     other = {
         rs0: {
             nodes: [
@@ -27,12 +27,12 @@ assert.commandWorked(
     'node 0 ' + rsObj.nodes[0].host + ' failed to become primary'
 );
 
-var mongos = st.s;
-var config = mongos.getDB("config");
+var mongols = st.s;
+var config = mongols.getDB("config");
 
 config.settings.update({ _id : "balancer" }, { $set : { stopped : true } }, true );
 
-printjson( mongos.getCollection("foo.bar").findOne() );
+printjson( mongols.getCollection("foo.bar").findOne() );
 
 var primary = rsObj.getPrimary();
 
@@ -56,10 +56,10 @@ primary = rsObj.getPrimary();
 assert.soon( function(){ return numRSHosts() < 3; } );
 
 var numMongosHosts = function(){
-    jsTestLog('Checking number of nodes in ' + rsObj.name + ' connected to mongos...');
-    var commandResult = assert.commandWorked(mongos.adminCommand("connPoolStats"));
+    jsTestLog('Checking number of nodes in ' + rsObj.name + ' connected to mongols...');
+    var commandResult = assert.commandWorked(mongols.adminCommand("connPoolStats"));
     var result = commandResult.replicaSets[rsObj.name];
-    jsTestLog('Nodes in ' + rsObj.name + ' connected to mongos: ' + tojson(result));
+    jsTestLog('Nodes in ' + rsObj.name + ' connected to mongols: ' + tojson(result));
     return result.hosts.length;
 };
 

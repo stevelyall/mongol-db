@@ -27,29 +27,29 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/legacy/distlock.h"
+#include "mongol/s/catalog/legacy/distlock.h"
 
 #include <boost/thread/tss.hpp>
 #include <iostream>
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/client/connpool.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/commands.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/s/catalog/legacy/legacy_dist_lock_pinger.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/bson_util.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/log.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/init.h"
+#include "mongol/client/connpool.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/commands.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/s/catalog/legacy/legacy_dist_lock_pinger.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/bson_util.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/log.h"
+#include "mongol/util/timer.h"
 
 // Modify some config options for the RNG, since they cause MSVC to fail
 #include <boost/config.hpp>
@@ -76,7 +76,7 @@
 #define string_field(obj, name, def) (obj.hasField(name) ? obj[name].String() : def)
 #define number_field(obj, name, def) (obj.hasField(name) ? obj[name].Number() : def)
 
-namespace mongo {
+namespace mongol {
 
 using std::shared_ptr;
 using std::endl;
@@ -400,7 +400,7 @@ MONGO_INITIALIZER(RegisterDistLockWithSkewCmd)(InitializerContext* context) {
 }
 
 /**
- * Utility command to virtually skew the clock of a mongo server a particular amount.
+ * Utility command to virtually skew the clock of a mongol server a particular amount.
  * This skews the clock globally, per-thread skew is also possible.
  */
 class SkewClockCommand : public Command {

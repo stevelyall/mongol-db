@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 
 /**

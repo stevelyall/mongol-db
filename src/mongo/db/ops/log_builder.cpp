@@ -26,14 +26,14 @@
  *    it in the license file.
  */
 
-#include "mongo/db/ops/log_builder.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/ops/log_builder.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using mutablebson::Document;
 using mutablebson::Element;
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 namespace {
 const char kSet[] = "$set";
@@ -155,4 +155,4 @@ inline bool LogBuilder::hasObjectReplacement() const {
     return _objectReplacementAccumulator.hasChildren();
 }
 
-}  // namespace mongo
+}  // namespace mongol

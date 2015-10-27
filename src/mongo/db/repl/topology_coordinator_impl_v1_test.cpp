@@ -26,34 +26,34 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <iostream>
 
-#include "mongo/bson/json.h"
-#include "mongo/db/repl/heartbeat_response_action.h"
-#include "mongo/db/repl/member_heartbeat_data.h"
-#include "mongo/db/repl/repl_set_heartbeat_args.h"
-#include "mongo/db/repl/repl_set_heartbeat_args_v1.h"
-#include "mongo/db/repl/repl_set_heartbeat_response.h"
-#include "mongo/db/repl/repl_set_declare_election_winner_args.h"
-#include "mongo/db/repl/repl_set_request_votes_args.h"
-#include "mongo/db/repl/topology_coordinator.h"
-#include "mongo/db/repl/topology_coordinator_impl.h"
-#include "mongo/db/server_options.h"
-#include "mongo/s/catalog/catalog_manager.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/net/hostandport.h"
-#include "mongo/util/scopeguard.h"
-#include "mongo/util/time_support.h"
+#include "mongol/bson/json.h"
+#include "mongol/db/repl/heartbeat_response_action.h"
+#include "mongol/db/repl/member_heartbeat_data.h"
+#include "mongol/db/repl/repl_set_heartbeat_args.h"
+#include "mongol/db/repl/repl_set_heartbeat_args_v1.h"
+#include "mongol/db/repl/repl_set_heartbeat_response.h"
+#include "mongol/db/repl/repl_set_declare_election_winner_args.h"
+#include "mongol/db/repl/repl_set_request_votes_args.h"
+#include "mongol/db/repl/topology_coordinator.h"
+#include "mongol/db/repl/topology_coordinator_impl.h"
+#include "mongol/db/server_options.h"
+#include "mongol/s/catalog/catalog_manager.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/net/hostandport.h"
+#include "mongol/util/scopeguard.h"
+#include "mongol/util/time_support.h"
 
 #define ASSERT_NO_ACTION(EXPRESSION) \
-    ASSERT_EQUALS(mongo::repl::HeartbeatResponseAction::NoAction, (EXPRESSION))
+    ASSERT_EQUALS(mongol::repl::HeartbeatResponseAction::NoAction, (EXPRESSION))
 
 using std::unique_ptr;
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -67,7 +67,7 @@ bool stringContains(const std::string& haystack, const std::string& needle) {
     return haystack.find(needle) != std::string::npos;
 }
 
-class TopoCoordTest : public mongo::unittest::Test {
+class TopoCoordTest : public mongol::unittest::Test {
 public:
     virtual void setUp() {
         _options = TopologyCoordinatorImpl::Options{};
@@ -4038,4 +4038,4 @@ TEST_F(TopoCoordTest, ReceiveHeartbeatWhileAbsentFromConfigV1) {
 
 }  // namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

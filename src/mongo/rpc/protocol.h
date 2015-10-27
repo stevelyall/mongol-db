@@ -32,9 +32,9 @@
 #include <string>
 #include <type_traits>
 
-#include "mongo/base/status_with.h"
+#include "mongol/base/status_with.h"
 
-namespace mongo {
+namespace mongol {
 class BSONObj;
 namespace rpc {
 
@@ -102,9 +102,9 @@ StatusWith<ProtocolSet> parseProtocolSet(StringData repr);
 StatusWith<ProtocolSet> parseProtocolSetFromIsMasterReply(const BSONObj& isMasterReply);
 
 /**
- * Returns true if wire version supports OP_COMMAND in mongod (not mongos).
+ * Returns true if wire version supports OP_COMMAND in mongold (not mongols).
  */
 bool supportsWireVersionForOpCommandInMongod(int minWireVersion, int maxWireVersion);
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

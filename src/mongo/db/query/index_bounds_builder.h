@@ -28,13 +28,13 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/hasher.h"
-#include "mongo/db/matcher/expression_parser.h"
-#include "mongo/db/query/index_bounds.h"
-#include "mongo/db/query/index_entry.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/hasher.h"
+#include "mongol/db/matcher/expression_parser.h"
+#include "mongol/db/query/index_bounds.h"
+#include "mongol/db/query/index_entry.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Translates expressions over fields into bounds on an index.
@@ -190,4 +190,4 @@ public:
                                  bool* endKeyInclusive);
 };
 
-}  // namespace mongo
+}  // namespace mongol

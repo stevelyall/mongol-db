@@ -29,11 +29,11 @@
  * Unit tests of the ActionSet type.
  */
 
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 TEST(ActionSetTest, ParseActionSetFromString) {
@@ -157,4 +157,4 @@ TEST(ActionSetTest, anyAction) {
 }
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

@@ -30,20 +30,20 @@
  * tests for BSONObjBuilder
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/json.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/json.h"
 
 #include <sstream>
-#include "mongo/unittest/unittest.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
 using std::string;
 using std::stringstream;
-using mongo::BSONElement;
-using mongo::BSONObj;
-using mongo::BSONObjBuilder;
-using mongo::BSONType;
+using mongol::BSONElement;
+using mongol::BSONObj;
+using mongol::BSONObjBuilder;
+using mongol::BSONType;
 
 const long long maxEncodableInt = (1 << 30) - 1;
 const long long minEncodableInt = -maxEncodableInt;
@@ -65,8 +65,8 @@ void assertBSONTypeEquals(BSONType actual, BSONType expected, T value, int i) {
     if (expected != actual) {
         stringstream ss;
         ss << "incorrect type in bson object for " << (i + 1) << "-th test value " << value
-           << ". actual: " << mongo::typeName(actual)
-           << "; expected: " << mongo::typeName(expected);
+           << ". actual: " << mongol::typeName(actual)
+           << "; expected: " << mongol::typeName(expected);
         const string msg = ss.str();
         FAIL(msg);
     }
@@ -82,15 +82,15 @@ TEST(BSONObjBuilderTest, AppendUnsignedInt) {
     struct {
         unsigned int v;
         BSONType t;
-    } data[] = {{0, mongo::NumberInt},
-                {100, mongo::NumberInt},
-                {maxEncodableInt, mongo::NumberInt},
-                {maxEncodableInt + 1, mongo::NumberInt},
-                {static_cast<unsigned int>(maxInt), mongo::NumberInt},
-                {static_cast<unsigned int>(maxInt) + 1U, mongo::NumberInt},
-                {(std::numeric_limits<unsigned int>::max)(), mongo::NumberInt},
-                {0, mongo::Undefined}};
-    for (int i = 0; data[i].t != mongo::Undefined; i++) {
+    } data[] = {{0, mongol::NumberInt},
+                {100, mongol::NumberInt},
+                {maxEncodableInt, mongol::NumberInt},
+                {maxEncodableInt + 1, mongol::NumberInt},
+                {static_cast<unsigned int>(maxInt), mongol::NumberInt},
+                {static_cast<unsigned int>(maxInt) + 1U, mongol::NumberInt},
+                {(std::numeric_limits<unsigned int>::max)(), mongol::NumberInt},
+                {0, mongol::Undefined}};
+    for (int i = 0; data[i].t != mongol::Undefined; i++) {
         unsigned int v = data[i].v;
         BSONObjBuilder b;
         b.append("a", v);
@@ -117,25 +117,25 @@ TEST(BSONObjBuilderTest, AppendIntOrLL) {
     struct {
         long long v;
         BSONType t;
-    } data[] = {{0, mongo::NumberInt},
-                {-100, mongo::NumberInt},
-                {100, mongo::NumberInt},
-                {-(maxInt / 2 - 1), mongo::NumberInt},
-                {maxInt / 2 - 1, mongo::NumberInt},
-                {-(maxInt / 2), mongo::NumberLong},
-                {maxInt / 2, mongo::NumberLong},
-                {minEncodableInt, mongo::NumberLong},
-                {maxEncodableInt, mongo::NumberLong},
-                {minEncodableInt - 1, mongo::NumberLong},
-                {maxEncodableInt + 1, mongo::NumberLong},
-                {minInt, mongo::NumberLong},
-                {maxInt, mongo::NumberLong},
-                {minInt - 1, mongo::NumberLong},
-                {maxInt + 1, mongo::NumberLong},
-                {minLongLong, mongo::NumberLong},
-                {maxLongLong, mongo::NumberLong},
-                {0, mongo::Undefined}};
-    for (int i = 0; data[i].t != mongo::Undefined; i++) {
+    } data[] = {{0, mongol::NumberInt},
+                {-100, mongol::NumberInt},
+                {100, mongol::NumberInt},
+                {-(maxInt / 2 - 1), mongol::NumberInt},
+                {maxInt / 2 - 1, mongol::NumberInt},
+                {-(maxInt / 2), mongol::NumberLong},
+                {maxInt / 2, mongol::NumberLong},
+                {minEncodableInt, mongol::NumberLong},
+                {maxEncodableInt, mongol::NumberLong},
+                {minEncodableInt - 1, mongol::NumberLong},
+                {maxEncodableInt + 1, mongol::NumberLong},
+                {minInt, mongol::NumberLong},
+                {maxInt, mongol::NumberLong},
+                {minInt - 1, mongol::NumberLong},
+                {maxInt + 1, mongol::NumberLong},
+                {minLongLong, mongol::NumberLong},
+                {maxLongLong, mongol::NumberLong},
+                {0, mongol::Undefined}};
+    for (int i = 0; data[i].t != mongol::Undefined; i++) {
         long long v = data[i].v;
         BSONObjBuilder b;
         b.appendIntOrLL("a", v);
@@ -159,15 +159,15 @@ TEST(BSONObjBuilderTest, AppendNumberSizeT) {
     struct {
         size_t v;
         BSONType t;
-    } data[] = {{0, mongo::NumberInt},
-                {100, mongo::NumberInt},
-                {maxEncodableInt, mongo::NumberInt},
-                {maxEncodableInt + 1, mongo::NumberLong},
-                {size_t(maxInt), mongo::NumberLong},
-                {size_t(maxInt) + 1U, mongo::NumberLong},
-                {(std::numeric_limits<size_t>::max)(), mongo::NumberLong},
-                {0, mongo::Undefined}};
-    for (int i = 0; data[i].t != mongo::Undefined; i++) {
+    } data[] = {{0, mongol::NumberInt},
+                {100, mongol::NumberInt},
+                {maxEncodableInt, mongol::NumberInt},
+                {maxEncodableInt + 1, mongol::NumberLong},
+                {size_t(maxInt), mongol::NumberLong},
+                {size_t(maxInt) + 1U, mongol::NumberLong},
+                {(std::numeric_limits<size_t>::max)(), mongol::NumberLong},
+                {0, mongol::Undefined}};
+    for (int i = 0; data[i].t != mongol::Undefined; i++) {
         size_t v = data[i].v;
         BSONObjBuilder b;
         b.appendNumber("a", v);
@@ -194,36 +194,36 @@ TEST(BSONObjBuilderTest, AppendNumberLongLong) {
     struct {
         long long v;
         BSONType t;
-    } data[] = {{0, mongo::NumberInt},
-                {-100, mongo::NumberInt},
-                {100, mongo::NumberInt},
-                {minEncodableInt, mongo::NumberInt},
-                {maxEncodableInt, mongo::NumberInt},
-                {minEncodableInt - 1, mongo::NumberDouble},
-                {maxEncodableInt + 1, mongo::NumberDouble},
-                {minInt, mongo::NumberDouble},
-                {maxInt, mongo::NumberDouble},
-                {minInt - 1, mongo::NumberDouble},
-                {maxInt + 1, mongo::NumberDouble},
-                {minEncodableDouble, mongo::NumberDouble},
-                {maxEncodableDouble, mongo::NumberDouble},
-                {minEncodableDouble - 1, mongo::NumberLong},
-                {maxEncodableDouble + 1, mongo::NumberLong},
-                {minDouble, mongo::NumberLong},
-                {maxDouble, mongo::NumberLong},
-                {minDouble - 1, mongo::NumberLong},
-                {maxDouble + 1, mongo::NumberLong},
-                {minLongLong, mongo::NumberLong},
-                {maxLongLong, mongo::NumberLong},
-                {0, mongo::Undefined}};
-    for (int i = 0; data[i].t != mongo::Undefined; i++) {
+    } data[] = {{0, mongol::NumberInt},
+                {-100, mongol::NumberInt},
+                {100, mongol::NumberInt},
+                {minEncodableInt, mongol::NumberInt},
+                {maxEncodableInt, mongol::NumberInt},
+                {minEncodableInt - 1, mongol::NumberDouble},
+                {maxEncodableInt + 1, mongol::NumberDouble},
+                {minInt, mongol::NumberDouble},
+                {maxInt, mongol::NumberDouble},
+                {minInt - 1, mongol::NumberDouble},
+                {maxInt + 1, mongol::NumberDouble},
+                {minEncodableDouble, mongol::NumberDouble},
+                {maxEncodableDouble, mongol::NumberDouble},
+                {minEncodableDouble - 1, mongol::NumberLong},
+                {maxEncodableDouble + 1, mongol::NumberLong},
+                {minDouble, mongol::NumberLong},
+                {maxDouble, mongol::NumberLong},
+                {minDouble - 1, mongol::NumberLong},
+                {maxDouble + 1, mongol::NumberLong},
+                {minLongLong, mongol::NumberLong},
+                {maxLongLong, mongol::NumberLong},
+                {0, mongol::Undefined}};
+    for (int i = 0; data[i].t != mongol::Undefined; i++) {
         long long v = data[i].v;
         BSONObjBuilder b;
         b.appendNumber("a", v);
         BSONObj o = b.obj();
         ASSERT_EQUALS(o.nFields(), 1);
         BSONElement e = o.getField("a");
-        if (data[i].t != mongo::NumberDouble) {
+        if (data[i].t != mongol::NumberDouble) {
             long long n = e.numberLong();
             ASSERT_EQUALS(n, v);
         } else {
@@ -254,13 +254,13 @@ TEST(BSONObjBuilderTest, AppendNumberLongLongMinCompareObject) {
 
 TEST(BSONObjBuilderTest, AppendMaxTimestampConversion) {
     BSONObjBuilder b;
-    b.appendMaxForType("a", mongo::bsonTimestamp);
+    b.appendMaxForType("a", mongol::bsonTimestamp);
     BSONObj o1 = b.obj();
 
     BSONElement e = o1.getField("a");
     ASSERT_FALSE(e.eoo());
 
-    mongo::Timestamp timestamp = e.timestamp();
+    mongol::Timestamp timestamp = e.timestamp();
     ASSERT_FALSE(timestamp.isNull());
 }
 

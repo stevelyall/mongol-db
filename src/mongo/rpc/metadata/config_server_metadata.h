@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/optime.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/optime.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 class BSONObjBuilder;
@@ -39,7 +39,7 @@ class BSONObjBuilder;
 namespace rpc {
 
 /**
- * This class encapsulates the metadata sent between shard mongods and mongos on every command
+ * This class encapsulates the metadata sent between shard mongolds and mongols on every command
  * request and response, containing metadata information about the config servers.
  *
  * format:
@@ -91,4 +91,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

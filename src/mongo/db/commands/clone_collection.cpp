@@ -26,36 +26,36 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kCommand
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kCommand
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/base/init.h"
-#include "mongo/base/status.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/document_validation.h"
-#include "mongo/db/cloner.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/commands/copydb.h"
-#include "mongo/db/commands/rename_collection.h"
-#include "mongo/db/db.h"
-#include "mongo/db/dbhelpers.h"
-#include "mongo/db/index_builder.h"
-#include "mongo/db/instance.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/repl/isself.h"
-#include "mongo/db/operation_context_impl.h"
-#include "mongo/db/ops/insert.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/document_validation.h"
+#include "mongol/db/cloner.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/commands/copydb.h"
+#include "mongol/db/commands/rename_collection.h"
+#include "mongol/db/db.h"
+#include "mongol/db/dbhelpers.h"
+#include "mongol/db/index_builder.h"
+#include "mongol/db/instance.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/repl/isself.h"
+#include "mongol/db/operation_context_impl.h"
+#include "mongol/db/ops/insert.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -160,4 +160,4 @@ public:
 
 } cmdCloneCollection;
 
-}  // namespace mongo
+}  // namespace mongol

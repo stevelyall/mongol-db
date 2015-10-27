@@ -26,18 +26,18 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/repl_client_info.h"
+#include "mongol/db/repl/repl_client_info.h"
 
-#include "mongo/base/init.h"
-#include "mongo/db/client.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/util/decorable.h"
+#include "mongol/base/init.h"
+#include "mongol/db/client.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/util/decorable.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 const Client::Decoration<ReplClientInfo> ReplClientInfo::forClient =
@@ -51,4 +51,4 @@ void ReplClientInfo::setLastOpToSystemLastOpTime(OperationContext* txn) {
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

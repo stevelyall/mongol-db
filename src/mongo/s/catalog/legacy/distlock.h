@@ -29,13 +29,13 @@
 
 #pragma once
 
-#include "mongo/client/connpool.h"
-#include "mongo/client/syncclusterconnection.h"
-#include "mongo/logger/labeled_level.h"
-#include "mongo/s/catalog/dist_lock_manager.h"
-#include "mongo/s/catalog/dist_lock_ping_info.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/syncclusterconnection.h"
+#include "mongol/logger/labeled_level.h"
+#include "mongol/s/catalog/dist_lock_manager.h"
+#include "mongol/s/catalog/dist_lock_ping_info.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 

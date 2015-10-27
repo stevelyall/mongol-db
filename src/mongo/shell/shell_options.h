@@ -32,17 +32,17 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/rpc/protocol.h"
+#include "mongol/base/status.h"
+#include "mongol/rpc/protocol.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace optionenvironment {
 class OptionSection;
 class Environment;
 }  // namespace optionenvironment
 
-namespace moe = mongo::optionenvironment;
+namespace moe = mongol::optionenvironment;
 
 struct ShellGlobalParams {
     std::string url;

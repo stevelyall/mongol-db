@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/ops/update_lifecycle.h"
-#include "mongo/s/chunk_version.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/ops/update_lifecycle.h"
+#include "mongol/s/chunk_version.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 
@@ -64,4 +64,4 @@ private:
     Collection* _collection;
 };
 
-} /* namespace mongo */
+} /* namespace mongol */

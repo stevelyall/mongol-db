@@ -30,9 +30,9 @@
 
 #include <boost/optional.hpp>
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 template <typename T>
 class StatusWith;
@@ -44,7 +44,7 @@ class StatusWith;
  * all command results, getMores must be issued against each of the remote cursors until they
  * are exhausted.
  *
- * Results are generated using a pipeline of mongoS query execution stages called RouterExecStage.
+ * Results are generated using a pipeline of mongolS query execution stages called RouterExecStage.
  *
  * Does not throw exceptions.
  */
@@ -85,7 +85,7 @@ public:
      * Stash the BSONObj so that it gets returned from the CCC on a later call to next().
      *
      * Queued documents are returned in FIFO order. The queued results are exhausted before
-     * generating further results from the underlying mongos query stages.
+     * generating further results from the underlying mongols query stages.
      *
      * 'obj' must be owned BSON.
      */
@@ -97,4 +97,4 @@ public:
     virtual bool remotesExhausted() = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

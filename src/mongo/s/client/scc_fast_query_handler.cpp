@@ -26,24 +26,24 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kSharding
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/client/scc_fast_query_handler.h"
+#include "mongol/s/client/scc_fast_query_handler.h"
 
 #include <vector>
 
-#include "mongo/base/init.h"
-#include "mongo/bson/util/builder.h"
-#include "mongo/client/connpool.h"
-#include "mongo/client/dbclientcursor.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/util/log.h"
+#include "mongol/base/init.h"
+#include "mongol/bson/util/builder.h"
+#include "mongol/client/connpool.h"
+#include "mongol/client/dbclientcursor.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;

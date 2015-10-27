@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <vector>
 
-#include "mongo/db/commands.h"
-#include "mongo/s/cluster_explain.h"
-#include "mongo/s/commands/cluster_commands_common.h"
-#include "mongo/s/strategy.h"
-#include "mongo/util/timer.h"
+#include "mongol/db/commands.h"
+#include "mongol/s/cluster_explain.h"
+#include "mongol/s/commands/cluster_commands_common.h"
+#include "mongol/s/strategy.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -218,13 +218,13 @@ public:
 
         long long millisElapsed = timer.millis();
 
-        const char* mongosStageName = ClusterExplain::getStageNameForReadOp(shardResults, cmdObj);
+        const char* mongolsStageName = ClusterExplain::getStageNameForReadOp(shardResults, cmdObj);
 
         return ClusterExplain::buildExplainResult(
-            txn, shardResults, mongosStageName, millisElapsed, out);
+            txn, shardResults, mongolsStageName, millisElapsed, out);
     }
 
 } clusterCountCmd;
 
 }  // namespace
-}  // namespace mongo
+}  // namespace mongol

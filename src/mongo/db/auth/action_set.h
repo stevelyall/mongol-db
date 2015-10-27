@@ -30,10 +30,10 @@
 #include <bitset>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/db/auth/action_type.h"
+#include "mongol/base/status.h"
+#include "mongol/db/auth/action_type.h"
 
-namespace mongo {
+namespace mongol {
 
 /*
  *  An ActionSet is a bitmask of ActionTypes that represents a set of actions.
@@ -93,4 +93,4 @@ static inline bool operator==(const ActionSet& lhs, const ActionSet& rhs) {
     return lhs.equals(rhs);
 }
 
-}  // namespace mongo
+}  // namespace mongol

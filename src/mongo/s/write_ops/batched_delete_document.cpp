@@ -26,16 +26,16 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/s/write_ops/batched_delete_document.h"
+#include "mongol/s/write_ops/batched_delete_document.h"
 
-#include "mongo/db/field_parser.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/field_parser.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
-using mongoutils::str::stream;
+using mongolutils::str::stream;
 const BSONField<BSONObj> BatchedDeleteDocument::query("q");
 const BSONField<int> BatchedDeleteDocument::limit("limit");
 
@@ -162,4 +162,4 @@ int BatchedDeleteDocument::getLimit() const {
     return _limit;
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -32,9 +32,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/client/remote_command_targeter.h"
+#include "mongol/client/remote_command_targeter.h"
 
-namespace mongo {
+namespace mongol {
 
 class ReplicaSetMonitor;
 
@@ -66,4 +66,4 @@ private:
     std::shared_ptr<ReplicaSetMonitor> _rsMonitor;
 };
 
-}  // namespace mongo
+}  // namespace mongol

@@ -5,13 +5,13 @@
 (function() {
 "use strict";
 
-var st = new ShardingTest({ shards : 1, mongos : 1 })
+var st = new ShardingTest({ shards : 1, mongols : 1 })
 
-var mongos = st.s
-var coll = mongos.getCollection( "foo.bar" )
+var mongols = st.s
+var coll = mongols.getCollection( "foo.bar" )
 
-// Make sure mongos has no database info currently loaded
-mongos.getDB( "admin" ).runCommand({ flushRouterConfig : 1 })
+// Make sure mongols has no database info currently loaded
+mongols.getDB( "admin" ).runCommand({ flushRouterConfig : 1 })
 
 jsTestLog( "Setup complete!" )
 st.printShardingStatus()

@@ -31,16 +31,16 @@
 #include <set>
 #include <boost/optional/optional.hpp>
 
-#include "mongo/db/exec/plan_stats.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/index_tag.h"
-#include "mongo/db/query/lru_key_value.h"
-#include "mongo/db/query/plan_cache_indexability.h"
-#include "mongo/db/query/query_planner_params.h"
-#include "mongo/platform/atomic_word.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/exec/plan_stats.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/index_tag.h"
+#include "mongol/db/query/lru_key_value.h"
+#include "mongol/db/query/plan_cache_indexability.h"
+#include "mongol/db/query/query_planner_params.h"
+#include "mongol/platform/atomic_word.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 // A PlanCacheKey is a string-ified version of a query's predicate/projection/sort.
 typedef std::string PlanCacheKey;
@@ -413,4 +413,4 @@ private:
     PlanCacheIndexabilityState _indexabilityState;
 };
 
-}  // namespace mongo
+}  // namespace mongol

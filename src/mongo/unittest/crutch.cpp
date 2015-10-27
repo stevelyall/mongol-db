@@ -32,14 +32,14 @@
  * eventually it should contain nothing.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <string>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/util/exit_code.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/util/exit_code.h"
 
-namespace mongo {
+namespace mongol {
 
 class Client;
 
@@ -76,4 +76,4 @@ bool shouldStartService() {
 }
 #endif
 
-}  // namespace mongo
+}  // namespace mongol

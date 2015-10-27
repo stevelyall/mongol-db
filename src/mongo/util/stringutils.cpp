@@ -27,11 +27,11 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/stringutils.h"
+#include "mongol/util/stringutils.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::vector;
@@ -181,4 +181,4 @@ int versionCmp(const StringData rhs, const StringData lhs) {
     return LexNumCmp::cmp(rhs, lhs, false);
 }
 
-}  // namespace mongo
+}  // namespace mongol

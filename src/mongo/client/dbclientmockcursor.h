@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "mongo/client/dbclientcursor.h"
+#include "mongol/client/dbclientcursor.h"
 
-namespace mongo {
+namespace mongol {
 
 class DBClientMockCursor : public DBClientCursorInterface {
 public:
@@ -53,4 +53,4 @@ private:
     DBClientMockCursor& operator=(const DBClientMockCursor&);
 };
 
-}  // namespace mongo
+}  // namespace mongol

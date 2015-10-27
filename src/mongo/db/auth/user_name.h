@@ -32,10 +32,10 @@
 #include <string>
 
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Representation of a name of a principal (authenticatable user) in a MongoDB system.
@@ -186,4 +186,4 @@ UserNameIterator makeUserNameIteratorForContainer(const Container& container) {
     return makeUserNameIterator(container.begin(), container.end());
 }
 
-}  // namespace mongo
+}  // namespace mongol

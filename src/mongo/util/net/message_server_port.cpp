@@ -27,33 +27,33 @@
  *    then also delete it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kNetwork
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kNetwork
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 #include <memory>
 #include <system_error>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/config.h"
-#include "mongo/db/lasterror.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/stats/counters.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/concurrency/thread_name.h"
-#include "mongo/util/concurrency/ticketholder.h"
-#include "mongo/util/debug_util.h"
-#include "mongo/util/exit.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/listen.h"
-#include "mongo/util/net/message.h"
-#include "mongo/util/net/message_port.h"
-#include "mongo/util/net/message_server.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/config.h"
+#include "mongol/db/lasterror.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/stats/counters.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/concurrency/thread_name.h"
+#include "mongol/util/concurrency/ticketholder.h"
+#include "mongol/util/debug_util.h"
+#include "mongol/util/exit.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/listen.h"
+#include "mongol/util/net/message.h"
+#include "mongol/util/net/message_port.h"
+#include "mongol/util/net/message_server.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/scopeguard.h"
 
 #ifdef __linux__  // TODO: consider making this ifndef _WIN32
 #include <sys/resource.h>
@@ -63,7 +63,7 @@
 #define __has_feature(x) 0
 #endif
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::endl;
@@ -267,4 +267,4 @@ MessageServer* createServer(const MessageServer::Options& opts, MessageHandler* 
     return new PortMessageServer(opts, handler);
 }
 
-}  // namespace mongo
+}  // namespace mongol

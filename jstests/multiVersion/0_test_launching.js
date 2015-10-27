@@ -1,6 +1,6 @@
 /**
  * This is a self-test for the multiversion suite. It tests whether or not multi-version
- * mongos/mongod instances can be launched.
+ * mongols/mongold instances can be launched.
  */
 
 load("./jstests/multiVersion/libs/verify_versions.js");
@@ -15,21 +15,21 @@ load("./jstests/multiVersion/libs/verify_versions.js");
     ];
 
     versionsToCheck.forEach(function(version) {
-        var mongod1 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
-        var mongod2 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
-        var mongod3 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
-        var configdbStr = mongod1.host + "," + mongod2.host + "," + mongod3.host;
-        var mongos = MongoRunner.runMongos({ binVersion : version, configdb : configdbStr });
+        var mongold1 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
+        var mongold2 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
+        var mongold3 = MongoRunner.runMongod({ binVersion : version, configsvr : "" });
+        var configdbStr = mongold1.host + "," + mongold2.host + "," + mongold3.host;
+        var mongols = MongoRunner.runMongos({ binVersion : version, configdb : configdbStr });
 
         // Make sure the started versions are actually the correct versions
-        assert.binVersion( mongod1, version );
-        assert.binVersion( mongod2, version );
-        assert.binVersion( mongod3, version );
-        assert.binVersion( mongos, version );
+        assert.binVersion( mongold1, version );
+        assert.binVersion( mongold2, version );
+        assert.binVersion( mongold3, version );
+        assert.binVersion( mongols, version );
 
-        MongoRunner.stopMongos( mongos );
-        MongoRunner.stopMongod( mongod1 );
-        MongoRunner.stopMongod( mongod2 );
-        MongoRunner.stopMongod( mongod3 );
+        MongoRunner.stopMongos( mongols );
+        MongoRunner.stopMongod( mongold1 );
+        MongoRunner.stopMongod( mongold2 );
+        MongoRunner.stopMongod( mongold3 );
     });
 })();

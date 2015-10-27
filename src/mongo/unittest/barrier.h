@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/stdx/condition_variable.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/stdx/condition_variable.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 namespace unittest {
 
 /**
@@ -64,4 +64,4 @@ private:
 };
 
 }  // namespace unittest
-}  // namespace mongo
+}  // namespace mongol

@@ -37,9 +37,9 @@
  * Usage:  MONGO_MAKE_STRING_VECTOR("a", "b", "c") returns a vector containing
  * std::strings "a", "b", "c", in that order.
  */
-#define MONGO_MAKE_STRING_VECTOR(...) ::mongo::_makeStringVector(0, __VA_ARGS__, NULL)
+#define MONGO_MAKE_STRING_VECTOR(...) ::mongol::_makeStringVector(0, __VA_ARGS__, NULL)
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Create a vector of strings from varargs of C-style strings.
@@ -56,4 +56,4 @@ namespace mongo {
  */
 std::vector<std::string> _makeStringVector(int ignored, ...);
 
-}  // namespace mongo
+}  // namespace mongol

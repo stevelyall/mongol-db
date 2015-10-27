@@ -30,13 +30,13 @@
 #include <string>
 #include <vector>
 
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/rpc/unique_message.h"
-#include "mongo/util/concurrency/spin_lock.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/rpc/unique_message.h"
+#include "mongol/util/concurrency/spin_lock.h"
 
-namespace mongo {
+namespace mongol {
 
 const std::string IdentityNS("local.me");
 const BSONField<std::string> HostField("host");
@@ -55,7 +55,7 @@ public:
 
     /**
      * Creates a new mock server. This can also be setup to work with the
-     * ConnectionString class by using mongo::MockConnRegistry as follows:
+     * ConnectionString class by using mongol::MockConnRegistry as follows:
      *
      * ConnectionString::setConnectionHook(MockConnRegistry::get()->getConnStrHook());
      * MockRemoteDBServer server("$a:27017");
@@ -88,7 +88,7 @@ public:
 
     /**
      * Shuts down this server. Any operations on this server with an InstanceID
-     * less than or equal to the current one will throw a mongo::SocketException.
+     * less than or equal to the current one will throw a mongol::SocketException.
      * To bring the server up again, use the reboot method.
      */
     void shutdown();
@@ -113,7 +113,7 @@ public:
      * @param cmdName the name of the command
      * @param replyObj the exact reply for the command
      */
-    void setCommandReply(const std::string& cmdName, const mongo::BSONObj& replyObj);
+    void setCommandReply(const std::string& cmdName, const mongol::BSONObj& replyObj);
 
     /**
      * Sets the reply for a command.
@@ -125,7 +125,7 @@ public:
      *     that requires different results when calling a method.
      */
     void setCommandReply(const std::string& cmdName,
-                         const std::vector<mongo::BSONObj>& replySequence);
+                         const std::vector<mongol::BSONObj>& replySequence);
 
     /**
      * Inserts a single document to this server.
@@ -150,8 +150,8 @@ public:
     //
     bool runCommand(InstanceID id,
                     const std::string& dbname,
-                    const mongo::BSONObj& cmdObj,
-                    mongo::BSONObj& info,
+                    const mongol::BSONObj& cmdObj,
+                    mongol::BSONObj& info,
                     int options = 0);
 
     rpc::UniqueReply runCommandWithMetadata(InstanceID id,
@@ -160,12 +160,12 @@ public:
                                             const BSONObj& metadata,
                                             const BSONObj& commandArgs);
 
-    mongo::BSONArray query(InstanceID id,
+    mongol::BSONArray query(InstanceID id,
                            const std::string& ns,
-                           mongo::Query query = mongo::Query(),
+                           mongol::Query query = mongol::Query(),
                            int nToReturn = 0,
                            int nToSkip = 0,
-                           const mongo::BSONObj* fieldsToReturn = 0,
+                           const mongol::BSONObj* fieldsToReturn = 0,
                            int queryOptions = 0,
                            int batchSize = 0);
 
@@ -174,7 +174,7 @@ public:
     //
 
     InstanceID getInstanceID() const;
-    mongo::ConnectionString::ConnectionType type() const;
+    mongol::ConnectionString::ConnectionType type() const;
     double getSoTimeout() const;
 
     /**
@@ -202,18 +202,18 @@ private:
         /**
          * Creates a new iterator with a deep copy of the vector.
          */
-        CircularBSONIterator(const std::vector<mongo::BSONObj>& replyVector);
-        mongo::BSONObj next();
+        CircularBSONIterator(const std::vector<mongol::BSONObj>& replyVector);
+        mongol::BSONObj next();
 
     private:
-        std::vector<mongo::BSONObj>::iterator _iter;
-        std::vector<mongo::BSONObj> _replyObjs;
+        std::vector<mongol::BSONObj>::iterator _iter;
+        std::vector<mongol::BSONObj> _replyObjs;
     };
 
     /**
      * Checks whether the instance of the server is still up.
      *
-     * @throws mongo::SocketException if this server is down
+     * @throws mongol::SocketException if this server is down
      */
     void checkIfUp(InstanceID id) const;
 
@@ -242,6 +242,6 @@ private:
     InstanceID _instanceID;
 
     // protects this entire instance
-    mutable mongo::SpinLock _lock;
+    mutable mongol::SpinLock _lock;
 };
 }

@@ -20,14 +20,14 @@ var epsg4326CRS = {
 var strictCRS = {
     type: "name",
     properties: {
-        name: "urn:x-mongodb:crs:strictwinding:EPSG:4326"
+        name: "urn:x-mongoldb:crs:strictwinding:EPSG:4326"
     }
 };
 // invalid CRS name
 var badCRS = {
     type: "name",
     properties: {
-        name: "urn:x-mongodb:crs:invalid:EPSG:4326"
+        name: "urn:x-mongoldb:crs:invalid:EPSG:4326"
     }
 };
 

@@ -32,11 +32,11 @@
 
 #include <map>
 
-#include "mongo/db/storage/mmap_v1/record_access_tracker.h"
-#include "mongo/db/storage/storage_engine.h"
-#include "mongo/stdx/mutex.h"
+#include "mongol/db/storage/mmap_v1/record_access_tracker.h"
+#include "mongol/db/storage/storage_engine.h"
+#include "mongol/stdx/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 class MMAPV1DatabaseCatalogEntry;
 

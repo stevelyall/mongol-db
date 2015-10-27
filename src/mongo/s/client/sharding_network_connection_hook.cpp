@@ -26,22 +26,22 @@
 *    it in the license file.
 */
 
-#include "mongo/s/client/sharding_network_connection_hook.h"
+#include "mongol/s/client/sharding_network_connection_hook.h"
 
-#include "mongo/base/status.h"
-#include "mongo/base/status_with.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/db/wire_version.h"
-#include "mongo/executor/remote_command_request.h"
-#include "mongo/executor/remote_command_response.h"
-#include "mongo/rpc/get_status_from_command_result.h"
-#include "mongo/s/grid.h"
-#include "mongo/s/client/shard_registry.h"
-#include "mongo/s/set_shard_version_request.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/hostandport.h"
+#include "mongol/base/status.h"
+#include "mongol/base/status_with.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/db/wire_version.h"
+#include "mongol/executor/remote_command_request.h"
+#include "mongol/executor/remote_command_response.h"
+#include "mongol/rpc/get_status_from_command_result.h"
+#include "mongol/s/grid.h"
+#include "mongol/s/client/shard_registry.h"
+#include "mongol/s/set_shard_version_request.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/hostandport.h"
 
-namespace mongo {
+namespace mongol {
 
 Status ShardingNetworkConnectionHook::validateHost(
     const HostAndPort& remoteHost, const executor::RemoteCommandResponse& isMasterReply) {
@@ -133,4 +133,4 @@ Status ShardingNetworkConnectionHook::handleReply(const HostAndPort& remoteHost,
                                                   executor::RemoteCommandResponse&& response) {
     return getStatusFromCommandResult(response.data);
 }
-}  // namespace mongo
+}  // namespace mongol

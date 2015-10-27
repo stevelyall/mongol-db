@@ -26,26 +26,26 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kWrite
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kWrite
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/exec/update.h"
+#include "mongol/db/exec/update.h"
 
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/db/concurrency/write_conflict_exception.h"
-#include "mongo/db/exec/scoped_timer.h"
-#include "mongo/db/exec/working_set_common.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/op_observer.h"
-#include "mongo/db/ops/update_lifecycle.h"
-#include "mongo/db/query/explain.h"
-#include "mongo/db/repl/replication_coordinator_global.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
-#include "mongo/util/scopeguard.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/db/concurrency/write_conflict_exception.h"
+#include "mongol/db/exec/scoped_timer.h"
+#include "mongol/db/exec/working_set_common.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/op_observer.h"
+#include "mongol/db/ops/update_lifecycle.h"
+#include "mongol/db/query/explain.h"
+#include "mongol/db/repl/replication_coordinator_global.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
+#include "mongol/util/scopeguard.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 using std::unique_ptr;
@@ -184,7 +184,7 @@ Status storageValid(const mb::ConstElement& elem, const bool deep) {
     // this better if we ever want to support ordered updates that can alter the same
     // element repeatedly; see SERVER-12848.
     const mb::ConstElement& parent = elem.parent();
-    const bool childOfArray = parent.ok() ? (parent.getType() == mongo::Array) : false;
+    const bool childOfArray = parent.ok() ? (parent.getType() == mongol::Array) : false;
 
     if (!childOfArray) {
         StringData fieldName = elem.getFieldName();
@@ -329,7 +329,7 @@ inline Status validate(const BSONObj& original,
                 // If the _id is missing and not required, then skip this check
                 if (!(current.dottedField() == idFieldName))
                     return Status(ErrorCodes::NoSuchKey,
-                                  mongoutils::str::stream() << "After applying the update, the new"
+                                  mongolutils::str::stream() << "After applying the update, the new"
                                                             << " document was missing the '"
                                                             << current.dottedField()
                                                             << "' (required and immutable) field.");
@@ -337,7 +337,7 @@ inline Status validate(const BSONObj& original,
             } else {
                 if (current.dottedField() != idFieldName)
                     return Status(ErrorCodes::ImmutableField,
-                                  mongoutils::str::stream()
+                                  mongolutils::str::stream()
                                       << "After applying the update to the document with "
                                       << newIdElem.toString() << ", the '" << current.dottedField()
                                       << "' (required and immutable) field was "
@@ -354,7 +354,7 @@ inline Status validate(const BSONObj& original,
                 if (currElem.getType() == Array) {
                     return Status(
                         ErrorCodes::NotSingleValueField,
-                        mongoutils::str::stream()
+                        mongolutils::str::stream()
                             << "After applying the update to the document {"
                             << (oldIdElem.ok() ? oldIdElem.toString() : newIdElem.toString())
                             << " , ...}, the (immutable) field '" << current.dottedField()
@@ -366,7 +366,7 @@ inline Status validate(const BSONObj& original,
             // If we have both (old and new), compare them. If we just have new we are good
             if (oldElem.ok() && newElem.compareWithBSONElement(oldElem, false) != 0) {
                 return Status(ErrorCodes::ImmutableField,
-                              mongoutils::str::stream()
+                              mongolutils::str::stream()
                                   << "After applying the update to the document {"
                                   << oldElem.toString() << " , ...}, the (immutable) field '"
                                   << current.dottedField() << "' was found to have been altered to "
@@ -1046,4 +1046,4 @@ UpdateResult UpdateStage::makeUpdateResult(const PlanExecutor& exec, OpDebug* op
                         updateStats->objInserted);
 };
 
-}  // namespace mongo
+}  // namespace mongol

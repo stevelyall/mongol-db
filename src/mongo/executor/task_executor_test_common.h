@@ -31,9 +31,9 @@
 #include <memory>
 #include <string>
 
-#include "mongo/stdx/functional.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 namespace executor {
 
 class NetworkInterfaceMock;
@@ -54,4 +54,4 @@ void addTestsForExecutor(const std::string& suiteName,
                              std::unique_ptr<NetworkInterfaceMock>*)> makeExecutor);
 
 }  // namespace executor
-}  // namespace mongo
+}  // namespace mongol

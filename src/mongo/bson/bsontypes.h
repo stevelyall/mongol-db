@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "mongo/platform/decimal128.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/config.h"
+#include "mongol/platform/decimal128.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/config.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONArrayBuilder;
 class BSONElement;
@@ -140,20 +140,20 @@ inline int canonicalizeBSONType(BSONType type) {
         case NumberInt:
         case NumberLong:
             return 10;
-        case mongo::String:
+        case mongol::String:
         case Symbol:
             return 15;
         case Object:
             return 20;
-        case mongo::Array:
+        case mongol::Array:
             return 25;
         case BinData:
             return 30;
         case jstOID:
             return 35;
-        case mongo::Bool:
+        case mongol::Bool:
             return 40;
-        case mongo::Date:
+        case mongol::Date:
             return 45;
         case bsonTimestamp:
             return 47;

@@ -28,8 +28,8 @@
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 enum { kMaxTimeCursorTimeLimitExpired = -1, kMaxTimeCursorNoTimeLimit = 0 };
 
-}  // namespace mongo
+}  // namespace mongol

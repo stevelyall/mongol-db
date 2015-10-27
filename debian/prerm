@@ -1,5 +1,5 @@
 #!/bin/sh
-# prerm script for mongodb
+# prerm script for mongoldb
 #
 # see: dh_installdeb(1)
 

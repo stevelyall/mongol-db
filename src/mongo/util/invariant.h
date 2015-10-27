@@ -27,13 +27,13 @@
 
 #pragma once
 
-#include "mongo/platform/compiler.h"
-#include "mongo/util/debug_util.h"
+#include "mongol/platform/compiler.h"
+#include "mongol/util/debug_util.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
- * This include exists so that mongo/base/status_with.h can use the invariant macro without causing
+ * This include exists so that mongol/base/status_with.h can use the invariant macro without causing
  * a circular include chain. It should never be included directly in any other file other than that
  * one (and assert_util.h).
  */
@@ -47,7 +47,7 @@ MONGO_COMPILER_NORETURN void invariantFailed(const char* expr, const char* file,
 #define MONGO_invariant(_Expression)                                    \
     do {                                                                \
         if (MONGO_unlikely(!(_Expression))) {                           \
-            ::mongo::invariantFailed(#_Expression, __FILE__, __LINE__); \
+            ::mongol::invariantFailed(#_Expression, __FILE__, __LINE__); \
         }                                                               \
     } while (false)
 
@@ -61,4 +61,4 @@ MONGO_COMPILER_NORETURN void invariantFailed(const char* expr, const char* file,
     invariant(x)
 
 #define dassert MONGO_dassert
-}  // namespace mongo
+}  // namespace mongol

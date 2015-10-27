@@ -28,12 +28,12 @@
 
 #pragma once
 
-#include "mongo/base/status.h"
-#include "mongo/db/index/index_access_method.h"
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/index/index_access_method.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 
 class Collection;
 class OperationContext;
@@ -42,7 +42,7 @@ class OperationContext;
  * Maps (lat, lng) to the bucketSize-sided square bucket that contains it.
  * Examines all documents in a given radius of a given point.
  * Returns all documents that match a given search restriction.
- * See http://dochub.mongodb.org/core/haystackindexes
+ * See http://dochub.mongoldb.org/core/haystackindexes
  *
  * Use when you want to look for restaurants within 25 miles with a certain name.
  * Don't use when you want to find the closest open restaurants; see 2d.cpp for that.
@@ -76,4 +76,4 @@ private:
     double _bucketSize;
 };
 
-}  // namespace mongo
+}  // namespace mongol

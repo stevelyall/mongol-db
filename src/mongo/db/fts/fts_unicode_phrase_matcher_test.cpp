@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/fts/fts_unicode_phrase_matcher.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/fts/fts_unicode_phrase_matcher.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace fts {
 
 // Case insensitive & diacritic insensitive match.
@@ -134,4 +134,4 @@ TEST(FtsUnicodePhraseMatcher, CaseAndDiacriticInsensitiveTurkish) {
 
 
 }  // namespace fts
-}  // namespace mongo
+}  // namespace mongol

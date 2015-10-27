@@ -26,10 +26,10 @@
  *    it in the license file.
  */
 
-#include "mongo/db/concurrency/lock_manager_test_help.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/concurrency/lock_manager_test_help.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 TEST(Deadlock, NoDeadlock) {
     const ResourceId resId(RESOURCE_DATABASE, std::string("A"));
@@ -188,4 +188,4 @@ TEST(Deadlock, IndirectWithUpgrade) {
     writer.unlock(resIdFlush);
 }
 
-}  // namespace mongo
+}  // namespace mongol

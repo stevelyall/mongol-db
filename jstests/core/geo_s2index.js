@@ -62,7 +62,7 @@ res = t.find({ "nonGeo": "pointA",
                "geo" : { "$geoIntersects" : { "$geometry" : somepoly} } })
 assert.eq(res.itcount(), 1);
 
-// Don't crash mongod if we give it bad input.
+// Don't crash mongold if we give it bad input.
 t.drop()
 t.ensureIndex({loc: "2dsphere", x:1})
 t.save({loc: [0,0]})

@@ -28,17 +28,17 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::string;
 using std::stringstream;
 
-namespace mongo {
+namespace mongol {
 
 // Verify that calling truncate() on an already empty collection returns an OK status.
 TEST(RecordStoreTestHarness, TruncateEmpty) {
@@ -112,4 +112,4 @@ TEST(RecordStoreTestHarness, TruncateNonEmpty) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -7,10 +7,10 @@ env.Library(
         'kv_collection_catalog_entry.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/concurrency/lock_manager',
-        '$BUILD_DIR/mongo/db/index/index_descriptor',
-        '$BUILD_DIR/mongo/db/namespace_string',
-        '$BUILD_DIR/mongo/db/storage/bson_collection_catalog_entry',
+        '$BUILD_DIR/mongol/db/concurrency/lock_manager',
+        '$BUILD_DIR/mongol/db/index/index_descriptor',
+        '$BUILD_DIR/mongol/db/namespace_string',
+        '$BUILD_DIR/mongol/db/storage/bson_collection_catalog_entry',
         ],
     LIBDEPS_TAGS=[
         # Depends on KVDatabaseCatalogEntry::getIndex, which does not have
@@ -24,9 +24,9 @@ env.Library(
     target='kv_database_catalog_entry_core',
     source=['kv_database_catalog_entry.cpp'],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/storage/bson_collection_catalog_entry',
-        '$BUILD_DIR/mongo/db/storage/kv/kv_engine_core',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/storage/bson_collection_catalog_entry',
+        '$BUILD_DIR/mongol/db/storage/kv/kv_engine_core',
     ],
     LIBDEPS_TAGS=[
         # Depends on KVDatabaseCatalogEntry::getIndex, which is not uniquely defined
@@ -39,14 +39,14 @@ env.Library(
     target='kv_storage_engine',
     source=['kv_storage_engine.cpp'],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/storage/kv/kv_engine_core',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/storage/kv/kv_engine_core',
         'kv_database_catalog_entry_core',
     ],
 )
 
 # KVDatabaseCatalogEntry::getIndex() depends on index access methods
-# in $BUILD_DIR/mongo/serveronly.
+# in $BUILD_DIR/mongol/serveronly.
 env.Library(
     target='kv_engine',
     source=[
@@ -84,8 +84,8 @@ env.Library(
         'kv_engine_test_snapshots.cpp',
         ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/service_context',
-        '$BUILD_DIR/mongo/unittest/unittest',
+        '$BUILD_DIR/mongol/db/service_context',
+        '$BUILD_DIR/mongol/unittest/unittest',
         'kv_engine_core',
         ],
     LIBDEPS_TAGS=[
@@ -102,9 +102,9 @@ env.CppUnitTest(
         ],
     LIBDEPS=[
         'kv_engine_mock',
-        '$BUILD_DIR/mongo/db/namespace_string',
-        '$BUILD_DIR/mongo/db/catalog/collection_options',
-        '$BUILD_DIR/mongo/db/storage/devnull/storage_devnull_core',
-        '$BUILD_DIR/mongo/db/storage/ephemeral_for_test/ephemeral_for_test_record_store',
+        '$BUILD_DIR/mongol/db/namespace_string',
+        '$BUILD_DIR/mongol/db/catalog/collection_options',
+        '$BUILD_DIR/mongol/db/storage/devnull/storage_devnull_core',
+        '$BUILD_DIR/mongol/db/storage/ephemeral_for_test/ephemeral_for_test_record_store',
         ]
     )

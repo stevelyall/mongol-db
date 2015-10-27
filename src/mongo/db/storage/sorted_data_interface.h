@@ -30,14 +30,14 @@
 #include <boost/optional/optional_io.hpp>
 #include <memory>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/index_entry_comparison.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/index_entry_comparison.h"
 
 #pragma once
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class BucketDeletionNotification;
@@ -407,4 +407,4 @@ public:
     virtual void commit(bool mayInterrupt) {}
 };
 
-}  // namespace mongo
+}  // namespace mongol

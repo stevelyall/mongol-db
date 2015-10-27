@@ -28,21 +28,21 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kStorage
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kStorage
 
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_collection_entry.h"
 
-#include "mongo/db/index/index_descriptor.h"
-#include "mongo/db/ops/update.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details.h"
-#include "mongo/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
-#include "mongo/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
-#include "mongo/db/storage/record_store.h"
-#include "mongo/util/log.h"
-#include "mongo/util/startup_test.h"
+#include "mongol/db/index/index_descriptor.h"
+#include "mongol/db/ops/update.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details.h"
+#include "mongol/db/storage/mmap_v1/catalog/namespace_details_rsv1_metadata.h"
+#include "mongol/db/storage/mmap_v1/mmap_v1_database_catalog_entry.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/util/log.h"
+#include "mongol/util/startup_test.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 

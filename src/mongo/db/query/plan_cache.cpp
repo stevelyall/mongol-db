@@ -26,27 +26,27 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/plan_cache.h"
+#include "mongol/db/query/plan_cache.h"
 
 #include <algorithm>
 #include <math.h>
 #include <memory>
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/client/dbclientinterface.h"  // For QueryOption_foobar
-#include "mongo/db/matcher/expression_array.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/query/plan_ranker.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/client/dbclientinterface.h"  // For QueryOption_foobar
+#include "mongol/db/matcher/expression_array.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/query/plan_ranker.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 // Delimiters for cache key encoding.
@@ -765,4 +765,4 @@ void PlanCache::notifyOfIndexEntries(const std::vector<IndexEntry>& indexEntries
     _indexabilityState.updateDiscriminators(indexEntries);
 }
 
-}  // namespace mongo
+}  // namespace mongol

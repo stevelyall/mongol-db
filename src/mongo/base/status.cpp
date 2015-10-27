@@ -25,12 +25,12 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/base/status.h"
+#include "mongol/base/status.h"
 
 #include <ostream>
 #include <sstream>
 
-namespace mongo {
+namespace mongol {
 
 Status::ErrorInfo::ErrorInfo(ErrorCodes::Error aCode, std::string aReason, int aLocation)
     : code(aCode), reason(std::move(aReason)), location(aLocation) {}
@@ -87,4 +87,4 @@ std::string Status::toString() const {
     return ss.str();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -33,19 +33,19 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/string_data.h"
-#include "mongo/db/clientcursor.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/range_arithmetic.h"
-#include "mongo/db/write_concern_options.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/thread.h"
-#include "mongo/util/concurrency/mutex.h"
-#include "mongo/util/concurrency/synchronization.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/clientcursor.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/range_arithmetic.h"
+#include "mongol/db/write_concern_options.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/thread.h"
+#include "mongol/util/concurrency/mutex.h"
+#include "mongol/util/concurrency/synchronization.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 struct DeleteJobStats;
@@ -329,4 +329,4 @@ struct RangeDeleterEnv {
                               std::set<CursorId>* openCursors) = 0;
 };
 
-}  // namespace mongo
+}  // namespace mongol

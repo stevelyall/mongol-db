@@ -28,18 +28,18 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/rpc/document_range.h"
-#include "mongo/rpc/reply_interface.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/rpc/document_range.h"
+#include "mongol/rpc/reply_interface.h"
 
-namespace mongo {
+namespace mongol {
 class Message;
 
 namespace rpc {
 
 /**
  * An immutable view of an OP_COMMANDREPLY message. The underlying bytes are owned
- * by a mongo::Message, which must outlive any Reply instances created from it.
+ * by a mongol::Message, which must outlive any Reply instances created from it.
  *
  * TODO: _metadata and _commandReply are owned by the underlying message. When
  * we implement a BSONObjView or similar, we should use that here to make these semantics
@@ -94,4 +94,4 @@ private:
 };
 
 }  // namespace rpc
-}  // namespace mongo
+}  // namespace mongol

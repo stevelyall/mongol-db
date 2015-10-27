@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/util/system_tick_source.h"
+#include "mongol/util/system_tick_source.h"
 
-#include "mongo/config.h"
+#include "mongol/config.h"
 
 #include <ctime>
 #include <limits>
@@ -38,13 +38,13 @@
 #include <unistd.h>
 #endif
 
-#include "mongo/base/init.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/assert_util.h"
-#include "mongo/util/tick_source.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/init.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/assert_util.h"
+#include "mongol/util/tick_source.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace {
 
@@ -157,4 +157,4 @@ SystemTickSource* SystemTickSource::get() {
     return globalSystemTickSource.get();
 }
 
-}  // namespace mongo
+}  // namespace mongol

@@ -27,9 +27,9 @@
 
 #pragma once
 
-#include "mongo/db/auth/authentication_session.h"
+#include "mongol/db/auth/authentication_session.h"
 
-namespace mongo {
+namespace mongol {
 
 typedef unsigned long long nonce64;
 
@@ -54,4 +54,4 @@ private:
     const nonce64 _nonce;
 };
 
-}  // namespace mongo
+}  // namespace mongol

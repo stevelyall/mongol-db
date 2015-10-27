@@ -26,29 +26,29 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/query_planner.h"
+#include "mongol/db/query/query_planner.h"
 
 #include <vector>
 
-#include "mongo/client/dbclientinterface.h"  // For QueryOption_foobar
-#include "mongo/db/matcher/expression_algo.h"
-#include "mongo/db/matcher/expression_geo.h"
-#include "mongo/db/matcher/expression_text.h"
-#include "mongo/db/query/canonical_query.h"
-#include "mongo/db/query/plan_cache.h"
-#include "mongo/db/query/planner_access.h"
-#include "mongo/db/query/planner_analysis.h"
-#include "mongo/db/query/planner_ixselect.h"
-#include "mongo/db/query/plan_enumerator.h"
-#include "mongo/db/query/query_planner_common.h"
-#include "mongo/db/query/query_solution.h"
-#include "mongo/util/log.h"
+#include "mongol/client/dbclientinterface.h"  // For QueryOption_foobar
+#include "mongol/db/matcher/expression_algo.h"
+#include "mongol/db/matcher/expression_geo.h"
+#include "mongol/db/matcher/expression_text.h"
+#include "mongol/db/query/canonical_query.h"
+#include "mongol/db/query/plan_cache.h"
+#include "mongol/db/query/planner_access.h"
+#include "mongol/db/query/planner_analysis.h"
+#include "mongol/db/query/planner_ixselect.h"
+#include "mongol/db/query/plan_enumerator.h"
+#include "mongol/db/query/query_planner_common.h"
+#include "mongol/db/query/query_solution.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::numeric_limits;
@@ -77,7 +77,7 @@ static bool is2DIndex(const BSONObj& pattern) {
 }
 
 string optionString(size_t options) {
-    mongoutils::str::stream ss;
+    mongolutils::str::stream ss;
 
     // These options are all currently mutually exclusive.
     if (QueryPlannerParams::DEFAULT == options) {
@@ -127,7 +127,7 @@ static bool indexCompatibleMaxMin(const BSONObj& obj, const BSONObj& keyPattern)
         // Field names must match and be in the same order.
         BSONElement kpElt = kpIt.next();
         BSONElement objElt = objIt.next();
-        if (!mongoutils::str::equals(kpElt.fieldName(), objElt.fieldName())) {
+        if (!mongolutils::str::equals(kpElt.fieldName(), objElt.fieldName())) {
             return false;
         }
     }
@@ -250,7 +250,7 @@ Status QueryPlanner::cacheDataFromTaggedTree(const MatchExpression* const tagged
     if (NULL != taggedTree->getTag()) {
         IndexTag* itag = static_cast<IndexTag*>(taggedTree->getTag());
         if (itag->index >= relevantIndices.size()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "Index number is " << itag->index << " but there are only "
                << relevantIndices.size() << " relevant indices.";
             return Status(ErrorCodes::BadValue, ss);
@@ -301,7 +301,7 @@ Status QueryPlanner::tagAccordingToCache(MatchExpression* filter,
     verify(NULL == filter->getTag());
 
     if (filter->numChildren() != indexTree->children.size()) {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         ss << "Cache topology and query did not match: "
            << "query has " << filter->numChildren() << " children "
            << "and cache has " << indexTree->children.size() << " children.";
@@ -319,7 +319,7 @@ Status QueryPlanner::tagAccordingToCache(MatchExpression* filter,
     if (NULL != indexTree->entry.get()) {
         map<BSONObj, size_t>::const_iterator got = indexMap.find(indexTree->entry->keyPattern);
         if (got == indexMap.end()) {
-            mongoutils::str::stream ss;
+            mongolutils::str::stream ss;
             ss << "Did not find index with keyPattern: " << indexTree->entry->keyPattern.toString();
             return Status(ErrorCodes::BadValue, ss);
         }
@@ -924,4 +924,4 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

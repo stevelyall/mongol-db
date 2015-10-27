@@ -30,11 +30,11 @@
 
 #include <string>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/bson_serializable.h"
-#include "mongo/util/time_support.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/bson_serializable.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
 class FieldParser {
 public:
@@ -338,7 +338,7 @@ private:
     static void clearOwnedVector(std::vector<T*>* vec);
 };
 
-}  // namespace mongo
+}  // namespace mongol
 
 // Inline functions for templating
 #include "field_parser-inl.h"

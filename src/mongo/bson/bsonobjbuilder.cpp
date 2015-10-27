@@ -27,16 +27,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kDefault
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kDefault
 
-#include "mongo/db/jsobj.h"
+#include "mongol/db/jsobj.h"
 
 #include <boost/lexical_cast.hpp>
 
-#include "mongo/bson/timestamp.h"
-#include "mongo/util/log.h"
+#include "mongol/bson/timestamp.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -256,4 +256,4 @@ const string BSONObjBuilder::numStrs[] = {
 // numStrs is initialized because it is a static variable
 bool BSONObjBuilder::numStrsReady = (numStrs[0].size() > 0);
 
-}  // namespace mongo
+}  // namespace mongol

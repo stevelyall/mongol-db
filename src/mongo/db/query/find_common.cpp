@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/find_common.h"
+#include "mongol/db/query/find_common.h"
 
-#include "mongo/bson/bsonobj.h"
-#include "mongo/db/query/lite_parsed_query.h"
-#include "mongo/util/assert_util.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/db/query/lite_parsed_query.h"
+#include "mongol/util/assert_util.h"
 
-namespace mongo {
+namespace mongol {
 
 bool FindCommon::enoughForFirstBatch(const LiteParsedQuery& pq,
                                      long long numDocs,
@@ -77,4 +77,4 @@ BSONObj FindCommon::transformSortSpec(const BSONObj& sortSpec) {
     return comparatorBob.obj();
 }
 
-}  // namespace mongo
+}  // namespace mongol

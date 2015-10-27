@@ -27,9 +27,9 @@
 
 #pragma once
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 // If you create a local static instance of this class, that instance will be destroyed
 // before all global static objects are destroyed, so _destroyingStatics will be set
@@ -45,4 +45,4 @@ public:
     }
 };
 
-}  // namespace mongo
+}  // namespace mongol

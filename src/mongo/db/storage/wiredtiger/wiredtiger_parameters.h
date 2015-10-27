@@ -26,11 +26,11 @@
 *    it in the license file.
 */
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/db/server_parameters.h"
-#include "mongo/db/storage/wiredtiger/wiredtiger_kv_engine.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/db/server_parameters.h"
+#include "mongol/db/storage/wiredtiger/wiredtiger_kv_engine.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * WT_CONNECTION::reconfigure get/setParameter support

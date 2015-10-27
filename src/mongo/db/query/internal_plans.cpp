@@ -26,20 +26,20 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/internal_plans.h"
+#include "mongol/db/query/internal_plans.h"
 
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/client.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/delete.h"
-#include "mongo/db/exec/eof.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/stdx/memory.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/client.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/delete.h"
+#include "mongol/db/exec/eof.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/stdx/memory.h"
 
-namespace mongo {
+namespace mongol {
 
 std::unique_ptr<PlanExecutor> InternalPlanner::collectionScan(OperationContext* txn,
                                                               StringData ns,
@@ -165,4 +165,4 @@ std::unique_ptr<PlanStage> InternalPlanner::_indexScan(OperationContext* txn,
     return root;
 }
 
-}  // namespace mongo
+}  // namespace mongol

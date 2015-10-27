@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/parsed_projection.h"
+#include "mongol/db/query/parsed_projection.h"
 
-#include "mongo/db/query/lite_parsed_query.h"
+#include "mongol/db/query/lite_parsed_query.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using std::string;
@@ -77,7 +77,7 @@ Status ParsedProjection::make(const BSONObj& spec,
             }
 
             BSONElement e2 = obj.firstElement();
-            if (mongoutils::str::equals(e2.fieldName(), "$slice")) {
+            if (mongolutils::str::equals(e2.fieldName(), "$slice")) {
                 if (e2.isNumber()) {
                     // This is A-OK.
                 } else if (e2.type() == Array) {
@@ -100,7 +100,7 @@ Status ParsedProjection::make(const BSONObj& spec,
 
                 // Projections with $slice aren't covered.
                 requiresDocument = true;
-            } else if (mongoutils::str::equals(e2.fieldName(), "$elemMatch")) {
+            } else if (mongolutils::str::equals(e2.fieldName(), "$elemMatch")) {
                 // Validate $elemMatch arguments and dependencies.
                 if (Object != e2.type()) {
                     return Status(ErrorCodes::BadValue,
@@ -112,7 +112,7 @@ Status ParsedProjection::make(const BSONObj& spec,
                                   "Cannot specify positional operator and $elemMatch.");
                 }
 
-                if (mongoutils::str::contains(e.fieldName(), '.')) {
+                if (mongolutils::str::contains(e.fieldName(), '.')) {
                     return Status(ErrorCodes::BadValue,
                                   "Cannot use $elemMatch projection on a nested field.");
                 }
@@ -132,9 +132,9 @@ Status ParsedProjection::make(const BSONObj& spec,
 
                 // Projections with $elemMatch aren't covered.
                 requiresDocument = true;
-            } else if (mongoutils::str::equals(e2.fieldName(), "$meta")) {
+            } else if (mongolutils::str::equals(e2.fieldName(), "$meta")) {
                 // Field for meta must be top level.  We can relax this at some point.
-                if (mongoutils::str::contains(e.fieldName(), '.')) {
+                if (mongolutils::str::contains(e.fieldName(), '.')) {
                     return Status(ErrorCodes::BadValue, "field for $meta cannot be nested");
                 }
 
@@ -172,11 +172,11 @@ Status ParsedProjection::make(const BSONObj& spec,
                 return Status(ErrorCodes::BadValue,
                               string("Unsupported projection option: ") + e.toString());
             }
-        } else if (mongoutils::str::equals(e.fieldName(), "_id") && !e.trueValue()) {
+        } else if (mongolutils::str::equals(e.fieldName(), "_id") && !e.trueValue()) {
             includeID = false;
         } else {
             // Projections of dotted fields aren't covered.
-            if (mongoutils::str::contains(e.fieldName(), '.')) {
+            if (mongolutils::str::contains(e.fieldName(), '.')) {
                 requiresDocument = true;
             }
 
@@ -209,17 +209,17 @@ Status ParsedProjection::make(const BSONObj& spec,
                               "Cannot specify positional operator and $elemMatch.");
             }
 
-            std::string after = mongoutils::str::after(e.fieldName(), ".$");
-            if (mongoutils::str::contains(after, ".$")) {
-                mongoutils::str::stream ss;
+            std::string after = mongolutils::str::after(e.fieldName(), ".$");
+            if (mongolutils::str::contains(after, ".$")) {
+                mongolutils::str::stream ss;
                 ss << "Positional projection '" << e.fieldName() << "' contains "
                    << "the positional operator more than once.";
                 return Status(ErrorCodes::BadValue, ss);
             }
 
-            std::string matchfield = mongoutils::str::before(e.fieldName(), '.');
+            std::string matchfield = mongolutils::str::before(e.fieldName(), '.');
             if (!_hasPositionalOperatorMatch(query, matchfield)) {
-                mongoutils::str::stream ss;
+                mongolutils::str::stream ss;
                 ss << "Positional projection '" << e.fieldName() << "' does not "
                    << "match the query document.";
                 return Status(ErrorCodes::BadValue, ss);
@@ -268,7 +268,7 @@ Status ParsedProjection::make(const BSONObj& spec,
         while (srcIt.more()) {
             BSONElement elt = srcIt.next();
             // We've already handled the _id field before entering this loop.
-            if (includeID && mongoutils::str::equals(elt.fieldName(), "_id")) {
+            if (includeID && mongolutils::str::equals(elt.fieldName(), "_id")) {
                 continue;
             }
             // $meta sortKey should not be checked as a part of _requiredFields, since it can
@@ -295,10 +295,10 @@ Status ParsedProjection::make(const BSONObj& spec,
 
 // static
 bool ParsedProjection::_isPositionalOperator(const char* fieldName) {
-    return mongoutils::str::contains(fieldName, ".$") &&
-        !mongoutils::str::contains(fieldName, ".$ref") &&
-        !mongoutils::str::contains(fieldName, ".$id") &&
-        !mongoutils::str::contains(fieldName, ".$db");
+    return mongolutils::str::contains(fieldName, ".$") &&
+        !mongolutils::str::contains(fieldName, ".$ref") &&
+        !mongolutils::str::contains(fieldName, ".$id") &&
+        !mongolutils::str::contains(fieldName, ".$db");
 }
 
 // static
@@ -320,10 +320,10 @@ bool ParsedProjection::_hasPositionalOperatorMatch(const MatchExpression* const 
         if (!pathRawData) {
             return false;
         }
-        std::string pathPrefix = mongoutils::str::before(pathRawData, '.');
+        std::string pathPrefix = mongolutils::str::before(pathRawData, '.');
         return pathPrefix == matchfield;
     }
     return false;
 }
 
-}  // namespace mongo
+}  // namespace mongol

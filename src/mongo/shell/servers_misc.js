@@ -23,7 +23,7 @@ ToolTest.prototype.startDB = function( coll ){
 
     Object.extend(options, this.options);
 
-    this.m = startMongoProgram.apply(null, MongoRunner.arrOptions("mongod", options));
+    this.m = startMongoProgram.apply(null, MongoRunner.arrOptions("mongold", options));
     this.db = this.m.getDB( this.baseName );
     if ( coll )
         return this.db.getCollection( coll );
@@ -41,7 +41,7 @@ ToolTest.prototype.stop = function(){
 }
 
 ToolTest.prototype.runTool = function(){
-    var a = [ "mongo" + arguments[0] ];
+    var a = [ "mongol" + arguments[0] ];
 
     var hasdbpath = false;
     
@@ -90,7 +90,7 @@ ReplTest.prototype.getOptions = function( master , extra , putBinaryFirst, norep
         
     var a = []
     if ( putBinaryFirst )
-        a.push( "mongod" )
+        a.push( "mongold" )
     a.push( "--nohttpinterface", "--noprealloc", "--bind_ip" , "127.0.0.1" , "--smallfiles" );
 
     a.push( "--port" );
@@ -129,7 +129,7 @@ ReplTest.prototype.getOptions = function( master , extra , putBinaryFirst, norep
 }
 
 ReplTest.prototype.start = function( master , options , restart, norepl ){
-    var lockFile = this.getPath( master ) + "/mongod.lock";
+    var lockFile = this.getPath( master ) + "/mongold.lock";
     removeFile( lockFile );
     var o = this.getOptions( master , options , restart, norepl );
 
@@ -163,7 +163,7 @@ ReplTest.prototype.stop = function( master , signal ){
 }
 
 /**
- * Returns a port number that has not been given out to any other caller from the same mongo shell.
+ * Returns a port number that has not been given out to any other caller from the same mongol shell.
  */
 allocatePort = (function() {
     // Defer initializing these variables until the first call, as TestData attributes may be
@@ -187,7 +187,7 @@ allocatePort = (function() {
 
 /**
  * Returns a list of 'numPorts' port numbers that have not been given out to any other caller from
- * the same mongo shell.
+ * the same mongol shell.
  */
 allocatePorts = function(numPorts) {
     var ports = [];
@@ -244,7 +244,7 @@ SyncCCTest.prototype.tempStart = function( num ){
 
 
 function startParallelShell( jsCode, port, noConnect ){
-    var args = ["mongo"];
+    var args = ["mongol"];
 
     if (typeof db == "object") {
         var hostAndPort = db.getMongo().host.split(':');

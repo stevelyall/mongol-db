@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "mongo/db/jsobj.h"
-#include "mongo/s/optime_pair.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/optime_pair.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObj;
 template <typename T>
@@ -415,4 +415,4 @@ inline std::ostream& operator<<(std::ostream& s, const ChunkVersion& v) {
     return s;
 }
 
-}  // namespace mongo
+}  // namespace mongol

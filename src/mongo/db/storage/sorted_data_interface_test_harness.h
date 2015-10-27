@@ -33,16 +33,16 @@
 #include <initializer_list>
 #include <memory>
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context_noop.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/service_context.h"
-#include "mongo/db/service_context_noop.h"
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/unowned_ptr.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context_noop.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/service_context.h"
+#include "mongol/db/service_context_noop.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/unowned_ptr.h"
 
-namespace mongo {
+namespace mongol {
 
 const BSONObj key0 = BSON("" << 0);
 const BSONObj key1 = BSON("" << 1);

@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/query/query_knobs.h"
-#include "mongo/db/server_options.h"
-#include "mongo/db/server_parameters.h"
+#include "mongol/db/query/query_knobs.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/server_parameters.h"
 
-namespace mongo {
+namespace mongol {
 
 MONGO_EXPORT_SERVER_PARAMETER(internalQueryPlanEvaluationWorks, int, 10000);
 
@@ -66,4 +66,4 @@ MONGO_EXPORT_SERVER_PARAMETER(internalQueryExecMaxBlockingSortBytes, int, 32 * 1
 MONGO_EXPORT_SERVER_PARAMETER(internalQueryExecYieldIterations, int, 128);
 MONGO_EXPORT_SERVER_PARAMETER(internalQueryExecYieldPeriodMS, int, 10);
 
-}  // namespace mongo
+}  // namespace mongol

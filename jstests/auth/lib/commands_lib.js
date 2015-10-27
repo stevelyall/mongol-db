@@ -1237,7 +1237,7 @@ var authCommandsLib = {
         {
             testname: "fsyncUnlock",
             command: {fsyncUnlock: 1},
-            skipSharded: true, // TODO: remove when fsyncUnlock is implemented in mongos
+            skipSharded: true, // TODO: remove when fsyncUnlock is implemented in mongols
             testcases: [
                 {
                     runOnDb: adminDbName,
@@ -1521,7 +1521,7 @@ var authCommandsLib = {
         {
             testname: "killCursors",
             command: {killCursors: "foo", cursors: [NumberLong("123")]},
-            skipSharded: true, // TODO enable when killCursors command is implemented on mongos
+            skipSharded: true, // TODO enable when killCursors command is implemented on mongols
             testcases: [
                 {
                     runOnDb: firstDbName,
@@ -2733,7 +2733,7 @@ var authCommandsLib = {
     /************* SHARED TEST LOGIC ****************/
 
     /**
-     * Returns true if conn is a connection to mongos,
+     * Returns true if conn is a connection to mongols,
      * and false otherwise.
      */
     isMongos: function(conn) {
@@ -2746,7 +2746,7 @@ var authCommandsLib = {
      * The actual implementation must be provided in "impls".
      *
      * Parameters:
-     *   conn -- a connection to either mongod or mongos
+     *   conn -- a connection to either mongold or mongols
      *   t -- a single test object from the tests array above
      *
      * Returns:

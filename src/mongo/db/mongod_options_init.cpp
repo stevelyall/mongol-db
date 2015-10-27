@@ -26,15 +26,15 @@
  *    it in the license file.
  */
 
-#include "mongo/db/mongod_options.h"
+#include "mongol/db/mongold_options.h"
 
 #include <iostream>
 
-#include "mongo/util/options_parser/startup_option_init.h"
-#include "mongo/util/options_parser/startup_options.h"
-#include "mongo/util/quick_exit.h"
+#include "mongol/util/options_parser/startup_option_init.h"
+#include "mongol/util/options_parser/startup_options.h"
+#include "mongol/util/quick_exit.h"
 
-namespace mongo {
+namespace mongol {
 MONGO_GENERAL_STARTUP_OPTIONS_REGISTER(MongodOptions)(InitializerContext* context) {
     return addMongodOptions(&moe::startupOptions);
 }
@@ -77,4 +77,4 @@ MONGO_INITIALIZER_GENERAL(MongodOptions_Store,
     return Status::OK();
 }
 
-}  // namespace mongo
+}  // namespace mongol

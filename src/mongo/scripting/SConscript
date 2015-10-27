@@ -14,14 +14,14 @@ env.Library(
         'utils.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/client/clientdriver',
-        '$BUILD_DIR/mongo/shell/mongojs',
-        '$BUILD_DIR/mongo/util/foundation',
-        '$BUILD_DIR/mongo/util/md5',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/client/clientdriver',
+        '$BUILD_DIR/mongol/shell/mongoljs',
+        '$BUILD_DIR/mongol/util/foundation',
+        '$BUILD_DIR/mongol/util/md5',
     ],
     LIBDEPS_TAGS=[
-        # Depends on mongo::createDirectClient, which is not uniquely defined
+        # Depends on mongol::createDirectClient, which is not uniquely defined
         'incomplete'
     ],
 
@@ -33,7 +33,7 @@ env.Library(
         "bson_template_evaluator.cpp",
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
+        '$BUILD_DIR/mongol/base',
     ],
 )
 
@@ -93,13 +93,13 @@ if usemozjs:
         ])
 
     scriptingEnv.JSHeader(
-        target='mozjs/mongohelpers_js.cpp',
+        target='mozjs/mongolhelpers_js.cpp',
         source=[
-            'mozjs/mongohelpers.js'
+            'mozjs/mongolhelpers.js'
         ]
     )
 
-    env.Alias('generated-sources', 'mozjs/mongohelpers_js.cpp')
+    env.Alias('generated-sources', 'mozjs/mongolhelpers_js.cpp')
 
     scriptingEnv.Library(
         target='scripting',
@@ -127,9 +127,9 @@ if usemozjs:
             'mozjs/jsthread.cpp',
             'mozjs/maxkey.cpp',
             'mozjs/minkey.cpp',
-            'mozjs/mongo.cpp',
-            'mozjs/mongohelpers.cpp',
-            'mozjs/mongohelpers_js.cpp',
+            'mozjs/mongol.cpp',
+            'mozjs/mongolhelpers.cpp',
+            'mozjs/mongolhelpers_js.cpp',
             'mozjs/nativefunction.cpp',
             'mozjs/numberint.cpp',
             'mozjs/numberlong.cpp',
@@ -148,8 +148,8 @@ if usemozjs:
             'bson_template_evaluator',
             'scripting_common',
             '$BUILD_DIR/third_party/shim_mozjs',
-            '$BUILD_DIR/mongo/shell/mongojs',
-            '$BUILD_DIR/mongo/db/service_context',
+            '$BUILD_DIR/mongol/shell/mongoljs',
+            '$BUILD_DIR/mongol/db/service_context',
         ],
         LIBDEPS_TAGS=[
             # Depends on haveLocalShardingInfo and createDirectClient, which are not

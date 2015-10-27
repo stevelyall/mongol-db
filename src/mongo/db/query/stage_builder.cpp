@@ -26,39 +26,39 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kQuery
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kQuery
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/query/stage_builder.h"
+#include "mongol/db/query/stage_builder.h"
 
-#include "mongo/db/client.h"
-#include "mongo/db/exec/and_hash.h"
-#include "mongo/db/exec/and_sorted.h"
-#include "mongo/db/exec/collection_scan.h"
-#include "mongo/db/exec/count_scan.h"
-#include "mongo/db/exec/distinct_scan.h"
-#include "mongo/db/exec/fetch.h"
-#include "mongo/db/exec/geo_near.h"
-#include "mongo/db/exec/index_scan.h"
-#include "mongo/db/exec/keep_mutations.h"
-#include "mongo/db/exec/limit.h"
-#include "mongo/db/exec/merge_sort.h"
-#include "mongo/db/exec/or.h"
-#include "mongo/db/exec/projection.h"
-#include "mongo/db/exec/shard_filter.h"
-#include "mongo/db/exec/sort.h"
-#include "mongo/db/exec/sort_key_generator.h"
-#include "mongo/db/exec/skip.h"
-#include "mongo/db/exec/text.h"
-#include "mongo/db/index/fts_access_method.h"
-#include "mongo/db/catalog/collection.h"
-#include "mongo/db/catalog/database.h"
-#include "mongo/db/s/sharding_state.h"
-#include "mongo/stdx/memory.h"
-#include "mongo/util/log.h"
+#include "mongol/db/client.h"
+#include "mongol/db/exec/and_hash.h"
+#include "mongol/db/exec/and_sorted.h"
+#include "mongol/db/exec/collection_scan.h"
+#include "mongol/db/exec/count_scan.h"
+#include "mongol/db/exec/distinct_scan.h"
+#include "mongol/db/exec/fetch.h"
+#include "mongol/db/exec/geo_near.h"
+#include "mongol/db/exec/index_scan.h"
+#include "mongol/db/exec/keep_mutations.h"
+#include "mongol/db/exec/limit.h"
+#include "mongol/db/exec/merge_sort.h"
+#include "mongol/db/exec/or.h"
+#include "mongol/db/exec/projection.h"
+#include "mongol/db/exec/shard_filter.h"
+#include "mongol/db/exec/sort.h"
+#include "mongol/db/exec/sort_key_generator.h"
+#include "mongol/db/exec/skip.h"
+#include "mongol/db/exec/text.h"
+#include "mongol/db/index/fts_access_method.h"
+#include "mongol/db/catalog/collection.h"
+#include "mongol/db/catalog/database.h"
+#include "mongol/db/s/sharding_state.h"
+#include "mongol/stdx/memory.h"
+#include "mongol/util/log.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::unique_ptr;
 using stdx::make_unique;
@@ -343,7 +343,7 @@ PlanStage* buildStages(OperationContext* txn,
 
         return new CountScan(txn, params, ws);
     } else {
-        mongoutils::str::stream ss;
+        mongolutils::str::stream ss;
         root->appendToString(&ss, 0);
         string nodeStr(ss);
         warning() << "Can't build exec tree for node " << nodeStr << endl;
@@ -367,4 +367,4 @@ bool StageBuilder::build(OperationContext* txn,
     return NULL != (*rootOut = buildStages(txn, collection, solution, solutionNode, wsIn));
 }
 
-}  // namespace mongo
+}  // namespace mongol

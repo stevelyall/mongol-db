@@ -31,18 +31,18 @@
 #include <set>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/base/status.h"
-#include "mongo/platform/unordered_map.h"
-#include "mongo/s/ns_targeter.h"
-#include "mongo/s/write_ops/batched_command_request.h"
-#include "mongo/s/write_ops/batched_command_response.h"
-#include "mongo/s/write_ops/wc_error_detail.h"
-#include "mongo/s/write_ops/write_error_detail.h"
-#include "mongo/s/write_ops/write_op.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/base/status.h"
+#include "mongol/platform/unordered_map.h"
+#include "mongol/s/ns_targeter.h"
+#include "mongol/s/write_ops/batched_command_request.h"
+#include "mongol/s/write_ops/batched_command_response.h"
+#include "mongol/s/write_ops/wc_error_detail.h"
+#include "mongol/s/write_ops/write_error_detail.h"
+#include "mongol/s/write_ops/write_op.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 class TargetedWriteBatch;
@@ -52,7 +52,7 @@ class TrackedErrors;
 struct BatchWriteStats;
 
 /**
- * The BatchWriteOp class manages the lifecycle of a batched write received by mongos.  Each
+ * The BatchWriteOp class manages the lifecycle of a batched write received by mongols.  Each
  * item in a batch is tracked via a WriteOp, and the function of the BatchWriteOp is to
  * aggregate the dispatched requests and responses for the underlying WriteOps.
  *

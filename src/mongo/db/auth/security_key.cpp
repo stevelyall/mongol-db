@@ -26,37 +26,37 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/auth/security_key.h"
+#include "mongol/db/auth/security_key.h"
 
 #include <sys/stat.h>
 #include <string>
 #include <vector>
 
-#include "mongo/base/status_with.h"
-#include "mongo/client/sasl_client_authenticate.h"
-#include "mongo/crypto/mechanism_scram.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/internal_user_auth.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/auth/security_file.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/server_options.h"
-#include "mongo/util/log.h"
-#include "mongo/util/password_digest.h"
+#include "mongol/base/status_with.h"
+#include "mongol/client/sasl_client_authenticate.h"
+#include "mongol/crypto/mechanism_scram.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/internal_user_auth.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/auth/security_file.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/server_options.h"
+#include "mongol/util/log.h"
+#include "mongol/util/password_digest.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
 bool setUpSecurityKey(const string& filename) {
-    StatusWith<std::string> keyString = mongo::readSecurityFile(filename);
+    StatusWith<std::string> keyString = mongol::readSecurityFile(filename);
     if (!keyString.isOK()) {
         log() << keyString.getStatus().reason();
         return false;
@@ -74,7 +74,7 @@ bool setUpSecurityKey(const string& filename) {
     // the keyfile.
     User::CredentialData credentials;
     credentials.password =
-        mongo::createPasswordDigest(internalSecurity.user->getName().getUser().toString(), str);
+        mongol::createPasswordDigest(internalSecurity.user->getName().getUser().toString(), str);
 
     BSONObj creds =
         scram::generateCredentials(credentials.password, saslGlobalParams.scramIterationCount);
@@ -99,4 +99,4 @@ bool setUpSecurityKey(const string& filename) {
     return true;
 }
 
-}  // namespace mongo
+}  // namespace mongol

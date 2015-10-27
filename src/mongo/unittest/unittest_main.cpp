@@ -1,4 +1,4 @@
-// mongo/unittest/unittest_main.cpp
+// mongol/unittest/unittest_main.cpp
 
 /*    Copyright 2010 10gen Inc.
  *
@@ -30,12 +30,12 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/initializer.h"
-#include "mongo/unittest/unittest.h"
-#include "mongo/util/signal_handlers_synchronous.h"
+#include "mongol/base/initializer.h"
+#include "mongol/unittest/unittest.h"
+#include "mongol/util/signal_handlers_synchronous.h"
 
 int main(int argc, char** argv, char** envp) {
-    ::mongo::setupSynchronousSignalHandlers();
-    ::mongo::runGlobalInitializersOrDie(argc, argv, envp);
-    return ::mongo::unittest::Suite::run(std::vector<std::string>(), "", 1);
+    ::mongol::setupSynchronousSignalHandlers();
+    ::mongol::runGlobalInitializersOrDie(argc, argv, envp);
+    return ::mongol::unittest::Suite::run(std::vector<std::string>(), "", 1);
 }

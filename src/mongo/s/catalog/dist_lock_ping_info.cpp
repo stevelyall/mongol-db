@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/s/catalog/dist_lock_ping_info.h"
+#include "mongol/s/catalog/dist_lock_ping_info.h"
 
-namespace mongo {
+namespace mongol {
 
 DistLockPingInfo::DistLockPingInfo() = default;
 

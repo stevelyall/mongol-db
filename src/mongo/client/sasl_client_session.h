@@ -30,12 +30,12 @@
 #include <memory>
 #include <string>
 
-#include "mongo/base/disallow_copying.h"
-#include "mongo/base/status.h"
-#include "mongo/base/string_data.h"
-#include "mongo/stdx/functional.h"
+#include "mongol/base/disallow_copying.h"
+#include "mongol/base/status.h"
+#include "mongol/base/string_data.h"
+#include "mongol/stdx/functional.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * Base class for the client side of a SASL authentication conversation.
@@ -142,4 +142,4 @@ private:
     DataBuffer _parameters[numParameters];
 };
 
-}  // namespace mongo
+}  // namespace mongol

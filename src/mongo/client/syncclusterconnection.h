@@ -31,14 +31,14 @@
 #pragma once
 
 
-#include "mongo/bson/bsonelement.h"
-#include "mongo/bson/bsonobj.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/util/concurrency/mutex.h"
+#include "mongol/bson/bsonelement.h"
+#include "mongol/bson/bsonobj.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/util/concurrency/mutex.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This is a connection to a cluster of servers that operate as one
@@ -173,7 +173,7 @@ public:
     void setReplyMetadataReader(rpc::ReplyMetadataReader reader) final;
 
     /**
-     * Allow custom query processing through an external (e.g. mongos-only) service.
+     * Allow custom query processing through an external (e.g. mongols-only) service.
      *
      * Takes ownership of attached handler.
      */

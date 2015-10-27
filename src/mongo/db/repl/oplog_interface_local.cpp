@@ -26,17 +26,17 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/oplog_interface_local.h"
+#include "mongol/db/repl/oplog_interface_local.h"
 
-#include "mongo/db/db_raii.h"
-#include "mongo/db/namespace_string.h"
-#include "mongo/db/query/internal_plans.h"
-#include "mongo/db/query/plan_executor.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/db_raii.h"
+#include "mongol/db/namespace_string.h"
+#include "mongol/db/query/internal_plans.h"
+#include "mongol/db/query/plan_executor.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 namespace {
@@ -95,4 +95,4 @@ std::unique_ptr<OplogInterface::Iterator> OplogInterfaceLocal::makeIterator() co
 }
 
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

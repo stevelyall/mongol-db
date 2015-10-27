@@ -27,7 +27,7 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/util/text.h"
+#include "mongol/util/text.h"
 
 #include <boost/integer_traits.hpp>
 #include <errno.h>
@@ -38,13 +38,13 @@
 #include <io.h>
 #endif
 
-#include "mongo/platform/basic.h"
-#include "mongo/util/allocator.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/platform/basic.h"
+#include "mongol/util/allocator.h"
+#include "mongol/util/mongolutils/str.h"
 
 using namespace std;
 
-namespace mongo {
+namespace mongol {
 
 // --- StringSplitter ----
 
@@ -197,7 +197,7 @@ std::string toUtf8String(const std::wstring& wide) {
         }
     }
 
-    msgasserted(16091, mongoutils::str::stream() << "can't wstring to utf8: " << ::GetLastError());
+    msgasserted(16091, mongolutils::str::stream() << "can't wstring to utf8: " << ::GetLastError());
     return "";
 }
 
@@ -300,7 +300,7 @@ WindowsCommandLine::WindowsCommandLine(int argc, wchar_t* argvW[], wchar_t* envp
         utf8argLength.push_back(argLength);
         blockSize += argLength;
     }
-    _argv = static_cast<char**>(mongoMalloc(blockSize));
+    _argv = static_cast<char**>(mongolMalloc(blockSize));
     for (int i = 0; i < argc; ++i) {
         _argv[i] = reinterpret_cast<char*>(_argv) + blockPtr;
         strcpy_s(_argv[i], utf8argLength[i], utf8args[i].c_str());
@@ -323,7 +323,7 @@ WindowsCommandLine::WindowsCommandLine(int argc, wchar_t* argvW[], wchar_t* envp
         utf8envLength.push_back(envLength);
         blockSize += envLength;
     }
-    _envp = static_cast<char**>(mongoMalloc(blockSize));
+    _envp = static_cast<char**>(mongolMalloc(blockSize));
     size_t i;
     for (i = 0; i < envCount; ++i) {
         _envp[i] = reinterpret_cast<char*>(_envp) + blockPtr;

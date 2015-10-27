@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
 
-#include "mongo/client/replica_set_monitor.h"
-#include "mongo/client/replica_set_monitor_internal.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/client/replica_set_monitor.h"
+#include "mongol/client/replica_set_monitor_internal.h"
+#include "mongol/unittest/unittest.h"
 
 namespace {
 
-using namespace mongo;
+using namespace mongol;
 using std::set;
 
 // Pull nested types to top-level scope
@@ -79,8 +79,8 @@ TEST(ReplicaSetMonitor, InitialState) {
 }
 
 TEST(ReplicaSetMonitor, IsMasterBadParse) {
-    BSONObj ismaster = BSON("hosts" << BSON_ARRAY("mongo.example:badport"));
-    IsMasterReply imr(HostAndPort("mongo.example:27017"), -1, ismaster);
+    BSONObj ismaster = BSON("hosts" << BSON_ARRAY("mongol.example:badport"));
+    IsMasterReply imr(HostAndPort("mongol.example:27017"), -1, ismaster);
     ASSERT_EQUALS(imr.ok, false);
 }
 
@@ -90,7 +90,7 @@ TEST(ReplicaSetMonitor, IsMasterReplyRSNotInitiated) {
                    << "can't get local.system.replset config from self or any seed (EMPTYCONFIG)"
                    << "isreplicaset" << true << "maxBsonObjectSize" << 16777216
                    << "maxMessageSizeBytes" << 48000000 << "maxWriteBatchSize" << 1000
-                   << "localTime" << mongo::jsTime() << "maxWireVersion" << 2 << "minWireVersion"
+                   << "localTime" << mongol::jsTime() << "maxWireVersion" << 2 << "minWireVersion"
                    << 0 << "ok" << 1);
 
     IsMasterReply imr(HostAndPort(), -1, ismaster);
@@ -109,24 +109,24 @@ TEST(ReplicaSetMonitor, IsMasterReplyRSPrimary) {
     BSONObj ismaster = BSON("setName"
                             << "test"
                             << "setVersion" << 1 << "ismaster" << true << "secondary" << false
-                            << "hosts" << BSON_ARRAY("mongo.example:3000") << "primary"
-                            << "mongo.example:3000"
+                            << "hosts" << BSON_ARRAY("mongol.example:3000") << "primary"
+                            << "mongol.example:3000"
                             << "me"
-                            << "mongo.example:3000"
+                            << "mongol.example:3000"
                             << "maxBsonObjectSize" << 16777216 << "maxMessageSizeBytes" << 48000000
-                            << "maxWriteBatchSize" << 1000 << "localTime" << mongo::jsTime()
+                            << "maxWriteBatchSize" << 1000 << "localTime" << mongol::jsTime()
                             << "maxWireVersion" << 2 << "minWireVersion" << 0 << "ok" << 1);
 
-    IsMasterReply imr(HostAndPort("mongo.example:3000"), -1, ismaster);
+    IsMasterReply imr(HostAndPort("mongol.example:3000"), -1, ismaster);
 
     ASSERT_EQUALS(imr.ok, true);
-    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongo.example:3000").toString());
+    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongol.example:3000").toString());
     ASSERT_EQUALS(imr.setName, "test");
     ASSERT_EQUALS(imr.hidden, false);
     ASSERT_EQUALS(imr.secondary, false);
     ASSERT_EQUALS(imr.isMaster, true);
-    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongo.example:3000").toString());
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3000")));
+    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongol.example:3000").toString());
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3000")));
     ASSERT(imr.tags.isEmpty());
 }
 
@@ -134,26 +134,26 @@ TEST(ReplicaSetMonitor, IsMasterReplyPassiveSecondary) {
     BSONObj ismaster = BSON("setName"
                             << "test"
                             << "setVersion" << 1 << "ismaster" << false << "secondary" << true
-                            << "hosts" << BSON_ARRAY("mongo.example:3000") << "passives"
-                            << BSON_ARRAY("mongo.example:3001") << "primary"
-                            << "mongo.example:3000"
+                            << "hosts" << BSON_ARRAY("mongol.example:3000") << "passives"
+                            << BSON_ARRAY("mongol.example:3001") << "primary"
+                            << "mongol.example:3000"
                             << "passive" << true << "me"
-                            << "mongo.example:3001"
+                            << "mongol.example:3001"
                             << "maxBsonObjectSize" << 16777216 << "maxMessageSizeBytes" << 48000000
-                            << "maxWriteBatchSize" << 1000 << "localTime" << mongo::jsTime()
+                            << "maxWriteBatchSize" << 1000 << "localTime" << mongol::jsTime()
                             << "maxWireVersion" << 2 << "minWireVersion" << 0 << "ok" << 1);
 
-    IsMasterReply imr(HostAndPort("mongo.example:3001"), -1, ismaster);
+    IsMasterReply imr(HostAndPort("mongol.example:3001"), -1, ismaster);
 
     ASSERT_EQUALS(imr.ok, true);
-    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongo.example:3001").toString());
+    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongol.example:3001").toString());
     ASSERT_EQUALS(imr.setName, "test");
     ASSERT_EQUALS(imr.hidden, false);
     ASSERT_EQUALS(imr.secondary, true);
     ASSERT_EQUALS(imr.isMaster, false);
-    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongo.example:3000").toString());
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3000")));
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3001")));
+    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongol.example:3000").toString());
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3000")));
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3001")));
     ASSERT(imr.tags.isEmpty());
 }
 
@@ -161,24 +161,24 @@ TEST(ReplicaSetMonitor, IsMasterReplyHiddenSecondary) {
     BSONObj ismaster = BSON("setName"
                             << "test"
                             << "setVersion" << 1 << "ismaster" << false << "secondary" << true
-                            << "hosts" << BSON_ARRAY("mongo.example:3000") << "primary"
-                            << "mongo.example:3000"
+                            << "hosts" << BSON_ARRAY("mongol.example:3000") << "primary"
+                            << "mongol.example:3000"
                             << "passive" << true << "hidden" << true << "me"
-                            << "mongo.example:3001"
+                            << "mongol.example:3001"
                             << "maxBsonObjectSize" << 16777216 << "maxMessageSizeBytes" << 48000000
-                            << "maxWriteBatchSize" << 1000 << "localTime" << mongo::jsTime()
+                            << "maxWriteBatchSize" << 1000 << "localTime" << mongol::jsTime()
                             << "maxWireVersion" << 2 << "minWireVersion" << 0 << "ok" << 1);
 
-    IsMasterReply imr(HostAndPort("mongo.example:3001"), -1, ismaster);
+    IsMasterReply imr(HostAndPort("mongol.example:3001"), -1, ismaster);
 
     ASSERT_EQUALS(imr.ok, true);
-    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongo.example:3001").toString());
+    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongol.example:3001").toString());
     ASSERT_EQUALS(imr.setName, "test");
     ASSERT_EQUALS(imr.hidden, true);
     ASSERT_EQUALS(imr.secondary, true);
     ASSERT_EQUALS(imr.isMaster, false);
-    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongo.example:3000").toString());
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3000")));
+    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongol.example:3000").toString());
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3000")));
     ASSERT(imr.tags.isEmpty());
 }
 
@@ -186,30 +186,30 @@ TEST(ReplicaSetMonitor, IsMasterSecondaryWithTags) {
     BSONObj ismaster = BSON("setName"
                             << "test"
                             << "setVersion" << 1 << "ismaster" << false << "secondary" << true
-                            << "hosts" << BSON_ARRAY("mongo.example:3000"
-                                                     << "mongo.example:3001") << "primary"
-                            << "mongo.example:3000"
+                            << "hosts" << BSON_ARRAY("mongol.example:3000"
+                                                     << "mongol.example:3001") << "primary"
+                            << "mongol.example:3000"
                             << "me"
-                            << "mongo.example:3001"
+                            << "mongol.example:3001"
                             << "maxBsonObjectSize" << 16777216 << "maxMessageSizeBytes" << 48000000
-                            << "maxWriteBatchSize" << 1000 << "localTime" << mongo::jsTime()
+                            << "maxWriteBatchSize" << 1000 << "localTime" << mongol::jsTime()
                             << "maxWireVersion" << 2 << "minWireVersion" << 0 << "tags"
                             << BSON("dc"
                                     << "nyc"
                                     << "use"
                                     << "production") << "ok" << 1);
 
-    IsMasterReply imr(HostAndPort("mongo.example:3001"), -1, ismaster);
+    IsMasterReply imr(HostAndPort("mongol.example:3001"), -1, ismaster);
 
     ASSERT_EQUALS(imr.ok, true);
-    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongo.example:3001").toString());
+    ASSERT_EQUALS(imr.host.toString(), HostAndPort("mongol.example:3001").toString());
     ASSERT_EQUALS(imr.setName, "test");
     ASSERT_EQUALS(imr.hidden, false);
     ASSERT_EQUALS(imr.secondary, true);
     ASSERT_EQUALS(imr.isMaster, false);
-    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongo.example:3000").toString());
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3000")));
-    ASSERT(imr.normalHosts.count(HostAndPort("mongo.example:3001")));
+    ASSERT_EQUALS(imr.primary.toString(), HostAndPort("mongol.example:3000").toString());
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3000")));
+    ASSERT(imr.normalHosts.count(HostAndPort("mongol.example:3001")));
     ASSERT(imr.tags.hasElement("dc"));
     ASSERT(imr.tags.hasElement("use"));
     ASSERT_EQUALS(imr.tags["dc"].str(), "nyc");

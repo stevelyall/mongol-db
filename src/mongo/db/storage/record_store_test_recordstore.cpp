@@ -28,16 +28,16 @@
  *    it in the license file.
  */
 
-#include "mongo/db/storage/record_store_test_harness.h"
+#include "mongol/db/storage/record_store_test_harness.h"
 
 
-#include "mongo/db/storage/record_store.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/record_store.h"
+#include "mongol/unittest/unittest.h"
 
 using std::unique_ptr;
 using std::string;
 
-namespace mongo {
+namespace mongol {
 
 // Verify that the name of the record store is not NULL and nonempty.
 TEST(RecordStoreTestHarness, RecordStoreName) {
@@ -68,4 +68,4 @@ TEST(RecordStoreTestHarness, IsNotCapped) {
     ASSERT(!rs->isCapped());
 }
 
-}  // namespace mongo
+}  // namespace mongol

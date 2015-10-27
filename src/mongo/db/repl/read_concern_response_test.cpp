@@ -26,11 +26,11 @@
  *    it in the license file.
  */
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/repl/read_concern_response.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/repl/read_concern_response.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 namespace {
 
@@ -79,4 +79,4 @@ TEST(ReadAfterResponse, WaitedWithDuration) {
 
 }  // unnamed namespace
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

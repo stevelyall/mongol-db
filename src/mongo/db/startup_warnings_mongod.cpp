@@ -26,11 +26,11 @@
 *    then also delete it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/startup_warnings_mongod.h"
+#include "mongol/db/startup_warnings_mongold.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
@@ -38,15 +38,15 @@
 #include <sys/resource.h>
 #endif
 
-#include "mongo/db/server_options.h"
-#include "mongo/db/startup_warnings_common.h"
-#include "mongo/db/storage/storage_options.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/log.h"
-#include "mongo/util/processinfo.h"
-#include "mongo/util/version.h"
+#include "mongol/db/server_options.h"
+#include "mongol/db/startup_warnings_common.h"
+#include "mongol/db/storage/storage_options.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/log.h"
+#include "mongol/util/processinfo.h"
+#include "mongol/util/version.h"
 
-namespace mongo {
+namespace mongol {
 namespace {
 
 const std::string kTransparentHugePagesDirectory("/sys/kernel/mm/transparent_hugepage");
@@ -146,7 +146,7 @@ void logMongodStartupWarnings(const StorageGlobalParams& storageParams,
             log() << "**       Note that journaling defaults to off for 32 bit "
                   << "and is currently off." << startupWarningsLog;
         }
-        log() << "**       See http://dochub.mongodb.org/core/32bit" << startupWarningsLog;
+        log() << "**       See http://dochub.mongoldb.org/core/32bit" << startupWarningsLog;
         warned = true;
     }
 
@@ -211,9 +211,9 @@ void logMongodStartupWarnings(const StorageGlobalParams& storageParams,
                 else if (line.find("interleave", where) != where) {
                     log() << startupWarningsLog;
                     log() << "** WARNING: You are running on a NUMA machine." << startupWarningsLog;
-                    log() << "**          We suggest launching mongod like this to avoid "
+                    log() << "**          We suggest launching mongold like this to avoid "
                           << "performance problems:" << startupWarningsLog;
-                    log() << "**              numactl --interleave=all mongod [other options]"
+                    log() << "**              numactl --interleave=all mongold [other options]"
                           << startupWarningsLog;
                     warned = true;
                 }
@@ -339,4 +339,4 @@ void logMongodStartupWarnings(const StorageGlobalParams& storageParams,
         log() << startupWarningsLog;
     }
 }
-}  // namespace mongo
+}  // namespace mongol

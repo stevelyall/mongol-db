@@ -26,9 +26,9 @@
  *    then also delete it in the license file.
  */
 
-#include "mongo/db/query/interval.h"
+#include "mongol/db/query/interval.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::string;
 
@@ -311,4 +311,4 @@ string Interval::cmpstr(IntervalComparison c) {
     return "NO IDEA DUDE";
 }
 
-}  // namespace mongo
+}  // namespace mongol

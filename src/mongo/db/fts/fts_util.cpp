@@ -28,9 +28,9 @@
 *    it in the license file.
 */
 
-#include "mongo/db/fts/fts_util.h"
+#include "mongol/db/fts/fts_util.h"
 
-namespace mongo {
+namespace mongol {
 
 namespace fts {
 

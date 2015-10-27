@@ -31,9 +31,9 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/disallow_copying.h"
+#include "mongol/base/disallow_copying.h"
 
-namespace mongo {
+namespace mongol {
 
 class OperationContext;
 
@@ -161,4 +161,4 @@ inline dur::DurableInterface& getDur() {
     return dur::DurableInterface::getDur();
 }
 
-}  // namespace mongo
+}  // namespace mongol

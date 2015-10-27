@@ -35,15 +35,15 @@
 #include <memory.h>
 
 
-#include "mongo/base/owned_pointer_vector.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/record_id.h"
-#include "mongo/db/storage/recovery_unit.h"
-#include "mongo/db/storage/snapshot_name.h"
-#include "mongo/util/concurrency/ticketholder.h"
-#include "mongo/util/timer.h"
+#include "mongol/base/owned_pointer_vector.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/record_id.h"
+#include "mongol/db/storage/recovery_unit.h"
+#include "mongol/db/storage/snapshot_name.h"
+#include "mongol/util/concurrency/ticketholder.h"
+#include "mongol/util/timer.h"
 
-namespace mongo {
+namespace mongol {
 
 class BSONObjBuilder;
 class WiredTigerSession;

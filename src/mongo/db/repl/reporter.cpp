@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kReplication
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kReplication
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/repl/reporter.h"
-#include "mongo/util/log.h"
+#include "mongol/db/repl/reporter.h"
+#include "mongol/util/log.h"
 
-#include "mongo/db/repl/replication_executor.h"
+#include "mongol/db/repl/replication_executor.h"
 
-namespace mongo {
+namespace mongol {
 namespace repl {
 
 using executor::RemoteCommandRequest;
@@ -161,4 +161,4 @@ bool Reporter::willRunAgain() const {
     return _willRunAgain;
 }
 }  // namespace repl
-}  // namespace mongo
+}  // namespace mongol

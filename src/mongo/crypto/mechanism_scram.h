@@ -30,10 +30,10 @@
 
 #include <string>
 
-#include "mongo/base/status.h"
-#include "mongo/db/jsobj.h"
+#include "mongol/base/status.h"
+#include "mongol/db/jsobj.h"
 
-namespace mongo {
+namespace mongol {
 namespace scram {
 const unsigned int hashSize = 20;
 
@@ -93,4 +93,4 @@ bool verifyServerSignature(const unsigned char saltedPassword[hashSize],
                            const std::string& authMessage,
                            const std::string& serverSignature);
 }  // namespace scram
-}  // namespace mongo
+}  // namespace mongol

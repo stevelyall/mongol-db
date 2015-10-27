@@ -1,4 +1,4 @@
-// Test handling of clock skew and optimes across mongod instances
+// Test handling of clock skew and optimes across mongold instances
 
 var baseName = "jstests_repl_master1test";
 

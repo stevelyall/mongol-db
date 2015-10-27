@@ -31,11 +31,11 @@
 #include <string>
 #include <vector>
 
-#include "mongo/base/string_data.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/s/bson_serializable.h"
+#include "mongol/base/string_data.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/s/bson_serializable.h"
 
-namespace mongo {
+namespace mongol {
 
 /**
  * This class represents the layout and content of a delete document runCommand,
@@ -98,4 +98,4 @@ private:
     bool _isLimitSet;
 };
 
-}  // namespace mongo
+}  // namespace mongol

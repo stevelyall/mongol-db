@@ -26,16 +26,16 @@
  *    it in the license file.
  */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/storage/sorted_data_interface_test_harness.h"
+#include "mongol/db/storage/sorted_data_interface_test_harness.h"
 
 #include <memory>
 
-#include "mongo/db/storage/sorted_data_interface.h"
-#include "mongo/unittest/unittest.h"
+#include "mongol/db/storage/sorted_data_interface.h"
+#include "mongol/unittest/unittest.h"
 
-namespace mongo {
+namespace mongol {
 
 // Verify that a forward cursor is positioned at EOF when the index is empty.
 TEST(SortedDataInterface, CursorIsEOFWhenEmpty) {
@@ -165,4 +165,4 @@ TEST(SortedDataInterface, ExhaustCursorReversed) {
     }
 }
 
-}  // namespace mongo
+}  // namespace mongol

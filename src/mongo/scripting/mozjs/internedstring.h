@@ -31,7 +31,7 @@
 #include <array>
 #include <jsapi.h>
 
-namespace mongo {
+namespace mongol {
 namespace mozjs {
 
 /**
@@ -41,7 +41,7 @@ namespace mozjs {
  */
 enum class InternedString {
 #define MONGO_MOZJS_INTERNED_STRING(name, str) name,
-#include "mongo/scripting/mozjs/internedstring.defs"
+#include "mongol/scripting/mozjs/internedstring.defs"
 #undef MONGO_MOZJS_INTERNED_STRING
     NUM_IDS,
 };
@@ -84,4 +84,4 @@ private:
 };
 
 }  // namespace mozjs
-}  // namespace mongo
+}  // namespace mongol

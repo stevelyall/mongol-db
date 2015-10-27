@@ -26,53 +26,53 @@
 *    it in the license file.
 */
 
-#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kAccessControl
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongol::logger::LogComponent::kAccessControl
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/commands/user_management_commands.h"
+#include "mongol/db/commands/user_management_commands.h"
 
 #include <string>
 #include <vector>
 
-#include "mongo/base/status.h"
-#include "mongo/bson/mutable/algorithm.h"
-#include "mongo/bson/mutable/document.h"
-#include "mongo/bson/mutable/element.h"
-#include "mongo/bson/util/bson_extract.h"
-#include "mongo/client/dbclientinterface.h"
-#include "mongo/config.h"
-#include "mongo/crypto/mechanism_scram.h"
-#include "mongo/db/audit.h"
-#include "mongo/db/auth/action_set.h"
-#include "mongo/db/auth/action_type.h"
-#include "mongo/db/auth/authorization_manager.h"
-#include "mongo/db/auth/authorization_manager_global.h"
-#include "mongo/db/auth/authorization_session.h"
-#include "mongo/db/auth/privilege.h"
-#include "mongo/db/auth/resource_pattern.h"
-#include "mongo/db/auth/sasl_options.h"
-#include "mongo/db/auth/user.h"
-#include "mongo/db/auth/user_document_parser.h"
-#include "mongo/db/auth/user_management_commands_parser.h"
-#include "mongo/db/client.h"
-#include "mongo/db/commands.h"
-#include "mongo/db/dbdirectclient.h"
-#include "mongo/db/jsobj.h"
-#include "mongo/db/operation_context.h"
-#include "mongo/db/service_context.h"
-#include "mongo/platform/unordered_set.h"
-#include "mongo/stdx/functional.h"
-#include "mongo/stdx/mutex.h"
-#include "mongo/util/log.h"
-#include "mongo/util/mongoutils/str.h"
-#include "mongo/util/net/ssl_manager.h"
-#include "mongo/util/sequence_util.h"
-#include "mongo/util/time_support.h"
+#include "mongol/base/status.h"
+#include "mongol/bson/mutable/algorithm.h"
+#include "mongol/bson/mutable/document.h"
+#include "mongol/bson/mutable/element.h"
+#include "mongol/bson/util/bson_extract.h"
+#include "mongol/client/dbclientinterface.h"
+#include "mongol/config.h"
+#include "mongol/crypto/mechanism_scram.h"
+#include "mongol/db/audit.h"
+#include "mongol/db/auth/action_set.h"
+#include "mongol/db/auth/action_type.h"
+#include "mongol/db/auth/authorization_manager.h"
+#include "mongol/db/auth/authorization_manager_global.h"
+#include "mongol/db/auth/authorization_session.h"
+#include "mongol/db/auth/privilege.h"
+#include "mongol/db/auth/resource_pattern.h"
+#include "mongol/db/auth/sasl_options.h"
+#include "mongol/db/auth/user.h"
+#include "mongol/db/auth/user_document_parser.h"
+#include "mongol/db/auth/user_management_commands_parser.h"
+#include "mongol/db/client.h"
+#include "mongol/db/commands.h"
+#include "mongol/db/dbdirectclient.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/operation_context.h"
+#include "mongol/db/service_context.h"
+#include "mongol/platform/unordered_set.h"
+#include "mongol/stdx/functional.h"
+#include "mongol/stdx/mutex.h"
+#include "mongol/util/log.h"
+#include "mongol/util/mongolutils/str.h"
+#include "mongol/util/net/ssl_manager.h"
+#include "mongol/util/sequence_util.h"
+#include "mongol/util/time_support.h"
 
-namespace mongo {
+namespace mongol {
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 using std::endl;
 using std::string;
@@ -161,7 +161,7 @@ Status checkOkayToGrantRolesToRole(OperationContext* txn,
         const RoleName& roleToAdd = *it;
         if (roleToAdd == role) {
             return Status(ErrorCodes::InvalidRoleModification,
-                          mongoutils::str::stream() << "Cannot grant role " << role.getFullName()
+                          mongolutils::str::stream() << "Cannot grant role " << role.getFullName()
                                                     << " to itself.");
         }
 
@@ -190,7 +190,7 @@ Status checkOkayToGrantRolesToRole(OperationContext* txn,
 
         if (sequenceContains(indirectRoles, role)) {
             return Status(ErrorCodes::InvalidRoleModification,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Granting " << roleToAdd.getFullName() << " to "
                               << role.getFullName()
                               << " would introduce a cycle in the role graph.");
@@ -2306,10 +2306,10 @@ public:
 } CmdGetCacheGeneration;
 
 /**
- * This command is used only by mongorestore to handle restoring users/roles.  We do this so
- * that mongorestore doesn't do direct inserts into the admin.system.users and
+ * This command is used only by mongolrestore to handle restoring users/roles.  We do this so
+ * that mongolrestore doesn't do direct inserts into the admin.system.users and
  * admin.system.roles, which would bypass the authzUpdateLock and allow multiple concurrent
- * modifications to users/roles.  What mongorestore now does instead is it inserts all user/role
+ * modifications to users/roles.  What mongolrestore now does instead is it inserts all user/role
  * definitions it wants to restore into temporary collections, then this command moves those
  * user/role definitions into their proper place in admin.system.users and admin.system.roles.
  * It either adds the users/roles to the existing ones or replaces the existing ones, depending
@@ -2332,7 +2332,7 @@ public:
     }
 
     virtual void help(stringstream& ss) const {
-        ss << "Internal command used by mongorestore for updating user/role data" << endl;
+        ss << "Internal command used by mongolrestore for updating user/role data" << endl;
     }
 
     virtual Status checkAuthForCommand(ClientBasic* client,
@@ -2456,7 +2456,7 @@ public:
             auditCreateOrUpdateUser(userObj, false);
             Status status = updatePrivilegeDocument(txn, userName, userObj, writeConcern);
             if (!status.isOK()) {
-                // Match the behavior of mongorestore to continue on failure
+                // Match the behavior of mongolrestore to continue on failure
                 warning() << "Could not update user " << userName
                           << " in _mergeAuthzCollections command: " << status << endl;
             }
@@ -2464,7 +2464,7 @@ public:
             auditCreateOrUpdateUser(userObj, true);
             Status status = insertPrivilegeDocument(txn, userObj, writeConcern);
             if (!status.isOK()) {
-                // Match the behavior of mongorestore to continue on failure
+                // Match the behavior of mongolrestore to continue on failure
                 warning() << "Could not insert user " << userName
                           << " in _mergeAuthzCollections command: " << status << endl;
             }
@@ -2495,7 +2495,7 @@ public:
             auditCreateOrUpdateRole(roleObj, false);
             Status status = updateRoleDocument(txn, roleName, roleObj, writeConcern);
             if (!status.isOK()) {
-                // Match the behavior of mongorestore to continue on failure
+                // Match the behavior of mongolrestore to continue on failure
                 warning() << "Could not update role " << roleName
                           << " in _mergeAuthzCollections command: " << status << endl;
             }
@@ -2503,7 +2503,7 @@ public:
             auditCreateOrUpdateRole(roleObj, true);
             Status status = insertRoleDocument(txn, roleObj, writeConcern);
             if (!status.isOK()) {
-                // Match the behavior of mongorestore to continue on failure
+                // Match the behavior of mongolrestore to continue on failure
                 warning() << "Could not insert role " << roleName
                           << " in _mergeAuthzCollections command: " << status << endl;
             }
@@ -2748,14 +2748,14 @@ void updateUserCredentials(OperationContext* txn,
 
     BSONElement credentialsElement = userDoc["credentials"];
     uassert(18806,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "While preparing to upgrade user doc from "
                    "2.6/3.0 user data schema to the 3.0+ SCRAM only schema, found a user doc "
                    "with missing or incorrectly formatted credentials: " << userDoc.toString(),
             credentialsElement.type() == Object);
 
     BSONObj credentialsObj = credentialsElement.Obj();
-    BSONElement mongoCRElement = credentialsObj["MONGODB-CR"];
+    BSONElement mongolCRElement = credentialsObj["MONGODB-CR"];
     BSONElement scramElement = credentialsObj["SCRAM-SHA-1"];
 
     // Ignore any user documents that already have SCRAM credentials. This should only
@@ -2765,13 +2765,13 @@ void updateUserCredentials(OperationContext* txn,
     }
 
     uassert(18744,
-            mongoutils::str::stream()
+            mongolutils::str::stream()
                 << "While preparing to upgrade user doc from "
                    "2.6/3.0 user data schema to the 3.0+ SCRAM only schema, found a user doc "
                    "missing MONGODB-CR credentials :" << userDoc.toString(),
-            !mongoCRElement.eoo());
+            !mongolCRElement.eoo());
 
-    std::string hashedPassword = mongoCRElement.String();
+    std::string hashedPassword = mongolCRElement.String();
 
     BSONObj query = BSON("_id" << userDoc["_id"].String());
     BSONObjBuilder updateBuilder;
@@ -2855,7 +2855,7 @@ Status upgradeAuthSchemaStep(OperationContext* txn,
         }
         default:
             return Status(ErrorCodes::AuthSchemaIncompatible,
-                          mongoutils::str::stream()
+                          mongolutils::str::stream()
                               << "Do not know how to upgrade auth schema from version "
                               << authzVersion);
     }
@@ -2892,7 +2892,7 @@ Status upgradeAuthSchema(OperationContext* txn,
         }
     }
     return Status(ErrorCodes::OperationIncomplete,
-                  mongoutils::str::stream() << "Auth schema upgrade incomplete after " << maxSteps
+                  mongolutils::str::stream() << "Auth schema upgrade incomplete after " << maxSteps
                                             << " successful steps.");
 }
 
@@ -2946,4 +2946,4 @@ public:
     }
 
 } cmdAuthSchemaUpgrade;
-}  // namespace mongo
+}  // namespace mongol

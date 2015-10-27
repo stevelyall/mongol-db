@@ -26,20 +26,20 @@
 *    it in the license file.
 */
 
-#include "mongo/platform/basic.h"
+#include "mongol/platform/basic.h"
 
-#include "mongo/db/jsobj.h"
-#include "mongo/db/pipeline/dependencies.h"
-#include "mongo/db/pipeline/field_path.h"
-#include "mongo/util/mongoutils/str.h"
+#include "mongol/db/jsobj.h"
+#include "mongol/db/pipeline/dependencies.h"
+#include "mongol/db/pipeline/field_path.h"
+#include "mongol/util/mongolutils/str.h"
 
-namespace mongo {
+namespace mongol {
 
 using std::set;
 using std::string;
 using std::vector;
 
-namespace str = mongoutils::str;
+namespace str = mongolutils::str;
 
 BSONObj DepsTracker::toProjection() const {
     BSONObjBuilder bb;

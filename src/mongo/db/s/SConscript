@@ -10,12 +10,12 @@ env.Library(
         'metadata_loader.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/db/range_arithmetic',
-        '$BUILD_DIR/mongo/s/catalog/catalog_types',
-        '$BUILD_DIR/mongo/s/common',
-        '$BUILD_DIR/mongo/db/service_context',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/db/range_arithmetic',
+        '$BUILD_DIR/mongol/s/catalog/catalog_types',
+        '$BUILD_DIR/mongol/s/common',
+        '$BUILD_DIR/mongol/db/service_context',
     ]
 )
 
@@ -30,10 +30,10 @@ env.Library(
         'sharding_state_recovery.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/base',
-        '$BUILD_DIR/mongo/bson/util/bson_extract',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/s/sharding_initialization',
+        '$BUILD_DIR/mongol/base',
+        '$BUILD_DIR/mongol/bson/util/bson_extract',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/s/sharding_initialization',
     ],
     LIBDEPS_TAGS=[
         # Depends on symbols defined in files in serverOnlyFiles, and has
@@ -50,8 +50,8 @@ env.Library(
         'set_shard_version_command.cpp',
     ],
     LIBDEPS=[
-        '$BUILD_DIR/mongo/db/repl/repl_coordinator_global',
-        '$BUILD_DIR/mongo/s/serveronly',
+        '$BUILD_DIR/mongol/db/repl/repl_coordinator_global',
+        '$BUILD_DIR/mongol/s/serveronly',
         'metadata',
         'sharding',
     ],
@@ -69,11 +69,11 @@ env.CppUnitTest(
     ],
     LIBDEPS=[
         'metadata',
-        '$BUILD_DIR/mongo/db/auth/authorization_manager_mock_init',
-        '$BUILD_DIR/mongo/db/common',
-        '$BUILD_DIR/mongo/dbtests/mocklib',
-        '$BUILD_DIR/mongo/s/catalog/legacy/catalog_manager_legacy',
-        '$BUILD_DIR/mongo/s/coreshard',
-        '$BUILD_DIR/mongo/s/mongoscore',
+        '$BUILD_DIR/mongol/db/auth/authorization_manager_mock_init',
+        '$BUILD_DIR/mongol/db/common',
+        '$BUILD_DIR/mongol/dbtests/mocklib',
+        '$BUILD_DIR/mongol/s/catalog/legacy/catalog_manager_legacy',
+        '$BUILD_DIR/mongol/s/coreshard',
+        '$BUILD_DIR/mongol/s/mongolscore',
     ]
 )

@@ -1,26 +1,26 @@
 //
-// Tests that mongos validating writes when stale does not DOS config servers
+// Tests that mongols validating writes when stale does not DOS config servers
 //
 // Note that this is *unsafe* with broadcast removes and updates
 //
 
-var st = new ShardingTest({ shards : 2, mongos : 3, other : { shardOptions : { verbose : 2 } } });
+var st = new ShardingTest({ shards : 2, mongols : 3, other : { shardOptions : { verbose : 2 } } });
 st.stopBalancer()
 
-var mongos = st.s0
+var mongols = st.s0
 var staleMongosA = st.s1
 var staleMongosB = st.s2
 
 // Additional logging
-printjson( mongos.getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
+printjson( mongols.getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
 printjson( staleMongosA.getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
 printjson( staleMongosB.getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
 printjson( st._connections[0].getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
 printjson( st._connections[1].getDB( "admin" ).runCommand({ setParameter : 1, logLevel : 2 }) )
 
-var admin = mongos.getDB( "admin" )
-var config = mongos.getDB( "config" )
-var coll = mongos.getCollection( "foo.bar" )
+var admin = mongols.getDB( "admin" )
+var config = mongols.getDB( "config" )
+var coll = mongols.getCollection( "foo.bar" )
 var staleCollA = staleMongosA.getCollection( coll + "" )
 var staleCollB = staleMongosB.getCollection( coll + "" )
 
@@ -29,7 +29,7 @@ st.ensurePrimaryShard(coll.getDB().getName(), 'shard0001');
 coll.ensureIndex({ a : 1 })
 printjson( admin.runCommand({ shardCollection : coll + "", key : { a : 1 } }) )
 
-// Let the stale mongos see the collection state
+// Let the stale mongols see the collection state
 staleCollA.findOne()
 staleCollB.findOne()
 

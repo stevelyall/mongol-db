@@ -33,10 +33,10 @@
 #include <queue>
 #include <vector>
 
-#include "mongo/db/geo/hash.h"
+#include "mongol/db/geo/hash.h"
 
 
-namespace mongo {
+namespace mongol {
 
 class R2Region;
 
@@ -154,4 +154,4 @@ private:
     std::vector<GeoHash> _cellIds;
 };
 
-} /* namespace mongo */
+} /* namespace mongol */
