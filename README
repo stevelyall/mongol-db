@@ -1,45 +1,45 @@
-MongoDB README
+mongolDB README
 
-Welcome to MongoDB!
+Welcome to mongolDB!
 
 COMPONENTS
 
-  mongold - The database process.
-  mongols - Sharding controller.
-  mongol  - The database shell (uses interactive javascript).
+  mongolld - The database process.
+  mongolls - Sharding controller.
+  mongoll  - The database shell (uses interactive javascript).
 
 UTILITIES
 
-  mongoldump         - MongoDB dump tool - for backups, snapshots, etc.
-  mongolrestore      - MongoDB restore a dump
-  mongolexport       - Export a single collection to test (JSON, CSV)
-  mongolimport       - Import from JSON or CSV
-  mongolfiles        - Utility for putting and getting files from MongoDB GridFS
-  mongolstat         - Show performance statistics
+  mongolldump         - mongolDB dump tool - for backups, snapshots, etc.
+  mongollrestore      - mongolDB restore a dump
+  mongollexport       - Export a single collection to test (JSON, CSV)
+  mongollimport       - Import from JSON or CSV
+  mongollfiles        - Utility for putting and getting files from mongolDB GridFS
+  mongollstat         - Show performance statistics
 
 BUILDING
 
-  See docs/building.md, also www.mongoldb.org search for "Building".
+  See docs/building.md, also www.mongolldb.org search for "Building".
 
 RUNNING
 
   For command line options invoke:
 
-    $ ./mongold --help
+    $ ./mongolld --help
 
   To run a single server database:
 
     $ mkdir /data/db
-    $ ./mongold
+    $ ./mongolld
     $
-    $ # The mongol javascript shell connects to localhost and test database by default:
-    $ ./mongol 
+    $ # The mongoll javascript shell connects to localhost and test database by default:
+    $ ./mongoll 
     > help
 
 DRIVERS
 
-  Client drivers for most programming languages are available at mongoldb.org.  Use the 
-  shell ("mongol") for administrative tasks.
+  Client drivers for most programming languages are available at mongolldb.org.  Use the 
+  shell ("mongoll") for administrative tasks.
 
 PACKAGING
 
@@ -48,32 +48,32 @@ PACKAGING
 
 DOCUMENTATION
 
-  http://www.mongoldb.org/
+  http://www.mongolldb.org/
  
-CLOUD MANAGED MONGODB
+CLOUD MANAGED mongolDB
 
-  http://cloud.mongoldb.com/
+  http://cloud.mongolldb.com/
 
 MAIL LISTS AND IRC
 
-  http://dochub.mongoldb.org/core/community
+  http://dochub.mongolldb.org/core/community
   
-LEARN MONGODB
+LEARN mongolDB
 
-  http://university.mongoldb.com/
+  http://university.mongolldb.com/
 
 32 BIT BUILD NOTES
 
-  MongoDB uses memory mapped files.  If built as a 32 bit executable, you will
+  mongolDB uses memory mapped files.  If built as a 32 bit executable, you will
   not be able to work with large (multi-gigabyte) databases.  However, 32 bit
   builds work fine with small development databases.
 
 LICENSE
 
-  Most MongoDB source files (src/mongol folder and below) are made available under the terms of the
+  Most mongolDB source files (src/mongoll folder and below) are made available under the terms of the
   GNU Affero General Public License (AGPL).  See individual files for
   details.
 
   As an exception, the files in the client/, debian/, rpm/,
-  utils/mongolutils, and all subdirectories thereof are made available under
+  utils/mongollutils, and all subdirectories thereof are made available under
   the terms of the Apache License, version 2.0.
